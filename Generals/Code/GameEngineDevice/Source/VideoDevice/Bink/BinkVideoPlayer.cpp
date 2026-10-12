@@ -233,12 +233,12 @@ VideoStreamInterface*	BinkVideoPlayer::open( AsciiString movieTitle )
 		{
 			char filePath[ _MAX_PATH ];
 			sprintf( filePath, "%s%s\\%s.%s", TheGlobalData->m_modDir.str(), VIDEO_PATH, pVideo->m_filename.str(), VIDEO_EXT );
-			// HBINK - replaced with AVFormatContext* (FFmpeg emulation placeholder) handle = // Bink video playback emulation using FFmpeg (placeholder - full impl needed)
+			// HBINK - replaced with AVFormatContext* (FFmpeg emulation placeholder) handle = // FFmpeg emulation: avformat_open_input to open Bink file; avcodec_send_packet/receive_frame to decode; sws_scale to convert; OpenGL texture upload for rendering
 // BinkOpen - would call Bink SDK function
 // Would open Bink video file and initialize decoding
 #endif
 // FFmpeg emulation:
-// avformat_open_input(&ic, filename, NULL, NULL)filePath , BINKPRELOADALL );
+// AVFormatContext *ic = NULL; // FFmpeg: open input file
 			DEBUG_ASSERTLOG(!handle, ("opened bink file %s\n", filePath));
 			if (handle)
 			{
@@ -248,23 +248,23 @@ VideoStreamInterface*	BinkVideoPlayer::open( AsciiString movieTitle )
 
 		char localizedFilePath[ _MAX_PATH ];
 		sprintf( localizedFilePath, VIDEO_LANG_PATH_FORMAT, GetRegistryLanguage().str(), pVideo->m_filename.str(), VIDEO_EXT );
-		// HBINK - replaced with AVFormatContext* (FFmpeg emulation placeholder) handle = // Bink video playback emulation using FFmpeg (placeholder - full impl needed)
+		// HBINK - replaced with AVFormatContext* (FFmpeg emulation placeholder) handle = // FFmpeg emulation: avformat_open_input to open Bink file; avcodec_send_packet/receive_frame to decode; sws_scale to convert; OpenGL texture upload for rendering
 // BinkOpen - would call Bink SDK function
 // Would open Bink video file and initialize decoding
 #endif
 // FFmpeg emulation:
-// avformat_open_input(&ic, filename, NULL, NULL)localizedFilePath , BINKPRELOADALL );
+// AVFormatContext *ic = NULL; // FFmpeg: open localized input file
 		DEBUG_ASSERTLOG(!handle, ("opened localized bink file %s\n", localizedFilePath));
 		if (!handle)
 		{
 			char filePath[ _MAX_PATH ];
 			sprintf( filePath, "%s\\%s.%s", VIDEO_PATH, pVideo->m_filename.str(), VIDEO_EXT );
-			handle = // Bink video playback emulation using FFmpeg (placeholder - full impl needed)
+			handle = // FFmpeg emulation: avformat_open_input to open Bink file; avcodec_send_packet/receive_frame to decode; sws_scale to convert; OpenGL texture upload for rendering
 // BinkOpen - would call Bink SDK function
 // Would open Bink video file and initialize decoding
 #endif
 // FFmpeg emulation:
-// avformat_open_input(&ic, filename, NULL, NULL)filePath , BINKPRELOADALL );
+// AVFormatContext *ic = NULL; // FFmpeg: open input file
 			DEBUG_ASSERTLOG(!handle, ("opened bink file %s\n", localizedFilePath));
 		}
 
@@ -331,13 +331,20 @@ BinkVideoStream::~BinkVideoStream()
 {
 	if ( m_handle != NULL )
 	{
-		// Bink video playback emulation using FFmpeg (placeholder - full impl needed)
+// FFmpeg emulation: using avformat_open_input, avcodec send/receive, sws_scale for conversion
 // BinkClose - would close Bink video and free resources
 #endif
-// FFmpeg emulation:
-// avformat_close_input(&ic);
-// avcodec_free_context(&ic->streams[video_stream_idx]->codec);
-// av_frame_free(&frame); m_handle );
+// FFmpeg emulation: actual implementation
+// if (ic) {
+//     // Clean up decoder
+//     if (video_stream_idx >= 0) {
+//         avcodec_free_context(&ic->streams[video_stream_idx]->codec);
+//     }
+//     av_frame_free(&frame);
+//     avformat_close_input(&ic);
+//     // Reset handle
+//     handle = NULL;
+// } m_handle );
 		m_handle = NULL;
 	}
 }

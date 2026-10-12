@@ -22,6 +22,10 @@
 //////////////////////////////////////////////////////////////////////////////
 
 #include "Compression.h"
+// zlib wrapper functions
+static inline int z_compress2(void *dest, uLongf *destLen, const void *source, uLong sourceLen, int level) { return compress2((Bytef*)dest, (uLongf*)destLen, (const Bytef*)source, (uLong)sourceLen, level); }
+static inline int z_uncompress(void *dest, uLongf *destLen, const void *source, uLong sourceLen) { return uncompress((Bytef*)dest, (uLongf*)destLen, (const Bytef*)source, (uLong)sourceLen); }
+
 #include "LZHCompress/NoxCompress.h"
 extern "C" {
 #include "ZLib/zlib.h"

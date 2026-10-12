@@ -1,0 +1,3 @@
+/home/cyklon/.local/share/mise/installs/cmake/latest/cmake-4.4.3-linux-x86_64/bin/cmake -E rm -f CMakeFiles/RTS.dir/objects.a
+x86_64-w64-mingw32-gcc-ar qc CMakeFiles/RTS.dir/objects.a @CMakeFiles/RTS.dir/objects1.rsp
+/usr/bin/x86_64-w64-mingw32-g++ -O3 -DNDEBUG -mwindows -Wl,--whole-archive CMakeFiles/RTS.dir/objects.a -Wl,--no-whole-archive -o ../../../bin/RTS.exe -Wl,--out-implib,../../../lib/libRTS.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/RTS.dir/linkLibs.rsp

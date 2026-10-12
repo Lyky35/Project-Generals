@@ -1,0 +1,27 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  )
+
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDescriptors.cpp" "Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.obj" "gcc" "Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.obj.d"
+  "/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDevice.cpp" "Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.obj" "gcc" "Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.obj.d"
+  "/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkGpuBuffer.cpp" "Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.obj" "gcc" "Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.obj.d"
+  "/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkShader.cpp" "Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.obj" "gcc" "Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.obj.d"
+  "/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkTexture.cpp" "Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.obj" "gcc" "Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.obj.d"
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_FORWARD_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

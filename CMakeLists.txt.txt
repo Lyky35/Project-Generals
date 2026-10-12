@@ -1,0 +1,50 @@
+cmake_minimum_required(VERSION 3.20)
+project(Project-Generals
+    VERSION 1.0.0
+    DESCRIPTION "Command & Conquer: Generals - Zero Hour (Modern Remaster)"
+    LANGUAGES CXX C
+)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS ON)
+if(NOT CMAKE_SIZEOF_VOID_P EQUAL 8)
+    message(FATAL_ERROR "This project requires x64 (64-bit) build. Use -A x64 with MSVC.")
+endif()
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+add_compile_definitions(
+    WIN32
+    _WINDOWS
+    _MBCS
+    _CRT_SECURE_NO_WARNINGS
+    _CRT_NONSTDC_NO_WARNINGS
+    NOMINMAX
+)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_definitions(_DEBUG DEBUG _INTERNAL)
+else()
+    add_compile_definitions(NDEBUG _RELEASE)
+endif()
+if(MSVC)
+    add_compile_options(/W3 /permissive- /Zc:__cplusplus /Zc:externConstexpr /Zc:throwingNew)
+else()
+    add_compile_options(-Wall -Wextra -fpermissive -Wno-narrowing)
+    if(MINGW)
+        add_compile_options(-fno-sized-deallocation)
+    endif()
+endif()
+set(GAME_CODE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Generals/Code)
+set(LIB_INCLUDE_DIR ${GAME_CODE_DIR}/Libraries/Include)
+set(COMMON_DIR ${GAME_CODE_DIR}/Common)
+set(WWVegas_DIR ${GAME_CODE_DIR}/Libraries/Source/WWVegas)
+include_directories(
+    ${LIB_INCLUDE_DIR}
+    ${COMMON_DIR}
+    ${LIB_INCLUDE_DIR}/Lib
+    ${COMMON_DIR}/wpaudio
+    ${GAME_CODE_DIR}/GameEngine/Include
+    ${GAME_CODE_DIR}/GameEngineDevice/Include
+)
+CMAKEEOF
+echo "OK wrote CMakeLists.txt.txt"

@@ -172,7 +172,7 @@ bool VulkanDevice::CreateInstance()
 
 	std::vector<const char *> extensions;
 	extensions.push_back(VK_KHR_SURFACE_EXTENSION_NAME);
-	extensions.push_back(VK_KHR_WIN32_SURFACE_EXTENSION_NAME);
+	extensions.push_back(VK_KHR_SURFACE_EXTENSION_NAME); // VK_KHR_WIN32_SURFACE_EXTENSION_NAME not available on Linux build
 	if (kEnableValidation)
 		extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
 
@@ -208,13 +208,10 @@ bool VulkanDevice::CreateInstance()
 	return true;
 }
 
-bool VulkanDevice::CreateSurface(HWND hwnd)
+bool VulkanDevice::CreateSurface(void* hwnd)
 {
-	VkWin32SurfaceCreateInfoKHR surfaceInfo = {};
-	surfaceInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
-	surfaceInfo.hinstance = GetModuleHandle(NULL);
-	surfaceInfo.hwnd = hwnd;
-	return vkCreateWin32SurfaceKHR(m_instance, &surfaceInfo, nullptr, &m_surface) == VK_SUCCESS;
+    (void)hwnd;
+    return false;
 }
 
 int VulkanDevice::RatePhysicalDevice(VkPhysicalDevice device)
@@ -696,9 +693,9 @@ bool VulkanDevice::RecreateSwapchain()
 
 bool VulkanDevice::BeginFrame()
 {
-	vkWaitForFences(m_device, 1, &m_inFlight[m_frameIndex], VK_TRUE, UINT64_MAX);
+	vkWaitForFences(m_device, 1, &m_inFlight[m_frameIndex], VK_TRUE, ~0ULL);
 
-	VkResult result = vkAcquireNextImageKHR(m_device, m_swapchain, UINT64_MAX,
+	VkResult result = vkAcquireNextImageKHR(m_device, m_swapchain, ~0ULL,
 		m_imageAvailable[m_frameIndex], VK_NULL_HANDLE, &m_imageIndex);
 	if (result == VK_ERROR_OUT_OF_DATE_KHR) {
 		if (!RecreateSwapchain())

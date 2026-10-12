@@ -44,11 +44,14 @@ endif()
 
 set(GAME_CODE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Generals/Code)
 set(LIB_INCLUDE_DIR ${GAME_CODE_DIR}/Libraries/Include)
+set(COMMON_DIR ${GAME_CODE_DIR}/Common)
 set(WWVegas_DIR ${GAME_CODE_DIR}/Libraries/Source/WWVegas)
 
 include_directories(
     ${LIB_INCLUDE_DIR}
     ${LIB_INCLUDE_DIR}/Lib
+    ${COMMON_DIR}
+    ${COMMON_DIR}/wpaudio
     ${GAME_CODE_DIR}/GameEngine/Include
     ${GAME_CODE_DIR}/GameEngineDevice/Include
     ${WWVegas_DIR}
@@ -57,11 +60,17 @@ include_directories(
     ${WWVegas_DIR}/WWDebug
     ${WWVegas_DIR}/WWSaveLoad
     ${WWVegas_DIR}/WW3D2
+    ${WWVegas_DIR}/WWAudio
+    ${WWVegas_DIR}/WWDownload
+    ${WWVegas_DIR}/Wwutil
     ${GAME_CODE_DIR}/Libraries/Include/Granny
     ${GAME_CODE_DIR}/Libraries/Include/MSS
     ${GAME_CODE_DIR}/Libraries/Source/GameSpy/Stub
     ${GAME_CODE_DIR}/Libraries/Source/DX8Compat
     ${GAME_CODE_DIR}/Libraries/Source/VulkanRenderer
+    /usr/include/AL
+    /usr/include
+    ${LIB_INCLUDE_DIR}/ZLib
 )
 
 add_subdirectory(Generals/Code/Libraries/Source/Compression)

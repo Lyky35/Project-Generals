@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../../../../../lib/libWWDebug.a CMakeFiles/WWDebug.dir/wwdebug.cpp.o CMakeFiles/WWDebug.dir/wwmemlog.cpp.o CMakeFiles/WWDebug.dir/wwprofile.cpp.o
-/usr/bin/ranlib ../../../../../../lib/libWWDebug.a

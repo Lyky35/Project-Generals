@@ -1,5 +1,13 @@
+#ifdef _WIN32
+#define VK_USE_PLATFORM_WIN32_KHR
+#else
+#define VK_USE_PLATFORM_WIN32_KHR 0
+#endif
+
 #pragma once
 
+#include <vulkan/vulkan_win32.h>
+#define VK_USE_PLATFORM_WIN32_KHR
 #include <windows.h>
 #include <vulkan/vulkan.h>
 #include <vector>
@@ -53,7 +61,7 @@ public:
 
 private:
 	bool CreateInstance();
-	bool CreateSurface(HWND hwnd);
+	bool CreateSurface(void* hwnd);
 	bool PickPhysicalDevice();
 	bool CreateLogicalDevice();
 	bool CreateSwapchain();

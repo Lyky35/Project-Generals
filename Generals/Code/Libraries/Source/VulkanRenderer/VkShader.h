@@ -1,23 +1,13 @@
+/*
+** VkShader.h - Vulkan shader management
+*/
+
 #pragma once
 
-#include <windows.h>
-#include <vulkan/vulkan.h>
-#include <cstdint>
+#include "VulkanDevice.h"
+#include "VkPipeline.h"
 #include <vector>
 #include <unordered_map>
-
-class VulkanDevice;
-
-struct VkFrameUniforms {
-	float ambientColor[4];
-	float fogColor[4];
-	float fogParams[4];
-	float materialDiffuse[4];
-	float miscParams[4];
-	float tfactorColor[4];
-	float lightDirs[4][4];
-	float lightColors[4][4];
-};
 
 struct VkPipelineState {
 	int32_t tex0Op;
@@ -42,11 +32,55 @@ struct VkPipelineState {
 	uint32_t uv0Offset;
 	uint32_t uv1Offset;
 
+	// Stencil state
+	int32_t stencilEnable;
+	uint32_t stencilFailOp;
+	uint32_t stencilPassOp;
+	uint32_t stencilDepthFailOp;
+	uint32_t stencilCompare;
+	uint32_t stencilReadMask;
+	uint32_t stencilWriteMask;
+	uint32_t stencilRef;
+
+	// Color write mask
+	uint32_t colorWriteMask;
+
 	bool operator==(const VkPipelineState &other) const;
 };
 
 struct VkPipelineStateHash {
 	size_t operator()(const VkPipelineState &s) const;
+};
+
+struct VkVertexLayoutDesc {
+	VkVertexInputBindingDescription bindings[2];
+	uint32_t bindingCount;
+	VkVertexInputAttributeDescription attributes[5];
+	uint32_t attributeCount;
+};
+
+class VkShaderManager
+{
+public:
+	VkShaderManager();
+	~VkShaderManager();
+
+	VkShaderManager(const VkShaderManager &) = delete;
+	VkShaderManager &operator=(const VkShaderManager &) = delete;
+
+	bool Init(VulkanDevice *device, const char *shaderDir);
+	void Shutdown();
+
+	VkPipeline_T* GetPipeline(const VkPipelineState &state);
+	void SetVertexLayout(const VkVertexLayoutDesc &layout);
+
+private:
+	VulkanDevice *m_device;
+	std::unordered_map<VkPipelineState, VkPipeline_T*, VkPipelineStateHash> m_pipelines;
+	VkPipelineCache m_pipelineCache;
+	VkVertexLayoutDesc m_vertexLayout;
+};
+
 };
 
 struct VkVertexLayoutDesc {

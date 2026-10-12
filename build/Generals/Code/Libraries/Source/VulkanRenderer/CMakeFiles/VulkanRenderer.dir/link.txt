@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../../../../lib/libVulkanRenderer.a CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.o CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.o CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.o CMakeFiles/VulkanRenderer.dir/VkShader.cpp.o CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.o
-/usr/bin/ranlib ../../../../../lib/libVulkanRenderer.a

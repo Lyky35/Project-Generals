@@ -1,0 +1,25 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/cyklon/Work/Project-Generals/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/DX8Compat/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/FFmpegVideo/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/GameSpy/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWMath/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWLib/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/XAudio2/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/GameEngine/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/GameEngineDevice/cmake_install.cmake",
+		"/home/cyklon/Work/Project-Generals/Generals/Code/Main/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
