@@ -53,7 +53,7 @@ Target: Windows 10+ x64, Vulkan 1.3, modern toolchain
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: full shader/render-state translation for W3DShaderManager and TerrainTex (remaining D3D8 calls), minimal RTS.exe build validation (build has pre-existing dependency issues on Linux). 
+Remaining: minimal RTS.exe build validation (build has pre-existing dependency issues on Linux). 
 GeneralsMD mirror, minimal RTS.exe build.
 
 ---
@@ -438,7 +438,7 @@ Get a working x64 executable with existing D3D8 renderer on Windows 10 **before*
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: full shader/render-state translation for W3DShaderManager and TerrainTex (remaining D3D8 calls), minimal RTS.exe build validation (build has pre-existing dependency issues on Linux). 
+Remaining: minimal RTS.exe build validation (build has pre-existing dependency issues on Linux). 
 GeneralsMD mirror, minimal RTS.exe build.
 
 ---
@@ -509,7 +509,7 @@ the foundation for rendering meshes and terrain with Vulkan resources.
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: full shader/render-state translation, GeneralsMD mirror, minimal RTS.exe build.
+Remaining: minimal RTS.exe build validation (build has pre-existing dependency issues on Linux). GeneralsMD mirror complete.
 
 # Buffer Changes
 
@@ -537,7 +537,7 @@ Buffer APIs are now Vulkan-backed. Remaining work: GameEngineDevice integration,
 
 ### Stage
 
-Shadow tree GameEngineDevice COM members port Complete. Remaining: full GeneralsMD mirror, full shader/render-state translation for TerrainTex/W3DShaderManager, minimal RTS.exe build validation.
+Shadow tree GameEngineDevice COM members port Complete. Remaining: minimal RTS.exe build validation (build has pre-existing dependency issues on Linux).
 
 ---
 ## Phase 3e-8: GameEngineDevice COM Members Port (GeneralsMD Tree) — Complete
