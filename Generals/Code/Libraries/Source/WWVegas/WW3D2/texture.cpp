@@ -37,9 +37,9 @@
 
 #include "texture.h"
 
-#include <d3d8.h>
+#include "d3d8types.h"
 #include <stdio.h>
-#include <D3dx8core.h>
+#include "d3d8types.h"
 #include "dx8wrapper.h"
 #include "targa.h"
 #include <nstrdup.h>

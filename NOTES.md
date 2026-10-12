@@ -154,7 +154,37 @@ Faithful transliteration of the x86 asm, plus hardening for pre-existing 16-bit 
 
 ## Phase 3: Vulkan Renderer
 
-**Status:** Pending (largest phase)
+**Status:** In progress (3a done)
+
+### 3a. DX8Compat types header — DONE
+`Libraries/Source/DX8Compat/d3d8types.h` replaces `d3d8.h`/`d3dx8.h`/`d3dx8math.h`
+for all plain-data usage (273 identifiers inventoried across WW3D2):
+- 15 files use COM interfaces → rewritten against Vulkan backend (3b–3e)
+- 14 files use only enums/structs → build unchanged with this header
+- D3DX *function* calls replaced at call sites (WWMath equivalents, Vulkan image ops)
+
+### 3b. Vulkan device layer — DONE
+`VulkanRenderer/VkDevice.*`: 1.3 instance + validation layers, Win32 surface,
+discrete-GPU selection, graphics/present queues, swapchain (mailbox preferred,
+FIFO fallback), depth buffer, render pass, framebuffers, 2-frame flight sync,
+`BeginFrame`/`EndFrame`/present with swapchain recreation, one-time-submit
+helper for uploads. Compile-checked with MinGW-w64 x64.
+
+### 3c. Resource management — DONE
+`VkGpuBuffer` (staging upload + host-visible mapping), `VkTexture` (D3D→Vulkan
+format table incl. DXT1-5, mipmaps, GPU mipmap gen, sampler cache),
+`VkDescriptorAllocator` (frame-reset pool, texture sets). Compile-checked.
+
+### 3d. Shader/pipeline system — DONE
+Uber-shaders (`mesh.vert`/`mesh.frag`, validated SPIR-V via glslangValidator):
+transform, 2 texture stages (disable/select/modulate/add), 4-light vertex
+lighting, linear fog, alpha test — all via 6 specialization constants.
+`VkShaderManager`: SPIR-V loading, state-hashed pipeline cache, 3 canonical
+FVF layouts (XYZ_N_UV1 / XYZ_N_D_UV2 / XYZ_D_UV1), D3D→Vulkan translators
+(cull/fill/compare/blend/topology), fan→list converter, 128B push WVP.
+CMake compiles GLSL→SPV at build time.
+
+### 3e. WW3D2 file ports — IN PROGRESS
 
 ### Architecture Decision
 Native Vulkan backend (no DX8 translation layer). This avoids DXVK overhead and gives full control over the rendering pipeline.

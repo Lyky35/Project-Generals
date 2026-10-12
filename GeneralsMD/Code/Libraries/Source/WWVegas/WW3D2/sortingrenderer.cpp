@@ -44,8 +44,7 @@
 #include "dx8wrapper.h"
 #include "vertmaterial.h"
 #include "texture.h"
-#include "d3d8.h"
-#include "D3dx8math.h"
+#include "d3d8types.h"
 #include "statistics.h"
 #include <wwprofile.h>
 #include <algorithm>
@@ -251,14 +250,9 @@ void SortingRendererClass::Insert_Triangles(
 	WWASSERT(vertex_buffer);
 	WWASSERT(state->vertex_count<=vertex_buffer->Get_Vertex_Count());
 
-	D3DXMATRIX mtx=(D3DXMATRIX&)state->sorting_state.world*(D3DXMATRIX&)state->sorting_state.view;
-	D3DXVECTOR3 vec=(D3DXVECTOR3&)state->bounding_sphere.Center;
-	D3DXVECTOR4 transformed_vec;
-	D3DXVec3Transform(
-		&transformed_vec,
-		&vec,
-		&mtx); 
-	state->transformed_center=Vector3(transformed_vec[0],transformed_vec[1],transformed_vec[2]);
+	Matrix4 mtx = state->sorting_state.world * state->sorting_state.view;
+	Vector4 transformed_vec = mtx.Transpose() * Vector4(state->bounding_sphere.Center.X, state->bounding_sphere.Center.Y, state->bounding_sphere.Center.Z, 1.0f);
+	state->transformed_center = Vector3(transformed_vec.X, transformed_vec.Y, transformed_vec.Z);
 
 	
 	/// @todo lorenzen sez use a bucket sort here... and stop copying so much data so many times
@@ -721,14 +715,9 @@ void SortingRendererClass::Insert_VolumeParticle(
 
 	// Transform the center point to view space for sorting
 
-	D3DXMATRIX mtx=(D3DXMATRIX&)state->sorting_state.world*(D3DXMATRIX&)state->sorting_state.view;
-	D3DXVECTOR3 vec=(D3DXVECTOR3&)state->bounding_sphere.Center;
-	D3DXVECTOR4 transformed_vec;
-	D3DXVec3Transform(
-		&transformed_vec,
-		&vec,
-		&mtx); 
-	state->transformed_center=Vector3(transformed_vec[0],transformed_vec[1],transformed_vec[2]);
+	Matrix4 mtx = state->sorting_state.world * state->sorting_state.view;
+	Vector4 transformed_vec = mtx.Transpose() * Vector4(state->bounding_sphere.Center.X, state->bounding_sphere.Center.Y, state->bounding_sphere.Center.Z, 1.0f);
+	state->transformed_center = Vector3(transformed_vec.X, transformed_vec.Y, transformed_vec.Z);
 
 
 	// BUT WHAT IS THE DEAL WITH THE VERTCOUNT AND POLYCOUNT BEING N BUT TRANSFORMED CENTER COUNT == 1

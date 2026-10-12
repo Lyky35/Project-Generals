@@ -37,7 +37,7 @@
  * Currently unsupported due to cube map texture management needed by W3D
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-#include <d3dx8math.h>
+#include "d3d8types.h"
 #include "dx8fvf.h"
 #include "dx8wrapper.h"
 #include "assetmgr.h"

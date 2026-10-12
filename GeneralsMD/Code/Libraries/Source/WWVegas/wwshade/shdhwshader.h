@@ -42,11 +42,11 @@
 #define SHDHWSHADER_H
 
 #ifndef _D3D8_H_
-#include <d3d8.h>
+#include "d3d8types.h"
 #endif
 
 #ifndef __D3DX8_H__
-#include <d3dx8.h>
+#include "d3d8types.h"
 #endif
 
 #ifndef SHDHW_CONSTANTS_H

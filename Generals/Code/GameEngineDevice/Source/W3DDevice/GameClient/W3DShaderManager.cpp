@@ -69,7 +69,7 @@
 #include "GameLogic/GameLogic.h"
 #include "common/GlobalData.h"
 #include "common/GameLOD.h"
-#include "d3dx8tex.h"
+#include "d3d8types.h"
 #include "dx8caps.h"
 #include "common/gamelod.h"
 #include "Benchmark.h"

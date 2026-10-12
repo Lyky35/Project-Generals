@@ -60,7 +60,7 @@ include_directories(
     ${GAME_CODE_DIR}/Libraries/Include/Granny
     ${GAME_CODE_DIR}/Libraries/Include/MSS
     ${GAME_CODE_DIR}/Libraries/Source/GameSpy/Stub
-    ${GAME_CODE_DIR}/Libraries/Include/DX8Compat
+    ${GAME_CODE_DIR}/Libraries/Source/DX8Compat
     ${GAME_CODE_DIR}/Libraries/Source/VulkanRenderer
 )
 

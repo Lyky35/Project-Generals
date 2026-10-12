@@ -40,6 +40,7 @@ target_link_libraries(GameEngineDevice PUBLIC
     WWDebug
     WWMath
     WWSaveLoad
+    DX8Compat
     VulkanRenderer
     XAudio2Engine
     FFmpegVideo
