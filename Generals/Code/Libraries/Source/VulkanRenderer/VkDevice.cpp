@@ -1,0 +1,798 @@
+#include "VkDevice.h"
+#include <cstring>
+#include <limits>
+
+#ifdef _DEBUG
+static const bool kEnableValidation = true;
+#else
+static const bool kEnableValidation = false;
+#endif
+
+static const char *kValidationLayers[] = {
+	"VK_LAYER_KHRONOS_validation"
+};
+
+static VKAPI_ATTR VkBool32 VKAPI_CALL DebugCallback(
+	VkDebugUtilsMessageSeverityFlagBitsEXT severity,
+	VkDebugUtilsMessageTypeFlagsEXT type,
+	const VkDebugUtilsMessengerCallbackDataEXT *callbackData,
+	void *userData)
+{
+	(void)severity;
+	(void)type;
+	(void)userData;
+	OutputDebugStringA(callbackData->pMessage);
+	OutputDebugStringA("\n");
+	return VK_FALSE;
+}
+
+VulkanDevice::VulkanDevice()
+	: m_hwnd(NULL)
+	, m_instance(VK_NULL_HANDLE)
+	, m_debugMessenger(VK_NULL_HANDLE)
+	, m_surface(VK_NULL_HANDLE)
+	, m_physicalDevice(VK_NULL_HANDLE)
+	, m_device(VK_NULL_HANDLE)
+	, m_graphicsFamily(UINT32_MAX)
+	, m_presentFamily(UINT32_MAX)
+	, m_graphicsQueue(VK_NULL_HANDLE)
+	, m_presentQueue(VK_NULL_HANDLE)
+	, m_swapchain(VK_NULL_HANDLE)
+	, m_swapFormat(VK_FORMAT_B8G8R8A8_UNORM)
+	, m_depthImage(VK_NULL_HANDLE)
+	, m_depthMemory(VK_NULL_HANDLE)
+	, m_depthView(VK_NULL_HANDLE)
+	, m_depthFormat(VK_FORMAT_D32_SFLOAT)
+	, m_renderPass(VK_NULL_HANDLE)
+	, m_commandPool(VK_NULL_HANDLE)
+	, m_frameIndex(0)
+	, m_imageIndex(0)
+	, m_framebufferResized(false)
+{
+	m_swapExtent.width = 0;
+	m_swapExtent.height = 0;
+}
+
+VulkanDevice::~VulkanDevice()
+{
+	Shutdown();
+}
+
+VulkanDevice &VulkanDevice::Instance()
+{
+	static VulkanDevice instance;
+	return instance;
+}
+
+bool VulkanDevice::Init(HWND hwnd)
+{
+	m_hwnd = hwnd;
+	if (!CreateInstance())
+		return false;
+	if (!CreateSurface(hwnd)) {
+		Shutdown();
+		return false;
+	}
+	if (!PickPhysicalDevice()) {
+		Shutdown();
+		return false;
+	}
+	if (!CreateLogicalDevice()) {
+		Shutdown();
+		return false;
+	}
+	if (!CreateSwapchain()) {
+		Shutdown();
+		return false;
+	}
+	if (!CreateImageViews()) {
+		Shutdown();
+		return false;
+	}
+	if (!CreateRenderPass()) {
+		Shutdown();
+		return false;
+	}
+	if (!CreateDepthResources()) {
+		Shutdown();
+		return false;
+	}
+	if (!CreateFramebuffers()) {
+		Shutdown();
+		return false;
+	}
+	if (!CreateCommandPool()) {
+		Shutdown();
+		return false;
+	}
+	if (!CreateCommandBuffers()) {
+		Shutdown();
+		return false;
+	}
+	if (!CreateSyncObjects()) {
+		Shutdown();
+		return false;
+	}
+	return true;
+}
+
+void VulkanDevice::Shutdown()
+{
+	if (m_device != VK_NULL_HANDLE) {
+		vkDeviceWaitIdle(m_device);
+		CleanupSwapchain();
+		if (m_commandPool != VK_NULL_HANDLE) {
+			vkDestroyCommandPool(m_device, m_commandPool, nullptr);
+			m_commandPool = VK_NULL_HANDLE;
+		}
+		m_commandBuffers.clear();
+		for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
+			if (m_imageAvailable.size() > i && m_imageAvailable[i] != VK_NULL_HANDLE)
+				vkDestroySemaphore(m_device, m_imageAvailable[i], nullptr);
+			if (m_renderFinished.size() > i && m_renderFinished[i] != VK_NULL_HANDLE)
+				vkDestroySemaphore(m_device, m_renderFinished[i], nullptr);
+			if (m_inFlight.size() > i && m_inFlight[i] != VK_NULL_HANDLE)
+				vkDestroyFence(m_device, m_inFlight[i], nullptr);
+		}
+		m_imageAvailable.clear();
+		m_renderFinished.clear();
+		m_inFlight.clear();
+		m_imagesInFlight.clear();
+		vkDestroyDevice(m_device, nullptr);
+		m_device = VK_NULL_HANDLE;
+	}
+	if (m_surface != VK_NULL_HANDLE) {
+		vkDestroySurfaceKHR(m_instance, m_surface, nullptr);
+		m_surface = VK_NULL_HANDLE;
+	}
+	if (m_debugMessenger != VK_NULL_HANDLE) {
+		PFN_vkDestroyDebugUtilsMessengerEXT destroyFunc =
+			(PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(m_instance, "vkDestroyDebugUtilsMessengerEXT");
+		if (destroyFunc)
+			destroyFunc(m_instance, m_debugMessenger, nullptr);
+		m_debugMessenger = VK_NULL_HANDLE;
+	}
+	if (m_instance != VK_NULL_HANDLE) {
+		vkDestroyInstance(m_instance, nullptr);
+		m_instance = VK_NULL_HANDLE;
+	}
+	m_physicalDevice = VK_NULL_HANDLE;
+}
+
+bool VulkanDevice::CreateInstance()
+{
+	VkApplicationInfo appInfo = {};
+	appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+	appInfo.pApplicationName = "Command and Conquer Generals";
+	appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
+	appInfo.pEngineName = "ProjectGenerals-Vulkan";
+	appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
+	appInfo.apiVersion = VK_API_VERSION_1_3;
+
+	std::vector<const char *> extensions;
+	extensions.push_back(VK_KHR_SURFACE_EXTENSION_NAME);
+	extensions.push_back(VK_KHR_WIN32_SURFACE_EXTENSION_NAME);
+	if (kEnableValidation)
+		extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+
+	VkInstanceCreateInfo createInfo = {};
+	createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+	createInfo.pApplicationInfo = &appInfo;
+	createInfo.enabledExtensionCount = (uint32_t)extensions.size();
+	createInfo.ppEnabledExtensionNames = extensions.data();
+	if (kEnableValidation) {
+		createInfo.enabledLayerCount = 1;
+		createInfo.ppEnabledLayerNames = kValidationLayers;
+	}
+
+	if (vkCreateInstance(&createInfo, nullptr, &m_instance) != VK_SUCCESS)
+		return false;
+
+	if (kEnableValidation) {
+		VkDebugUtilsMessengerCreateInfoEXT messengerInfo = {};
+		messengerInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
+		messengerInfo.messageSeverity =
+			VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT |
+			VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
+		messengerInfo.messageType =
+			VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT |
+			VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT |
+			VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
+		messengerInfo.pfnUserCallback = DebugCallback;
+		PFN_vkCreateDebugUtilsMessengerEXT createFunc =
+			(PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(m_instance, "vkCreateDebugUtilsMessengerEXT");
+		if (createFunc)
+			createFunc(m_instance, &messengerInfo, nullptr, &m_debugMessenger);
+	}
+	return true;
+}
+
+bool VulkanDevice::CreateSurface(HWND hwnd)
+{
+	VkWin32SurfaceCreateInfoKHR surfaceInfo = {};
+	surfaceInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
+	surfaceInfo.hinstance = GetModuleHandle(NULL);
+	surfaceInfo.hwnd = hwnd;
+	return vkCreateWin32SurfaceKHR(m_instance, &surfaceInfo, nullptr, &m_surface) == VK_SUCCESS;
+}
+
+int VulkanDevice::RatePhysicalDevice(VkPhysicalDevice device)
+{
+	VkPhysicalDeviceProperties props;
+	vkGetPhysicalDeviceProperties(device, &props);
+	if (props.apiVersion < VK_API_VERSION_1_3)
+		return -1;
+
+	uint32_t queueCount = 0;
+	vkGetPhysicalDeviceQueueFamilyProperties(device, &queueCount, nullptr);
+	std::vector<VkQueueFamilyProperties> queues(queueCount);
+	vkGetPhysicalDeviceQueueFamilyProperties(device, &queueCount, queues.data());
+
+	bool hasGraphics = false;
+	bool hasPresent = false;
+	for (uint32_t i = 0; i < queueCount; i++) {
+		if (queues[i].queueFlags & VK_QUEUE_GRAPHICS_BIT)
+			hasGraphics = true;
+		VkBool32 present = VK_FALSE;
+		vkGetPhysicalDeviceSurfaceSupportKHR(device, i, m_surface, &present);
+		if (present)
+			hasPresent = true;
+	}
+	if (!hasGraphics || !hasPresent)
+		return -1;
+
+	uint32_t extCount = 0;
+	vkEnumerateDeviceExtensionProperties(device, nullptr, &extCount, nullptr);
+	std::vector<VkExtensionProperties> exts(extCount);
+	vkEnumerateDeviceExtensionProperties(device, nullptr, &extCount, exts.data());
+	bool hasSwapchain = false;
+	for (size_t i = 0; i < exts.size(); i++) {
+		if (strcmp(exts[i].extensionName, VK_KHR_SWAPCHAIN_EXTENSION_NAME) == 0) {
+			hasSwapchain = true;
+			break;
+		}
+	}
+	if (!hasSwapchain)
+		return -1;
+
+	int score = 0;
+	if (props.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU)
+		score += 1000;
+	if (props.deviceType == VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU)
+		score += 100;
+	score += (int)(props.limits.maxImageDimension2D / 1024);
+	return score;
+}
+
+bool VulkanDevice::PickPhysicalDevice()
+{
+	uint32_t deviceCount = 0;
+	if (vkEnumeratePhysicalDevices(m_instance, &deviceCount, nullptr) != VK_SUCCESS || deviceCount == 0)
+		return false;
+	std::vector<VkPhysicalDevice> devices(deviceCount);
+	vkEnumeratePhysicalDevices(m_instance, &deviceCount, devices.data());
+
+	int bestScore = -1;
+	for (size_t i = 0; i < devices.size(); i++) {
+		int score = RatePhysicalDevice(devices[i]);
+		if (score > bestScore) {
+			bestScore = score;
+			m_physicalDevice = devices[i];
+		}
+	}
+	return bestScore >= 0;
+}
+
+bool VulkanDevice::CreateLogicalDevice()
+{
+	uint32_t queueCount = 0;
+	vkGetPhysicalDeviceQueueFamilyProperties(m_physicalDevice, &queueCount, nullptr);
+	std::vector<VkQueueFamilyProperties> queues(queueCount);
+	vkGetPhysicalDeviceQueueFamilyProperties(m_physicalDevice, &queueCount, queues.data());
+
+	m_graphicsFamily = UINT32_MAX;
+	m_presentFamily = UINT32_MAX;
+	for (uint32_t i = 0; i < queueCount; i++) {
+		if ((queues[i].queueFlags & VK_QUEUE_GRAPHICS_BIT) && m_graphicsFamily == UINT32_MAX)
+			m_graphicsFamily = i;
+		VkBool32 present = VK_FALSE;
+		vkGetPhysicalDeviceSurfaceSupportKHR(m_physicalDevice, i, m_surface, &present);
+		if (present && m_presentFamily == UINT32_MAX)
+			m_presentFamily = i;
+	}
+	if (m_graphicsFamily == UINT32_MAX || m_presentFamily == UINT32_MAX)
+		return false;
+
+	std::vector<VkDeviceQueueCreateInfo> queueInfos;
+	std::vector<uint32_t> families;
+	families.push_back(m_graphicsFamily);
+	if (m_presentFamily != m_graphicsFamily)
+		families.push_back(m_presentFamily);
+	float priority = 1.0f;
+	for (size_t i = 0; i < families.size(); i++) {
+		VkDeviceQueueCreateInfo queueInfo = {};
+		queueInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+		queueInfo.queueFamilyIndex = families[i];
+		queueInfo.queueCount = 1;
+		queueInfo.pQueuePriorities = &priority;
+		queueInfos.push_back(queueInfo);
+	}
+
+	VkPhysicalDeviceFeatures features = {};
+	features.samplerAnisotropy = VK_TRUE;
+	features.fillModeNonSolid = VK_TRUE;
+	features.independentBlend = VK_TRUE;
+
+	const char *deviceExtensions[] = { VK_KHR_SWAPCHAIN_EXTENSION_NAME };
+
+	VkDeviceCreateInfo createInfo = {};
+	createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+	createInfo.queueCreateInfoCount = (uint32_t)queueInfos.size();
+	createInfo.pQueueCreateInfos = queueInfos.data();
+	createInfo.pEnabledFeatures = &features;
+	createInfo.enabledExtensionCount = 1;
+	createInfo.ppEnabledExtensionNames = deviceExtensions;
+
+	if (vkCreateDevice(m_physicalDevice, &createInfo, nullptr, &m_device) != VK_SUCCESS)
+		return false;
+
+	vkGetDeviceQueue(m_device, m_graphicsFamily, 0, &m_graphicsQueue);
+	vkGetDeviceQueue(m_device, m_presentFamily, 0, &m_presentQueue);
+	return true;
+}
+
+bool VulkanDevice::CreateSwapchain()
+{
+	VkSurfaceCapabilitiesKHR caps;
+	vkGetPhysicalDeviceSurfaceCapabilitiesKHR(m_physicalDevice, m_surface, &caps);
+
+	uint32_t formatCount = 0;
+	vkGetPhysicalDeviceSurfaceFormatsKHR(m_physicalDevice, m_surface, &formatCount, nullptr);
+	std::vector<VkSurfaceFormatKHR> formats(formatCount);
+	vkGetPhysicalDeviceSurfaceFormatsKHR(m_physicalDevice, m_surface, &formatCount, formats.data());
+
+	uint32_t presentCount = 0;
+	vkGetPhysicalDeviceSurfacePresentModesKHR(m_physicalDevice, m_surface, &presentCount, nullptr);
+	std::vector<VkPresentModeKHR> presentModes(presentCount);
+	vkGetPhysicalDeviceSurfacePresentModesKHR(m_physicalDevice, m_surface, &presentCount, presentModes.data());
+
+	m_swapFormat = VK_FORMAT_B8G8R8A8_UNORM;
+	VkColorSpaceKHR colorSpace = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR;
+	for (size_t i = 0; i < formats.size(); i++) {
+		if (formats[i].format == VK_FORMAT_B8G8R8A8_UNORM) {
+			m_swapFormat = formats[i].format;
+			colorSpace = formats[i].colorSpace;
+			break;
+		}
+	}
+
+	VkPresentModeKHR presentMode = VK_PRESENT_MODE_FIFO_KHR;
+	for (size_t i = 0; i < presentModes.size(); i++) {
+		if (presentModes[i] == VK_PRESENT_MODE_MAILBOX_KHR) {
+			presentMode = VK_PRESENT_MODE_MAILBOX_KHR;
+			break;
+		}
+	}
+
+	if (caps.currentExtent.width != (std::numeric_limits<uint32_t>::max)()) {
+		m_swapExtent = caps.currentExtent;
+	} else {
+		RECT rect;
+		GetClientRect(m_hwnd, &rect);
+		m_swapExtent.width = rect.right - rect.left;
+		m_swapExtent.height = rect.bottom - rect.top;
+		if (m_swapExtent.width < caps.minImageExtent.width)
+			m_swapExtent.width = caps.minImageExtent.width;
+		if (m_swapExtent.height < caps.minImageExtent.height)
+			m_swapExtent.height = caps.minImageExtent.height;
+		if (m_swapExtent.width > caps.maxImageExtent.width)
+			m_swapExtent.width = caps.maxImageExtent.width;
+		if (m_swapExtent.height > caps.maxImageExtent.height)
+			m_swapExtent.height = caps.maxImageExtent.height;
+	}
+
+	uint32_t imageCount = caps.minImageCount + 1;
+	if (caps.maxImageCount > 0 && imageCount > caps.maxImageCount)
+		imageCount = caps.maxImageCount;
+
+	VkSwapchainCreateInfoKHR swapInfo = {};
+	swapInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
+	swapInfo.surface = m_surface;
+	swapInfo.minImageCount = imageCount;
+	swapInfo.imageFormat = m_swapFormat;
+	swapInfo.imageColorSpace = colorSpace;
+	swapInfo.imageExtent = m_swapExtent;
+	swapInfo.imageArrayLayers = 1;
+	swapInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_TRANSFER_SRC_BIT;
+	uint32_t families[] = { m_graphicsFamily, m_presentFamily };
+	if (m_graphicsFamily != m_presentFamily) {
+		swapInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
+		swapInfo.queueFamilyIndexCount = 2;
+		swapInfo.pQueueFamilyIndices = families;
+	} else {
+		swapInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
+	}
+	swapInfo.preTransform = caps.currentTransform;
+	swapInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
+	swapInfo.presentMode = presentMode;
+	swapInfo.clipped = VK_TRUE;
+	swapInfo.oldSwapchain = m_swapchain;
+
+	VkSwapchainKHR newSwapchain = VK_NULL_HANDLE;
+	if (vkCreateSwapchainKHR(m_device, &swapInfo, nullptr, &newSwapchain) != VK_SUCCESS)
+		return false;
+	if (m_swapchain != VK_NULL_HANDLE)
+		vkDestroySwapchainKHR(m_device, m_swapchain, nullptr);
+	m_swapchain = newSwapchain;
+
+	uint32_t count = 0;
+	vkGetSwapchainImagesKHR(m_device, m_swapchain, &count, nullptr);
+	m_swapImages.resize(count);
+	vkGetSwapchainImagesKHR(m_device, m_swapchain, &count, m_swapImages.data());
+	return true;
+}
+
+bool VulkanDevice::CreateImageViews()
+{
+	m_swapImageViews.resize(m_swapImages.size());
+	for (size_t i = 0; i < m_swapImages.size(); i++) {
+		VkImageViewCreateInfo viewInfo = {};
+		viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
+		viewInfo.image = m_swapImages[i];
+		viewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
+		viewInfo.format = m_swapFormat;
+		viewInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+		viewInfo.subresourceRange.levelCount = 1;
+		viewInfo.subresourceRange.layerCount = 1;
+		if (vkCreateImageView(m_device, &viewInfo, nullptr, &m_swapImageViews[i]) != VK_SUCCESS)
+			return false;
+	}
+	return true;
+}
+
+bool VulkanDevice::CreateRenderPass()
+{
+	VkAttachmentDescription colorAttachment = {};
+	colorAttachment.format = m_swapFormat;
+	colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
+	colorAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
+	colorAttachment.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
+	colorAttachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+	colorAttachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+	colorAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+	colorAttachment.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+
+	VkAttachmentReference colorRef = {};
+	colorRef.attachment = 0;
+	colorRef.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+
+	VkAttachmentDescription depthAttachment = {};
+	depthAttachment.format = m_depthFormat;
+	depthAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
+	depthAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
+	depthAttachment.storeOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+	depthAttachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+	depthAttachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+	depthAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+	depthAttachment.finalLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
+
+	VkAttachmentReference depthRef = {};
+	depthRef.attachment = 1;
+	depthRef.layout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
+
+	VkSubpassDescription subpass = {};
+	subpass.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
+	subpass.colorAttachmentCount = 1;
+	subpass.pColorAttachments = &colorRef;
+	subpass.pDepthStencilAttachment = &depthRef;
+
+	VkSubpassDependency dependency = {};
+	dependency.srcSubpass = VK_SUBPASS_EXTERNAL;
+	dependency.dstSubpass = 0;
+	dependency.srcStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+	dependency.dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+	dependency.dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
+
+	VkAttachmentDescription attachments[] = { colorAttachment, depthAttachment };
+	VkRenderPassCreateInfo renderPassInfo = {};
+	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
+	renderPassInfo.attachmentCount = 2;
+	renderPassInfo.pAttachments = attachments;
+	renderPassInfo.subpassCount = 1;
+	renderPassInfo.pSubpasses = &subpass;
+	renderPassInfo.dependencyCount = 1;
+	renderPassInfo.pDependencies = &dependency;
+
+	return vkCreateRenderPass(m_device, &renderPassInfo, nullptr, &m_renderPass) == VK_SUCCESS;
+}
+
+bool VulkanDevice::CreateDepthResources()
+{
+	VkFormat candidates[] = { VK_FORMAT_D32_SFLOAT, VK_FORMAT_D24_UNORM_S8_UINT, VK_FORMAT_D16_UNORM };
+	m_depthFormat = VK_FORMAT_UNDEFINED;
+	for (size_t i = 0; i < sizeof(candidates) / sizeof(candidates[0]); i++) {
+		VkFormatProperties props;
+		vkGetPhysicalDeviceFormatProperties(m_physicalDevice, candidates[i], &props);
+		if (props.optimalTilingFeatures & VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT) {
+			m_depthFormat = candidates[i];
+			break;
+		}
+	}
+	if (m_depthFormat == VK_FORMAT_UNDEFINED)
+		return false;
+
+	VkImageCreateInfo imageInfo = {};
+	imageInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
+	imageInfo.imageType = VK_IMAGE_TYPE_2D;
+	imageInfo.format = m_depthFormat;
+	imageInfo.extent.width = m_swapExtent.width;
+	imageInfo.extent.height = m_swapExtent.height;
+	imageInfo.extent.depth = 1;
+	imageInfo.mipLevels = 1;
+	imageInfo.arrayLayers = 1;
+	imageInfo.samples = VK_SAMPLE_COUNT_1_BIT;
+	imageInfo.tiling = VK_IMAGE_TILING_OPTIMAL;
+	imageInfo.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+	imageInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+	if (vkCreateImage(m_device, &imageInfo, nullptr, &m_depthImage) != VK_SUCCESS)
+		return false;
+
+	VkMemoryRequirements memReq;
+	vkGetImageMemoryRequirements(m_device, m_depthImage, &memReq);
+	VkMemoryAllocateInfo allocInfo = {};
+	allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+	allocInfo.allocationSize = memReq.size;
+	allocInfo.memoryTypeIndex = FindMemoryType(memReq.memoryTypeBits, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+	if (vkAllocateMemory(m_device, &allocInfo, nullptr, &m_depthMemory) != VK_SUCCESS)
+		return false;
+	vkBindImageMemory(m_device, m_depthImage, m_depthMemory, 0);
+
+	VkImageViewCreateInfo viewInfo = {};
+	viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
+	viewInfo.image = m_depthImage;
+	viewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
+	viewInfo.format = m_depthFormat;
+	viewInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_DEPTH_BIT;
+	viewInfo.subresourceRange.levelCount = 1;
+	viewInfo.subresourceRange.layerCount = 1;
+	return vkCreateImageView(m_device, &viewInfo, nullptr, &m_depthView) == VK_SUCCESS;
+}
+
+bool VulkanDevice::CreateFramebuffers()
+{
+	m_framebuffers.resize(m_swapImageViews.size());
+	for (size_t i = 0; i < m_swapImageViews.size(); i++) {
+		VkImageView attachments[] = { m_swapImageViews[i], m_depthView };
+		VkFramebufferCreateInfo fbInfo = {};
+		fbInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
+		fbInfo.renderPass = m_renderPass;
+		fbInfo.attachmentCount = 2;
+		fbInfo.pAttachments = attachments;
+		fbInfo.width = m_swapExtent.width;
+		fbInfo.height = m_swapExtent.height;
+		fbInfo.layers = 1;
+		if (vkCreateFramebuffer(m_device, &fbInfo, nullptr, &m_framebuffers[i]) != VK_SUCCESS)
+			return false;
+	}
+	return true;
+}
+
+bool VulkanDevice::CreateCommandPool()
+{
+	VkCommandPoolCreateInfo poolInfo = {};
+	poolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+	poolInfo.queueFamilyIndex = m_graphicsFamily;
+	poolInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+	return vkCreateCommandPool(m_device, &poolInfo, nullptr, &m_commandPool) == VK_SUCCESS;
+}
+
+bool VulkanDevice::CreateCommandBuffers()
+{
+	m_commandBuffers.resize(MAX_FRAMES_IN_FLIGHT);
+	VkCommandBufferAllocateInfo allocInfo = {};
+	allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+	allocInfo.commandPool = m_commandPool;
+	allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+	allocInfo.commandBufferCount = MAX_FRAMES_IN_FLIGHT;
+	return vkAllocateCommandBuffers(m_device, &allocInfo, m_commandBuffers.data()) == VK_SUCCESS;
+}
+
+bool VulkanDevice::CreateSyncObjects()
+{
+	m_imageAvailable.resize(MAX_FRAMES_IN_FLIGHT);
+	m_renderFinished.resize(MAX_FRAMES_IN_FLIGHT);
+	m_inFlight.resize(MAX_FRAMES_IN_FLIGHT);
+
+	VkSemaphoreCreateInfo semInfo = {};
+	semInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
+	VkFenceCreateInfo fenceInfo = {};
+	fenceInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
+	fenceInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
+
+	for (int i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
+		if (vkCreateSemaphore(m_device, &semInfo, nullptr, &m_imageAvailable[i]) != VK_SUCCESS)
+			return false;
+		if (vkCreateSemaphore(m_device, &semInfo, nullptr, &m_renderFinished[i]) != VK_SUCCESS)
+			return false;
+		if (vkCreateFence(m_device, &fenceInfo, nullptr, &m_inFlight[i]) != VK_SUCCESS)
+			return false;
+	}
+	m_imagesInFlight.resize(m_swapImages.size(), VK_NULL_HANDLE);
+	return true;
+}
+
+void VulkanDevice::CleanupSwapchain()
+{
+	for (size_t i = 0; i < m_framebuffers.size(); i++)
+		vkDestroyFramebuffer(m_device, m_framebuffers[i], nullptr);
+	m_framebuffers.clear();
+	if (m_depthView != VK_NULL_HANDLE) {
+		vkDestroyImageView(m_device, m_depthView, nullptr);
+		m_depthView = VK_NULL_HANDLE;
+	}
+	if (m_depthImage != VK_NULL_HANDLE) {
+		vkDestroyImage(m_device, m_depthImage, nullptr);
+		m_depthImage = VK_NULL_HANDLE;
+	}
+	if (m_depthMemory != VK_NULL_HANDLE) {
+		vkFreeMemory(m_device, m_depthMemory, nullptr);
+		m_depthMemory = VK_NULL_HANDLE;
+	}
+	if (m_renderPass != VK_NULL_HANDLE) {
+		vkDestroyRenderPass(m_device, m_renderPass, nullptr);
+		m_renderPass = VK_NULL_HANDLE;
+	}
+	for (size_t i = 0; i < m_swapImageViews.size(); i++)
+		vkDestroyImageView(m_device, m_swapImageViews[i], nullptr);
+	m_swapImageViews.clear();
+	m_swapImages.clear();
+	if (m_swapchain != VK_NULL_HANDLE) {
+		vkDestroySwapchainKHR(m_device, m_swapchain, nullptr);
+		m_swapchain = VK_NULL_HANDLE;
+	}
+}
+
+bool VulkanDevice::RecreateSwapchain()
+{
+	vkDeviceWaitIdle(m_device);
+	CleanupSwapchain();
+	if (!CreateSwapchain())
+		return false;
+	if (!CreateImageViews())
+		return false;
+	if (!CreateRenderPass())
+		return false;
+	if (!CreateDepthResources())
+		return false;
+	if (!CreateFramebuffers())
+		return false;
+	m_imagesInFlight.clear();
+	m_imagesInFlight.resize(m_swapImages.size(), VK_NULL_HANDLE);
+	m_framebufferResized = false;
+	return true;
+}
+
+bool VulkanDevice::BeginFrame()
+{
+	vkWaitForFences(m_device, 1, &m_inFlight[m_frameIndex], VK_TRUE, UINT64_MAX);
+
+	VkResult result = vkAcquireNextImageKHR(m_device, m_swapchain, UINT64_MAX,
+		m_imageAvailable[m_frameIndex], VK_NULL_HANDLE, &m_imageIndex);
+	if (result == VK_ERROR_OUT_OF_DATE_KHR) {
+		if (!RecreateSwapchain())
+			return false;
+		return BeginFrame();
+	}
+	if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR)
+		return false;
+
+	if (m_imagesInFlight[m_imageIndex] != VK_NULL_HANDLE)
+		vkWaitForFences(m_device, 1, &m_imagesInFlight[m_imageIndex], VK_TRUE, UINT64_MAX);
+	m_imagesInFlight[m_imageIndex] = m_inFlight[m_frameIndex];
+
+	vkResetFences(m_device, 1, &m_inFlight[m_frameIndex]);
+	vkResetCommandBuffer(m_commandBuffers[m_frameIndex], 0);
+
+	VkCommandBufferBeginInfo beginInfo = {};
+	beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+	if (vkBeginCommandBuffer(m_commandBuffers[m_frameIndex], &beginInfo) != VK_SUCCESS)
+		return false;
+
+	VkClearValue clearValues[2];
+	clearValues[0].color.float32[0] = 0.0f;
+	clearValues[0].color.float32[1] = 0.0f;
+	clearValues[0].color.float32[2] = 0.0f;
+	clearValues[0].color.float32[3] = 1.0f;
+	clearValues[1].depthStencil.depth = 1.0f;
+	clearValues[1].depthStencil.stencil = 0;
+
+	VkRenderPassBeginInfo rpBegin = {};
+	rpBegin.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+	rpBegin.renderPass = m_renderPass;
+	rpBegin.framebuffer = m_framebuffers[m_imageIndex];
+	rpBegin.renderArea.offset.x = 0;
+	rpBegin.renderArea.offset.y = 0;
+	rpBegin.renderArea.extent = m_swapExtent;
+	rpBegin.clearValueCount = 2;
+	rpBegin.pClearValues = clearValues;
+	vkCmdBeginRenderPass(m_commandBuffers[m_frameIndex], &rpBegin, VK_SUBPASS_CONTENTS_INLINE);
+	return true;
+}
+
+void VulkanDevice::EndFrame(bool present)
+{
+	vkCmdEndRenderPass(m_commandBuffers[m_frameIndex]);
+	if (vkEndCommandBuffer(m_commandBuffers[m_frameIndex]) != VK_SUCCESS)
+		return;
+
+	VkSemaphore waitSemaphores[] = { m_imageAvailable[m_frameIndex] };
+	VkPipelineStageFlags waitStages[] = { VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT };
+	VkSemaphore signalSemaphores[] = { m_renderFinished[m_frameIndex] };
+
+	VkSubmitInfo submitInfo = {};
+	submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+	submitInfo.waitSemaphoreCount = 1;
+	submitInfo.pWaitSemaphores = waitSemaphores;
+	submitInfo.pWaitDstStageMask = waitStages;
+	submitInfo.commandBufferCount = 1;
+	submitInfo.pCommandBuffers = &m_commandBuffers[m_frameIndex];
+	submitInfo.signalSemaphoreCount = 1;
+	submitInfo.pSignalSemaphores = signalSemaphores;
+	if (vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, m_inFlight[m_frameIndex]) != VK_SUCCESS)
+		return;
+
+	if (!present)
+		return;
+
+	VkPresentInfoKHR presentInfo = {};
+	presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+	presentInfo.waitSemaphoreCount = 1;
+	presentInfo.pWaitSemaphores = signalSemaphores;
+	presentInfo.swapchainCount = 1;
+	presentInfo.pSwapchains = &m_swapchain;
+	presentInfo.pImageIndices = &m_imageIndex;
+	VkResult result = vkQueuePresentKHR(m_presentQueue, &presentInfo);
+	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || m_framebufferResized)
+		RecreateSwapchain();
+
+	m_frameIndex = (m_frameIndex + 1) % MAX_FRAMES_IN_FLIGHT;
+}
+
+uint32_t VulkanDevice::FindMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties)
+{
+	VkPhysicalDeviceMemoryProperties memProps;
+	vkGetPhysicalDeviceMemoryProperties(m_physicalDevice, &memProps);
+	for (uint32_t i = 0; i < memProps.memoryTypeCount; i++) {
+		if ((typeFilter & (1 << i)) && (memProps.memoryTypes[i].propertyFlags & properties) == properties)
+			return i;
+	}
+	return UINT32_MAX;
+}
+
+VkCommandBuffer VulkanDevice::BeginOneTimeCommands()
+{
+	VkCommandBufferAllocateInfo allocInfo = {};
+	allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+	allocInfo.commandPool = m_commandPool;
+	allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+	allocInfo.commandBufferCount = 1;
+	VkCommandBuffer cmd = VK_NULL_HANDLE;
+	vkAllocateCommandBuffers(m_device, &allocInfo, &cmd);
+	VkCommandBufferBeginInfo beginInfo = {};
+	beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+	beginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+	vkBeginCommandBuffer(cmd, &beginInfo);
+	return cmd;
+}
+
+void VulkanDevice::EndOneTimeCommands(VkCommandBuffer cmd)
+{
+	vkEndCommandBuffer(cmd);
+	VkSubmitInfo submitInfo = {};
+	submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+	submitInfo.commandBufferCount = 1;
+	submitInfo.pCommandBuffers = &cmd;
+	vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, VK_NULL_HANDLE);
+	vkQueueWaitIdle(m_graphicsQueue);
+	vkFreeCommandBuffers(m_device, m_commandPool, 1, &cmd);
+}
