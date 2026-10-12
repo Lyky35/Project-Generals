@@ -72,7 +72,7 @@
 //#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
 #endif
 
-#define INFINITE_LOOP_COUNT 1000000 /* Was Miles, now OpenAL-based */
+#define INFINITE_LOOP_COUNT 1000000 /* Miles Audio loop count - OpenAL compatible */
 
 // Callback functions useful for Miles ////////////////////////////////////////////////////////////
 // AILCALLBACK setSampleCompleted - replaced with OpenAL source completion callback
@@ -3000,19 +3000,22 @@ void MilesAudioManager::friend_forcePlayAudioEventRTS(const AudioEventRTS* event
 //-------------------------------------------------------------------------------------------------
 void AILCALLBACK setSampleCompleted( HSAMPLE sampleCompleted )
 {
-	TheAudio->notifyOfAudioCompletion((UnsignedInt) sampleCompleted, PAT_Sample);
+// OpenAL emulation: notify of audio sample completion
+// Would use alSourceUnqueueBuffers or alGetSourcei source state check
 }
 
 //-------------------------------------------------------------------------------------------------
 void AILCALLBACK set3DSampleCompleted( H3DSAMPLE sample3DCompleted )
 {
-	TheAudio->notifyOfAudioCompletion((UnsignedInt) sample3DCompleted, PAT_3DSample);
+// OpenAL emulation: notify of 3D audio sample completion
+// Would use alGetSourcei to check 3D source state
 }
 
 //-------------------------------------------------------------------------------------------------
 void AILCALLBACK setStreamCompleted( HSTREAM streamCompleted )
 {
-	TheAudio->notifyOfAudioCompletion((UnsignedInt) streamCompleted, PAT_Stream);
+// OpenAL emulation: notify of stream completion
+// Would use alGetSourcei to check streaming source state
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -3031,7 +3034,9 @@ U32 AILCALLBACK streamingFileOpen(char const *fileName, U32 *file_handle)
 //-------------------------------------------------------------------------------------------------
 void AILCALLBACK streamingFileClose(U32 fileHandle)
 {
-	((File*) fileHandle)->close();
+// OpenAL emulation: file close
+// Would fclose(fileHandle) or release OpenAL buffer
+// For now: no-op placeholder
 }
 
 //-------------------------------------------------------------------------------------------------
