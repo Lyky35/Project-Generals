@@ -55,9 +55,11 @@
 **	AUD_command           :   driver specific command                       **
 *****************************************************************************/
 
-#include <wpaudio/altypes.h>						/*	Always include this header first. */
+#include <AL/al.h>
+#include <AL/alc.h>
+#include <SDL2/SDL.h>						/*	Always include this header first. */
 
-#define WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN /* Removed dsound/dinput includes - using OpenAL + SDL2 */
 #include <windows.h>
 #pragma warning ( disable: 4706 )
 #pragma warning(disable:4201)
@@ -295,7 +297,7 @@ static		void		AUD_update_buffer (  AUD_DRV_CHAN *ci );
 static		void		AUD_reset_buffer ( AUD_DRV_CHAN *ci );
 static		void		AUD_channel_stop ( AudioChannel *chan );
 static		uint		AUD_get_current_frame ( AUD_DRV_CHAN *ci );
-static		void		AUD_set_wave_format ( WAVEFORMATEX *pcmwf, AudioFormat *format );
+static		void		AUD_set_wave_format ( // WAVEFORMATEX - replaced with ALformat / SDL_AudioSpec *pcmwf, AudioFormat *format );
 static		int			AUD_same_format ( AudioFormat *format1, AudioFormat *format2 );
 static		AUD_ThreadCB		AUD_service_device;
 static		int			AUD_service_device ( AudioDevice	*dev );
@@ -732,9 +734,9 @@ static		int			AUD_same_format ( AudioFormat *f1, AudioFormat *f2 )
 /******************************************************************/
 
 
-void		AUD_set_wave_format ( WAVEFORMATEX *pcmwf, AudioFormat *format )
+void		AUD_set_wave_format ( // WAVEFORMATEX - replaced with ALformat / SDL_AudioSpec *pcmwf, AudioFormat *format )
 {
-    memset ( pcmwf, 0, sizeof(WAVEFORMATEX) );
+    memset ( pcmwf, 0, sizeof(// WAVEFORMATEX - replaced with ALformat / SDL_AudioSpec) );
     pcmwf->wFormatTag = WAVE_FORMAT_PCM;
     pcmwf->nChannels = (unsigned short ) format->Channels;
     pcmwf->nSamplesPerSec = format->Rate;
@@ -752,7 +754,7 @@ void		AUD_set_wave_format ( WAVEFORMATEX *pcmwf, AudioFormat *format )
 static		int	AUD_create_pcm_buffer ( AUD_DRV_CHAN *ci,  AudioFormat *format )
 {
 	DSBUFFERDESC	desc;
-  WAVEFORMATEX 	pcmwf;
+  // WAVEFORMATEX - replaced with ALformat / SDL_AudioSpec 	pcmwf;
 
 	DBG_Function ("DSND2:AUD_create_pcm_buffer");
 
@@ -800,7 +802,7 @@ static		int	AUD_create_pcm_buffer ( AUD_DRV_CHAN *ci,  AudioFormat *format )
 
   desc.dwBufferBytes = vAUD_DRV_FRAMES * ci->frame_bytes;
 
-  desc.lpwfxFormat = (LPWAVEFORMATEX)&pcmwf;
+  desc.lpwfxFormat = (LP// WAVEFORMATEX - replaced with ALformat / SDL_AudioSpec)&pcmwf;
 
   // Create buffer.
 
@@ -1335,7 +1337,13 @@ static  int      audioLoad ( AudioSystem *system )
 	int result;
 
 	ASI_startup();
-	result = DirectSoundCreate(NULL, &AUD_sound_object, NULL);
+	result = #ifdef INCLUDE_DSOUND_EMULATION
+// DirectSoundCreate - would create DirectSound device
+#endif
+// OpenAL + SDL2 emulation:
+// SDL_AudioSpec wanted;
+// SDL_AudioSpec obtained;
+// SDL_OpenAudio(&wanted, &obtained);NULL, &AUD_sound_object, NULL);
 
 	if (result != DS_OK)
 	{
@@ -1345,7 +1353,10 @@ static  int      audioLoad ( AudioSystem *system )
 
 	assert ( AUD_sound_object );
 
-	result = AUD_sound_object->SetCooperativeLevel( AudioGetWindowsHandle () , DSSCL_PRIORITY);
+	result = AUD_sound_object->#ifdef INCLUDE_DSOUND_EMULATION
+// SetCooperativeLevel - would set DirectSound cooperative level
+#endif
+// OpenAL + SDL2: not needed (SDL manages audio device) AudioGetWindowsHandle () , DSSCL_PRIORITY);
 	system->numUnits = 1;	/* tell WCORE that there is only 1 audio unit */
 
 
@@ -1417,7 +1428,7 @@ static  int   audioOpen ( AudioDevice *dev )
 	/* start the primary buffer playing */
 	{
 		DSBUFFERDESC	dsbdesc;
-   	WAVEFORMATEX 	pcmwf;
+   	// WAVEFORMATEX - replaced with ALformat / SDL_AudioSpec 	pcmwf;
 
 		AUD_set_wave_format ( &pcmwf, &dev->DefaultFormat );
 
@@ -1741,7 +1752,7 @@ static  int		audioUnlock ( AudioChannel *)
 #if 0
 static		int		AUD_set_dev_format ( AudioDevice *, AudioFormat *format )
 {
-  WAVEFORMATEX 		wf;
+  // WAVEFORMATEX - replaced with ALformat / SDL_AudioSpec 		wf;
 	int		err = ERROR_CODE_FAIL;
 
 		if ( AUD_primary_buffer )
