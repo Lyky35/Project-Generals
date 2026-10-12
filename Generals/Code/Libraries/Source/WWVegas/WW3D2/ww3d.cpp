@@ -766,21 +766,10 @@ WW3DErrorType WW3D::Begin_Render(bool clear,bool clearz,const Vector3 & color, f
 {
 	WWPROFILE("WW3D::Begin_Render");
 	WWASSERT(IsInitted);
-	HRESULT hr;
 
-	if (DX8Wrapper::_Get_D3D_Device8() && (hr=DX8Wrapper::_Get_D3D_Device8()->TestCooperativeLevel()) != D3D_OK)
-	{
-        // If the device was lost, do not render until we get it back
-        if( D3DERR_DEVICELOST == hr )
-            return WW3D_ERROR_GENERIC;	//other app has the device
-
-        // Check if the device needs to be reset
-        if( D3DERR_DEVICENOTRESET == hr )
-        {
-			DX8Wrapper::Reset_Device();
-        }
-
-		return WW3D_ERROR_GENERIC;
+// Check Vulkan device status instead of D3D
+	if (DX8Wrapper::_Get_Vulkan_Device() && DX8Wrapper::Is_Vulkan_Lost()) {
+		return WW3D_ERROR_GENERIC;	// Device lost
 	}
 
 	// Memory allocation statistics
@@ -789,12 +778,8 @@ WW3DErrorType WW3D::Begin_Render(bool clear,bool clearz,const Vector3 & color, f
 	WWMemoryLogClass::Reset_Counters();
 
 	TextureLoader::Update();
-//	TextureClass::_Reset_Time_Stamp();
 	DynamicVBAccessClass::_Reset(true);
 	DynamicIBAccessClass::_Reset(true);
-#ifdef WW3D_DX8
-	TextureFileClass::Update_Texture_Flash();
-#endif //WW3D_DX8
 	Debug_Statistics::Begin_Statistics();
 
 	if (IsCapturing && (!PauseRecord || RecordNextFrame)) {
@@ -805,12 +790,13 @@ WW3DErrorType WW3D::Begin_Render(bool clear,bool clearz,const Vector3 & color, f
 	WWASSERT(!IsRendering);
 	IsRendering = true;
 
-	// If we want to clear the screen, we need to set the viewport to include the entire screen:
+	// If we want to clear the screen, set up Vulkan render pass viewport
 	if (clear || clearz) {
-		D3DVIEWPORT8 vp;
 		int width, height, bits;
 		bool windowed;
 		WW3D::Get_Render_Target_Resolution(width, height, bits, windowed);
+		// Set viewport via DX8Wrapper (already handles Vulkan mapping)
+		D3DVIEWPORT8 vp;
 		vp.X = 0;
 		vp.Y = 0;
 		vp.Width = width;
@@ -818,10 +804,12 @@ WW3DErrorType WW3D::Begin_Render(bool clear,bool clearz,const Vector3 & color, f
 		vp.MinZ = 0.0f;;
 		vp.MaxZ = 1.0f;
 		DX8Wrapper::Set_Viewport(&vp);
+		// Clear via DX8Wrapper which handles Vulkan command buffer recording
 		DX8Wrapper::Clear(clear, clearz, color, dest_alpha);
 	}
 
-	// Notify D3D that we are beginning to render the frame
+	// Notify that rendering has begun
+	// Vulkan: Begin render pass via DX8Wrapper command buffer setup
 	DX8Wrapper::Begin_Scene();
 
 	return WW3D_ERROR_OK;
@@ -1036,12 +1024,18 @@ WW3DErrorType WW3D::End_Render(bool flip_frame)
 	assert(IsRendering);
 	assert(IsInitted);
 
+// Check Vulkan device status
+	if (DX8Wrapper::_Get_Vulkan_Device() && DX8Wrapper::Is_Vulkan_Lost()) {
+		return WW3D_ERROR_GENERIC;
+	}
+
 	// If sorting renderer flush isn't called from within any of the render functions
 	// the sorting arrays will overflow!
 	SortingRendererClass::Flush();
 
 	IsRendering = false;
 
+	// Vulkan: End scene via DX8Wrapper command buffer
 	DX8Wrapper::End_Scene(flip_frame);
 
 	FrameCount++;

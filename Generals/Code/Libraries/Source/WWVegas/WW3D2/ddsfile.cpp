@@ -57,6 +57,15 @@ DDSFileClass::DDSFileClass(const char* name,unsigned reduction_factor)
 	WWASSERT(read_bytes==SurfaceDesc.Size);
 
 	Format=D3DFormat_To_WW3DFormat((D3DFORMAT)SurfaceDesc.PixelFormat.FourCC);
+	// Create VkTexture from DDS data
+	unsigned byteSize = Calculate_DXTC_Surface_Size(Width, Height, Format);
+	VulkanTexture = new VkTexture();
+	bool created = VulkanTexture->CreateFromData(&VulkanDevice::Instance(), Width, Height, Format,
+		byteSize, SurfaceData);  // SurfaceData read from file
+	if (!created) {
+		delete VulkanTexture;
+		VulkanTexture = NULL;
+	}
 	WWASSERT(
 		Format==WW3D_FORMAT_DXT1 ||
 		Format==WW3D_FORMAT_DXT2 ||
