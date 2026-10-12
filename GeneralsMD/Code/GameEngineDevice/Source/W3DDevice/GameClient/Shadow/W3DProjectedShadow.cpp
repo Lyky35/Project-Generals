@@ -743,16 +743,16 @@ void W3DProjectedShadowManager::flushDecals(W3DShadowTexture *texture, ShadowTyp
 //Hard Shadows using stencil
 /*	m_pDev->SetRenderState( D3DRS_SRCBLEND,  D3DBLEND_ZERO);
 	m_pDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_ONE );
-	m_pDev->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);	//should reject background pixels
-	m_pDev->SetRenderState( D3DRS_STENCILENABLE, TRUE );
+	DX8Wrapper::Set_AlphaEnable(TRUE);
+	DX8Wrapper::Set_StencilEnable(TRUE);
 */
-/*	m_pDev->SetRenderState( D3DRS_STENCILFUNC,     D3DCMP_ALWAYS );
-	m_pDev->SetRenderState( D3DRS_STENCILREF,      0x1 );
-	m_pDev->SetRenderState( D3DRS_STENCILMASK,     0xffffffff );
-	m_pDev->SetRenderState( D3DRS_STENCILWRITEMASK,0xffffffff );
-	m_pDev->SetRenderState( D3DRS_STENCILZFAIL, D3DSTENCILOP_KEEP );
-	m_pDev->SetRenderState( D3DRS_STENCILFAIL,  D3DSTENCILOP_KEEP );
-	m_pDev->SetRenderState( D3DRS_STENCILPASS,  D3DSTENCILOP_INCR );
+/*	DX8Wrapper::Set_StencilFunc(VK_COMPARE_OP_ALWAYS);
+	DX8Wrapper::Set_StencilRef(0x1);
+	DX8Wrapper::Set_StencilWriteMask(0xffffffff);
+	DX8Wrapper::Set_StencilReadMask(0xffffffff);
+	DX8Wrapper::Set_StencilFailOp(VK_STENCIL_OP_KEEP);
+	DX8Wrapper::Set_StencilFailOp(VK_STENCIL_OP_KEEP);
+	DX8Wrapper::Set_StencilPassOp(VK_STENCIL_OP_INCR);
 */
 //m_pDev->SetRenderState( D3DRS_ALPHABLENDENABLE, FALSE );	//useful to see bounds
 
@@ -762,8 +762,8 @@ void W3DProjectedShadowManager::flushDecals(W3DShadowTexture *texture, ShadowTyp
 		m_pDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST,0,nShadowDecalVertsInBatch,nShadowDecalStartBatchIndex,nShadowDecalPolysInBatch);
 	}
 
-//	m_pDev->SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);	//should reject background pixels
-//	m_pDev->SetRenderState( D3DRS_STENCILENABLE, FALSE );
+//	DX8Wrapper::Set_AlphaEnable(FALSE);
+//	DX8Wrapper::Set_StencilEnable(FALSE);
 //m_pDev->SetRenderState( D3DRS_ALPHABLENDENABLE, TRUE );
 
 

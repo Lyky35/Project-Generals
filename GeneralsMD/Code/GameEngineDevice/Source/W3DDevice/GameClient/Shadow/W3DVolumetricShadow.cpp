@@ -3496,7 +3496,7 @@ void W3DVolumetricShadowManager::renderShadows( Bool forceStencilFill )
 
 		// turn off z writing
 		m_pDev->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
-	  m_pDev->SetRenderState( D3DRS_ZENABLE,          TRUE );
+	  DX8Wrapper::Set_ZEnable(TRUE);
 		m_pDev->SetRenderState(D3DRS_ZWRITEENABLE , FALSE);
 		m_pDev->SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);
 		m_pDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
