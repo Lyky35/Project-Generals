@@ -1,0 +1,85 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "windows-x64-msvc",
+            "displayName": "Windows x64 MSVC",
+            "generator": "Visual Studio 17 2022",
+            "architecture": "x64",
+            "binaryDir": "${sourceDir}/build/windows-x64-msvc",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "windows-x64-msvc-debug",
+            "displayName": "Windows x64 MSVC (Debug)",
+            "generator": "Visual Studio 17 2022",
+            "architecture": "x64",
+            "binaryDir": "${sourceDir}/build/windows-x64-msvc-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "linux-x64-gcc",
+            "displayName": "Linux x64 GCC",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/linux-x64-gcc",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        },
+        {
+            "name": "linux-x64-clang",
+            "displayName": "Linux x64 Clang",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/linux-x64-clang",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "windows-x64-msvc",
+            "configurePreset": "windows-x64-msvc"
+        },
+        {
+            "name": "windows-x64-msvc-debug",
+            "configurePreset": "windows-x64-msvc-debug"
+        },
+        {
+            "name": "linux-x64-gcc",
+            "configurePreset": "linux-x64-gcc"
+        },
+        {
+            "name": "linux-x64-clang",
+            "configurePreset": "linux-x64-clang"
+        }
+    ]
+}
