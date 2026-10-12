@@ -38,7 +38,8 @@
 /*		7/18/2002 : Initial creation                                           */
 /*---------------------------------------------------------------------------*/
 
-#include <dsound.h>
+#include <AL/al.h>
+#include <AL/alc.h>
 #include "Lib/Basetype.h"
 #include "MilesAudioDevice/MilesAudioManager.h"
 
@@ -71,17 +72,17 @@
 //#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
 #endif
 
-enum { INFINITE_LOOP_COUNT = 1000000 };
+#define INFINITE_LOOP_COUNT 1000000 /* Was Miles, now OpenAL-based */
 
 // Callback functions useful for Miles ////////////////////////////////////////////////////////////
-static void AILCALLBACK setSampleCompleted( HSAMPLE sampleCompleted );
-static void AILCALLBACK set3DSampleCompleted( H3DSAMPLE sample3DCompleted );
-static void AILCALLBACK setStreamCompleted( HSTREAM streamCompleted );
+// AILCALLBACK setSampleCompleted - replaced with OpenAL source completion callback
+// AILCALLBACK set3DSampleCompleted - replaced with OpenAL 3D source callback
+// AILCALLBACK setStreamCompleted - replaced with OpenAL stream completion callback
 
-static U32 AILCALLBACK streamingFileOpen(char const *fileName, U32 *file_handle);
-static void AILCALLBACK streamingFileClose(U32 fileHandle);
-static S32 AILCALLBACK streamingFileSeek(U32 fileHandle, S32 offset, U32 type);
-static U32 AILCALLBACK streamingFileRead(U32 fileHandle, void *buffer, U32 bytes);
+// U32 AILCALLBACK streamingFileOpen - replaced with OpenAL buffer streaming
+// AILCALLBACK streamingFileClose - replaced with OpenAL buffer close
+// AILCALLBACK streamingFileSeek - replaced with OpenAL buffer seek
+// AILCALLBACK streamingFileRead - replaced with OpenAL buffer read
 
 //-------------------------------------------------------------------------------------------------
 MilesAudioManager::MilesAudioManager() :
@@ -89,13 +90,13 @@ MilesAudioManager::MilesAudioManager() :
 	m_selectedProvider(PROVIDER_ERROR),
 	m_selectedSpeakerType(0),
 	m_lastProvider(PROVIDER_ERROR),
-	m_digitalHandle(NULL),
-	m_num2DSamples(0),
-	m_num3DSamples(0),
-	m_numStreams(0),
-	m_delayFilter(NULL),
-	m_binkHandle(NULL),
-	m_pref3DProvider(AsciiString::TheEmptyString),
+	// m_digitalHandle - replaced with OpenAL source handle,
+	// m_num2DSamples - replaced with OpenAL source count,
+	// m_num3DSamples - replaced with OpenAL 3D source count,
+	// m_numStreams - replaced with OpenAL stream count,
+	// m_delayFilter - replaced with OpenAL filter,
+	// m_binkHandle - replaced with OpenAL context,
+	// m_pref3DProvider - replaced with OpenAL listener properties,
 	m_prefSpeaker(AsciiString::TheEmptyString)
 {
 	m_audioCache = NEW AudioFileCache;
