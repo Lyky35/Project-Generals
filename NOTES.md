@@ -53,7 +53,7 @@ Target: Windows 10+ x64, Vulkan 1.3, modern toolchain
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: shader/render-state translation gaps in W3DShaderManager (both Generals and GeneralsMD), minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete. 
+Remaining: minimal RTS.exe build validation (pre-existing Linux dependency issues). W3DShaderManager D3DXVECTOR4/fLOAT4X4 migration complete for both Generals and GeneralsMD. D3DXMATRIX commentary updates in progress. 
 GeneralsMD mirror, minimal RTS.exe build.
 
 ---
@@ -438,7 +438,7 @@ Get a working x64 executable with existing D3D8 renderer on Windows 10 **before*
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: shader/render-state translation gaps in W3DShaderManager (both Generals and GeneralsMD), minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete. 
+Remaining: minimal RTS.exe build validation (pre-existing Linux dependency issues). W3DShaderManager D3DXVECTOR4/fLOAT4X4 migration complete for both Generals and GeneralsMD. D3DXMATRIX commentary updates in progress. 
 GeneralsMD mirror, minimal RTS.exe build.
 
 ---
@@ -509,7 +509,7 @@ the foundation for rendering meshes and terrain with Vulkan resources.
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: shader/render-state translation gaps in W3DShaderManager (both Generals and GeneralsMD), minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete. GeneralsMD mirror complete.
+Remaining: minimal RTS.exe build validation (pre-existing Linux dependency issues). W3DShaderManager D3DXVECTOR4/fLOAT4X4 migration complete for both Generals and GeneralsMD. D3DXMATRIX commentary updates in progress. GeneralsMD mirror complete.
 
 # Buffer Changes
 
@@ -518,7 +518,7 @@ Remaining: shader/render-state translation gaps in W3DShaderManager (both Genera
 - `dx8indexbuffer.cpp` / `.h` — Converted index buffer to `VkIndexBuffer`. Members: `VkGpuBuffer* index_buffer_vk`, `unsigned short* ShadowBuffer`, `unsigned short ShadowBufferSize`, `unsigned LockStart`, `unsigned LockSize`. Lock/Unlock now use `IndexBuffer->Map()`/`IndexBuffer->Unmap()`. AppendLock/Lock also map with offset. Destructor unmaps and releases.
 
 ### Stage
-Buffer APIs are now Vulkan-backed. Remaining: shader/render-state translation for W3DShaderManager (both trees), stencil/blend ops translation pending.
+Buffer APIs are now Vulkan-backed. Remaining: minimal RTS.exe build validation (pre-existing Linux dependency issues). W3DShaderManager D3DXVECTOR4/fLOAT4X4 migration complete for both tree versions.
 
 
 
@@ -537,7 +537,7 @@ Buffer APIs are now Vulkan-backed. Remaining: shader/render-state translation fo
 
 ### Stage
 
-Shadow tree GameEngineDevice COM members port Complete. Remaining: shader/render-state translation gaps in W3DShaderManager (both Generals and GeneralsMD), minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete.
+Shadow tree GameEngineDevice COM members port Complete. Remaining: minimal RTS.exe build validation (pre-existing Linux dependency issues). W3DShaderManager D3DXVECTOR4/fLOAT4X4 migration complete for both Generals and GeneralsMD. D3DXMATRIX commentary updates in progress.
 
 ---
 ## Phase 3e-8: GameEngineDevice COM Members Port (GeneralsMD Tree) — Complete
