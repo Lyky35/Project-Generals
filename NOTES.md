@@ -5,11 +5,50 @@ Target: Windows 10+ x64, Vulkan 1.3, modern toolchain
 
 ---
 
-## Phase 0: Audit & Infrastructure
 
 **Status:** Complete
 
-### Steps Taken
+## Phase 1: Buffer & Resource Porting (x64/Vulkan Backend) — [UPDATED]
+
+**Status:** In Progress — Vertex/index buffer API migration to Vulkan-backed resources
+
+### Vertex Buffer (`dx8vertexbuffer.cpp/.h`)
+
+- Converted `DX8VertexBufferClass` to use `VkGpuBuffer` + host-mapped `ShadowBuffer`
+- Added members: `VkGpuBuffer* VertexBuffer`, `unsigned char* ShadowBuffer`, 
+  `UsageType BufferUsage`, `unsigned LockStart`, `unsigned LockSize`
+- Destructor now deletes `ShadowBuffer` and `VertexBuffer` (VkGpuBuffer)
+- `Create_Vertex_Buffer()` creates VkGpuBuffer with staging path (dynamic: host-visible 
+  mapped memory) or device-local with ShadowBuffer copy (static)
+- All `Lock()` calls map to `VertexBuffer->Map()` with optional ShadowBuffer staging;
+  `Unlock()` uploads from ShadowBuffer via `VertexBuffer->Unmap()` / `dxvb->VertexBuffer->Upload()`
+- All `Release()` calls changed to `delete VertexBuffer` + ShadowBuffer cleanup
+- WriteLockClass/AppendLockClass/WriteLockClass now use ShadowBuffer-backed mapping
+
+### Index Buffer (`dx8indexbuffer.cpp/.h`)
+
+- Converted `DX8IndexBufferClass` to use `VkIndexBuffer` (VkGpuBuffer subclass)
+- Added members: `unsigned short* ShadowBuffer`, `unsigned short ShadowBufferSize`,
+  `unsigned LockStart`, `unsigned LockSize` (after existing `VkGpuBuffer* index_buffer`)
+- Constructor initializes all new members to NULL/0
+- `Lock()` calls use `IndexBuffer->Map()` with offset; `Unlock()` uses `IndexBuffer->Unmap()`
+- AppendLock/Lock maps with `start_index` offset
+- Destructor unmaps and releases
+- DynamicIBAccessClass WriteLock now maps dynamic index buffer with offset
+
+### Build System (NOTES.md)
+
+- Existing CMake build with VulkanRenderer stub library already configured
+- Vulkan headers/libraries linked via CMakePresets.json vulkan path
+- Buffer changes compile with MinGW-w64 x64 + Vulkan 1.3
+
+### Next Steps
+- Port GameEngineDevice COM members to both Generals and GeneralsMD trees
+- Implement stencil/blend ops translation from D3D8 to Vulkan
+- Port shader manager (W3DShaderManager, W3DWebBrowser)
+- Attempt minimal RTS.exe build to validate pipeline
+
+# Steps Taken
 - Forked EA source release to `Lyky35/Project-Generals`
 - Source uses C++98, STLport 4.5.3, Visual Studio 6.0 `.dsp/.dsw` projects
 - Created CMake build system with x64 target, MSVC 2022 support
@@ -184,7 +223,14 @@ FVF layouts (XYZ_N_UV1 / XYZ_N_D_UV2 / XYZ_D_UV1), D3D→Vulkan translators
 (cull/fill/compare/blend/topology), fan→list converter, 128B push WVP.
 CMake compiles GLSL→SPV at build time.
 
-### 3e. WW3D2 file ports — IN PROGRESS
+### 3e. WW3D2 file ports — IN PROGRESS (Generals-first)
+
+Strategy: complete the Vulkan port for the Generals tree (which CMake
+builds) first; GeneralsMD's `dx8wrapper` is a substantially newer revision
+(+2800 diff lines) and gets its own port pass afterward using the proven
+pattern. Mechanical changes (include swaps, D3DX math, resource header
+retypes) are mirrored to both trees; deep `.cpp` ports land in Generals
+first.
 
 ### Architecture Decision
 Native Vulkan backend (no DX8 translation layer). This avoids DXVK overhead and gives full control over the rendering pipeline.
@@ -267,3 +313,58 @@ cmake --build --preset windows-x64-msvc
 ## Key Principle
 
 Get a working x64 executable with existing D3D8 renderer on Windows 10 **before** attempting the Vulkan rewrite. This de-risks the port and provides a fallback.
+
+
+**Status:** In Progress — Vertex/index buffer API migration
+
+## Phase 1: Buffer & Resource Porting (x64/Vulkan Backend) — [UPDATED]
+
+**Status:** In Progress — Vertex/index buffer API migration to Vulkan-backed resources
+
+### Vertex Buffer (`dx8vertexbuffer.cpp/.h`)
+
+- Converted `Create_Vertex_Buffer()` to use `VkGpuBuffer` + host-mapped `ShadowBuffer`
+- Added members: `VkGpuBuffer* VertexBuffer`, `unsigned char* ShadowBuffer`, 
+  `UsageType BufferUsage`, `unsigned LockStart`, `unsigned LockSize`
+- Destructor now deletes `ShadowBuffer` and `VertexBuffer` (VkGpuBuffer)
+- `Create_Vertex_Buffer()` creates VkGpuBuffer with staging path (dynamic: host-visible 
+  mapped memory) or device-local with ShadowBuffer copy (static)
+- All `Lock()` calls map to `VertexBuffer->Map()`/`dxvb->VertexBuffer->Map()` with optional 
+  ShadowBuffer staging. `Unlock()` uploads from ShadowBuffer back via 
+  `VertexBuffer->Unmap()` / `dxvb->VertexBuffer->Upload()`
+- All `Release()` calls changed to `delete VertexBuffer` + cleanup
+- WriteLockClass/AppendLockClass/WriteLockClass now use ShadowBuffer-backed mapping
+
+### Index Buffer (`dx8indexbuffer.cpp/.h`)
+
+- Converted `DX8IndexBufferClass` to use `VkIndexBuffer` (VkGpuBuffer subclass)
+- Added members: `unsigned short* ShadowBuffer`, `unsigned short ShadowBufferSize`, 
+  `unsigned LockStart`, `unsigned LockSize` (after existing `VkGpuBuffer* index_buffer`)
+- Constructor initializes all new members to NULL/0
+- `Lock()` calls use `IndexBuffer->Map()` with offset; `Unlock()` uses `IndexBuffer->Unmap()`
+- AppendLock/Lock maps with `start_index` offset
+- Destructor unmaps and releases
+- DynamicIBAccessClass WriteLock now maps dynamic index buffer with offset
+
+### GameEngineDevice FVF Port (Partial)
+
+- `HeightMap.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX2` with 
+  `DX8_FVF_XYZDUV2` in 6 locations (vertex buffer creation + size computation)
+- `W3DShaderManager.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1` with 
+  `DX8_FVF_XYZDUV2` in 1 location
+- `W3DVolumetricShadow.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE` with 
+  `DX8_FVF_XYZDUV2` in 1 location
+
+### Stage
+Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
+Remaining: full shader/render-state translation, GeneralsMD mirror, minimal RTS.exe build.
+
+# Buffer Changes
+
+- `dx8vertexbuffer.cpp` / `.h` — Converted `Create_Vertex_Buffer()` to use `VkGpuBuffer` + host-mapped `ShadowBuffer`. Members added: `VkGpuBuffer* VertexBuffer`, `unsigned char* ShadowBuffer`, `UsageType BufferUsage`, `unsigned LockStart`, `unsigned LockSize`. Destructor now deletes ShadowBuffer, VkGpuBuffer. `Create_Vertex_Buffer()` creates VkGpuBuffer with staging upload path (dynamic) or device-local with ShadowBuffer copy (static). All `Lock()` calls map to `VertexBuffer->Map()`/`dxvb->VertexBuffer->Map()` with optional ShadowBuffer staging. `Unlock()` uploads from ShadowBuffer back via `VertexBuffer->Unmap()` / `dxvb->VertexBuffer->Upload()`. All `Release()` calls changed to `delete VertexBuffer` + cleanup.
+
+- `dx8indexbuffer.cpp` / `.h` — Converted index buffer to `VkIndexBuffer`. Members: `VkGpuBuffer* index_buffer_vk`, `unsigned short* ShadowBuffer`, `unsigned short ShadowBufferSize`, `unsigned LockStart`, `unsigned LockSize`. Lock/Unlock now use `IndexBuffer->Map()`/`IndexBuffer->Unmap()`. AppendLock/Lock also map with offset. Destructor unmaps and releases.
+
+### Stage
+Buffer APIs are now Vulkan-backed. Remaining work: GameEngineDevice integration, shader manager ports, stencil/blend ops translation.
+

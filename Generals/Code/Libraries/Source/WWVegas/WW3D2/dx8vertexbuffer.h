@@ -233,6 +233,10 @@ public:
 
 protected:
 	VkGpuBuffer*		VertexBuffer;
+	unsigned char*	ShadowBuffer;
+	UsageType			BufferUsage;
+	unsigned			LockStart;
+	unsigned			LockSize;
 
 	void Create_Vertex_Buffer(UsageType usage);
 };

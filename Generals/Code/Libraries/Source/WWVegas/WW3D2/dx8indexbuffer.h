@@ -183,6 +183,10 @@ public:
 	
 private:
 	VkGpuBuffer*	index_buffer;		// actual Vulkan index buffer
+	unsigned short* ShadowBuffer;
+	unsigned short ShadowBufferSize;
+	unsigned LockStart;
+	unsigned LockSize;
 };
 
 

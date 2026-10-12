@@ -2750,9 +2750,9 @@ Int HeightMapRenderObjClass::initHeightData(Int x, Int y, WorldHeightMap *pMap, 
 #ifdef PRE_TRANSFORM_VERTEX
 			if (m_xformedVertexBuffer) {
 				DX8Wrapper::_Get_D3D_Device8()->CreateVertexBuffer(
-					D3DXGetFVFVertexSize(D3DFVF_XYZRHW |D3DFVF_DIFFUSE|D3DFVF_TEX2)*numVertex,
+					D3DXGetFVFVertexSize(DX8_FVF_XYZDUV2)*numVertex,
 					D3DUSAGE_WRITEONLY|D3DUSAGE_DYNAMIC,
-					D3DFVF_XYZRHW |D3DFVF_DIFFUSE|D3DFVF_TEX2,
+					DX8_FVF_XYZDUV2,
 					D3DPOOL_DEFAULT,
 					&m_xformedVertexBuffer[i]);
 			}
@@ -3974,8 +3974,8 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 					DX8Wrapper::_Get_D3D_Device8()->SetStreamSource(
 						0,
 						m_xformedVertexBuffer[j*m_numVBTilesX+i],
-						D3DXGetFVFVertexSize(D3DFVF_XYZRHW |D3DFVF_DIFFUSE|D3DFVF_TEX2));
-					DX8Wrapper::_Get_D3D_Device8()->SetVertexShader(D3DFVF_XYZRHW |D3DFVF_DIFFUSE|D3DFVF_TEX2);
+						D3DXGetFVFVertexSize(DX8_FVF_XYZDUV2));
+					DX8Wrapper::_Get_D3D_Device8()->SetVertexShader(DX8_FVF_XYZDUV2);
 				}
 #endif				
 				if (Is_Hidden() == 0) {
@@ -4249,8 +4249,8 @@ void HeightMapRenderObjClass::renderTerrainPass(CameraClass *pCamera)
 				DX8Wrapper::_Get_D3D_Device8()->SetStreamSource(
 					0,
 					m_xformedVertexBuffer[j*m_numVBTilesX+i],
-					D3DXGetFVFVertexSize(D3DFVF_XYZRHW |D3DFVF_DIFFUSE|D3DFVF_TEX2));
-				DX8Wrapper::_Get_D3D_Device8()->SetVertexShader(D3DFVF_XYZRHW |D3DFVF_DIFFUSE|D3DFVF_TEX2);
+					D3DXGetFVFVertexSize(DX8_FVF_XYZDUV2));
+				DX8Wrapper::_Get_D3D_Device8()->SetVertexShader(DX8_FVF_XYZDUV2);
 			}
 #endif				
 			if (Is_Hidden() == 0) {
