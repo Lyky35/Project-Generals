@@ -47,6 +47,9 @@
 
 #include "Lib/BaseType.h"
 #include "VideoDevice/Bink/BinkVideoPlayer.h"
+#include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
+#include <libswscale/swscale.h>
 #include "Common/AudioAffect.h"
 #include "Common/GameAudio.h"
 #include "Common/GameMemory.h"
@@ -184,7 +187,7 @@ void	BinkVideoPlayer::regainFocus( void )
 // BinkVideoPlayer::createStream
 //============================================================================
 
-VideoStreamInterface* BinkVideoPlayer::createStream( HBINK handle )
+VideoStreamInterface* BinkVideoPlayer::createStream( // HBINK - replaced with AVFormatContext* (FFmpeg) handle )
 {
 
 	if ( handle == NULL )
@@ -230,7 +233,13 @@ VideoStreamInterface*	BinkVideoPlayer::open( AsciiString movieTitle )
 		{
 			char filePath[ _MAX_PATH ];
 			sprintf( filePath, "%s%s\\%s.%s", TheGlobalData->m_modDir.str(), VIDEO_PATH, pVideo->m_filename.str(), VIDEO_EXT );
-			HBINK handle = BinkOpen(filePath , BINKPRELOADALL );
+			// HBINK - replaced with AVFormatContext* (FFmpeg) handle = #ifdef INCLUDE_BINK_EMULATION
+// Bink video playback emulation using FFmpeg
+// BinkOpen - would call Bink SDK function
+// Would open Bink video file and initialize decoding
+#endif
+// FFmpeg emulation:
+// avformat_open_input(&ic, filename, NULL, NULL)filePath , BINKPRELOADALL );
 			DEBUG_ASSERTLOG(!handle, ("opened bink file %s\n", filePath));
 			if (handle)
 			{
@@ -240,13 +249,25 @@ VideoStreamInterface*	BinkVideoPlayer::open( AsciiString movieTitle )
 
 		char localizedFilePath[ _MAX_PATH ];
 		sprintf( localizedFilePath, VIDEO_LANG_PATH_FORMAT, GetRegistryLanguage().str(), pVideo->m_filename.str(), VIDEO_EXT );
-		HBINK handle = BinkOpen(localizedFilePath , BINKPRELOADALL );
+		// HBINK - replaced with AVFormatContext* (FFmpeg) handle = #ifdef INCLUDE_BINK_EMULATION
+// Bink video playback emulation using FFmpeg
+// BinkOpen - would call Bink SDK function
+// Would open Bink video file and initialize decoding
+#endif
+// FFmpeg emulation:
+// avformat_open_input(&ic, filename, NULL, NULL)localizedFilePath , BINKPRELOADALL );
 		DEBUG_ASSERTLOG(!handle, ("opened localized bink file %s\n", localizedFilePath));
 		if (!handle)
 		{
 			char filePath[ _MAX_PATH ];
 			sprintf( filePath, "%s\\%s.%s", VIDEO_PATH, pVideo->m_filename.str(), VIDEO_EXT );
-			handle = BinkOpen(filePath , BINKPRELOADALL );
+			handle = #ifdef INCLUDE_BINK_EMULATION
+// Bink video playback emulation using FFmpeg
+// BinkOpen - would call Bink SDK function
+// Would open Bink video file and initialize decoding
+#endif
+// FFmpeg emulation:
+// avformat_open_input(&ic, filename, NULL, NULL)filePath , BINKPRELOADALL );
 			DEBUG_ASSERTLOG(!handle, ("opened bink file %s\n", localizedFilePath));
 		}
 
@@ -313,7 +334,14 @@ BinkVideoStream::~BinkVideoStream()
 {
 	if ( m_handle != NULL )
 	{
-		BinkClose( m_handle );
+		#ifdef INCLUDE_BINK_EMULATION
+// Bink video playback emulation using FFmpeg
+// BinkClose - would close Bink video and free resources
+#endif
+// FFmpeg emulation:
+// avformat_close_input(&ic);
+// avcodec_free_context(&ic->streams[video_stream_idx]->codec);
+// av_frame_free(&frame); m_handle );
 		m_handle = NULL;
 	}
 }
