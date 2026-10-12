@@ -56,7 +56,11 @@
 
 #pragma comment( lib, "granny2" )
 
-static granny_pnt332_vertex g_blendingBuffer[4096];	///<temporary workspace for granny (all models < 4096 verts).
+static #ifdef INCLUDE_GRANNY_EMULATION
+// granny_pnt332_vertex g_blendingBuffer[4096] - temporary workspace
+#endif
+// GLM emulation:
+// glm::vec4 blendingBuffer[4096]; // placeholder - actual impl depends on model format	///<temporary workspace for granny (all models < 4096 verts).
 
 /** Local function used to find animation matching the given model */
 static int FindTrackGroupFor(granny_animation *Animation, granny_model_instance *ModelInstance)

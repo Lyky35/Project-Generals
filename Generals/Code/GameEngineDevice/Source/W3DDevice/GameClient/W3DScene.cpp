@@ -1125,12 +1125,12 @@ void RTS3DScene::Customized_Render( RenderInfoClass &rinfo )
 	}
 
 #ifdef	INCLUDE_GRANNY_IN_BUILD
-	if (TheGrannyRenderObjSystem)
+	if (// TheGrannyRenderObjSystem - replaced with GLM + TinyGLTF animation system)
 	{	//we only want to update granny animations once per frame, so only queue
 		//them up if this is not a mirror pass.
 		if (!ShaderClass::Is_Backface_Culling_Inverted())
-			TheGrannyRenderObjSystem->queueUpdate();
-		TheGrannyRenderObjSystem->Flush();
+			// TheGrannyRenderObjSystem - replaced with GLM + TinyGLTF animation system->queueUpdate();
+		// TheGrannyRenderObjSystem - replaced with GLM + TinyGLTF animation system->Flush();
 	}
 #endif
 	
