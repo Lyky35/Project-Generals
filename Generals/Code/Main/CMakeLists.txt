@@ -16,7 +16,6 @@ target_link_libraries(RTS PRIVATE
     WWDebug
     WWLib
     WWUtil
-    WWMath
     WWSaveLoad
     Compression
     VulkanRenderer
@@ -26,23 +25,15 @@ target_link_libraries(RTS PRIVATE
     WPAudio
     DX8Compat
     GameSpyStub
+    OpenAL::OpenAL
+    FFmpeg::avcodec FFmpeg::avformat FFmpeg::avutil FFmpeg::swscale
+    SDL2::SDL2
 )
 
-target_link_libraries(RTS PRIVATE
-    d3d8.lib
-    d3dx8.lib
-    dxguid.lib
-    dinput8.lib
-    dsound.lib
-    winmm.lib
-    vfw32.lib
-    wsock32.lib
-    wininet.lib
-    imm32.lib
-    comctl32.lib
-    advapi32.lib
-    shell32.lib
-    ole32.lib
-    oleaut32.lib
-    uuid.lib
-)
+# Remove DirectX 8 SDK libraries (replaced by OpenAL + SDL2 + FFmpeg)
+# d3d8.lib d3dx8.lib dxguid.lib dinput8.lib dsound.lib winmm.lib vfw32.lib
+# wsock32.lib wininet.lib imm32.lib comctl32.lib advapi32.lib shell32.lib
+# ole32.lib oleaut32.lib uuid.lib
+
+# Note: Keep only the libraries that are still needed for window creation + input
+# OpenAL handles audio, SDL2 handles input/window, FFmpeg handles video
