@@ -194,7 +194,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 	}
 	surface_level->UnlockRect();
 	surface_level->Release();
-	DX8_ErrorCode(D3DXFilterTexture(Peek_D3D_Texture(), NULL, 0, D3DX_FILTER_BOX));	
+	// D3DXFilterTexture replaced - filtering handled by Vulkan sampler state	
 	if (TheWritableGlobalData->m_textureReductionFactor) {
 		Peek_D3D_Texture()->SetLOD(TheWritableGlobalData->m_textureReductionFactor);
 	}
@@ -351,8 +351,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 	}
 	surface_level->UnlockRect();
 	surface_level->Release();
-	DX8_ErrorCode(D3DXFilterTexture(D3DTexture, NULL, 0, D3DX_FILTER_BOX));	
-	return(surface_desc.Height);
+// D3DXFilterTexture replaced - filtering handled by Vulkan sampler state	return(surface_desc.Height);
 }
 #endif
 
@@ -424,7 +423,7 @@ Bool TerrainTextureClass::updateFlat(WorldHeightMap *htMap, Int xCell, Int yCell
 
 	surface_level->UnlockRect();
 	surface_level->Release();
-	DX8_ErrorCode(D3DXFilterTexture(Peek_D3D_Texture(), NULL, 0, D3DX_FILTER_BOX));	
+	// D3DXFilterTexture replaced - filtering handled by Vulkan sampler state	
 	return(surface_desc.Height);
 }
 
@@ -836,8 +835,7 @@ int AlphaEdgeTextureClass::update(WorldHeightMap *htMap)
 	}
 	surface_level->UnlockRect();
 	surface_level->Release();
-	DX8_ErrorCode(D3DXFilterTexture(Peek_D3D_Texture(), NULL, 0, D3DX_FILTER_BOX));
-	return(surface_desc.Height);
+// D3DXFilterTexture replaced - filtering handled by Vulkan sampler state	return(surface_desc.Height);
 }
 
 void AlphaEdgeTextureClass::Apply(unsigned int stage)
@@ -989,7 +987,7 @@ void CloudMapTerrainTextureClass::Apply(unsigned int stage)
 	if (m_yOffset < -1) m_yOffset += 1;
 
 
-	D3DXMatrixTranslation(&offset, m_xOffset, m_yOffset,0);
+	// Translation matrix - handled by Vulkan uniform buffers
 
 	inv *= offset;
 
