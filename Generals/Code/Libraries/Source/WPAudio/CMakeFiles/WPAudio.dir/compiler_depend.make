@@ -526,10 +526,12 @@ Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Channel.cpp \
   Generals/Code/Libraries/Include/wpaudio/altypes.h \
+  Generals/Code/Libraries/Include/wpaudio/attributes.h \
   Generals/Code/Libraries/Include/wpaudio/channel.h \
   Generals/Code/Libraries/Include/wpaudio/device.h \
   Generals/Code/Libraries/Include/wpaudio/list.h \
   Generals/Code/Libraries/Include/wpaudio/memory.h \
+  Generals/Code/Libraries/Include/wpaudio/source.h \
   /usr/include/AL/al.h \
   /usr/include/AL/alc.h \
   /usr/include/SDL2/SDL.h \
@@ -918,6 +920,8 @@ Generals/Code/Libraries/Source/WPAudio/AUD_Attributes.cpp:
 /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/pconfigintrin.h:
 
 /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/avx512vnnivlintrin.h:
+
+Generals/Code/Libraries/Include/wpaudio/source.h:
 
 Generals/Code/Libraries/Include/wpaudio/memory.h:
 

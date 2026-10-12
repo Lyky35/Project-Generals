@@ -94,56 +94,34 @@ Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/Compressio
   /usr/x86_64-w64-mingw32/include/vadefs.h
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.obj: Generals/Code/Libraries/Source/Compression/EAC/btreeabout.cpp \
+  Generals/Code/Libraries/Include/Lib/Trig.h \
+  Generals/Code/Libraries/Include/Lib/basetype.h \
   Generals/Code/Libraries/Source/Compression/EAC/btreecodex.h \
   Generals/Code/Libraries/Source/Compression/EAC/codex.h \
-  Generals/Code/Libraries/Source/Compression/EAC/gimex.h \
-  /usr/include/alloca.h \
-  /usr/include/bits/atomic_wide_counter.h \
-  /usr/include/bits/byteswap.h \
-  /usr/include/bits/endian.h \
-  /usr/include/bits/endianness.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
   /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
   /usr/include/bits/long-double.h \
-  /usr/include/bits/pthreadtypes-arch.h \
-  /usr/include/bits/pthreadtypes.h \
-  /usr/include/bits/select.h \
-  /usr/include/bits/stdint-intn.h \
-  /usr/include/bits/stdlib-bsearch.h \
-  /usr/include/bits/stdlib-float.h \
-  /usr/include/bits/struct_mutex.h \
-  /usr/include/bits/struct_rwlock.h \
-  /usr/include/bits/thread-shared-types.h \
-  /usr/include/bits/time64.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls-macros.h \
+  /usr/include/bits/mathcalls.h \
   /usr/include/bits/timesize.h \
-  /usr/include/bits/types.h \
   /usr/include/bits/types/__locale_t.h \
-  /usr/include/bits/types/__sigset_t.h \
-  /usr/include/bits/types/clock_t.h \
-  /usr/include/bits/types/clockid_t.h \
   /usr/include/bits/types/locale_t.h \
-  /usr/include/bits/types/sigset_t.h \
-  /usr/include/bits/types/struct_timespec.h \
-  /usr/include/bits/types/struct_timeval.h \
-  /usr/include/bits/types/time_t.h \
-  /usr/include/bits/types/timer_t.h \
-  /usr/include/bits/typesizes.h \
-  /usr/include/bits/uintn-identity.h \
-  /usr/include/bits/waitflags.h \
-  /usr/include/bits/waitstatus.h \
   /usr/include/bits/wordsize.h \
-  /usr/include/endian.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
   /usr/include/gnu/stubs.h \
+  /usr/include/math.h \
   /usr/include/stdc-predef.h \
-  /usr/include/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
   /usr/include/sys/cdefs.h \
-  /usr/include/sys/select.h \
-  /usr/include/sys/types.h \
   /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/stddef.h \
   /usr/x86_64-w64-mingw32/include/_mingw.h \
   /usr/x86_64-w64-mingw32/include/_mingw_mac.h \
@@ -154,56 +132,34 @@ Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreea
   /usr/x86_64-w64-mingw32/include/vadefs.h
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.obj: Generals/Code/Libraries/Source/Compression/EAC/btreedecode.cpp \
+  Generals/Code/Libraries/Include/Lib/Trig.h \
+  Generals/Code/Libraries/Include/Lib/basetype.h \
   Generals/Code/Libraries/Source/Compression/EAC/btreecodex.h \
   Generals/Code/Libraries/Source/Compression/EAC/codex.h \
-  Generals/Code/Libraries/Source/Compression/EAC/gimex.h \
-  /usr/include/alloca.h \
-  /usr/include/bits/atomic_wide_counter.h \
-  /usr/include/bits/byteswap.h \
-  /usr/include/bits/endian.h \
-  /usr/include/bits/endianness.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
   /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
   /usr/include/bits/long-double.h \
-  /usr/include/bits/pthreadtypes-arch.h \
-  /usr/include/bits/pthreadtypes.h \
-  /usr/include/bits/select.h \
-  /usr/include/bits/stdint-intn.h \
-  /usr/include/bits/stdlib-bsearch.h \
-  /usr/include/bits/stdlib-float.h \
-  /usr/include/bits/struct_mutex.h \
-  /usr/include/bits/struct_rwlock.h \
-  /usr/include/bits/thread-shared-types.h \
-  /usr/include/bits/time64.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls-macros.h \
+  /usr/include/bits/mathcalls.h \
   /usr/include/bits/timesize.h \
-  /usr/include/bits/types.h \
   /usr/include/bits/types/__locale_t.h \
-  /usr/include/bits/types/__sigset_t.h \
-  /usr/include/bits/types/clock_t.h \
-  /usr/include/bits/types/clockid_t.h \
   /usr/include/bits/types/locale_t.h \
-  /usr/include/bits/types/sigset_t.h \
-  /usr/include/bits/types/struct_timespec.h \
-  /usr/include/bits/types/struct_timeval.h \
-  /usr/include/bits/types/time_t.h \
-  /usr/include/bits/types/timer_t.h \
-  /usr/include/bits/typesizes.h \
-  /usr/include/bits/uintn-identity.h \
-  /usr/include/bits/waitflags.h \
-  /usr/include/bits/waitstatus.h \
   /usr/include/bits/wordsize.h \
-  /usr/include/endian.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
   /usr/include/gnu/stubs.h \
+  /usr/include/math.h \
   /usr/include/stdc-predef.h \
-  /usr/include/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
   /usr/include/sys/cdefs.h \
-  /usr/include/sys/select.h \
-  /usr/include/sys/types.h \
   /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/stddef.h \
   /usr/x86_64-w64-mingw32/include/_mingw.h \
   /usr/x86_64-w64-mingw32/include/_mingw_mac.h \
@@ -500,13 +456,11 @@ Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompres
   /usr/x86_64-w64-mingw32/include/vadefs.h
 
 
+/usr/include/sys/types.h:
+
+/usr/include/stdlib.h:
+
 /usr/include/stdio.h:
-
-/usr/include/math.h:
-
-/usr/include/bits/types/struct_FILE.h:
-
-/usr/include/bits/types/cookie_io_functions_t.h:
 
 /usr/x86_64-w64-mingw32/include/getopt.h:
 
@@ -610,6 +564,8 @@ Generals/Code/Libraries/Source/Compression/EAC/refcodex.h:
 
 /usr/x86_64-w64-mingw32/include/c++/16.2.0/tr1/beta_function.tcc:
 
+/usr/include/math.h:
+
 /usr/x86_64-w64-mingw32/include/c++/16.2.0/debug/debug.h:
 
 /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/stdarg.h:
@@ -650,11 +606,11 @@ Generals/Code/Libraries/Source/Compression/EAC/gimex.h:
 
 Generals/Code/Libraries/Source/Compression/EAC/btreeencode.cpp:
 
-/usr/include/bits/types/__sigset_t.h:
-
 /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/move.h:
 
 /usr/include/bits/mathcalls-macros.h:
+
+/usr/include/bits/types/__sigset_t.h:
 
 /usr/x86_64-w64-mingw32/include/_mingw_off_t.h:
 
@@ -664,9 +620,9 @@ Generals/Code/Libraries/Source/Compression/EAC/btreeencode.cpp:
 
 Generals/Code/Libraries/Include/ZLib/zlib.h:
 
-/usr/include/bits/endian.h:
-
 Generals/Code/Libraries/Source/Compression/EAC/huffabout.cpp:
+
+/usr/include/bits/endian.h:
 
 /usr/x86_64-w64-mingw32/include/_mingw_secapi.h:
 
@@ -684,11 +640,11 @@ Generals/Code/Libraries/Source/Compression/EAC/huffabout.cpp:
 
 /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/requires_hosted.h:
 
+/usr/include/bits/types/FILE.h:
+
 /usr/x86_64-w64-mingw32/include/c++/16.2.0/math.h:
 
 /usr/include/bits/waitstatus.h:
-
-/usr/include/bits/types/FILE.h:
 
 /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/stl_iterator_base_types.h:
 
@@ -714,73 +670,43 @@ Generals/Code/Libraries/Source/Compression/LZHCompress/Noxcompress.h:
 
 Generals/Code/Libraries/Source/Compression/EAC/btreeabout.cpp:
 
-/usr/include/alloca.h:
+Generals/Code/Libraries/Include/Lib/basetype.h:
 
-/usr/x86_64-w64-mingw32/include/stddef.h:
-
-/usr/include/bits/atomic_wide_counter.h:
-
-Generals/Code/Libraries/Source/Compression/EAC/refencode.cpp:
-
-/usr/x86_64-w64-mingw32/include/c++/16.2.0/tr1/modified_bessel_func.tcc:
-
-/usr/include/bits/byteswap.h:
+/usr/include/bits/libc-header-start.h:
 
 /usr/include/bits/floatn.h:
 
 /usr/include/bits/math-vector.h:
 
-/usr/include/bits/libc-header-start.h:
+/usr/include/bits/flt-eval-method.h:
 
-Generals/Code/Libraries/Include/Lib/basetype.h:
+/usr/x86_64-w64-mingw32/include/corecrt_startup.h:
 
-/usr/include/bits/pthreadtypes-arch.h:
+/usr/include/bits/fp-logb.h:
 
-/usr/include/bits/pthreadtypes.h:
+Generals/Code/Libraries/Source/Compression/LZHCompress/NoxCompress.cpp:
 
-/usr/include/bits/fp-fast.h:
-
-/usr/include/bits/stdlib-bsearch.h:
-
-/usr/include/bits/struct_mutex.h:
-
-/usr/include/bits/thread-shared-types.h:
-
-Generals/Code/Libraries/Source/Compression/CompressionManager.cpp:
-
-/usr/include/bits/waitflags.h:
-
-/usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/version.h:
-
-/usr/include/bits/timesize.h:
+/usr/include/bits/mathcalls-helper-functions.h:
 
 /usr/x86_64-w64-mingw32/include/c++/16.2.0/stdlib.h:
 
 /usr/include/bits/mathcalls.h:
 
+/usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/version.h:
+
+/usr/include/bits/timesize.h:
+
 /usr/include/bits/types/__locale_t.h:
 
-/usr/x86_64-w64-mingw32/include/c++/16.2.0/pstl/pstl_config.h:
-
-/usr/include/bits/types/clock_t.h:
-
-/usr/include/bits/types/clockid_t.h:
-
 /usr/include/bits/types/locale_t.h:
-
-/usr/include/bits/types/sigset_t.h:
-
-/usr/include/bits/types/timer_t.h:
-
-/usr/include/bits/typesizes.h:
-
-/usr/include/bits/uintn-identity.h:
 
 /usr/include/features-time64.h:
 
 /usr/include/gnu/stubs.h:
 
-/usr/include/stdlib.h:
+/usr/include/sys/select.h:
+
+/usr/include/stdc-predef.h:
 
 /usr/include/string.h:
 
@@ -794,25 +720,17 @@ Generals/Code/Libraries/Source/Compression/EAC/btreedecode.cpp:
 
 /usr/include/sys/cdefs.h:
 
-/usr/include/stdc-predef.h:
-
-/usr/include/sys/select.h:
-
-/usr/include/bits/flt-eval-method.h:
-
-/usr/include/sys/types.h:
-
 /usr/x86_64-w64-mingw32/include/c++/16.2.0/limits:
 
 Generals/Code/Libraries/Source/Compression/EAC/huffencode.cpp:
 
 Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp:
 
-Generals/Code/Libraries/Source/Compression/LZHCompress/NoxCompress.cpp:
+Generals/Code/Libraries/Source/Compression/EAC/refencode.cpp:
 
-/usr/x86_64-w64-mingw32/include/corecrt_startup.h:
+/usr/x86_64-w64-mingw32/include/stddef.h:
 
-/usr/include/bits/fp-logb.h:
+/usr/include/bits/atomic_wide_counter.h:
 
 /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/limits.h:
 
@@ -824,7 +742,15 @@ Generals/Code/Libraries/Source/Compression/LZHCompress/CompLibHeader/lzhl.h:
 
 /usr/include/bits/types/__fpos64_t.h:
 
-/usr/include/bits/mathcalls-helper-functions.h:
+/usr/include/alloca.h:
+
+/usr/x86_64-w64-mingw32/include/c++/16.2.0/tr1/modified_bessel_func.tcc:
+
+/usr/include/bits/byteswap.h:
+
+/usr/include/bits/pthreadtypes-arch.h:
+
+/usr/include/bits/pthreadtypes.h:
 
 /usr/x86_64-w64-mingw32/include/stdarg.h:
 
@@ -836,6 +762,36 @@ Generals/Code/Libraries/Source/Compression/LZHCompress/CompLibHeader/lzhl.h:
 
 /usr/include/bits/stdio_lim.h:
 
+/usr/include/bits/fp-fast.h:
+
+/usr/include/bits/stdlib-bsearch.h:
+
+/usr/include/bits/struct_mutex.h:
+
+/usr/include/bits/thread-shared-types.h:
+
+Generals/Code/Libraries/Source/Compression/CompressionManager.cpp:
+
+/usr/include/bits/waitflags.h:
+
 /usr/include/bits/types/__fpos_t.h:
 
 /usr/include/bits/types/__mbstate_t.h:
+
+/usr/x86_64-w64-mingw32/include/c++/16.2.0/pstl/pstl_config.h:
+
+/usr/include/bits/types/clock_t.h:
+
+/usr/include/bits/types/clockid_t.h:
+
+/usr/include/bits/types/cookie_io_functions_t.h:
+
+/usr/include/bits/types/sigset_t.h:
+
+/usr/include/bits/types/struct_FILE.h:
+
+/usr/include/bits/types/timer_t.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/bits/uintn-identity.h:

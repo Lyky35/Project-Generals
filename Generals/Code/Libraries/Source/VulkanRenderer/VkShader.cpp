@@ -73,9 +73,9 @@ void VkShaderManager::Shutdown()
 	if (!m_device)
 		return;
 	VkDevice dev = m_device->GetDevice();
-	for (auto &entry : m_pipelineCache)
+	for (auto &entry : m_pipelines)
 		vkDestroyPipeline(dev, entry.second, nullptr);
-	m_pipelineCache.clear();
+	m_pipelines.clear();
 	if (m_pipelineLayout != VK_NULL_HANDLE) {
 		vkDestroyPipelineLayout(dev, m_pipelineLayout, nullptr);
 		m_pipelineLayout = VK_NULL_HANDLE;
@@ -386,19 +386,19 @@ void VkShaderManager::ClearPipelineCache()
 	if (!m_device)
 		return;
 	VkDevice dev = m_device->GetDevice();
-	for (auto &entry : m_pipelineCache)
+	for (auto &entry : m_pipelines)
 		vkDestroyPipeline(dev, entry.second, nullptr);
-	m_pipelineCache.clear();
+	m_pipelines.clear();
 }
 
 VkPipeline VkShaderManager::GetPipeline(const VkPipelineState &state)
 {
-	auto it = m_pipelineCache.find(state);
-	if (it != m_pipelineCache.end())
+	auto it = m_pipelines.find(state);
+	if (it != m_pipelines.end())
 		return it->second;
 	VkPipeline pipeline = BuildPipeline(state);
 	if (pipeline != VK_NULL_HANDLE)
-		m_pipelineCache[state] = pipeline;
+		m_pipelines[state] = pipeline;
 	return pipeline;
 }
 

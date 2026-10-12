@@ -529,10 +529,12 @@ Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.obj
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Channel.cpp
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/altypes.h
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/attributes.h
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/channel.h
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/device.h
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/list.h
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/memory.h
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/source.h
  /usr/include/AL/al.h
  /usr/include/AL/alc.h
  /usr/include/SDL2/SDL.h

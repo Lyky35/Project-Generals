@@ -1,8 +1,8 @@
 #pragma once
 
-#include <windows.h>
-#include <vulkan/vulkan.h>
 #include <cstdint>
+#include <vulkan/vulkan.h>
+#include <cassert>
 
 class VulkanDevice;
 
@@ -19,18 +19,17 @@ public:
 		VkMemoryPropertyFlags properties);
 	void Destroy();
 
-	void Upload(const void *data, VkDeviceSize size, VkDeviceSize dstOffset = 0);
 	void *Map();
 	void Unmap();
-	bool IsMapped() const { return m_mapped != nullptr; }
+	void Upload(const void *data, VkDeviceSize size, VkDeviceSize offset = 0);
 
-	VkBuffer GetBuffer() const { return m_handle; }
+	VkBuffer GetBuffer() const { return m_buffer; }
+	VkDeviceMemory GetMemory() const { return m_memory; }
 	VkDeviceSize GetSize() const { return m_size; }
-	VkDeviceSize GetDeviceAddressOffset() const { return 0; }
 
 private:
 	VulkanDevice *m_device;
-	VkBuffer m_handle;
+	VkBuffer m_buffer;
 	VkDeviceMemory m_memory;
 	VkDeviceSize m_size;
 	void *m_mapped;

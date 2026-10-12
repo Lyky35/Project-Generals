@@ -654,6 +654,7 @@ Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDe
   /usr/x86_64-w64-mingw32/include/c++/16.2.0/cassert \
   /usr/x86_64-w64-mingw32/include/c++/16.2.0/concepts \
   /usr/x86_64-w64-mingw32/include/c++/16.2.0/cstddef \
+  /usr/x86_64-w64-mingw32/include/c++/16.2.0/cstdint \
   /usr/x86_64-w64-mingw32/include/c++/16.2.0/cstring \
   /usr/x86_64-w64-mingw32/include/c++/16.2.0/debug/assertions.h \
   /usr/x86_64-w64-mingw32/include/c++/16.2.0/debug/debug.h \
@@ -1305,6 +1306,7 @@ Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkSh
   /usr/include/vulkan/vk_platform.h \
   /usr/include/vulkan/vulkan.h \
   /usr/include/vulkan/vulkan_core.h \
+  /usr/include/vulkan/vulkan_win32.h \
   /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/adxintrin.h \
   /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/ammintrin.h \
   /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/amxavx512intrin.h \

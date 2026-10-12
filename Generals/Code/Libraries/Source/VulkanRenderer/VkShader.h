@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include "VulkanDevice.h"
-#include "VkPipeline.h"
+#include <cstdint>
+#include <vulkan/vulkan.h>
 #include <vector>
 #include <unordered_map>
 
@@ -73,65 +73,15 @@ public:
 
 	VkPipeline_T* GetPipeline(const VkPipelineState &state);
 	void SetVertexLayout(const VkVertexLayoutDesc &layout);
+	void ClearPipelineCache();
 
 private:
 	VulkanDevice *m_device;
 	std::unordered_map<VkPipelineState, VkPipeline_T*, VkPipelineStateHash> m_pipelines;
-	VkPipelineCache m_pipelineCache;
+	VkPipelineCache m_pipelineCache; // Vulkan pipeline cache handle
 	VkVertexLayoutDesc m_vertexLayout;
-};
-
-};
-
-struct VkVertexLayoutDesc {
-	VkVertexInputBindingDescription bindings[2];
-	uint32_t bindingCount;
-	VkVertexInputAttributeDescription attributes[5];
-	uint32_t attributeCount;
-};
-
-class VkShaderManager
-{
-public:
-	VkShaderManager();
-	~VkShaderManager();
-
-	VkShaderManager(const VkShaderManager &) = delete;
-	VkShaderManager &operator=(const VkShaderManager &) = delete;
-
-	bool Init(VulkanDevice *device, const char *shaderDir);
-	void Shutdown();
-
-	VkPipeline GetPipeline(const VkPipelineState &state);
-	void ClearPipelineCache();
-	VkPipelineLayout GetPipelineLayout() const { return m_pipelineLayout; }
-	VkDescriptorSetLayout GetTextureSetLayout() const { return m_textureSetLayout; }
-	VkDescriptorSetLayout GetFrameSetLayout() const { return m_frameSetLayout; }
-
-	static VkVertexLayoutDesc GetVertexLayout(uint32_t fvf, uint32_t fvfSize,
-		uint32_t normalOffset, uint32_t diffuseOffset,
-		uint32_t uv0Offset, uint32_t uv1Offset);
-	static uint32_t FanToList(const uint16_t *fanIndices, uint32_t fanCount, uint16_t *outList);
-
-	enum TexOp {
-		TEXOP_DISABLE = 0,
-		TEXOP_SELECTARG1 = 1,
-		TEXOP_MODULATE = 2,
-		TEXOP_ADD = 3
-	};
-
-private:
-	VkShaderModule LoadModule(const char *path);
-	bool CreateDescriptorLayouts();
-	bool CreatePipelineLayout();
-	VkPipeline BuildPipeline(const VkPipelineState &state);
-
-	VulkanDevice *m_device;
-	char m_shaderDir[260];
-	VkShaderModule m_vertModule;
-	VkShaderModule m_fragModule;
-	VkDescriptorSetLayout m_textureSetLayout;
-	VkDescriptorSetLayout m_frameSetLayout;
-	VkPipelineLayout m_pipelineLayout;
-	std::unordered_map<VkPipelineState, VkPipeline, VkPipelineStateHash> m_pipelineCache;
+	
+	// Helper functions
+	uint32_t FanToList(const uint16_t *fanIndices, uint32_t fanCount, uint16_t *outList);
+	VkPipeline_T* BuildPipeline(const VkPipelineState &state);
 };

@@ -4,9 +4,31 @@
 #ifndef _WPAUDIO_ALTYPES_H_
 #define _WPAUDIO_ALTYPES_H_
 
+// Prevent system header conflicts
+#if defined(__MINGW32__) || defined(__MINGW64__)
+    #define WPAUDIO_MINGW 1
+#endif
+
 #include <AL/al.h>
 #include <AL/alc.h>
 #include <SDL2/SDL.h>
+
+// Only define types that don't conflict with system headers
+#ifndef ssize_t
+    #if defined(WPAUDIO_MINGW)
+        typedef long long ssize_t;
+    #else
+        typedef ssize_t ssize_t;
+    #endif
+#endif
+
+#ifndef time_t
+    #if defined(WPAUDIO_MINGW)
+        typedef long long time_t;
+    #else
+        typedef time_t time_t;
+    #endif
+#endif
 
 // OpenAL types emulation
 typedef ALenum ALCenum;

@@ -202,4 +202,6 @@ Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.ob
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/memory.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/list.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/channel.h \
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/source.h \
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/attributes.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/device.h
