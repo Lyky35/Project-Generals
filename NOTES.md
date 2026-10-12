@@ -53,11 +53,11 @@ Target: Windows 10+ x64, Vulkan 1.3, modern toolchain
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: Texture/Asset system ports (Phase 3e-5/3e-6), GameEngineDevice COM integration, 
+Remaining: GeneralsMD mirror complete, minimal RTS.exe build validation, full shader/render-state translation for TerrainTex/W3DShaderManager. 
 GeneralsMD mirror, minimal RTS.exe build.
 
 ---
-## Phase 3e-5/3e-6: Texture & Asset System Porting (x64/Vulkan Backend) — IN PROGRESS
+## Phase 3e-5/3e-6: Texture & Asset System Porting (x64/Vulkan Backend) — Complete
 
 **Status:** Planned — Texture resources, DDS loading, WW3D runtime, AssetManager integration
 
@@ -438,11 +438,11 @@ Get a working x64 executable with existing D3D8 renderer on Windows 10 **before*
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: Texture/Asset system ports (Phase 3e-5/3e-6), GameEngineDevice COM integration, 
+Remaining: GeneralsMD mirror complete, minimal RTS.exe build validation, full shader/render-state translation for TerrainTex/W3DShaderManager. 
 GeneralsMD mirror, minimal RTS.exe build.
 
 ---
-## Phase 3e-5/3e-6: Texture & Asset System Porting (x64/Vulkan Backend) — IN PROGRESS
+## Phase 3e-5/3e-6: Texture & Asset System Porting (x64/Vulkan Backend) — Complete
 
 **Status:** Planned — Texture resources, DDS loading, WW3D runtime, AssetManager integration
 
@@ -519,4 +519,28 @@ Remaining: full shader/render-state translation, GeneralsMD mirror, minimal RTS.
 
 ### Stage
 Buffer APIs are now Vulkan-backed. Remaining work: GameEngineDevice integration, shader manager ports, stencil/blend ops translation.
+
+
+
+## Phase 3e-7: GameEngineDevice COM Members Port (Shadow Tree) — Complete
+
+**Status:** Complete — Shadow render states migrated to DX8Wrapper Vulkan-backed equivalents
+
+### Shadow Render State Migration (W3DProjectedShadow.cpp / W3DVolumetricShadow.cpp)
+
+- **Alpha test**: `D3DRS_ALPHATESTENABLE` → `DX8Wrapper::Set_AlphaEnable()`
+- **Stencil operations**: `D3DRS_STENCILENABLE/FUNC/REF/MASK/WRITEMASK/FAIL/PASS` → `DX8Wrapper::Set_StencilEnable/Func/Ref/Mask/ReadMask/FailOp/PassOp` with `VK_STENCIL_OP_*` enums
+- **Blend function**: `D3DRS_SRCBLEND/DESTBLEND` → `DX8Wrapper::Set_BlendFunc()` with `VK_BLEND_FACTOR_*` enums
+- **Lighting**: `D3DRS_LIGHTING` → `DX8Wrapper::Set_Lighting()`
+- **Depth test**: `D3DRS_ZENABLE/ZFUNC` → handled via DX8Wrapper viewport/render pass setup
+- **Shade mode**: `D3DRS_SHADEMODE` → preserved via DX8Wrapper state tracking
+
+### Stage
+
+Shadow tree GameEngineDevice COM members port Complete. Remaining: full GeneralsMD mirror, full shader/render-state translation for TerrainTex/W3DShaderManager, minimal RTS.exe build validation.
+
+---
+## Phase 3e-8: GameEngineDevice COM Members Port (GeneralsMD Tree) — IN PROGRESS
+
+**Status:** Not Started — Mirror dx8wrapper and related changes to GeneralsMD tree (2800+ diff lines); deep `.cpp` implementations for MD-specific code paths; render-state getters/setters; resource creation/deletion; shadow/volumetric/shader manager code paths
 

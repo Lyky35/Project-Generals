@@ -3416,22 +3416,22 @@ void W3DVolumetricShadowManager::renderStencilShadows( void )
 	m_pDev->SetVertexShader(D3DFVF_XYZRHW | D3DFVF_DIFFUSE);
 
 	// Use alpha blending to draw the transparent shadow
-    m_pDev->SetRenderState( D3DRS_ALPHABLENDENABLE, TRUE );
+    DX8Wrapper::Set_AlphaEnable(TRUE);
 //  m_pDev->SetRenderState( D3DRS_SRCBLEND,  D3DBLEND_SRCALPHA );
 //  m_pDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA );
-		m_pDev->SetRenderState( D3DRS_SRCBLEND,  D3DBLEND_DESTCOLOR);
+		DX8Wrapper::Set_BlendFunc(VK_BLEND_FACTOR_DEST_COLOR, VK_BLEND_FACTOR_ZERO);
 		m_pDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_ZERO );
 
 
 	// Set stencil states
-    m_pDev->SetRenderState( D3DRS_ZENABLE,          TRUE );
-		m_pDev->SetRenderState(D3DRS_ZFUNC, D3DCMP_ALWAYS);
+    DX8Wrapper::Set_ZEnable(TRUE);
+		DX8Wrapper::Set_StencilFunc(VK_COMPARE_OP_ALWAYS);
 
 	// Only write where stencil val >= 1 (count indicates # of shadows that
 	// overlap that pixel)
     m_pDev->SetRenderState( D3DRS_STENCILENABLE, TRUE );
-    m_pDev->SetRenderState( D3DRS_STENCILFUNC, D3DCMP_LESSEQUAL );	//reference value is less or equal to stencil
-    m_pDev->SetRenderState( D3DRS_STENCILPASS, D3DSTENCILOP_KEEP );
+    DX8Wrapper::Set_StencilFunc(VK_COMPARE_OP_LESS);
+    DX8Wrapper::Set_StencilPassOp(VK_STENCIL_OP_KEEP);
 	//Upper bits of stencil could be used for storing occluded models which are player colored.  So we mask out those
 	//pixels and only use the lower bits for shadow calculations.
 	m_pDev->SetRenderState( D3DRS_STENCILMASK,     ~TheW3DShadowManager->getStencilShadowMask());
