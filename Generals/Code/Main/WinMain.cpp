@@ -75,6 +75,7 @@
 HINSTANCE ApplicationHInstance = NULL;  ///< our application instance
 HWND ApplicationHWnd = NULL;  ///< our application window handle
 Bool ApplicationIsWindowed = false;
+Bool ApplicationIsBorderless = false;
 Win32Mouse *TheWin32Mouse= NULL;  ///< for the WndProc() only
 DWORD TheMessageTime = 0;	///< For getting the time that a message was posted from Windows.
 
@@ -406,9 +407,23 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message,
 			//-------------------------------------------------------------------------
 			case WM_SIZE:
 				// When W3D initializes, it resizes the window.  So stop repainting.
-				if (!gInitializing) 
+				if (!gInitializing)
 					gDoPaint = false;
 				break;
+
+			//-------------------------------------------------------------------------
+			case WM_DPICHANGED:
+			{
+				// Windows suggests a new window rect when the DPI changes
+				// (e.g. dragging between monitors). Honor it.
+				RECT *suggested = (RECT *)lParam;
+				SetWindowPos( hWnd, NULL,
+					suggested->left, suggested->top,
+					suggested->right - suggested->left,
+					suggested->bottom - suggested->top,
+					SWP_NOZORDER | SWP_NOACTIVATE );
+				return 0;
+			}
 
 			//-------------------------------------------------------------------------
 			case WM_KILLFOCUS:
@@ -653,6 +668,31 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message,
 
 }  // end WndProc
 
+// enableDpiAwareness ==========================================================
+// Declare per-monitor-V2 DPI awareness so Windows does not bitmap-scale the
+// game on high-DPI displays. Uses GetProcAddress so the binary still loads
+// on older systems. Must run before any window is created.
+//=============================================================================
+static void enableDpiAwareness( void )
+{
+	HMODULE user32 = GetModuleHandle( TEXT("user32.dll") );
+	if( user32 == NULL )
+		return;
+
+	typedef BOOL (WINAPI *SetProcessDpiAwarenessContextFunc)( HANDLE value );
+	SetProcessDpiAwarenessContextFunc setContext = (SetProcessDpiAwarenessContextFunc)GetProcAddress( user32, "SetProcessDpiAwarenessContext" );
+	if( setContext )
+	{
+		setContext( (HANDLE)-4 );
+		return;
+	}
+
+	typedef BOOL (WINAPI *SetProcessDPIAwareFunc)( void );
+	SetProcessDPIAwareFunc setAware = (SetProcessDPIAwareFunc)GetProcAddress( user32, "SetProcessDPIAware" );
+	if( setAware )
+		setAware();
+}
+
 // initializeAppWindows =======================================================
 /** Register windows class and create application windows. */
 //=============================================================================
@@ -661,64 +701,76 @@ static Bool initializeAppWindows( HINSTANCE hInstance, Int nCmdShow, Bool runWin
 	DWORD windowStyle;
 	Int startWidth = DEFAULT_XRESOLUTION,
 			startHeight = DEFAULT_YRESOLUTION;
+	Int posX = 0, posY = 0;
 
 	// register the window class
+	WNDCLASSEX wndClass;
+	memset( &wndClass, 0, sizeof( wndClass ) );
+	wndClass.cbSize = sizeof( wndClass );
+	wndClass.style = CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
+	wndClass.lpfnWndProc = WndProc;
+	wndClass.hInstance = hInstance;
+	wndClass.hIcon = LoadIcon( hInstance, MAKEINTRESOURCE( IDI_ApplicationIcon ) );
+	wndClass.hCursor = NULL;
+	wndClass.hbrBackground = (HBRUSH)GetStockObject( BLACK_BRUSH );
+	wndClass.lpszClassName = TEXT("Game Window");
+	wndClass.hIconSm = wndClass.hIcon;
+	RegisterClassEx( &wndClass );
 
-  WNDCLASS wndClass = { CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS, WndProc, 0, 0, hInstance,
-                       LoadIcon (hInstance, MAKEINTRESOURCE(IDI_ApplicationIcon)),
-                       NULL/*LoadCursor(NULL, IDC_ARROW)*/, 
-                       (HBRUSH)GetStockObject(BLACK_BRUSH), NULL,
-	                     TEXT("Game Window") };
-  RegisterClass( &wndClass );
-
-   // Create our main window
-	windowStyle =  WS_POPUP|WS_VISIBLE;
-	if (runWindowed) 
+	// Create our main window. Fullscreen and borderless cover the primary
+	// monitor; windowed stays a centered 800x600 dialog frame.
+	windowStyle = WS_POPUP | WS_VISIBLE | WS_CLIPCHILDREN;
+	if( runWindowed )
 		windowStyle |= WS_DLGFRAME | WS_CAPTION | WS_SYSMENU;
+
+	if( !runWindowed )
+	{
+		startWidth = GetSystemMetrics( SM_CXSCREEN );
+		startHeight = GetSystemMetrics( SM_CYSCREEN );
+		posX = 0;
+		posY = 0;
+	}
 	else
-		windowStyle |= WS_EX_TOPMOST | WS_SYSMENU;
+	{
+		// Makes the normal debug 800x600 window center in the screen.
+		startWidth = DEFAULT_XRESOLUTION;
+		startHeight = DEFAULT_YRESOLUTION;
+		posX = ( GetSystemMetrics( SM_CXSCREEN ) / 2 ) - ( startWidth / 2 );
+		posY = ( GetSystemMetrics( SM_CYSCREEN ) / 2 ) - ( startHeight / 2 );
+	}
 
 	RECT rect;
 	rect.left = 0;
 	rect.top = 0;
 	rect.right = startWidth;
 	rect.bottom = startHeight;
-	AdjustWindowRect (&rect, windowStyle, FALSE);
-	if (runWindowed) {
-		// Makes the normal debug 800x600 window center in the screen.
-		startWidth = DEFAULT_XRESOLUTION;
-		startHeight= DEFAULT_YRESOLUTION;
-	}
+	AdjustWindowRect( &rect, windowStyle, FALSE );
 
 	gInitializing = true;
 
-  HWND hWnd = CreateWindow( TEXT("Game Window"),
-                            TEXT("Command and Conquer Generals"),
-                            windowStyle, 
-														(GetSystemMetrics( SM_CXSCREEN ) / 2) - (startWidth / 2), // original position X
-														(GetSystemMetrics( SM_CYSCREEN ) / 2) - (startHeight / 2),// original position Y
-														// Lorenzen nudged the window higher
-														// so the constantdebug report would 
-														// not get obliterated by assert windows, thank you.
-														//(GetSystemMetrics( SM_CXSCREEN ) / 2) - (startWidth / 2),   //this works with any screen res
-														//(GetSystemMetrics( SM_CYSCREEN ) / 25) - (startHeight / 25),//this works with any screen res
-														rect.right-rect.left,
-														rect.bottom-rect.top,
-														0L, 
-														0L, 
-														hInstance, 
-														0L );
+	HWND hWnd = CreateWindow( TEXT("Game Window"),
+														TEXT("Command and Conquer Generals"),
+														windowStyle,
+														posX,
+														posY,
+														rect.right - rect.left,
+														rect.bottom - rect.top,
+														NULL,
+														NULL,
+														hInstance,
+														NULL );
 
 
-	if (!runWindowed)
-	{	SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0,SWP_NOSIZE |SWP_NOMOVE);
+	if( !runWindowed )
+	{
+		SetWindowPos( hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE );
 	}
-	else 
-		SetWindowPos(hWnd, HWND_TOP, 0, 0, 0, 0,SWP_NOSIZE |SWP_NOMOVE);
+	else
+		SetWindowPos( hWnd, HWND_TOP, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE );
 
-	SetFocus(hWnd);
+	SetFocus( hWnd );
 
-	SetForegroundWindow(hWnd);
+	SetForegroundWindow( hWnd );
 	ShowWindow( hWnd, nCmdShow );
 	UpdateWindow( hWnd );
 
@@ -726,7 +778,7 @@ static Bool initializeAppWindows( HINSTANCE hInstance, Int nCmdShow, Bool runWin
 	ApplicationHInstance = hInstance;
 	ApplicationHWnd = hWnd;
 	gInitializing = false;
-	if (!runWindowed) {
+	if( !runWindowed ) {
 		gDoPaint = false;
 	}
 
@@ -852,6 +904,10 @@ static CriticalSection critSec1, critSec2, critSec3, critSec4, critSec5;
 Int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
                       LPSTR lpCmdLine, Int nCmdShow )
 {
+	// Declare DPI awareness before any window exists so high-DPI
+	// displays are not bitmap-scaled by Windows.
+	enableDpiAwareness();
+
 	checkProtection();
 
 	try {
@@ -901,7 +957,10 @@ Int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			//added a preparse step for this flag because it affects window creation style
 			if (stricmp(token,"-win")==0)
 				ApplicationIsWindowed=true;
-			token = nextParam(NULL, "\" ");	   
+			else if (stricmp(token,"-borderless")==0)
+				ApplicationIsBorderless=true;
+			token = nextParam(NULL, "\" ");
+
 		}
 
 		if (argc>2 && strcmp(argv[1],"-DX")==0) {  

@@ -129,16 +129,26 @@ Faithful transliteration of the x86 asm, plus hardening for pre-existing 16-bit 
 
 ## Phase 2: Windows 10+ Compatibility
 
-**Status:** Pending
+**Status:** Win32 layer complete; display-mode work deferred to Phase 3 (lives in DX8 renderer)
 
-### Issues
-| Issue | Impact | Solution |
-|-------|--------|----------|
-| Fullscreen crash | Game unplayable | Implement borderless windowed mode |
-| No DPI awareness | Blurry on high-DPI | Add `SetProcessDpiAwarenessContext` manifest |
-| Hardcoded resolutions | Poor UX on modern displays | Implement resolution detection + scaling |
-| WinXP-era window class registration | Issues on Win10+ | Update window class for modern Windows |
-| 4,096-unit cap | Gameplay limitation | Make configurable or remove |
+### Steps Taken (WinMain.cpp, both Generals + GeneralsMD)
+- `RegisterClass` → `RegisterClassEx` with `hIconSm`
+- Removed `WS_EX_TOPMOST` mixed into regular style bits (TOPMOST via `SetWindowPos` only)
+- Added `WS_CLIPCHILDREN` to all window styles
+- Fullscreen/borderless windows now sized to native monitor res (was hardcoded 800x600)
+- Windowed mode centered via DPI-correct metrics
+- `CreateWindow` args cleaned (`NULL` instead of `0L`)
+- DPI awareness: `SetProcessDpiAwarenessContext(PMv2)` via `GetProcAddress` + `SetProcessDPIAware` fallback, called before window creation
+- `WM_DPICHANGED` handler honors Windows' suggested rect
+- New `-borderless` cmdline flag → `ApplicationIsBorderless` global (renderer honors in Phase 3); declared `extern` in `WinMain.h`
+
+### Deferred to Phase 3 (renderer-owned)
+| Issue | Reason |
+|-------|--------|
+| Exclusive→borderless display modes | `DX8Wrapper` sets D3D modes; changes with Vulkan swapchain |
+| Resolution detection/scaling | Display enumeration moves with new renderer |
+| `WM_DISPLAYCHANGE` auto-reset | Risky without live testing; revisit with Vulkan |
+| 4,096-unit cap | Gameplay change, post-rendering milestone |
 
 ---
 
