@@ -85,9 +85,9 @@ static BOOL CALLBACK PassDlgProc(HWND hwndDlg, UINT msg, WPARAM wParam, LPARAM l
 	if (msg==WM_INITDIALOG) {
 		theDlg = (GameMtlPassDlg*)lParam;
 		theDlg->HwndPanel = hwndDlg;
-		SetWindowLong(hwndDlg, GWL_USERDATA,lParam);
+		SetWindowLongPtr(hwndDlg, GWLP_USERDATA,lParam);
 	} else {
-		if ((theDlg = (GameMtlPassDlg *)GetWindowLong(hwndDlg, GWL_USERDATA) ) == NULL) {
+		if ((theDlg = (GameMtlPassDlg *)GetWindowLongPtr(hwndDlg, GWLP_USERDATA) ) == NULL) {
 			return FALSE; 
 		}
 	}
@@ -145,7 +145,7 @@ GameMtlPassDlg::~GameMtlPassDlg()
 {
 	TheMtl->Set_Flag(_Pass_Index_To_Flag[PassIndex],IParams->IsRollupPanelOpen(HwndPanel));
 	IParams->DeleteRollupPage(HwndPanel);
-	SetWindowLong(HwndPanel, GWL_USERDATA, NULL);
+	SetWindowLongPtr(HwndPanel, GWLP_USERDATA, NULL);
 }
 
 

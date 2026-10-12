@@ -22,7 +22,7 @@
 // $Revision: #3 $
 // $DateTime: 2003/07/09 10:57:23 $
 //
-// ©2003 Electronic Arts
+// ï¿½2003 Electronic Arts
 //
 // Internal header
 //////////////////////////////////////////////////////////////////////////////
@@ -37,6 +37,10 @@
 #include "internal_highlevel.h"
 #include "internal_cmd.h"
 #include "internal_result.h"
+#include <stdint.h>
+#if defined(_MSC_VER)
+#include <intrin.h>
+#endif
 
 class ProfileFastCS
 {
@@ -50,23 +54,13 @@ class ProfileFastCS
 	{
 		volatile unsigned& nFlag=m_Flag;
 
-		#define ts_lock _emit 0xF0
-		DASSERT(((unsigned)&nFlag % 4) == 0);
+		DASSERT((((uintptr_t)&nFlag) % 4) == 0);
 
-		__asm mov ebx, [nFlag]
-		__asm ts_lock
-		__asm bts dword ptr [ebx], 0
-		__asm jc The_Bit_Was_Previously_Set_So_Try_Again
-		return;
-
-	The_Bit_Was_Previously_Set_So_Try_Again:
+		while (_interlockedbittestandset((long volatile*)&nFlag, 0)) {
     // can't use SwitchToThread() here because Win9X doesn't have it!
     if (testEvent)
 		  ::WaitForSingleObject(testEvent,1);
-		__asm mov ebx, [nFlag]
-		__asm ts_lock
-		__asm bts dword ptr [ebx], 0
-		__asm jc  The_Bit_Was_Previously_Set_So_Try_Again
+		}
 	}
 
 	void ThreadSafeClearFlag()

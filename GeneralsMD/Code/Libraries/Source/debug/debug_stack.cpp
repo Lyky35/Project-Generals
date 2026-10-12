@@ -22,7 +22,7 @@
 // $Revision: #2 $
 // $DateTime: 2005/01/19 15:02:33 $
 //
-// ©2003 Electronic Arts
+// ï¿½2003 Electronic Arts
 //
 // Stack walker
 //////////////////////////////////////////////////////////////////////////////
@@ -352,17 +352,24 @@ int DebugStackwalk::StackWalk(Signature &sig, struct _CONTEXT *ctx)
 	stackFrame.AddrFrame.Mode = AddrModeFlat;
 
 	// Use the context struct if it was provided.
-	if (ctx) 
+	if (ctx)
   {
+#if defined(_M_IX86)
 		stackFrame.AddrPC.Offset = ctx->Eip;
 		stackFrame.AddrStack.Offset = ctx->Esp;
 		stackFrame.AddrFrame.Offset = ctx->Ebp;
+#else
+		stackFrame.AddrPC.Offset = ctx->Rip;
+		stackFrame.AddrStack.Offset = ctx->Rsp;
+		stackFrame.AddrFrame.Offset = ctx->Rbp;
+#endif
 	}
   else
   {
     // walk stack back using current call chain
+#if defined(_M_IX86)
 	  unsigned long reg_eip, reg_ebp, reg_esp;
-	  __asm 
+	  __asm
     {
     here:
 		  lea	eax,here
@@ -373,18 +380,29 @@ int DebugStackwalk::StackWalk(Signature &sig, struct _CONTEXT *ctx)
 	  stackFrame.AddrPC.Offset = reg_eip;
 	  stackFrame.AddrStack.Offset = reg_esp;
 	  stackFrame.AddrFrame.Offset = reg_ebp;
+#else
+	  CONTEXT capture;
+	  RtlCaptureContext(&capture);
+	  stackFrame.AddrPC.Offset = capture.Rip;
+	  stackFrame.AddrStack.Offset = capture.Rsp;
+	  stackFrame.AddrFrame.Offset = capture.Rbp;
+#endif
   }
 
 	// Walk the stack by the requested number of return address iterations.
   bool skipFirst=!ctx;
   while (sig.m_numAddr<Signature::MAX_ADDR&&
+#if defined(_M_IX86)
 		     gDbg._StackWalk(IMAGE_FILE_MACHINE_I386,GetCurrentProcess(),GetCurrentThread(),
+#else
+		     gDbg._StackWalk(IMAGE_FILE_MACHINE_AMD64,GetCurrentProcess(),GetCurrentThread(),
+#endif
                          &stackFrame,NULL,NULL,gDbg._SymFunctionTableAccess,gDbg._SymGetModuleBase,NULL))
   {
     if (skipFirst)
       skipFirst=false;
     else
-      sig.m_addr[sig.m_numAddr++]=stackFrame.AddrPC.Offset;
+      sig.m_addr[sig.m_numAddr++]=(unsigned)stackFrame.AddrPC.Offset;
   }
 
 	return sig.m_numAddr;

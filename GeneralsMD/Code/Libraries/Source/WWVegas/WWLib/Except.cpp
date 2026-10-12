@@ -60,11 +60,40 @@
 #include "thread.h"
 #include "wwdebug.h"
 #include "wwmemlog.h"
+#include <intrin.h>
 
 #include	<conio.h>
 #include	<imagehlp.h>
 #include <crtdbg.h>
 #include	<stdio.h>
+
+#if defined(_M_IX86)
+#define EXC_CTX_IP(c) ((c)->Eip)
+#define EXC_CTX_SP(c) ((c)->Esp)
+#define EXC_CTX_FP(c) ((c)->Ebp)
+#define EXC_CTX_R0(c) ((c)->Eax)
+#define EXC_CTX_R1(c) ((c)->Ebx)
+#define EXC_CTX_R2(c) ((c)->Ecx)
+#define EXC_CTX_R3(c) ((c)->Edx)
+#define EXC_CTX_R4(c) ((c)->Esi)
+#define EXC_CTX_R5(c) ((c)->Edi)
+#define EXC_CTX_FLAGS(c) ((c)->EFlags)
+#define EXC_FLTSAVE(c) ((c)->FloatSave)
+#define EXC_IMAGE_MACHINE IMAGE_FILE_MACHINE_I386
+#else
+#define EXC_CTX_IP(c) ((c)->Rip)
+#define EXC_CTX_SP(c) ((c)->Rsp)
+#define EXC_CTX_FP(c) ((c)->Rbp)
+#define EXC_CTX_R0(c) ((c)->Rax)
+#define EXC_CTX_R1(c) ((c)->Rbx)
+#define EXC_CTX_R2(c) ((c)->Rcx)
+#define EXC_CTX_R3(c) ((c)->Rdx)
+#define EXC_CTX_R4(c) ((c)->Rsi)
+#define EXC_CTX_R5(c) ((c)->Rdi)
+#define EXC_CTX_FLAGS(c) ((c)->EFlags)
+#define EXC_FLTSAVE(c) ((c)->FltSave)
+#define EXC_IMAGE_MACHINE IMAGE_FILE_MACHINE_AMD64
+#endif
 
 #ifdef WWDEBUG
 #define DebugString 	WWDebug_Printf
@@ -177,7 +206,7 @@ int __cdecl _purecall(void)
 	** Use int3 to cause an exception.
 	*/
 	WWDEBUG_SAY(("Pure Virtual Function call. Oh No!\n"));
-	_asm int 0x03;
+	__debugbreak();
 #endif	//_DEBUG_ASSERT
 
 	return(return_code);
@@ -465,17 +494,17 @@ void Dump_Exception_Info(EXCEPTION_POINTERS *e_info)
 	symptr->SizeOfStruct = sizeof (IMAGEHLP_SYMBOL);
 	symptr->MaxNameLength = 256-sizeof (IMAGEHLP_SYMBOL);
 	symptr->Size = 0;
-	symptr->Address = context->Eip;
+	symptr->Address = (ULONG)(DWORD_PTR)EXC_CTX_IP(context);
 
-	if (!IsBadCodePtr((FARPROC)context->Eip)) {
-		if (_SymGetSymFromAddr != NULL && _SymGetSymFromAddr (GetCurrentProcess(), context->Eip, &displacement, symptr)) {
-			sprintf (scrap, "Exception occurred at %08X - %s + %08X\r\n", context->Eip, symptr->Name, displacement);
+	if (!IsBadCodePtr((FARPROC)(DWORD_PTR)EXC_CTX_IP(context))) {
+		if (_SymGetSymFromAddr != NULL && _SymGetSymFromAddr (GetCurrentProcess(), (DWORD64)EXC_CTX_IP(context), &displacement, symptr)) {
+			sprintf (scrap, "Exception occurred at %08X - %s + %08X\r\n", (unsigned)EXC_CTX_IP(context), symptr->Name, displacement);
 		} else {
 			DebugString ("Exception Handler: Failed to get symbol for EIP\r\n");
 			if (_SymGetSymFromAddr != NULL) {
 				DebugString ("Exception Handler: SymGetSymFromAddr failed with code %d - %s\n", GetLastError(), Last_Error_Text());
 			}
-			sprintf (scrap, "Exception occurred at %08X\r\n", context->Eip);
+			sprintf (scrap, "Exception occurred at %08X\r\n", (unsigned)EXC_CTX_IP(context));
 		}
 	} else {
 		DebugString ("Exception Handler: context->Eip is bad code pointer\n");
@@ -581,15 +610,19 @@ void Dump_Exception_Info(EXCEPTION_POINTERS *e_info)
 	/*
 	** Dump the registers.
 	*/
-	sprintf(scrap, "Eip:%08X\tEsp:%08X\tEbp:%08X\r\n", context->Eip, context->Esp, context->Ebp);
+	sprintf(scrap, "Eip:%08X\tEsp:%08X\tEbp:%08X\r\n", (unsigned)EXC_CTX_IP(context), (unsigned)EXC_CTX_SP(context), (unsigned)EXC_CTX_FP(context));
 	Add_Txt(scrap);
-	sprintf(scrap, "Eax:%08X\tEbx:%08X\tEcx:%08X\r\n", context->Eax, context->Ebx, context->Ecx);
+	sprintf(scrap, "Eax:%08X\tEbx:%08X\tEcx:%08X\r\n", (unsigned)EXC_CTX_R0(context), (unsigned)EXC_CTX_R1(context), (unsigned)EXC_CTX_R2(context));
 	Add_Txt(scrap);
-	sprintf(scrap, "Edx:%08X\tEsi:%08X\tEdi:%08X\r\n", context->Edx, context->Esi, context->Edi);
+	sprintf(scrap, "Edx:%08X\tEsi:%08X\tEdi:%08X\r\n", (unsigned)EXC_CTX_R3(context), (unsigned)EXC_CTX_R4(context), (unsigned)EXC_CTX_R5(context));
 	Add_Txt(scrap);
-	sprintf(scrap, "EFlags:%08X \r\n", context->EFlags);
+	sprintf(scrap, "EFlags:%08X \r\n", (unsigned)EXC_CTX_FLAGS(context));
 	Add_Txt(scrap);
+#if defined(_M_IX86)
 	sprintf(scrap, "CS:%04x  SS:%04x  DS:%04x  ES:%04x  FS:%04x  GS:%04x\r\n", context->SegCs, context->SegSs, context->SegDs, context->SegEs, context->SegFs, context->SegGs);
+#else
+	sprintf(scrap, "DS:%04x  ES:%04x  FS:%04x  GS:%04x\r\n", context->SegDs, context->SegEs, context->SegFs, context->SegGs);
+#endif
 	Add_Txt(scrap);
 
 
@@ -597,21 +630,22 @@ void Dump_Exception_Info(EXCEPTION_POINTERS *e_info)
 	** Now the FP registers.
 	*/
 	Add_Txt("\r\nFloating point status\r\n");
-	sprintf(scrap, "     Control word: %08x\r\n", context->FloatSave.ControlWord);
+	sprintf(scrap, "     Control word: %08x\r\n", EXC_FLTSAVE(context).ControlWord);
 	Add_Txt(scrap);
-	sprintf(scrap, "      Status word: %08x\r\n", context->FloatSave.StatusWord);
+	sprintf(scrap, "      Status word: %08x\r\n", EXC_FLTSAVE(context).StatusWord);
 	Add_Txt(scrap);
-	sprintf(scrap, "         Tag word: %08x\r\n", context->FloatSave.TagWord);
+	sprintf(scrap, "         Tag word: %08x\r\n", EXC_FLTSAVE(context).TagWord);
 	Add_Txt(scrap);
-	sprintf(scrap, "     Error Offset: %08x\r\n", context->FloatSave.ErrorOffset);
+	sprintf(scrap, "     Error Offset: %08x\r\n", EXC_FLTSAVE(context).ErrorOffset);
 	Add_Txt(scrap);
-	sprintf(scrap, "   Error Selector: %08x\r\n", context->FloatSave.ErrorSelector);
+	sprintf(scrap, "   Error Selector: %08x\r\n", EXC_FLTSAVE(context).ErrorSelector);
 	Add_Txt(scrap);
-	sprintf(scrap, "      Data Offset: %08x\r\n", context->FloatSave.DataOffset);
+	sprintf(scrap, "      Data Offset: %08x\r\n", EXC_FLTSAVE(context).DataOffset);
 	Add_Txt(scrap);
-	sprintf(scrap, "    Data Selector: %08x\r\n", context->FloatSave.DataSelector);
+	sprintf(scrap, "    Data Selector: %08x\r\n", EXC_FLTSAVE(context).DataSelector);
 	Add_Txt(scrap);
-	sprintf(scrap, "      Cr0NpxState: %08x\r\n", context->FloatSave.Cr0NpxState);
+#if defined(_M_IX86)
+	sprintf(scrap, "      Cr0NpxState: %08x\r\n", EXC_FLTSAVE(context).Cr0NpxState);
 	Add_Txt(scrap);
 
 	for (int fp=0 ; fp<SIZE_OF_80387_REGISTERS / 10 ; fp++) {
@@ -638,14 +672,24 @@ void Dump_Exception_Info(EXCEPTION_POINTERS *e_info)
 		sprintf(scrap, "   %+#.17e\r\n", fp_value);
 		Add_Txt(scrap);
 	}
+#else
+	sprintf(scrap, "           MxCsr: %08x\r\n", EXC_FLTSAVE(context).MxCsr);
+	Add_Txt(scrap);
+	for (int xmm = 0; xmm < 16; xmm++) {
+		sprintf(scrap, "XMM%d: %016I64X%016I64X\r\n", xmm,
+			EXC_FLTSAVE(context).XmmRegisters[xmm].High,
+			EXC_FLTSAVE(context).XmmRegisters[xmm].Low);
+		Add_Txt(scrap);
+	}
+#endif
 
 	/*
 	** Dump the bytes at EIP. This will make it easier to match the crash address with later versions of the game.
 	*/
 	DebugString("EIP bytes dump...\n");
-	sprintf(scrap, "\r\nBytes at CS:EIP (%08X)  : ", context->Eip);
+	sprintf(scrap, "\r\nBytes at CS:EIP (%08X)  : ", (unsigned)EXC_CTX_IP(context));
 
-	unsigned char *eip_ptr = (unsigned char *) (context->Eip);
+	unsigned char *eip_ptr = (unsigned char *)(DWORD_PTR)EXC_CTX_IP(context);
 	char bytestr[32];
 
 	for (int c = 0 ; c < 32 ; c++) {
@@ -666,32 +710,32 @@ void Dump_Exception_Info(EXCEPTION_POINTERS *e_info)
 	*/
 	DebugString("Stack dump...\n");
 	Add_Txt("Stack dump (* indicates possible code address) :\r\n");
-	unsigned long *stackptr = (unsigned long*) context->Esp;
+	DWORD_PTR *stackptr = (DWORD_PTR*)(DWORD_PTR)EXC_CTX_SP(context);
 
 	for (int j=0 ; j<2048 ; j++) {
-		if (IsBadReadPtr(stackptr, 4)) {
+		if (IsBadReadPtr(stackptr, sizeof(DWORD_PTR))) {
 			/*
 			** The stack contents cannot be read so just print up question marks.
 			*/
-			sprintf(scrap, "%08X: ", stackptr);
+			sprintf(scrap, "%08X: ", (unsigned)(DWORD_PTR)stackptr);
 			strcat(scrap, "????????\r\n");
 		} else {
 			/*
 			** If this stack address is in our memory space then try to match it with a code symbol.
 			*/
-			if (IsBadCodePtr((FARPROC)*stackptr)) {
-				sprintf(scrap, "%08X: %08X ", stackptr, *stackptr);
+			if (IsBadCodePtr((FARPROC)(DWORD_PTR)*stackptr)) {
+				sprintf(scrap, "%08X: %08X ", (unsigned)(DWORD_PTR)stackptr, (unsigned)*stackptr);
 				strcat(scrap, "DATA_PTR\r\n");
 			} else {
-				sprintf(scrap, "%08X: %08X", stackptr, *stackptr);
+				sprintf(scrap, "%08X: %08X", (unsigned)(DWORD_PTR)stackptr, (unsigned)*stackptr);
 
 				if (symbols_available) {
 					symptr->SizeOfStruct = sizeof(symbol);
 					symptr->MaxNameLength = 128;
 					symptr->Size = 0;
-					symptr->Address = *stackptr;
+					symptr->Address = (ULONG)*stackptr;
 
-					if (_SymGetSymFromAddr != NULL && _SymGetSymFromAddr (GetCurrentProcess(), *stackptr, &displacement, symptr)) {
+					if (_SymGetSymFromAddr != NULL && _SymGetSymFromAddr (GetCurrentProcess(), (DWORD64)*stackptr, &displacement, symptr)) {
 						char symbuf[256];
 						sprintf(symbuf, " - %s + %08X", symptr->Name, displacement);
 						strcat(scrap, symbuf);
@@ -1228,8 +1272,9 @@ int Stack_Walk(unsigned long *return_addresses, int num_addresses, CONTEXT *cont
 	STACKFRAME stack_frame;
 	memset(&stack_frame, 0, sizeof(stack_frame));
 
-	unsigned long reg_eip, reg_ebp, reg_esp;
+	DWORD_PTR reg_eip, reg_ebp, reg_esp;
 
+#if defined(_M_IX86)
 	__asm {
 here:
 		lea	eax,here
@@ -1237,6 +1282,15 @@ here:
 		mov	reg_ebp,ebp
 		mov	reg_esp,esp
 	}
+#else
+	{
+		CONTEXT capture;
+		RtlCaptureContext(&capture);
+		reg_eip = (DWORD_PTR)EXC_CTX_IP(&capture);
+		reg_ebp = (DWORD_PTR)EXC_CTX_FP(&capture);
+		reg_esp = (DWORD_PTR)EXC_CTX_SP(&capture);
+	}
+#endif
 
 	stack_frame.AddrPC.Mode = AddrModeFlat;
 	stack_frame.AddrPC.Offset = reg_eip;
@@ -1249,9 +1303,9 @@ here:
 	** Use the context struct if it was provided.
 	*/
 	if (context) {
-		stack_frame.AddrPC.Offset = context->Eip;
-		stack_frame.AddrStack.Offset = context->Esp;
-		stack_frame.AddrFrame.Offset = context->Ebp;
+		stack_frame.AddrPC.Offset = (DWORD64)EXC_CTX_IP(context);
+		stack_frame.AddrStack.Offset = (DWORD64)EXC_CTX_SP(context);
+		stack_frame.AddrFrame.Offset = (DWORD64)EXC_CTX_FP(context);
 	}
 
 	int pointer_index = 0;
@@ -1260,7 +1314,7 @@ here:
 	** Walk the stack by the requested number of return address iterations.
 	*/
 	for (int i = 0; i < num_addresses + 1; i++) {
-		if (_StackWalk(IMAGE_FILE_MACHINE_I386, GetCurrentProcess(), GetCurrentThread(), &stack_frame, NULL, NULL, _SymFunctionTableAccess, _SymGetModuleBase, NULL)) {
+		if (_StackWalk(EXC_IMAGE_MACHINE, GetCurrentProcess(), GetCurrentThread(), &stack_frame, NULL, NULL, _SymFunctionTableAccess, _SymGetModuleBase, NULL)) {
 
 			/*
 			** First result will always be the return address we were called from.
@@ -1268,7 +1322,7 @@ here:
 			if (i==0 && context == NULL) {
 				continue;
 			}
-			unsigned long return_address = stack_frame.AddrReturn.Offset;
+			unsigned long return_address = (unsigned long)stack_frame.AddrReturn.Offset;
 			return_addresses[pointer_index++] = return_address;
 		} else {
 			break;

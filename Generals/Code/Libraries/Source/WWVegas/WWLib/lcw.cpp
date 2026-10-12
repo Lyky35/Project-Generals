@@ -38,6 +38,7 @@
 
 #include	"always.h"
 #include	"lcw.h"
+#include	<stdint.h>
 
 /***************************************************************************
  * LCW_Uncomp -- Decompress an LCW encoded data block.                     *
@@ -124,7 +125,7 @@ int LCW_Uncomp(void const * source, void * dest, unsigned long )
 					word_data  = (word_data << 24) + (word_data << 16) + (word_data << 8) + word_data;
 					source_ptr += 3;
 
-					copy_ptr = dest_ptr + 4 - ((unsigned) dest_ptr & 0x3);
+					copy_ptr = dest_ptr + 4 - ((uintptr_t) dest_ptr & 0x3);
 					count -= (copy_ptr - dest_ptr);
 					while (dest_ptr < copy_ptr) *dest_ptr++ = data;
 
@@ -168,10 +169,10 @@ int LCW_Uncomp(void const * source, void * dest, unsigned long )
 }
 
 
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) && defined(_M_IX86)
 
 
-/*********************************************************************************************** 
+/***********************************************************************************************
  * LCW_Comp -- Performes LCW compression on a block of data.                                   * 
  *                                                                                             * 
  *    This routine will compress a block of data using the LCW compression method. LCW has     * 
@@ -438,6 +439,171 @@ outofhere:
 	}
 #endif
 	return(retval);
+}
+#else
+
+
+/***********************************************************************************************
+ * LCW_Comp -- Portable C++ implementation for non-x86 targets (x64, etc.).                    *
+ *                                                                                             *
+ * Faithful transliteration of the x86 assembly version above. Emits identical                  *
+ * command codes: short run, med run, long run, RLE run, literal block, end marker.            *
+ *=============================================================================================*/
+/*ARGSUSED*/
+int LCW_Comp(void const * source, void * dest, int datasize)
+{
+	unsigned char const * const data_start = (unsigned char const *)source;
+	unsigned char * const dest_start = (unsigned char *)dest;
+	unsigned char const * const end_of_data = data_start + datasize;
+
+	unsigned char const * esi = data_start;
+	unsigned char * edi = dest_start;
+	unsigned char * lenoff = edi;
+	unsigned char const * matchoff = data_start;
+	unsigned char * ndest = edi;
+	unsigned char const * search = data_start;
+	int count = 1;
+	int inlen = 1;
+	unsigned char al = 0;
+
+	if (datasize <= 0) {
+		return 0;
+	}
+	*edi++ = 0x81;
+	*edi++ = *esi++;
+	if (esi >= end_of_data) {
+		*edi++ = 0x80;
+		return (int)(edi - dest_start);
+	}
+
+loopstart:
+	ndest = edi;
+	search = data_start;
+	count = 1;
+
+searchloop:
+	al = *esi;
+	if ((end_of_data - esi) > 64 && esi[64] == al) {
+		unsigned char const * p = esi;
+		while (p < end_of_data && *p == al) {
+			++p;
+		}
+		{
+			int run = (int)(p - esi);
+			if (run >= 65) {
+				int chunk = run > 0xFFFF ? 0xFFFF : run;
+				inlen = 0;
+				esi += chunk;
+				*edi++ = 0xFE;
+				*edi++ = (unsigned char)(chunk & 0xFF);
+				*edi++ = (unsigned char)((chunk >> 8) & 0xFF);
+				*edi++ = al;
+				ndest = edi;
+				search = data_start;
+				if (esi >= end_of_data) {
+					*edi++ = 0x80;
+					return (int)(edi - dest_start);
+				}
+				goto searchloop;
+			}
+		}
+	}
+
+oploop:
+	if (esi == search) {
+		goto searchdone;
+	}
+	{
+		unsigned char const * q = search;
+		while (q < esi && *q != al) {
+			++q;
+		}
+		if (q >= esi) {
+			goto searchdone;
+		}
+		if (esi[count - 1] != q[count - 1]) {
+			search = q + 1;
+			goto oploop;
+		}
+		{
+			int maxlen = (int)(end_of_data - esi);
+			int k = 0;
+			while (k < maxlen && esi[k] == q[k]) {
+				++k;
+			}
+			if (k > 0xFFFF) {
+				k = 0xFFFF;
+			}
+			if (k > count) {
+				count = k;
+				matchoff = q;
+			}
+			search = q + 1;
+			goto searchloop;
+		}
+	}
+
+searchdone:
+	edi = ndest;
+	if (count >= 3 && count <= 10) {
+		int off = (int)(esi - matchoff);
+		if (off >= 1 && off <= 0xFFF) {
+			*edi++ = (unsigned char)(((off >> 8) & 0xFF) + ((count - 3) << 4));
+			*edi++ = (unsigned char)(off & 0xFF);
+			goto runcommon;
+		}
+	}
+	if (count <= 2 || (matchoff - data_start) > 0xFFFF) {
+		goto lenin;
+	}
+	goto medrun;
+
+medrun:
+	if (count > 64) {
+		goto longrun;
+	}
+	*edi++ = (unsigned char)(0xC0 | (count - 3));
+	goto emit_offset;
+
+longrun:
+	*edi++ = 0xFF;
+	*edi++ = (unsigned char)(count & 0xFF);
+	*edi++ = (unsigned char)((count >> 8) & 0xFF);
+
+emit_offset:
+	{
+		int reloff = (int)(matchoff - data_start);
+		*edi++ = (unsigned char)(reloff & 0xFF);
+		*edi++ = (unsigned char)((reloff >> 8) & 0xFF);
+	}
+
+runcommon:
+	esi += count;
+	inlen = 0;
+	goto nxt;
+
+lenin:
+	if (inlen != 0) {
+		goto len;
+	}
+	lenoff = edi;
+	*edi++ = 0x80;
+
+len:
+	if (*lenoff == 0xBF) {
+		lenoff = edi;
+		*edi++ = 0x80;
+	}
+	(*lenoff)++;
+	*edi++ = *esi++;
+	inlen = 1;
+
+nxt:
+	if (esi >= end_of_data) {
+		*edi++ = 0x80;
+		return (int)(edi - dest_start);
+	}
+	goto loopstart;
 }
 #endif
 

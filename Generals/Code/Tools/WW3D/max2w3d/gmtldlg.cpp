@@ -353,9 +353,9 @@ BOOL GameMtlDlg::PanelProc(HWND hwndDlg, UINT msg, WPARAM wParam, LPARAM lParam 
 
 				/* Installing a windproc for texmap buttons which will handle drag-n-drop
 				HWND hw = GetDlgItem(hwndDlg, texMapID[i]);
-				WNDPROC oldp = (WNDPROC)GetWindowLong(hw, GWL_WNDPROC);
-				SetWindowLong( hw, GWL_WNDPROC, (LONG)TexSlotWndProc);
-				SetWindowLong( hw, GWL_USERDATA, (LONG)oldp);
+				WNDPROC oldp = (WNDPROC)GetWindowLongPtr(hw, GWLP_WNDPROC);
+				SetWindowLongPtr( hw, GWLP_WNDPROC, (LONG_PTR)TexSlotWndProc);
+				SetWindowLongPtr( hw, GWLP_USERDATA, (LONG_PTR)oldp);
 				*/
 
 				return TRUE;
@@ -621,9 +621,9 @@ static BOOL CALLBACK PanelDlgProc(HWND hwndDlg, UINT msg, WPARAM wParam, LPARAM 
 	if (msg==WM_INITDIALOG) {
 		theDlg = (GameMtlDlg*)lParam;
 		theDlg->HwndPanel = hwndDlg;
-		SetWindowLong(hwndDlg, GWL_USERDATA,lParam);
+		SetWindowLongPtr(hwndDlg, GWLP_USERDATA,lParam);
 	} else {
-		if ((theDlg = (GameMtlDlg *)GetWindowLong(hwndDlg, GWL_USERDATA) ) == NULL) {
+		if ((theDlg = (GameMtlDlg *)GetWindowLongPtr(hwndDlg, GWLP_USERDATA) ) == NULL) {
 			return FALSE; 
 		}
 	}
@@ -692,9 +692,9 @@ static BOOL CALLBACK NotesDlgProc(HWND hwndDlg, UINT msg, WPARAM wParam, LPARAM 
 	if (msg==WM_INITDIALOG) {
 		theDlg = (GameMtlDlg*)lParam;
 		theDlg->HwndNotes = hwndDlg;
-		SetWindowLong(hwndDlg, GWL_USERDATA,lParam);
+		SetWindowLongPtr(hwndDlg, GWLP_USERDATA,lParam);
 	} else {
-		if ((theDlg = (GameMtlDlg *)GetWindowLong(hwndDlg, GWL_USERDATA) ) == NULL) {
+		if ((theDlg = (GameMtlDlg *)GetWindowLongPtr(hwndDlg, GWLP_USERDATA) ) == NULL) {
 			return FALSE; 
 		}
 	}
@@ -785,9 +785,9 @@ static BOOL CALLBACK HintsDlgProc(HWND hwndDlg, UINT msg, WPARAM wParam, LPARAM 
 	if (msg==WM_INITDIALOG) {
 		theDlg = (GameMtlDlg*)lParam;
 		theDlg->HwndHints = hwndDlg;
-		SetWindowLong(hwndDlg, GWL_USERDATA,lParam);
+		SetWindowLongPtr(hwndDlg, GWLP_USERDATA,lParam);
 	} else {
-		if ((theDlg = (GameMtlDlg *)GetWindowLong(hwndDlg, GWL_USERDATA) ) == NULL) {
+		if ((theDlg = (GameMtlDlg *)GetWindowLongPtr(hwndDlg, GWLP_USERDATA) ) == NULL) {
 			return FALSE; 
 		}
 	}
@@ -881,9 +881,9 @@ static BOOL CALLBACK PsxDlgProc(HWND hwndDlg, UINT msg, WPARAM wParam, LPARAM lP
 	if (msg==WM_INITDIALOG) {
 		theDlg = (GameMtlDlg*)lParam;
 		theDlg->HwndPsx = hwndDlg;
-		SetWindowLong(hwndDlg, GWL_USERDATA,lParam);
+		SetWindowLongPtr(hwndDlg, GWLP_USERDATA,lParam);
 	} else {
-		if ((theDlg = (GameMtlDlg *)GetWindowLong(hwndDlg, GWL_USERDATA) ) == NULL) {
+		if ((theDlg = (GameMtlDlg *)GetWindowLongPtr(hwndDlg, GWLP_USERDATA) ) == NULL) {
 			return FALSE; 
 		}
 	}

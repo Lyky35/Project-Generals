@@ -195,7 +195,7 @@ void SkinWSMObjectClass::BeginEditParams(IObjParam  *ip, ULONG flags,Animatable 
 					(LPARAM)InterfacePtr,
 					APPENDROLL_CLOSED);
 	} else {
-		SetWindowLong(SotHWND,GWL_USERDATA,(LPARAM)ip);
+		SetWindowLongPtr(SotHWND,GWLP_USERDATA,(LPARAM)ip);
 	}
 
 	/*
@@ -210,7 +210,7 @@ void SkinWSMObjectClass::BeginEditParams(IObjParam  *ip, ULONG flags,Animatable 
 					(LPARAM)this,
 					0);
 	} else {
-		SetWindowLong(SkeletonHWND,GWL_USERDATA,(LPARAM)this);
+		SetWindowLongPtr(SkeletonHWND,GWLP_USERDATA,(LPARAM)this);
 	}
 
 	Update_Bone_List();
@@ -1617,11 +1617,11 @@ void SkinModifierClass::Remove_Bone_Influence_Dialog(void)
 *********************************************************************************/
 static BOOL CALLBACK _sot_dialog_proc(HWND hWnd,UINT message,WPARAM wParam,LPARAM lParam)
 {
-	IObjParam *ip = (IObjParam*)GetWindowLong(hWnd,GWL_USERDATA);
+	IObjParam *ip = (IObjParam*)GetWindowLongPtr(hWnd,GWLP_USERDATA);
 
 	switch (message) {
 		case WM_INITDIALOG:
-			SetWindowLong(hWnd,GWL_USERDATA,lParam);
+			SetWindowLongPtr(hWnd,GWLP_USERDATA,lParam);
 			break;
 
 		case WM_LBUTTONDOWN:
@@ -1644,12 +1644,12 @@ static BOOL CALLBACK _sot_dialog_proc(HWND hWnd,UINT message,WPARAM wParam,LPARA
 *********************************************************************************/
 static BOOL CALLBACK _skeleton_dialog_thunk(HWND hWnd,UINT message,WPARAM wParam,LPARAM lParam)
 {
-	SkinWSMObjectClass * skinobj = (SkinWSMObjectClass *)GetWindowLong(hWnd,GWL_USERDATA);
+	SkinWSMObjectClass * skinobj = (SkinWSMObjectClass *)GetWindowLongPtr(hWnd,GWLP_USERDATA);
 	if (!skinobj && message != WM_INITDIALOG) return FALSE;
 	
 	if (message == WM_INITDIALOG) {
 		skinobj = (SkinWSMObjectClass *)lParam;
-		SetWindowLong(hWnd,GWL_USERDATA,(LONG)skinobj);			
+		SetWindowLongPtr(hWnd,GWLP_USERDATA,(LONG_PTR)skinobj);			
 	}
 
 	return skinobj->Skeleton_Dialog_Proc(hWnd,message,wParam,lParam);
@@ -1753,12 +1753,12 @@ BOOL SkinWSMObjectClass::Skeleton_Dialog_Proc(HWND hWnd,UINT message,WPARAM wPar
 *********************************************************************************/
 static BOOL CALLBACK _bone_influence_dialog_thunk(HWND hWnd,UINT message,WPARAM wParam,LPARAM lParam)
 {
-	SkinModifierClass * skinmod = (SkinModifierClass *)GetWindowLong(hWnd,GWL_USERDATA);
+	SkinModifierClass * skinmod = (SkinModifierClass *)GetWindowLongPtr(hWnd,GWLP_USERDATA);
 	if (!skinmod && message != WM_INITDIALOG) return FALSE;
 	
 	if (message == WM_INITDIALOG) {
 			skinmod = (SkinModifierClass *)lParam;
-			SetWindowLong(hWnd,GWL_USERDATA,(LONG)skinmod);			
+			SetWindowLongPtr(hWnd,GWLP_USERDATA,(LONG_PTR)skinmod);			
 	}
 
 	return skinmod->Bone_Influence_Dialog_Proc(hWnd,message,wParam,lParam);

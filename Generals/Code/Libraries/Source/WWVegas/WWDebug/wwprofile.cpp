@@ -54,6 +54,7 @@
 #include "wwprofile.h"
 #include "wwdebug.h"
 #include <windows.h>
+#include <intrin.h>
 
 
 
@@ -73,7 +74,7 @@ inline void WWProfile_Get_Ticks(_int64 * ticks)
 {
 #ifdef _UNIX
 	*ticks = 0;
-#else 
+#elif defined(_M_IX86)
 	__asm
 	{
 		push edx;
@@ -86,6 +87,8 @@ inline void WWProfile_Get_Ticks(_int64 * ticks)
 		pop ecx;
 		pop edx;
 	}
+#else
+	*ticks = (_int64)__rdtsc();
 #endif
 }
 

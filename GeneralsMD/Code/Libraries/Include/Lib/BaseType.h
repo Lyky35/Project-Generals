@@ -179,6 +179,7 @@ inline Real deg2rad(Real rad) { return rad * (PI/180); }
 // note, this function depends on the cpu rounding mode, which we set to CHOP every frame, 
 // but apparently tends to be left in unpredictable modes by various system bits of
 // code, so use this function with caution -- it might not round in the way you want.
+#if defined(_MSC_VER) && defined(_M_IX86)
 __forceinline long fast_float2long_round(float f)
 {
 	long i;
@@ -190,6 +191,12 @@ __forceinline long fast_float2long_round(float f)
 
 	return i;
 }
+#else
+__forceinline long fast_float2long_round(float f)
+{
+	return (long)f;
+}
+#endif
 
 // super fast float trunc routine, works always (independent of any FPU modes)
 // code courtesy of Martin Hoffesommer (grin)

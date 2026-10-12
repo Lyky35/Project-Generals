@@ -494,9 +494,9 @@ static BOOL CALLBACK DisplacementMapDlgProc(HWND hwndDlg, UINT msg, WPARAM wPara
 	if (msg == WM_INITDIALOG) {
 		theDlg = (GameMtlDlg*)lParam;
 		theDlg->HwndDisplacementMap = hwndDlg;
-		SetWindowLong(hwndDlg, GWL_USERDATA,lParam);
+		SetWindowLongPtr(hwndDlg, GWLP_USERDATA,lParam);
 	} else {
-		if ((theDlg = (GameMtlDlg *)GetWindowLong(hwndDlg, GWL_USERDATA) ) == NULL) {
+		if ((theDlg = (GameMtlDlg *)GetWindowLongPtr(hwndDlg, GWLP_USERDATA) ) == NULL) {
 			return FALSE; 
 		}
 	}
@@ -514,9 +514,9 @@ static BOOL CALLBACK SurfaceTypePanelDlgProc(HWND hwndDlg, UINT msg, WPARAM wPar
 	if (msg == WM_INITDIALOG) {
 		theDlg = (GameMtlDlg*)lParam;
 		theDlg->HwndSurfaceType = hwndDlg;
-		SetWindowLong(hwndDlg, GWL_USERDATA,lParam);
+		SetWindowLongPtr(hwndDlg, GWLP_USERDATA,lParam);
 	} else {
-		if ((theDlg = (GameMtlDlg *)GetWindowLong(hwndDlg, GWL_USERDATA) ) == NULL) {
+		if ((theDlg = (GameMtlDlg *)GetWindowLongPtr(hwndDlg, GWLP_USERDATA) ) == NULL) {
 			return FALSE; 
 		}
 	}
@@ -534,9 +534,9 @@ static BOOL CALLBACK PassCountPanelDlgProc(HWND hwndDlg, UINT msg, WPARAM wParam
 	if (msg == WM_INITDIALOG) {
 		theDlg = (GameMtlDlg*)lParam;
 		theDlg->HwndPassCount = hwndDlg;
-		SetWindowLong(hwndDlg, GWL_USERDATA,lParam);
+		SetWindowLongPtr(hwndDlg, GWLP_USERDATA,lParam);
 	} else {
-		if ((theDlg = (GameMtlDlg *)GetWindowLong(hwndDlg, GWL_USERDATA) ) == NULL) {
+		if ((theDlg = (GameMtlDlg *)GetWindowLongPtr(hwndDlg, GWLP_USERDATA) ) == NULL) {
 			return FALSE; 
 		}
 	}

@@ -44,6 +44,9 @@
 #include "vector.h"
 #include "fastallocator.h"
 #include <windows.h>
+#if defined(_MSC_VER)
+#include <intrin.h>
+#endif
 
 #define USE_FAST_ALLOCATOR
 
@@ -315,21 +318,12 @@ WWINLINE void Lock_Mem_Log_Mutex(void)
 
 	volatile unsigned& nFlag=_MemLogSemaphore;
 
-	#define ts_lock _emit 0xF0
-	assert(((unsigned)&nFlag % 4) == 0);
+	assert((((UINT_PTR)&nFlag) % 4) == 0);
 
-	__asm mov ebx, [nFlag]
-	__asm ts_lock
-	__asm bts dword ptr [ebx], 0
-	__asm jc The_Bit_Was_Previously_Set_So_Try_Again
+	while (_interlockedbittestandset((long volatile*)&nFlag, 0)) {
+		ThreadClass::Switch_Thread();
+	}
 	return;
-
-	The_Bit_Was_Previously_Set_So_Try_Again:
-	ThreadClass::Switch_Thread();
-	__asm mov ebx, [nFlag]
-	__asm ts_lock
-	__asm bts dword ptr [ebx], 0
-	__asm jc  The_Bit_Was_Previously_Set_So_Try_Again
 
 #endif
 }

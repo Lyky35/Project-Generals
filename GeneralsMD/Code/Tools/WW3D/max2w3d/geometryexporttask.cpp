@@ -356,7 +356,7 @@ public:
 		** strip the trailing ~
 		*/
 		char *tilda	= ::strchr(Name, '~');
-		memset(tilda,0,sizeof(Name) - ((int)tilda - (int)Name));
+		memset(tilda,0,sizeof(Name) - ((int)(tilda - Name)));
 
 	}
 

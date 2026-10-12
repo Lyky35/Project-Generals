@@ -33,13 +33,39 @@
 #include "Common/StackDump.h"
 #include "Common/Debug.h"
 
+#if defined(_M_IX86)
+#define EXC_CTX_IP(c) ((c)->Eip)
+#define EXC_CTX_SP(c) ((c)->Esp)
+#define EXC_CTX_FP(c) ((c)->Ebp)
+#define EXC_CTX_R0(c) ((c)->Eax)
+#define EXC_CTX_R1(c) ((c)->Ebx)
+#define EXC_CTX_R2(c) ((c)->Ecx)
+#define EXC_CTX_R3(c) ((c)->Edx)
+#define EXC_CTX_R4(c) ((c)->Esi)
+#define EXC_CTX_R5(c) ((c)->Edi)
+#define EXC_CTX_FLAGS(c) ((c)->EFlags)
+#define EXC_IMAGE_MACHINE IMAGE_FILE_MACHINE_I386
+#else
+#define EXC_CTX_IP(c) ((c)->Rip)
+#define EXC_CTX_SP(c) ((c)->Rsp)
+#define EXC_CTX_FP(c) ((c)->Rbp)
+#define EXC_CTX_R0(c) ((c)->Rax)
+#define EXC_CTX_R1(c) ((c)->Rbx)
+#define EXC_CTX_R2(c) ((c)->Rcx)
+#define EXC_CTX_R3(c) ((c)->Rdx)
+#define EXC_CTX_R4(c) ((c)->Rsi)
+#define EXC_CTX_R5(c) ((c)->Rdi)
+#define EXC_CTX_FLAGS(c) ((c)->EFlags)
+#define EXC_IMAGE_MACHINE IMAGE_FILE_MACHINE_AMD64
+#endif
+
 
 //*****************************************************************************
 //	Prototypes
 //*****************************************************************************
 BOOL InitSymbolInfo(void);
 void UninitSymbolInfo(void);
-void MakeStackTrace(DWORD myeip,DWORD myesp,DWORD myebp, int skipFrames, void (*callback)(const char*));
+void MakeStackTrace(DWORD_PTR myeip,DWORD_PTR myesp,DWORD_PTR myebp, int skipFrames, void (*callback)(const char*));
 void GetFunctionDetails(void *pointer, char*name, char*filename, unsigned int* linenumber, unsigned int* address);
 void WriteStackLine(void*address, void (*callback)(const char*));
 
@@ -76,6 +102,7 @@ void StackDump(void (*callback)(const char*))
 
 	InitSymbolInfo();
 
+#if defined(_M_IX86)
 	DWORD myeip,myesp,myebp;
 
 _asm
@@ -88,6 +115,16 @@ MYEIP1:
  mov eax, ebp
  mov dword ptr [myebp] , eax
 }
+#else
+	DWORD_PTR myeip,myesp,myebp;
+	{
+		CONTEXT capture;
+		RtlCaptureContext(&capture);
+		myeip = (DWORD_PTR)capture.Rip;
+		myesp = (DWORD_PTR)capture.Rsp;
+		myebp = (DWORD_PTR)capture.Rbp;
+	}
+#endif
 
 
 	MakeStackTrace(myeip,myesp,myebp, 2, callback);
@@ -96,7 +133,7 @@ MYEIP1:
 
 //*****************************************************************************
 //*****************************************************************************
-void StackDumpFromContext(DWORD eip,DWORD esp,DWORD ebp, void (*callback)(const char*))
+void StackDumpFromContext(DWORD_PTR eip,DWORD_PTR esp,DWORD_PTR ebp, void (*callback)(const char*))
 {
 	if (callback == NULL) 
 	{
@@ -181,7 +218,7 @@ void UninitSymbolInfo(void)
 
 //*****************************************************************************
 //*****************************************************************************
-void MakeStackTrace(DWORD myeip,DWORD myesp,DWORD myebp, int skipFrames, void (*callback)(const char*))
+void MakeStackTrace(DWORD_PTR myeip,DWORD_PTR myesp,DWORD_PTR myebp, int skipFrames, void (*callback)(const char*))
 {
 STACKFRAME      stack_frame;
 BOOL            b_ret = TRUE;
@@ -219,7 +256,7 @@ stack_frame.AddrFrame.Offset = myebp;
 			unsigned int skip = skipFrames;
 			while (b_ret&&skip)
 			{
-					b_ret = StackWalk(      IMAGE_FILE_MACHINE_I386,
+					b_ret = StackWalk(      EXC_IMAGE_MACHINE,
 											process,
 											thread,
 											&stack_frame,
@@ -235,7 +272,7 @@ stack_frame.AddrFrame.Offset = myebp;
 			while(b_ret&&skip)
 			{
 
-					b_ret = StackWalk(      IMAGE_FILE_MACHINE_I386,
+					b_ret = StackWalk(      EXC_IMAGE_MACHINE,
 											process,
 											thread,
 											&stack_frame,
@@ -247,7 +284,7 @@ stack_frame.AddrFrame.Offset = myebp;
 					
 
 					
-					if (b_ret) WriteStackLine((void *) stack_frame.AddrPC.Offset, callback);
+					if (b_ret) WriteStackLine((void *)(DWORD_PTR)stack_frame.AddrPC.Offset, callback);
 					skip--;
 			}
 	}
@@ -287,7 +324,7 @@ void GetFunctionDetails(void *pointer, char*name, char*filename, unsigned int* l
     psymbol->SizeOfStruct = sizeof(symbol_buffer);
     psymbol->MaxNameLength = 512;
 
-    if (SymGetSymFromAddr(process, (DWORD) pointer, &displacement, psymbol))
+    if (SymGetSymFromAddr(process, (DWORD64)(DWORD_PTR)pointer, &displacement, psymbol))
     {
 		if (name)
 		{
@@ -305,7 +342,7 @@ void GetFunctionDetails(void *pointer, char*name, char*filename, unsigned int* l
 			line.SizeOfStruct = sizeof(line);
 
 		
-			if (gsSymGetLineFromAddr(process, (DWORD) pointer, &displacement, &line))
+			if (gsSymGetLineFromAddr(process, (DWORD)(DWORD_PTR)pointer, &displacement, &line))
 			{
 				if (filename)
 				{
@@ -341,6 +378,7 @@ void FillStackAddresses(void**addresses, unsigned int count, unsigned int skip)
     memset(&gsContext, 0, sizeof(CONTEXT));
     gsContext.ContextFlags = CONTEXT_FULL;
 
+#if defined(_M_IX86)
 	DWORD myeip,myesp,myebp;
 _asm
 {
@@ -353,6 +391,16 @@ MYEIP2:
  mov dword ptr [myebp] , eax
  xor eax,eax
 }
+#else
+	DWORD_PTR myeip,myesp,myebp;
+	{
+		CONTEXT capture;
+		RtlCaptureContext(&capture);
+		myeip = (DWORD_PTR)capture.Rip;
+		myesp = (DWORD_PTR)capture.Rsp;
+		myebp = (DWORD_PTR)capture.Rbp;
+	}
+#endif
 memset(&stack_frame, 0, sizeof(STACKFRAME));
 stack_frame.AddrPC.Mode = AddrModeFlat;
 stack_frame.AddrPC.Offset = myeip;
@@ -380,7 +428,7 @@ stack_frame.AddrFrame.Offset = myebp;
 		// Skip some?
 		while (stillgoing&&skip)
 		{
-			stillgoing = StackWalk(IMAGE_FILE_MACHINE_I386,
+			stillgoing = StackWalk(EXC_IMAGE_MACHINE,
 								process,
 								thread,
 								&stack_frame,
@@ -394,7 +442,7 @@ stack_frame.AddrFrame.Offset = myebp;
 
 		while(stillgoing&&count)
 		{
-			stillgoing = StackWalk(IMAGE_FILE_MACHINE_I386,
+			stillgoing = StackWalk(EXC_IMAGE_MACHINE,
 								process,
 								thread,
 								&stack_frame,
@@ -405,7 +453,7 @@ stack_frame.AddrFrame.Offset = myebp;
 								NULL) != 0;
 			if (stillgoing)
 			{
-				*addresses  = (void*)stack_frame.AddrPC.Offset;				
+				*addresses  = (void*)(DWORD_PTR)stack_frame.AddrPC.Offset;				
 				addresses++;
 				count--;
 			}
@@ -583,7 +631,7 @@ void DumpExceptionInfo( unsigned int u, EXCEPTION_POINTERS* e_info )
 	}
 
 	DOUBLE_DEBUG (("\nStack Dump:\n"));
-	StackDumpFromContext(context->Eip, context->Esp, context->Ebp, NULL);
+	StackDumpFromContext((DWORD_PTR)EXC_CTX_IP(context), (DWORD_PTR)EXC_CTX_SP(context), (DWORD_PTR)EXC_CTX_FP(context), NULL);
 
 	DOUBLE_DEBUG (("\nDetails:\n"));
 
@@ -592,20 +640,24 @@ void DumpExceptionInfo( unsigned int u, EXCEPTION_POINTERS* e_info )
 	/*
 	** Dump the registers.
 	*/
-	DOUBLE_DEBUG ( ( "Eip:%08X\tEsp:%08X\tEbp:%08X\n", context->Eip, context->Esp, context->Ebp));
-	DOUBLE_DEBUG ( ( "Eax:%08X\tEbx:%08X\tEcx:%08X\n", context->Eax, context->Ebx, context->Ecx));
-	DOUBLE_DEBUG ( ( "Edx:%08X\tEsi:%08X\tEdi:%08X\n", context->Edx, context->Esi, context->Edi));
-	DOUBLE_DEBUG ( ( "EFlags:%08X \n", context->EFlags));
+	DOUBLE_DEBUG ( ( "Eip:%08X\tEsp:%08X\tEbp:%08X\n", (unsigned)EXC_CTX_IP(context), (unsigned)EXC_CTX_SP(context), (unsigned)EXC_CTX_FP(context)));
+	DOUBLE_DEBUG ( ( "Eax:%08X\tEbx:%08X\tEcx:%08X\n", (unsigned)EXC_CTX_R0(context), (unsigned)EXC_CTX_R1(context), (unsigned)EXC_CTX_R2(context)));
+	DOUBLE_DEBUG ( ( "Edx:%08X\tEsi:%08X\tEdi:%08X\n", (unsigned)EXC_CTX_R3(context), (unsigned)EXC_CTX_R4(context), (unsigned)EXC_CTX_R5(context)));
+	DOUBLE_DEBUG ( ( "EFlags:%08X \n", (unsigned)EXC_CTX_FLAGS(context)));
+	#if defined(_M_IX86)
 	DOUBLE_DEBUG ( ( "CS:%04x  SS:%04x  DS:%04x  ES:%04x  FS:%04x  GS:%04x\n", context->SegCs, context->SegSs, context->SegDs, context->SegEs, context->SegFs, context->SegGs));
+#else
+	DOUBLE_DEBUG ( ( "DS:%04x  ES:%04x  FS:%04x  GS:%04x\n", context->SegDs, context->SegEs, context->SegFs, context->SegGs));
+#endif
 
 	/*
 	** Dump the bytes at EIP. This will make it easier to match the crash address with later versions of the game.
 	*/
 	char scrap[512];
 	DOUBLE_DEBUG ( ("EIP bytes dump...\n"));
-	wsprintf (scrap, "\nBytes at CS:EIP (%08X)  : ", context->Eip);
+	wsprintf (scrap, "\nBytes at CS:EIP (%08X)  : ", (unsigned)EXC_CTX_IP(context));
 
-	unsigned char *eip_ptr = (unsigned char *) (context->Eip);
+	unsigned char *eip_ptr = (unsigned char *)(DWORD_PTR)EXC_CTX_IP(context);
 	char bytestr[32];
 
 	for (int c = 0 ; c < 32 ; c++)

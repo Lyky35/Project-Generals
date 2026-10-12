@@ -25,6 +25,7 @@
 #include <mmsystem.h>
 #include <iostream.h>
 #include <string.h>
+#include <intrin.h>
 
 double s_ticksPerSec = 0.0f;
 double s_ticksPerMSec = 0.0f;

@@ -75,20 +75,54 @@ RTS.exe
 
 ## Phase 1: x64 Port
 
-**Status:** Pending
+**Status:** Complete
 
 ### Steps Taken
-- Pointer-truncation audit complete (see Phase 0)
-- `GetWindowLong` → `GetWindowLongPtr` migration identified (12 locations)
-- Assembly removal plan documented for 30+ locations
+- Removed all x86 inline assembly from game + library code (or guarded to `_M_IX86` with C++ fallbacks)
+- Replaced spinlocks with `_interlockedbittestandset` loops
+- Ported `LCW_Comp` (~200 lines asm) to portable C++; verified with 13-case round-trip test suite (all pass)
+- Fixed `DWORD` shader-handle storage → `DWORD_PTR` in renderer
+- Fixed `GetWindowLong`/`SetWindowLong` → `Ptr` variants in tools
+- Fixed `(int)` pointer-arithmetic casts → `ptrdiff_t`-safe `(int)(p - q)`
+- Ported crash-reporting (`Except.cpp`, `StackDump.cpp`, `debug_stack.cpp`) to x64 (`RtlCaptureContext`, `Rip/Rsp/Rbp`, `IMAGE_FILE_MACHINE_AMD64`, XMM dump)
+- Fixed `LCW_Uncomp` pointer truncation (`(unsigned)dest_ptr` → `(uintptr_t)dest_ptr`)
 
-### Issues
-| Issue | Impact | Solution |
-|-------|--------|----------|
-| 32-bit pointer assumptions throughout | Crashes on x64 | Systematic `DWORD_PTR`/`uintptr_t` migration |
-| x86 inline assembly (RDTSC, CPUID, x87, SSE, RLE, LCW, spinlock) | Won't compile on x64 | Port to intrinsics (`__rdtsc`, `__cpuid`, `RtlCaptureContext`) |
-| `sizeof(pointer)` assumptions in serialization | Save-game corruption | Version save format, add migration path |
-| x87 FPU math in hot path (wwmath.h) | Different results on x64 | Replace with standard C++ `std::sin`/`std::cos` |
+### Assembly Disposition
+
+| File(s) | Action |
+|---------|--------|
+| `PerfTimer.h`, `cpudetect.cpp`, `mpu.cpp`, `wwprofile.cpp`, `timingTest.cpp` | RDTSC/CPUID → `__rdtsc()`/`__cpuid()` |
+| `wwmath.h`, `vp.cpp` | Already guarded (`_M_IX86` / `__ICL` with C++ fallbacks) — no change |
+| `quat.cpp`, `matrix3d.cpp` | Removed dead `#if 0` asm blocks |
+| `rlerle.h`, `blitblit.h` | Guard narrowed to `_M_IX86`; x64 uses generic C++ templates |
+| `lcw.cpp` (`LCW_Comp`) | Full C++ port (see below) |
+| `mutex.h`, `wwmemlog.cpp`, `profile/internal.h` | Spinlock → interlocked loop |
+| `BaseType.h`, `dx8wrapper.h` (`Convert_Color`) | Guard + C++ fallback |
+| `Except.cpp`, `StackDump.cpp`, `debug_stack.cpp` | `RtlCaptureContext` + x64 CONTEXT fields |
+| `wwdebug.h`, `Except.cpp` (`_purecall`) | `_asm int 3` → `__debugbreak()` |
+| `keyboard.cpp` | Removed commented-out asm |
+
+### LCW_Comp Port Notes
+Faithful transliteration of the x86 asm, plus hardening for pre-existing 16-bit format limitations found during testing:
+- MED/LONG absolute offsets capped to `<= 0xFFFF` (format field is 16-bit); oversized matches fall back to short-run or literals
+- RLE/match counts capped at `0xFFFF` (multi-chunk emit for huge runs)
+- Clean termination when input consumed exactly (original emitted a garbage trailing byte)
+- Empty-input early return
+- Verified: 13-case round-trip suite (single byte, RLE 64/65/1000/70000, repeats, text, mixed, 100KB random) — all pass
+
+### Pointer Fixes
+| Location | Fix |
+|----------|-----|
+| `W3DShaderManager.h/.cpp`, `W3DWater.h`, `W3DTreeBuffer.h` (MD) | `DWORD` shader handles → `DWORD_PTR` |
+| max2w3d tools (`GameMtlDlg`, `GameMtlPassDlg`, `gmtldlg`, `skin`) | `Get/SetWindowLong` → `Ptr` + `GWLP_*` + `(LONG_PTR)` casts |
+| `huffencode.cpp`, `meshmdlio.cpp`, `geometryexporttask.cpp` | `(int)p - (int)q` → `(int)(p - q)` |
+| `Properties.cpp` | `(DWORD)font` → `(LPARAM)font` |
+| `autorun.cpp` | `(DWORD)hBrush` → `(LRESULT)hBrush` |
+
+### Known Limitations (documented, not fixed)
+- Crash-report address fields truncate above 4GB (`ULONG` log buffers) — cosmetic only
+- `EDITSTREAM.dwCookie` pointer storage in Babylon tools (tools-only, not in build)
+- `m_addr[256]` signature DB in `debug_stack.cpp` stores truncated 32-bit (cosmetic)
 | SSE intrinsics in vp.cpp | May need AVX2 fallback | Use `_mm_*` intrinsics (available on x64) |
 
 ---

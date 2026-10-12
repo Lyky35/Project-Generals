@@ -1152,7 +1152,7 @@ LRESULT MainWindow::Window_Proc( HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM
 				point.x = point.y = 0;								// create a point.
 				ClientToScreen( hWnd, &point );						// translate into screen coordinates.
 				SetBrushOrg( (HDC)wParam, point.x, point.y );		// New Origin to use when next selected.
-				return ((DWORD) hBrush);
+				return ((LRESULT) hBrush);
 			}
 			break;
 
@@ -5253,14 +5253,14 @@ unsigned int LaunchObjectClass::Launch ( void )
 void Debug_Date_And_Time_Stamp ( void )
 {
 	//-------------------------------------------------------------------------
-	//	tm_sec	- Seconds after minute (0 – 59)
-	//	tm_min	- Minutes after hour (0 – 59)
-	//	tm_hour	- Hours after midnight (0 – 23)
-	//	tm_mday	- Day of month (1 – 31)
-	//	tm_mon	- Month (0 – 11; January = 0)
+	//	tm_sec	- Seconds after minute (0 ï¿½ 59)
+	//	tm_min	- Minutes after hour (0 ï¿½ 59)
+	//	tm_hour	- Hours after midnight (0 ï¿½ 23)
+	//	tm_mday	- Day of month (1 ï¿½ 31)
+	//	tm_mon	- Month (0 ï¿½ 11; January = 0)
 	//	tm_year	- Year (current year minus 1900)
-	//	tm_wday	- Day of week (0 – 6; Sunday = 0)
-	//	tm_yday	- Day of year (0 – 365; January 1 = 0)
+	//	tm_wday	- Day of week (0 ï¿½ 6; Sunday = 0)
+	//	tm_yday	- Day of year (0 ï¿½ 365; January 1 = 0)
 	//-------------------------------------------------------------------------
 	static char *Month_Strings[ 12 ] = {
 		"January",

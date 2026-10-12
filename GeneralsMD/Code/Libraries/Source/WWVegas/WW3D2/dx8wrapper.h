@@ -1002,6 +1002,7 @@ WWINLINE unsigned int DX8Wrapper::Convert_Color(const Vector4& color)
 //
 // ----------------------------------------------------------------------------
 
+#if defined(_M_IX86)
 WWINLINE unsigned int DX8Wrapper::Convert_Color(const Vector3& color,float alpha)
 {
 	const float scale = 255.0;
@@ -1131,6 +1132,17 @@ WWINLINE void DX8Wrapper::Clamp_Color(Vector4& color)
 		mov dword ptr[esi+12],edi
 	}
 }
+#else
+WWINLINE unsigned int DX8Wrapper::Convert_Color(const Vector3& color,float alpha)
+{
+	const float scale = 255.0f;
+	float r = color[0] < 0.0f ? 0.0f : (color[0] > 1.0f ? 1.0f : color[0]);
+	float g = color[1] < 0.0f ? 0.0f : (color[1] > 1.0f ? 1.0f : color[1]);
+	float b = color[2] < 0.0f ? 0.0f : (color[2] > 1.0f ? 1.0f : color[2]);
+	float a = alpha < 0.0f ? 0.0f : (alpha > 1.0f ? 1.0f : alpha);
+	return ((unsigned int)(a * scale) << 24) | ((unsigned int)(r * scale) << 16) | ((unsigned int)(g * scale) << 8) | (unsigned int)(b * scale);
+}
+#endif
 
 // ----------------------------------------------------------------------------
 //
