@@ -1,0 +1,43 @@
+file(REMOVE_RECURSE
+  "../../../../../lib/libWPAudio.a"
+  "../../../../../lib/libWPAudio.pdb"
+  "CMakeFiles/WPAudio.dir/AUD_Assert.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_Assert.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_Cache.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_Cache.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_Channel.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_Channel.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_Device.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_Device.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_Events.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_Events.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_Level.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_Level.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_List.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_List.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_Lock.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_Lock.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_Memory.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_Memory.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_Source.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_Source.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_Time.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_Time.cpp.o.d"
+  "CMakeFiles/WPAudio.dir/AUD_Windows.cpp.o"
+  "CMakeFiles/WPAudio.dir/AUD_Windows.cpp.o.d"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/WPAudio.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+b8a54c0f70e0ec1a61fd9ad68fc7ade1 Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanShaders
+201a07d5df37eb874654feac07f46f8d bin/shaders/mesh.frag.spv
+671711db776fa2c9d73841d0ce70b0fa bin/shaders/mesh.vert.spv

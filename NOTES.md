@@ -53,7 +53,7 @@ Target: Windows 10+ x64, Vulkan 1.3, modern toolchain
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: minimal RTS.exe build validation, full shader/render-state translation for W3DShaderManager (TerrainTex D3DX calls commented out). 
+Remaining: full shader/render-state translation for W3DShaderManager and TerrainTex (remaining D3D8 calls), minimal RTS.exe build validation (build has pre-existing dependency issues on Linux). 
 GeneralsMD mirror, minimal RTS.exe build.
 
 ---
@@ -438,7 +438,7 @@ Get a working x64 executable with existing D3D8 renderer on Windows 10 **before*
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: minimal RTS.exe build validation, full shader/render-state translation for W3DShaderManager (TerrainTex D3DX calls commented out). 
+Remaining: full shader/render-state translation for W3DShaderManager and TerrainTex (remaining D3D8 calls), minimal RTS.exe build validation (build has pre-existing dependency issues on Linux). 
 GeneralsMD mirror, minimal RTS.exe build.
 
 ---

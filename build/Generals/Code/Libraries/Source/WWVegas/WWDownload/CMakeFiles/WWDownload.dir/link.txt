@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../../../../lib/libWWDownload.a CMakeFiles/WWDownload.dir/Download.cpp.o CMakeFiles/WWDownload.dir/registry.cpp.o CMakeFiles/WWDownload.dir/urlBuilder.cpp.o
+/usr/bin/ranlib ../../../../../../lib/libWWDownload.a
