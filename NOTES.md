@@ -53,7 +53,7 @@ Target: Windows 10+ x64, Vulkan 1.3, modern toolchain
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: minimal RTS.exe build validation (pre-existing Linux dependency issues). Render-state translation fully complete for W3DShaderManager and TerrainTex (both trees). D3DXVECTOR4/fLOAT4X4/D3DXMATRIX commentary migration complete for both tree versions. All render-state uses DX8Wrapper APIs. Minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete. 
+Remaining: minimal RTS.exe build validation (pre-existing Linux dependency issues). Render-state translation fully complete for W3DShaderManager and TerrainTex (both trees). D3DXVECTOR4/fLOAT4X4/D3DXMATRIX commentary migration complete for both tree versions. All render-state uses DX8Wrapper APIs. CI cross-compilation validation workflow added (Linux + MinGW). Minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete. 
 GeneralsMD mirror, minimal RTS.exe build.
 
 ---
@@ -438,7 +438,7 @@ Get a working x64 executable with existing D3D8 renderer on Windows 10 **before*
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: minimal RTS.exe build validation (pre-existing Linux dependency issues). Render-state translation fully complete for W3DShaderManager and TerrainTex (both trees). D3DXVECTOR4/fLOAT4X4/D3DXMATRIX commentary migration complete for both tree versions. All render-state uses DX8Wrapper APIs. Minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete. 
+Remaining: minimal RTS.exe build validation (pre-existing Linux dependency issues). Render-state translation fully complete for W3DShaderManager and TerrainTex (both trees). D3DXVECTOR4/fLOAT4X4/D3DXMATRIX commentary migration complete for both tree versions. All render-state uses DX8Wrapper APIs. CI cross-compilation validation workflow added (Linux + MinGW). Minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete. 
 GeneralsMD mirror, minimal RTS.exe build.
 
 ---
@@ -509,7 +509,7 @@ the foundation for rendering meshes and terrain with Vulkan resources.
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: minimal RTS.exe build validation (pre-existing Linux dependency issues). Render-state translation fully complete for W3DShaderManager and TerrainTex (both trees). D3DXVECTOR4/fLOAT4X4/D3DXMATRIX commentary migration complete for both tree versions. All render-state uses DX8Wrapper APIs. Minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete. GeneralsMD mirror complete.
+Remaining: minimal RTS.exe build validation (pre-existing Linux dependency issues). Render-state translation fully complete for W3DShaderManager and TerrainTex (both trees). D3DXVECTOR4/fLOAT4X4/D3DXMATRIX commentary migration complete for both tree versions. All render-state uses DX8Wrapper APIs. CI cross-compilation validation workflow added (Linux + MinGW). Minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete. GeneralsMD mirror complete.
 
 # Buffer Changes
 
@@ -537,7 +537,7 @@ Buffer APIs are now Vulkan-backed. Remaining: minimal RTS.exe build validation (
 
 ### Stage
 
-Shadow tree GameEngineDevice COM members port Complete. Remaining: minimal RTS.exe build validation (pre-existing Linux dependency issues). Render-state translation fully complete for W3DShaderManager and TerrainTex (both trees). D3DXVECTOR4/fLOAT4X4/D3DXMATRIX commentary migration complete for both tree versions. All render-state uses DX8Wrapper APIs. Minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete.
+Shadow tree GameEngineDevice COM members port Complete. Remaining: minimal RTS.exe build validation (pre-existing Linux dependency issues). Render-state translation fully complete for W3DShaderManager and TerrainTex (both trees). D3DXVECTOR4/fLOAT4X4/D3DXMATRIX commentary migration complete for both tree versions. All render-state uses DX8Wrapper APIs. CI cross-compilation validation workflow added (Linux + MinGW). Minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete.
 
 ---
 ## Phase 3e-8: GameEngineDevice COM Members Port (GeneralsMD Tree) — Complete
