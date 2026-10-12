@@ -23,7 +23,12 @@ struct VkPipelineState {
 	uint32_t srcBlend;
 	uint32_t dstBlend;
 	uint32_t topology;
-	uint32_t vertexLayout;
+	uint32_t vertexFVF;
+	uint32_t vertexSize;
+	uint32_t normalOffset;
+	uint32_t diffuseOffset;
+	uint32_t uv0Offset;
+	uint32_t uv1Offset;
 
 	bool operator==(const VkPipelineState &other) const;
 };
@@ -33,7 +38,8 @@ struct VkPipelineStateHash {
 };
 
 struct VkVertexLayoutDesc {
-	VkVertexInputBindingDescription binding;
+	VkVertexInputBindingDescription bindings[2];
+	uint32_t bindingCount;
 	VkVertexInputAttributeDescription attributes[5];
 	uint32_t attributeCount;
 };
@@ -55,15 +61,10 @@ public:
 	VkDescriptorSetLayout GetTextureSetLayout() const { return m_textureSetLayout; }
 	VkDescriptorSetLayout GetFrameSetLayout() const { return m_frameSetLayout; }
 
-	static VkVertexLayoutDesc GetVertexLayout(uint32_t layoutId);
+	static VkVertexLayoutDesc GetVertexLayout(uint32_t fvf, uint32_t fvfSize,
+		uint32_t normalOffset, uint32_t diffuseOffset,
+		uint32_t uv0Offset, uint32_t uv1Offset);
 	static uint32_t FanToList(const uint16_t *fanIndices, uint32_t fanCount, uint16_t *outList);
-
-	enum VertexLayout {
-		LAYOUT_XYZ_N_UV1 = 0,
-		LAYOUT_XYZ_N_D_UV2 = 1,
-		LAYOUT_XYZ_D_UV1 = 2,
-		LAYOUT_COUNT = 3
-	};
 
 	enum TexOp {
 		TEXOP_DISABLE = 0,

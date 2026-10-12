@@ -46,6 +46,11 @@
 #include "always.h"
 #include "dllist.h"
 #include "d3d8types.h"
+#include "VkDevice.h"
+#include "VkShader.h"
+#include "VkTexture.h"
+#include "VkGpuBuffer.h"
+#include "VkDescriptors.h"
 #include "matrix4.h"
 #include "statistics.h"
 #include "wwstring.h"
@@ -103,14 +108,8 @@ WWINLINE void DX8_ErrorCode(unsigned res)
 }
 
 #ifdef WWDEBUG
-#define DX8CALL_HRES(x,res) DX8_Assert(); res = DX8Wrapper::_Get_D3D_Device8()->x; DX8_ErrorCode(res); number_of_DX8_calls++;
-#define DX8CALL(x) DX8_Assert(); DX8_ErrorCode(DX8Wrapper::_Get_D3D_Device8()->x); number_of_DX8_calls++;
-#define DX8CALL_D3D(x) DX8_Assert(); DX8_ErrorCode(DX8Wrapper::_Get_D3D8()->x); number_of_DX8_calls++;
 #define DX8_THREAD_ASSERT() if (_DX8SingleThreaded) { WWASSERT_PRINT(DX8Wrapper::_Get_Main_Thread_ID()==ThreadClass::_Get_Current_Thread_ID(),"DX8Wrapper::DX8 calls must be called from the main thread!"); }
 #else
-#define DX8CALL_HRES(x,res) res = DX8Wrapper::_Get_D3D_Device8()->x; number_of_DX8_calls++;
-#define DX8CALL(x) DX8Wrapper::_Get_D3D_Device8()->x; number_of_DX8_calls++;
-#define DX8CALL_D3D(x) DX8Wrapper::_Get_D3D8()->x; number_of_DX8_calls++;
 #define DX8_THREAD_ASSERT() ;
 #endif
 
@@ -282,13 +281,14 @@ public:
 
 	static void _Set_DX8_Transform(D3DTRANSFORMSTATETYPE transform,const Matrix4& m);
 	static void _Set_DX8_Transform(D3DTRANSFORMSTATETYPE transform,const Matrix3D& m);
+	static void Set_DX8_Transform_Cached(D3DTRANSFORMSTATETYPE transform,const Matrix4& m);
 	static void _Get_DX8_Transform(D3DTRANSFORMSTATETYPE transform, Matrix4& m);
 
 	static void Set_DX8_Light(int index,D3DLIGHT8* light);
 	static void Set_DX8_Render_State(D3DRENDERSTATETYPE state, unsigned value);
 	static void Set_DX8_Clip_Plane(DWORD Index, CONST float* pPlane);
 	static void Set_DX8_Texture_Stage_State(unsigned stage, D3DTEXTURESTAGESTATETYPE state, unsigned value);
-	static void Set_DX8_Texture(unsigned int stage, IDirect3DBaseTexture8* texture);
+	static void Set_Vulkan_Texture(unsigned int stage, VkTexture* texture);
 	static void Set_Light_Environment(LightEnvironmentClass* light_env);
 	static void Set_Fog(bool enable, const Vector3 &color, float start, float end);
 
@@ -328,26 +328,26 @@ public:
 	/*
 	** Resources
 	*/
-	static IDirect3DTexture8 * _Create_DX8_Texture(
-		unsigned int width, 
-		unsigned int height, 
-		WW3DFormat format, 
+	static VkTexture * _Create_Vulkan_Texture(
+		unsigned int width,
+		unsigned int height,
+		WW3DFormat format,
 		TextureClass::MipCountType mip_level_count,
 		D3DPOOL pool=D3DPOOL_MANAGED,
 		bool rendertarget=false);
-	static IDirect3DTexture8 * _Create_DX8_Texture(const char *filename, TextureClass::MipCountType mip_level_count);
-	static IDirect3DTexture8 * _Create_DX8_Texture(IDirect3DSurface8 *surface, TextureClass::MipCountType mip_level_count);
+	static VkTexture * _Create_Vulkan_Texture(const char *filename, TextureClass::MipCountType mip_level_count);
+	static VkTexture * _Create_Vulkan_Texture(VkTexture *surface, TextureClass::MipCountType mip_level_count);
 
-	static IDirect3DSurface8 * _Create_DX8_Surface(unsigned int width, unsigned int height, WW3DFormat format);
-	static IDirect3DSurface8 * _Create_DX8_Surface(const char *filename);
-	static IDirect3DSurface8 * _Get_DX8_Front_Buffer();
-	static SurfaceClass * _Get_DX8_Back_Buffer(unsigned int num=0);
+	static VkTexture * _Create_Vulkan_Image(unsigned int width, unsigned int height, WW3DFormat format);
+	static VkTexture * _Create_Vulkan_Image(const char *filename);
+	static bool _Read_Front_Buffer(unsigned char *dest, unsigned *width, unsigned *height);
+	static SurfaceClass * _Get_Vulkan_Back_Buffer(unsigned int num=0);
 
-	static void _Copy_DX8_Rects(
-			IDirect3DSurface8* pSourceSurface,
+	static void _Copy_Vulkan_Rects(
+			VkTexture* pSourceTexture,
 			CONST RECT* pSourceRectsArray,
 			UINT cRects,
-			IDirect3DSurface8* pDestinationSurface,
+			VkTexture* pDestinationTexture,
 			CONST POINT* pDestPointsArray
 	);
 
@@ -409,19 +409,17 @@ public:
 	**	DX8Wrapper::Set_Render_Target ((IDirect3DSurface8 *)NULL);
 	**
 	*/
-	static IDirect3DSwapChain8 *	Create_Additional_Swap_Chain (HWND render_window);
+	static void *	Create_Additional_Swap_Chain (HWND render_window);
 
 	/*
 	** Render target interface
 	*/
 	static TextureClass *	Create_Render_Target (int width, int height, bool alpha=false);
-	
-	static void					Set_Render_Target (TextureClass * texture);
-	static void					Set_Render_Target (IDirect3DSurface8 *render_target);
-	static void					Set_Render_Target (IDirect3DSwapChain8 *swap_chain);
 
-	static IDirect3DDevice8* _Get_D3D_Device8() { return D3DDevice; }
-	static IDirect3D8* _Get_D3D8() { return D3DInterface; }
+	static void					Set_Render_Target (TextureClass * texture);
+
+	static VulkanDevice & _Get_Vulkan_Device() { return VulkanDevice::Instance(); }
+	static VkShaderManager & _Get_Shader_Manager() { return ShaderManager; }
 	static void Invalidate_Cached_Render_States(void);
 
 	/// Returns the display format - added by TR for video playback - not part of W3D
@@ -510,7 +508,7 @@ protected:
 	static bool								world_identity;
 	static unsigned						RenderStates[256];
 	static unsigned						TextureStageStates[MAX_TEXTURE_STAGES][32];
-	static IDirect3DBaseTexture8 *	Textures[MAX_TEXTURE_STAGES];
+	static TextureClass *	BoundTextures[MAX_TEXTURE_STAGES];
 
 	// These fog settings are constant for all objects in a given scene,
 	// unlike the matching renderstates which vary based on shader settings.
@@ -531,11 +529,12 @@ protected:
 
 	static D3DADAPTER_IDENTIFIER8		CurrentAdapterIdentifier;
 
-	static IDirect3D8 *					D3DInterface;			//d3d8;
-	static IDirect3DDevice8 *			D3DDevice;				//d3ddevice8;	
+	static VkShaderManager				ShaderManager;
+	static VkDescriptorAllocator		DescriptorAllocator;
+	static bool								VulkanFrameOpen;
 
-	static IDirect3DSurface8 *			CurrentRenderTarget;
-	static IDirect3DSurface8 *			DefaultRenderTarget;
+	static VkTexture *						CurrentRenderTarget;
+	static bool								UsingDefaultTarget;
 
 	friend void DX8_Assert();
 	friend class WW3D;
@@ -548,7 +547,7 @@ WWINLINE void DX8Wrapper::_Set_DX8_Transform(D3DTRANSFORMSTATETYPE transform,con
 {
 	SNAPSHOT_SAY(("DX8 - SetTransform\n"));
 	DX8_RECORD_MATRIX_CHANGE();
-	DX8CALL(SetTransform(transform,(D3DMATRIX*)&m));
+	Set_DX8_Transform_Cached(transform, m);
 }
 
 
@@ -556,7 +555,9 @@ WWINLINE void DX8Wrapper::_Set_DX8_Transform(D3DTRANSFORMSTATETYPE transform,con
 {
 	SNAPSHOT_SAY(("DX8 - SetTransform\n"));
 	DX8_RECORD_MATRIX_CHANGE();
-	DX8CALL(SetTransform(transform,(D3DMATRIX*)&m));
+	Matrix4 mat;
+	mat.Init(m);
+	Set_DX8_Transform_Cached(transform, mat);
 }
 
 WWINLINE void DX8Wrapper::_Get_DX8_Transform(D3DTRANSFORMSTATETYPE transform, Matrix4& m)

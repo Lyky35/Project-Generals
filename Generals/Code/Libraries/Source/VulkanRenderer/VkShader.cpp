@@ -12,7 +12,9 @@ bool VkPipelineState::operator==(const VkPipelineState &other) const
 		depthWrite == other.depthWrite && depthCompare == other.depthCompare &&
 		blendEnable == other.blendEnable && srcBlend == other.srcBlend &&
 		dstBlend == other.dstBlend && topology == other.topology &&
-		vertexLayout == other.vertexLayout;
+		vertexFVF == other.vertexFVF && vertexSize == other.vertexSize &&
+		normalOffset == other.normalOffset && diffuseOffset == other.diffuseOffset &&
+		uv0Offset == other.uv0Offset && uv1Offset == other.uv1Offset;
 }
 
 size_t VkPipelineStateHash::operator()(const VkPipelineState &s) const
@@ -166,76 +168,76 @@ bool VkShaderManager::CreatePipelineLayout()
 	return vkCreatePipelineLayout(m_device->GetDevice(), &layoutInfo, nullptr, &m_pipelineLayout) == VK_SUCCESS;
 }
 
-VkVertexLayoutDesc VkShaderManager::GetVertexLayout(uint32_t layoutId)
+VkVertexLayoutDesc VkShaderManager::GetVertexLayout(uint32_t fvf, uint32_t fvfSize,
+	uint32_t normalOffset, uint32_t diffuseOffset,
+	uint32_t uv0Offset, uint32_t uv1Offset)
 {
 	VkVertexLayoutDesc desc = {};
-	desc.binding.binding = 0;
+	desc.bindings[0].binding = 0;
+	desc.bindings[0].stride = fvfSize;
+	desc.bindings[0].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+	desc.bindings[1].binding = 1;
+	desc.bindings[1].stride = 64;
+	desc.bindings[1].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+	desc.bindingCount = 2;
 	desc.attributeCount = 0;
-	uint32_t offset = 0;
-	switch (layoutId) {
-	case LAYOUT_XYZ_N_UV1:
-		desc.binding.stride = 32;
-		desc.binding.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
-		desc.attributes[0].location = 0;
-		desc.attributes[0].binding = 0;
-		desc.attributes[0].format = VK_FORMAT_R32G32B32_SFLOAT;
-		desc.attributes[0].offset = 0;
-		desc.attributes[1].location = 1;
-		desc.attributes[1].binding = 0;
-		desc.attributes[1].format = VK_FORMAT_R32G32B32_SFLOAT;
-		desc.attributes[1].offset = 12;
-		desc.attributes[2].location = 3;
-		desc.attributes[2].binding = 0;
-		desc.attributes[2].format = VK_FORMAT_R32G32_SFLOAT;
-		desc.attributes[2].offset = 24;
-		desc.attributeCount = 3;
-		break;
-	case LAYOUT_XYZ_N_D_UV2:
-		desc.binding.stride = 44;
-		desc.binding.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
-		desc.attributes[0].location = 0;
-		desc.attributes[0].binding = 0;
-		desc.attributes[0].format = VK_FORMAT_R32G32B32_SFLOAT;
-		desc.attributes[0].offset = 0;
-		desc.attributes[1].location = 1;
-		desc.attributes[1].binding = 0;
-		desc.attributes[1].format = VK_FORMAT_R32G32B32_SFLOAT;
-		desc.attributes[1].offset = 12;
-		desc.attributes[2].location = 2;
-		desc.attributes[2].binding = 0;
-		desc.attributes[2].format = VK_FORMAT_B8G8R8A8_UNORM;
-		desc.attributes[2].offset = 24;
-		desc.attributes[3].location = 3;
-		desc.attributes[3].binding = 0;
-		desc.attributes[3].format = VK_FORMAT_R32G32_SFLOAT;
-		desc.attributes[3].offset = 28;
-		desc.attributes[4].location = 4;
-		desc.attributes[4].binding = 0;
-		desc.attributes[4].format = VK_FORMAT_R32G32_SFLOAT;
-		desc.attributes[4].offset = 36;
-		desc.attributeCount = 5;
-		break;
-	case LAYOUT_XYZ_D_UV1:
-		desc.binding.stride = 24;
-		desc.binding.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
-		desc.attributes[0].location = 0;
-		desc.attributes[0].binding = 0;
-		desc.attributes[0].format = VK_FORMAT_R32G32B32_SFLOAT;
-		desc.attributes[0].offset = 0;
-		desc.attributes[1].location = 2;
-		desc.attributes[1].binding = 0;
-		desc.attributes[1].format = VK_FORMAT_B8G8R8A8_UNORM;
-		desc.attributes[1].offset = 12;
-		desc.attributes[2].location = 3;
-		desc.attributes[2].binding = 0;
-		desc.attributes[2].format = VK_FORMAT_R32G32_SFLOAT;
-		desc.attributes[2].offset = 16;
-		desc.attributeCount = 3;
-		break;
-	default:
-		break;
+	(void)fvf;
+
+	VkVertexInputAttributeDescription *attr = desc.attributes;
+	attr->location = 0;
+	attr->binding = 0;
+	attr->format = VK_FORMAT_R32G32B32_SFLOAT;
+	attr->offset = 0;
+	attr++;
+	desc.attributeCount++;
+
+	attr->location = 1;
+	attr->format = VK_FORMAT_R32G32B32_SFLOAT;
+	if (normalOffset != UINT32_MAX) {
+		attr->binding = 0;
+		attr->offset = normalOffset;
+	} else {
+		attr->binding = 1;
+		attr->offset = 0;
 	}
-	(void)offset;
+	attr++;
+	desc.attributeCount++;
+
+	attr->location = 2;
+	attr->format = VK_FORMAT_B8G8R8A8_UNORM;
+	if (diffuseOffset != UINT32_MAX) {
+		attr->binding = 0;
+		attr->offset = diffuseOffset;
+	} else {
+		attr->binding = 1;
+		attr->offset = 12;
+	}
+	attr++;
+	desc.attributeCount++;
+
+	attr->location = 3;
+	attr->format = VK_FORMAT_R32G32_SFLOAT;
+	if (uv0Offset != UINT32_MAX) {
+		attr->binding = 0;
+		attr->offset = uv0Offset;
+	} else {
+		attr->binding = 1;
+		attr->offset = 16;
+	}
+	attr++;
+	desc.attributeCount++;
+
+	attr->location = 4;
+	attr->format = VK_FORMAT_R32G32_SFLOAT;
+	if (uv1Offset != UINT32_MAX) {
+		attr->binding = 0;
+		attr->offset = uv1Offset;
+	} else {
+		attr->binding = 1;
+		attr->offset = 24;
+	}
+	attr++;
+	desc.attributeCount++;
 	return desc;
 }
 
@@ -362,7 +364,8 @@ VkPipeline VkShaderManager::GetPipeline(const VkPipelineState &state)
 
 VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 {
-	VkVertexLayoutDesc layout = GetVertexLayout(state.vertexLayout);
+	VkVertexLayoutDesc layout = GetVertexLayout(state.vertexFVF, state.vertexSize,
+		state.normalOffset, state.diffuseOffset, state.uv0Offset, state.uv1Offset);
 
 	VkPipelineShaderStageCreateInfo vertStage = {};
 	vertStage.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
@@ -395,8 +398,8 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 
 	VkPipelineVertexInputStateCreateInfo vertexInput = {};
 	vertexInput.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-	vertexInput.vertexBindingDescriptionCount = 1;
-	vertexInput.pVertexBindingDescriptions = &layout.binding;
+	vertexInput.vertexBindingDescriptionCount = layout.bindingCount;
+	vertexInput.pVertexBindingDescriptions = layout.bindings;
 	vertexInput.vertexAttributeDescriptionCount = layout.attributeCount;
 	vertexInput.pVertexAttributeDescriptions = layout.attributes;
 
