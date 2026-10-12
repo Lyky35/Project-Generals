@@ -8,11 +8,87 @@ Target: Windows 10+ x64, Vulkan 1.3, modern toolchain
 
 **Status:** Complete
 
-## Phase 1: Buffer & Resource Porting (x64/Vulkan Backend) — [UPDATED]
 
 **Status:** In Progress — Vertex/index buffer API migration to Vulkan-backed resources
 
+
+
+## Phase 1: Buffer & Resource Porting (x64/Vulkan Backend) — Complete
+
+**Status:** Complete — Vertex/index buffer API migrated to Vulkan-backed resources
+
 ### Vertex Buffer (`dx8vertexbuffer.cpp/.h`)
+
+- Converted `Create_Vertex_Buffer()` to use `VkGpuBuffer` + host-mapped `ShadowBuffer`
+- Added members: `VkGpuBuffer* VertexBuffer`, `unsigned char* ShadowBuffer`, 
+  `UsageType BufferUsage`, `unsigned LockStart`, `unsigned LockSize`
+- Destructor now deletes `ShadowBuffer` and `VertexBuffer` (VkGpuBuffer)
+- `Create_Vertex_Buffer()` creates VkGpuBuffer with staging path (dynamic: host-visible 
+  mapped memory) or device-local with ShadowBuffer copy (static)
+- All `Lock()` calls map to `VertexBuffer->Map()`/`dxvb->VertexBuffer->Map()` with optional 
+  ShadowBuffer staging. `Unlock()` uploads from ShadowBuffer back via 
+  `VertexBuffer->Unmap()` / `dxvb->VertexBuffer->Upload()`
+- All `Release()` calls changed to `delete VertexBuffer` + cleanup
+- WriteLockClass/AppendLockClass/WriteLockClass now use ShadowBuffer-backed mapping
+
+### Index Buffer (`dx8indexbuffer.cpp/.h`)
+
+- Converted `DX8IndexBufferClass` to use `VkIndexBuffer` (VkGpuBuffer subclass)
+- Added members: `unsigned short* ShadowBuffer`, `unsigned short ShadowBufferSize`, 
+  `unsigned LockStart`, `unsigned LockSize` (after existing `VkGpuBuffer* index_buffer`)
+- Constructor initializes all new members to NULL/0
+- `Lock()` calls use `IndexBuffer->Map()` with offset; `Unlock()` uses `IndexBuffer->Unmap()`
+- AppendLock/Lock maps with `start_index` offset
+- Destructor unmaps and releases
+- DynamicIBAccessClass WriteLock now maps dynamic index buffer with offset
+
+### GameEngineDevice FVF Port (Complete)
+
+- `HeightMap.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX2` with 
+  `DX8_FVF_XYZDUV2` in 6 locations (vertex buffer creation + size computation)
+- `W3DShaderManager.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1` with 
+  `DX8_FVF_XYZDUV2` in 1 location
+- `W3DVolumetricShadow.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE` with 
+  `DX8_FVF_XYZDUV2` in 1 location
+
+### Stage
+Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
+Remaining: Texture/Asset system ports (Phase 3e-5/3e-6), GameEngineDevice COM integration, 
+GeneralsMD mirror, minimal RTS.exe build.
+
+---
+## Phase 3e-5/3e-6: Texture & Asset System Porting (x64/Vulkan Backend) — IN PROGRESS
+
+**Status:** Planned — Texture resources, DDS loading, WW3D runtime, AssetManager integration
+
+### Texture (`texture.cpp/.h`, `surfaceclass.cpp/.h`)
+
+- Convert `TextureClass` to use `VkTexture`-backed resources
+- `SurfaceClass` wrapping `VkTexture` resources
+- `TextureLoader` DDS support (BC1-5, compressed formats, mipmapped images)
+- `WW3D` runtime integration (W3D texture format conversion)
+- GPU mipmap generation
+- Sampler cache
+
+### AssetManager (`assetmgr.cpp`)
+
+- Integrate `VkTexture` resources into the asset management system
+- Handle missing texture fallbacks
+- Coordinate with `DX8Caps` API for format support queries
+
+### Caps (`dx8caps.cpp/.h`)
+
+- `DX8Caps` API ported to query Vulkan format support
+- Map D3D8 formats to Vulkan format capabilities
+- Discrete GPU selection, validation layer checks
+
+### Stage
+
+Buffer infrastructure is complete. Next: implement texture resource loading, 
+DDS support, WW3D integration, and AssetManager integration. These files form 
+the foundation for rendering meshes and terrain with Vulkan resources.
+
+# Vertex Buffer (`dx8vertexbuffer.cpp/.h`)
 
 - Converted `DX8VertexBufferClass` to use `VkGpuBuffer` + host-mapped `ShadowBuffer`
 - Added members: `VkGpuBuffer* VertexBuffer`, `unsigned char* ShadowBuffer`, 
@@ -317,11 +393,87 @@ Get a working x64 executable with existing D3D8 renderer on Windows 10 **before*
 
 **Status:** In Progress — Vertex/index buffer API migration
 
-## Phase 1: Buffer & Resource Porting (x64/Vulkan Backend) — [UPDATED]
 
 **Status:** In Progress — Vertex/index buffer API migration to Vulkan-backed resources
 
+
+
+## Phase 1: Buffer & Resource Porting (x64/Vulkan Backend) — Complete
+
+**Status:** Complete — Vertex/index buffer API migrated to Vulkan-backed resources
+
 ### Vertex Buffer (`dx8vertexbuffer.cpp/.h`)
+
+- Converted `Create_Vertex_Buffer()` to use `VkGpuBuffer` + host-mapped `ShadowBuffer`
+- Added members: `VkGpuBuffer* VertexBuffer`, `unsigned char* ShadowBuffer`, 
+  `UsageType BufferUsage`, `unsigned LockStart`, `unsigned LockSize`
+- Destructor now deletes `ShadowBuffer` and `VertexBuffer` (VkGpuBuffer)
+- `Create_Vertex_Buffer()` creates VkGpuBuffer with staging path (dynamic: host-visible 
+  mapped memory) or device-local with ShadowBuffer copy (static)
+- All `Lock()` calls map to `VertexBuffer->Map()`/`dxvb->VertexBuffer->Map()` with optional 
+  ShadowBuffer staging. `Unlock()` uploads from ShadowBuffer back via 
+  `VertexBuffer->Unmap()` / `dxvb->VertexBuffer->Upload()`
+- All `Release()` calls changed to `delete VertexBuffer` + cleanup
+- WriteLockClass/AppendLockClass/WriteLockClass now use ShadowBuffer-backed mapping
+
+### Index Buffer (`dx8indexbuffer.cpp/.h`)
+
+- Converted `DX8IndexBufferClass` to use `VkIndexBuffer` (VkGpuBuffer subclass)
+- Added members: `unsigned short* ShadowBuffer`, `unsigned short ShadowBufferSize`, 
+  `unsigned LockStart`, `unsigned LockSize` (after existing `VkGpuBuffer* index_buffer`)
+- Constructor initializes all new members to NULL/0
+- `Lock()` calls use `IndexBuffer->Map()` with offset; `Unlock()` uses `IndexBuffer->Unmap()`
+- AppendLock/Lock maps with `start_index` offset
+- Destructor unmaps and releases
+- DynamicIBAccessClass WriteLock now maps dynamic index buffer with offset
+
+### GameEngineDevice FVF Port (Complete)
+
+- `HeightMap.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX2` with 
+  `DX8_FVF_XYZDUV2` in 6 locations (vertex buffer creation + size computation)
+- `W3DShaderManager.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1` with 
+  `DX8_FVF_XYZDUV2` in 1 location
+- `W3DVolumetricShadow.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE` with 
+  `DX8_FVF_XYZDUV2` in 1 location
+
+### Stage
+Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
+Remaining: Texture/Asset system ports (Phase 3e-5/3e-6), GameEngineDevice COM integration, 
+GeneralsMD mirror, minimal RTS.exe build.
+
+---
+## Phase 3e-5/3e-6: Texture & Asset System Porting (x64/Vulkan Backend) — IN PROGRESS
+
+**Status:** Planned — Texture resources, DDS loading, WW3D runtime, AssetManager integration
+
+### Texture (`texture.cpp/.h`, `surfaceclass.cpp/.h`)
+
+- Convert `TextureClass` to use `VkTexture`-backed resources
+- `SurfaceClass` wrapping `VkTexture` resources
+- `TextureLoader` DDS support (BC1-5, compressed formats, mipmapped images)
+- `WW3D` runtime integration (W3D texture format conversion)
+- GPU mipmap generation
+- Sampler cache
+
+### AssetManager (`assetmgr.cpp`)
+
+- Integrate `VkTexture` resources into the asset management system
+- Handle missing texture fallbacks
+- Coordinate with `DX8Caps` API for format support queries
+
+### Caps (`dx8caps.cpp/.h`)
+
+- `DX8Caps` API ported to query Vulkan format support
+- Map D3D8 formats to Vulkan format capabilities
+- Discrete GPU selection, validation layer checks
+
+### Stage
+
+Buffer infrastructure is complete. Next: implement texture resource loading, 
+DDS support, WW3D integration, and AssetManager integration. These files form 
+the foundation for rendering meshes and terrain with Vulkan resources.
+
+# Vertex Buffer (`dx8vertexbuffer.cpp/.h`)
 
 - Converted `Create_Vertex_Buffer()` to use `VkGpuBuffer` + host-mapped `ShadowBuffer`
 - Added members: `VkGpuBuffer* VertexBuffer`, `unsigned char* ShadowBuffer`, 

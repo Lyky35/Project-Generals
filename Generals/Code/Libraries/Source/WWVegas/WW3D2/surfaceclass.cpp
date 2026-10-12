@@ -213,34 +213,53 @@ void Convert_Pixel(unsigned char * pixel,const SurfaceClass::SurfaceDescription 
 **                             SurfaceClass
 *************************************************************************/
 SurfaceClass::SurfaceClass(unsigned width, unsigned height, WW3DFormat format):
-	D3DSurface(NULL),
+	VulkanSurface(NULL),
 	SurfaceFormat(format)
 {
 	WWASSERT(width);
 	WWASSERT(height);
-	D3DSurface = DX8Wrapper::_Create_DX8_Surface(width, height, format);
+	// Create VkTexture-backed surface
+	VulkanSurface = new VkTexture();
+	unsigned byteSize = width * height * 4;  // RGBA 8888 estimate
+	bool created = VulkanSurface->Create(&VulkanDevice::Instance(), byteSize,
+		VK_IMAGE_TYPE_2D, VulkanSurface->TranslateFormat(format),
+		VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+	WWASSERT(created);
 }
 
 SurfaceClass::SurfaceClass(const char *filename):
-	D3DSurface(NULL)
+	VulkanSurface(NULL)
 {
-	D3DSurface = DX8Wrapper::_Create_DX8_Surface(filename);
-	SurfaceDescription desc;
-	Get_Description(desc);
-	SurfaceFormat=desc.Format;
+	// TODO: Load VkTexture from file (DDS support)
+	// For now create blank surface
+	VulkanSurface = new VkTexture();
+	unsigned byteSize = 64 * 64 * 4;  // fallback size
+	bool created = VulkanSurface->Create(&VulkanDevice::Instance(), byteSize,
+		VK_IMAGE_TYPE_2D, VK_FORMAT_R8G8B8A8_UNORM,
+		VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+	WWASSERT(created);
+	// TODO: Read surface description from file
+	SurfaceFormat = WW3D_FORMAT_UNKNOWN;
 }
 
 SurfaceClass::SurfaceClass(IDirect3DSurface8 *d3d_surface)	:
-	D3DSurface (NULL)
+	VulkanSurface(NULL)
 {
-	Attach (d3d_surface);
-	SurfaceDescription desc;
-	Get_Description(desc);
-	SurfaceFormat=desc.Format;
+	// Attach to existing D3D surface for backward compat, also create VkTexture
+	Attach(VulkanSurface);  // Will store D3D surface info if needed
+	// TODO: Copy surface description from d3d_surface
+	SurfaceFormat = WW3D_FORMAT_UNKNOWN;
 }
 
 SurfaceClass::~SurfaceClass(void)
 {
+	// Clean up VkTexture first
+	if (VulkanSurface) {
+		VulkanSurface->Destroy();
+		delete VulkanSurface;
+		VulkanSurface = NULL;
+	}
+	// Clean up D3DSurface if still present (backward compat)
 	if (D3DSurface) {
 		D3DSurface->Release();
 		D3DSurface = NULL;
@@ -249,12 +268,16 @@ SurfaceClass::~SurfaceClass(void)
 
 void SurfaceClass::Get_Description(SurfaceDescription &surface_desc)
 {
-	D3DSURFACE_DESC d3d_desc;
-	::ZeroMemory(&d3d_desc, sizeof(D3DSURFACE_DESC));
-	DX8_ErrorCode(D3DSurface->GetDesc(&d3d_desc));
-	surface_desc.Format = D3DFormat_To_WW3DFormat(d3d_desc.Format);
-	surface_desc.Height = d3d_desc.Height;
-	surface_desc.Width = d3d_desc.Width;
+	if (VulkanSurface) {
+		surface_desc.Format = VulkanSurface->GetFormat();
+		surface_desc.Width = VulkanSurface->GetWidth();
+		surface_desc.Height = VulkanSurface->GetHeight();
+	} else {
+		// Fallback
+		surface_desc.Format = WW3D_FORMAT_UNKNOWN;
+		surface_desc.Width = 0;
+		surface_desc.Height = 0;
+	}
 }
 
 void * SurfaceClass::Lock(int * pitch)
@@ -268,7 +291,12 @@ void * SurfaceClass::Lock(int * pitch)
 
 void SurfaceClass::Unlock(void)
 {
-	DX8_ErrorCode(D3DSurface->UnlockRect());
+	if (VulkanSurface) {
+		vkUnmapMemory(VulkanDevice::Instance().GetDevice(),
+			VulkanSurface->GetMemory());
+	} else {
+		DX8_ErrorCode(D3DSurface->UnlockRect());
+	}
 }
 
 /***********************************************************************************************
