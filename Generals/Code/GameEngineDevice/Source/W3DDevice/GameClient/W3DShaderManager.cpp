@@ -1098,15 +1098,15 @@ Int ShroudTextureShader::set(Int stage)
 	W3DShroud *shroud;
 	if ((shroud=TheTerrainRenderObject->getShroud()) != 0)
 	{	///@todo: All this code really only need to be done once per camera/view.  Find a way to optimize it out.
-		D3DXMATRIX inv;
+// D3DXMATRIX inv - handled by Vulkan uniform buffers
 		float det;
 
 		Matrix4 curView;
 		DX8Wrapper::_Get_DX8_Transform(D3DTS_VIEW, curView);
 
-		D3DXMatrixInverse(&inv, &det, (D3DXMATRIX*)&curView);
+// D3DXMatrixInverse - handled by Vulkan uniform buffers
 
-		D3DXMATRIX scale,offset;
+// D3DXMATRIX scale,offset - handled by Vulkan uniform buffers
 
 		//We need to make all world coordinates be relative to the heightmap data origin since that
 		//is where the shroud begins.
@@ -1200,7 +1200,7 @@ Int MaskTextureShader::set(Int pass)
 	float det;
 
 	//Get inverse view matrix so we can transform camera space points back to world space
-	D3DXMatrixInverse(&inv, &det, (D3DXMATRIX*)&curView);
+// D3DXMatrixInverse - handled by Vulkan uniform buffers
 
 // D3DXMATRIX scale,offset,offsetTextureCenter - handled by Vulkan uniform buffers
 	Coord3D centerPos;
@@ -1233,11 +1233,11 @@ Int MaskTextureShader::set(Int pass)
 		Real heightScale = 1.0f/(worldTexelHeight*128.0f);
 	// Scale matrix - handled by Vulkan uniform buffers
 // D3DXMatrixScaling(&scale, widthScale, heightScale, 1);
-		*((D3DXMATRIX *)&curView) = ((inv * offset) * scale)*offsetTextureCenter;
+// CurView matrix from Vulkan uniform buffers - previously D3DXMATRIX operations
 	}
 	else
 	{	D3DXMatrixScaling(&scale, 0, 0, 1);	//scaling by 0 will set uv coordinates to 0,0
-		*((D3DXMATRIX *)&curView) = ((inv * offset) * scale);
+// CurView matrix from Vulkan uniform buffers
 	}
 
 	DX8Wrapper::_Set_DX8_Transform(D3DTS_TEXTURE0, *((Matrix4*)&curView));
