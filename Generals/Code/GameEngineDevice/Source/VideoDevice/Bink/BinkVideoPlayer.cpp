@@ -187,7 +187,7 @@ void	BinkVideoPlayer::regainFocus( void )
 // BinkVideoPlayer::createStream
 //============================================================================
 
-VideoStreamInterface* BinkVideoPlayer::createStream( // HBINK - replaced with AVFormatContext* (FFmpeg) handle )
+VideoStreamInterface* BinkVideoPlayer::createStream( // HBINK - replaced with AVFormatContext* (FFmpeg emulation placeholder) handle )
 {
 
 	if ( handle == NULL )
@@ -233,8 +233,7 @@ VideoStreamInterface*	BinkVideoPlayer::open( AsciiString movieTitle )
 		{
 			char filePath[ _MAX_PATH ];
 			sprintf( filePath, "%s%s\\%s.%s", TheGlobalData->m_modDir.str(), VIDEO_PATH, pVideo->m_filename.str(), VIDEO_EXT );
-			// HBINK - replaced with AVFormatContext* (FFmpeg) handle = #ifdef INCLUDE_BINK_EMULATION
-// Bink video playback emulation using FFmpeg
+			// HBINK - replaced with AVFormatContext* (FFmpeg emulation placeholder) handle = // Bink video playback emulation using FFmpeg (placeholder - full impl needed)
 // BinkOpen - would call Bink SDK function
 // Would open Bink video file and initialize decoding
 #endif
@@ -249,8 +248,7 @@ VideoStreamInterface*	BinkVideoPlayer::open( AsciiString movieTitle )
 
 		char localizedFilePath[ _MAX_PATH ];
 		sprintf( localizedFilePath, VIDEO_LANG_PATH_FORMAT, GetRegistryLanguage().str(), pVideo->m_filename.str(), VIDEO_EXT );
-		// HBINK - replaced with AVFormatContext* (FFmpeg) handle = #ifdef INCLUDE_BINK_EMULATION
-// Bink video playback emulation using FFmpeg
+		// HBINK - replaced with AVFormatContext* (FFmpeg emulation placeholder) handle = // Bink video playback emulation using FFmpeg (placeholder - full impl needed)
 // BinkOpen - would call Bink SDK function
 // Would open Bink video file and initialize decoding
 #endif
@@ -261,8 +259,7 @@ VideoStreamInterface*	BinkVideoPlayer::open( AsciiString movieTitle )
 		{
 			char filePath[ _MAX_PATH ];
 			sprintf( filePath, "%s\\%s.%s", VIDEO_PATH, pVideo->m_filename.str(), VIDEO_EXT );
-			handle = #ifdef INCLUDE_BINK_EMULATION
-// Bink video playback emulation using FFmpeg
+			handle = // Bink video playback emulation using FFmpeg (placeholder - full impl needed)
 // BinkOpen - would call Bink SDK function
 // Would open Bink video file and initialize decoding
 #endif
@@ -334,8 +331,7 @@ BinkVideoStream::~BinkVideoStream()
 {
 	if ( m_handle != NULL )
 	{
-		#ifdef INCLUDE_BINK_EMULATION
-// Bink video playback emulation using FFmpeg
+		// Bink video playback emulation using FFmpeg (placeholder - full impl needed)
 // BinkClose - would close Bink video and free resources
 #endif
 // FFmpeg emulation:

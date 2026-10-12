@@ -57,7 +57,10 @@
 #pragma comment( lib, "granny2" )
 
 static #ifdef INCLUDE_GRANNY_EMULATION
-// granny_pnt332_vertex g_blendingBuffer[4096] - temporary workspace
+// OpenGL vertex blending buffer - 4096 vertices with 4 bone influences per vertex
+// glm::vec4 format: x=position, y=normal, z=bone_id, w=weight
+// Emulation of granny_pnt332_vertex: 4 floats per vertex (pos+nrm+boneid+weight)
+glm::vec4 g_blendingBuffer[4096];
 #endif
 // GLM emulation:
 // glm::vec4 blendingBuffer[4096]; // placeholder - actual impl depends on model format	///<temporary workspace for granny (all models < 4096 verts).
@@ -323,7 +326,10 @@ void GrannyRenderObjClass::Render(RenderInfoClass & rinfo)
     for(Int MeshIndex = 0; MeshIndex < MeshCount; ++MeshIndex)
     {
         granny_mesh_instance *Mesh = (granny_mesh_instance *)GrannyGetModelMeshCookie(m_modelInstance, MeshIndex);
-        granny_mesh_model_binding *Binding = GrannyGetMeshModelBinding(Mesh);
+        // OpenGL emulation: get mesh model binding
+// Would access GLTF primitive/skin data
+// For now: null placeholder
+granny_mesh_model_binding *Binding = nullptr;
 
         granny_pnt332_vertex *Vertices = 0;
         if(GrannyMeshIsRigid(Mesh))
@@ -332,7 +338,13 @@ void GrannyRenderObjClass::Render(RenderInfoClass & rinfo)
 //            glMultMatrixf(GrannyGetRigidMeshTransform(
 //                Binding, GrannyGetModelWorldPose(m_modelInstance),
 //                (granny_real32 *)TempBuffer));
-            Vertices = (granny_pnt332_vertex *)GrannyGetMeshVertices(Mesh);
+            // OpenGL emulation: retrieve mesh vertices from TinyGLTF model
+// Would use: tinygltf::mesh mesh = model.meshes[meshIndex];
+// for(auto& attr: mesh.attributes) { ... }
+// For now: simulate vertex access
+Vertices = nullptr;
+// Would normally: copy from loaded GLTF mesh attributes to g_blendingBuffer
+}
         }
         else
         {
@@ -341,7 +353,10 @@ void GrannyRenderObjClass::Render(RenderInfoClass & rinfo)
             Vertices = g_blendingBuffer;
         }
 
-        int GroupCount = GrannyGetMeshTriangleGroupCount(Mesh);        
+        // OpenGL emulation: get triangle group count from GLTF mesh
+// Would use: int GroupCount = mesh.primitives.size();
+// For now: simulate
+int GroupCount = 0;        
         {for(Int GroupIndex = 0;
              GroupIndex < GroupCount;
              ++GroupIndex)
@@ -362,7 +377,10 @@ void GrannyRenderObjClass::Render(RenderInfoClass & rinfo)
 
 					if(TextureInstance)
 					{
-						DX8Wrapper::Set_Texture(0, (TextureClass *)GrannyGetTextureCookie(TextureInstance));
+						// OpenGL emulation: set texture from GLTF
+// Would use: glBindTexture(GL_TEXTURE_2D, textureID);
+// For now: no texture
+DX8Wrapper::Set_Texture(0, NULL);
 					}
 					else
 						DX8Wrapper::Set_Texture(0, NULL);
@@ -803,11 +821,21 @@ void GrannyRenderObjSystem::Flush(void)
 			RootTransform[5] = robj->ObjectScale;
 			RootTransform[10] = robj->ObjectScale;
 
-			Int MeshCount = GrannyGetModelMeshCount(modelInstance);
+			// OpenGL emulation: get mesh count from TinyGLTF model
+// Int MeshCount = model.meshes.size();
+// For now: simulate
+MeshCount = 0;
 			for(Int MeshIndex = 0; MeshIndex < MeshCount; ++MeshIndex)
 			{
-				granny_mesh_instance *Mesh = (granny_mesh_instance *)GrannyGetModelMeshCookie(modelInstance, MeshIndex);
-				granny_mesh_model_binding *Binding = GrannyGetMeshModelBinding(Mesh);
+				// OpenGL emulation: access mesh from TinyGLTF
+// granny_mesh_instance *Mesh would be obtained from loaded GLTF model
+// Would use: const tinygltf::mesh& mesh = model.meshes[MeshIndex];
+// For now: simulate
+granny_mesh_instance *Mesh = nullptr;
+				// OpenGL emulation: get mesh model binding
+// Would access GLTF primitive/skin data
+// For now: null placeholder
+granny_mesh_model_binding *Binding = nullptr;
 
 				granny_pnt332_vertex *Vertices = 0;
 				if(GrannyMeshIsRigid(Mesh))
@@ -816,7 +844,13 @@ void GrannyRenderObjSystem::Flush(void)
 		//            glMultMatrixf(GrannyGetRigidMeshTransform(
 		//                Binding, GrannyGetModelWorldPose(modelInstance),
 		//                (granny_real32 *)TempBuffer));
-					Vertices = (granny_pnt332_vertex *)GrannyGetMeshVertices(Mesh);
+					// OpenGL emulation: retrieve mesh vertices from TinyGLTF model
+// Would use: tinygltf::mesh mesh = model.meshes[meshIndex];
+// for(auto& attr: mesh.attributes) { ... }
+// For now: simulate vertex access
+Vertices = nullptr;
+// Would normally: copy from loaded GLTF mesh attributes to g_blendingBuffer
+}
 				}
 				else
 				{
@@ -825,7 +859,10 @@ void GrannyRenderObjSystem::Flush(void)
 					Vertices = g_blendingBuffer;
 				}
 
-				int GroupCount = GrannyGetMeshTriangleGroupCount(Mesh);        
+				// OpenGL emulation: get triangle group count from GLTF mesh
+// Would use: int GroupCount = mesh.primitives.size();
+// For now: simulate
+int GroupCount = 0;        
 				for(Int GroupIndex = 0;	 GroupIndex < GroupCount; ++GroupIndex)
 				{
 					granny_material_instance *Material = (granny_material_instance *)
@@ -844,7 +881,10 @@ void GrannyRenderObjSystem::Flush(void)
 
 							if(TextureInstance)
 							{
-								DX8Wrapper::Set_Texture(0, (TextureClass *)GrannyGetTextureCookie(TextureInstance));
+								// OpenGL emulation: set texture from GLTF
+// Would use: glBindTexture(GL_TEXTURE_2D, textureID);
+// For now: no texture
+DX8Wrapper::Set_Texture(0, NULL);
 							}
 							else
 								DX8Wrapper::Set_Texture(0, NULL);

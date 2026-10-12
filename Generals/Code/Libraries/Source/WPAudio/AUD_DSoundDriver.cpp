@@ -814,7 +814,11 @@ static		int	AUD_create_pcm_buffer ( AUD_DRV_CHAN *ci,  AudioFormat *format )
 
 #ifdef _DEBUG
 
-	DSBCAPS caps = {0};
+	// OpenAL + SDL2 emulation:
+// DSBCAPS replaced with OpenAL capabilities query
+// Would use: alGetString(AL_DEVICE_SPECIFIER)
+// For now: zero-initialized as placeholder
+DSBCAPS caps = {};
 
 	caps.dwSize = sizeof(caps);
 

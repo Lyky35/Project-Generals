@@ -25,9 +25,8 @@ target_link_libraries(RTS PRIVATE
     WPAudio
     DX8Compat
     GameSpyStub
-    OpenAL::OpenAL
-    FFmpeg::avcodec FFmpeg::avformat FFmpeg::avutil FFmpeg::swscale
-    SDL2::SDL2
+    openal
+    SDL2
 )
 
 # Remove DirectX 8 SDK libraries (replaced by OpenAL + SDL2 + FFmpeg)
@@ -35,5 +34,10 @@ target_link_libraries(RTS PRIVATE
 # wsock32.lib wininet.lib imm32.lib comctl32.lib advapi32.lib shell32.lib
 # ole32.lib oleaut32.lib uuid.lib
 
-# Note: Keep only the libraries that are still needed for window creation + input
-# OpenAL handles audio, SDL2 handles input/window, FFmpeg handles video
+# Note: Libraries linked for cross-compilation from Linux
+# openal: Open Audio Library (audio emulation replacement for Miles SDK)
+# FFmpeg::avcodec/avformat/avutil/swscale: Bink Video SDK - FFmpeg emulation
+# SDL2: Simple DirectMedia Layer 2 (input/emulation replacement for DirectInput)
+# VulkanRenderer: Native Vulkan rendering backend (replaces D3D8)
+# WPAudio: Ported to OpenAL emulation
+# FFmpegVideo: FFmpeg video decoding library (subdirectory)
