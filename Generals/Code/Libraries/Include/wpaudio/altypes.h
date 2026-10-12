@@ -4,44 +4,20 @@
 #ifndef _WPAUDIO_ALTYPES_H_
 #define _WPAUDIO_ALTYPES_H_
 
-// Prevent system header conflicts
+#include <cassert>
+#include <SDL2/SDL.h>
+
 #if defined(__MINGW32__) || defined(__MINGW64__)
+    #undef ssize_t
+    #undef time_t
+    #undef uintptr_t
     #define WPAUDIO_MINGW 1
 #endif
 
 #include <AL/al.h>
 #include <AL/alc.h>
-#include <SDL2/SDL.h>
 
-// Only define types that don't conflict with system headers
-#ifndef ssize_t
-    #if defined(WPAUDIO_MINGW)
-        typedef long long ssize_t;
-    #else
-        typedef ssize_t ssize_t;
-    #endif
-#endif
-
-#ifndef time_t
-    #if defined(WPAUDIO_MINGW)
-        typedef long long time_t;
-    #else
-        typedef time_t time_t;
-    #endif
-#endif
-
-// OpenAL types emulation
-typedef ALenum ALCenum;
-typedef ALboolean ALCboolean;
-typedef ALchar ALCchar;
-typedef ALvoid ALCvoid;
-typedef ALshort ALCshort;
-typedef ALint ALCint;
-typedef ALfloat ALCfloat;
-typedef ALdouble ALCdouble;
-typedef ALuint ALCuint;
-
-// SDL types emulation
+// Type definitions that match original project but avoid system conflicts
 typedef Sint8 S8;
 typedef Sint16 S16;
 typedef Sint32 S32;
@@ -50,42 +26,43 @@ typedef Uint16 U16;
 typedef Uint32 U32;
 typedef Uint64 U64;
 
-// Fixed-point types emulation
-typedef S32 FIXED;
-typedef U32 FRAC;
+// Fixed-point types
+typedef Sint32 FIXED;
+typedef Uint32 FRAC;
 
 // DS3D types emulation (replaced with OpenAL)
 typedef ALboolean DSCAPS2;
 typedef ALboolean DS3DALCAPS;
+typedef ALboolean DSCAPS3D;
 
-// Buffer capabilities emulation
+// Buffer capabilities
 typedef struct {
     ALboolean fVcmPlaying;
     ALboolean fVcmRecord;
     ALboolean fCanPlay;
 } DSBCAPS;
 
-// Waveform format emulation (replaced with OpenAL format)
+// Waveform format
 typedef struct {
-    U16 wFormatTag;
-    U16 nChannels;
-    U32 nSamplesPerSec;
-    U32 nAvgBytesPerSec;
-    U16 nBlockAlign;
-    U16 wBitsPerSample;
-    U16 cbSize;
+    Uint16 wFormatTag;
+    Uint16 nChannels;
+    Uint32 nSamplesPerSec;
+    Uint32 nAvgBytesPerSec;
+    Uint16 nBlockAlign;
+    Uint16 wBitsPerSample;
+    Uint16 cbSize;
 } DSBFORMAT;
 
-// Primary buffer emulation
+// Primary buffer
 typedef struct {
-    ALuint dwFlags;
-    ALuint dwBufferLength;
-    ALuint dwUnused;
-    ALuint dwPlaybackPosition;
-    ALuint dwCurrentPosition;
+    Uint32 dwFlags;
+    Uint32 dwBufferLength;
+    Uint32 dwUnused;
+    Uint32 dwPlaybackPosition;
+    Uint32 dwCurrentPosition;
 } DSBCAPS2;
 
-// 3D audio emulation (replaced with OpenAL)
+// 3D audio
 typedef struct {
     ALboolean dwFlags;
     ALfloat lMix;
@@ -93,16 +70,53 @@ typedef struct {
     ALfloat fDim;
 } DSCAPS3D;
 
-// Emulation: OpenAL device context
+// OpenAL context
 typedef struct {
     ALCdevice *device;
     ALCcontext *context;
 } ALCcontext_settings;
 
-// Emulation: Default audio format
+// Defaults
 #define AUF_DEFAULT_FORMAT (AL_FORMAT_STEREO_16)
+#define AUF_DEFAULT_BUFFER_SIZE (44100 * 2)
 
-// Emulation: Default buffer size
-#define AUF_DEFAULT_BUFFER_SIZE (44100 * 2) // 2 seconds at 44.1kHz stereo
+// Boolean
+#define TRUE 1
+#define FALSE 0
+
+// DBG macros
+#define DBG_ASSERT(x) assert(x)
+#define DBG_ASSERT_TYPE(ptr, type) assert(ptr)
+#define DBG_SET_TYPE(ptr, type)
+#define DBG_MSGASSERT(cond, msg) assert(cond)
+
+// Flags
+#define FLAGS_SET(flags, bit) ((flags) |= (bit))
+#define FLAGS_CLEAR(flags, bit) ((flags) &= ~(bit))
+#define FLAGS_TEST(flags, bit) ((flags) & (bit))
+
+// Error codes
+#define vNO_ERROR AL_NO_ERROR
+
+// Audio control status flags
+#define mAUDIO_CTRL_PLAYING 0x0001
+#define mAUDIO_CTRL_PAUSED  0x0002
+#define mAUDIO_CTRL_LOOPED  0x0004
+
+// Priorities
+#define AUD_LOW_PRIORITY 0
+#define AUD_NORMAL_PRIORITY 1
+#define AUD_HIGH_PRIORITY 2
+
+// Boolean
+#define TRUE 1
+#define FALSE 0
+
+// DBG macros
+#define DBG_ASSERT(x) assert(x)
+#define DBG_ASSERT_TYPE(ptr, type) assert(ptr)
+#define DBG_SET_TYPE(ptr, type)
+#define DBG_MSGASSERT(cond, msg) assert(cond)
+#define DBG_MSGASSERT_TYPE(cond, msg, type) assert(cond)
 
 #endif // _WPAUDIO_ALTYPES_H_

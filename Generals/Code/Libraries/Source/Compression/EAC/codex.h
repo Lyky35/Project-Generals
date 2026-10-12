@@ -5,9 +5,12 @@
 
 #include "Lib/basetype.h"
 
+typedef int (*CompressFunc)(void *dest, int *destLen, const void *source, int sourceLen);
+typedef int (*DecompressFunc)(void *dest, int *destLen, const void *source, int sourceLen);
+
 typedef struct {
-    int (*Compress)(void *dest, int *destLen, const void *source, int sourceLen);
-    int (*Decompress)(void *dest, int *destLen, const void *source, int sourceLen);
+    CompressFunc Compress;
+    DecompressFunc Decompress;
 } Codex;
 
 extern Codex g_CodexTable[];

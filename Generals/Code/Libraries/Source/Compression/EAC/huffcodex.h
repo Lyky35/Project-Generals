@@ -10,4 +10,11 @@ extern Codex g_HuffCodex;
 int HUFF_encode(void *dest, int *destLen, const void *source, int sourceLen);
 int HUFF_decode(void *dest, int *destLen, const void *source, int sourceLen);
 
+typedef struct {
+    const char *name;
+    const char *version;
+} CODEXABOUT;
+
+extern CODEXABOUT CODEXABOUT;
+
 #endif // __EAC_HUFFCODEX_H__

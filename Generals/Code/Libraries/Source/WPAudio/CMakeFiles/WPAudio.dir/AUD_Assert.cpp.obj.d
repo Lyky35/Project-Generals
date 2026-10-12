@@ -34,11 +34,15 @@ Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.obj
  /usr/include/bits/types/timer_t.h \
  /usr/include/bits/types/struct_itimerspec.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/altypes.h \
- /usr/include/AL/al.h /usr/include/AL/alc.h /usr/include/SDL2/SDL.h \
- /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
- /usr/include/SDL2/SDL_config.h /usr/include/SDL2/SDL_platform.h \
- /usr/include/SDL2/begin_code.h /usr/include/SDL2/close_code.h \
- /usr/include/SDL2/SDL_config_windows.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/cassert \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/x86_64-w64-mingw32/bits/c++config.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/x86_64-w64-mingw32/bits/os_defines.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/pstl/pstl_config.h \
+ /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
+ /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_config.h \
+ /usr/include/SDL2/SDL_platform.h /usr/include/SDL2/begin_code.h \
+ /usr/include/SDL2/close_code.h /usr/include/SDL2/SDL_config_windows.h \
  /usr/x86_64-w64-mingw32/include/winsdkver.h \
  /usr/x86_64-w64-mingw32/include/winapifamily.h \
  /usr/x86_64-w64-mingw32/include/sdkddkver.h /usr/include/stdint.h \
@@ -201,4 +205,4 @@ Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.obj
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_shape.h \
  /usr/include/SDL2/SDL_system.h /usr/include/SDL2/SDL_timer.h \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
- /usr/include/SDL2/SDL_misc.h
+ /usr/include/SDL2/SDL_misc.h /usr/include/AL/al.h /usr/include/AL/alc.h

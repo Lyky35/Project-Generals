@@ -1,7 +1,16 @@
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.obj: \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Attributes.cpp \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/altypes.h \
- /usr/include/AL/al.h /usr/include/AL/alc.h /usr/include/SDL2/SDL.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/cassert \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/x86_64-w64-mingw32/bits/c++config.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/x86_64-w64-mingw32/bits/os_defines.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/pstl/pstl_config.h \
+ /usr/include/assert.h /usr/include/features.h \
+ /usr/include/features-time64.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/timesize.h /usr/include/stdc-predef.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/long-double.h \
+ /usr/include/gnu/stubs.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
  /usr/include/SDL2/SDL_config.h /usr/include/SDL2/SDL_platform.h \
  /usr/include/SDL2/begin_code.h /usr/include/SDL2/close_code.h \
@@ -20,11 +29,7 @@ Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/stdarg.h \
  /usr/x86_64-w64-mingw32/include/stdarg.h \
  /usr/x86_64-w64-mingw32/include/_mingw_stdarg.h /usr/include/stdint.h \
- /usr/include/bits/libc-header-start.h /usr/include/features.h \
- /usr/include/features-time64.h /usr/include/bits/wordsize.h \
- /usr/include/bits/timesize.h /usr/include/stdc-predef.h \
- /usr/include/sys/cdefs.h /usr/include/bits/long-double.h \
- /usr/include/gnu/stubs.h /usr/include/bits/types.h \
+ /usr/include/bits/libc-header-start.h /usr/include/bits/types.h \
  /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
  /usr/include/bits/wchar.h /usr/include/bits/stdint-intn.h \
  /usr/include/bits/stdint-uintn.h /usr/include/bits/stdint-least.h \
@@ -195,6 +200,6 @@ Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_shape.h \
  /usr/include/SDL2/SDL_system.h /usr/include/SDL2/SDL_timer.h \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
- /usr/include/SDL2/SDL_misc.h \
+ /usr/include/SDL2/SDL_misc.h /usr/include/AL/al.h /usr/include/AL/alc.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/level.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/attributes.h

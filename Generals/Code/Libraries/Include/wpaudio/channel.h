@@ -13,6 +13,14 @@ struct AudioFormat;
 struct AudioDevice;
 struct AudioDriver;
 
+// Audio frame for streaming
+typedef struct AudioFrame {
+    AudioSample *sample;
+    void *Data;
+    ALuint Bytes;
+    ALuint sample_index;
+} AudioFrame;
+
 // Audio channel
 typedef struct AudioChannel {
     // Linked list node
@@ -53,11 +61,13 @@ typedef struct AudioChannel {
     AudioAttribs *CompAttribs;
     AudioAttribs *FadeAttribs;
     
+    // Streaming frame
+    AudioFrame *frame;
+    void *frameData;
     int bytesInFrame;
     int bytesRemaining;
-    void *frameData;
     
-    // Callbacks
+    // User callbacks
     void (*CB_NextFrame)(struct AudioChannel*);
     void (*CB_NextSample)(struct AudioChannel*);
     void (*CB_SampleDone)(struct AudioChannel*);

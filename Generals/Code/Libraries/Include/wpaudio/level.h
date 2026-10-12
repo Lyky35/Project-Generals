@@ -3,27 +3,28 @@
 
 #include <wpaudio/altypes.h>
 
-// Audio level/mixing
+// Audio level structure
 typedef struct {
-    float masterVolume;
-    float musicVolume;
-    float sfxVolume;
-    float voiceVolume;
-} AudioLevels;
+    int current;
+    int target;
+    int duration;
+    int elapsed;
+    int min;
+    int max;
+} AudioLevel;
 
-static inline AudioLevels* Levels_Create() {
-    AudioLevels *lvl = (AudioLevels*)malloc(sizeof(AudioLevels));
-    if (lvl) {
-        lvl->masterVolume = 1.0f;
-        lvl->musicVolume = 0.8f;
-        lvl->sfxVolume = 1.0f;
-        lvl->voiceVolume = 1.0f;
-    }
-    return lvl;
-}
+// Audio level constants
+#define AUDIO_VOLUME_MAX 1000
+#define AUDIO_PAN_CENTER 0
 
-static inline void Levels_Destroy(AudioLevels *lvl) {
-    if (lvl) free(lvl);
-}
+// Function declarations
+void AudioLevelInit(int *level, int max);
+int AudioLevelChanged(int *level);
+void AudioLevelUpdate(int *level);
+void AudioLevelSet(int *level, int value);
+int AudioLevelApply(int *level, int value);
+int AudioLevelGet(int *level);
+
+#define SECONDS(x) ((x) * 1000)
 
 #endif

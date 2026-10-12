@@ -81,7 +81,24 @@ private:
 	VkPipelineCache m_pipelineCache; // Vulkan pipeline cache handle
 	VkVertexLayoutDesc m_vertexLayout;
 	
+	// Shader modules
+	VkShaderModule m_vertModule;
+	VkShaderModule m_fragModule;
+	
+	// Descriptor set layouts
+	VkDescriptorSetLayout m_textureSetLayout;
+	VkDescriptorSetLayout m_frameSetLayout;
+	
+	// Pipeline layout
+	VkPipelineLayout m_pipelineLayout;
+	
 	// Helper functions
 	uint32_t FanToList(const uint16_t *fanIndices, uint32_t fanCount, uint16_t *outList);
 	VkPipeline_T* BuildPipeline(const VkPipelineState &state);
+	VkShaderModule LoadModule(const char *path);
+	bool CreateDescriptorLayouts();
+	bool CreatePipelineLayout();
+	VkVertexLayoutDesc GetVertexLayout(uint32_t fvf, uint32_t fvfSize, uint32_t normalOffset, uint32_t diffuseOffset, uint32_t uv0Offset, uint32_t uv1Offset);
+	VkVertexLayoutDesc GetVertexLayout(uint32_t fvf, uint32_t fvfSize);
+	void ClearPipelineCache();
 };
