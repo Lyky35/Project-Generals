@@ -7,11 +7,16 @@ bool VkPipelineState::operator==(const VkPipelineState &other) const
 {
 	return tex0Op == other.tex0Op && tex1Op == other.tex1Op &&
 		alphaTest == other.alphaTest && fog == other.fog &&
-		lighting == other.lighting && cullMode == other.cullMode &&
+		lighting == other.lighting && alphaFunc == other.alphaFunc && cullMode == other.cullMode &&
 		fillMode == other.fillMode && depthTest == other.depthTest &&
 		depthWrite == other.depthWrite && depthCompare == other.depthCompare &&
 		blendEnable == other.blendEnable && srcBlend == other.srcBlend &&
-		dstBlend == other.dstBlend && topology == other.topology &&
+		dstBlend == other.dstBlend && colorWriteMask == other.colorWriteMask &&
+		stencilEnable == other.stencilEnable && stencilFailOp == other.stencilFailOp &&
+		stencilPassOp == other.stencilPassOp && stencilDepthFailOp == other.stencilDepthFailOp &&
+		stencilCompare == other.stencilCompare && stencilRef == other.stencilRef &&
+		stencilReadMask == other.stencilReadMask && stencilWriteMask == other.stencilWriteMask &&
+		topology == other.topology &&
 		vertexFVF == other.vertexFVF && vertexSize == other.vertexSize &&
 		normalOffset == other.normalOffset && diffuseOffset == other.diffuseOffset &&
 		uv0Offset == other.uv0Offset && uv1Offset == other.uv1Offset;
@@ -330,6 +335,31 @@ static VkBlendFactor TranslateBlend(uint32_t blend)
 	return VK_BLEND_FACTOR_ONE;
 }
 
+static VkStencilOp TranslateStencilOp(uint32_t op)
+{
+	switch (op) {
+	case 1:
+		return VK_STENCIL_OP_KEEP;
+	case 2:
+		return VK_STENCIL_OP_ZERO;
+	case 3:
+		return VK_STENCIL_OP_REPLACE;
+	case 4:
+		return VK_STENCIL_OP_INCREMENT_AND_CLAMP;
+	case 5:
+		return VK_STENCIL_OP_DECREMENT_AND_CLAMP;
+	case 6:
+		return VK_STENCIL_OP_INVERT;
+	case 7:
+		return VK_STENCIL_OP_INCREMENT_AND_WRAP;
+	case 8:
+		return VK_STENCIL_OP_DECREMENT_AND_WRAP;
+	default:
+		break;
+	}
+	return VK_STENCIL_OP_KEEP;
+}
+
 static VkPrimitiveTopology TranslateTopology(uint32_t topology)
 {
 	switch (topology) {
@@ -349,6 +379,16 @@ static VkPrimitiveTopology TranslateTopology(uint32_t topology)
 		break;
 	}
 	return VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+}
+
+void VkShaderManager::ClearPipelineCache()
+{
+	if (!m_device)
+		return;
+	VkDevice dev = m_device->GetDevice();
+	for (auto &entry : m_pipelineCache)
+		vkDestroyPipeline(dev, entry.second, nullptr);
+	m_pipelineCache.clear();
 }
 
 VkPipeline VkShaderManager::GetPipeline(const VkPipelineState &state)
@@ -376,7 +416,7 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	VkSpecializationMapEntry specEntries[6];
 	int32_t specValues[6] = {
 		state.tex0Op, state.tex1Op, state.alphaTest,
-		state.fog, state.lighting, 0
+		state.fog, state.lighting, state.alphaFunc
 	};
 	for (int i = 0; i < 6; i++) {
 		specEntries[i].constantID = (uint32_t)i;
@@ -408,23 +448,15 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	inputAssembly.topology = TranslateTopology(state.topology);
 	inputAssembly.primitiveRestartEnable = VK_FALSE;
 
-	VkViewport viewport = {};
-	viewport.x = 0.0f;
-	viewport.y = 0.0f;
-	viewport.width = (float)m_device->GetSwapExtent().width;
-	viewport.height = (float)m_device->GetSwapExtent().height;
-	viewport.minDepth = 0.0f;
-	viewport.maxDepth = 1.0f;
-	VkRect2D scissor = {};
-	scissor.offset.x = 0;
-	scissor.offset.y = 0;
-	scissor.extent = m_device->GetSwapExtent();
 	VkPipelineViewportStateCreateInfo viewportState = {};
 	viewportState.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
 	viewportState.viewportCount = 1;
-	viewportState.pViewports = &viewport;
 	viewportState.scissorCount = 1;
-	viewportState.pScissors = &scissor;
+	VkDynamicState dynamicStates[] = { VK_DYNAMIC_STATE_VIEWPORT, VK_DYNAMIC_STATE_SCISSOR };
+	VkPipelineDynamicStateCreateInfo dynamicState = {};
+	dynamicState.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
+	dynamicState.dynamicStateCount = 2;
+	dynamicState.pDynamicStates = dynamicStates;
 
 	VkPipelineRasterizationStateCreateInfo rasterizer = {};
 	rasterizer.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
@@ -442,6 +474,15 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	depthStencil.depthTestEnable = state.depthTest ? VK_TRUE : VK_FALSE;
 	depthStencil.depthWriteEnable = state.depthWrite ? VK_TRUE : VK_FALSE;
 	depthStencil.depthCompareOp = TranslateCompare(state.depthCompare);
+	depthStencil.stencilTestEnable = state.stencilEnable ? VK_TRUE : VK_FALSE;
+	depthStencil.front.failOp = TranslateStencilOp(state.stencilFailOp);
+	depthStencil.front.passOp = TranslateStencilOp(state.stencilPassOp);
+	depthStencil.front.depthFailOp = TranslateStencilOp(state.stencilDepthFailOp);
+	depthStencil.front.compareOp = TranslateCompare(state.stencilCompare);
+	depthStencil.front.compareMask = state.stencilReadMask;
+	depthStencil.front.writeMask = state.stencilWriteMask;
+	depthStencil.front.reference = state.stencilRef;
+	depthStencil.back = depthStencil.front;
 
 	VkPipelineColorBlendAttachmentState blendAttachment = {};
 	blendAttachment.blendEnable = state.blendEnable ? VK_TRUE : VK_FALSE;
@@ -451,8 +492,11 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	blendAttachment.srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE;
 	blendAttachment.dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO;
 	blendAttachment.alphaBlendOp = VK_BLEND_OP_ADD;
-	blendAttachment.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT |
-		VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
+	blendAttachment.colorWriteMask = 0;
+	if (state.colorWriteMask & 1) blendAttachment.colorWriteMask |= VK_COLOR_COMPONENT_R_BIT;
+	if (state.colorWriteMask & 2) blendAttachment.colorWriteMask |= VK_COLOR_COMPONENT_G_BIT;
+	if (state.colorWriteMask & 4) blendAttachment.colorWriteMask |= VK_COLOR_COMPONENT_B_BIT;
+	if (state.colorWriteMask & 8) blendAttachment.colorWriteMask |= VK_COLOR_COMPONENT_A_BIT;
 	VkPipelineColorBlendStateCreateInfo blendState = {};
 	blendState.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
 	blendState.attachmentCount = 1;
@@ -466,6 +510,7 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	pipelineInfo.pVertexInputState = &vertexInput;
 	pipelineInfo.pInputAssemblyState = &inputAssembly;
 	pipelineInfo.pViewportState = &viewportState;
+	pipelineInfo.pDynamicState = &dynamicState;
 	pipelineInfo.pRasterizationState = &rasterizer;
 	pipelineInfo.pMultisampleState = &multisample;
 	pipelineInfo.pDepthStencilState = &depthStencil;

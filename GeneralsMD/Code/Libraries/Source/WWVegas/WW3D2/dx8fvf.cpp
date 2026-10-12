@@ -45,8 +45,38 @@
 
 static unsigned Get_FVF_Vertex_Size(unsigned FVF)
 {
-	return D3DXGetFVFVertexSize(FVF);
-}
+	unsigned size = 0;
+	if ((FVF & D3DFVF_XYZRHW) == D3DFVF_XYZRHW) {
+		size += 16;
+	} else if ((FVF & D3DFVF_XYZ) == D3DFVF_XYZ) {
+		size += 12;
+		unsigned posBits = FVF & D3DFVF_POSITION_MASK;
+		if (posBits >= 0x006) {
+			size += ((posBits - 4) / 2) * 4;
+			if ((FVF & D3DFVF_LASTBETA_UBYTE4) == D3DFVF_LASTBETA_UBYTE4)
+				size += 4;
+			else
+				size += 12;
+		}
+	}
+	if ((FVF & D3DFVF_NORMAL) == D3DFVF_NORMAL)
+		size += 12;
+	if ((FVF & D3DFVF_DIFFUSE) == D3DFVF_DIFFUSE)
+		size += 4;
+	if ((FVF & D3DFVF_SPECULAR) == D3DFVF_SPECULAR)
+		size += 4;
+	unsigned texCount = (FVF & D3DFVF_TEXCOUNT_MASK) >> D3DFVF_TEXCOUNT_SHIFT;
+	for (unsigned i = 0; i < texCount; i++) {
+		if ((int(FVF) & D3DFVF_TEXCOORDSIZE1(i)) == D3DFVF_TEXCOORDSIZE1(i))
+			size += 4;
+		else if ((int(FVF) & D3DFVF_TEXCOORDSIZE3(i)) == D3DFVF_TEXCOORDSIZE3(i))
+			size += 12;
+		else if ((int(FVF) & D3DFVF_TEXCOORDSIZE4(i)) == D3DFVF_TEXCOORDSIZE4(i))
+			size += 16;
+		else
+			size += 8;
+	}
+
 
 FVFInfoClass::FVFInfoClass(unsigned FVF_, unsigned vertex_size) 
 	:

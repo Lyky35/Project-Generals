@@ -18,6 +18,7 @@ layout(set = 1, binding = 0) uniform FrameData {
 	vec4 fogParams;
 	vec4 materialDiffuse;
 	vec4 miscParams;
+	vec4 tfactorColor;
 	vec4 lightDirs[4];
 	vec4 lightColors[4];
 } frame;
@@ -27,6 +28,7 @@ layout(constant_id = 1) const int TEX1_OP = 0;
 layout(constant_id = 2) const int ALPHATEST = 0;
 layout(constant_id = 3) const int FOG = 0;
 layout(constant_id = 4) const int LIGHTING = 0;
+layout(constant_id = 5) const int ALPHAFUNC = 0;
 
 vec3 applyTexOp(vec3 current, float currentAlpha, vec4 texel, int op, out float outAlpha)
 {
@@ -39,6 +41,9 @@ vec3 applyTexOp(vec3 current, float currentAlpha, vec4 texel, int op, out float 
 		return current * texel.rgb;
 	} else if (op == 3) {
 		return current + texel.rgb;
+	} else if (op == 4) {
+		outAlpha = frame.tfactorColor.a;
+		return frame.tfactorColor.rgb;
 	}
 	return current;
 }
@@ -67,8 +72,12 @@ void main()
 		color *= lit;
 	}
 
-	if (ALPHATEST == 1 && alpha < frame.miscParams.x) {
-		discard;
+	if (ALPHATEST == 1) {
+		if (ALPHAFUNC == 0 && alpha < frame.miscParams.x) {
+			discard;
+		} else if (ALPHAFUNC == 1 && alpha > frame.miscParams.x) {
+			discard;
+		}
 	}
 
 	if (FOG == 1) {

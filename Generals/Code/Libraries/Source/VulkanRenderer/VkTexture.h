@@ -33,6 +33,7 @@ public:
 	uint32_t GetMipLevels() const { return m_mips; }
 
 	static VkFormat TranslateFormat(unsigned d3dFormat);
+	bool CreateDepth(VulkanDevice *device, uint32_t width, uint32_t height);
 
 private:
 	void TransitionLayout(VkCommandBuffer cmd, VkImageLayout oldLayout, VkImageLayout newLayout,

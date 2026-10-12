@@ -341,7 +341,7 @@ public:
 	static VkTexture * _Create_Vulkan_Image(unsigned int width, unsigned int height, WW3DFormat format);
 	static VkTexture * _Create_Vulkan_Image(const char *filename);
 	static bool _Read_Front_Buffer(unsigned char *dest, unsigned *width, unsigned *height);
-	static SurfaceClass * _Get_Vulkan_Back_Buffer(unsigned int num=0);
+
 
 	static void _Copy_Vulkan_Rects(
 			VkTexture* pSourceTexture,
@@ -409,7 +409,7 @@ public:
 	**	DX8Wrapper::Set_Render_Target ((IDirect3DSurface8 *)NULL);
 	**
 	*/
-	static void *	Create_Additional_Swap_Chain (HWND render_window);
+
 
 	/*
 	** Render target interface
@@ -530,11 +530,31 @@ protected:
 	static D3DADAPTER_IDENTIFIER8		CurrentAdapterIdentifier;
 
 	static VkShaderManager				ShaderManager;
+	static bool VulkanDrawIndexed(
+		VkGpuBuffer *vb, uint32_t vbOffsetBytes, unsigned fvf, const FVFInfoClass &fvfInfo,
+		VkGpuBuffer *ib, uint32_t firstIndex, uint32_t indexCount, uint32_t vertexOffset,
+		unsigned topology);
+	static void VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf,
+		const FVFInfoClass &fvfInfo, unsigned topology);
+	static void VulkanFillFrameUniforms(VkFrameUniforms *ubo);
+	static uint32_t VulkanAllocUbo(VkFrameUniforms *ubo);
+	static void EnsureTargetPass();
+	static void EndTargetPass();
 	static VkDescriptorAllocator		DescriptorAllocator;
 	static bool								VulkanFrameOpen;
 
 	static VkTexture *						CurrentRenderTarget;
 	static bool								UsingDefaultTarget;
+	static float							ClipPlanes[6][4];
+	static Matrix4						CachedProjection;
+	static Matrix4						CachedTexTransform[8];
+	static D3DMATERIAL8					CachedMaterial;
+	static D3DVIEWPORT8					CachedViewport;
+	static bool							ViewportValid;
+	static float							GammaValue;
+	static float							BrightnessValue;
+	static float							ContrastValue;
+	static int								PolygonModeValue;
 
 	friend void DX8_Assert();
 	friend class WW3D;
@@ -562,7 +582,22 @@ WWINLINE void DX8Wrapper::_Set_DX8_Transform(D3DTRANSFORMSTATETYPE transform,con
 
 WWINLINE void DX8Wrapper::_Get_DX8_Transform(D3DTRANSFORMSTATETYPE transform, Matrix4& m)
 {
-	DX8CALL(GetTransform(transform,(D3DMATRIX*)&m));
+	switch ((int)transform) {
+	case D3DTS_WORLD:
+		m = render_state.world;
+		break;
+	case D3DTS_VIEW:
+		m = render_state.view;
+		break;
+	case D3DTS_PROJECTION:
+		m = CachedProjection;
+		break;
+	default:
+		if (transform >= D3DTS_TEXTURE0 && transform <= D3DTS_TEXTURE7) {
+			m = CachedTexTransform[transform - D3DTS_TEXTURE0];
+		}
+		break;
+	}
 }
 
 // ----------------------------------------------------------------------------
@@ -614,22 +649,19 @@ WWINLINE void DX8Wrapper::Set_DX8_Material(const D3DMATERIAL8* mat)
 	DX8_RECORD_MATERIAL_CHANGE();
 	WWASSERT(mat);
 	SNAPSHOT_SAY(("DX8 - SetMaterial\n"));
-	DX8CALL(SetMaterial(mat));
+	CachedMaterial = *mat;
 }
 
 WWINLINE void DX8Wrapper::Set_DX8_Light(int index, D3DLIGHT8* light)
 {
 	if (light) {
 		DX8_RECORD_LIGHT_CHANGE();
-		DX8CALL(SetLight(index,light));
-		DX8CALL(LightEnable(index,TRUE));
 		CurrentDX8LightEnables[index]=true;
 		SNAPSHOT_SAY(("DX8 - SetLight\n"));
 	}
 	else if (CurrentDX8LightEnables[index]) {
 		DX8_RECORD_LIGHT_CHANGE();
 		CurrentDX8LightEnables[index]=false;
-		DX8CALL(LightEnable(index,FALSE));
 		SNAPSHOT_SAY(("DX8 - DisableLight\n"));
 	}
 }
@@ -642,19 +674,23 @@ WWINLINE void DX8Wrapper::Set_DX8_Render_State(D3DRENDERSTATETYPE state, unsigne
 	SNAPSHOT_SAY(("DX8 - SetRenderState(%d,%d)\n",state,value));
 
 	RenderStates[state]=value;
-	DX8CALL(SetRenderState( state, value ));
 	DX8_RECORD_RENDER_STATE_CHANGE();
 }
 
 WWINLINE void DX8Wrapper::Set_DX8_Clip_Plane(DWORD Index, CONST float* pPlane)
 {
-	DX8CALL(SetClipPlane( Index, pPlane ));
+	if (Index < 6 && pPlane) {
+		ClipPlanes[Index][0] = pPlane[0];
+		ClipPlanes[Index][1] = pPlane[1];
+		ClipPlanes[Index][2] = pPlane[2];
+		ClipPlanes[Index][3] = pPlane[3];
+	}
 }
 
 WWINLINE void DX8Wrapper::Set_DX8_Texture_Stage_State(unsigned stage, D3DTEXTURESTAGESTATETYPE state, unsigned value)
 {
   	if (stage >= MAX_TEXTURE_STAGES)
-  	{	DX8CALL(SetTextureStageState( stage, state, value ));
+  	{
   		return;
   	}
 
@@ -664,43 +700,25 @@ WWINLINE void DX8Wrapper::Set_DX8_Texture_Stage_State(unsigned stage, D3DTEXTURE
 	SNAPSHOT_SAY(("DX8 - SetTextureStageState(%d,%d,%d)\n",stage,state,value));
 
 	TextureStageStates[stage][(unsigned int)state]=value;
-	DX8CALL(SetTextureStageState( stage, state, value ));
 	DX8_RECORD_TEXTURE_STAGE_STATE_CHANGE();
 }
 
-WWINLINE void DX8Wrapper::Set_DX8_Texture(unsigned int stage, IDirect3DBaseTexture8* texture)
+WWINLINE void DX8Wrapper::Set_Vulkan_Texture(unsigned int stage, VkTexture* texture)
 {
   	if (stage >= MAX_TEXTURE_STAGES)
-  	{	DX8CALL(SetTexture(stage, texture));
+  	{
   		return;
   	}
 
-	if (Textures[stage]==texture) return;
+	if (BoundTextures[stage]==texture) return;
 
 	SNAPSHOT_SAY(("DX8 - SetTexture(%x) \n",texture));
 
-	if (Textures[stage]) Textures[stage]->Release();
-	Textures[stage] = texture;
-	if (Textures[stage]) Textures[stage]->AddRef();
-	DX8CALL(SetTexture(stage, texture));
+	BoundTextures[stage] = texture;
 	DX8_RECORD_TEXTURE_CHANGE();
 }
 
-WWINLINE void DX8Wrapper::_Copy_DX8_Rects(
-  IDirect3DSurface8* pSourceSurface,
-  CONST RECT* pSourceRectsArray,
-  UINT cRects,
-  IDirect3DSurface8* pDestinationSurface,
-  CONST POINT* pDestPointsArray
-)
-{
-	DX8CALL(CopyRects(
-  pSourceSurface,
-  pSourceRectsArray,
-  cRects,
-  pDestinationSurface,
-  pDestPointsArray));
-}
+
 
 WWINLINE Vector4 DX8Wrapper::Convert_Color(unsigned color)
 {
@@ -967,7 +985,7 @@ WWINLINE void DX8Wrapper::Set_Transform(D3DTRANSFORMSTATETYPE transform,const Ma
 	default:
 		DX8_RECORD_MATRIX_CHANGE();
 		Matrix4 m2=m.Transpose();
-		DX8CALL(SetTransform(transform,(D3DMATRIX*)&m2));	
+		Set_DX8_Transform_Cached(transform, m2);
 		break;
 	}
 }
@@ -989,7 +1007,7 @@ WWINLINE void DX8Wrapper::Set_Transform(D3DTRANSFORMSTATETYPE transform,const Ma
 	default:
 		DX8_RECORD_MATRIX_CHANGE();
 		m2=m2.Transpose();
-		DX8CALL(SetTransform(transform,(D3DMATRIX*)&m2));
+		Set_DX8_Transform_Cached(transform, m2);
 		break;
 	}
 }
@@ -1032,9 +1050,11 @@ WWINLINE void DX8Wrapper::Get_Transform(D3DTRANSFORMSTATETYPE transform, Matrix4
 		else m=render_state.view.Transpose();
 		break;
 	default:
-		DX8CALL(GetTransform(transform,&mat));
-		m=*(Matrix4*)&mat;
-		m=m.Transpose();
+		if (transform == D3DTS_PROJECTION) {
+			m = CachedProjection.Transpose();
+		} else if (transform >= D3DTS_TEXTURE0 && transform <= D3DTS_TEXTURE7) {
+			m = CachedTexTransform[transform - D3DTS_TEXTURE0].Transpose();
+		}
 		break;
 	}
 }

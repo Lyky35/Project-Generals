@@ -44,6 +44,7 @@ VulkanDevice::VulkanDevice()
 	, m_depthView(VK_NULL_HANDLE)
 	, m_depthFormat(VK_FORMAT_D32_SFLOAT)
 	, m_renderPass(VK_NULL_HANDLE)
+	, m_rtRenderPass(VK_NULL_HANDLE)
 	, m_commandPool(VK_NULL_HANDLE)
 	, m_frameIndex(0)
 	, m_imageIndex(0)
@@ -471,7 +472,7 @@ bool VulkanDevice::CreateRenderPass()
 	depthAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
 	depthAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
 	depthAttachment.storeOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
-	depthAttachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+	depthAttachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
 	depthAttachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
 	depthAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
 	depthAttachment.finalLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
@@ -503,12 +504,27 @@ bool VulkanDevice::CreateRenderPass()
 	renderPassInfo.dependencyCount = 1;
 	renderPassInfo.pDependencies = &dependency;
 
-	return vkCreateRenderPass(m_device, &renderPassInfo, nullptr, &m_renderPass) == VK_SUCCESS;
+	if (vkCreateRenderPass(m_device, &renderPassInfo, nullptr, &m_renderPass) != VK_SUCCESS)
+		return false;
+
+	VkAttachmentDescription rtColor = colorAttachment;
+	rtColor.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
+	rtColor.finalLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+	VkAttachmentDescription rtAttachments[] = { rtColor, depthAttachment };
+	VkRenderPassCreateInfo rtPassInfo = {};
+	rtPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
+	rtPassInfo.attachmentCount = 2;
+	rtPassInfo.pAttachments = rtAttachments;
+	rtPassInfo.subpassCount = 1;
+	rtPassInfo.pSubpasses = &subpass;
+	rtPassInfo.dependencyCount = 1;
+	rtPassInfo.pDependencies = &dependency;
+	return vkCreateRenderPass(m_device, &rtPassInfo, nullptr, &m_rtRenderPass) == VK_SUCCESS;
 }
 
 bool VulkanDevice::CreateDepthResources()
 {
-	VkFormat candidates[] = { VK_FORMAT_D32_SFLOAT, VK_FORMAT_D24_UNORM_S8_UINT, VK_FORMAT_D16_UNORM };
+	VkFormat candidates[] = { VK_FORMAT_D24_UNORM_S8_UINT, VK_FORMAT_D32_SFLOAT, VK_FORMAT_D16_UNORM };
 	m_depthFormat = VK_FORMAT_UNDEFINED;
 	for (size_t i = 0; i < sizeof(candidates) / sizeof(candidates[0]); i++) {
 		VkFormatProperties props;
@@ -553,6 +569,8 @@ bool VulkanDevice::CreateDepthResources()
 	viewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
 	viewInfo.format = m_depthFormat;
 	viewInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_DEPTH_BIT;
+	if (m_depthFormat == VK_FORMAT_D24_UNORM_S8_UINT)
+		viewInfo.subresourceRange.aspectMask |= VK_IMAGE_ASPECT_STENCIL_BIT;
 	viewInfo.subresourceRange.levelCount = 1;
 	viewInfo.subresourceRange.layerCount = 1;
 	return vkCreateImageView(m_device, &viewInfo, nullptr, &m_depthView) == VK_SUCCESS;
@@ -642,6 +660,10 @@ void VulkanDevice::CleanupSwapchain()
 		vkDestroyRenderPass(m_device, m_renderPass, nullptr);
 		m_renderPass = VK_NULL_HANDLE;
 	}
+	if (m_rtRenderPass != VK_NULL_HANDLE) {
+		vkDestroyRenderPass(m_device, m_rtRenderPass, nullptr);
+		m_rtRenderPass = VK_NULL_HANDLE;
+	}
 	for (size_t i = 0; i < m_swapImageViews.size(); i++)
 		vkDestroyImageView(m_device, m_swapImageViews[i], nullptr);
 	m_swapImageViews.clear();
@@ -697,31 +719,11 @@ bool VulkanDevice::BeginFrame()
 	beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
 	if (vkBeginCommandBuffer(m_commandBuffers[m_frameIndex], &beginInfo) != VK_SUCCESS)
 		return false;
-
-	VkClearValue clearValues[2];
-	clearValues[0].color.float32[0] = 0.0f;
-	clearValues[0].color.float32[1] = 0.0f;
-	clearValues[0].color.float32[2] = 0.0f;
-	clearValues[0].color.float32[3] = 1.0f;
-	clearValues[1].depthStencil.depth = 1.0f;
-	clearValues[1].depthStencil.stencil = 0;
-
-	VkRenderPassBeginInfo rpBegin = {};
-	rpBegin.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
-	rpBegin.renderPass = m_renderPass;
-	rpBegin.framebuffer = m_framebuffers[m_imageIndex];
-	rpBegin.renderArea.offset.x = 0;
-	rpBegin.renderArea.offset.y = 0;
-	rpBegin.renderArea.extent = m_swapExtent;
-	rpBegin.clearValueCount = 2;
-	rpBegin.pClearValues = clearValues;
-	vkCmdBeginRenderPass(m_commandBuffers[m_frameIndex], &rpBegin, VK_SUBPASS_CONTENTS_INLINE);
 	return true;
 }
 
 void VulkanDevice::EndFrame(bool present)
 {
-	vkCmdEndRenderPass(m_commandBuffers[m_frameIndex]);
 	if (vkEndCommandBuffer(m_commandBuffers[m_frameIndex]) != VK_SUCCESS)
 		return;
 

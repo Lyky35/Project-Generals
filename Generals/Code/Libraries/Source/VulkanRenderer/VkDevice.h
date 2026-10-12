@@ -34,11 +34,16 @@ public:
 	uint32_t GetGraphicsQueueFamily() const { return m_graphicsFamily; }
 	VkExtent2D GetSwapExtent() const { return m_swapExtent; }
 	VkFormat GetSwapFormat() const { return m_swapFormat; }
+	VkFormat GetDepthFormat() const { return m_depthFormat; }
 	VkRenderPass GetRenderPass() const { return m_renderPass; }
+	VkRenderPass GetRtRenderPass() const { return m_rtRenderPass; }
 	VkCommandBuffer GetCommandBuffer() const { return m_commandBuffers[m_frameIndex]; }
 	uint32_t GetFrameIndex() const { return m_frameIndex; }
 	uint32_t GetImageIndex() const { return m_imageIndex; }
 	VkFramebuffer GetFramebuffer() const { return m_framebuffers[m_imageIndex]; }
+	const std::vector<VkImage> &GetSwapImages() const { return m_swapImages; }
+	VkCommandBuffer GetFrameCommandBuffer() const { return m_commandBuffers[m_frameIndex]; }
+	bool HasStencil() const { return m_depthFormat == VK_FORMAT_D24_UNORM_S8_UINT; }
 
 	uint32_t FindMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
 	VkCommandBuffer BeginOneTimeCommands();
@@ -86,6 +91,7 @@ private:
 	VkFormat m_depthFormat;
 
 	VkRenderPass m_renderPass;
+	VkRenderPass m_rtRenderPass;
 	std::vector<VkFramebuffer> m_framebuffers;
 
 	VkCommandPool m_commandPool;

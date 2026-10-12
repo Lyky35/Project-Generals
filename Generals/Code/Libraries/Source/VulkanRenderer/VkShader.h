@@ -8,12 +8,24 @@
 
 class VulkanDevice;
 
+struct VkFrameUniforms {
+	float ambientColor[4];
+	float fogColor[4];
+	float fogParams[4];
+	float materialDiffuse[4];
+	float miscParams[4];
+	float tfactorColor[4];
+	float lightDirs[4][4];
+	float lightColors[4][4];
+};
+
 struct VkPipelineState {
 	int32_t tex0Op;
 	int32_t tex1Op;
 	int32_t alphaTest;
 	int32_t fog;
 	int32_t lighting;
+	int32_t alphaFunc;
 	uint32_t cullMode;
 	uint32_t fillMode;
 	int32_t depthTest;
@@ -57,6 +69,7 @@ public:
 	void Shutdown();
 
 	VkPipeline GetPipeline(const VkPipelineState &state);
+	void ClearPipelineCache();
 	VkPipelineLayout GetPipelineLayout() const { return m_pipelineLayout; }
 	VkDescriptorSetLayout GetTextureSetLayout() const { return m_textureSetLayout; }
 	VkDescriptorSetLayout GetFrameSetLayout() const { return m_frameSetLayout; }
