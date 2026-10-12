@@ -23,13 +23,13 @@ public:
 	void Unmap();
 	void Upload(const void *data, VkDeviceSize size, VkDeviceSize offset = 0);
 
-	VkBuffer GetBuffer() const { return m_buffer; }
+	VkBuffer GetBuffer() const { return m_handle; }
 	VkDeviceMemory GetMemory() const { return m_memory; }
 	VkDeviceSize GetSize() const { return m_size; }
 
 private:
 	VulkanDevice *m_device;
-	VkBuffer m_buffer;
+	VkBuffer m_handle;
 	VkDeviceMemory m_memory;
 	VkDeviceSize m_size;
 	void *m_mapped;

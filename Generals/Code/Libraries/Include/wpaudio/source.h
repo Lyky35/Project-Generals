@@ -2,6 +2,7 @@
 #define _WPAUDIO_SOURCE_H_
 
 #include <wpaudio/altypes.h>
+#include <wpaudio/list.h>
 
 // Audio sample
 typedef struct AudioSample {
@@ -24,6 +25,7 @@ typedef struct AudioSample {
     ALuint loopEnd;
     ALboolean looped;
     char name[256];
+    struct List Frames;  // List of frames for streaming
 } AudioSample;
 
 typedef struct AudioFormat {
@@ -39,6 +41,7 @@ typedef struct AudioFrame {
     void *Data;
     ALuint Bytes;
     ALuint sample_index;
+    struct ListNode nd;
 } AudioFrame;
 
 // Function declarations
@@ -66,6 +69,7 @@ static inline AudioSample* Source_Create(ALenum format, ALuint frequency, ALuint
         src->data = NULL;
         src->Bytes = 0;
         src->name[0] = 0;
+        List_Init(&src->Frames);
     }
     return src;
 }

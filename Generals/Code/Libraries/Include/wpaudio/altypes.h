@@ -89,6 +89,8 @@ typedef struct {
 #define DBG_ASSERT_TYPE(ptr, type) assert(ptr)
 #define DBG_SET_TYPE(ptr, type)
 #define DBG_MSGASSERT(cond, msg) assert(cond)
+#define DBG_MSGASSERT_TYPE(cond, msg, type) assert(cond)
+#define DBG_INVALIDATE_TYPE(ptr) DBG_SET_TYPE(ptr, void)
 
 // Flags
 #define FLAGS_SET(flags, bit) ((flags) |= (bit))
@@ -112,11 +114,10 @@ typedef struct {
 #define TRUE 1
 #define FALSE 0
 
-// DBG macros
-#define DBG_ASSERT(x) assert(x)
-#define DBG_ASSERT_TYPE(ptr, type) assert(ptr)
-#define DBG_SET_TYPE(ptr, type)
-#define DBG_MSGASSERT(cond, msg) assert(cond)
-#define DBG_MSGASSERT_TYPE(cond, msg, type) assert(cond)
+// Lock function
+static inline int Locked(void *lock) {
+    (void)lock;
+    return TRUE;
+}
 
 #endif // _WPAUDIO_ALTYPES_H_

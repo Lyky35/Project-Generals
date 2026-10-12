@@ -84,7 +84,6 @@ private:
     HWND m_hwnd;
     uint32_t m_frameIndex;
 
-    // Additional members used in implementation
     uint32_t m_graphicsFamily;
     uint32_t m_presentFamily;
     VkFormat m_swapFormat;
@@ -118,13 +117,6 @@ private:
     HWND m_hwnd;
     uint32_t m_frameIndex;
     VkCommandPool m_commandPool;
-    std::vector<VkSemaphore> m_imageAvailable;
-    std::vector<VkSemaphore> m_renderFinished;
-    std::vector<VkFence> m_inFlight;
-    std::vector<VkFence> m_imagesInFlight;
-    bool m_framebufferResized;
-    uint32_t m_imageIndex;
-    VkCommandPool m_commandPool;
     VkFormat m_swapFormat;
     VkImage m_depthImage;
     VkDeviceMemory m_depthMemory;
@@ -143,21 +135,6 @@ private:
     std::vector<VkSemaphore> m_renderFinished;
     std::vector<VkFence> m_inFlight;
     std::vector<VkFence> m_imagesInFlight;
-    uint32_t m_graphicsFamily;
-    uint32_t m_presentFamily;
-    VkFormat m_swapFormat;
-    VkExtent2D m_swapExtent;
-    std::vector<VkImage> m_swapImages;
-    std::vector<VkImageView> m_swapImageViews;
-    std::vector<VkFramebuffer> m_framebuffers;
-    VkImageView m_depthView;
-    VkRenderPass m_rtRenderPass;
-    VkCommandPool m_commandPool;
-    std::vector<VkSemaphore> m_imageAvailable;
-    std::vector<VkSemaphore> m_renderFinished;
-    std::vector<VkFence> m_inFlight;
-    std::vector<VkFence> m_imagesInFlight;
     bool m_framebufferResized;
     uint32_t m_imageIndex;
     VkCommandPool m_commandPool;
-};

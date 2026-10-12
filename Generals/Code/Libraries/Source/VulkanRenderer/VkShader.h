@@ -9,6 +9,8 @@
 #include <vector>
 #include <unordered_map>
 
+class VulkanDevice; // Forward declaration
+
 struct VkPipelineState {
 	int32_t tex0Op;
 	int32_t tex1Op;
@@ -91,6 +93,9 @@ private:
 	
 	// Pipeline layout
 	VkPipelineLayout m_pipelineLayout;
+	
+	// Shader directory
+	char m_shaderDir[300];
 	
 	// Helper functions
 	uint32_t FanToList(const uint16_t *fanIndices, uint32_t fanCount, uint16_t *outList);
