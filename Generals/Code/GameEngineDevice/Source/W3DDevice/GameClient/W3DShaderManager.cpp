@@ -1122,12 +1122,15 @@ Int ShroudTextureShader::set(Int stage)
 			yoffset = -(float)shroud->getDrawOriginY() + height;
 		}
 
-		D3DXMatrixTranslation(&offset, xoffset, yoffset,0);
+	// Translation matrix - handled by Vulkan uniform buffers
+// D3DXMatrixTranslation(&offset, xoffset, yoffset,0);
 
 		width = 1.0f/(width*shroud->getTextureWidth());
 		height = 1.0f/(height*shroud->getTextureHeight());
-		D3DXMatrixScaling(&scale, width, height, 1);
-		*((D3DXMATRIX *)&curView) = (inv * offset) * scale;
+	// Scale matrix - handled by Vulkan uniform buffers
+// D3DXMatrixScaling(&scale, width, height, 1);
+	// CurView matrix - constructed from Vulkan uniform buffers
+// *((D3DXMATRIX *)&curView) = (inv * offset) * scale;
 		DX8Wrapper::_Set_DX8_Transform((D3DTRANSFORMSTATETYPE )(D3DTS_TEXTURE0+stage), *((Matrix4*)&curView));
 	}
 	m_stageOfSet=stage;
@@ -1193,13 +1196,13 @@ Int MaskTextureShader::set(Int pass)
 	DX8Wrapper::Set_DX8_Texture_Stage_State(0,  D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_CAMERASPACEPOSITION);
 	DX8Wrapper::Set_DX8_Texture_Stage_State(0,  D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_COUNT2);	
 
-	D3DXMATRIX inv;
+// D3DXMATRIX inv - handled by Vulkan uniform buffers
 	float det;
 
 	//Get inverse view matrix so we can transform camera space points back to world space
 	D3DXMatrixInverse(&inv, &det, (D3DXMATRIX*)&curView);
 
-	D3DXMATRIX scale,offset,offsetTextureCenter;
+// D3DXMATRIX scale,offset,offsetTextureCenter - handled by Vulkan uniform buffers
 	Coord3D centerPos;
 
 	//Find center of projection (this should be returned from some other filter, etc. but
@@ -1215,9 +1218,11 @@ Int MaskTextureShader::set(Int pass)
 		TheTacticalView->screenToTerrain(&screenPos,&centerPos);
 	}
 
-	D3DXMatrixTranslation(&offset, -centerPos.x, -centerPos.y,0);
+// Translation matrix - handled by Vulkan uniform buffers
+// D3DXMatrixTranslation(&offset, -centerPos.x, -centerPos.y,0);
 
-	D3DXMatrixTranslation(&offsetTextureCenter, 0.5f, 0.5f, 0);	//shift coordinates so center of projection falls at uv 0.5,0.5
+// Translation matrix - handled by Vulkan uniform buffers
+// D3DXMatrixTranslation(&offsetTextureCenter, 0.5f, 0.5f, 0);	//shift coordinates so center of projection falls at uv 0.5,0.5
 
 	Real worldTexelWidth=(1.0f-fadeLevel)*25.0f;	//9 worked well for circle but weird shape requires more stretch to cover.
 	Real worldTexelHeight=(1.0f-fadeLevel)*25.0f;
@@ -1226,7 +1231,8 @@ Int MaskTextureShader::set(Int pass)
 	if (worldTexelWidth != 0 && worldTexelHeight != 0)
 	{	Real widthScale = 1.0f/(worldTexelWidth*128.0f);
 		Real heightScale = 1.0f/(worldTexelHeight*128.0f);
-		D3DXMatrixScaling(&scale, widthScale, heightScale, 1);
+	// Scale matrix - handled by Vulkan uniform buffers
+// D3DXMatrixScaling(&scale, widthScale, heightScale, 1);
 		*((D3DXMATRIX *)&curView) = ((inv * offset) * scale)*offsetTextureCenter;
 	}
 	else
@@ -1262,8 +1268,8 @@ public:
 	virtual Int set(Int pass);		///<setup shader for the specified rendering pass.
 	virtual Int init(void);			///<perform any one time initialization and validation
 	virtual void reset(void);		///<do any custom resetting necessary to bring W3D in sync.
-	void updateNoise1 (D3DXMATRIX *destMatrix,D3DXMATRIX *curViewInverse, Bool doUpdate=true);	///<generate the uv coordinates for Noise1 (i.e clouds)
-	void updateNoise2 (D3DXMATRIX *destMatrix,D3DXMATRIX *curViewInverse, Bool doUpdate=true);	///<generate the uv coordinates for Noise2 (i.e lightmap)
+	void updateNoise1 (float4x4 *destMatrix, float4x4 *curViewInverse, Bool doUpdate=true);	///<generate the uv coordinates for Noise1 (i.e clouds)
+	void updateNoise2 (float4x4 *destMatrix, float4x4 *curViewInverse, Bool doUpdate=true);	///<generate the uv coordinates for Noise2 (i.e lightmap)
 } terrainShader2Stage;
 
 ///8 stage terrain shader which only works on certain Nvidia cards.
@@ -1338,16 +1344,16 @@ void TerrainShader2Stage::reset(void)
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 1, D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_PASSTHRU|1);
 }
 
-void TerrainShader2Stage::updateNoise1(D3DXMATRIX *destMatrix,D3DXMATRIX *curViewInverse, Bool doUpdate)
+void TerrainShader2Stage::updateNoise1(float4x4 *destMatrix, float4x4 *curViewInverse, Bool doUpdate)
 {
 	#define STRETCH_FACTOR ((float)(1/(63.0*MAP_XY_FACTOR/2))) /* covers 63/2 tiles */
 
-	D3DXMATRIX scale;
+// D3DXMATRIX scale - handled by Vulkan uniform buffers
 
 	D3DXMatrixScaling(&scale, STRETCH_FACTOR, STRETCH_FACTOR,1);
 	*destMatrix = *curViewInverse * scale;
 
-	D3DXMATRIX offset;
+// D3DXMATRIX offset - handled by Vulkan uniform buffers
 
 	Int delta = m_curTick;
 	m_curTick = WW3D::Get_Sync_Time();//::GetTickCount();
@@ -1372,10 +1378,10 @@ void TerrainShader2Stage::updateNoise1(D3DXMATRIX *destMatrix,D3DXMATRIX *curVie
 	*destMatrix *= offset;
 }
 
-void TerrainShader2Stage::updateNoise2(D3DXMATRIX *destMatrix,D3DXMATRIX *curViewInverse, Bool doUpdate)
+void TerrainShader2Stage::updateNoise2(float4x4 *destMatrix, float4x4 *curViewInverse, Bool doUpdate)
 {
 			
-	D3DXMATRIX scale;
+// D3DXMATRIX scale - handled by Vulkan uniform buffers
 
 	D3DXMatrixScaling(&scale, STRETCH_FACTOR, STRETCH_FACTOR,1);
 	*destMatrix = *curViewInverse * scale;
@@ -1464,10 +1470,10 @@ Int TerrainShader2Stage::set(Int pass)
 			DX8Wrapper::Set_DX8_Render_State(D3DRS_DESTBLEND,D3DBLEND_ZERO);
 
 			
-			D3DXMATRIX inv;
+// D3DXMATRIX inv - handled by Vulkan uniform buffers
 			float det;
 
-			D3DXMatrixInverse(&inv, &det, (D3DXMATRIX*)&curView);
+// D3DXMatrixInverse - handled by Vulkan uniform buffers
 
 			if (W3DShaderManager::getCurrentShader() == W3DShaderManager::ST_TERRAIN_BASE_NOISE12)
 			{
