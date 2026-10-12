@@ -46,7 +46,7 @@
 #include "ww3dformat.h"
 #include "refcount.h"
 
-struct IDirect3DSurface8;
+class VkTexture;
 class Vector2i;
 class Vector3;
 
@@ -76,7 +76,7 @@ class SurfaceClass : public W3DMPO, public RefCountClass
 		SurfaceClass(const char *filename);
 
 		// Create the surface from a D3D pointer
-		SurfaceClass(IDirect3DSurface8 *d3d_surface);
+		SurfaceClass(VkTexture *vk_texture);
 
 		~SurfaceClass(void);
 
@@ -120,10 +120,10 @@ class SurfaceClass : public W3DMPO, public RefCountClass
 		unsigned char *CreateCopy(int *width,int *height,int*size,bool flip=false);
 
 			// For use by TextureClass:
-		IDirect3DSurface8 *Peek_D3D_Surface(void) { return D3DSurface; }
+		VkTexture *Peek_Vulkan_Texture(void) { return VulkanSurface; }
 
 		// Attaching and detaching a surface pointer
-		void	Attach (IDirect3DSurface8 *surface);
+		void	Attach (VkTexture *texture);
 		void	Detach (void);
 
 		// draws a horizontal line
@@ -143,7 +143,7 @@ class SurfaceClass : public W3DMPO, public RefCountClass
 	private:
 
 		// Direct3D surface object
-		IDirect3DSurface8 *D3DSurface;
+		VkTexture *VulkanSurface;
 
 		WW3DFormat SurfaceFormat;
 	friend class TextureClass;	
