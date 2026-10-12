@@ -529,24 +529,24 @@ Int W3DProjectedShadowManager::renderProjectedTerrainShadow(W3DProjectedShadow *
 			
 		m_pDev->SetTransform(D3DTS_WORLD,(_D3DMATRIX *)&mWorld);
 
-		m_pDev->SetStreamSource(0,shadowVertexBufferD3D,sizeof(SHADOW_VOLUME_VERTEX));
-		m_pDev->SetVertexShader(SHADOW_VOLUME_FVF);
+		DX8Wrapper::Set_StreamSource(0, shadowVertexBuffer, 0, sizeof(SHADOW_VOLUME_VERTEX));
+		m_pDev->SetVertexShader(DX8_FVF_XYZDUV2);
 
 		Int numPolys = (endX - startX)*(endY - startY)*2;	//2 triangles per cell
 
-		m_pDev->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);	//should reject background pixels
-		m_pDev->SetRenderState( D3DRS_STENCILENABLE, TRUE );
-		m_pDev->SetRenderState( D3DRS_STENCILFUNC,     D3DCMP_ALWAYS );
-		m_pDev->SetRenderState( D3DRS_STENCILREF,      0x1 );
-		m_pDev->SetRenderState( D3DRS_STENCILMASK,     0xffffffff );
-		m_pDev->SetRenderState( D3DRS_STENCILWRITEMASK,0xffffffff );
-		m_pDev->SetRenderState( D3DRS_STENCILZFAIL, D3DSTENCILOP_KEEP );
-		m_pDev->SetRenderState( D3DRS_STENCILFAIL,  D3DSTENCILOP_KEEP );
-		m_pDev->SetRenderState( D3DRS_STENCILPASS,  D3DSTENCILOP_INCR );
+		DX8Wrapper::Set_AlphaEnable(TRUE);
+		DX8Wrapper::Set_StencilEnable(TRUE);
+		DX8Wrapper::Set_StencilFunc(VK_COMPARE_OP_ALWAYS);
+		DX8Wrapper::Set_StencilRef(0x1);
+		DX8Wrapper::Set_StencilWriteMask(0xffffffff);
+		DX8Wrapper::Set_StencilReadMask(0xffffffff);
+		DX8Wrapper::Set_StencilFailOp(VK_STENCIL_OP_KEEP);
+		DX8Wrapper::Set_StencilFailOp(VK_STENCIL_OP_KEEP);
+		DX8Wrapper::Set_StencilPassOp(VK_STENCIL_OP_INCR);
 
 //    m_pDev->SetRenderState( D3DRS_ALPHABLENDENABLE, FALSE );	//useful to see bounds
-		m_pDev->SetRenderState( D3DRS_LIGHTING, FALSE);
-		m_pDev->SetRenderState( D3DRS_SRCBLEND,  D3DBLEND_DESTCOLOR);
+		DX8Wrapper::Set_Lighting(FALSE);
+		DX8Wrapper::Set_BlendFunc(VK_BLEND_FACTOR_DEST_COLOR, VK_BLEND_FACTOR_ZERO);
 		m_pDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_ZERO );
 
 		
@@ -556,10 +556,10 @@ Int W3DProjectedShadowManager::renderProjectedTerrainShadow(W3DProjectedShadow *
 			m_pDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST,0,numVerts,nShadowStartBatchIndex,numPolys);
 		}
 
-		m_pDev->SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);	//should reject background pixels
-		m_pDev->SetRenderState( D3DRS_STENCILENABLE, FALSE );
+		DX8Wrapper::Set_AlphaEnable(FALSE);
+		DX8Wrapper::Set_StencilEnable(FALSE);
 //    m_pDev->SetRenderState( D3DRS_ALPHABLENDENABLE, TRUE );
-		m_pDev->SetRenderState( D3DRS_LIGHTING, TRUE);
+		DX8Wrapper::Set_Lighting(TRUE);
 
 		nShadowVertsInBuf += numVerts;
 		nShadowStartBatchVertex=nShadowVertsInBuf;
@@ -756,14 +756,14 @@ void W3DProjectedShadowManager::flushDecals(W3DShadowTexture *texture, ShadowTyp
 //	m_pDev->SetRenderState( D3DRS_SRCBLEND,  D3DBLEND_SRCALPHA );
 //	m_pDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA  );
 /*	UnsignedInt color=TheW3DShadowManager->getShadowColor();
-	m_pDev->SetRenderState( D3DRS_TEXTUREFACTOR, 0xff000000 | color);
-	m_pDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE);
-	m_pDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-	m_pDev->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_TFACTOR);
+	DX8Wrapper::Set_TexelFactor(0xff000000 | color);
+	DX8Wrapper::Set_TexOp(0, D3DTOP_MODULATE);
+	DX8Wrapper::Set_TexArg(0, D3DTA_TEXTURE);
+	DX8Wrapper::Set_TexArg(0, D3DTA_TFACTOR);
 
-	m_pDev->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
-	m_pDev->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
-	m_pDev->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_TFACTOR);
+	DX8Wrapper::Set_TexOp(0, D3DTOP_MODULATE);
+	DX8Wrapper::Set_TexArg(0, D3DTA_TEXTURE);
+	DX8Wrapper::Set_TexArg(0, D3DTA_TFACTOR);
 */
 	 
 

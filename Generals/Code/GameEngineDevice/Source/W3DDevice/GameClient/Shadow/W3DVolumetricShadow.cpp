@@ -3269,35 +3269,35 @@ void W3DVolumetricShadowManager::renderStencilShadows( void )
 	m_pDev->SetVertexShader(DX8_FVF_XYZDUV2);
 
 	// Use alpha blending to draw the transparent shadow
-    m_pDev->SetRenderState( D3DRS_ALPHABLENDENABLE, TRUE );
+    DX8Wrapper::Set_AlphaEnable(TRUE);
 //  m_pDev->SetRenderState( D3DRS_SRCBLEND,  D3DBLEND_SRCALPHA );
 //  m_pDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA );
-		m_pDev->SetRenderState( D3DRS_SRCBLEND,  D3DBLEND_DESTCOLOR);
+		DX8Wrapper::Set_BlendFunc(VK_BLEND_FACTOR_DEST_COLOR, VK_BLEND_FACTOR_ZERO);
 		m_pDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_ZERO );
 
 
 	// Set stencil states
-    m_pDev->SetRenderState( D3DRS_ZENABLE,          TRUE );
-		m_pDev->SetRenderState(D3DRS_ZFUNC, D3DCMP_ALWAYS);
+    DX8Wrapper::Set_ZEnable(TRUE);
+		DX8Wrapper::Set_StencilFunc(VK_COMPARE_OP_ALWAYS);
 
 	// Only write where stencil val >= 1 (count indicates # of shadows that
 	// overlap that pixel)
-    m_pDev->SetRenderState( D3DRS_STENCILENABLE, TRUE );
-    m_pDev->SetRenderState( D3DRS_STENCILFUNC, D3DCMP_LESSEQUAL );	//reference value is less or equal to stencil
-    m_pDev->SetRenderState( D3DRS_STENCILPASS, D3DSTENCILOP_KEEP );
+    DX8Wrapper::Set_StencilEnable(TRUE);
+    DX8Wrapper::Set_StencilFunc(VK_COMPARE_OP_LESS);	//reference value is less or equal to stencil
+    DX8Wrapper::Set_StencilPassOp(VK_STENCIL_OP_KEEP);
 	//Upper bits of stencil could be used for storing occluded models which are player colored.  So we mask out those
 	//pixels and only use the lower bits for shadow calculations.
-	m_pDev->SetRenderState( D3DRS_STENCILMASK,     ~TheW3DShadowManager->getStencilShadowMask());
-    m_pDev->SetRenderState( D3DRS_STENCILREF,      0x1 );
+	DX8Wrapper::Set_StencilWriteMask(~TheW3DShadowManager->getStencilShadowMask());
+    DX8Wrapper::Set_StencilRef(0x1);
 
 
-	m_pDev->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_FLAT);
+	DX8Wrapper::Set_ShadeMode(D3DSHADE_FLAT);
 
 	if (DX8Wrapper::_Is_Triangle_Draw_Enabled())
 		m_pDev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, v, sizeof(_TRANSLITVERTEX));
 
 	m_pDev->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_GOURAUD);
-	m_pDev->SetRenderState( D3DRS_ALPHABLENDENABLE, FALSE );
+	DX8Wrapper::Set_AlphaEnable(FALSE);
 	// turn off the stencil buffer
 	m_pDev->SetRenderState( D3DRS_STENCILENABLE, FALSE );
 
