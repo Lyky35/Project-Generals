@@ -186,7 +186,8 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 	}
 	surface_level->UnlockRect();
 	surface_level->Release();
-	DX8_ErrorCode(D3DXFilterTexture(D3DTexture, NULL, 0, D3DX_FILTER_BOX));	
+	// Texture filtering handled by shader/sampler
+	
 	if (TheWritableGlobalData->m_textureReductionFactor) {
 		D3DTexture->SetLOD(TheWritableGlobalData->m_textureReductionFactor);
 	}
@@ -343,7 +344,8 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 	}
 	surface_level->UnlockRect();
 	surface_level->Release();
-	DX8_ErrorCode(D3DXFilterTexture(D3DTexture, NULL, 0, D3DX_FILTER_BOX));	
+	// Texture filtering handled by shader/sampler
+	
 	return(surface_desc.Height);
 }
 #endif
@@ -499,7 +501,8 @@ int TerrainTextureClass::update256(WorldHeightMap *htMap)
 	}
 	surface_level->UnlockRect();
 	surface_level->Release();
-	DX8_ErrorCode(D3DXFilterTexture(D3DTexture, NULL, 0, D3DX_FILTER_BOX));
+	// Texture filtering handled by shader/sampler
+
 	// Note - normal width for the terrain texture is 1024.  We are at 256
 	// probably running on a voodoo.  The height we return is scaled up 
 	// to match the expected width of 1024.  jba.
@@ -791,13 +794,9 @@ void LightMapTerrainTextureClass::Apply(unsigned int stage)
 	DX8Wrapper::_Get_DX8_Transform(D3DTS_VIEW, curView);
 
 
-	D3DXMATRIX inv;
-	float det;
-	D3DXMatrixInverse(&inv, &det, (D3DXMATRIX*)&curView);
-	D3DXMATRIX scale;
-	D3DXMatrixScaling(&scale, STRETCH_FACTOR, STRETCH_FACTOR,1);
-	inv *=scale;
-	if (stage==0) {
+// D3DXMATRIX inv;	float det;
+// D3DXMatrixInverse(&inv, &det, (D3DXMATRIX*)&curView);	D3DXMATRIX scale;
+// D3DXMatrixScaling(&scale, STRETCH_FACTOR, STRETCH_FACTOR,1);// inv *=scale;	if (stage==0) {
 		DX8Wrapper::_Set_DX8_Transform(D3DTS_TEXTURE0, *((Matrix4*)&inv));
 	}	if (stage==1) {
 		DX8Wrapper::_Set_DX8_Transform(D3DTS_TEXTURE1, *((Matrix4*)&inv));
@@ -912,7 +911,8 @@ int AlphaEdgeTextureClass::update(WorldHeightMap *htMap)
 	}
 	surface_level->UnlockRect();
 	surface_level->Release();
-	DX8_ErrorCode(D3DXFilterTexture(D3DTexture, NULL, 0, D3DX_FILTER_BOX));
+	// Texture filtering handled by shader/sampler
+
 	return(surface_desc.Height);
 }
 
@@ -1041,15 +1041,9 @@ void CloudMapTerrainTextureClass::Apply(unsigned int stage)
 	DX8Wrapper::_Get_DX8_Transform(D3DTS_VIEW, curView);
 
 
-	D3DXMATRIX inv;
-	float det;
-	D3DXMatrixInverse(&inv, &det, (D3DXMATRIX*)&curView);
-	D3DXMATRIX scale;
-	D3DXMatrixScaling(&scale, STRETCH_FACTOR, STRETCH_FACTOR,1);
-	inv *=scale;
-	D3DXMATRIX offset;
-
-	Int delta = m_curTick;
+// D3DXMATRIX inv;	float det;
+// D3DXMatrixInverse(&inv, &det, (D3DXMATRIX*)&curView);// D3DXMATRIX scale;// D3DXMatrixScaling(&scale, STRETCH_FACTOR, STRETCH_FACTOR,1);	inv *=scale;
+// // D3DXMATRIX offset;	Int delta = m_curTick;
 	m_curTick = ::GetTickCount();
 	delta = m_curTick-delta;
 	m_xOffset += m_xSlidePerSecond*delta/1000;
@@ -1061,8 +1055,7 @@ void CloudMapTerrainTextureClass::Apply(unsigned int stage)
 	if (m_yOffset < -1) m_yOffset += 1;
 
 
-	D3DXMatrixTranslation(&offset, m_xOffset, m_yOffset,0);
-
+// D3DXMatrixTranslation(&offset, m_xOffset, m_yOffset,0);
 	inv *= offset;
 
 	if (stage==0) {

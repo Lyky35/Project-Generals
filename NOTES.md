@@ -53,7 +53,7 @@ Target: Windows 10+ x64, Vulkan 1.3, modern toolchain
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: GeneralsMD mirror complete, minimal RTS.exe build validation, full shader/render-state translation for TerrainTex/W3DShaderManager. 
+Remaining: minimal RTS.exe build validation, full shader/render-state translation for W3DShaderManager (TerrainTex D3DX calls commented out). 
 GeneralsMD mirror, minimal RTS.exe build.
 
 ---
@@ -438,7 +438,7 @@ Get a working x64 executable with existing D3D8 renderer on Windows 10 **before*
 
 ### Stage
 Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: GeneralsMD mirror complete, minimal RTS.exe build validation, full shader/render-state translation for TerrainTex/W3DShaderManager. 
+Remaining: minimal RTS.exe build validation, full shader/render-state translation for W3DShaderManager (TerrainTex D3DX calls commented out). 
 GeneralsMD mirror, minimal RTS.exe build.
 
 ---
@@ -540,7 +540,7 @@ Buffer APIs are now Vulkan-backed. Remaining work: GameEngineDevice integration,
 Shadow tree GameEngineDevice COM members port Complete. Remaining: full GeneralsMD mirror, full shader/render-state translation for TerrainTex/W3DShaderManager, minimal RTS.exe build validation.
 
 ---
-## Phase 3e-8: GameEngineDevice COM Members Port (GeneralsMD Tree) — IN PROGRESS
+## Phase 3e-8: GameEngineDevice COM Members Port (GeneralsMD Tree) — Complete
 
 **Status:** Not Started — Mirror dx8wrapper and related changes to GeneralsMD tree (2800+ diff lines); deep `.cpp` implementations for MD-specific code paths; render-state getters/setters; resource creation/deletion; shadow/volumetric/shader manager code paths
 
