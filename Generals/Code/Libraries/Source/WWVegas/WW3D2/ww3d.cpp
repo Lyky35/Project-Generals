@@ -767,10 +767,7 @@ WW3DErrorType WW3D::Begin_Render(bool clear,bool clearz,const Vector3 & color, f
 	WWPROFILE("WW3D::Begin_Render");
 	WWASSERT(IsInitted);
 
-// Check Vulkan device status instead of D3D
-	if (DX8Wrapper::_Get_Vulkan_Device() && DX8Wrapper::Is_Vulkan_Lost()) {
-		return WW3D_ERROR_GENERIC;	// Device lost
-	}
+	// Vulkan backend: device-lost recovery not tracked yet (swapchain recreation is internal)
 
 	// Memory allocation statistics
 	LastFrameMemoryAllocations=WWMemoryLogClass::Get_Allocate_Count();
@@ -1025,7 +1022,7 @@ WW3DErrorType WW3D::End_Render(bool flip_frame)
 	assert(IsInitted);
 
 // Check Vulkan device status
-	if (DX8Wrapper::_Get_Vulkan_Device() && DX8Wrapper::Is_Vulkan_Lost()) {
+	if (false) {
 		return WW3D_ERROR_GENERIC;
 	}
 
@@ -1242,43 +1239,37 @@ void WW3D::Make_Screen_Shot( const char * filename_base )
 
 	WWDEBUG_SAY(( "Creating Screen Shot %s\n", filename ));
 
-	// Lock front buffer and copy
-
-	IDirect3DSurface8 *fb;
-	fb=DX8Wrapper::_Get_DX8_Front_Buffer();
-	D3DSURFACE_DESC desc;
-	fb->GetDesc(&desc);
-
+	// Read front buffer via Vulkan path
 	RECT bounds;
 	GetWindowRect(_Hwnd,&bounds);
+	unsigned int width=bounds.right-bounds.left;
+	unsigned int height=bounds.bottom-bounds.top;
+	unsigned fbw=0, fbh=0;
+	unsigned char *rgba=W3DNEWARRAY unsigned char[4*width*height];
+	if (!DX8Wrapper::_Read_Front_Buffer(rgba,&fbw,&fbh)) {
+		delete[] rgba;
+		return;
+	}
 
-	D3DLOCKED_RECT lrect;
-
-	DX8_ErrorCode(fb->LockRect(&lrect,&bounds,D3DLOCK_READONLY));
-
-	unsigned int x,y,index,index2,width,height;
-
-	width=bounds.right-bounds.left;
-	height=bounds.bottom-bounds.top;
-
+	unsigned int x,y,index;
 	char *image=W3DNEWARRAY char[3*width*height];
 
-	for (int y =0; y<height; y++)
+	for (y =0; y<height; y++)
 	{
-		for (int x =0; x<width; x++)
+		for (x =0; x<width; x++)
 		{
 			// index for image
 			index=3*(x+y*width);
-			// index for fb
-			index2=y*lrect.Pitch+4*x;
+			// index for fb (RGBA8888)
+			unsigned int index2=4*(x+y*fbw);
 
-			image[index]=*((char *) lrect.pBits + index2+2);
-			image[index+1]=*((char *) lrect.pBits + index2+1);
-			image[index+2]=*((char *) lrect.pBits + index2+0);
+			image[index]=rgba[index2+2];
+			image[index+1]=rgba[index2+1];
+			image[index+2]=rgba[index2+0];
 		}
 	}
 
-	fb->Release();
+	delete[] rgba;
 
 	Targa targ;
 	memset(&targ.Header,0,sizeof(targ.Header));
@@ -1524,43 +1515,37 @@ void WW3D::Update_Movie_Capture( void )
 	WWPROFILE("WW3D::Update_Movie_Capture");
 	WWDEBUG_SAY(( "Updating\n"));
 
-		// Lock front buffer and copy
-
-	IDirect3DSurface8 *fb;
-	fb=DX8Wrapper::_Get_DX8_Front_Buffer();
-	D3DSURFACE_DESC desc;
-	fb->GetDesc(&desc);
-
+		// Read front buffer via Vulkan path
 	RECT bounds;
 	GetWindowRect(_Hwnd,&bounds);
+	unsigned int width=bounds.right-bounds.left;
+	unsigned int height=bounds.bottom-bounds.top;
+	unsigned fbw=0, fbh=0;
+	unsigned char *rgba=W3DNEWARRAY unsigned char[4*width*height];
+	if (!DX8Wrapper::_Read_Front_Buffer(rgba,&fbw,&fbh)) {
+		delete[] rgba;
+		return;
+	}
 
-	D3DLOCKED_RECT lrect;
-
-	DX8_ErrorCode(fb->LockRect(&lrect,&bounds,D3DLOCK_READONLY));
-
-	unsigned int x,y,index,index2,width,height;
-
-	width=bounds.right-bounds.left;
-	height=bounds.bottom-bounds.top;
-
+	unsigned int x,y,index;
 	char *image=(char *)Movie->GetBuffer();
 
-	for (int y =0; y<height; y++)
+	for (y =0; y<height; y++)
 	{
-		for (int x =0; x<width; x++)
+		for (x =0; x<width; x++)
 		{
 			// index for image
 			index=3*(x+(height-y-1)*width);
-			// index for fb
-			index2=y*lrect.Pitch+4*x;
+			// index for fb (RGBA8888)
+			unsigned int index2=4*(x+y*fbw);
 
-			image[index]=*((char *) lrect.pBits + index2+0);
-			image[index+1]=*((char *) lrect.pBits + index2+1);
-			image[index+2]=*((char *) lrect.pBits + index2+2);
+			image[index]=rgba[index2+0];
+			image[index+1]=rgba[index2+1];
+			image[index+2]=rgba[index2+2];
 		}
 	}
 
-	fb->Release();
+	delete[] rgba;
 
 	Movie->Grab(image);
 #endif

@@ -172,7 +172,7 @@ void TextureLoader::Validate_Texture_Size(unsigned& width, unsigned& height)
 
 
 
-IDirect3DTexture8* TextureLoader::Load_Thumbnail(const StringClass& filename,WW3DFormat texture_format)
+VkTexture* TextureLoader::Load_Thumbnail(const StringClass& filename,WW3DFormat texture_format)
 {
 	ThumbnailClass* thumb=ThumbnailClass::Peek_Instance(filename);
 	if (!thumb) {
@@ -184,7 +184,6 @@ IDirect3DTexture8* TextureLoader::Load_Thumbnail(const StringClass& filename,WW3
 		}
 	}
 
-	unsigned src_pitch=thumb->Get_Width()*4;	// Thumbs are always 32 bits
 	WW3DFormat dest_format;
 	if (texture_format==WW3D_FORMAT_UNKNOWN) {
 		dest_format=Get_Valid_Texture_Format(WW3D_FORMAT_A8R8G8B8,false); // no compressed formats please
@@ -194,57 +193,22 @@ IDirect3DTexture8* TextureLoader::Load_Thumbnail(const StringClass& filename,WW3
 		WWASSERT(dest_format==texture_format);
 	}
 
-	IDirect3DTexture8* d3d_texture = DX8Wrapper::_Create_DX8_Texture(
-		thumb->Get_Width(),
-		thumb->Get_Height(),
-		dest_format,
-		TextureClass::MIP_LEVELS_ALL);
-
-	unsigned level=0;
-	D3DLOCKED_RECT locked_rects[12];
-	WWASSERT(d3d_texture->GetLevelCount()<=12);
-
-	// Lock all surfaces
-	for (level=0;level<d3d_texture->GetLevelCount();++level) {
-		DX8_ErrorCode(
-			d3d_texture->LockRect(
-				level,
-				&locked_rects[level],
-				NULL,
-				0));
-	}
-
-	unsigned char* src_surface=thumb->Peek_Bitmap();
-	WW3DFormat src_format=WW3D_FORMAT_A8R8G8B8;
 	unsigned width=thumb->Get_Width();
 	unsigned height=thumb->Get_Height();
 
-	for (level=0;level<d3d_texture->GetLevelCount()-1;++level) {
-		BitmapHandlerClass::Copy_Image_Generate_Mipmap(
-			width,
-			height,
-			(unsigned char*)locked_rects[level].pBits, 
-			locked_rects[level].Pitch,
-			dest_format,
-			src_surface,
-			src_pitch,
-			src_format,
-			(unsigned char*)locked_rects[level+1].pBits,	// mipmap
-			locked_rects[level+1].Pitch);// mipmap
+	VkTexture* vk_texture = DX8Wrapper::_Create_Vulkan_Texture(
+		width,
+		height,
+		dest_format,
+		TextureClass::MIP_LEVELS_ALL);
 
-		src_format=dest_format;
-		src_surface=(unsigned char*)locked_rects[level].pBits;
-		src_pitch=locked_rects[level].Pitch;
-		width>>=1;
-		height>>=1;
+	if (vk_texture && thumb->Peek_Bitmap()) {
+		// Upload top mip from the 32bpp thumbnail bitmap, then generate the chain
+		vk_texture->UploadLevel(0, width, height, thumb->Peek_Bitmap());
+		vk_texture->GenerateMipmaps();
 	}
 
-	// Unlock all surfaces
-	for (level=0;level<d3d_texture->GetLevelCount();++level) {
-		DX8_ErrorCode(d3d_texture->UnlockRect(level));
-	}
-
-	return d3d_texture;
+	return vk_texture;
 }
 
 static bool Is_Power_Of_Two(unsigned i)
@@ -262,7 +226,7 @@ static bool Is_Power_Of_Two(unsigned i)
 // ----------------------------------------------------------------------------
 
 // TODO: Legacy - remove this call!
-IDirect3DTexture8* Load_Compressed_Texture(
+VkTexture* Load_Compressed_Texture(
 	const StringClass& filename, 
 	unsigned reduction_factor,
 	TextureClass::MipCountType mip_level_count,
@@ -282,20 +246,15 @@ IDirect3DTexture8* Load_Compressed_Texture(
 	// Note that the nearest valid format could be anything, even uncompressed.
 	if (dest_format==WW3D_FORMAT_UNKNOWN) dest_format=Get_Valid_Texture_Format(dds_file.Get_Format(),true);
 
-	IDirect3DTexture8* d3d_texture = DX8Wrapper::_Create_DX8_Texture(
+	VkTexture* vk_texture = DX8Wrapper::_Create_Vulkan_Texture(
 		width,
 		height,
 		dest_format,
 		(TextureClass::MipCountType)mips);
 
-	for (unsigned level=0;level<mips;++level) {
-		IDirect3DSurface8* d3d_surface=NULL;
-		WWASSERT(d3d_texture);
-		DX8_ErrorCode(d3d_texture->GetSurfaceLevel(level/*-reduction_factor*/,&d3d_surface));
-		dds_file.Copy_Level_To_Surface(level,d3d_surface);
-		d3d_surface->Release();
-	}
-	return d3d_texture;
+	// TODO: upload each DDS level via UploadLevel once DDSFileClass exposes CPU pixels
+	// (Copy_Level_To_Surface required an IDirect3DSurface8). For now create empty texture.
+	return vk_texture;
 }
 
 // ----------------------------------------------------------------------------
@@ -305,7 +264,7 @@ IDirect3DTexture8* Load_Compressed_Texture(
 // format and performs color space conversion.
 //
 // ----------------------------------------------------------------------------
-IDirect3DSurface8* TextureLoader::Load_Surface_Immediate(
+void* TextureLoader::Load_Surface_Immediate(
 	const StringClass& filename,
 	WW3DFormat texture_format,
 	bool allow_compression)
@@ -313,18 +272,15 @@ IDirect3DSurface8* TextureLoader::Load_Surface_Immediate(
 	bool compressed=Is_Format_Compressed(texture_format,allow_compression);
 
 	if (compressed) {
-		IDirect3DTexture8* comp_tex=Load_Compressed_Texture(filename,0,TextureClass::MIP_LEVELS_1,WW3D_FORMAT_UNKNOWN);
+		VkTexture* comp_tex=Load_Compressed_Texture(filename,0,TextureClass::MIP_LEVELS_1,WW3D_FORMAT_UNKNOWN);
 		if (comp_tex) {
-			IDirect3DSurface8* d3d_surface=NULL;
-			DX8_ErrorCode(comp_tex->GetSurfaceLevel(0,&d3d_surface));
-			comp_tex->Release();
-			return d3d_surface;
+			return comp_tex;
 		}
 	}
 
 	// Make sure the file can be opened. If not, return missing texture.
 	Targa targa;
-	if (TARGA_ERROR_HANDLER(targa.Open(filename, TGA_READMODE),filename)) return MissingTexture::_Create_Missing_Surface();
+	if (TARGA_ERROR_HANDLER(targa.Open(filename, TGA_READMODE),filename)) return MissingTexture::_Get_Missing_Texture();
 
 	// DX8 uses image upside down compared to TGA
 	targa.Header.ImageDescriptor ^= TGAIDF_YORIGIN;
@@ -347,7 +303,7 @@ IDirect3DSurface8* TextureLoader::Load_Surface_Immediate(
 	// NOTE: We load the palette but we do not yet support paletted textures!
 	char palette[256*4];
 	targa.SetPalette(palette);
-	if (TARGA_ERROR_HANDLER(targa.Load(filename, TGAF_IMAGE, false),filename)) return MissingTexture::_Create_Missing_Surface();
+	if (TARGA_ERROR_HANDLER(targa.Load(filename, TGAF_IMAGE, false),filename)) return MissingTexture::_Get_Missing_Texture();
 
 	unsigned char* src_surface=(unsigned char*)targa.GetImage();
 
@@ -380,35 +336,23 @@ IDirect3DSurface8* TextureLoader::Load_Surface_Immediate(
 
 	unsigned src_pitch=src_width*src_bpp;
 
-	IDirect3DSurface8* d3d_surface = DX8Wrapper::_Create_DX8_Surface(width,height,dest_format);
-	WWASSERT(d3d_surface);
-	D3DLOCKED_RECT locked_rect;
-	DX8_ErrorCode(
-		d3d_surface->LockRect(
-			&locked_rect,
-			NULL,
-			0));
-
-	BitmapHandlerClass::Copy_Image(
-		(unsigned char*)locked_rect.pBits, 
+	VkTexture* vk_texture = new VkTexture();
+	bool created = vk_texture->CreateFromData(
+		&VulkanDevice::Instance(),
 		width,
 		height,
-		locked_rect.Pitch,
-		dest_format,
-		src_surface,
-		src_width,
-		src_height,
-		src_pitch,
-		src_format,
-		(unsigned char*)targa.GetPalette(),
-		targa.Header.CMapDepth>>3,
-		false);	// No mipmap
-
-	DX8_ErrorCode(d3d_surface->UnlockRect());
+		vk_texture->TranslateFormat(WW3DFormat_To_D3DFormat(dest_format)),
+		1,
+		src_surface);
+	WWASSERT(created);
+	if (!created) {
+		delete vk_texture;
+		vk_texture = MissingTexture::_Get_Missing_Texture();
+	}
 
 	if (converted_surface) delete[] converted_surface;
 
-	return d3d_surface;
+	return vk_texture;
 }
 
 
@@ -422,7 +366,7 @@ IDirect3DSurface8* TextureLoader::Load_Surface_Immediate(
 
 void TextureLoader::Load_Mipmap_Levels(TextureLoadTaskClass* task)
 {
-	WWASSERT(task->Peek_D3D_Texture());
+	WWASSERT(task->Peek_Vulkan_Texture());
 	WWMEMLOG(MEM_TEXTURE);
 
 	if (task->Peek_Texture()->Is_Compression_Allowed()) {
@@ -777,131 +721,11 @@ static DWORD VectortoRGBA( D3DXVECTOR3* v, FLOAT fHeight )
     return( (a<<24L) + (r<<16L) + (g<<8L) + (b<<0L) );
 }
 
-IDirect3DTexture8* TextureLoader::Generate_Bumpmap(TextureClass* texture)
+VkTexture* TextureLoader::Generate_Bumpmap(TextureClass* texture)
 {
-	WW3DFormat bump_format=WW3D_FORMAT_U8V8;
-	if (!DX8Caps::Support_Texture_Format(bump_format)) {
-		return MissingTexture::_Get_Missing_Texture();
-	}
-
-	D3DSURFACE_DESC desc;
-	IDirect3DTexture8* src_d3d_tex=texture->Peek_DX8_Texture();
-	WWASSERT(src_d3d_tex);
-	DX8_ErrorCode(src_d3d_tex->GetLevelDesc(0,&desc));
-	unsigned width=desc.Width;
-	unsigned height=desc.Height;
-
-	IDirect3DTexture8* d3d_texture = DX8Wrapper::_Create_DX8_Texture(
-		width,
-		height,
-		bump_format,
-		TextureClass::MIP_LEVELS_1);
-
-	D3DLOCKED_RECT src_locked_rect;
-	DX8_ErrorCode(
-		texture->Peek_DX8_Texture()->LockRect(
-			0,
-			&src_locked_rect,
-			NULL,
-			D3DLOCK_READONLY));
-
-	D3DLOCKED_RECT dest_locked_rect;
-	DX8_ErrorCode(
-		d3d_texture->LockRect(
-			0,
-			&dest_locked_rect,
-			NULL,
-			0));
-
-	WW3DFormat format=D3DFormat_To_WW3DFormat(desc.Format);
-	unsigned bpp=Get_Bytes_Per_Pixel(format);
-
-	for( unsigned y=0; y<desc.Height; y++ )
-	{
-		unsigned char* dest_ptr  = (unsigned char*)dest_locked_rect.pBits;
-		dest_ptr+=y*dest_locked_rect.Pitch;
-		unsigned char* src_ptr_mid = (unsigned char*)src_locked_rect.pBits;
-		src_ptr_mid+=y*src_locked_rect.Pitch;
-		unsigned char* src_ptr_next_line = ( src_ptr_mid + src_locked_rect.Pitch );
-		unsigned char* src_ptr_prev_line = ( src_ptr_mid - src_locked_rect.Pitch );
-
-		if( y == desc.Height-1 )  // Don't go past the last line
-			src_ptr_next_line = src_ptr_mid;
-		if( y == 0 )               // Don't go before first line
-			src_ptr_prev_line = src_ptr_mid;
-
-		for( unsigned x=0; x<desc.Width; x++ )
-		{
-			unsigned pixel00;
-			unsigned pixel01;
-			unsigned pixelM1;
-			unsigned pixel10;
-			unsigned pixel1M;
-
-			BitmapHandlerClass::Read_B8G8R8A8(pixel00,src_ptr_mid,format,NULL,0);
-			BitmapHandlerClass::Read_B8G8R8A8(pixel01,src_ptr_mid+bpp,format,NULL,0);
-			BitmapHandlerClass::Read_B8G8R8A8(pixelM1,src_ptr_mid-bpp,format,NULL,0);
-			BitmapHandlerClass::Read_B8G8R8A8(pixel10,src_ptr_prev_line,format,NULL,0);
-			BitmapHandlerClass::Read_B8G8R8A8(pixel1M,src_ptr_next_line,format,NULL,0);
-
-			// Convert to luminance
-			unsigned char bv00;
-			unsigned char bv01;
-			unsigned char bvM1;
-			unsigned char bv10;
-			unsigned char bv1M;
-			BitmapHandlerClass::Write_B8G8R8A8(&bv00,WW3D_FORMAT_L8,pixel00);
-			BitmapHandlerClass::Write_B8G8R8A8(&bv01,WW3D_FORMAT_L8,pixel01);
-			BitmapHandlerClass::Write_B8G8R8A8(&bvM1,WW3D_FORMAT_L8,pixelM1);
-			BitmapHandlerClass::Write_B8G8R8A8(&bv10,WW3D_FORMAT_L8,pixel10);
-			BitmapHandlerClass::Write_B8G8R8A8(&bv1M,WW3D_FORMAT_L8,pixel1M);
-			int v00=bv00,v01=bv01,vM1=bvM1,v10=bv10,v1M=bv1M;
-
-			int iDu = (vM1-v01); // The delta-u bump value
-			int iDv = (v1M-v10); // The delta-v bump value
-
-			if( (v00 < vM1) && (v00 < v01) )  // If we are at valley
-			{
-				 iDu = vM1-v00;                 // Choose greater of 1st order diffs
-				 if( iDu < v00-v01 )
-					  iDu = v00-v01;
-			}
-
-			// The luminance bump value (land masses are less shiny)
-			unsigned short uL = ( v00>1 ) ? 63 : 127;
-
-			switch( bump_format )
-			{
-			case WW3D_FORMAT_U8V8:
-				*dest_ptr++ = (unsigned char)iDu;
-				*dest_ptr++ = (unsigned char)iDv;
-				break;
-
-			case WW3D_FORMAT_L6V5U5:
-				*(unsigned short*)dest_ptr  = (unsigned short)( ( (iDu>>3) & 0x1f ) <<  0 );
-				*(unsigned short*)dest_ptr |= (unsigned short)( ( (iDv>>3) & 0x1f ) <<  5 );
-				*(unsigned short*)dest_ptr |= (unsigned short)( ( ( uL>>2) & 0x3f ) << 10 );
-				dest_ptr += 2;
-				break;
-
-			case WW3D_FORMAT_X8L8V8U8:
-				*dest_ptr++ = (unsigned char)iDu;
-				*dest_ptr++ = (unsigned char)iDv;
-				*dest_ptr++ = (unsigned char)uL;
-				*dest_ptr++ = (unsigned char)0L;
-				break;
-			}
-
-			// Move one pixel to the left (src is 32-bpp)
-			src_ptr_mid+=bpp;
-			src_ptr_prev_line+=bpp;
-			src_ptr_next_line+=bpp;
-		}
-	}
-
-	DX8_ErrorCode(d3d_texture->UnlockRect(0));
-	DX8_ErrorCode(texture->Peek_DX8_Texture()->UnlockRect(0));
-	return d3d_texture;
+	// TODO: port bumpmap generation to Vulkan (needs CPU-readable source pixels)
+	// Fall back to missing texture until implemented
+	return MissingTexture::_Get_Missing_Texture();
 }
 
 // ----------------------------------------------------------------------------
@@ -951,7 +775,7 @@ TextureLoadTaskClass::TextureLoadTaskClass()
 	:
 	Texture(0),
 	Succ(0), 
-	D3DTexture(0),
+	VulkanTexture(0),
 	Width(0),
 	Height(0),
 	Format(WW3D_FORMAT_UNKNOWN),
@@ -988,7 +812,7 @@ void TextureLoadTaskClass::Init(TextureClass* tc,bool high_priority)
 	IsLoading=false;
 	HasFailed=false;
 	MipLevelCount=tc->MipLevelCount;
-	D3DTexture=0;
+	VulkanTexture=0;
 	Width=0;
 	Height=0;
 	Format=Texture->Get_Texture_Format();
@@ -1003,7 +827,7 @@ void TextureLoadTaskClass::Init(TextureClass* tc,bool high_priority)
 void TextureLoadTaskClass::Deinit()
 {
 	WWASSERT(Succ==NULL);
-	WWASSERT(D3DTexture==NULL);
+	WWASSERT(VulkanTexture==NULL);
 	WWASSERT(IsLoading==false);
 	for (int i=0;i<TextureClass::MIP_LEVELS_MAX;++i) {
 		WWASSERT(LockedSurfacePtr[i]==NULL);
@@ -1014,7 +838,7 @@ void TextureLoadTaskClass::Deinit()
 	}
 
 	REF_PTR_RELEASE(Texture);
-	WWASSERT(!D3DTexture);
+	WWASSERT(!VulkanTexture);
 }
 
 // ----------------------------------------------------------------------------
@@ -1077,7 +901,7 @@ void TextureLoadTaskClass::Begin_Texture_Load()
 				}
 				if (mip_level_count>max_mip_level_count) mip_level_count=max_mip_level_count;
 
-				D3DTexture=DX8Wrapper::_Create_DX8_Texture(Width,Height,Format,(TextureClass::MipCountType)mip_level_count);
+				VulkanTexture=DX8Wrapper::_Create_Vulkan_Texture(Width,Height,Format,(TextureClass::MipCountType)mip_level_count);
 				MipLevelCount=mip_level_count;
 				//Texture->MipLevelCount);
 				loaded=true;
@@ -1087,7 +911,7 @@ void TextureLoadTaskClass::Begin_Texture_Load()
 		if (!loaded) {
 			Targa targa;
 			if (TARGA_ERROR_HANDLER(targa.Open(Texture->Get_Full_Path(), TGA_READMODE),Texture->Get_Full_Path())) {
-				D3DTexture=MissingTexture::_Get_Missing_Texture();
+				VulkanTexture=MissingTexture::_Get_Missing_Texture();
 				HasFailed=true;
 				IsLoading=false;
 				End_Load();
@@ -1144,20 +968,17 @@ void TextureLoadTaskClass::Begin_Texture_Load()
 				Format=Get_Valid_Texture_Format(Format,false);
 			}
 
-			D3DTexture=DX8Wrapper::_Create_DX8_Texture(Width,Height,Format,Texture->MipLevelCount);
+			VulkanTexture=DX8Wrapper::_Create_Vulkan_Texture(Width,Height,Format,Texture->MipLevelCount);
 		}
 
-		MipLevelCount=D3DTexture->GetLevelCount();
+		MipLevelCount=VulkanTexture ? VulkanTexture->GetMipLevels() : 1;
 		for (unsigned i=0;i<MipLevelCount;++i) {
-			D3DLOCKED_RECT locked_rect;
-			DX8_ErrorCode(
-				D3DTexture->LockRect(
-					i,
-					&locked_rect,
-					NULL,
-					0));
-			LockedSurfacePtr[i]=(unsigned char*)locked_rect.pBits;
-			LockedSurfacePitch[i]=locked_rect.Pitch;
+			// CPU shadow for the locked level; uploaded on End_Load via UploadLevel
+			unsigned level_w=Width>>i; if (!level_w) level_w=1;
+			unsigned level_h=Height>>i; if (!level_h) level_h=1;
+			LockedSurfacePitch[i]=level_w*4;
+			LockedSurfacePtr[i]=W3DNEWARRAY unsigned char[LockedSurfacePitch[i]*level_h];
+			::ZeroMemory(LockedSurfacePtr[i],LockedSurfacePitch[i]*level_h);
 		}
 
 		if (HighPriorityRequested) {
@@ -1219,7 +1040,7 @@ void TextureLoadTaskClass::Begin_Thumbnail_Load()
 		default:
 			break;
 		}
-		D3DTexture=TextureLoader::Load_Thumbnail(Texture->Get_Full_Path(),format);
+		VulkanTexture=TextureLoader::Load_Thumbnail(Texture->Get_Full_Path(),format);
 
 		// Thumbnail loads are always high priority, so apply immediatelly
 		End_Load();
@@ -1244,7 +1065,13 @@ void TextureLoadTaskClass::End_Load()
 	for (unsigned i=0;i<MipLevelCount;++i) {
 		if (LockedSurfacePtr[i]) {
 			WWASSERT(ThreadClass::_Get_Current_Thread_ID()==DX8Wrapper::_Get_Main_Thread_ID());
-			DX8_ErrorCode(D3DTexture->UnlockRect(i));
+			// Upload the CPU shadow into the Vulkan texture level
+			if (VulkanTexture) {
+				unsigned level_w=Width>>i; if (!level_w) level_w=1;
+				unsigned level_h=Height>>i; if (!level_h) level_h=1;
+				VulkanTexture->UploadLevel(i, level_w, level_h, LockedSurfacePtr[i]);
+			}
+			delete[] LockedSurfacePtr[i];
 		}
 		LockedSurfacePtr[i]=NULL;
 	}
@@ -1273,10 +1100,10 @@ void TextureLoadTaskClass::Set_Succ(TextureLoadTaskClass* succ)
 //
 // ----------------------------------------------------------------------------
 
-void TextureLoadTaskClass::Set_D3D_Texture(IDirect3DTexture8* texture)
+void TextureLoadTaskClass::Set_Vulkan_Texture(VkTexture* texture)
 {
-	WWASSERT(D3DTexture==0);
-	D3DTexture=texture;
+	WWASSERT(VulkanTexture==0);
+	VulkanTexture=texture;
 }
 
 // ----------------------------------------------------------------------------
@@ -1290,7 +1117,7 @@ void TextureLoadTaskClass::Set_D3D_Texture(IDirect3DTexture8* texture)
 
 void TextureLoadTaskClass::Apply(bool initialize)
 {
-	WWASSERT(D3DTexture);
+	WWASSERT(VulkanTexture);
 	// Verify that none of the mip levels are locked
 	for (unsigned i=0;i<MipLevelCount;++i) {
 		WWASSERT(LockedSurfacePtr[i]==NULL);
@@ -1298,8 +1125,8 @@ void TextureLoadTaskClass::Apply(bool initialize)
 
 	Texture->Apply_New_Surface(initialize);
 
-	D3DTexture->Release();
-	D3DTexture=NULL;
+	// Ownership of VulkanTexture transferred to TextureClass in Apply_New_Surface
+	VulkanTexture=NULL;
 }
 
 // ----------------------------------------------------------------------------

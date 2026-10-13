@@ -751,8 +751,8 @@ void SurfaceClass::Get_Pixel(Vector3 &rgb, int x,int y)
 	SurfaceDescription sd;
 	Get_Description(sd);
 
-	x = min(x,(int)sd.Width - 1);
-	y = min(y,(int)sd.Height - 1);
+	x = (x < (int)sd.Width - 1) ? x : (int)sd.Width - 1;
+	y = (y < (int)sd.Height - 1) ? y : (int)sd.Height - 1;
 
 	int pitch=0;
 	unsigned char *base=(unsigned char *)Lock(&pitch);

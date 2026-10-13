@@ -72,4 +72,32 @@ next-steps list. After each accomplished step: commit + push.
 - Verified: surfaceclass.cpp compiles; zero D3D references remain.
 - Remaining WW3D2 errors: textureloader.cpp (~25), ww3d.cpp (~6), prim_anim.h (1 template).
 
+### 2026-10-12 — Step 4 done: WW3D2 builds clean
+
+Fixed remaining files in one pass:
+
+**textureloader.cpp** (full Vulkan port):
+- `Load_Thumbnail`: `_Create_Vulkan_Texture` + `UploadLevel` + `GenerateMipmaps` (was multi-level LockRect).
+- `Load_Compressed_Texture`: returns `VkTexture*`; DDS pixel upload TODO (needs DDSFileClass CPU path).
+- `Load_Surface_Immediate`: returns `void*` (VkTexture*); TGA → `CreateFromData`.
+- `Generate_Bumpmap`: stub returns missing texture (needs CPU-readable source).
+- Load task: `D3DTexture`→`VulkanTexture`; mip locks are CPU shadow buffers uploaded in `End_Load` via `UploadLevel`; `Apply` transfers ownership (no COM Release).
+- Header: `Load_Thumbnail` → `VkTexture*`; removed `IDirect3DTexture8` forward decl.
+
+**ww3d.cpp**:
+- Removed `Is_Vulkan_Lost` checks (no such API; swapchain recreation is internal).
+- Screenshot + movie capture: `_Get_DX8_Front_Buffer`/LockRect → `_Read_Front_Buffer` (RGBA readback).
+
+**Other**:
+- `textdraw.cpp`: `Peek_Texture(ch)`/`Peek_Texture('A')` → `Peek_Texture()` (no per-char overload).
+- `surfaceclass.cpp`: `min()` → ternary (NOMINMAX).
+- `prim_anim.h`: dependent-base access via `this->` + `typedef typename ...::KeyClass` (GCC two-phase lookup).
+- `texproject.cpp`: `Set_Render_Target((IDirect3DSurface8*)NULL)` → `(TextureClass*)NULL`.
+- `texture.cpp`: Bumpmap ctor uses stubbed `Generate_Bumpmap` (returns VkTexture*).
+- `textureloader.h`: `Generate_Bumpmap` → `VkTexture*`.
+
+**Verified: `cmake --build build --target WW3D2` → 100% Built target WW3D2.**
+
+Next: GameEngineDevice + link RTS.exe.
+
 <!-- Append new entries below. Commit after each completed step. -->

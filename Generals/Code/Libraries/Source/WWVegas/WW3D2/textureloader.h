@@ -27,7 +27,7 @@
 #include "texture.h"
 
 class StringClass;
-struct IDirect3DTexture8;
+class VkTexture;
 class TextureLoadTaskClass;
 
 class TextureLoader
@@ -48,7 +48,7 @@ public:
 	// when it's been completed. The texture will be refreshed on the next
 	// update call after appearing to the finished tasks list.
 	static void Add_Load_Task(TextureClass* tc);
-	static IDirect3DTexture8* Load_Thumbnail(
+	static VkTexture* Load_Thumbnail(
 		const StringClass& filename,
 		WW3DFormat texture_format);	// Pass WW3D_FORMAT_UNKNOWN if you don't care
 	static void Load_Mipmap_Levels(TextureLoadTaskClass* texture);
@@ -69,7 +69,7 @@ public:
 	static void Update();
 	static void Flush_Pending_Load_Tasks();
 
-	static IDirect3DTexture8* Generate_Bumpmap(TextureClass* texture);
+	static class VkTexture* Generate_Bumpmap(TextureClass* texture);
 
 };
 
