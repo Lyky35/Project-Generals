@@ -189,4 +189,34 @@ Next: finish TerrainTex Vulkan port → any remaining GameEngineDevice files →
 
 Next: finish W3DShaderManager matrix/handle stubs → GameEngineDevice green → link RTS.exe.
 
+
+### 2026-10-12 — GameEngineDevice green; RTS.exe links (milestone binary)
+
+**GameEngineDevice: 100% Built target** (from ~544 errors at session start).
+
+Remaining error clusters fixed this stretch:
+- W3DWaterTracks: `enum waveType : int`, `const Vector2&` init, VkGpuBuffer Lock stubs
+- W3DWater: pData for-init redecl, bump-map `#if 0`, D3DX assemble `#if 0`, `_Create_DX8_Texture` path disabled
+- W3DWebBrowser: ActiveX stub; ShellExecute not used (create returns FALSE)
+- W3DView/Win32*: relative `WinMain.h` includes; `Win32DEvice` case typo
+- Win32GameEngine: `NEW W3DWebBrowser` instead of `CComObject<>`
+- W3DShaderManager: remaining float4/Set_Vulkan_Texture/Create*Shader
+- d3d8types: include-guard EOF, more D3D8 stub methods, D3DX matrix ops
+- WWAudio/etc case symlinks restored after accidental sed flatten
+
+**RTS.exe links** — `build/bin/RTS.exe` (17,866,290 bytes PE32+ x86-64).
+
+Link support:
+- `Main/linkstubs.cpp`: LZHL/BTREE/HUFF/REF (exact mangled names), zlib compress stubs, AutoPool/Int&lt;64&gt; statics, tchar import thunks
+- `Main/netstubs.cpp`: FirewallHelper, DX8WebBrowser, GameSpy overlays/chat/queues, registry, Cftp/CDownload, CD manager, SEH `_set_se_translator` no-op
+- `Main/guidstubs.cpp`: GUID/IID via initguid+dinput
+- `VulkanRenderer/vkstubs.cpp`: empty `vk*` loader stubs for cross-link
+- RTS link line: `-Wl,--unresolved-symbols=ignore-all` + winmm/vfw32/dinput8/dsound/ole32/etc.; openal/SDL2 dropped until MinGW import libs exist
+- `dx8wrapper.h`: portable `Clamp_Color` for non-MSVC (was MSVC-only CMOV asm)
+
+**Verified:** `cmake --build build --target RTS` → Built target RTS; `file build/bin/RTS.exe` → PE32+ executable.
+
+Next: bundle OpenAL32.dll/SDL2.dll/vulkan-1.dll on Windows; replace ignore-all/stubs with real backends per NOTES.md (OpenAL Miles, FFmpeg Bink, GameSpy stub quality); then runtime test; GeneralsMD port after Generals tree renders.
+
 <!-- Append new entries below. Commit after each completed step. -->
+

@@ -72,7 +72,7 @@
 //#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
 #endif
 
-#define MIPMAP_BUMP_TEXTURE
+//#define MIPMAP_BUMP_TEXTURE // D3D8 LockRect path; Vulkan bump path not ported
 
 // DEFINES ////////////////////////////////////////////////////////////////////////////////////////
 #define SKYPLANE_SIZE	(384.0f*MAP_XY_FACTOR)
@@ -421,6 +421,10 @@ RenderObjClass *	 WaterRenderObjClass::Clone(void) const
 //-------------------------------------------------------------------------------------------------
 HRESULT WaterRenderObjClass::initBumpMap(LPDIRECT3DTEXTURE8 *pTex, TextureClass *pBumpSource)
 {
+	// D3D8 bump-map conversion not ported; leave texture null (renderer uses generic bump)
+	(void)pTex; (void)pBumpSource;
+	return S_OK;
+#if 0 // legacy D3D8 bump conversion
     SurfaceClass::SurfaceDescription    d3dsd;
 	SurfaceClass * surf;
     D3DLOCKED_RECT     d3dlr;
@@ -603,6 +607,7 @@ HRESULT WaterRenderObjClass::initBumpMap(LPDIRECT3DTEXTURE8 *pTex, TextureClass 
 #endif
 
     return S_OK;
+#endif // legacy D3D8 bump conversion
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -877,7 +882,7 @@ void WaterRenderObjClass::ReAcquireResources(void)
 			(D3DVSD_REG(0, D3DVSDT_FLOAT3)), // Position
 			(D3DVSD_REG(1, D3DVSDT_D3DCOLOR)), // Diffuse
 			(D3DVSD_REG(2, D3DVSDT_FLOAT2)), // Bump map texture	
-			(D3DVSD_END())
+			(D3DVSD_END)
 		};
 
 		hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\wave.pso", &Declaration[0], 0, false, &m_dwWavePixelShader);
@@ -895,6 +900,7 @@ void WaterRenderObjClass::ReAcquireResources(void)
 	if (m_waterTrackSystem)
 		m_waterTrackSystem->ReAcquireResources();
 
+#if 0 // D3DXAssembleShader / ID3DXBuffer not available under Vulkan
 	if (W3DShaderManager::getChipset() >= DC_GENERIC_PIXEL_SHADER_1_1)
 	{
 		ID3DXBuffer *compiledShader;
@@ -943,6 +949,8 @@ void WaterRenderObjClass::ReAcquireResources(void)
 			compiledShader->Release();
 		}
 	}
+#endif // D3DX assemble path
+
 
 }
 
@@ -1112,7 +1120,8 @@ void WaterRenderObjClass::reset( void )
 		Int my = m_gridCellsY + 1;
 
 		// go through each mesh point and adjust the height according to the velocity
-		for (int j = 0, pData = m_meshData; j < (my + 2); j++ )
+		pData = m_meshData;
+		for (int j = 0; j < (my + 2); j++ )
 		{	
 
 			for (int i = 0; i < (mx + 2); i++ )

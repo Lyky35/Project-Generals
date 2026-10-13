@@ -1,5 +1,8 @@
 add_executable(RTS WIN32
     ${CMAKE_CURRENT_SOURCE_DIR}/WinMain.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/guidstubs.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/linkstubs.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/netstubs.cpp
 )
 
 target_include_directories(RTS PRIVATE
@@ -8,6 +11,10 @@ target_include_directories(RTS PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/../GameEngine/Include
     ${CMAKE_CURRENT_SOURCE_DIR}/../GameEngineDevice/Include
 )
+
+# First link milestone: ignore unresolved (GameSpy/Firewall/Vulkan-loader/etc stubs)
+# Remaining symbols get real impls as SDK backends land.
+target_link_options(RTS PRIVATE -Wl,--unresolved-symbols=ignore-all)
 
 target_link_libraries(RTS PRIVATE
     GameEngineDevice
@@ -24,9 +31,21 @@ target_link_libraries(RTS PRIVATE
     WWAudio
     WPAudio
     DX8Compat
+    winmm
+    vfw32
+    dinput8
+    dsound
+    ole32
+    oleaut32
+    uuid
+    shell32
+    imm32
+    comctl32
+    wininet
+    advapi32
+    ws2_32
+    mingw32
     GameSpyStub
-    openal
-    SDL2
 )
 
 # Remove DirectX 8 SDK libraries (replaced by OpenAL + SDL2 + FFmpeg)

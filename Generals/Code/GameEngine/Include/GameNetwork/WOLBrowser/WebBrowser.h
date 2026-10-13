@@ -1,4 +1,5 @@
 #pragma once
+#include "Common/AsciiString.h"
 #ifndef __WEBBROWSER_H__
 #define __WEBBROWSER_H__
 
@@ -7,7 +8,7 @@
 
 class WebBrowserURL {
 public:
-    int dummy;
+    AsciiString m_url;
 };
 
 class WebBrowser {

@@ -36,7 +36,7 @@
 #include "GameClient/KeyDefs.h"
 #include "GameClient/Keyboard.h"
 #include "Win32Device/GameClient/Win32DIKeyboard.h"
-#include "WinMain.h"
+#include "../../../Main/WinMain.h"
 
 // DEFINES ////////////////////////////////////////////////////////////////////////////////////////
 enum { KEYBOARD_BUFFER_SIZE = 256 };

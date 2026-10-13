@@ -50,25 +50,12 @@ Bool W3DWebBrowser::createBrowserWindow(char *tag, GameWindow *win)
 	win->winGetSize(&w, &h);
 	win->winGetScreenPosition(&x, &y);
 
-	WebBrowserURL *url = findURL( AsciiString(tag) );
-
-	if (url == NULL) {
-		DEBUG_LOG(("W3DWebBrowser::createBrowserWindow - couldn't find URL for page %s\n", tag));
-		return FALSE;
-	}
-
-	CComQIPtr<IDispatch> idisp(m_dispatch);
-	if (m_dispatch == NULL)
-	{
-		return FALSE;
-	}
-
-	DX8WebBrowser::CreateBrowser(windowName.str(), url->m_url.str(), x, y, w, h, 0, BROWSEROPTION_SCROLLBARS | BROWSEROPTION_3DBORDER, (LPDISPATCH)this);
-
-	return TRUE;
+	// ActiveX/COM browser path not ported under MinGW/Vulkan
+	(void)tag; (void)win; (void)windowName; (void)x; (void)y; (void)w; (void)h;
+	return FALSE;
 }
 
 void W3DWebBrowser::closeBrowserWindow(GameWindow *win) 
 {
-	DX8WebBrowser::DestroyBrowser(win->winGetInstanceData()->m_decoratedNameString.str());
+	(void)win; // ActiveX browser not ported
 }

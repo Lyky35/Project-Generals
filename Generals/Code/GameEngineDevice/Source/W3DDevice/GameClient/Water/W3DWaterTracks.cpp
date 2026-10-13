@@ -73,11 +73,15 @@
 //#define DEFAULT_FINAL_WAVE_HEIGHT	18.0f
 //#define DEFAULT_SECOND_WAVE_TIME_OFFSET 6267	//should always be half of totalMs
 
+// Vertex buffer Lock via DynamicVB path not yet ported; fail closed (skip draw batch)
+static int WaterTracks_LockStub(unsigned, unsigned, unsigned char**, unsigned) { return -1; }
+static void WaterTracks_UnlockStub(void) {}
+
 WaterTracksRenderSystem *TheWaterTracksRenderSystem=NULL;	///< singleton for track drawing system.
 
 static Bool pauseWaves=FALSE;
 
-enum waveType
+enum waveType : int
 {
 	WaveTypeFirst,
 	WaveTypePond=WaveTypeFirst,
@@ -175,7 +179,7 @@ Int WaterTracksObj::freeWaterTracksResources(void)
 *	the specified texture.
  */
 //=============================================================================
-void WaterTracksObj::init( Real width, Real length, Vector2 &start, Vector2 &end, Char *texturename, Int waveTimeOffset)
+void WaterTracksObj::init( Real width, Real length, const Vector2 &start, const Vector2 &end, Char *texturename, Int waveTimeOffset)
 {	
 	freeWaterTracksResources();	//free old resources used by this track
 
@@ -247,7 +251,7 @@ void WaterTracksObj::init( Real width, Real length, Vector2 &start, Vector2 &end
 *	defines the maximum distance the wave will reach.
  */
 //=============================================================================
-void WaterTracksObj::init( Real width, Vector2 &start, Vector2 &end, Char *texturename)
+void WaterTracksObj::init( Real width, const Vector2 &start, const Vector2 &end, Char *texturename)
 {	
 	freeWaterTracksResources();	//free old resources used by this track
 	m_boundingSphere.Init(Vector3(0,0,0),400);
@@ -317,12 +321,12 @@ Int WaterTracksObj::render(DX8VertexBufferClass	*vertexBuffer, Int batchStart)
 
 	if (batchStart < (WATER_VB_PAGES*WATER_STRIP_X*WATER_STRIP_Y-m_x*m_y))
 	{	//we have room in current VB, append new verts
-		if(vertexBuffer->Get_DX8_Vertex_Buffer()->Lock(batchStart*vertexBuffer->FVF_Info().Get_FVF_Size(),m_x*m_y*vertexBuffer->FVF_Info().Get_FVF_Size(),(unsigned char**)&vb,D3DLOCK_NOOVERWRITE) != D3D_OK)
+		if(WaterTracks_LockStub(batchStart*vertexBuffer->FVF_Info().Get_FVF_Size(),m_x*m_y*vertexBuffer->FVF_Info().Get_FVF_Size(),(unsigned char**)&vb,D3DLOCK_NOOVERWRITE) != D3D_OK)
 			return batchStart;
 	}
 	else
 	{	//ran out of room in last VB, request a substitute VB.
-		if(vertexBuffer->Get_DX8_Vertex_Buffer()->Lock(0,m_x*m_y*vertexBuffer->FVF_Info().Get_FVF_Size(),(unsigned char**)&vb,D3DLOCK_DISCARD) != D3D_OK)
+		if(WaterTracks_LockStub(0,m_x*m_y*vertexBuffer->FVF_Info().Get_FVF_Size(),(unsigned char**)&vb,D3DLOCK_DISCARD) != D3D_OK)
 			return batchStart;
 		batchStart=0;	//reset start of page to first vertex
 	}
@@ -478,7 +482,7 @@ Int WaterTracksObj::render(DX8VertexBufferClass	*vertexBuffer, Int batchStart)
 	vb->v1=1.0f;
 	vb++;
 
-	vertexBuffer->Get_DX8_Vertex_Buffer()->Unlock();
+	WaterTracks_UnlockStub();
 
 	Int idxCount=(m_y-1)*(m_x*2+2) - 2;	//index count
 

@@ -924,6 +924,15 @@ WWINLINE unsigned int DX8Wrapper::Convert_Color(const Vector3& color,float alpha
 	float a = alpha < 0.0f ? 0.0f : (alpha > 1.0f ? 1.0f : alpha);
 	return ((unsigned int)(a * scale) << 24) | ((unsigned int)(r * scale) << 16) | ((unsigned int)(g * scale) << 8) | (unsigned int)(b * scale);
 }
+
+// Portable Clamp_Color (MSVC path uses CMOV inline asm)
+WWINLINE void DX8Wrapper::Clamp_Color(Vector4& color)
+{
+	for (int i=0;i<4;++i) {
+		float f=(color[i]<0.0f) ? 0.0f : color[i];
+		color[i]=(f>1.0f) ? 1.0f : f;
+	}
+}
 #endif
 
 // ----------------------------------------------------------------------------

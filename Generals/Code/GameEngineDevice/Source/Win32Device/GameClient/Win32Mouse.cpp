@@ -35,7 +35,7 @@
 #include "Common/LocalFileSystem.h"
 #include "GameClient/GameClient.h"
 #include "Win32Device/GameClient/Win32Mouse.h"
-#include "WinMain.h"
+#include "../../../Main/WinMain.h"
 
 #ifdef _INTERNAL
 // for occasional debugging...

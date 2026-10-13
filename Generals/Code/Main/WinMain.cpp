@@ -49,7 +49,6 @@
 #include "Common/GameSounds.h"
 #include "Common/Debug.h"
 #include "Common/GameMemory.h"
-#include "Common/SafeDisc/CdaPfn.h"
 #include "Common/StackDump.h"
 #include "Common/MessageStream.h"
 #include "Common/Team.h"
@@ -787,10 +786,9 @@ static Bool initializeAppWindows( HINSTANCE hInstance, Int nCmdShow, Bool runWin
 }  // end initializeAppWindows
 
 void munkeeFunc(void);
-CDAPFN_DECLARE_GLOBAL(munkeeFunc, CDAPFN_OVERHEAD_L5, CDAPFN_CONSTRAINT_NONE);
+// SafeDisc CDAPFN macros removed with CdaPfn.h; munkeeFunc kept for checkProtection()
 void munkeeFunc(void)
 {
-	CDAPFN_ENDMARK(munkeeFunc);
 }
 
 void checkProtection(void)

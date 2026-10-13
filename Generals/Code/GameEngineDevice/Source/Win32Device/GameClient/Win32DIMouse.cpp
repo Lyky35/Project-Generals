@@ -28,7 +28,7 @@
 #include "Common/Debug.h"
 #include "GameClient/Display.h"
 #include "Win32Device/GameClient/Win32DIMouse.h"
-#include "WinMain.h"
+#include "../../../Main/WinMain.h"
 
 // DEFINES ////////////////////////////////////////////////////////////////////////////////////////
 enum { MOUSE_BUFFER_SIZE = 256, };
