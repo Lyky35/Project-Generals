@@ -47,7 +47,7 @@
 #include "W3DDevice/GameClient/W3DGranny.h"
 #include "W3DDevice/GameClient/Heightmap.h"
 #include "d3d8types.h"
-#include "common/GlobalData.h"
+#include "Common/GlobalData.h"
 #include "W3DDevice/GameClient/W3DProjectedShadow.h"
 #include "WW3D2/statistics.h"
 #include "Common/Debug.h"
@@ -529,7 +529,7 @@ Int W3DProjectedShadowManager::renderProjectedTerrainShadow(W3DProjectedShadow *
 			
 		m_pDev->SetTransform(D3DTS_WORLD,(_D3DMATRIX *)&mWorld);
 
-		DX8Wrapper::Set_StreamSource(0, shadowVertexBuffer, 0, sizeof(SHADOW_VOLUME_VERTEX));
+		DX8Wrapper::Set_StreamSource(0, shadowVertexBufferD3D, 0, sizeof(SHADOW_VOLUME_VERTEX));
 		m_pDev->SetVertexShader(DX8_FVF_XYZDUV2);
 
 		Int numPolys = (endX - startX)*(endY - startY)*2;	//2 triangles per cell
@@ -542,11 +542,11 @@ Int W3DProjectedShadowManager::renderProjectedTerrainShadow(W3DProjectedShadow *
 		DX8Wrapper::Set_StencilReadMask(0xffffffff);
 		DX8Wrapper::Set_StencilFailOp(VK_STENCIL_OP_KEEP);
 		DX8Wrapper::Set_StencilFailOp(VK_STENCIL_OP_KEEP);
-		DX8Wrapper::Set_StencilPassOp(VK_STENCIL_OP_INCR);
+		DX8Wrapper::Set_StencilPassOp(VK_STENCIL_OP_INCREMENT_AND_CLAMP);
 
 //    m_pDev->SetRenderState( D3DRS_ALPHABLENDENABLE, FALSE );	//useful to see bounds
 		DX8Wrapper::Set_Lighting(FALSE);
-		DX8Wrapper::Set_BlendFunc(VK_BLEND_FACTOR_DEST_COLOR, VK_BLEND_FACTOR_ZERO);
+		DX8Wrapper::Set_BlendFunc(VK_BLEND_FACTOR_DST_COLOR, VK_BLEND_FACTOR_ZERO);
 		DX8Wrapper::Set_DX8_Render_State(D3DRS_DESTBLEND, D3DBLEND_ZERO);
 
 		
@@ -2178,7 +2178,8 @@ void W3DProjectedShadow::update(void)
 
 			m_shadowProjector->Compute_Perspective_Projection(m_robj,objToLight);
 		}
-		setObjPosHistory(m_robj->Get_Position());
+		Vector3 lastPos = m_robj->Get_Position();
+		setObjPosHistory(lastPos);
 	}
 }
 

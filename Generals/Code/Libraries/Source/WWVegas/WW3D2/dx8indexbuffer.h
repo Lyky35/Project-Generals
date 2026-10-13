@@ -180,6 +180,7 @@ public:
 	void Copy(unsigned short* indices,unsigned start_index,unsigned index_count);
 
 	inline VkGpuBuffer* Get_Vulkan_Index_Buffer()	{ return index_buffer; }
+	VkGpuBuffer* Get_DX8_Index_Buffer() { return Get_Vulkan_Index_Buffer(); }
 	
 private:
 	VkGpuBuffer*	index_buffer;		// actual Vulkan index buffer

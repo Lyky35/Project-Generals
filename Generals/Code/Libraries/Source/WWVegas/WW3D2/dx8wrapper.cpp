@@ -2149,3 +2149,22 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 	state->uv0Offset = (texCount >= 1) ? fvfInfo.Get_Tex_Offset(0) : UINT32_MAX;
 	state->uv1Offset = (texCount >= 2) ? fvfInfo.Get_Tex_Offset(1) : UINT32_MAX;
 }
+
+// ---------------------------------------------------------------------------
+// Legacy D3D8-era helpers — no-op stubs for partially-ported shadow code.
+// The Vulkan backend does not expose a raw IDirect3DDevice8.
+// ---------------------------------------------------------------------------
+IDirect3DDevice8* DX8Wrapper::_Get_D3D_Device8() { return 0; }
+void DX8Wrapper::Set_StreamSource(unsigned, void*, unsigned, unsigned) {}
+void DX8Wrapper::Set_AlphaEnable(bool) {}
+void DX8Wrapper::Set_StencilEnable(bool) {}
+void DX8Wrapper::Set_StencilFunc(unsigned) {}
+void DX8Wrapper::Set_StencilRef(unsigned) {}
+void DX8Wrapper::Set_StencilWriteMask(unsigned) {}
+void DX8Wrapper::Set_StencilReadMask(unsigned) {}
+void DX8Wrapper::Set_StencilFailOp(unsigned) {}
+void DX8Wrapper::Set_StencilPassOp(unsigned) {}
+void DX8Wrapper::Set_Lighting(bool) {}
+void DX8Wrapper::Set_BlendFunc(unsigned, unsigned) {}
+void DX8Wrapper::Set_ZEnable(bool) {}
+void DX8Wrapper::Set_ShadeMode(unsigned) {}

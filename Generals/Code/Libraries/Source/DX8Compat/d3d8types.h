@@ -660,9 +660,27 @@ typedef struct _D3DXVECTOR4 {
 	float y;
 	float z;
 	float w;
+	_D3DXVECTOR4() : x(0), y(0), z(0), w(0) {}
+	_D3DXVECTOR4(float _x, float _y, float _z, float _w) : x(_x), y(_y), z(_z), w(_w) {}
+	_D3DXVECTOR4(int _x, int _y, float _z, float _w) : x((float)_x), y((float)_y), z(_z), w(_w) {}
 } D3DXVECTOR4;
 
 typedef D3DMATRIX D3DXMATRIX;
+
+// D3DX math helpers used by legacy shadow code
+inline D3DXVECTOR4* D3DXVec4Transform(D3DXVECTOR4* pOut, const D3DXVECTOR4* pV, const D3DMATRIX* pM) {
+	if (pOut) { pOut->x = pOut->y = pOut->z = pOut->w = 0.0f; }
+	(void)pV; (void)pM; return pOut;
+}
+inline D3DMATRIX* D3DXMatrixInverse(D3DMATRIX* pOut, float* pDeterminant, const D3DMATRIX* pM) {
+	if (pOut) { pOut->_11 = 1; pOut->_22 = 1; pOut->_33 = 1; pOut->_44 = 1; }
+	if (pDeterminant) *pDeterminant = 1.0f;
+	(void)pM; return pOut;
+}
+inline D3DMATRIX* D3DXMatrixIdentity(D3DMATRIX* pOut) {
+	if (pOut) { pOut->_11 = pOut->_22 = pOut->_33 = pOut->_44 = 1; }
+	return pOut;
+}
 
 #define D3DX_PI ((float)3.141592654f)
 #define D3DX_DEFAULT ((UINT)-1)
@@ -680,9 +698,68 @@ struct IDirect3DBaseTexture8;
 struct IDirect3DVolumeTexture8;
 struct IDirect3DVolume8;
 struct IDirect3DCubeTexture8;
-struct IDirect3DVertexBuffer8;
 struct IDirect3DIndexBuffer8;
-struct IDirect3DDevice8;
 struct IDirect3D8;
 
+// Complete-enough stubs for legacy callers that Lock/Unlock/Create* on these
+struct IDirect3DVertexBuffer8 {
+	HRESULT Lock(UINT OffsetToLock, UINT SizeToLock, BYTE** ppbData, DWORD Flags) { (void)OffsetToLock; (void)SizeToLock; (void)Flags; if (ppbData) *ppbData = 0; return E_FAIL; }
+	HRESULT Unlock() { return S_OK; }
+	void Release() {}
+};
+
+struct IDirect3DDevice8;
+typedef IDirect3DVertexBuffer8* LPDIRECT3DVERTEXBUFFER8;
+
+struct IDirect3DDevice8 {
+	HRESULT CreateVertexBuffer(UINT Length, DWORD Usage, DWORD FVF, D3DPOOL Pool, IDirect3DVertexBuffer8** ppVB) {
+		(void)Length; (void)Usage; (void)FVF; (void)Pool; if (ppVB) *ppVB = 0; return E_FAIL;
+	}
+	HRESULT CreateIndexBuffer(UINT Length, DWORD Usage, D3DFORMAT Format, D3DPOOL Pool, IDirect3DIndexBuffer8** ppIB) {
+		(void)Length; (void)Usage; (void)Format; (void)Pool; if (ppIB) *ppIB = 0; return E_FAIL;
+	}
+	HRESULT SetIndices(IDirect3DIndexBuffer8* pIndexData, UINT BaseVertexIndex) { (void)pIndexData; (void)BaseVertexIndex; return S_OK; }
+	HRESULT SetStreamSource(UINT StreamNumber, IDirect3DVertexBuffer8* pStreamData, UINT Stride) {
+		(void)StreamNumber; (void)pStreamData; (void)Stride; return S_OK;
+	}
+	HRESULT SetRenderState(D3DRENDERSTATETYPE State, DWORD Value) { (void)State; (void)Value; return S_OK; }
+	HRESULT GetRenderState(D3DRENDERSTATETYPE State, DWORD* pValue) { (void)State; if (pValue) *pValue = 0; return S_OK; }
+	HRESULT SetTextureStageState(DWORD Stage, D3DTEXTURESTAGESTATETYPE Type, DWORD Value) { (void)Stage; (void)Type; (void)Value; return S_OK; }
+	HRESULT SetTransform(D3DTRANSFORMSTATETYPE State, const D3DMATRIX* Matrix) { (void)State; (void)Matrix; return S_OK; }
+	HRESULT SetVertexShader(DWORD Handle) { (void)Handle; return S_OK; }
+	HRESULT SetTexture(DWORD Stage, IDirect3DBaseTexture8* Texture) { (void)Stage; (void)Texture; return S_OK; }
+	HRESULT DrawIndexedPrimitive(DWORD, INT, UINT, UINT, WORD*, UINT) { return S_OK; }
+	HRESULT DrawIndexedPrimitive(D3DPRIMITIVETYPE, INT BaseVertexIndex, UINT MinVertexIndex, UINT NumVertices, UINT StartIndex, UINT PrimitiveCount) {
+		(void)BaseVertexIndex; (void)MinVertexIndex; (void)NumVertices; (void)StartIndex; (void)PrimitiveCount; return S_OK;
+	}
+	// Legacy 5-arg form used by shadow code: (type, base, numVerts, startIndex, numPolys)
+	HRESULT DrawIndexedPrimitive(D3DPRIMITIVETYPE, INT, INT, INT, INT) { return S_OK; }
+	HRESULT DrawPrimitiveUP(D3DPRIMITIVETYPE, UINT, const void*, UINT) { return S_OK; }
+	HRESULT TestCooperativeLevel() { return S_OK; }
+	void Release() {}
+};
+
+typedef IDirect3DDevice8* LPDIRECT3DDEVICE8;
+
+struct IDirect3DIndexBuffer8 {
+	HRESULT Lock(UINT OffsetToLock, UINT SizeToLock, BYTE** ppbData, DWORD Flags) { (void)OffsetToLock; (void)SizeToLock; (void)Flags; if (ppbData) *ppbData = 0; return E_FAIL; }
+	HRESULT Unlock() { return S_OK; }
+	void Release() {}
+};
+
+typedef IDirect3DSurface8* LPDIRECT3DSURFACE8;
+typedef IDirect3DTexture8* LPDIRECT3DTEXTURE8;
+typedef IDirect3DBaseTexture8* LPDIRECT3DBASETEXTURE8;
+typedef IDirect3DVolumeTexture8* LPDIRECT3DVOLUMETEXTURE8;
+typedef IDirect3DVolume8* LPDIRECT3DVOLUME8;
+typedef IDirect3DCubeTexture8* LPDIRECT3DCUBETEXTURE8;
+typedef IDirect3DIndexBuffer8* LPDIRECT3DINDEXBUFFER8;
+typedef IDirect3D8* LPDIRECT3D8;
+
+#endif
+
+#ifndef D3DSHADE_FLAT
+#define D3DSHADE_FLAT 1
+#define D3DSHADE_GOURAUD 2
+#define D3DSHADE_PHONG 3
 #endif

@@ -229,6 +229,7 @@ public:
 	DX8VertexBufferClass(const Vector3* vertices, const Vector2* tex_coords, unsigned short VertexCount,UsageType usage=USAGE_DEFAULT);
 
 	VkGpuBuffer* Get_Vulkan_Vertex_Buffer() { return VertexBuffer; }
+	VkGpuBuffer* Get_DX8_Vertex_Buffer() { return Get_Vulkan_Vertex_Buffer(); }
 
 	void Copy(const Vector3* loc, unsigned first_vertex, unsigned count);
 	void Copy(const Vector3* loc, const Vector2* uv, unsigned first_vertex, unsigned count);

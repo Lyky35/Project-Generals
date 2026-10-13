@@ -1047,7 +1047,8 @@ void W3DModelDrawModuleData::validateStuffForTimeAndWeather(const Drawable* draw
 
 	m_validated |= mode;
 
-	for (ModelConditionVector::iterator c_it = m_conditionStates.begin(); c_it != m_conditionStates.end(); ++c_it)
+	ModelConditionVector::iterator c_it;
+	for (c_it = m_conditionStates.begin(); c_it != m_conditionStates.end(); ++c_it)
 	{
 		if (!c_it->matchesMode(false, false) && !c_it->matchesMode(night, snowy))
 			continue;

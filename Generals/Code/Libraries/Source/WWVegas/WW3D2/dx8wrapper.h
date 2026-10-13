@@ -292,6 +292,22 @@ public:
 	static void Set_Light_Environment(LightEnvironmentClass* light_env);
 	static void Set_Fog(bool enable, const Vector3 &color, float start, float end);
 
+	// Legacy D3D8-era helpers used by partially-ported shadow code — no-op under Vulkan
+	static IDirect3DDevice8* _Get_D3D_Device8();
+	static void Set_StreamSource(unsigned stream, void* vb, unsigned offset, unsigned stride);
+	static void Set_AlphaEnable(bool enable);
+	static void Set_StencilEnable(bool enable);
+	static void Set_StencilFunc(unsigned op);
+	static void Set_StencilRef(unsigned ref);
+	static void Set_StencilWriteMask(unsigned mask);
+	static void Set_StencilReadMask(unsigned mask);
+	static void Set_StencilFailOp(unsigned op);
+	static void Set_StencilPassOp(unsigned op);
+	static void Set_Lighting(bool enable);
+	static void Set_BlendFunc(unsigned src, unsigned dst);
+	static void Set_ZEnable(bool enable);
+	static void Set_ShadeMode(unsigned mode);
+
 	static WWINLINE const D3DLIGHT8& Peek_Light(unsigned index);
 	static WWINLINE bool Is_Light_Enabled(unsigned index);
 

@@ -50,8 +50,8 @@
 #include "W3DDevice/GameClient/W3DGranny.h"
 #include "W3DDevice/GameClient/Heightmap.h"
 #include "d3d8types.h"
-#include "common/GlobalData.h"
-#include "common/drawmodule.h"
+#include "Common/GlobalData.h"
+#include "Common/DrawModule.h"
 #include "W3DDevice/GameClient/W3DVolumetricShadow.h"
 #include "W3DDevice/GameClient/W3DShadow.h"
 #include "WW3D2/statistics.h"
@@ -1304,8 +1304,8 @@ void W3DVolumetricShadow::RenderMeshVolume(Int meshIndex, Int lightIndex, const 
 	W3DBufferManager::W3DVertexBufferSlot *vbSlot=m_shadowVolumeVB[lightIndex][ meshIndex ];
 	if (!vbSlot)
 		return;
-	if (vbSlot->m_VB->m_DX8VertexBuffer->Get_DX8_Vertex_Buffer() != lastActiveVertexBuffer)
-	{	lastActiveVertexBuffer=vbSlot->m_VB->m_DX8VertexBuffer->Get_DX8_Vertex_Buffer();
+	if (vbSlot->m_VB->m_DX8VertexBuffer->Get_DX8_Vertex_Buffer() != (VkGpuBuffer*)lastActiveVertexBuffer)
+	{	lastActiveVertexBuffer=(LPDIRECT3DVERTEXBUFFER8)vbSlot->m_VB->m_DX8VertexBuffer->Get_DX8_Vertex_Buffer();
 		m_pDev->SetStreamSource(0,lastActiveVertexBuffer,
 			vbSlot->m_VB->m_DX8VertexBuffer->FVF_Info().Get_FVF_Size());	//12 bytes per vertex.
 	}
@@ -1318,7 +1318,7 @@ void W3DVolumetricShadow::RenderMeshVolume(Int meshIndex, Int lightIndex, const 
 
 	DEBUG_ASSERTCRASH(ibSlot->m_size >= numIndex,("Overflowing Shadow Index Buffer Slot"));
 
-	m_pDev->SetIndices(ibSlot->m_IB->m_DX8IndexBuffer->Get_DX8_Index_Buffer(),vbSlot->m_start);
+	m_pDev->SetIndices((IDirect3DIndexBuffer8*)ibSlot->m_IB->m_DX8IndexBuffer->Get_DX8_Index_Buffer(),vbSlot->m_start);
 
 	if (DX8Wrapper::_Is_Triangle_Draw_Enabled())
 	{
@@ -3272,7 +3272,7 @@ void W3DVolumetricShadowManager::renderStencilShadows( void )
     DX8Wrapper::Set_AlphaEnable(TRUE);
 //  m_pDev->SetRenderState( D3DRS_SRCBLEND,  D3DBLEND_SRCALPHA );
 //  m_pDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA );
-		DX8Wrapper::Set_BlendFunc(VK_BLEND_FACTOR_DEST_COLOR, VK_BLEND_FACTOR_ZERO);
+		DX8Wrapper::Set_BlendFunc(VK_BLEND_FACTOR_DST_COLOR, VK_BLEND_FACTOR_ZERO);
 		DX8Wrapper::Set_DX8_Render_State(D3DRS_DESTBLEND, D3DBLEND_ZERO);
 
 
