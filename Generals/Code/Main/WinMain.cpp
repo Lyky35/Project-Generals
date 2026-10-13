@@ -149,6 +149,13 @@ struct EarlyStaticLog {
 __attribute__((init_priority(101)))
 static EarlyStaticLog g_earlyStaticLog;
 
+// Runs after almost all other C++ statics (highest priority number = last).
+struct LateStaticLog {
+	LateStaticLog() { writeLogLine("late-static-done"); }
+};
+__attribute__((init_priority(65535)))
+static LateStaticLog g_lateStaticLog;
+
 static Bool isWinMainActive = false; 
 
 static HBITMAP gLoadScreenBitmap = NULL;
