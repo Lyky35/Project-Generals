@@ -965,7 +965,10 @@ bool DX8Wrapper::Test_Z_Mode(D3DFORMAT colorbuffer,D3DFORMAT backbuffer, D3DFORM
 
 void DX8Wrapper::Compute_Caps(D3DFORMAT display_format,D3DFORMAT depth_stencil_format)
 {
-	// DX8Caps::Compute_Vulkan_Caps(&VulkanDevice::Instance());
+	// was an empty stub - DX8Caps::Init_Caps never ran, MaxTextureWidth/Height
+	// stayed 0, and TextureLoader::Validate_Texture_Size hit an integer 0/0
+	// divide during terrain texture loading.
+	DX8Caps::Compute_Caps(display_format, depth_stencil_format, NULL);
 }
 
 void DX8Wrapper::Begin_Scene(void)
