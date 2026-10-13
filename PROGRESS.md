@@ -420,6 +420,63 @@ static-init window that dies in ucrtbase:
 
 Plus `CRASH … module=…` from the unhandled-exception filter.
 
+### 2026-10-13 — Pre-WinMain ucrtbase crash ROOT-CAUSED + FIXED; boot reaches GameMain
+
+**Phase 1 — localizing the crashing static (no more field-trip guesses):**
+- Mapped the real `.ctors` layout of `RTS.exe`: `__do_global_ctors` walks entries
+  **high→low address**: `register_frame_ctor` → priority markers (101…250) → 111
+  default-priority statics descending → `late-static-done` runs LAST (why it never
+  logged: the crash always preceded it). Dumped all 119 entries → exact execution order.
+- Enhanced `earlyCrashFilter` (WinMain.cpp): logs exception read/write + fault address
+  and a **full stack walk** via `RtlLookupFunctionEntry`/`RtlVirtualUnwind` (ntdll via
+  GetProcAddress — no new imports). This is the tool that nailed it.
+- Installed **wine 11.17** and reproduced the crash locally (`/tmp/opencode/rts_test`,
+  WINEPREFIX=/tmp/opencode/wineprefix): same ucrtbase AV, fault address varies (0x8/0x21)
+  = garbage pointer. Stack: `__do_global_ctors → CPUDetectClass::Init_Compact_Log →
+  StringClass::Format → _vsnprintf → ucrtbase strlen → AV`.
+- winedbg at the Format call site: the `%s` argument (r8) = **0x8** (uninitialized).
+
+**Root cause — original EA bug, exposed by running on modern Windows:**
+`Get_OS_Info` (cpudetect.cpp) VER_PLATFORM_WIN32_NT case only handles major==4/==5.
+Win10 reports major 6 (unmanifested GetVersionEx) or 10 → falls out of the switch
+**without ever setting `os_info.Code`**; `OSInfoStruct os_info;` is an uninitialized
+local → `COMPACTLOG(("%s\t", os_info.Code))` → `vsnprintf` → `strlen(stack garbage)`
+→ deterministic AV during CRT static init, pre-WinMain. On 2000/XP (major 5) the
+path never executed.
+
+**Fixes in this pass:**
+- `cpudetect.cpp`: NT major 6 (Vista..8.1) + ≥10 cases; `os_info.Code="WIN10"`
+  fallback (never uninitialized); Win9x fall-through sets SubCode/Code;
+  `os_info = {}` zero-init + null-guard on the COMPACTLOG format arg.
+- WinMain.cpp breadcrumbs: WinMain-entry `fopen(RTS_START.LOG,"w")` → `"a"` (the "w"
+  was **truncating all boot markers** the moment WinMain ran); `earlyStaticLog` now
+  truncates the log once at priority-101 so each run is clean.
+- Verified under wine: **full static init completes** — `late-static-done` logs for
+  the first time — WinMain, window created.
+
+**Phase 2 — next blocker found while testing: initMemoryManager always exit(-1)**
+- GCC -O2/-O3 constant-folds the 2003 link test (`theLinkTester` expected +6 from
+  global operator new/delete): compiled `initMemoryManager` into
+  `theLinkTester=0; exit(-1)` after pool init, unconditionally. (GCC's replaceable-
+  operator assumptions: `-fassume-sane-operators-new-delete` + sized deallocation
+  emitting external `_ZdlPvm` whose ++ it can't attribute.)
+- Fix: (1) sized `operator delete(void*, size_t)`/`delete[]` overloads in
+  GameMemory.cpp forwarding to the unsized ones (single ++ per delete, visible to
+  the optimizer in-TU); (2) link test moved into `memoryManagerLinkTest()` marked
+  `__attribute__((noinline, noipa, optimize("O0")))` so the six operator calls
+  actually run at runtime. Verified in the binary: real `call memoryManagerLinkTest;
+  cmp $6; jne exit`.
+
+**Current boot state (wine, bare test dir):**
+`static-init → … → late-static-done → WinMain enter → initializeAppWindows ok ×2 →
+initMemoryManager done → entering GameMain` → engine init throws
+"Uncaught Exception during initialization" (ReleaseCrashInfo.txt) — expected without
+the real game data (.big archives / Data dir). That is the next gate, on a machine
+with Generals installed (Windows 10).
+
+Next: run on Windows 10 with real game data; keep the stack-walk filter (it's now the
+standard diagnostic); wine harness at /tmp/opencode/rts_test is reusable.
+
 <!-- Append new entries below. Commit after each completed step. -->
 
 

@@ -113,8 +113,16 @@ static LONG WINAPI earlyCrashFilter(EXCEPTION_POINTERS *info)
 {
 	char mod[MAX_PATH] = "?";
 	void *addr = NULL;
+	unsigned long code = 0;
+	int rw = -1;
+	void *fault = NULL;
 	if (info && info->ExceptionRecord) {
+		code = info->ExceptionRecord->ExceptionCode;
 		addr = info->ExceptionRecord->ExceptionAddress;
+		if (info->ExceptionRecord->NumberParameters >= 2) {
+			rw = (int)info->ExceptionRecord->ExceptionInformation[0];
+			fault = (void *)(uintptr_t)info->ExceptionRecord->ExceptionInformation[1];
+		}
 		HMODULE hMod = NULL;
 		if (GetModuleHandleExA(
 			GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
@@ -126,10 +134,47 @@ static LONG WINAPI earlyCrashFilter(EXCEPTION_POINTERS *info)
 	}
 	char buf[320];
 	snprintf(buf, sizeof(buf),
-		"CRASH code=0x%08lx ip=%p module=%s\r\n",
-		info && info->ExceptionRecord ? info->ExceptionRecord->ExceptionCode : 0,
-		addr, mod);
+		"CRASH code=0x%08lx ip=%p module=%s rw=%d fault=%p\r\n",
+		code, addr, mod, rw, fault);
 	writeLogLine(buf);
+
+	// Stack walk via ntdll (RtlLookupFunctionEntry/RtlVirtualUnwind) so the
+	// log names the static ctor that is on the stack when we die in ucrtbase.
+	if (info && info->ContextRecord) {
+		typedef PRUNTIME_FUNCTION (WINAPI *LOOKUP_T)(DWORD64, PDWORD64, PVOID);
+		typedef USHORT (WINAPI *UNWIND_T)(DWORD, DWORD64, DWORD64, PRUNTIME_FUNCTION,
+			PCONTEXT, PVOID *, PDWORD64, PCONTEXT);
+		HMODULE ntdll = GetModuleHandleA("ntdll.dll");
+		LOOKUP_T lookup = ntdll ? (LOOKUP_T)GetProcAddress(ntdll, "RtlLookupFunctionEntry") : NULL;
+		UNWIND_T unwind = ntdll ? (UNWIND_T)GetProcAddress(ntdll, "RtlVirtualUnwind") : NULL;
+		if (lookup && unwind) {
+			CONTEXT ctx = *info->ContextRecord;
+			for (int i = 0; i < 16; i++) {
+				DWORD64 base = 0;
+				PRUNTIME_FUNCTION fn = lookup(ctx.Rip, &base, NULL);
+				char fmod[MAX_PATH] = "?";
+				HMODULE h = NULL;
+				if (GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
+					GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+					(LPCSTR)(uintptr_t)ctx.Rip, &h) && h) {
+					GetModuleFileNameA(h, fmod, MAX_PATH);
+					char *sl = strrchr(fmod, '\\');
+					if (sl) memmove(fmod, sl + 1, strlen(sl));
+				}
+				snprintf(buf, sizeof(buf), "FR%d ip=%p base=%p mod=%s",
+					i, (void *)(uintptr_t)ctx.Rip, (void *)(uintptr_t)base, fmod);
+				writeLogLine(buf);
+				if (!fn) break;
+				PVOID hd = NULL;
+				DWORD64 ef = 0;
+				CONTEXT before = ctx;
+				unwind(UNW_FLAG_NHANDLER, base, ctx.Rip, fn, &ctx, &hd, &ef, NULL);
+				if (ctx.Rip == before.Rip && ctx.Rsp == before.Rsp) break;
+			}
+		} else {
+			writeLogLine("FR walk unavailable (ntdll lookup failed)");
+		}
+	}
 	return EXCEPTION_EXECUTE_HANDLER;
 }
 
@@ -140,6 +185,9 @@ static void earlyStaticLog(void)
 	char *slash = strrchr(g_logPath, '\\');
 	if (slash) strcpy(slash + 1, "RTS_START.LOG");
 	else strcpy(g_logPath, "RTS_START.LOG");
+	HANDLE h = CreateFileA(g_logPath, GENERIC_WRITE, FILE_SHARE_READ, NULL,
+		CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	if (h != INVALID_HANDLE_VALUE) CloseHandle(h);
 	SetUnhandledExceptionFilter(earlyCrashFilter);
 	writeLogLine("static-init");
 }
@@ -979,7 +1027,7 @@ Int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		char *slash = strrchr(logPath, '\\');
 		if (slash) strcpy(slash + 1, "RTS_START.LOG");
 		else strcpy(logPath, "RTS_START.LOG");
-		FILE *lf = fopen(logPath, "w");
+		FILE *lf = fopen(logPath, "a");
 		if (lf) {
 			fprintf(lf, "WinMain enter\n");
 			fflush(lf);

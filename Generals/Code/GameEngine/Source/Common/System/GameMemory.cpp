@@ -3333,6 +3333,22 @@ void operator delete[](void *p)
 
 //-----------------------------------------------------------------------------
 /**
+	sized deallocation overloads (C++14+). These must exist in this file:
+	GCC only constant-folds the link test below correctly when it can see
+	all six operator calls, and sized delete is what delete <scalar> emits.
+*/
+void operator delete(void *p, size_t) noexcept
+{
+	operator delete(p);
+}
+
+void operator delete[](void *p, size_t) noexcept
+{
+	operator delete[](p);
+}
+
+//-----------------------------------------------------------------------------
+/**
 	overload for global operator new (MFC debug version); send requests to TheDynamicMemoryAllocator.
 */
 void* operator new(size_t size, const char * fname, int)
@@ -3431,6 +3447,42 @@ void *realloc(void *p, size_t s)
 
 //-----------------------------------------------------------------------------
 /**
+	Runtime link test for the global operator new/delete overloads below.
+	GCC at -O2/-O3 constant-folds the replaceable operators (the link test
+	was optimized into an unconditional exit(-1)), so this helper is pinned
+	to -O0 and hidden from IPA to force the real calls at runtime.
+*/
+#if defined(__GNUC__)
+__attribute__((noinline, noipa, optimize("O0")))
+#endif
+static Int memoryManagerLinkTest()
+{
+	char* linktest;
+
+	theLinkTester = 0;
+
+	linktest = new char;
+	delete linktest;
+
+	linktest = new char[8];
+	delete [] linktest;
+
+	linktest = new char("",1);
+	delete linktest;
+
+#ifdef MEMORYPOOL_OVERRIDE_MALLOC
+	linktest = (char*)malloc(1);
+	free(linktest);
+
+	linktest = (char*)calloc(1,1);
+	free(linktest);
+#endif
+
+	return theLinkTester;
+}
+
+//-----------------------------------------------------------------------------
+/**
 	Initialize the memory manager, and create TheMemoryPoolFactory and TheDynamicMemoryAllocator.
 */
 void initMemoryManager()
@@ -3458,31 +3510,10 @@ void initMemoryManager()
 		}
 	}
 
-	char* linktest;
-	
-	theLinkTester = 0; 
-
-	linktest = new char;
-	delete linktest;
-
-	linktest = new char[8];
-	delete [] linktest;
-
-	linktest = new char("",1);
-	delete linktest;
-
 #ifdef MEMORYPOOL_OVERRIDE_MALLOC
-	linktest = (char*)malloc(1);
-	free(linktest);
-
-	linktest = (char*)calloc(1,1);
-	free(linktest);
-#endif
-
-#ifdef MEMORYPOOL_OVERRIDE_MALLOC
-	if (theLinkTester != 10)
+	if (memoryManagerLinkTest() != 10)
 #else
-	if (theLinkTester != 6)
+	if (memoryManagerLinkTest() != 6)
 #endif
 	{
 		DEBUG_CRASH(("Wrong operator new/delete linked in! Fix this...\n"));

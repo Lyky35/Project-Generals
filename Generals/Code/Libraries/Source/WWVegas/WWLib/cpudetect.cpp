@@ -1025,9 +1025,9 @@ void CPUDetectClass::Init_Compact_Log()
    COMPACTLOG(("%d\t", timezone));
 #endif
 
-	OSInfoStruct os_info;
+	OSInfoStruct os_info = {};
 	Get_OS_Info(os_info,OSVersionPlatformId,OSVersionNumberMajor,OSVersionNumberMinor,OSVersionBuildNumber);
-	COMPACTLOG(("%s\t",os_info.Code));
+	COMPACTLOG(("%s\t",os_info.Code ? os_info.Code : "UNKNOWN"));
 
 	if (!stricmp(os_info.SubCode,"UNKNOWN")) {
 		COMPACTLOG(("%d\t",OSVersionBuildNumber&0xffff));
@@ -1224,6 +1224,9 @@ void Get_OS_Info(
 				os_info.Code="WIN9X";
 				return;
 			}
+
+			os_info.SubCode="UNKNOWN";
+			os_info.Code="WIN9X";
 		}
 		break;
 	case VER_PLATFORM_WIN32_NT:
@@ -1245,5 +1248,23 @@ void Get_OS_Info(
 			os_info.Code="WINXX";
 			return;
 		}
+		if (OSVersionNumberMajor==6) {
+			if (OSVersionNumberMinor==0) {
+				os_info.Code="WINVISTA";
+				return;
+			}
+			if (OSVersionNumberMinor==1) {
+				os_info.Code="WIN7";
+				return;
+			}
+			if (OSVersionNumberMinor==2) {
+				os_info.Code="WIN8";
+				return;
+			}
+			os_info.Code="WIN81";
+			return;
+		}
+		os_info.Code="WIN10";
+		return;
 	}
 }
