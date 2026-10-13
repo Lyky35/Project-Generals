@@ -609,6 +609,26 @@ result logging (`VK: vkCreateInstance -> N`, `VK: Init: Xxx FAILED`,
 remaining failure. Local wine still fails at instance creation (-3) -
 this machine's NVIDIA kernel driver is not loaded, so no host ICD.
 
+### 2026-10-13 — Fixed 0x0 DDS texture upload crashing the AMD driver
+
+Field log after the upload hardening: Vulkan fully inits (`device READY`)
+and ALL subsystems + GameClient complete; first terrain texture upload
+logged `VK: upload w=0 h=0 fmt=37 size=0` then amdvlk64.dll AV.
+
+Cause - the ported DDSFileClass ctor had two bugs:
+1. It read `sizeof(LegacyDDSURFACEDESC2)` bytes into the header - on x64
+   the legacy struct's `void*` member inflates it (128 vs the 124-byte
+   on-disk DDS header) and shifts PixelFormat, so FourCC/format misparsed.
+2. A port-placeholder `VkTexture::CreateFromData(..., Width, Height, ...,
+   NULL)` was inserted BEFORE Width/Height are assigned from the header -
+   so it created + uploaded a 0x0 texture with NULL pixels. AMD's driver
+   tolerates the invalid creates then AVs on the copy.
+
+Fixes: explicit 124-byte packed on-disk header parse with per-field
+mapping; removed the premature placeholder texture creation (textures are
+created later via the TextureLoader accessors, as in the original);
+UploadLevel/Create now reject 0x0/NULL uploads.
+
 <!-- Append new entries below. Commit after each completed step. -->
 
 

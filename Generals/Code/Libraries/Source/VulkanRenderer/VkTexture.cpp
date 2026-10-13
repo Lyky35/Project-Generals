@@ -89,6 +89,8 @@ bool VkTexture::Create(VulkanDevice *device, uint32_t width, uint32_t height, Vk
 	uint32_t mipLevels, bool renderTarget)
 {
 	Destroy();
+	if (device == nullptr || width == 0 || height == 0)
+		return false;
 	m_device = device;
 	m_width = width;
 	m_height = height;
@@ -215,6 +217,10 @@ void VkTexture::TransitionLayout(VkCommandBuffer cmd, VkImageLayout oldLayout, V
 
 void VkTexture::UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const void *pixels)
 {
+	// A 0x0 upload or NULL source means the caller's DDS/header parse failed;
+	// proceeding creates invalid Vulkan objects and crashes GPU drivers.
+	if (width == 0 || height == 0 || pixels == nullptr)
+		return;
 	VkDevice dev = m_device->GetDevice();
 	VkDeviceSize rowPitch = 0;
 	VkDeviceSize imageSize = 0;

@@ -49,23 +49,52 @@ DDSFileClass::DDSFileClass(const char* name,unsigned reduction_factor)
 	}
 
 	file->Open();
-	char header[4];
-	file->Read(header,4);
-	// Now, we read DDSURFACEDESC2 defining the compressed data
-	unsigned read_bytes=file->Read(&SurfaceDesc,sizeof(LegacyDDSURFACEDESC2));
-	// Verify the structure size matches the read size
-	WWASSERT(read_bytes==SurfaceDesc.Size);
+	// Read the 124-byte on-disk DDS header explicitly: the legacy in-memory
+	// DDSURFACEDESC2 overlay only worked at 32-bit pointer size - on x64 its
+	// void* member inflates the struct and shifts PixelFormat, so FourCC
+	// and dimensions were misread.
+	#pragma pack(push, 4)
+	struct DdsRawHeader {
+		unsigned Size, Flags, Height, Width, PitchOrLinearSize, Depth, MipMapCount;
+		unsigned Reserved1[10];
+		unsigned pf_Size, pf_Flags, pf_FourCC, pf_BitCount, pf_RMask, pf_GMask, pf_BMask, pf_AMask;
+		unsigned caps[4];
+		unsigned Reserved2;
+	};
+	#pragma pack(pop)
+	DdsRawHeader raw;
+	char magic[4];
+	unsigned read_bytes = file->Read(magic, 4) + file->Read(&raw, sizeof(raw));
+	if (read_bytes != 4 + sizeof(raw) || raw.Size != 124) {
+		file->Close();
+		return;
+	}
+	memset(&SurfaceDesc, 0, sizeof(SurfaceDesc));
+	SurfaceDesc.Size = raw.Size;
+	SurfaceDesc.Flags = raw.Flags;
+	SurfaceDesc.Height = raw.Height;
+	SurfaceDesc.Width = raw.Width;
+	SurfaceDesc.Pitch = raw.PitchOrLinearSize;
+	SurfaceDesc.MipMapCount = raw.MipMapCount;
+	SurfaceDesc.PixelFormat.Size = raw.pf_Size;
+	SurfaceDesc.PixelFormat.Flags = raw.pf_Flags;
+	SurfaceDesc.PixelFormat.FourCC = raw.pf_FourCC;
+	SurfaceDesc.PixelFormat.RGBBitCount = raw.pf_BitCount;
+	SurfaceDesc.PixelFormat.RBitMask = raw.pf_RMask;
+	SurfaceDesc.PixelFormat.GBitMask = raw.pf_GMask;
+	SurfaceDesc.PixelFormat.BBitMask = raw.pf_BMask;
+	SurfaceDesc.PixelFormat.RGBAlphaBitMask = raw.pf_AMask;
+	memcpy(&SurfaceDesc.Caps, raw.caps, sizeof(raw.caps));
 
 	Format=D3DFormat_To_WW3DFormat((D3DFORMAT)SurfaceDesc.PixelFormat.FourCC);
-	// Create VkTexture from DDS data
-	unsigned byteSize = Calculate_DXTC_Surface_Size(Width, Height, Format);
-	VkTexture *vulkanTexture = new VkTexture();
-	bool created = vulkanTexture->CreateFromData(&VulkanDevice::Instance(), Width, Height, VK_FORMAT_R8G8B8A8_UNORM,
-		byteSize, NULL);  // TODO: convert WW3DFormat to VkFormat and pass actual surface data
-	if (!created) {
-		delete vulkanTexture;
-		vulkanTexture = NULL;
-	}
+
+	// NOTE: the previous port revision created+uploaded a placeholder texture
+	// here - with Width/Height still 0 (they are assigned below) and NULL
+	// pixel data, which produced 0x0 vkCreateImage/vkCmdCopyBufferToImage
+	// calls and crashed GPU drivers. Textures are created later from the
+	// accessors below via the normal TextureLoader path; nothing here should
+	// touch the GPU.
+
 	WWASSERT(
 		Format==WW3D_FORMAT_DXT1 ||
 		Format==WW3D_FORMAT_DXT2 ||
