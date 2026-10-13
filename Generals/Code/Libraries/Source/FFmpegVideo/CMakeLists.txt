@@ -4,9 +4,12 @@ target_include_directories(FFmpegVideo INTERFACE
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-find_package(PkgConfig QUIET)
-if(PkgConfig_FOUND)
-    pkg_check_modules(FFMPEG QUIET libavcodec libavformat libavutil libswscale)
+# Host pkg-config FFmpeg is Linux-only; MinGW cross builds must not pull /usr/include
+if(NOT CMAKE_CXX_COMPILER MATCHES "mingw")
+    find_package(PkgConfig QUIET)
+    if(PkgConfig_FOUND)
+        pkg_check_modules(FFMPEG QUIET libavcodec libavformat libavutil libswscale)
+    endif()
 endif()
 
 if(FFMPEG_FOUND)

@@ -26,6 +26,8 @@
 #ifndef __SCOPEDMUTEX_H__
 #define __SCOPEDMUTEX_H__
 
+#include <windows.h>
+
 class ScopedMutex
 {
 	private:

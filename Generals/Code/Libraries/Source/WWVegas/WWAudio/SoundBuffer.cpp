@@ -41,21 +41,12 @@
 #include "utils.h"
 #include "ffactory.h"
 #include "win.h"
+#include "Mss.H"
 
 #ifndef WAVE_FORMAT_IMA_ADPCM
 #define WAVE_FORMAT_IMA_ADPCM 0x0011
 #endif
-#ifndef AILSOUNDINFO
-typedef struct {
-    void *start;
-    unsigned int length;
-    unsigned int rate;
-    unsigned short bits;
-    unsigned short channels;
-    unsigned short format;
-} AILSOUNDINFO;
-#endif
-static inline int AIL_WAV_info(...) { return 0; }
+// AIL_WAV_info / AILSOUNDINFO come from MSS/mss.h
 
 
 

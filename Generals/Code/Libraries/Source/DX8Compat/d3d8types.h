@@ -672,4 +672,17 @@ typedef D3DMATRIX D3DXMATRIX;
 #define D3DX_FILTER_TRIANGLE 4
 #define D3DX_FILTER_BOX 5
 
+// Opaque COM interface stubs (Vulkan backend replaces real D3D8 COM objects).
+// Incomplete structs match existing forward declarations (struct IDirect3DSurface8;).
+struct IDirect3DSurface8;
+struct IDirect3DTexture8;
+struct IDirect3DBaseTexture8;
+struct IDirect3DVolumeTexture8;
+struct IDirect3DVolume8;
+struct IDirect3DCubeTexture8;
+struct IDirect3DVertexBuffer8;
+struct IDirect3DIndexBuffer8;
+struct IDirect3DDevice8;
+struct IDirect3D8;
+
 #endif

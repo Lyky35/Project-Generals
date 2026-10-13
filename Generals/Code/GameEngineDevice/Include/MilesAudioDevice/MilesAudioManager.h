@@ -22,6 +22,7 @@
 
 #include "Common/AsciiString.h"
 #include "Common/GameAudio.h"
+#include <windows.h>
 #include "MSS/MSS.h"
 
 class AudioEventRTS;

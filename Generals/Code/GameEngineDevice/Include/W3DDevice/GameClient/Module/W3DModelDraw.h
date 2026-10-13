@@ -62,7 +62,7 @@ class RenderObjClass;
 class Shadow;
 class TerrainTracksRenderObjClass;
 class HAnimClass;
-enum GameLODLevel;
+// GameLODLevel forward decl removed — unused; StaticGameLODLevel comes from Module.h
 //-------------------------------------------------------------------------------------------------
 /** The default client update module */
 //-------------------------------------------------------------------------------------------------

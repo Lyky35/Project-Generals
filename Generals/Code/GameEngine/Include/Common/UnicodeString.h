@@ -52,7 +52,26 @@
 #include <stdio.h>
 #include <string.h>
 #include <wchar.h>
+#include <wctype.h>
 #include "Lib/BaseType.h"
+
+// MinGW with -std=c++17 hides MSVC _wcsicmp behind __STRICT_ANSI__
+#ifndef _MSC_VER
+#undef _wcsicmp
+inline int _wcsicmp(const wchar_t* a, const wchar_t* b)
+{
+	while (*a && *b)
+	{
+		wchar_t ca = towlower(*a);
+		wchar_t cb = towlower(*b);
+		if (ca != cb)
+			return (ca < cb) ? -1 : 1;
+		++a;
+		++b;
+	}
+	return (*a == *b) ? 0 : (*a ? 1 : -1);
+}
+#endif
 #include "Common/Debug.h"
 #include "Common/Errors.h"
 

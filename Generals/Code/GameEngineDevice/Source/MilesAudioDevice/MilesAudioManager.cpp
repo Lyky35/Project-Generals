@@ -67,12 +67,30 @@
 
 #include "Common/File.h"
 
+// MinGW ddk/wdm.h may override BaseType.h BitTest with _bittest(long const*)
+#undef BitTest
+#define BitTest( x, i ) ( ( (x) & (i) ) != 0 )
+
+// Ensure WAVE_FORMAT_IMA_ADPCM (mmreg) is available for ADPCM path
+#ifndef WAVE_FORMAT_IMA_ADPCM
+#define WAVE_FORMAT_IMA_ADPCM 0x0011
+#endif
+
 #ifdef _INTERNAL
 //#pragma optimize("", off)
 //#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
 #endif
 
 #define INFINITE_LOOP_COUNT 1000000 /* Miles Audio loop count - OpenAL compatible */
+
+// Callbacks defined later in this file — forward declare for use above
+void AILCALLBACK setSampleCompleted( HSAMPLE sampleCompleted );
+void AILCALLBACK set3DSampleCompleted( H3DSAMPLE sample3DCompleted );
+void AILCALLBACK setStreamCompleted( HSTREAM streamCompleted );
+U32 AILCALLBACK streamingFileOpen(char const *fileName, U32 *file_handle);
+void AILCALLBACK streamingFileClose(U32 fileHandle);
+S32 AILCALLBACK streamingFileSeek(U32 fileHandle, S32 offset, U32 type);
+U32 AILCALLBACK streamingFileRead(U32 file_handle, void *buffer, U32 bytes);
 
 // Callback functions useful for Miles ////////////////////////////////////////////////////////////
 // AILCALLBACK setSampleCompleted - replaced with OpenAL source completion callback
@@ -1675,46 +1693,9 @@ void MilesAudioManager::selectProvider( UnsignedInt providerNdx )
 		unselectProvider();
 	}
 
-	LPDIRECTSOUND lpDirectSoundInfo;
-	AIL_get_DirectSound_info( NULL, (void**)&lpDirectSoundInfo, NULL );
+	// DirectSound speaker-config query stubbed — no real DS under OpenAL path
 	Bool useDolby = FALSE;
-	if( lpDirectSoundInfo )
-	{
-		DWORD speakerConfig;
-		lpDirectSoundInfo->GetSpeakerConfig( &speakerConfig );
-		switch( DSSPEAKER_CONFIG( speakerConfig ) )
-		{
-			case DSSPEAKER_DIRECTOUT:
-				m_selectedSpeakerType = AIL_3D_2_SPEAKER;
-				break;
-			case DSSPEAKER_MONO:     
-				m_selectedSpeakerType = AIL_3D_2_SPEAKER;
-				break;
-			case DSSPEAKER_STEREO:   
-				m_selectedSpeakerType = AIL_3D_2_SPEAKER;
-				break;
-			case DSSPEAKER_HEADPHONE:
-				m_selectedSpeakerType = AIL_3D_HEADPHONE;
-				useDolby = TRUE;
-				break;
-			case DSSPEAKER_QUAD:     
-				m_selectedSpeakerType = AIL_3D_4_SPEAKER;
-				useDolby = TRUE;
-				break;
-			case DSSPEAKER_SURROUND:
-				m_selectedSpeakerType = AIL_3D_SURROUND;
-				useDolby = TRUE;
-				break;
-			case DSSPEAKER_5POINT1:  
-				m_selectedSpeakerType = AIL_3D_51_SPEAKER;
-				useDolby = TRUE;
-				break;
-			case DSSPEAKER_7POINT1:  
-				m_selectedSpeakerType = AIL_3D_71_SPEAKER;
-				useDolby = TRUE;
-				break;
-		}
-	}
+	m_selectedSpeakerType = AIL_3D_2_SPEAKER;
 
 	Bool success = FALSE;
 	if( useDolby )

@@ -40,7 +40,15 @@ static inline int BinkCopyToBuffer(HBINK bink, void* dest, int32_t destpitch, ui
 	(void)bink; (void)dest; (void)destpitch; (void)destheight; (void)destx; (void)desty; (void)flags; return 0;
 }
 static inline void BinkSetVolume(HBINK bink, int32_t track, int32_t volume) { (void)bink; (void)track; (void)volume; }
+static inline void BinkSetSoundTrack(uint32_t firsttrack, uint32_t trackmask) { (void)firsttrack; (void)trackmask; }
+static inline int BinkGoto(HBINK bink, uint32_t frame, void* extra) { (void)bink; (void)frame; (void)extra; return 0; }
+static inline int BinkSoundUseDirectSound(void* driver) { (void)driver; return 0; }
 static inline int BinkGetError(void) { return 0; }
+
+#define BINKSURFACE32 0
+#define BINKSURFACE24 1
+#define BINKSURFACE565 2
+#define BINKSURFACE555 3
 
 #ifdef __cplusplus
 }

@@ -123,4 +123,40 @@ Next: GameEngineDevice + link RTS.exe.
 
 Next: fix GameEngineDevice compile errors (Miles stub, Bink #endif, `_wcsicmp`, RefCount include), then link RTS.exe.
 
+### 2026-10-12 — Trivial fixes + Miles/Bink/WWAudio stub pass; GameEngineDevice down to ~22 errors
+
+**Trivial / infrastructure:**
+- `UnicodeString.h`: `_wcsicmp` → MinGW-safe inline `towlower` loop (g++ `-std=gnu++17` hides MSVC `_wcsicmp`).
+- `ScopedMutex.h`: added `#include <windows.h>` (HANDLE/WaitForSingleObject).
+- `WWLib/RefCount.h` symlink → `refcount.h` (case-sensitive FS).
+- `WorldHeightMap.h`: relative `../../gameengine/...` include → `"Common/MapObject.h"`; forward-declared `TerrainTextureClass`/`AlphaTerrainTextureClass`.
+- `W3DDynamicLight.h`: `lib/baseType.h` → `Lib/BaseType.h`.
+- `W3DShroud.h`: `IDirect3DSurface8*` member kept (opaque incomplete struct from d3d8types).
+- `W3DModelDraw.h`: removed bogus `enum GameLODLevel;` forward decl (unused; type is `StaticGameLODLevel`).
+- `DX8Compat/d3d8types.h`: added incomplete-struct opaque decls for `IDirect3DSurface8`/`IDirect3DTexture8`/`IDirect3DDevice8` etc. (matches existing `struct IDirect3DSurface8;` forwards).
+- `FFmpegVideo/CMakeLists.txt`: **stop host pkg-config on MinGW** — was injecting `-I/usr/include` and mixing Linux glibc headers into MinGW TUs (source of `div_t`/`time_t`/`putenv` conflicts). `HAS_FFMPEG` now 0 for cross builds.
+- `WWAudio.h`/`WWAudio.H`: consolidated to single real file + case symlinks; stripped duplicate Miles stubs; includes `Mss.H`.
+- `SoundBuffer.cpp`: removed local `AILSOUNDINFO`/`AIL_WAV_info`; includes `Mss.H`.
+
+**Miles (MSS) stub expansion — `Libraries/Include/MSS/mss.h`:**
+- Types: `HSAMPLE`/`HSTREAM`/`HDIGDRIVER`/`HAUDIO`/`HPROVIDER`/`H3DSAMPLE`/`H3DPOBJECT`/`HPROENUM`/`U32`/`S32`/`AILSOUNDINFO`.
+- Constants: `AIL_3D_*`, `DSSPEAKER_*`, `DP_FILTER`, `HPROENUM_FIRST`.
+- ~50 `AIL_*` no-op stubs (register/start/stop/3D/stream/quick/WAV/ADPCM/file-callbacks).
+- `MilesAudioManager.h`: `<windows.h>` before `MSS/MSS.h`; `HANDLE m_mutex` works.
+- `MilesAudioManager.cpp`: forward-declared streaming/completion callbacks; stubbed DirectSound `GetSpeakerConfig` block; fixed `BitTest` clash with MinGW `ddk/wdm.h`; `AIL_quick_startup(int,int,...)` signature; `WAVE_FORMAT_IMA_ADPCM` fallback.
+
+**Bink (`binkvideoplayer.cpp` + `bink.h`):**
+- Restored `createStream(HBINK)` signature; removed 4 orphan `#endif`s; real `BinkOpen`/`BinkClose` calls; `BINK*` casts for FrameNum/Frames/Height/Width; `uint32_t` for surface flags.
+- `bink.h`: added `BinkSetSoundTrack`/`BinkGoto`/`BinkSoundUseDirectSound`, `BINKSURFACE*` flags.
+
+**Verified build state after this pass:**
+- `WW3D2` still clean. `WWAudio` **100% built**.
+- `GameEngineDevice`: **~22 errors** remaining (was ~544). Remaining clusters:
+  - `W3DScene.h`: `enum CustomScenePassModes` opaque-enum forward decl needs underlying type or real enum.
+  - `W3DPoliceCarDraw.cpp`: `common/RandomValue.h` case (want `Common/RandomValue.h`).
+  - `W3DModelDraw.cpp:1067`: `c_it` undeclared (likely loop-var rename leftover).
+  - Cascading W3DDevice draw-module errors behind those.
+
+Next: fix remaining ~22 GameEngineDevice errors → link RTS.exe → continue NOTES.md list.
+
 <!-- Append new entries below. Commit after each completed step. -->

@@ -43,61 +43,14 @@
 
 #include <wpaudio/altypes.h>
 
-// Type stubs for Miles Sound System replacement
-typedef void* HPROVIDER;
-typedef void* H3DSAMPLE;
-typedef void* H3DPOBJECT;
+// Miles Sound System types + stubs now live in MSS/mss.h (single source of truth)
+#include "Mss.H"
+
+// WWAudio-specific Miles-adjacent types not in mss.h
 typedef void* HTIMER;
+typedef void* HPROENUM;
 
-// Miles Sound System function stubs
-#define DP_FILTER 0
 #define DP_FILTER_OFF 0
-#define AILCALLBACK
-static inline int AIL_set_sample_processor(...) { return 0; }
-static inline int AIL_set_filter_sample_preference(...) { return 0; }
-static inline void AIL_set_3D_position(...) {}
-static inline void AIL_set_3D_orientation(...) {}
-static inline void AIL_set_3D_velocity(...) {}
-static inline void AIL_release_3D_sample_handle(...) {}
-static inline void AIL_set_3D_velocity_vector(...) {}
-
-static inline void AIL_start_stream(...) {}
-static inline void AIL_set_stream_pan(...) {}
-static inline float AIL_stream_pan(...) { return 0; }
-static inline void AIL_set_stream_volume(...) {}
-static inline float AIL_stream_volume(...) { return 0; }
-static inline void AIL_set_stream_loop_block(...) {}
-static inline unsigned AIL_stream_loop_count(...) { return 0; }
-static inline void AIL_set_stream_ms_position(...) {}
-static inline void AIL_stream_ms_position(...) {}
-static inline unsigned AIL_stream_playback_rate(...) { return 0; }
-static inline void AIL_set_stream_playback_rate(...) {}
-
-static inline void* AIL_open_stream_by_sample(...) { return 0; }
-
-static inline void AIL_set_sample_pan(...) {}
-static inline float AIL_sample_pan(...) { return 0; }
-static inline void AIL_set_sample_volume(...) {}
-static inline float AIL_sample_volume(...) { return 0; }
-static inline void AIL_set_sample_ms_position(...) {}
-static inline void AIL_sample_ms_position(...) {}
-static inline void AIL_init_sample(...) {}
-static inline void AIL_start_3D_sample(...) {}
-static inline void AIL_stop_3D_sample(...) {}
-static inline void AIL_resume_3D_sample(...) {}
-static inline void AIL_end_3D_sample(...) {}
-static inline void AIL_set_3D_sample_volume(...) {}
-static inline float AIL_3D_sample_volume(...) { return 0; }
-static inline void AIL_set_3D_sample_loop_count(...) {}
-static inline unsigned AIL_3D_sample_loop_count(...) { return 0; }
-static inline void AIL_set_3D_sample_offset(...) {}
-static inline unsigned AIL_3D_sample_offset(...) { return 0; }
-static inline unsigned AIL_3D_sample_length(...) { return 0; }
-static inline unsigned AIL_3D_sample_playback_rate(...) { return 0; }
-static inline void AIL_set_3D_sample_playback_rate(...) {}
-static inline void* AIL_set_3D_sample_file(...) { return 0; }
-
-
 #define AIL_LOCK_PROTECTION 0
 #define NO 0
 #define YES 1
@@ -107,39 +60,49 @@ static inline void* AIL_set_3D_sample_file(...) { return 0; }
 #define AIL_FILE_SEEK_CURRENT 1
 #define AIL_FILE_SEEK_END 2
 #define HPROENUM_FIRST 0
+#define M3D_NOERR 0
+#define ENVIRONMENT_GENERIC 0
+#define AIL_3D_5_1_SPEAKER 4
+#define AIL_3D_7_1_SPEAKER 5
+#define AIL_3D_HeadRelated 6
 
-static inline unsigned AIL_set_file_callbacks(...) { return 0; }
+static inline void AIL_set_3D_velocity(...) {}
+static inline void AIL_set_3D_velocity_vector(...) {}
+static inline void AIL_set_stream_pan(...) {}
+static inline float AIL_stream_pan(...) { return 0; }
+static inline void AIL_set_stream_volume(...) {}
+static inline float AIL_stream_volume(...) { return 0; }
+static inline void AIL_set_stream_loop_block(...) {}
+static inline void AIL_set_stream_ms_position(...) {}
+static inline unsigned AIL_stream_playback_rate(...) { return 0; }
+static inline void AIL_set_stream_playback_rate(...) {}
+static inline void* AIL_open_stream_by_sample(...) { return 0; }
+static inline void AIL_set_sample_pan(...) {}
+static inline float AIL_sample_pan(...) { return 0; }
+static inline void AIL_set_sample_volume(...) {}
+static inline float AIL_sample_volume(...) { return 0; }
+static inline void AIL_set_sample_ms_position(...) {}
+static inline void AIL_sample_ms_position(...) {}
+static inline void AIL_end_3D_sample(...) {}
+static inline float AIL_3D_sample_volume(...) { return 0; }
+static inline void AIL_set_3D_sample_loop_count(...) {}
+static inline unsigned AIL_3D_sample_loop_count(...) { return 0; }
+static inline void AIL_set_3D_sample_offset(...) {}
+static inline unsigned AIL_3D_sample_offset(...) { return 0; }
+static inline unsigned AIL_3D_sample_length(...) { return 0; }
+static inline unsigned AIL_3D_sample_playback_rate(...) { return 0; }
+static inline void AIL_set_3D_sample_playback_rate(...) {}
+static inline void* AIL_set_3D_sample_file(...) { return 0; }
 static inline void AIL_stop_timer(...) {}
 static inline void AIL_release_timer_handle(...) {}
 static inline unsigned AIL_allocate_timer_handle(...) { return 0; }
 static inline void AIL_start_timer(...) {}
 static inline void AIL_set_timer_period(...) {}
 static inline unsigned AIL_timer_period(...) { return 0; }
-
-
-// Comprehensive Miles Sound System stubs
-#define M3D_NOERR 0
-#define ENVIRONMENT_GENERIC 0
-#define AIL_3D_2_SPEAKER 0
-#define AIL_3D_4_SPEAKER 1
-#define AIL_3D_5_1_SPEAKER 2
-#define AIL_3D_7_1_SPEAKER 3
-#define AIL_3D_HeadRelated 4
-typedef void* HPROENUM;
-
-static inline void AIL_release_sample_handle(...) {}
-static inline void* AIL_allocate_sample_handle(...) { return 0; }
-static inline void AIL_set_sample_user_data(...) {}
-static inline void* AIL_sample_user_data(...) { return 0; }
 static inline void* AIL_3D_object_user_data(...) { return 0; }
 static inline void AIL_3D_open_listener(...) {}
-static inline unsigned AIL_enumerate_3D_providers(...) { return 0; }
-static inline void* AIL_open_3D_provider(...) { return 0; }
-static inline void AIL_close_3D_provider(...) {}
 static inline unsigned AIL_last_error(...) { return 0; }
-static inline void* AIL_allocate_3D_sample_handle(...) { return 0; }
 static inline void AIL_set_3D_object_user_data(...) {}
-static inline unsigned AIL_enumerate_filters(...) { return 0; }
 static inline void* AIL_open_filter(...) { return 0; }
 static inline void AIL_close_filter(...) {}
 static inline unsigned AIL_waveOutOpen(...) { return 0; }
@@ -154,18 +117,10 @@ static inline unsigned AIL_digital_configuration(...) { return 0; }
 static inline void AIL_set_digital_room_type(...) {}
 static inline unsigned AIL_digital_CPU_percent(...) { return 0; }
 static inline void AIL_digital_status(...) {}
-static inline unsigned AIL_set_sample_volume_pan(...) { return 0; }
-static inline float AIL_sample_volume_level(...) { return 0; }
-static inline float AIL_sample_volume_pan(...) { return 0; }
-static inline void AIL_set_sample_playback_rate(...) {}
-static inline unsigned AIL_sample_playback_rate(...) { return 0; }
 static inline void AIL_set_sample_loop_count(...) {}
 static inline unsigned AIL_sample_loop_count(...) { return 0; }
 static inline unsigned AIL_sample_status(...) { return 0; }
-static inline void AIL_start_sample(...) {}
-static inline void AIL_stop_sample(...) {}
 static inline void AIL_end_sample(...) {}
-static inline void AIL_resume_sample(...) {}
 static inline void AIL_set_sample_loop_info(...) {}
 static inline unsigned AIL_sample_length(...) { return 0; }
 static inline void* AIL_sample_lock(...) { return 0; }
@@ -173,40 +128,19 @@ static inline void AIL_sample_unlock(...) {}
 static inline unsigned AIL_sample_remaining(...) { return 0; }
 static inline unsigned AIL_sample_offset(...) { return 0; }
 static inline void AIL_set_sample_offset(...) {}
-static inline void AIL_set_sample_file(...) {}
 static inline void AIL_set_named_sample_file(...) {}
 static inline void AIL_set_sample_expiration(...) {}
 static inline void AIL_register_eos_callback(...) {}
-static inline void AIL_register_stream_callback(...) {}
-static inline void AIL_set_stream_loop_count(...) {}
 static inline unsigned AIL_stream_status(...) { return 0; }
-static inline void AIL_pause_stream(...) {}
 static inline void AIL_resume_stream(...) {}
-static inline void AIL_close_stream(...) {}
 static inline void* AIL_open_stream(...) { return 0; }
-static inline void AIL_set_stream_volume_pan(...) {}
 static inline void AIL_stream_set_position(...) {}
 static inline unsigned AIL_stream_position(...) { return 0; }
 static inline unsigned AIL_stream_length_ms(...) { return 0; }
 static inline void* AIL_stream_mem_open(...) { return 0; }
 static inline void AIL_stream_mem_close(...) {}
-
-static inline void AIL_set_3D_sample_distances(...) {}
 static inline void AIL_set_3D_sample_effects_level(...) {}
-static inline void AIL_set_3D_speaker_type(...) {}
 static inline void AIL_set_3D_sample_preferred_voice(...) {}
-
-// AILWAV info
-typedef struct {
-    void *start;
-    U32 length;
-    U32 rate;
-    U16 bits;
-    U16 channels;
-    U16 format;
-} AILSOUNDINFO;
-
-static inline void AIL_WAV_info(...) {}
 static inline void AIL_file_read(...) {}
 static inline void AIL_file_write(...) {}
 #ifndef __WW_AUDIO_AIL_LOCK_DEFINED
@@ -217,15 +151,10 @@ static inline void AIL_unlock() {}
 static inline unsigned AIL_time() { return 0; }
 static inline void AIL_delay(unsigned) {}
 static inline void* AIL_mem_alloc_lock(unsigned) { return 0; }
-static inline void AIL_mem_free_lock(void*) {}
 static inline void* AIL_set_user_data(void*, void*) { return 0; }
 static inline void* AIL_get_user_data(void*) { return 0; }
 
-
 #include "always.h"
-#pragma warning (push, 3)
-#include "Mss.H"
-#pragma warning (pop)
 
 #include "Vector.H"
 #include "SoundBuffer.H"

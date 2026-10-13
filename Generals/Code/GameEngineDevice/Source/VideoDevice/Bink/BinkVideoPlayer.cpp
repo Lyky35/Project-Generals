@@ -47,9 +47,7 @@
 
 #include "Lib/BaseType.h"
 #include "VideoDevice/Bink/BinkVideoPlayer.h"
-#include <libavcodec/avcodec.h>
-#include <libavformat/avformat.h>
-#include <libswscale/swscale.h>
+// FFmpeg decode path not yet wired for MinGW cross; using bink.h stubs
 #include "Common/AudioAffect.h"
 #include "Common/GameAudio.h"
 #include "Common/GameMemory.h"
@@ -187,7 +185,7 @@ void	BinkVideoPlayer::regainFocus( void )
 // BinkVideoPlayer::createStream
 //============================================================================
 
-VideoStreamInterface* BinkVideoPlayer::createStream( // HBINK - replaced with AVFormatContext* (FFmpeg emulation placeholder) handle )
+VideoStreamInterface* BinkVideoPlayer::createStream( HBINK handle )
 {
 
 	if ( handle == NULL )
@@ -229,16 +227,13 @@ VideoStreamInterface*	BinkVideoPlayer::open( AsciiString movieTitle )
 	if (pVideo) {
 		DEBUG_LOG(("BinkVideoPlayer::createStream() - About to open bink file\n"));
 
+		HBINK handle = NULL;
+
 		if (TheGlobalData->m_modDir.isNotEmpty())
 		{
 			char filePath[ _MAX_PATH ];
 			sprintf( filePath, "%s%s\\%s.%s", TheGlobalData->m_modDir.str(), VIDEO_PATH, pVideo->m_filename.str(), VIDEO_EXT );
-			// HBINK - replaced with AVFormatContext* (FFmpeg emulation placeholder) handle = // FFmpeg emulation: avformat_open_input to open Bink file; avcodec_send_packet/receive_frame to decode; sws_scale to convert; OpenGL texture upload for rendering
-// BinkOpen - would call Bink SDK function
-// Would open Bink video file and initialize decoding
-#endif
-// FFmpeg emulation:
-// AVFormatContext *ic = NULL; // FFmpeg: open input file
+			handle = BinkOpen( filePath, 0 );
 			DEBUG_ASSERTLOG(!handle, ("opened bink file %s\n", filePath));
 			if (handle)
 			{
@@ -248,23 +243,13 @@ VideoStreamInterface*	BinkVideoPlayer::open( AsciiString movieTitle )
 
 		char localizedFilePath[ _MAX_PATH ];
 		sprintf( localizedFilePath, VIDEO_LANG_PATH_FORMAT, GetRegistryLanguage().str(), pVideo->m_filename.str(), VIDEO_EXT );
-		// HBINK - replaced with AVFormatContext* (FFmpeg emulation placeholder) handle = // FFmpeg emulation: avformat_open_input to open Bink file; avcodec_send_packet/receive_frame to decode; sws_scale to convert; OpenGL texture upload for rendering
-// BinkOpen - would call Bink SDK function
-// Would open Bink video file and initialize decoding
-#endif
-// FFmpeg emulation:
-// AVFormatContext *ic = NULL; // FFmpeg: open localized input file
+		handle = BinkOpen( localizedFilePath, 0 );
 		DEBUG_ASSERTLOG(!handle, ("opened localized bink file %s\n", localizedFilePath));
 		if (!handle)
 		{
 			char filePath[ _MAX_PATH ];
 			sprintf( filePath, "%s\\%s.%s", VIDEO_PATH, pVideo->m_filename.str(), VIDEO_EXT );
-			handle = // FFmpeg emulation: avformat_open_input to open Bink file; avcodec_send_packet/receive_frame to decode; sws_scale to convert; OpenGL texture upload for rendering
-// BinkOpen - would call Bink SDK function
-// Would open Bink video file and initialize decoding
-#endif
-// FFmpeg emulation:
-// AVFormatContext *ic = NULL; // FFmpeg: open input file
+			handle = BinkOpen( filePath, 0 );
 			DEBUG_ASSERTLOG(!handle, ("opened bink file %s\n", localizedFilePath));
 		}
 
@@ -331,20 +316,7 @@ BinkVideoStream::~BinkVideoStream()
 {
 	if ( m_handle != NULL )
 	{
-// FFmpeg emulation: using avformat_open_input, avcodec send/receive, sws_scale for conversion
-// BinkClose - would close Bink video and free resources
-#endif
-// FFmpeg emulation: actual implementation
-// if (ic) {
-//     // Clean up decoder
-//     if (video_stream_idx >= 0) {
-//         avcodec_free_context(&ic->streams[video_stream_idx]->codec);
-//     }
-//     av_frame_free(&frame);
-//     avformat_close_input(&ic);
-//     // Reset handle
-//     handle = NULL;
-// } m_handle );
+		BinkClose( m_handle );
 		m_handle = NULL;
 	}
 }
@@ -386,7 +358,7 @@ void BinkVideoStream::frameRender( VideoBuffer *buffer )
 	{
 		void *mem = buffer->lock();
 
-		u32 flags;
+		uint32_t flags;
 
 		switch ( buffer->format())
 		{
@@ -436,7 +408,8 @@ void BinkVideoStream::frameNext( void )
 
 Int BinkVideoStream::frameIndex( void )
 {
-	return m_handle->FrameNum - 1;
+	BINK* bink = (BINK*)m_handle;
+	return bink ? (Int)bink->FrameNum - 1 : 0;
 }
 
 //============================================================================
@@ -445,7 +418,8 @@ Int BinkVideoStream::frameIndex( void )
 
 Int	BinkVideoStream::frameCount( void )
 {
-	return m_handle->Frames;
+	BINK* bink = (BINK*)m_handle;
+	return bink ? (Int)bink->Frames : 0;
 }
 
 //============================================================================
@@ -463,7 +437,8 @@ void BinkVideoStream::frameGoto( Int index )
 
 Int		BinkVideoStream::height( void )
 {
-	return m_handle->Height;
+	BINK* bink = (BINK*)m_handle;
+	return bink ? (Int)bink->Height : 0;
 }
 
 //============================================================================
@@ -472,7 +447,8 @@ Int		BinkVideoStream::height( void )
 
 Int		BinkVideoStream::width( void )
 {
-	return m_handle->Width;
+	BINK* bink = (BINK*)m_handle;
+	return bink ? (Int)bink->Width : 0;
 }
 
 
