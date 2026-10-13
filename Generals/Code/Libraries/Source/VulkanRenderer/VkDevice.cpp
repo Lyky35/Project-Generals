@@ -818,17 +818,21 @@ uint32_t VulkanDevice::FindMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags
 
 VkCommandBuffer VulkanDevice::BeginOneTimeCommands()
 {
+	if (m_device == VK_NULL_HANDLE || m_commandPool == VK_NULL_HANDLE)
+		return VK_NULL_HANDLE;
 	VkCommandBufferAllocateInfo allocInfo = {};
 	allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
 	allocInfo.commandPool = m_commandPool;
 	allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
 	allocInfo.commandBufferCount = 1;
 	VkCommandBuffer cmd = VK_NULL_HANDLE;
-	vkAllocateCommandBuffers(m_device, &allocInfo, &cmd);
+	if (vkAllocateCommandBuffers(m_device, &allocInfo, &cmd) != VK_SUCCESS)
+		return VK_NULL_HANDLE;
 	VkCommandBufferBeginInfo beginInfo = {};
 	beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
 	beginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
-	vkBeginCommandBuffer(cmd, &beginInfo);
+	if (vkBeginCommandBuffer(cmd, &beginInfo) != VK_SUCCESS)
+		return VK_NULL_HANDLE;
 	return cmd;
 }
 

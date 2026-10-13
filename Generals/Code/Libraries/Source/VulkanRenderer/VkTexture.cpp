@@ -2,6 +2,7 @@
 #include "VkDevice.h"
 #include "DX8Compat/d3d8types.h"
 #include <cstring>
+#include <cstdio>
 #include <cassert>
 
 VkTexture::VkTexture()
@@ -257,15 +258,30 @@ void VkTexture::UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const
 		imageSize = rowPitch * height;
 	}
 
-	VkBuffer staging;
+	VkBuffer staging = VK_NULL_HANDLE;
 	VkDeviceMemory stagingMemory = VK_NULL_HANDLE;
 	VkBufferCreateInfo bufferInfo = {};
 	bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
 	bufferInfo.size = imageSize;
 	bufferInfo.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 	bufferInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
-	if (vkCreateBuffer(dev, &bufferInfo, nullptr, &staging) != VK_SUCCESS)
+	{
+		static int uploadLogCount = 0;
+		if (uploadLogCount < 8) {
+			char buf[128];
+			snprintf(buf, sizeof(buf), "VK: upload w=%u h=%u fmt=%d size=%llu",
+				(unsigned)width, (unsigned)height, (int)m_format, (unsigned long long)imageSize);
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
+			uploadLogCount++;
+		}
+	}
+	VkResult res = vkCreateBuffer(dev, &bufferInfo, nullptr, &staging);
+	if (res != VK_SUCCESS) {
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: UploadLevel vkCreateBuffer -> %d\n", (int)res); fclose(lf); }
 		return;
+	}
 	VkMemoryRequirements memReq;
 	vkGetBufferMemoryRequirements(dev, staging, &memReq);
 	VkMemoryAllocateInfo allocInfo = {};
@@ -277,17 +293,39 @@ void VkTexture::UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const
 		vkDestroyBuffer(dev, staging, nullptr);
 		return;
 	}
-	if (vkAllocateMemory(dev, &allocInfo, nullptr, &stagingMemory) != VK_SUCCESS) {
+	res = vkAllocateMemory(dev, &allocInfo, nullptr, &stagingMemory);
+	if (res != VK_SUCCESS) {
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: UploadLevel vkAllocateMemory -> %d\n", (int)res); fclose(lf); }
 		vkDestroyBuffer(dev, staging, nullptr);
 		return;
 	}
-	vkBindBufferMemory(dev, staging, stagingMemory, 0);
+	res = vkBindBufferMemory(dev, staging, stagingMemory, 0);
+	if (res != VK_SUCCESS) {
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: UploadLevel vkBindBufferMemory -> %d\n", (int)res); fclose(lf); }
+		vkDestroyBuffer(dev, staging, nullptr);
+		vkFreeMemory(dev, stagingMemory, nullptr);
+		return;
+	}
 	void *mapped = nullptr;
-	vkMapMemory(dev, stagingMemory, 0, imageSize, 0, &mapped);
+	res = vkMapMemory(dev, stagingMemory, 0, imageSize, 0, &mapped);
+	if (res != VK_SUCCESS || mapped == nullptr) {
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: UploadLevel vkMapMemory -> %d\n", (int)res); fclose(lf); }
+		vkDestroyBuffer(dev, staging, nullptr);
+		vkFreeMemory(dev, stagingMemory, nullptr);
+		return;
+	}
 	memcpy(mapped, pixels, (size_t)imageSize);
 	vkUnmapMemory(dev, stagingMemory);
 
 	VkCommandBuffer cmd = m_device->BeginOneTimeCommands();
+	if (cmd == VK_NULL_HANDLE) {
+		vkDestroyBuffer(dev, staging, nullptr);
+		vkFreeMemory(dev, stagingMemory, nullptr);
+		return;
+	}
 	TransitionLayout(cmd, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, mip, 1);
 	VkBufferImageCopy region = {};
 	region.bufferOffset = 0;
