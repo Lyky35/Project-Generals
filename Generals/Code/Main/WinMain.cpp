@@ -111,12 +111,24 @@ static void writeLogLine(const char *msg)
 
 static LONG WINAPI earlyCrashFilter(EXCEPTION_POINTERS *info)
 {
-	char buf[256];
+	char mod[MAX_PATH] = "?";
+	void *addr = NULL;
+	if (info && info->ExceptionRecord) {
+		addr = info->ExceptionRecord->ExceptionAddress;
+		HMODULE hMod = NULL;
+		if (GetModuleHandleExA(
+			GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+			(LPCSTR)addr, &hMod) && hMod) {
+			GetModuleFileNameA(hMod, mod, MAX_PATH);
+			char *base = strrchr(mod, '\\');
+			if (base) memmove(mod, base + 1, strlen(base));
+		}
+	}
+	char buf[320];
 	snprintf(buf, sizeof(buf),
-		"CRASH code=0x%08lx addr=%p ip=%p\r\n",
+		"CRASH code=0x%08lx ip=%p module=%s\r\n",
 		info && info->ExceptionRecord ? info->ExceptionRecord->ExceptionCode : 0,
-		info && info->ExceptionRecord ? info->ExceptionRecord->ExceptionAddress : NULL,
-		info && info->ContextRecord ? (void*)info->ContextRecord->Rip : NULL);
+		addr, mod);
 	writeLogLine(buf);
 	return EXCEPTION_EXECUTE_HANDLER;
 }
