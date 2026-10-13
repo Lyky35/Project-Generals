@@ -218,5 +218,19 @@ Link support:
 
 Next: bundle OpenAL32.dll/SDL2.dll/vulkan-1.dll on Windows; replace ignore-all/stubs with real backends per NOTES.md (OpenAL Miles, FFmpeg Bink, GameSpy stub quality); then runtime test; GeneralsMD port after Generals tree renders.
 
+
+### 2026-10-13 — Release 1.1 published
+
+- Replaced placeholder `release/RTS.exe` with the real linked binary (`build/bin/RTS.exe`, PE32+ x86-64, ~17.9MB).
+- Rebuilt release zips (previous v1.1 zips contained the 150KB MessageBox stub):
+  - `release/Project-Generals-RTS-Full-V1.1.zip` — RTS.exe + MinGW runtime DLLs + README.txt + NOTES.md + PROGRESS.md
+  - `release/Project-Generals-RTS-v1.1.zip` — slim: RTS.exe + DLLs + README.txt
+- Bundled DLLs (the only non-system imports RTS.exe needs): `libgcc_s_seh-1.dll`, `libstdc++-6.dll`, `libwinpthread-1.dll`.
+  Not yet needed: OpenAL32.dll / SDL2.dll / vulkan-1.dll (not linked in this milestone; vk* are in-tree stubs).
+- Created GitHub release tag `v1.1` with both zips attached.
+
+Next: replace link stubs with real backends (OpenAL Miles, FFmpeg Bink, GameSpy), wire real Vulkan loader, runtime test on Windows 10; GeneralsMD after Generals tree renders.
+
 <!-- Append new entries below. Commit after each completed step. -->
+
 
