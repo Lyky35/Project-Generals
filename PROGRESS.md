@@ -57,4 +57,19 @@ next-steps list. After each accomplished step: commit + push.
 - Verified: texture.cpp compiles (reorder warnings only).
 - Remaining WW3D2 errors: surfaceclass.cpp (~5), textureloader.cpp (~25), ww3d.cpp (~5).
 
+### 2026-10-12 — Step 3 done: surfaceclass.cpp ported to Vulkan
+
+- Added `ShadowMemory`/`ShadowPitch` members to `surfaceclass.h` for CPU-side Lock.
+- Ctor `(w,h,format)`: proper `VkTexture::Create(w,h,fmt,1,false)` (was wrong byteSize/imageType args).
+- Ctor `(filename)`: blank 64x64 VkTexture (TODO: real DDS load).
+- Ctor `(IDirect3DSurface8*)` → `(VkTexture*)` matching header.
+- `Lock`/`Unlock`: shadow buffer + `UploadLevel` on unlock (VkTexture has no public Map).
+- `Clear`/`Copy`/`CreateCopy`/`FindBB`/`Is_Transparent_Column`/`Get_Pixel`/`DrawPixel`/`DrawHLine`/`Hue_Shift`: rewritten on shadow buffer.
+- Surface-to-surface `Copy`: `_Copy_Vulkan_Rects` (same format) or CPU memcpy fallback.
+- `Stretch_Copy`: nearest-sample CPU fallback (was D3DXLoadSurfaceFromSurface).
+- `Attach`/`Detach`: take/manage `VkTexture*` (no COM refcounting).
+- `Get_Description`: uses stored `SurfaceFormat` (not raw VkFormat).
+- Verified: surfaceclass.cpp compiles; zero D3D references remain.
+- Remaining WW3D2 errors: textureloader.cpp (~25), ww3d.cpp (~6), prim_anim.h (1 template).
+
 <!-- Append new entries below. Commit after each completed step. -->

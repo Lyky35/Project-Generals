@@ -142,10 +142,14 @@ class SurfaceClass : public W3DMPO, public RefCountClass
 
 	private:
 
-		// Direct3D surface object
+		// Vulkan surface object
 		VkTexture *VulkanSurface;
 
 		WW3DFormat SurfaceFormat;
+
+		// CPU shadow for Lock/Unlock (uploaded via VkTexture::UploadLevel)
+		unsigned char *ShadowMemory;
+		unsigned ShadowPitch;
 	friend class TextureClass;	
 };
 
