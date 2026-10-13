@@ -159,4 +159,17 @@ Next: fix GameEngineDevice compile errors (Miles stub, Bink #endif, `_wcsicmp`, 
 
 Next: fix remaining ~22 GameEngineDevice errors → link RTS.exe → continue NOTES.md list.
 
+### 2026-10-12 — Shadow/W3D D3D stubs + case symlinks; TerrainTex remaining
+
+- Committed `a75c22f` then `4c1a10d`.
+- Fixed opaque-enum fwd decls: `CustomScenePassModes : int`, `ChipsetType : int`, `CpuType : int`.
+- Case fixes/symlinks: `BitType.h`, `Matrix3d.h`, `Heightmap.h`, `Common/GlobalData.h`, `Common/AsciiString.h`, `Common/DrawModule.h`, `WWMath/Matrix3d.h`.
+- `d3d8types.h`: complete stubs for `IDirect3DVertexBuffer8`/`IndexBuffer8`/`Device8` (Lock/Create*/Draw*/Set*); `D3DXVECTOR4` ctors; `D3DXMatrixInverse`/`Identity`; `D3DSHADE_*`.
+- `DX8Wrapper`: no-op `_Get_D3D_Device8`, `Set_StreamSource`, `Set_Stencil*`, `Set_Lighting`, `Set_BlendFunc`, `Set_ZEnable`, `Set_ShadeMode`.
+- `dx8vertex/indexbuffer.h`: `Get_DX8_*` aliases over Vulkan accessors.
+- Shadow cpps: VK typo fixes, casts for VkGpuBuffer* vs IDirect3D*, `Vector3` rvalue fix, 5-arg `DrawIndexedPrimitive` overload.
+- **TerrainTex.cpp** still has D3D remnants (~37 errors): `D3DTexture`/`Peek_DX8_Texture`/`GetSurfaceLevel`/`LockRect`/`Set_DX8_Texture`, corrupted Apply matrix math (`inv` undeclared after commented-out D3DX code). Port to `VulkanTexture`/`SurfaceClass::Lock`/`Set_Vulkan_Texture` next.
+
+Next: finish TerrainTex Vulkan port → any remaining GameEngineDevice files → link RTS.exe.
+
 <!-- Append new entries below. Commit after each completed step. -->
