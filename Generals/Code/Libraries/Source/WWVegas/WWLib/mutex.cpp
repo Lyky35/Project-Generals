@@ -25,35 +25,33 @@
 
 MutexClass::MutexClass(const char* name) : handle(NULL), locked(false)
 {
-	#ifdef _UNIX
-		//assert(0);
-	#else
-		handle=CreateMutex(NULL,false,name);
-		WWASSERT(handle);
-	#endif
+	// Deferred: CreateMutex on first Lock() — avoid heap/Win32 during static init.
+	(void)name;
 }
 
 MutexClass::~MutexClass()
 {
-	#ifdef _UNIX
-		//assert(0);
-	#else
-		WWASSERT(!locked); // Can't delete locked mutex!
+	WWASSERT(!locked); // Can't delete locked mutex!
+	if (handle)
+	{
 		CloseHandle(handle);
-	#endif
+		handle = NULL;
+	}
 }
 
 bool MutexClass::Lock(int time)
 {
-	#ifdef _UNIX
-		//assert(0);
-		return true;
-	#else
-		int res = WaitForSingleObject(handle,time==WAIT_INFINITE ? INFINITE : time);
-		if (res!=WAIT_OBJECT_0) return false;
-		locked++;
-		return true;
-	#endif
+	if (handle == NULL)
+	{
+		handle = CreateMutex(NULL, false, NULL);
+		if (!handle)
+			return false;
+	}
+	int res = WaitForSingleObject(handle, time == WAIT_INFINITE ? INFINITE : time);
+	if (res != WAIT_OBJECT_0)
+		return false;
+	locked++;
+	return true;
 }
 
 void MutexClass::Unlock()
@@ -91,44 +89,41 @@ MutexClass::LockClass::~LockClass()
 
 CriticalSectionClass::CriticalSectionClass() : handle(NULL), locked(false)
 {
-	#ifdef _UNIX
-		//assert(0);
-	#else
-		handle=W3DNEWARRAY char[sizeof(CRITICAL_SECTION)];
-		InitializeCriticalSection((CRITICAL_SECTION*)handle);
-	#endif
+	// Defer InitializeCriticalSection + heap alloc until first Lock().
+	// File-scope CriticalSectionClass objects are constructed during CRT static
+	// init; allocating here (operator new / UCRT) has been crashing in ucrtbase
+	// before WinMain on MinGW+UCRT.
 }
 
 CriticalSectionClass::~CriticalSectionClass()
 {
-	#ifdef _UNIX
-		//assert(0);
-	#else
-		WWASSERT(!locked); // Can't delete locked mutex!
+	WWASSERT(!locked); // Can't delete locked mutex!
+	if (handle)
+	{
 		DeleteCriticalSection((CRITICAL_SECTION*)handle);
-		delete[] handle;
-	#endif
+		delete[] (char*)handle;
+		handle = NULL;
+	}
 }
 
 void CriticalSectionClass::Lock()
 {
-	#ifdef _UNIX
-		//assert(0);
-	#else
-		EnterCriticalSection((CRITICAL_SECTION*)handle);
-		locked++;
-	#endif
+	if (handle == NULL)
+	{
+		// First use: create the underlying CRITICAL_SECTION (kernel32 only).
+		handle = (void*)new char[sizeof(CRITICAL_SECTION)];
+		InitializeCriticalSection((CRITICAL_SECTION*)handle);
+	}
+	EnterCriticalSection((CRITICAL_SECTION*)handle);
+	locked++;
 }
 
 void CriticalSectionClass::Unlock()
 {
-	#ifdef _UNIX
-		//assert(0);
-	#else
-		WWASSERT(locked);
+	WWASSERT(locked);
+	if (handle)
 		LeaveCriticalSection((CRITICAL_SECTION*)handle);
-		locked--;
-	#endif
+	locked--;
 }
 
 // ----------------------------------------------------------------------------

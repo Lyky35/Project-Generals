@@ -390,7 +390,19 @@ Added **unhandled-exception filter** in the early static path: on crash it appen
 `CRASH code=… addr=… ip=…` to RTS_START.LOG (kernel32/`snprintf` only).
 Next user run should give the faulting IP so we can map it to a static ctor.
 
+
+### 2026-10-13 — Lazy CriticalSectionClass/MutexClass to stop static-init new[]
+
+User log: `static-init` then CRASH in ucrtbase (no `late-static-done` on that run).
+Dozens of **file-scope `CriticalSectionClass` objects** each ran
+`new char[sizeof(CRITICAL_SECTION)]` + `InitializeCriticalSection` during CRT static init.
+
+- `CriticalSectionClass` / `MutexClass`: **defer CreateMutex/InitializeCriticalSection + heap to first Lock()**.
+  Static ctors now only zero the handle (no new, no Win32).
+- Still have early/late static markers + crash filter in WinMain for the next run.
+
 <!-- Append new entries below. Commit after each completed step. -->
+
 
 
 
