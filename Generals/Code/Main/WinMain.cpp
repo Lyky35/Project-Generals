@@ -178,6 +178,21 @@ static LONG WINAPI earlyCrashFilter(EXCEPTION_POINTERS *info)
 	return EXCEPTION_EXECUTE_HANDLER;
 }
 
+// CRT "invalid parameter" (e.g. fopen(NULL), memcpy NULL) aborts the process
+// WITHOUT going through the unhandled-exception filter - log it so a silent
+// death in RTS_START.LOG names itself.
+static void crtInvalidParameterHandler(const wchar_t * expression, const wchar_t * function,
+	const wchar_t * file, unsigned int line, uintptr_t reserved)
+{
+	writeLogLine("CRASH: CRT invalid-parameter handler (silent abort class)");
+	_exit(0x57);
+}
+
+static void logCleanExit(void)
+{
+	writeLogLine("exit: atexit ran (normal exit() path)");
+}
+
 static void earlyStaticLog(void)
 {
 	g_logPath[0] = 0;
@@ -188,6 +203,10 @@ static void earlyStaticLog(void)
 	HANDLE h = CreateFileA(g_logPath, GENERIC_WRITE, FILE_SHARE_READ, NULL,
 		CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (h != INVALID_HANDLE_VALUE) CloseHandle(h);
+	SetErrorMode(GetErrorMode() | SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX);
+	_set_invalid_parameter_handler(crtInvalidParameterHandler);
+	_set_abort_behavior(0, _WRITE_ABORT_MSG);
+	atexit(logCleanExit);
 	SetUnhandledExceptionFilter(earlyCrashFilter);
 	writeLogLine("static-init");
 }

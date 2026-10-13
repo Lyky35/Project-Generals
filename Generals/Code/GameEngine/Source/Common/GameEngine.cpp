@@ -172,10 +172,18 @@ SubsystemInterfaceList* TheSubsystemList = NULL;
 //-------------------------------------------------------------------------------------------------
 template<class SUBSYSTEM>
 void initSubsystem(SUBSYSTEM*& sysref, AsciiString name, SUBSYSTEM* sys, Xfer *pXfer,  const char* path1 = NULL, 
-									 const char* path2 = NULL, const char* dirpath = NULL)
+										const char* path2 = NULL, const char* dirpath = NULL)
 {
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "SUBSYS: begin %s\n", name.str()); fclose(lf); }
+	}
 	sysref = sys;
 	TheSubsystemList->initSubsystem(sys, path1, path2, dirpath, pXfer, name);
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "SUBSYS: done %s\n", name.str()); fclose(lf); }
+	}
 }
 
 //-------------------------------------------------------------------------------------------------
