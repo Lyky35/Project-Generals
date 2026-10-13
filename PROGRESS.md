@@ -530,6 +530,34 @@ Next: diagnose the GadgetStaticText UnicodeString crash (likely another
 x64 struct/pointer issue in the .win script parser); strip remaining
 release-mode breadcrumbs if desired; then runtime smoke on Windows 10.
 
+### 2026-10-13 — WindowMsgData x64 truncation fixed; boots through GUI into Vulkan init
+
+Field log from Windows 10 (user run of the Technical-Difficulties build):
+identical stack to wine - GadgetStaticTextSystem -> UnicodeString copy-ctor
+AV, fault = 0x135fd858.
+
+**Root cause:** `typedef UnsignedInt WindowMsgData` (GameWindow.h) - a 32-bit
+type that doubles as the pointer carrier in winSendSystemMsg calls
+(`(WindowMsgData)&text`). Fine on x86; on x64 every pointer passed through a
+window message lost its high half. In GGM_SET_LABEL the saved mData1 came
+back zero-extended (fault addr = stack pointer truncated to 0x135fd858 on
+Windows, 0xfe30dd08 under wine - matches the disasm of
+GadgetStaticTextSystem: `mov %r8d,0x70(%rsp)` / `mov 0x70(%rsp),%edx`).
+
+**Fix:** `typedef UnsignedInt64 WindowMsgData;` - all integer uses still
+compile; pointer round-trips are exact on x64.
+
+**Boot state after fix (wine + full game data):** past ALL subsystems, INIs,
+1128+ objects AND the complete GUI window-script construction
+(IMEManager/winCreateFromScript/parseWindow/Gadgets) - now dies in
+**Vulkan renderer init** (`vkCreateImage` under wine, whose vulkan stack has
+no usable GPU ICD on this machine - `init_physical_devices` res -3). On
+Windows 10 with real GPU drivers this is the next real test: either first
+frames or a new logged failure (D3D-failure box or FR stack).
+
+Next: Windows 10 run with GPU; if Vulkan device creation fails there too,
+audit VulkanRenderer image creation; then audio/first-frame.
+
 <!-- Append new entries below. Commit after each completed step. -->
 
 

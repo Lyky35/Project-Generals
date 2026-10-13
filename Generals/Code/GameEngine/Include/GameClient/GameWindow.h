@@ -75,7 +75,11 @@ enum { WIN_COLOR_UNDEFINED = GAME_COLOR_UNDEFINED };
 
 // WindowMsgData --------------------------------------------------------------
 //-----------------------------------------------------------------------------
-typedef UnsignedInt WindowMsgData;
+// This doubles as a pointer carrier in winSendSystemMsg calls (e.g.
+// (WindowMsgData)&text). UnsignedInt was fine in the 32-bit original; on
+// x64 it truncated every pointer passed through a window message (the
+// GadgetStaticText crash with fault addresses like 0x135fd858).
+typedef UnsignedInt64 WindowMsgData;
 
 //-----------------------------------------------------------------------------
 enum WindowMsgHandledType { MSG_IGNORED, MSG_HANDLED };
