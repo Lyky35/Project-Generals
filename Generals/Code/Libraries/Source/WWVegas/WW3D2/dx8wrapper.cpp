@@ -1019,7 +1019,18 @@ static void VulkanBeginTargetPass(VkTexture *target, const float *clearColor, fl
 {
 	VulkanDevice &device = VulkanDevice::Instance();
 	VkCommandBuffer cmd = device.GetCommandBuffer();
+	if (cmd == VK_NULL_HANDLE) {
+		static bool logged = false;
+		if (!logged) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: BeginTargetPass with NULL command buffer\n"); fclose(lf); }
+			logged = true;
+		}
+		return;
+	}
 	if (target == NULL) {
+		if (device.GetRenderPass() == VK_NULL_HANDLE || device.GetFramebuffer() == VK_NULL_HANDLE)
+			return;
 		VkClearValue clearValues[2];
 		clearValues[0].color.float32[0] = clearColor[0];
 		clearValues[0].color.float32[1] = clearColor[1];
