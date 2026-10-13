@@ -1693,7 +1693,7 @@ IOResult GameMtl::Save(ISave *isave)
 	*/
 	uint8 tmp8;
 	int pass;
-	for (pass=0; pass < W3dMaterialClass::MAX_PASSES; pass++) {
+	for (int pass =0; pass < W3dMaterialClass::MAX_PASSES; pass++) {
 		isave->BeginChunk(GAMEMTL_PASS0_CUR_PAGE + pass);
 		tmp8 = CurPage[pass];
 		isave->Write(&tmp8,sizeof(tmp8),&nb);
@@ -1703,7 +1703,7 @@ IOResult GameMtl::Save(ISave *isave)
 	/*
 	** Save any Mapper Args
 	*/
-	for (pass=0; pass < W3dMaterialClass::MAX_PASSES; pass++) {
+	for (int pass =0; pass < W3dMaterialClass::MAX_PASSES; pass++) {
 		char *buffer = Get_Mapping_Arg_Buffer(pass, 0);
 		if (buffer) {
 			isave->BeginChunk(GAMEMTL_PASS0_STAGE0_MAPPER_ARGS + pass);
@@ -2212,7 +2212,7 @@ int GameMtl::Compute_PC_Shader_From_PS2_Shader(int pass)
 	param_value[3] = Get_PS2_Shader_Param_C(pass);
 
 	// Convert them to the enumeration.
-	for (i = 0; i < 3; i++)	{
+	for (int i = 0; i < 3; i++)	{
 		switch(param_value[i]) 
 		{
 			case PSS_SRC:
@@ -2244,8 +2244,8 @@ int GameMtl::Compute_PC_Shader_From_PS2_Shader(int pass)
 	// Calculate the PS2 shader.
 	equation_value = ((param_value[0] - param_value[1]) * param_value[3]) + param_value[2];
 
-	for (i = 0; i < 4; i++)	{
-		for (j = 0; j < 6; j++)	{
+	for (int i = 0; i < 4; i++)	{
+		for (int j = 0; j < 6; j++)	{
 			// Calculate the PC shader.  If equal, we have found a conversion.
 			if (((src_blend[i] * ST_SRC) + (dest_blend[j] * ST_DEST)) == equation_value) {
 				break;
@@ -2438,9 +2438,9 @@ int GameMtl::Compute_PS2_Shader_From_PC_Shader(int pass)
 			break;
 	}
 
-	for (i = 0; i < 3; i++)	{
-		for (j = 0; j < 3; j++)	{
-			for (k = 0; k < 3; k++)	{
+	for (int i = 0; i < 3; i++)	{
+		for (int j = 0; j < 3; j++)	{
+			for (int k = 0; k < 3; k++)	{
 				for (l = 0; l < 3; l++)	{
 					// Calculate the PS2 shader.  If equal, we have found a conversion.
 					if (equation_value == ((a_blend[i] - b_blend[j]) * c_blend[k]) + d_blend[l]) {
@@ -3091,7 +3091,7 @@ void GameMtl::Set_Texture_Display(int pass,int stage,bool val)
 			if (GetSubMtl(mi)->ClassID() == GameMaterialClassID) {
 				int pass;
 
-				for (pass = 0; pass < ((GameMtl*)(GetSubMtl(mi)))->Get_Pass_Count(); pass++) {
+				for (int pass = 0; pass < ((GameMtl*)(GetSubMtl(mi)))->Get_Pass_Count(); pass++) {
 
 					if (((GameMtl*)(GetSubMtl(mi)))->Get_Texture_Enable(pass, stage)) {
 						(GetSubMtl(mi))->SetMtlFlag(MTL_TEX_DISPLAY_ENABLED, TRUE);

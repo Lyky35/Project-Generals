@@ -159,7 +159,7 @@ Int W3DStatusCircle::initData(void)
 	DX8IndexBufferClass::WriteLockClass lockIdxBuffer(m_indexBuffer);
 	UnsignedShort *ib=lockIdxBuffer.Get_Index_Array();
 		
-	for (i=0; i<3*m_numTriangles; i+=3)
+	for (int i =0; i<3*m_numTriangles; i+=3)
 	{
 		ib[0]=i;
 		ib[1]=i+1;
@@ -201,11 +201,11 @@ Int W3DStatusCircle::updateCircleVB(void)
 		Int limit = m_numTriangles;
 		float curAngle = 0;
 		float deltaAngle = 2*PI/limit;
-		for (i=0; i<limit; i++)
+		for (int i =0; i<limit; i++)
 		{
 			
 			shade=0.7f*255.0f;
-			for (k=0; k<3; k++) {
+			for (int k =0; k<3; k++) {
 				vb->z=  theZ;
 				if (k==0) {
 					vb->x=	0;

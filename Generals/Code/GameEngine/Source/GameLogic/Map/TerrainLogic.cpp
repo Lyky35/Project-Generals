@@ -88,7 +88,7 @@ m_numLinks(0),
 m_biDirectional(biDirectional)
 {
 	Int i;
-	for (i=0; i<MAX_LINKS; i++) {
+	for (int i =0; i<MAX_LINKS; i++) {
 		m_links[i] = NULL;
 	}
 }  // end Waypoint
@@ -967,7 +967,7 @@ TerrainLogic::TerrainLogic()
 	m_activeBoundary = 0;
 	m_waterGridEnabled = FALSE;
 	//
-	for( i = 0; i < MAX_DYNAMIC_WATER; ++i )
+	for (int i = 0; i < MAX_DYNAMIC_WATER; ++i )
 	{
 
 		m_waterToUpdate[ i ].waterTable = NULL;
@@ -1300,7 +1300,7 @@ Bool TerrainLogic::loadMap( AsciiString filename, Bool query )
 		Int i;
 		if (pWay->getNumLinks()) {
 			DEBUG_LOG(("Links to: "));
-			for (i=0; i<pWay->getNumLinks(); i++) {
+			for (int i =0; i<pWay->getNumLinks(); i++) {
 				Waypoint *pLink = pWay->getLink(i);
 				DEBUG_LOG(("'%s' id=%d ", pLink->getName().str(), pLink->getID()));
 			}
@@ -1337,7 +1337,7 @@ Bool TerrainLogic::parseWaypointData(DataChunkInput &file, DataChunkInfo *info, 
 {
 	Int numWaypointLinks = file.readInt();
 	Int i;
-	for (i=0; i<numWaypointLinks; i++) {
+	for (int i =0; i<numWaypointLinks; i++) {
 		Int waypoint1 = file.readInt();
 		Int waypoint2 = file.readInt();
 		addWaypointLink(waypoint1, waypoint2);
@@ -1388,7 +1388,7 @@ void TerrainLogic::addWaypointLink(Int id1, Int id2)
 	}
 	if (pWay1 && pWay2 && (pWay1 != pWay2)) {
 		Int i;
-		for (i=0; i<pWay1->getNumLinks(); i++) {
+		for (int i =0; i<pWay1->getNumLinks(); i++) {
 			if (pWay1->getLink(i) == pWay2) {
 				return; // already linked;
 			}
@@ -1397,7 +1397,7 @@ void TerrainLogic::addWaypointLink(Int id1, Int id2)
 
 		if (pWay1->getBiDirectional()) {
 			// Link the other way.
-			for (i=0; i<pWay2->getNumLinks(); i++) {
+			for (int i =0; i<pWay2->getNumLinks(); i++) {
 				if (pWay2->getLink(i) == pWay1) {
 					return; // already linked;
 				}
@@ -2506,7 +2506,7 @@ void TerrainLogic::findAxisAlignedBoundingRect( const WaterHandle *water, Region
 		Vector3 v;
 		Matrix3D transform;
 		TheTerrainVisual->getWaterTransform( water, &transform );
-		for( i = 0; i < 4; i++ )
+		for (int i = 0; i < 4; i++ )
 		{
 
 			v.Set( p[ i ].x, p[ i ].y, p[ i ].z );
@@ -2686,8 +2686,8 @@ void TerrainLogic::flattenTerrain(Object *obj)
 			Int i, j;
 			Real totalHeight = 0;
 			Int numSamples = 0;
-			for (i=iMin.x; i<=iMax.x; i++) {
-				for (j=0; j<=iMax.y; j++) {
+			for (int i =iMin.x; i<=iMax.x; i++) {
+				for (int j =0; j<=iMax.y; j++) {
 					Vector3	testPt(i*MAP_XY_FACTOR, j*MAP_XY_FACTOR, 0);
 					Bool match = false;
 					unsigned char flags;
@@ -2712,8 +2712,8 @@ void TerrainLogic::flattenTerrain(Object *obj)
 			Int centerHeight = REAL_TO_INT_FLOOR(TheTerrainLogic->getGroundHeight(pos->x, pos->y)/MAP_HEIGHT_SCALE);
 			if (rawDataHeight>centerHeight) rawDataHeight = centerHeight;
 
-			for (i=iMin.x; i<=iMax.x; i++) {
-				for (j=0; j<=iMax.y; j++) {
+			for (int i =iMin.x; i<=iMax.x; i++) {
+				for (int j =0; j<=iMax.y; j++) {
 					Vector3	testPt(i*MAP_XY_FACTOR, j*MAP_XY_FACTOR, 0);
 					Bool match = false;
 					unsigned char flags;
@@ -2777,8 +2777,8 @@ void TerrainLogic::flattenTerrain(Object *obj)
 			Int i, j;
 			Real totalHeight = 0;
 			Int numSamples = 0;
-			for (i=iMin.x; i<=iMax.x; i++) {
-				for (j=0; j<=iMax.y; j++) {
+			for (int i =iMin.x; i<=iMax.x; i++) {
+				for (int j =0; j<=iMax.y; j++) {
 					Vector3	testPt(i*MAP_XY_FACTOR, j*MAP_XY_FACTOR, 0);
 					Bool match = false;
 					Real dx = testPt.X - pos->x;
@@ -2795,8 +2795,8 @@ void TerrainLogic::flattenTerrain(Object *obj)
 			if (numSamples == 0) return;
 			Real avgHeight = totalHeight/numSamples;
 			Int rawDataHeight = REAL_TO_INT_FLOOR(0.5f + avgHeight/MAP_HEIGHT_SCALE);
-			for (i=iMin.x; i<=iMax.x; i++) {
-				for (j=0; j<=iMax.y; j++) {
+			for (int i =iMin.x; i<=iMax.x; i++) {
+				for (int j =0; j<=iMax.y; j++) {
 					Vector3	testPt(i*MAP_XY_FACTOR, j*MAP_XY_FACTOR, 0);
 					Bool match = false;
 					Real dx = testPt.X - pos->x;

@@ -130,13 +130,13 @@ WWLib/fast:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build
 .PHONY : WWLib/fast
 
-LaunchWeb.obj: LaunchWeb.cpp.obj
-.PHONY : LaunchWeb.obj
+LaunchWeb.o: LaunchWeb.cpp.o
+.PHONY : LaunchWeb.o
 
 # target to build an object file
-LaunchWeb.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/LaunchWeb.cpp.obj
-.PHONY : LaunchWeb.cpp.obj
+LaunchWeb.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/LaunchWeb.cpp.o
+.PHONY : LaunchWeb.cpp.o
 
 LaunchWeb.i: LaunchWeb.cpp.i
 .PHONY : LaunchWeb.i
@@ -154,13 +154,13 @@ LaunchWeb.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/LaunchWeb.cpp.s
 .PHONY : LaunchWeb.cpp.s
 
-WWCOMUtil.obj: WWCOMUtil.cpp.obj
-.PHONY : WWCOMUtil.obj
+WWCOMUtil.o: WWCOMUtil.cpp.o
+.PHONY : WWCOMUtil.o
 
 # target to build an object file
-WWCOMUtil.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/WWCOMUtil.cpp.obj
-.PHONY : WWCOMUtil.cpp.obj
+WWCOMUtil.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/WWCOMUtil.cpp.o
+.PHONY : WWCOMUtil.cpp.o
 
 WWCOMUtil.i: WWCOMUtil.cpp.i
 .PHONY : WWCOMUtil.i
@@ -178,13 +178,13 @@ WWCOMUtil.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/WWCOMUtil.cpp.s
 .PHONY : WWCOMUtil.cpp.s
 
-_convert.obj: _convert.cpp.obj
-.PHONY : _convert.obj
+_convert.o: _convert.cpp.o
+.PHONY : _convert.o
 
 # target to build an object file
-_convert.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/_convert.cpp.obj
-.PHONY : _convert.cpp.obj
+_convert.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/_convert.cpp.o
+.PHONY : _convert.cpp.o
 
 _convert.i: _convert.cpp.i
 .PHONY : _convert.i
@@ -202,13 +202,13 @@ _convert.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/_convert.cpp.s
 .PHONY : _convert.cpp.s
 
-_mono.obj: _mono.cpp.obj
-.PHONY : _mono.obj
+_mono.o: _mono.cpp.o
+.PHONY : _mono.o
 
 # target to build an object file
-_mono.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/_mono.cpp.obj
-.PHONY : _mono.cpp.obj
+_mono.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/_mono.cpp.o
+.PHONY : _mono.cpp.o
 
 _mono.i: _mono.cpp.i
 .PHONY : _mono.i
@@ -226,13 +226,13 @@ _mono.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/_mono.cpp.s
 .PHONY : _mono.cpp.s
 
-_timer.obj: _timer.cpp.obj
-.PHONY : _timer.obj
+_timer.o: _timer.cpp.o
+.PHONY : _timer.o
 
 # target to build an object file
-_timer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/_timer.cpp.obj
-.PHONY : _timer.cpp.obj
+_timer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/_timer.cpp.o
+.PHONY : _timer.cpp.o
 
 _timer.i: _timer.cpp.i
 .PHONY : _timer.i
@@ -250,13 +250,13 @@ _timer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/_timer.cpp.s
 .PHONY : _timer.cpp.s
 
-argv.obj: argv.cpp.obj
-.PHONY : argv.obj
+argv.o: argv.cpp.o
+.PHONY : argv.o
 
 # target to build an object file
-argv.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/argv.cpp.obj
-.PHONY : argv.cpp.obj
+argv.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/argv.cpp.o
+.PHONY : argv.cpp.o
 
 argv.i: argv.cpp.i
 .PHONY : argv.i
@@ -274,13 +274,13 @@ argv.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/argv.cpp.s
 .PHONY : argv.cpp.s
 
-b64pipe.obj: b64pipe.cpp.obj
-.PHONY : b64pipe.obj
+b64pipe.o: b64pipe.cpp.o
+.PHONY : b64pipe.o
 
 # target to build an object file
-b64pipe.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/b64pipe.cpp.obj
-.PHONY : b64pipe.cpp.obj
+b64pipe.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/b64pipe.cpp.o
+.PHONY : b64pipe.cpp.o
 
 b64pipe.i: b64pipe.cpp.i
 .PHONY : b64pipe.i
@@ -298,13 +298,13 @@ b64pipe.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/b64pipe.cpp.s
 .PHONY : b64pipe.cpp.s
 
-b64straw.obj: b64straw.cpp.obj
-.PHONY : b64straw.obj
+b64straw.o: b64straw.cpp.o
+.PHONY : b64straw.o
 
 # target to build an object file
-b64straw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/b64straw.cpp.obj
-.PHONY : b64straw.cpp.obj
+b64straw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/b64straw.cpp.o
+.PHONY : b64straw.cpp.o
 
 b64straw.i: b64straw.cpp.i
 .PHONY : b64straw.i
@@ -322,13 +322,13 @@ b64straw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/b64straw.cpp.s
 .PHONY : b64straw.cpp.s
 
-base64.obj: base64.cpp.obj
-.PHONY : base64.obj
+base64.o: base64.cpp.o
+.PHONY : base64.o
 
 # target to build an object file
-base64.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/base64.cpp.obj
-.PHONY : base64.cpp.obj
+base64.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/base64.cpp.o
+.PHONY : base64.cpp.o
 
 base64.i: base64.cpp.i
 .PHONY : base64.i
@@ -346,13 +346,13 @@ base64.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/base64.cpp.s
 .PHONY : base64.cpp.s
 
-blit.obj: blit.cpp.obj
-.PHONY : blit.obj
+blit.o: blit.cpp.o
+.PHONY : blit.o
 
 # target to build an object file
-blit.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/blit.cpp.obj
-.PHONY : blit.cpp.obj
+blit.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/blit.cpp.o
+.PHONY : blit.cpp.o
 
 blit.i: blit.cpp.i
 .PHONY : blit.i
@@ -370,13 +370,13 @@ blit.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/blit.cpp.s
 .PHONY : blit.cpp.s
 
-blowfish.obj: blowfish.cpp.obj
-.PHONY : blowfish.obj
+blowfish.o: blowfish.cpp.o
+.PHONY : blowfish.o
 
 # target to build an object file
-blowfish.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/blowfish.cpp.obj
-.PHONY : blowfish.cpp.obj
+blowfish.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/blowfish.cpp.o
+.PHONY : blowfish.cpp.o
 
 blowfish.i: blowfish.cpp.i
 .PHONY : blowfish.i
@@ -394,13 +394,13 @@ blowfish.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/blowfish.cpp.s
 .PHONY : blowfish.cpp.s
 
-buff.obj: buff.cpp.obj
-.PHONY : buff.obj
+buff.o: buff.cpp.o
+.PHONY : buff.o
 
 # target to build an object file
-buff.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/buff.cpp.obj
-.PHONY : buff.cpp.obj
+buff.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/buff.cpp.o
+.PHONY : buff.cpp.o
 
 buff.i: buff.cpp.i
 .PHONY : buff.i
@@ -418,13 +418,13 @@ buff.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/buff.cpp.s
 .PHONY : buff.cpp.s
 
-bufffile.obj: bufffile.cpp.obj
-.PHONY : bufffile.obj
+bufffile.o: bufffile.cpp.o
+.PHONY : bufffile.o
 
 # target to build an object file
-bufffile.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/bufffile.cpp.obj
-.PHONY : bufffile.cpp.obj
+bufffile.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/bufffile.cpp.o
+.PHONY : bufffile.cpp.o
 
 bufffile.i: bufffile.cpp.i
 .PHONY : bufffile.i
@@ -442,13 +442,13 @@ bufffile.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/bufffile.cpp.s
 .PHONY : bufffile.cpp.s
 
-chunkio.obj: chunkio.cpp.obj
-.PHONY : chunkio.obj
+chunkio.o: chunkio.cpp.o
+.PHONY : chunkio.o
 
 # target to build an object file
-chunkio.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/chunkio.cpp.obj
-.PHONY : chunkio.cpp.obj
+chunkio.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/chunkio.cpp.o
+.PHONY : chunkio.cpp.o
 
 chunkio.i: chunkio.cpp.i
 .PHONY : chunkio.i
@@ -466,13 +466,13 @@ chunkio.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/chunkio.cpp.s
 .PHONY : chunkio.cpp.s
 
-convert.obj: convert.cpp.obj
-.PHONY : convert.obj
+convert.o: convert.cpp.o
+.PHONY : convert.o
 
 # target to build an object file
-convert.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/convert.cpp.obj
-.PHONY : convert.cpp.obj
+convert.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/convert.cpp.o
+.PHONY : convert.cpp.o
 
 convert.i: convert.cpp.i
 .PHONY : convert.i
@@ -490,13 +490,13 @@ convert.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/convert.cpp.s
 .PHONY : convert.cpp.s
 
-cpudetect.obj: cpudetect.cpp.obj
-.PHONY : cpudetect.obj
+cpudetect.o: cpudetect.cpp.o
+.PHONY : cpudetect.o
 
 # target to build an object file
-cpudetect.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/cpudetect.cpp.obj
-.PHONY : cpudetect.cpp.obj
+cpudetect.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/cpudetect.cpp.o
+.PHONY : cpudetect.cpp.o
 
 cpudetect.i: cpudetect.cpp.i
 .PHONY : cpudetect.i
@@ -514,13 +514,13 @@ cpudetect.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/cpudetect.cpp.s
 .PHONY : cpudetect.cpp.s
 
-crc.obj: crc.cpp.obj
-.PHONY : crc.obj
+crc.o: crc.cpp.o
+.PHONY : crc.o
 
 # target to build an object file
-crc.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/crc.cpp.obj
-.PHONY : crc.cpp.obj
+crc.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/crc.cpp.o
+.PHONY : crc.cpp.o
 
 crc.i: crc.cpp.i
 .PHONY : crc.i
@@ -538,13 +538,13 @@ crc.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/crc.cpp.s
 .PHONY : crc.cpp.s
 
-cstraw.obj: cstraw.cpp.obj
-.PHONY : cstraw.obj
+cstraw.o: cstraw.cpp.o
+.PHONY : cstraw.o
 
 # target to build an object file
-cstraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/cstraw.cpp.obj
-.PHONY : cstraw.cpp.obj
+cstraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/cstraw.cpp.o
+.PHONY : cstraw.cpp.o
 
 cstraw.i: cstraw.cpp.i
 .PHONY : cstraw.i
@@ -562,13 +562,13 @@ cstraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/cstraw.cpp.s
 .PHONY : cstraw.cpp.s
 
-data.obj: data.cpp.obj
-.PHONY : data.obj
+data.o: data.cpp.o
+.PHONY : data.o
 
 # target to build an object file
-data.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/data.cpp.obj
-.PHONY : data.cpp.obj
+data.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/data.cpp.o
+.PHONY : data.cpp.o
 
 data.i: data.cpp.i
 .PHONY : data.i
@@ -586,13 +586,13 @@ data.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/data.cpp.s
 .PHONY : data.cpp.s
 
-ddraw.obj: ddraw.cpp.obj
-.PHONY : ddraw.obj
+ddraw.o: ddraw.cpp.o
+.PHONY : ddraw.o
 
 # target to build an object file
-ddraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/ddraw.cpp.obj
-.PHONY : ddraw.cpp.obj
+ddraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/ddraw.cpp.o
+.PHONY : ddraw.cpp.o
 
 ddraw.i: ddraw.cpp.i
 .PHONY : ddraw.i
@@ -610,13 +610,13 @@ ddraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/ddraw.cpp.s
 .PHONY : ddraw.cpp.s
 
-dsurface.obj: dsurface.cpp.obj
-.PHONY : dsurface.obj
+dsurface.o: dsurface.cpp.o
+.PHONY : dsurface.o
 
 # target to build an object file
-dsurface.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/dsurface.cpp.obj
-.PHONY : dsurface.cpp.obj
+dsurface.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/dsurface.cpp.o
+.PHONY : dsurface.cpp.o
 
 dsurface.i: dsurface.cpp.i
 .PHONY : dsurface.i
@@ -634,13 +634,13 @@ dsurface.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/dsurface.cpp.s
 .PHONY : dsurface.cpp.s
 
-ffactory.obj: ffactory.cpp.obj
-.PHONY : ffactory.obj
+ffactory.o: ffactory.cpp.o
+.PHONY : ffactory.o
 
 # target to build an object file
-ffactory.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/ffactory.cpp.obj
-.PHONY : ffactory.cpp.obj
+ffactory.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/ffactory.cpp.o
+.PHONY : ffactory.cpp.o
 
 ffactory.i: ffactory.cpp.i
 .PHONY : ffactory.i
@@ -658,13 +658,13 @@ ffactory.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/ffactory.cpp.s
 .PHONY : ffactory.cpp.s
 
-gcd_lcm.obj: gcd_lcm.cpp.obj
-.PHONY : gcd_lcm.obj
+gcd_lcm.o: gcd_lcm.cpp.o
+.PHONY : gcd_lcm.o
 
 # target to build an object file
-gcd_lcm.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/gcd_lcm.cpp.obj
-.PHONY : gcd_lcm.cpp.obj
+gcd_lcm.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/gcd_lcm.cpp.o
+.PHONY : gcd_lcm.cpp.o
 
 gcd_lcm.i: gcd_lcm.cpp.i
 .PHONY : gcd_lcm.i
@@ -682,13 +682,13 @@ gcd_lcm.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/gcd_lcm.cpp.s
 .PHONY : gcd_lcm.cpp.s
 
-hash.obj: hash.cpp.obj
-.PHONY : hash.obj
+hash.o: hash.cpp.o
+.PHONY : hash.o
 
 # target to build an object file
-hash.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/hash.cpp.obj
-.PHONY : hash.cpp.obj
+hash.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/hash.cpp.o
+.PHONY : hash.cpp.o
 
 hash.i: hash.cpp.i
 .PHONY : hash.i
@@ -706,13 +706,13 @@ hash.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/hash.cpp.s
 .PHONY : hash.cpp.s
 
-hsv.obj: hsv.cpp.obj
-.PHONY : hsv.obj
+hsv.o: hsv.cpp.o
+.PHONY : hsv.o
 
 # target to build an object file
-hsv.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/hsv.cpp.obj
-.PHONY : hsv.cpp.obj
+hsv.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/hsv.cpp.o
+.PHONY : hsv.cpp.o
 
 hsv.i: hsv.cpp.i
 .PHONY : hsv.i
@@ -730,13 +730,13 @@ hsv.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/hsv.cpp.s
 .PHONY : hsv.cpp.s
 
-ini.obj: ini.cpp.obj
-.PHONY : ini.obj
+ini.o: ini.cpp.o
+.PHONY : ini.o
 
 # target to build an object file
-ini.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/ini.cpp.obj
-.PHONY : ini.cpp.obj
+ini.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/ini.cpp.o
+.PHONY : ini.cpp.o
 
 ini.i: ini.cpp.i
 .PHONY : ini.i
@@ -754,13 +754,13 @@ ini.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/ini.cpp.s
 .PHONY : ini.cpp.s
 
-int.obj: int.cpp.obj
-.PHONY : int.obj
+int.o: int.cpp.o
+.PHONY : int.o
 
 # target to build an object file
-int.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/int.cpp.obj
-.PHONY : int.cpp.obj
+int.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/int.cpp.o
+.PHONY : int.cpp.o
 
 int.i: int.cpp.i
 .PHONY : int.i
@@ -778,13 +778,13 @@ int.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/int.cpp.s
 .PHONY : int.cpp.s
 
-jshell.obj: jshell.cpp.obj
-.PHONY : jshell.obj
+jshell.o: jshell.cpp.o
+.PHONY : jshell.o
 
 # target to build an object file
-jshell.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/jshell.cpp.obj
-.PHONY : jshell.cpp.obj
+jshell.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/jshell.cpp.o
+.PHONY : jshell.cpp.o
 
 jshell.i: jshell.cpp.i
 .PHONY : jshell.i
@@ -802,13 +802,13 @@ jshell.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/jshell.cpp.s
 .PHONY : jshell.cpp.s
 
-keyboard.obj: keyboard.cpp.obj
-.PHONY : keyboard.obj
+keyboard.o: keyboard.cpp.o
+.PHONY : keyboard.o
 
 # target to build an object file
-keyboard.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/keyboard.cpp.obj
-.PHONY : keyboard.cpp.obj
+keyboard.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/keyboard.cpp.o
+.PHONY : keyboard.cpp.o
 
 keyboard.i: keyboard.cpp.i
 .PHONY : keyboard.i
@@ -826,13 +826,37 @@ keyboard.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/keyboard.cpp.s
 .PHONY : keyboard.cpp.s
 
-lcw.obj: lcw.cpp.obj
-.PHONY : lcw.obj
+launchweb.o: launchweb.cpp.o
+.PHONY : launchweb.o
 
 # target to build an object file
-lcw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/lcw.cpp.obj
-.PHONY : lcw.cpp.obj
+launchweb.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/launchweb.cpp.o
+.PHONY : launchweb.cpp.o
+
+launchweb.i: launchweb.cpp.i
+.PHONY : launchweb.i
+
+# target to preprocess a source file
+launchweb.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/launchweb.cpp.i
+.PHONY : launchweb.cpp.i
+
+launchweb.s: launchweb.cpp.s
+.PHONY : launchweb.s
+
+# target to generate assembly for a file
+launchweb.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/launchweb.cpp.s
+.PHONY : launchweb.cpp.s
+
+lcw.o: lcw.cpp.o
+.PHONY : lcw.o
+
+# target to build an object file
+lcw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/lcw.cpp.o
+.PHONY : lcw.cpp.o
 
 lcw.i: lcw.cpp.i
 .PHONY : lcw.i
@@ -850,13 +874,13 @@ lcw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/lcw.cpp.s
 .PHONY : lcw.cpp.s
 
-load.obj: load.cpp.obj
-.PHONY : load.obj
+load.o: load.cpp.o
+.PHONY : load.o
 
 # target to build an object file
-load.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/load.cpp.obj
-.PHONY : load.cpp.obj
+load.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/load.cpp.o
+.PHONY : load.cpp.o
 
 load.i: load.cpp.i
 .PHONY : load.i
@@ -874,13 +898,13 @@ load.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/load.cpp.s
 .PHONY : load.cpp.s
 
-mixfile.obj: mixfile.cpp.obj
-.PHONY : mixfile.obj
+mixfile.o: mixfile.cpp.o
+.PHONY : mixfile.o
 
 # target to build an object file
-mixfile.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mixfile.cpp.obj
-.PHONY : mixfile.cpp.obj
+mixfile.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mixfile.cpp.o
+.PHONY : mixfile.cpp.o
 
 mixfile.i: mixfile.cpp.i
 .PHONY : mixfile.i
@@ -898,13 +922,13 @@ mixfile.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mixfile.cpp.s
 .PHONY : mixfile.cpp.s
 
-mono.obj: mono.cpp.obj
-.PHONY : mono.obj
+mono.o: mono.cpp.o
+.PHONY : mono.o
 
 # target to build an object file
-mono.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mono.cpp.obj
-.PHONY : mono.cpp.obj
+mono.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mono.cpp.o
+.PHONY : mono.cpp.o
 
 mono.i: mono.cpp.i
 .PHONY : mono.i
@@ -922,13 +946,13 @@ mono.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mono.cpp.s
 .PHONY : mono.cpp.s
 
-mpmath.obj: mpmath.cpp.obj
-.PHONY : mpmath.obj
+mpmath.o: mpmath.cpp.o
+.PHONY : mpmath.o
 
 # target to build an object file
-mpmath.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mpmath.cpp.obj
-.PHONY : mpmath.cpp.obj
+mpmath.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mpmath.cpp.o
+.PHONY : mpmath.cpp.o
 
 mpmath.i: mpmath.cpp.i
 .PHONY : mpmath.i
@@ -946,13 +970,13 @@ mpmath.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mpmath.cpp.s
 .PHONY : mpmath.cpp.s
 
-mpu.obj: mpu.cpp.obj
-.PHONY : mpu.obj
+mpu.o: mpu.cpp.o
+.PHONY : mpu.o
 
 # target to build an object file
-mpu.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mpu.cpp.obj
-.PHONY : mpu.cpp.obj
+mpu.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mpu.cpp.o
+.PHONY : mpu.cpp.o
 
 mpu.i: mpu.cpp.i
 .PHONY : mpu.i
@@ -970,13 +994,13 @@ mpu.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mpu.cpp.s
 .PHONY : mpu.cpp.s
 
-msgloop.obj: msgloop.cpp.obj
-.PHONY : msgloop.obj
+msgloop.o: msgloop.cpp.o
+.PHONY : msgloop.o
 
 # target to build an object file
-msgloop.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/msgloop.cpp.obj
-.PHONY : msgloop.cpp.obj
+msgloop.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/msgloop.cpp.o
+.PHONY : msgloop.cpp.o
 
 msgloop.i: msgloop.cpp.i
 .PHONY : msgloop.i
@@ -994,13 +1018,13 @@ msgloop.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/msgloop.cpp.s
 .PHONY : msgloop.cpp.s
 
-multilist.obj: multilist.cpp.obj
-.PHONY : multilist.obj
+multilist.o: multilist.cpp.o
+.PHONY : multilist.o
 
 # target to build an object file
-multilist.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/multilist.cpp.obj
-.PHONY : multilist.cpp.obj
+multilist.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/multilist.cpp.o
+.PHONY : multilist.cpp.o
 
 multilist.i: multilist.cpp.i
 .PHONY : multilist.i
@@ -1018,13 +1042,13 @@ multilist.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/multilist.cpp.s
 .PHONY : multilist.cpp.s
 
-mutex.obj: mutex.cpp.obj
-.PHONY : mutex.obj
+mutex.o: mutex.cpp.o
+.PHONY : mutex.o
 
 # target to build an object file
-mutex.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mutex.cpp.obj
-.PHONY : mutex.cpp.obj
+mutex.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mutex.cpp.o
+.PHONY : mutex.cpp.o
 
 mutex.i: mutex.cpp.i
 .PHONY : mutex.i
@@ -1042,13 +1066,13 @@ mutex.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/mutex.cpp.s
 .PHONY : mutex.cpp.s
 
-nstrdup.obj: nstrdup.cpp.obj
-.PHONY : nstrdup.obj
+nstrdup.o: nstrdup.cpp.o
+.PHONY : nstrdup.o
 
 # target to build an object file
-nstrdup.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/nstrdup.cpp.obj
-.PHONY : nstrdup.cpp.obj
+nstrdup.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/nstrdup.cpp.o
+.PHONY : nstrdup.cpp.o
 
 nstrdup.i: nstrdup.cpp.i
 .PHONY : nstrdup.i
@@ -1066,13 +1090,13 @@ nstrdup.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/nstrdup.cpp.s
 .PHONY : nstrdup.cpp.s
 
-palette.obj: palette.cpp.obj
-.PHONY : palette.obj
+palette.o: palette.cpp.o
+.PHONY : palette.o
 
 # target to build an object file
-palette.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/palette.cpp.obj
-.PHONY : palette.cpp.obj
+palette.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/palette.cpp.o
+.PHONY : palette.cpp.o
 
 palette.i: palette.cpp.i
 .PHONY : palette.i
@@ -1090,13 +1114,13 @@ palette.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/palette.cpp.s
 .PHONY : palette.cpp.s
 
-pcx.obj: pcx.cpp.obj
-.PHONY : pcx.obj
+pcx.o: pcx.cpp.o
+.PHONY : pcx.o
 
 # target to build an object file
-pcx.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/pcx.cpp.obj
-.PHONY : pcx.cpp.obj
+pcx.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/pcx.cpp.o
+.PHONY : pcx.cpp.o
 
 pcx.i: pcx.cpp.i
 .PHONY : pcx.i
@@ -1114,13 +1138,13 @@ pcx.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/pcx.cpp.s
 .PHONY : pcx.cpp.s
 
-pipe.obj: pipe.cpp.obj
-.PHONY : pipe.obj
+pipe.o: pipe.cpp.o
+.PHONY : pipe.o
 
 # target to build an object file
-pipe.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/pipe.cpp.obj
-.PHONY : pipe.cpp.obj
+pipe.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/pipe.cpp.o
+.PHONY : pipe.cpp.o
 
 pipe.i: pipe.cpp.i
 .PHONY : pipe.i
@@ -1138,13 +1162,13 @@ pipe.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/pipe.cpp.s
 .PHONY : pipe.cpp.s
 
-pk.obj: pk.cpp.obj
-.PHONY : pk.obj
+pk.o: pk.cpp.o
+.PHONY : pk.o
 
 # target to build an object file
-pk.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/pk.cpp.obj
-.PHONY : pk.cpp.obj
+pk.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/pk.cpp.o
+.PHONY : pk.cpp.o
 
 pk.i: pk.cpp.i
 .PHONY : pk.i
@@ -1162,13 +1186,13 @@ pk.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/pk.cpp.s
 .PHONY : pk.cpp.s
 
-ramfile.obj: ramfile.cpp.obj
-.PHONY : ramfile.obj
+ramfile.o: ramfile.cpp.o
+.PHONY : ramfile.o
 
 # target to build an object file
-ramfile.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/ramfile.cpp.obj
-.PHONY : ramfile.cpp.obj
+ramfile.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/ramfile.cpp.o
+.PHONY : ramfile.cpp.o
 
 ramfile.i: ramfile.cpp.i
 .PHONY : ramfile.i
@@ -1186,13 +1210,13 @@ ramfile.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/ramfile.cpp.s
 .PHONY : ramfile.cpp.s
 
-random.obj: random.cpp.obj
-.PHONY : random.obj
+random.o: random.cpp.o
+.PHONY : random.o
 
 # target to build an object file
-random.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/random.cpp.obj
-.PHONY : random.cpp.obj
+random.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/random.cpp.o
+.PHONY : random.cpp.o
 
 random.i: random.cpp.i
 .PHONY : random.i
@@ -1210,13 +1234,13 @@ random.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/random.cpp.s
 .PHONY : random.cpp.s
 
-rawfile.obj: rawfile.cpp.obj
-.PHONY : rawfile.obj
+rawfile.o: rawfile.cpp.o
+.PHONY : rawfile.o
 
 # target to build an object file
-rawfile.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rawfile.cpp.obj
-.PHONY : rawfile.cpp.obj
+rawfile.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rawfile.cpp.o
+.PHONY : rawfile.cpp.o
 
 rawfile.i: rawfile.cpp.i
 .PHONY : rawfile.i
@@ -1234,13 +1258,13 @@ rawfile.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rawfile.cpp.s
 .PHONY : rawfile.cpp.s
 
-rc4.obj: rc4.cpp.obj
-.PHONY : rc4.obj
+rc4.o: rc4.cpp.o
+.PHONY : rc4.o
 
 # target to build an object file
-rc4.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rc4.cpp.obj
-.PHONY : rc4.cpp.obj
+rc4.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rc4.cpp.o
+.PHONY : rc4.cpp.o
 
 rc4.i: rc4.cpp.i
 .PHONY : rc4.i
@@ -1258,13 +1282,13 @@ rc4.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rc4.cpp.s
 .PHONY : rc4.cpp.s
 
-rcfile.obj: rcfile.cpp.obj
-.PHONY : rcfile.obj
+rcfile.o: rcfile.cpp.o
+.PHONY : rcfile.o
 
 # target to build an object file
-rcfile.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rcfile.cpp.obj
-.PHONY : rcfile.cpp.obj
+rcfile.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rcfile.cpp.o
+.PHONY : rcfile.cpp.o
 
 rcfile.i: rcfile.cpp.i
 .PHONY : rcfile.i
@@ -1282,13 +1306,13 @@ rcfile.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rcfile.cpp.s
 .PHONY : rcfile.cpp.s
 
-readline.obj: readline.cpp.obj
-.PHONY : readline.obj
+readline.o: readline.cpp.o
+.PHONY : readline.o
 
 # target to build an object file
-readline.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/readline.cpp.obj
-.PHONY : readline.cpp.obj
+readline.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/readline.cpp.o
+.PHONY : readline.cpp.o
 
 readline.i: readline.cpp.i
 .PHONY : readline.i
@@ -1306,13 +1330,13 @@ readline.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/readline.cpp.s
 .PHONY : readline.cpp.s
 
-realcrc.obj: realcrc.cpp.obj
-.PHONY : realcrc.obj
+realcrc.o: realcrc.cpp.o
+.PHONY : realcrc.o
 
 # target to build an object file
-realcrc.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/realcrc.cpp.obj
-.PHONY : realcrc.cpp.obj
+realcrc.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/realcrc.cpp.o
+.PHONY : realcrc.cpp.o
 
 realcrc.i: realcrc.cpp.i
 .PHONY : realcrc.i
@@ -1330,13 +1354,13 @@ realcrc.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/realcrc.cpp.s
 .PHONY : realcrc.cpp.s
 
-refcount.obj: refcount.cpp.obj
-.PHONY : refcount.obj
+refcount.o: refcount.cpp.o
+.PHONY : refcount.o
 
 # target to build an object file
-refcount.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/refcount.cpp.obj
-.PHONY : refcount.cpp.obj
+refcount.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/refcount.cpp.o
+.PHONY : refcount.cpp.o
 
 refcount.i: refcount.cpp.i
 .PHONY : refcount.i
@@ -1354,13 +1378,13 @@ refcount.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/refcount.cpp.s
 .PHONY : refcount.cpp.s
 
-registry.obj: registry.cpp.obj
-.PHONY : registry.obj
+registry.o: registry.cpp.o
+.PHONY : registry.o
 
 # target to build an object file
-registry.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/registry.cpp.obj
-.PHONY : registry.cpp.obj
+registry.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/registry.cpp.o
+.PHONY : registry.cpp.o
 
 registry.i: registry.cpp.i
 .PHONY : registry.i
@@ -1378,13 +1402,13 @@ registry.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/registry.cpp.s
 .PHONY : registry.cpp.s
 
-rgb.obj: rgb.cpp.obj
-.PHONY : rgb.obj
+rgb.o: rgb.cpp.o
+.PHONY : rgb.o
 
 # target to build an object file
-rgb.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rgb.cpp.obj
-.PHONY : rgb.cpp.obj
+rgb.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rgb.cpp.o
+.PHONY : rgb.cpp.o
 
 rgb.i: rgb.cpp.i
 .PHONY : rgb.i
@@ -1402,13 +1426,13 @@ rgb.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rgb.cpp.s
 .PHONY : rgb.cpp.s
 
-rle.obj: rle.cpp.obj
-.PHONY : rle.obj
+rle.o: rle.cpp.o
+.PHONY : rle.o
 
 # target to build an object file
-rle.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rle.cpp.obj
-.PHONY : rle.cpp.obj
+rle.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rle.cpp.o
+.PHONY : rle.cpp.o
 
 rle.i: rle.cpp.i
 .PHONY : rle.i
@@ -1426,13 +1450,13 @@ rle.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rle.cpp.s
 .PHONY : rle.cpp.s
 
-rndstrng.obj: rndstrng.cpp.obj
-.PHONY : rndstrng.obj
+rndstrng.o: rndstrng.cpp.o
+.PHONY : rndstrng.o
 
 # target to build an object file
-rndstrng.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rndstrng.cpp.obj
-.PHONY : rndstrng.cpp.obj
+rndstrng.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rndstrng.cpp.o
+.PHONY : rndstrng.cpp.o
 
 rndstrng.i: rndstrng.cpp.i
 .PHONY : rndstrng.i
@@ -1450,13 +1474,13 @@ rndstrng.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/rndstrng.cpp.s
 .PHONY : rndstrng.cpp.s
 
-sampler.obj: sampler.cpp.obj
-.PHONY : sampler.obj
+sampler.o: sampler.cpp.o
+.PHONY : sampler.o
 
 # target to build an object file
-sampler.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/sampler.cpp.obj
-.PHONY : sampler.cpp.obj
+sampler.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/sampler.cpp.o
+.PHONY : sampler.cpp.o
 
 sampler.i: sampler.cpp.i
 .PHONY : sampler.i
@@ -1474,13 +1498,13 @@ sampler.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/sampler.cpp.s
 .PHONY : sampler.cpp.s
 
-sha.obj: sha.cpp.obj
-.PHONY : sha.obj
+sha.o: sha.cpp.o
+.PHONY : sha.o
 
 # target to build an object file
-sha.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/sha.cpp.obj
-.PHONY : sha.cpp.obj
+sha.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/sha.cpp.o
+.PHONY : sha.cpp.o
 
 sha.i: sha.cpp.i
 .PHONY : sha.i
@@ -1498,13 +1522,13 @@ sha.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/sha.cpp.s
 .PHONY : sha.cpp.s
 
-slnode.obj: slnode.cpp.obj
-.PHONY : slnode.obj
+slnode.o: slnode.cpp.o
+.PHONY : slnode.o
 
 # target to build an object file
-slnode.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/slnode.cpp.obj
-.PHONY : slnode.cpp.obj
+slnode.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/slnode.cpp.o
+.PHONY : slnode.cpp.o
 
 slnode.i: slnode.cpp.i
 .PHONY : slnode.i
@@ -1522,13 +1546,13 @@ slnode.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/slnode.cpp.s
 .PHONY : slnode.cpp.s
 
-srandom.obj: srandom.cpp.obj
-.PHONY : srandom.obj
+srandom.o: srandom.cpp.o
+.PHONY : srandom.o
 
 # target to build an object file
-srandom.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/srandom.cpp.obj
-.PHONY : srandom.cpp.obj
+srandom.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/srandom.cpp.o
+.PHONY : srandom.cpp.o
 
 srandom.i: srandom.cpp.i
 .PHONY : srandom.i
@@ -1546,13 +1570,13 @@ srandom.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/srandom.cpp.s
 .PHONY : srandom.cpp.s
 
-stimer.obj: stimer.cpp.obj
-.PHONY : stimer.obj
+stimer.o: stimer.cpp.o
+.PHONY : stimer.o
 
 # target to build an object file
-stimer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/stimer.cpp.obj
-.PHONY : stimer.cpp.obj
+stimer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/stimer.cpp.o
+.PHONY : stimer.cpp.o
 
 stimer.i: stimer.cpp.i
 .PHONY : stimer.i
@@ -1570,13 +1594,13 @@ stimer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/stimer.cpp.s
 .PHONY : stimer.cpp.s
 
-straw.obj: straw.cpp.obj
-.PHONY : straw.obj
+straw.o: straw.cpp.o
+.PHONY : straw.o
 
 # target to build an object file
-straw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/straw.cpp.obj
-.PHONY : straw.cpp.obj
+straw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/straw.cpp.o
+.PHONY : straw.cpp.o
 
 straw.i: straw.cpp.i
 .PHONY : straw.i
@@ -1594,13 +1618,13 @@ straw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/straw.cpp.s
 .PHONY : straw.cpp.s
 
-strtok_r.obj: strtok_r.cpp.obj
-.PHONY : strtok_r.obj
+strtok_r.o: strtok_r.cpp.o
+.PHONY : strtok_r.o
 
 # target to build an object file
-strtok_r.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/strtok_r.cpp.obj
-.PHONY : strtok_r.cpp.obj
+strtok_r.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/strtok_r.cpp.o
+.PHONY : strtok_r.cpp.o
 
 strtok_r.i: strtok_r.cpp.i
 .PHONY : strtok_r.i
@@ -1618,13 +1642,13 @@ strtok_r.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/strtok_r.cpp.s
 .PHONY : strtok_r.cpp.s
 
-systimer.obj: systimer.cpp.obj
-.PHONY : systimer.obj
+systimer.o: systimer.cpp.o
+.PHONY : systimer.o
 
 # target to build an object file
-systimer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/systimer.cpp.obj
-.PHONY : systimer.cpp.obj
+systimer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/systimer.cpp.o
+.PHONY : systimer.cpp.o
 
 systimer.i: systimer.cpp.i
 .PHONY : systimer.i
@@ -1642,13 +1666,13 @@ systimer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/systimer.cpp.s
 .PHONY : systimer.cpp.s
 
-tagblock.obj: tagblock.cpp.obj
-.PHONY : tagblock.obj
+tagblock.o: tagblock.cpp.o
+.PHONY : tagblock.o
 
 # target to build an object file
-tagblock.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/tagblock.cpp.obj
-.PHONY : tagblock.cpp.obj
+tagblock.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/tagblock.cpp.o
+.PHONY : tagblock.cpp.o
 
 tagblock.i: tagblock.cpp.i
 .PHONY : tagblock.i
@@ -1666,13 +1690,37 @@ tagblock.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/tagblock.cpp.s
 .PHONY : tagblock.cpp.s
 
-textfile.obj: textfile.cpp.obj
-.PHONY : textfile.obj
+targa.o: targa.cpp.o
+.PHONY : targa.o
 
 # target to build an object file
-textfile.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/textfile.cpp.obj
-.PHONY : textfile.cpp.obj
+targa.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/targa.cpp.o
+.PHONY : targa.cpp.o
+
+targa.i: targa.cpp.i
+.PHONY : targa.i
+
+# target to preprocess a source file
+targa.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/targa.cpp.i
+.PHONY : targa.cpp.i
+
+targa.s: targa.cpp.s
+.PHONY : targa.s
+
+# target to generate assembly for a file
+targa.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/targa.cpp.s
+.PHONY : targa.cpp.s
+
+textfile.o: textfile.cpp.o
+.PHONY : textfile.o
+
+# target to build an object file
+textfile.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/textfile.cpp.o
+.PHONY : textfile.cpp.o
 
 textfile.i: textfile.cpp.i
 .PHONY : textfile.i
@@ -1690,13 +1738,13 @@ textfile.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/textfile.cpp.s
 .PHONY : textfile.cpp.s
 
-thread.obj: thread.cpp.obj
-.PHONY : thread.obj
+thread.o: thread.cpp.o
+.PHONY : thread.o
 
 # target to build an object file
-thread.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/thread.cpp.obj
-.PHONY : thread.cpp.obj
+thread.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/thread.cpp.o
+.PHONY : thread.cpp.o
 
 thread.i: thread.cpp.i
 .PHONY : thread.i
@@ -1714,13 +1762,13 @@ thread.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/thread.cpp.s
 .PHONY : thread.cpp.s
 
-trim.obj: trim.cpp.obj
-.PHONY : trim.obj
+trim.o: trim.cpp.o
+.PHONY : trim.o
 
 # target to build an object file
-trim.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/trim.cpp.obj
-.PHONY : trim.cpp.obj
+trim.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/trim.cpp.o
+.PHONY : trim.cpp.o
 
 trim.i: trim.cpp.i
 .PHONY : trim.i
@@ -1738,13 +1786,13 @@ trim.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/trim.cpp.s
 .PHONY : trim.cpp.s
 
-vector.obj: vector.cpp.obj
-.PHONY : vector.obj
+vector.o: vector.cpp.o
+.PHONY : vector.o
 
 # target to build an object file
-vector.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/vector.cpp.obj
-.PHONY : vector.cpp.obj
+vector.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/vector.cpp.o
+.PHONY : vector.cpp.o
 
 vector.i: vector.cpp.i
 .PHONY : vector.i
@@ -1762,13 +1810,13 @@ vector.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/vector.cpp.s
 .PHONY : vector.cpp.s
 
-verchk.obj: verchk.cpp.obj
-.PHONY : verchk.obj
+verchk.o: verchk.cpp.o
+.PHONY : verchk.o
 
 # target to build an object file
-verchk.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/verchk.cpp.obj
-.PHONY : verchk.cpp.obj
+verchk.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/verchk.cpp.o
+.PHONY : verchk.cpp.o
 
 verchk.i: verchk.cpp.i
 .PHONY : verchk.i
@@ -1786,13 +1834,13 @@ verchk.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/verchk.cpp.s
 .PHONY : verchk.cpp.s
 
-widestring.obj: widestring.cpp.obj
-.PHONY : widestring.obj
+widestring.o: widestring.cpp.o
+.PHONY : widestring.o
 
 # target to build an object file
-widestring.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/widestring.cpp.obj
-.PHONY : widestring.cpp.obj
+widestring.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/widestring.cpp.o
+.PHONY : widestring.cpp.o
 
 widestring.i: widestring.cpp.i
 .PHONY : widestring.i
@@ -1810,13 +1858,13 @@ widestring.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/widestring.cpp.s
 .PHONY : widestring.cpp.s
 
-win.obj: win.cpp.obj
-.PHONY : win.obj
+win.o: win.cpp.o
+.PHONY : win.o
 
 # target to build an object file
-win.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/win.cpp.obj
-.PHONY : win.cpp.obj
+win.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/win.cpp.o
+.PHONY : win.cpp.o
 
 win.i: win.cpp.i
 .PHONY : win.i
@@ -1834,13 +1882,37 @@ win.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/win.cpp.s
 .PHONY : win.cpp.s
 
-wwfile.obj: wwfile.cpp.obj
-.PHONY : wwfile.obj
+wwcomutil.o: wwcomutil.cpp.o
+.PHONY : wwcomutil.o
 
 # target to build an object file
-wwfile.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/wwfile.cpp.obj
-.PHONY : wwfile.cpp.obj
+wwcomutil.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/wwcomutil.cpp.o
+.PHONY : wwcomutil.cpp.o
+
+wwcomutil.i: wwcomutil.cpp.i
+.PHONY : wwcomutil.i
+
+# target to preprocess a source file
+wwcomutil.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/wwcomutil.cpp.i
+.PHONY : wwcomutil.cpp.i
+
+wwcomutil.s: wwcomutil.cpp.s
+.PHONY : wwcomutil.s
+
+# target to generate assembly for a file
+wwcomutil.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/wwcomutil.cpp.s
+.PHONY : wwcomutil.cpp.s
+
+wwfile.o: wwfile.cpp.o
+.PHONY : wwfile.o
+
+# target to build an object file
+wwfile.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/wwfile.cpp.o
+.PHONY : wwfile.cpp.o
 
 wwfile.i: wwfile.cpp.i
 .PHONY : wwfile.i
@@ -1858,13 +1930,13 @@ wwfile.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/wwfile.cpp.s
 .PHONY : wwfile.cpp.s
 
-wwfont.obj: wwfont.cpp.obj
-.PHONY : wwfont.obj
+wwfont.o: wwfont.cpp.o
+.PHONY : wwfont.o
 
 # target to build an object file
-wwfont.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/wwfont.cpp.obj
-.PHONY : wwfont.cpp.obj
+wwfont.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/wwfont.cpp.o
+.PHONY : wwfont.cpp.o
 
 wwfont.i: wwfont.cpp.i
 .PHONY : wwfont.i
@@ -1882,13 +1954,13 @@ wwfont.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/wwfont.cpp.s
 .PHONY : wwfont.cpp.s
 
-wwstring.obj: wwstring.cpp.obj
-.PHONY : wwstring.obj
+wwstring.o: wwstring.cpp.o
+.PHONY : wwstring.o
 
 # target to build an object file
-wwstring.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/wwstring.cpp.obj
-.PHONY : wwstring.cpp.obj
+wwstring.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/wwstring.cpp.o
+.PHONY : wwstring.cpp.o
 
 wwstring.i: wwstring.cpp.i
 .PHONY : wwstring.i
@@ -1906,13 +1978,13 @@ wwstring.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/wwstring.cpp.s
 .PHONY : wwstring.cpp.s
 
-xpipe.obj: xpipe.cpp.obj
-.PHONY : xpipe.obj
+xpipe.o: xpipe.cpp.o
+.PHONY : xpipe.o
 
 # target to build an object file
-xpipe.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/xpipe.cpp.obj
-.PHONY : xpipe.cpp.obj
+xpipe.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/xpipe.cpp.o
+.PHONY : xpipe.cpp.o
 
 xpipe.i: xpipe.cpp.i
 .PHONY : xpipe.i
@@ -1930,13 +2002,13 @@ xpipe.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/xpipe.cpp.s
 .PHONY : xpipe.cpp.s
 
-xstraw.obj: xstraw.cpp.obj
-.PHONY : xstraw.obj
+xstraw.o: xstraw.cpp.o
+.PHONY : xstraw.o
 
 # target to build an object file
-xstraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/xstraw.cpp.obj
-.PHONY : xstraw.cpp.obj
+xstraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/xstraw.cpp.o
+.PHONY : xstraw.cpp.o
 
 xstraw.i: xstraw.cpp.i
 .PHONY : xstraw.i
@@ -1954,13 +2026,13 @@ xstraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/xstraw.cpp.s
 .PHONY : xstraw.cpp.s
 
-xsurface.obj: xsurface.cpp.obj
-.PHONY : xsurface.obj
+xsurface.o: xsurface.cpp.o
+.PHONY : xsurface.o
 
 # target to build an object file
-xsurface.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/xsurface.cpp.obj
-.PHONY : xsurface.cpp.obj
+xsurface.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/xsurface.cpp.o
+.PHONY : xsurface.cpp.o
 
 xsurface.i: xsurface.cpp.i
 .PHONY : xsurface.i
@@ -1987,235 +2059,244 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... WWLib"
-	@echo "... LaunchWeb.obj"
+	@echo "... LaunchWeb.o"
 	@echo "... LaunchWeb.i"
 	@echo "... LaunchWeb.s"
-	@echo "... WWCOMUtil.obj"
+	@echo "... WWCOMUtil.o"
 	@echo "... WWCOMUtil.i"
 	@echo "... WWCOMUtil.s"
-	@echo "... _convert.obj"
+	@echo "... _convert.o"
 	@echo "... _convert.i"
 	@echo "... _convert.s"
-	@echo "... _mono.obj"
+	@echo "... _mono.o"
 	@echo "... _mono.i"
 	@echo "... _mono.s"
-	@echo "... _timer.obj"
+	@echo "... _timer.o"
 	@echo "... _timer.i"
 	@echo "... _timer.s"
-	@echo "... argv.obj"
+	@echo "... argv.o"
 	@echo "... argv.i"
 	@echo "... argv.s"
-	@echo "... b64pipe.obj"
+	@echo "... b64pipe.o"
 	@echo "... b64pipe.i"
 	@echo "... b64pipe.s"
-	@echo "... b64straw.obj"
+	@echo "... b64straw.o"
 	@echo "... b64straw.i"
 	@echo "... b64straw.s"
-	@echo "... base64.obj"
+	@echo "... base64.o"
 	@echo "... base64.i"
 	@echo "... base64.s"
-	@echo "... blit.obj"
+	@echo "... blit.o"
 	@echo "... blit.i"
 	@echo "... blit.s"
-	@echo "... blowfish.obj"
+	@echo "... blowfish.o"
 	@echo "... blowfish.i"
 	@echo "... blowfish.s"
-	@echo "... buff.obj"
+	@echo "... buff.o"
 	@echo "... buff.i"
 	@echo "... buff.s"
-	@echo "... bufffile.obj"
+	@echo "... bufffile.o"
 	@echo "... bufffile.i"
 	@echo "... bufffile.s"
-	@echo "... chunkio.obj"
+	@echo "... chunkio.o"
 	@echo "... chunkio.i"
 	@echo "... chunkio.s"
-	@echo "... convert.obj"
+	@echo "... convert.o"
 	@echo "... convert.i"
 	@echo "... convert.s"
-	@echo "... cpudetect.obj"
+	@echo "... cpudetect.o"
 	@echo "... cpudetect.i"
 	@echo "... cpudetect.s"
-	@echo "... crc.obj"
+	@echo "... crc.o"
 	@echo "... crc.i"
 	@echo "... crc.s"
-	@echo "... cstraw.obj"
+	@echo "... cstraw.o"
 	@echo "... cstraw.i"
 	@echo "... cstraw.s"
-	@echo "... data.obj"
+	@echo "... data.o"
 	@echo "... data.i"
 	@echo "... data.s"
-	@echo "... ddraw.obj"
+	@echo "... ddraw.o"
 	@echo "... ddraw.i"
 	@echo "... ddraw.s"
-	@echo "... dsurface.obj"
+	@echo "... dsurface.o"
 	@echo "... dsurface.i"
 	@echo "... dsurface.s"
-	@echo "... ffactory.obj"
+	@echo "... ffactory.o"
 	@echo "... ffactory.i"
 	@echo "... ffactory.s"
-	@echo "... gcd_lcm.obj"
+	@echo "... gcd_lcm.o"
 	@echo "... gcd_lcm.i"
 	@echo "... gcd_lcm.s"
-	@echo "... hash.obj"
+	@echo "... hash.o"
 	@echo "... hash.i"
 	@echo "... hash.s"
-	@echo "... hsv.obj"
+	@echo "... hsv.o"
 	@echo "... hsv.i"
 	@echo "... hsv.s"
-	@echo "... ini.obj"
+	@echo "... ini.o"
 	@echo "... ini.i"
 	@echo "... ini.s"
-	@echo "... int.obj"
+	@echo "... int.o"
 	@echo "... int.i"
 	@echo "... int.s"
-	@echo "... jshell.obj"
+	@echo "... jshell.o"
 	@echo "... jshell.i"
 	@echo "... jshell.s"
-	@echo "... keyboard.obj"
+	@echo "... keyboard.o"
 	@echo "... keyboard.i"
 	@echo "... keyboard.s"
-	@echo "... lcw.obj"
+	@echo "... launchweb.o"
+	@echo "... launchweb.i"
+	@echo "... launchweb.s"
+	@echo "... lcw.o"
 	@echo "... lcw.i"
 	@echo "... lcw.s"
-	@echo "... load.obj"
+	@echo "... load.o"
 	@echo "... load.i"
 	@echo "... load.s"
-	@echo "... mixfile.obj"
+	@echo "... mixfile.o"
 	@echo "... mixfile.i"
 	@echo "... mixfile.s"
-	@echo "... mono.obj"
+	@echo "... mono.o"
 	@echo "... mono.i"
 	@echo "... mono.s"
-	@echo "... mpmath.obj"
+	@echo "... mpmath.o"
 	@echo "... mpmath.i"
 	@echo "... mpmath.s"
-	@echo "... mpu.obj"
+	@echo "... mpu.o"
 	@echo "... mpu.i"
 	@echo "... mpu.s"
-	@echo "... msgloop.obj"
+	@echo "... msgloop.o"
 	@echo "... msgloop.i"
 	@echo "... msgloop.s"
-	@echo "... multilist.obj"
+	@echo "... multilist.o"
 	@echo "... multilist.i"
 	@echo "... multilist.s"
-	@echo "... mutex.obj"
+	@echo "... mutex.o"
 	@echo "... mutex.i"
 	@echo "... mutex.s"
-	@echo "... nstrdup.obj"
+	@echo "... nstrdup.o"
 	@echo "... nstrdup.i"
 	@echo "... nstrdup.s"
-	@echo "... palette.obj"
+	@echo "... palette.o"
 	@echo "... palette.i"
 	@echo "... palette.s"
-	@echo "... pcx.obj"
+	@echo "... pcx.o"
 	@echo "... pcx.i"
 	@echo "... pcx.s"
-	@echo "... pipe.obj"
+	@echo "... pipe.o"
 	@echo "... pipe.i"
 	@echo "... pipe.s"
-	@echo "... pk.obj"
+	@echo "... pk.o"
 	@echo "... pk.i"
 	@echo "... pk.s"
-	@echo "... ramfile.obj"
+	@echo "... ramfile.o"
 	@echo "... ramfile.i"
 	@echo "... ramfile.s"
-	@echo "... random.obj"
+	@echo "... random.o"
 	@echo "... random.i"
 	@echo "... random.s"
-	@echo "... rawfile.obj"
+	@echo "... rawfile.o"
 	@echo "... rawfile.i"
 	@echo "... rawfile.s"
-	@echo "... rc4.obj"
+	@echo "... rc4.o"
 	@echo "... rc4.i"
 	@echo "... rc4.s"
-	@echo "... rcfile.obj"
+	@echo "... rcfile.o"
 	@echo "... rcfile.i"
 	@echo "... rcfile.s"
-	@echo "... readline.obj"
+	@echo "... readline.o"
 	@echo "... readline.i"
 	@echo "... readline.s"
-	@echo "... realcrc.obj"
+	@echo "... realcrc.o"
 	@echo "... realcrc.i"
 	@echo "... realcrc.s"
-	@echo "... refcount.obj"
+	@echo "... refcount.o"
 	@echo "... refcount.i"
 	@echo "... refcount.s"
-	@echo "... registry.obj"
+	@echo "... registry.o"
 	@echo "... registry.i"
 	@echo "... registry.s"
-	@echo "... rgb.obj"
+	@echo "... rgb.o"
 	@echo "... rgb.i"
 	@echo "... rgb.s"
-	@echo "... rle.obj"
+	@echo "... rle.o"
 	@echo "... rle.i"
 	@echo "... rle.s"
-	@echo "... rndstrng.obj"
+	@echo "... rndstrng.o"
 	@echo "... rndstrng.i"
 	@echo "... rndstrng.s"
-	@echo "... sampler.obj"
+	@echo "... sampler.o"
 	@echo "... sampler.i"
 	@echo "... sampler.s"
-	@echo "... sha.obj"
+	@echo "... sha.o"
 	@echo "... sha.i"
 	@echo "... sha.s"
-	@echo "... slnode.obj"
+	@echo "... slnode.o"
 	@echo "... slnode.i"
 	@echo "... slnode.s"
-	@echo "... srandom.obj"
+	@echo "... srandom.o"
 	@echo "... srandom.i"
 	@echo "... srandom.s"
-	@echo "... stimer.obj"
+	@echo "... stimer.o"
 	@echo "... stimer.i"
 	@echo "... stimer.s"
-	@echo "... straw.obj"
+	@echo "... straw.o"
 	@echo "... straw.i"
 	@echo "... straw.s"
-	@echo "... strtok_r.obj"
+	@echo "... strtok_r.o"
 	@echo "... strtok_r.i"
 	@echo "... strtok_r.s"
-	@echo "... systimer.obj"
+	@echo "... systimer.o"
 	@echo "... systimer.i"
 	@echo "... systimer.s"
-	@echo "... tagblock.obj"
+	@echo "... tagblock.o"
 	@echo "... tagblock.i"
 	@echo "... tagblock.s"
-	@echo "... textfile.obj"
+	@echo "... targa.o"
+	@echo "... targa.i"
+	@echo "... targa.s"
+	@echo "... textfile.o"
 	@echo "... textfile.i"
 	@echo "... textfile.s"
-	@echo "... thread.obj"
+	@echo "... thread.o"
 	@echo "... thread.i"
 	@echo "... thread.s"
-	@echo "... trim.obj"
+	@echo "... trim.o"
 	@echo "... trim.i"
 	@echo "... trim.s"
-	@echo "... vector.obj"
+	@echo "... vector.o"
 	@echo "... vector.i"
 	@echo "... vector.s"
-	@echo "... verchk.obj"
+	@echo "... verchk.o"
 	@echo "... verchk.i"
 	@echo "... verchk.s"
-	@echo "... widestring.obj"
+	@echo "... widestring.o"
 	@echo "... widestring.i"
 	@echo "... widestring.s"
-	@echo "... win.obj"
+	@echo "... win.o"
 	@echo "... win.i"
 	@echo "... win.s"
-	@echo "... wwfile.obj"
+	@echo "... wwcomutil.o"
+	@echo "... wwcomutil.i"
+	@echo "... wwcomutil.s"
+	@echo "... wwfile.o"
 	@echo "... wwfile.i"
 	@echo "... wwfile.s"
-	@echo "... wwfont.obj"
+	@echo "... wwfont.o"
 	@echo "... wwfont.i"
 	@echo "... wwfont.s"
-	@echo "... wwstring.obj"
+	@echo "... wwstring.o"
 	@echo "... wwstring.i"
 	@echo "... wwstring.s"
-	@echo "... xpipe.obj"
+	@echo "... xpipe.o"
 	@echo "... xpipe.i"
 	@echo "... xpipe.s"
-	@echo "... xstraw.obj"
+	@echo "... xstraw.o"
 	@echo "... xstraw.i"
 	@echo "... xstraw.s"
-	@echo "... xsurface.obj"
+	@echo "... xsurface.o"
 	@echo "... xsurface.i"
 	@echo "... xsurface.s"
 .PHONY : help

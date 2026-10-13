@@ -120,7 +120,7 @@ enum
 /** 
  * Parameters for onExit().
  */
-enum StateExitType
+enum StateExitType : int
 {
 	EXIT_NORMAL,							///< state exited due to normal state transitioning
 	EXIT_RESET								///< state exited due to state machine reset

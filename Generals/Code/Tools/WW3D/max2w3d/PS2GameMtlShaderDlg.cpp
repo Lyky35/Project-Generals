@@ -125,7 +125,7 @@ BOOL PS2GameMtlShaderDlg::Dialog_Proc (HWND dlg_wnd, UINT message, WPARAM wparam
 	{
 
 		case WM_INITDIALOG:
-			for(i = 0; i <= NUM_PS2_SHADER_BLEND_PRESETS; i++) {
+			for (int i = 0; i <= NUM_PS2_SHADER_BLEND_PRESETS; i++) {
 				SendDlgItemMessage(dlg_wnd,IDC_PS2_PRESET_COMBO,CB_ADDSTRING,0,(LONG)_PS2ShaderBlendSettingPresetNames[i]);
 			}
 			SendDlgItemMessage(dlg_wnd,IDC_PS2_PRESET_COMBO,CB_SETCURSEL,0,0);

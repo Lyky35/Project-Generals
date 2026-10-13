@@ -1,2 +1,2 @@
-x86_64-w64-mingw32-gcc-ar qc ../../../../../../lib/libWWUtil.a CMakeFiles/WWUtil.dir/mathutil.cpp.obj CMakeFiles/WWUtil.dir/miscutil.cpp.obj
-x86_64-w64-mingw32-gcc-ranlib ../../../../../../lib/libWWUtil.a
+/usr/bin/ar qc ../../../../../../lib/libWWUtil.a CMakeFiles/WWUtil.dir/mathutil.cpp.o CMakeFiles/WWUtil.dir/miscutil.cpp.o
+/usr/bin/ranlib ../../../../../../lib/libWWUtil.a

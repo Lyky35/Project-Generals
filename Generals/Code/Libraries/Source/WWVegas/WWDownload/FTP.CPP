@@ -681,7 +681,7 @@ HRESULT  Cftp::FindFile( LPCSTR szRemoteFileName, int * piSize )
 
 	strcat( m_szRemoteFileName, ext );
 
-	for( i = 0; i < (int)strlen( m_szRemoteFilePath ); i++ )
+	for (int i = 0; i < (int)strlen( m_szRemoteFilePath ); i++ )
 	{
 		if( m_szRemoteFilePath[ i ] == '\\' )
 		{

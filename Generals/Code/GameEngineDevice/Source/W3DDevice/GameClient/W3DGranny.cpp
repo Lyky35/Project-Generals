@@ -1054,7 +1054,7 @@ void GrannyRenderObjClassSystem::init()
 	}  // end if
 
 	// allocate our modules for this system
-	for( i = 0; i < numModules; i++ )
+	for (int i = 0; i < numModules; i++ )
 	{
 
 		mod = NEW_REF( GrannyRenderObjClass, () );

@@ -123,7 +123,7 @@ void populateCategoryBox()
 	AsciiString temp;
 	UnicodeString str;
 	GadgetComboBoxReset(comboBoxCategoryList);
-	for ( i = 0; i < CATEGORY_NUM_CATEGORIES; ++i)
+	for (int i = 0; i < CATEGORY_NUM_CATEGORIES; ++i)
 	{
 		temp.format("GUI:%s", CategoryListName[i]);
 		str = TheGameText->fetch( temp ); 

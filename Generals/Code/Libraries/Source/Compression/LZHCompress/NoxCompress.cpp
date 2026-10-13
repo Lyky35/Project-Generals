@@ -162,7 +162,7 @@ Bool CompressFile			(char *infile, char *outfile)
 
 		// Compress
 		compressor = LZHLCreateCompressor();
-		for ( i = 0; i < rawSize; i += BLOCKSIZE )
+		for (int i = 0; i < rawSize; i += BLOCKSIZE )
 		{
 			blocklen = min((UnsignedInt)BLOCKSIZE, rawSize - i);
 			compressed = LZHLCompress(compressor, outBlock + compressedSize, inBlock + i, blocklen);
@@ -282,7 +282,7 @@ Bool CompressMemory			(void *inBufferVoid, Int inSize, void *outBufferVoid, Int&
 
 	// Compress
 	compressor = LZHLCreateCompressor();
-	for ( i = 0; i < rawSize; i += BLOCKSIZE )
+	for (int i = 0; i < rawSize; i += BLOCKSIZE )
 	{
 		blocklen = min((UnsignedInt)BLOCKSIZE, rawSize - i);
 		compressed = LZHLCompress(compressor, outBuffer + compressedSize, inBuffer + i, blocklen);

@@ -1,2 +1,2 @@
-x86_64-w64-mingw32-gcc-ar qc ../../../../../../lib/libWWDownload.a CMakeFiles/WWDownload.dir/Download.cpp.obj CMakeFiles/WWDownload.dir/registry.cpp.obj CMakeFiles/WWDownload.dir/urlBuilder.cpp.obj
-x86_64-w64-mingw32-gcc-ranlib ../../../../../../lib/libWWDownload.a
+/usr/bin/ar qc ../../../../../../lib/libWWDownload.a CMakeFiles/WWDownload.dir/Download.cpp.o CMakeFiles/WWDownload.dir/download.cpp.o CMakeFiles/WWDownload.dir/ftp.cpp.o CMakeFiles/WWDownload.dir/registry.cpp.o CMakeFiles/WWDownload.dir/urlBuilder.cpp.o CMakeFiles/WWDownload.dir/urlbuilder.cpp.o
+/usr/bin/ranlib ../../../../../../lib/libWWDownload.a

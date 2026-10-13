@@ -44,6 +44,13 @@
 #ifdef _UNIX
 typedef signed long long __int64;
 typedef signed long long _int64;
+#elif defined(__GNUC__)
+#ifndef _int64
+typedef signed long long _int64;
+#endif
+#ifndef __int64
+typedef signed long long __int64;
+#endif
 #endif
 	
 			

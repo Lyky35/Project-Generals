@@ -488,7 +488,7 @@ void AISkirmishPlayer::acquireEnemy(void)
 
 	// look for the closest enemy.
 	Int i;
-	for (i=0; i<ThePlayerList->getPlayerCount(); i++) {
+	for (int i =0; i<ThePlayerList->getPlayerCount(); i++) {
 		Player *curPlayer = ThePlayerList->getNthPlayer(i);
 		if (m_player->getRelationship(curPlayer->getDefaultTeam()) == ENEMIES) {
 			if (curPlayer->hasAnyObjects()==false) continue; // not much of an enemy.
@@ -510,7 +510,7 @@ void AISkirmishPlayer::acquireEnemy(void)
 			// See if other ai's are attacking this target.  
 			// We don't want the ai's to gang up on one enemy.
 			Int k;
-			for (k=0; k<ThePlayerList->getPlayerCount(); k++) {
+			for (int k =0; k<ThePlayerList->getPlayerCount(); k++) {
 				if (k==i) continue;  // don't count self.
 				Player *somePlayer = ThePlayerList->getNthPlayer(k);
 				if (somePlayer->isSkirmishAIPlayer() && (somePlayer->getCurrentEnemy()==curPlayer)) {
@@ -776,7 +776,7 @@ void AISkirmishPlayer::recruitSpecificAITeam(TeamPrototype *teamProto, Real recr
 		Int i;
 		Int unitsRecruited = 0;
 		// Recruit.
-		for( i=0; i<teamProto->getTemplateInfo()->m_numUnitsInfo; i++ )
+		for (int i =0; i<teamProto->getTemplateInfo()->m_numUnitsInfo; i++ )
 		{
 			const ThingTemplate *thing = TheThingFactory->findTemplate( unitInfo[i].unitThingName );
 			if (thing)

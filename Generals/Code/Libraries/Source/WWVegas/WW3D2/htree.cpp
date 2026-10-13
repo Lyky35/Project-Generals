@@ -824,7 +824,7 @@ void HTreeClass::Combo_Update
 
 			pivot->IsVisible = false;
 
-			for ( anim_num = 0; (anim_num < anim->Get_Num_Anims()) && (!pivot->IsVisible); anim_num++ ) {
+			for ( int anim_num = 0; (anim_num < anim->Get_Num_Anims()) && (!pivot->IsVisible); anim_num++ ) {
 				HAnimClass *motion = anim->Get_Motion( anim_num );
 				if ( motion != NULL ) {
 					float frame_num = anim->Get_Frame( anim_num );
@@ -998,11 +998,11 @@ HTreeClass * HTreeClass::Create_Morphed(	int num_morph_sources,
 {
 	int i;
 	assert(num_morph_sources>0);
-	for(i=0;i<num_morph_sources;i++) {
+	for (int i =0;i<num_morph_sources;i++) {
 		assert( tree_array[i] );
 		assert( morph_weights[i]>=0.0f && morph_weights[i]<=1.0f );
 	}
-	for(i=0;i<num_morph_sources-1;i++) {
+	for (int i =0;i<num_morph_sources-1;i++) {
 		assert( tree_array[i]->NumPivots == tree_array[i+1]->NumPivots );
 	}
 

@@ -87,7 +87,7 @@ void FenceTool::updateMapObjectList(Coord3D downPt, Coord3D curPt, WbView* pView
 	Int i;
 	if (m_mapObjectList == NULL) return;
 	MapObject *pCurObj = m_mapObjectList;
-	for (i=1; i<m_objectCount; i++) {
+	for (int i =1; i<m_objectCount; i++) {
 		if (pCurObj->getNext() == NULL) {
 			pCurObj->setNextMap(ObjectOptions::duplicateCurMapObjectForPlace(&downPt, angle, checkPlayers));
 		}
@@ -104,7 +104,7 @@ void FenceTool::updateMapObjectList(Coord3D downPt, Coord3D curPt, WbView* pView
 	}
 
 	pCurObj = m_mapObjectList;
-	for (i=0; i<m_objectCount; i++) {
+	for (int i =0; i<m_objectCount; i++) {
 		Real factor = m_curObjectWidth*(i);
 		Coord3D curLoc = downPt;
 		curLoc.x += factor*delta.x;

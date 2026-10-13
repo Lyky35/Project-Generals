@@ -204,7 +204,7 @@ void LOCALE_restore(void)
 		ASSERT(lx != NULL);
 
 		/* free any language tables */
-		for (i = 0; i < LOCALE_BANK_COUNT; i++) {
+		for (int i = 0; i < LOCALE_BANK_COUNT; i++) {
 			if (lx->pBank[i]) {
 				LOCALE_setbank(i);
 				LOCALE_freetable();

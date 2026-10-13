@@ -35,6 +35,10 @@
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 
+// Miles Sound System stubs
+#define DP_FILTER 0
+#define F32 float
+
 #include "filteredsound.h"
 #include "wwaudio.h"
 #include "soundscene.h"
@@ -118,7 +122,7 @@ FilteredSoundClass::Initialize_Miles_Handle (void)
 		//
 		//	Pass the filter onto the sample
 		//
-		::AIL_set_sample_processor (m_SoundHandle->Get_HSAMPLE (), DP_FILTER, m_hFilter);
+		AIL_set_sample_processor (m_SoundHandle->Get_HSAMPLE (), DP_FILTER, m_hFilter);
 
 		//
 		//	Change the reverb's settings to simulate a 'tinny' effect.
@@ -126,15 +130,15 @@ FilteredSoundClass::Initialize_Miles_Handle (void)
 		F32 reverb_level   = 0.3F;
 		F32 reverb_reflect = 0.01F;
 		F32 reverb_decay   = 0.535F;
-		::AIL_set_filter_sample_preference (m_SoundHandle->Get_HSAMPLE (),
+		AIL_set_filter_sample_preference (m_SoundHandle->Get_HSAMPLE (),
 														"Reverb level",
 														&reverb_level);
 
-		::AIL_set_filter_sample_preference (m_SoundHandle->Get_HSAMPLE (),
+		AIL_set_filter_sample_preference (m_SoundHandle->Get_HSAMPLE (),
 														"Reverb reflect time",
 														&reverb_reflect);
 
-		::AIL_set_filter_sample_preference (m_SoundHandle->Get_HSAMPLE (),
+		AIL_set_filter_sample_preference (m_SoundHandle->Get_HSAMPLE (),
 														"Reverb decay time",
 														&reverb_decay);
 	}

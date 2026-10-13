@@ -1410,7 +1410,7 @@ void EditWindow::drawGrid( void )
 //	SetROP2( hdc, R2_NOT );
 //	SelectObject( hdc, (HPEN)GetStockObject( WHITE_PEN ) );
 
-	for( y = 0; y < m_size.y; y += res )
+	for (int y = 0; y < m_size.y; y += res )
 	{
 
 		TheDisplay->drawLine( 0, y, m_size.x, y, 1, color );
@@ -1419,7 +1419,7 @@ void EditWindow::drawGrid( void )
 
 	} 
 
-	for( x = 0; x < m_size.x; x += res )
+	for (int x = 0; x < m_size.x; x += res )
 	{
 
 		TheDisplay->drawLine( x, 0, x, m_size.y, 1, color );
@@ -1429,10 +1429,10 @@ void EditWindow::drawGrid( void )
 	} 
 
 /*
-	for( y = 0; y < m_size.y; y += res )
+	for (int y = 0; y < m_size.y; y += res )
 	{
 
-		for( x = 0; x < m_size.x; x += res )
+		for (int x = 0; x < m_size.x; x += res )
 		{
 
 			MoveToEx( hdc, x, y, NULL );

@@ -64,6 +64,8 @@
 //-----------------------------------------------------------------------------
 // FORWARD REFERENCES /////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------
+// Workaround: Windows API declares AnimateWindow as a function in winuser.h
+#define AnimateWindow GameAnimateWindow
 class AnimateWindow;
 class GameWindow;
 //-----------------------------------------------------------------------------

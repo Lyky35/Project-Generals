@@ -50,13 +50,13 @@ class Weapon;
 class WeaponTemplate;
 class INI;
 class ParticleSystemTemplate;
-enum NameKeyType;
+enum NameKeyType : int;
 
 //-------------------------------------------------------------------------------------------------
 const Int NO_MAX_SHOTS_LIMIT = 0x7fffffff;
 
 //-------------------------------------------------------------------------------------------------
-enum WeaponReloadType
+enum WeaponReloadType : int
 {
 	AUTO_RELOAD,
 	NO_RELOAD,
@@ -74,7 +74,7 @@ static const char *TheWeaponReloadNames[] =
 #endif
 
 //-------------------------------------------------------------------------------------------------
-enum WeaponPrefireType
+enum WeaponPrefireType : int
 {
 	PREFIRE_PER_SHOT,		///< Use the prefire delay for every shot we make
 	PREFIRE_PER_ATTACK,	///< Use the prefire delay each time we attack a new target
@@ -94,7 +94,7 @@ static const char *TheWeaponPrefireNames[] =
 #endif
 
 //-------------------------------------------------------------------------------------------------
-enum WeaponAntiMaskType
+enum WeaponAntiMaskType : int
 {
 	WEAPON_ANTI_AIRBORNE_VEHICLE	= 0x01,
 	WEAPON_ANTI_GROUND						= 0x02,
@@ -107,7 +107,7 @@ enum WeaponAntiMaskType
 };
 
 //-------------------------------------------------------------------------------------------------
-enum WeaponAffectsMaskType
+enum WeaponAffectsMaskType : int
 {
 	WEAPON_AFFECTS_SELF						= 0x01,
 	WEAPON_AFFECTS_ALLIES					= 0x02,
@@ -133,7 +133,7 @@ static const char *TheWeaponAffectsMaskNames[] =
 #endif
 
 //-------------------------------------------------------------------------------------------------
-enum WeaponCollideMaskType
+enum WeaponCollideMaskType : int
 {
 	// all of these apply to *nontargeted* things that might just happen to get in the way...
 	// the target can always be collided with, regardless of flags
@@ -169,7 +169,7 @@ static const char *TheWeaponCollideMaskNames[] =
 // Note: these values are saved in save files, so you MUST NOT REMOVE OR CHANGE
 // existing values!
 //
-enum WeaponBonusConditionType
+enum WeaponBonusConditionType : int
 {
 	// The access and use of this enum has the bit shifting built in, so this is a 0,1,2,3,4,5 enum
 	WEAPONBONUSCONDITION_INVALID = -1,

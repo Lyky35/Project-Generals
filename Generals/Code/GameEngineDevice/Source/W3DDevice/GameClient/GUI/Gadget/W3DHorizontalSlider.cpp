@@ -188,7 +188,7 @@ void W3DGadgetHorizontalSliderImageDraw( GameWindow *window,
 		ICoord2D backgroundStart, backgroundEnd;
 		backgroundStart.y = origin.y + highlightOffset.y;
 		backgroundEnd.y = backgroundStart.y + boxWidth + boxPadding;
-		for (i=0; i<numHighlightBoxes; ++i)
+		for (int i =0; i<numHighlightBoxes; ++i)
 		{
 			backgroundStart.x = origin.x + highlightOffset.x + i*(boxWidth+boxPadding);
 			backgroundEnd.x = backgroundStart.x + boxWidth + boxPadding;
@@ -200,7 +200,7 @@ void W3DGadgetHorizontalSliderImageDraw( GameWindow *window,
 
 	start.y = origin.y;
 	end.y = start.y + boxWidth;
-	for (i=0; i<numSelectedBoxes; ++i)
+	for (int i =0; i<numSelectedBoxes; ++i)
 	{
 		start.x = origin.x + i*(boxWidth+boxPadding);
 		end.x = start.x + boxWidth;
@@ -208,7 +208,7 @@ void W3DGadgetHorizontalSliderImageDraw( GameWindow *window,
 																	start.x, start.y,
 																	end.x, end.y );
 	}
-	for (i=numSelectedBoxes; i<numBoxes; ++i)
+	for (int i =numSelectedBoxes; i<numBoxes; ++i)
 	{
 		start.x = origin.x + i*(boxWidth+boxPadding);
 		end.x = start.x + boxWidth;
@@ -422,7 +422,7 @@ void W3DGadgetHorizontalSliderImageDrawA( GameWindow *window,
 	clipRight.hi.x = origin.x + size.x;
 
 
-	for( i = 0; i < pieces; i++ )
+	for (int i = 0; i < pieces; i++ )
 	{
 
 		end.x = start.x + centerImageLeft->getImageWidth();
@@ -446,7 +446,7 @@ void W3DGadgetHorizontalSliderImageDrawA( GameWindow *window,
 	centerWidth = rightStart.x - start.x;
 	pieces = centerWidth / smallCenterImageLeft->getImageWidth() + 1;
 	end.y = leftEnd.y;//start.y + smallCenterImageLeft->getImageHeight();
-	for( i = 0; i < pieces; i++ )
+	for (int i = 0; i < pieces; i++ )
 	{
 
 		end.x = start.x + smallCenterImageLeft->getImageWidth();

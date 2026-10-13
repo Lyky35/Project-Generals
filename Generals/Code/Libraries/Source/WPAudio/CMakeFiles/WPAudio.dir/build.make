@@ -72,304 +72,559 @@ include Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/codegen:
 .PHONY : Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/codegen
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Assert.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_Assert.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_Assert.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Assert.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_Assert.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_Assert.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_Assert.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Assert.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_Assert.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Assert.cpp > CMakeFiles/WPAudio.dir/AUD_Assert.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Assert.cpp > CMakeFiles/WPAudio.dir/AUD_Assert.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_Assert.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Assert.cpp -o CMakeFiles/WPAudio.dir/AUD_Assert.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Assert.cpp -o CMakeFiles/WPAudio.dir/AUD_Assert.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Attributes.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Attributes.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_Attributes.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Attributes.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Attributes.cpp > CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Attributes.cpp > CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Attributes.cpp -o CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Attributes.cpp -o CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Cache.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_Cache.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_Cache.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Cache.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_Cache.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_Cache.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_Cache.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Cache.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_Cache.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Cache.cpp > CMakeFiles/WPAudio.dir/AUD_Cache.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Cache.cpp > CMakeFiles/WPAudio.dir/AUD_Cache.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_Cache.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Cache.cpp -o CMakeFiles/WPAudio.dir/AUD_Cache.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Cache.cpp -o CMakeFiles/WPAudio.dir/AUD_Cache.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Channel.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_Channel.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_Channel.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Channel.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_Channel.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_Channel.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_Channel.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Channel.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_Channel.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Channel.cpp > CMakeFiles/WPAudio.dir/AUD_Channel.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Channel.cpp > CMakeFiles/WPAudio.dir/AUD_Channel.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_Channel.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Channel.cpp -o CMakeFiles/WPAudio.dir/AUD_Channel.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Channel.cpp -o CMakeFiles/WPAudio.dir/AUD_Channel.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_DSoundDriver.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_DSoundDriver.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_DSoundDriver.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_DSoundDriver.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_DSoundDriver.cpp > CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_DSoundDriver.cpp > CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_DSoundDriver.cpp -o CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_DSoundDriver.cpp -o CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Device.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_Device.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_Device.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Device.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_Device.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_Device.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_Device.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Device.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_Device.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Device.cpp > CMakeFiles/WPAudio.dir/AUD_Device.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Device.cpp > CMakeFiles/WPAudio.dir/AUD_Device.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_Device.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Device.cpp -o CMakeFiles/WPAudio.dir/AUD_Device.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Device.cpp -o CMakeFiles/WPAudio.dir/AUD_Device.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Events.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_Events.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_Events.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Events.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_Events.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_Events.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_Events.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Events.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_Events.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Events.cpp > CMakeFiles/WPAudio.dir/AUD_Events.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Events.cpp > CMakeFiles/WPAudio.dir/AUD_Events.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_Events.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Events.cpp -o CMakeFiles/WPAudio.dir/AUD_Events.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Events.cpp -o CMakeFiles/WPAudio.dir/AUD_Events.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Level.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_Level.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_Level.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Level.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_Level.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_Level.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_Level.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Level.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_Level.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Level.cpp > CMakeFiles/WPAudio.dir/AUD_Level.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Level.cpp > CMakeFiles/WPAudio.dir/AUD_Level.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_Level.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Level.cpp -o CMakeFiles/WPAudio.dir/AUD_Level.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Level.cpp -o CMakeFiles/WPAudio.dir/AUD_Level.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_List.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_List.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_List.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_List.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_List.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_List.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_List.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_List.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_List.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_List.cpp > CMakeFiles/WPAudio.dir/AUD_List.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_List.cpp > CMakeFiles/WPAudio.dir/AUD_List.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_List.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_List.cpp -o CMakeFiles/WPAudio.dir/AUD_List.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_List.cpp -o CMakeFiles/WPAudio.dir/AUD_List.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Lock.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_Lock.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_Lock.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Lock.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_Lock.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_Lock.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_Lock.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Lock.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_Lock.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Lock.cpp > CMakeFiles/WPAudio.dir/AUD_Lock.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Lock.cpp > CMakeFiles/WPAudio.dir/AUD_Lock.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_Lock.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Lock.cpp -o CMakeFiles/WPAudio.dir/AUD_Lock.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Lock.cpp -o CMakeFiles/WPAudio.dir/AUD_Lock.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Memory.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_Memory.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_Memory.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Memory.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_Memory.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_Memory.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_Memory.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Memory.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_Memory.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Memory.cpp > CMakeFiles/WPAudio.dir/AUD_Memory.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Memory.cpp > CMakeFiles/WPAudio.dir/AUD_Memory.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_Memory.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Memory.cpp -o CMakeFiles/WPAudio.dir/AUD_Memory.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Memory.cpp -o CMakeFiles/WPAudio.dir/AUD_Memory.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Profiler.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Profiler.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_Profiler.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Profiler.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Profiler.cpp > CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Profiler.cpp > CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Profiler.cpp -o CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Profiler.cpp -o CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Source.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_Source.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_Source.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Source.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_Source.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_Source.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_Source.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Source.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_Source.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Source.cpp > CMakeFiles/WPAudio.dir/AUD_Source.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Source.cpp > CMakeFiles/WPAudio.dir/AUD_Source.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_Source.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Source.cpp -o CMakeFiles/WPAudio.dir/AUD_Source.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Source.cpp -o CMakeFiles/WPAudio.dir/AUD_Source.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_StreamBuffering.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_StreamBuffering.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_StreamBuffering.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_StreamBuffering.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_StreamBuffering.cpp > CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_StreamBuffering.cpp > CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_StreamBuffering.cpp -o CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_StreamBuffering.cpp -o CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Streamer.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Streamer.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_Streamer.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Streamer.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Streamer.cpp > CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Streamer.cpp > CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Streamer.cpp -o CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Streamer.cpp -o CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Time.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_Time.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_Time.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Time.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_Time.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_Time.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_Time.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Time.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_Time.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Time.cpp > CMakeFiles/WPAudio.dir/AUD_Time.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Time.cpp > CMakeFiles/WPAudio.dir/AUD_Time.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_Time.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Time.cpp -o CMakeFiles/WPAudio.dir/AUD_Time.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Time.cpp -o CMakeFiles/WPAudio.dir/AUD_Time.cpp.s
 
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.obj: Generals/Code/Libraries/Source/WPAudio/AUD_Windows.cpp
-Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.obj: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.obj -MF CMakeFiles/WPAudio.dir/AUD_Windows.cpp.obj.d -o CMakeFiles/WPAudio.dir/AUD_Windows.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Windows.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.o: Generals/Code/Libraries/Source/WPAudio/AUD_Windows.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.o -MF CMakeFiles/WPAudio.dir/AUD_Windows.cpp.o.d -o CMakeFiles/WPAudio.dir/AUD_Windows.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Windows.cpp
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/AUD_Windows.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Windows.cpp > CMakeFiles/WPAudio.dir/AUD_Windows.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Windows.cpp > CMakeFiles/WPAudio.dir/AUD_Windows.cpp.i
 
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/AUD_Windows.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Windows.cpp -o CMakeFiles/WPAudio.dir/AUD_Windows.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Windows.cpp -o CMakeFiles/WPAudio.dir/AUD_Windows.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_assert.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_assert.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_assert.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_assert.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_assert.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_assert.cpp.o -MF CMakeFiles/WPAudio.dir/aud_assert.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_assert.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_assert.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_assert.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_assert.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_assert.cpp > CMakeFiles/WPAudio.dir/aud_assert.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_assert.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_assert.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_assert.cpp -o CMakeFiles/WPAudio.dir/aud_assert.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_attributes.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_attributes.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_attributes.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_attributes.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_attributes.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_attributes.cpp.o -MF CMakeFiles/WPAudio.dir/aud_attributes.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_attributes.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_attributes.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_attributes.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_attributes.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_attributes.cpp > CMakeFiles/WPAudio.dir/aud_attributes.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_attributes.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_attributes.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_attributes.cpp -o CMakeFiles/WPAudio.dir/aud_attributes.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_cache.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_cache.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_cache.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_cache.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_cache.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_cache.cpp.o -MF CMakeFiles/WPAudio.dir/aud_cache.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_cache.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_cache.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_cache.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_cache.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_cache.cpp > CMakeFiles/WPAudio.dir/aud_cache.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_cache.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_cache.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_cache.cpp -o CMakeFiles/WPAudio.dir/aud_cache.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_channel.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_channel.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_channel.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_channel.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_channel.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_channel.cpp.o -MF CMakeFiles/WPAudio.dir/aud_channel.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_channel.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_channel.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_channel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_channel.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_channel.cpp > CMakeFiles/WPAudio.dir/aud_channel.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_channel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_channel.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_channel.cpp -o CMakeFiles/WPAudio.dir/aud_channel.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_device.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_device.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_device.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_device.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_device.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_device.cpp.o -MF CMakeFiles/WPAudio.dir/aud_device.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_device.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_device.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_device.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_device.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_device.cpp > CMakeFiles/WPAudio.dir/aud_device.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_device.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_device.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_device.cpp -o CMakeFiles/WPAudio.dir/aud_device.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_dsounddriver.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.o -MF CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_dsounddriver.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_dsounddriver.cpp > CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_dsounddriver.cpp -o CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_events.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_events.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_events.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_events.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_events.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_events.cpp.o -MF CMakeFiles/WPAudio.dir/aud_events.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_events.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_events.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_events.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_events.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_events.cpp > CMakeFiles/WPAudio.dir/aud_events.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_events.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_events.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_events.cpp -o CMakeFiles/WPAudio.dir/aud_events.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_level.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_level.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_level.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_level.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_level.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_level.cpp.o -MF CMakeFiles/WPAudio.dir/aud_level.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_level.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_level.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_level.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_level.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_level.cpp > CMakeFiles/WPAudio.dir/aud_level.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_level.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_level.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_level.cpp -o CMakeFiles/WPAudio.dir/aud_level.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_list.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_list.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_list.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_list.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_list.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_list.cpp.o -MF CMakeFiles/WPAudio.dir/aud_list.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_list.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_list.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_list.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_list.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_list.cpp > CMakeFiles/WPAudio.dir/aud_list.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_list.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_list.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_list.cpp -o CMakeFiles/WPAudio.dir/aud_list.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_lock.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_lock.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_lock.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_lock.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_lock.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_lock.cpp.o -MF CMakeFiles/WPAudio.dir/aud_lock.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_lock.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_lock.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_lock.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_lock.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_lock.cpp > CMakeFiles/WPAudio.dir/aud_lock.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_lock.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_lock.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_lock.cpp -o CMakeFiles/WPAudio.dir/aud_lock.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_memory.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_memory.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_memory.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_memory.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_memory.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_memory.cpp.o -MF CMakeFiles/WPAudio.dir/aud_memory.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_memory.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_memory.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_memory.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_memory.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_memory.cpp > CMakeFiles/WPAudio.dir/aud_memory.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_memory.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_memory.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_memory.cpp -o CMakeFiles/WPAudio.dir/aud_memory.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_profiler.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_profiler.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_profiler.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_profiler.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_profiler.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_profiler.cpp.o -MF CMakeFiles/WPAudio.dir/aud_profiler.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_profiler.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_profiler.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_profiler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_profiler.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_profiler.cpp > CMakeFiles/WPAudio.dir/aud_profiler.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_profiler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_profiler.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_profiler.cpp -o CMakeFiles/WPAudio.dir/aud_profiler.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_source.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_source.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_source.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_source.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_source.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_source.cpp.o -MF CMakeFiles/WPAudio.dir/aud_source.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_source.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_source.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_source.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_source.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_source.cpp > CMakeFiles/WPAudio.dir/aud_source.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_source.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_source.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_source.cpp -o CMakeFiles/WPAudio.dir/aud_source.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_streambuffering.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.o -MF CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_streambuffering.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_streambuffering.cpp > CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_streambuffering.cpp -o CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streamer.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streamer.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_streamer.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streamer.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streamer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streamer.cpp.o -MF CMakeFiles/WPAudio.dir/aud_streamer.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_streamer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_streamer.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streamer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_streamer.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_streamer.cpp > CMakeFiles/WPAudio.dir/aud_streamer.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streamer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_streamer.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_streamer.cpp -o CMakeFiles/WPAudio.dir/aud_streamer.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_time.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_time.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_time.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_time.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_time.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_time.cpp.o -MF CMakeFiles/WPAudio.dir/aud_time.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_time.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_time.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_time.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_time.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_time.cpp > CMakeFiles/WPAudio.dir/aud_time.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_time.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_time.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_time.cpp -o CMakeFiles/WPAudio.dir/aud_time.cpp.s
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_windows.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/flags.make
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_windows.cpp.o: Generals/Code/Libraries/Source/WPAudio/aud_windows.cpp
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_windows.cpp.o: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_windows.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_windows.cpp.o -MF CMakeFiles/WPAudio.dir/aud_windows.cpp.o.d -o CMakeFiles/WPAudio.dir/aud_windows.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_windows.cpp
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_windows.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WPAudio.dir/aud_windows.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_windows.cpp > CMakeFiles/WPAudio.dir/aud_windows.cpp.i
+
+Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_windows.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WPAudio.dir/aud_windows.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/aud_windows.cpp -o CMakeFiles/WPAudio.dir/aud_windows.cpp.s
 
 # Object files for target WPAudio
 WPAudio_OBJECTS = \
-"CMakeFiles/WPAudio.dir/AUD_Assert.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_Cache.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_Channel.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_Device.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_Events.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_Level.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_List.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_Lock.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_Memory.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_Source.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_Time.cpp.obj" \
-"CMakeFiles/WPAudio.dir/AUD_Windows.cpp.obj"
+"CMakeFiles/WPAudio.dir/AUD_Assert.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_Cache.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_Channel.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_Device.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_Events.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_Level.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_List.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_Lock.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_Memory.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_Source.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_Time.cpp.o" \
+"CMakeFiles/WPAudio.dir/AUD_Windows.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_assert.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_attributes.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_cache.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_channel.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_device.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_events.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_level.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_list.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_lock.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_memory.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_profiler.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_source.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_streamer.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_time.cpp.o" \
+"CMakeFiles/WPAudio.dir/aud_windows.cpp.o"
 
 # External object files for target WPAudio
 WPAudio_EXTERNAL_OBJECTS =
 
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.obj
-lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.obj
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_assert.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_attributes.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_cache.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_channel.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_device.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_events.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_level.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_list.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_lock.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_memory.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_profiler.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_source.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streamer.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_time.cpp.o
+lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_windows.cpp.o
 lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make
 lib/libWPAudio.a: Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX static library ../../../../../lib/libWPAudio.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Linking CXX static library ../../../../../lib/libWPAudio.a"
 	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && $(CMAKE_COMMAND) -P CMakeFiles/WPAudio.dir/cmake_clean_target.cmake
 	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/WPAudio.dir/link.txt --verbose=$(VERBOSE)
 

@@ -137,7 +137,7 @@ void FrustumClass::Init
 
 
 	// Transform the eight corners of the view frustum from camera space to world space.
-	for (i = 0; i < 8; i++) {
+	for (int i = 0; i < 8; i++) {
 		Matrix3D::Transform_Vector(CameraTransform, Corners[i], &(Corners[i]));
 	}
 
@@ -154,7 +154,7 @@ void FrustumClass::Init
 	// find the bounding box of the entire frustum (may be used for sloppy quick rejection)
 	BoundMin = BoundMax = Corners[0];
 
-	for (i=1; i<8;i++) {
+	for (int i =1; i<8;i++) {
 		if (Corners[i].X < BoundMin.X) BoundMin.X = Corners[i].X;
 		if (Corners[i].X > BoundMax.X) BoundMax.X = Corners[i].X;
 

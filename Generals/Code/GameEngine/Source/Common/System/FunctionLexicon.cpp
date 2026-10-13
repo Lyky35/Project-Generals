@@ -444,7 +444,7 @@ void *FunctionLexicon::findFunction( NameKeyType key, TableIndex index )
 	{
 
 		Int i;
-		for( i = 0; i < MAX_FUNCTION_TABLES; i++ )
+		for (int i = 0; i < MAX_FUNCTION_TABLES; i++ )
 		{
 
 			func = keyToFunc( key, m_tables[ i ] );
@@ -508,7 +508,7 @@ FunctionLexicon::FunctionLexicon( void )
 	Int i;
 
 	// empty the tables
-	for( i = 0; i < MAX_FUNCTION_TABLES; i++ )
+	for (int i = 0; i < MAX_FUNCTION_TABLES; i++ )
 		m_tables[ i ] = NULL;
 
 }  // end FunctionLexicon
@@ -583,7 +583,7 @@ char *FunctionLexicon::functionToName( void *func )
 	// search ALL the tables
 	Int i;
 	char *name = NULL;
-	for( i = 0; i < MAX_FUNCTION_TABLES; i++ )
+	for (int i = 0; i < MAX_FUNCTION_TABLES; i++ )
 	{
 
 		name = funcToName( func, m_tables[ i ] );
@@ -612,7 +612,7 @@ Bool FunctionLexicon::validate( void )
 	TableEntry *sourceEntry, *lookAtEntry;
 
 	// scan all talbes
-	for( i = 0; i < MAX_FUNCTION_TABLES; i++ )
+	for (int i = 0; i < MAX_FUNCTION_TABLES; i++ )
 	{
 
 		// scan through this table
@@ -628,7 +628,7 @@ Bool FunctionLexicon::validate( void )
 			{
 
 				// scan all tables
-				for( j = 0; j < MAX_FUNCTION_TABLES; j++ )
+				for (int j = 0; j < MAX_FUNCTION_TABLES; j++ )
 				{
 
 					// scan all entries in this table

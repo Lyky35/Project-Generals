@@ -1,3 +1,16 @@
+#pragma once
+
+#include <windows.h>
+
+// Miles Sound System stubs (guarded against WWAudio.H redefinition)
+#ifndef __WW_AUDIO_AIL_LOCK_DEFINED
+#define __WW_AUDIO_AIL_LOCK_DEFINED
+static inline unsigned AIL_lock() { return 0; }
+static inline void AIL_unlock() {}
+#endif
+
+
+
 /*
 **	Command & Conquer Generals(tm)
 **	Copyright 2025 Electronic Arts Inc.

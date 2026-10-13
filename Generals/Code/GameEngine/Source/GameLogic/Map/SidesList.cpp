@@ -251,14 +251,14 @@ Bool SidesList::ParseSidesDataChunk(DataChunkInput &file, DataChunkInfo *info, v
 	Int count = file.readInt();
 	Int i, j;
 	TheSidesList->emptySides();
-	for (i=0; i<count; i++) 
+	for (int i =0; i<count; i++) 
 	{
 		if (i >= MAX_PLAYER_COUNT) break;
 		Dict d =  file.readDict();
 		TheSidesList->addSide(&d);
 		BuildListInfo* pBuildList;
 		Int count = file.readInt();
-		for (j=0; j<count; j++) 
+		for (int j =0; j<count; j++) 
 		{
 			pBuildList = newInstance( BuildListInfo );
 			pBuildList->setBuildingName(file.readAsciiString());
@@ -287,7 +287,7 @@ Bool SidesList::ParseSidesDataChunk(DataChunkInput &file, DataChunkInfo *info, v
 	{
 		count = file.readInt();
 		TheSidesList->emptyTeams();
-		for (i=0; i<count; i++) 
+		for (int i =0; i<count; i++) 
 		{
 			Dict d =  file.readDict();
 			TheSidesList->addTeam(&d);
@@ -300,7 +300,7 @@ Bool SidesList::ParseSidesDataChunk(DataChunkInput &file, DataChunkInfo *info, v
 	}
 	ScriptList *scripts[MAX_PLAYER_COUNT];
 	count = ScriptList::getReadScripts(scripts);
-	for (i=0; i<count; i++) {
+	for (int i =0; i<count; i++) {
 		if (i<TheSidesList->getNumSides()) {
 			ScriptList *pSL = TheSidesList->getSideInfo(i)->getScriptList();
 			pSL->deleteInstance();
@@ -336,7 +336,7 @@ void SidesList::WriteSidesDataChunk(DataChunkOutput &chunkWriter)
 	
 		chunkWriter.writeInt(TheSidesList->getNumSides());
 		Int i;
-		for (i=0; i<TheSidesList->getNumSides(); i++) {
+		for (int i =0; i<TheSidesList->getNumSides(); i++) {
 			chunkWriter.writeDict(*TheSidesList->getSideInfo(i)->getDict());	
 			BuildListInfo* pBuildList = TheSidesList->getSideInfo(i)->getBuildList();
 			Int count = 0;
@@ -369,13 +369,13 @@ void SidesList::WriteSidesDataChunk(DataChunkOutput &chunkWriter)
 		
 		// BEGIN stuff new to K_SIDES_DATA_VERSION_2
 		chunkWriter.writeInt(TheSidesList->getNumTeams());
-		for (i=0; i<TheSidesList->getNumTeams(); i++) {
+		for (int i =0; i<TheSidesList->getNumTeams(); i++) {
 			chunkWriter.writeDict(*TheSidesList->getTeamInfo(i)->getDict());	
 		}
 		// END stuff new to K_SIDES_DATA_VERSION_2
 
 		ScriptList *scripts[MAX_PLAYER_COUNT];
-		for (i=0; i<TheSidesList->getNumSides(); i++) {
+		for (int i =0; i<TheSidesList->getNumSides(); i++) {
 			scripts[i] = TheSidesList->getSideInfo(i)->getScriptList();
 		}
 		ScriptList::WriteScriptsDataChunk(chunkWriter, scripts, TheSidesList->getNumSides());
@@ -432,7 +432,7 @@ static Bool ParsePlayersDataChunk(DataChunkInput &file, DataChunkInfo *info, voi
 {
 	Int numNames = file.readInt();
 	Int i;
-	for (i=0; i<numNames; i++) {
+	for (int i =0; i<numNames; i++) {
 		if (i>=MAX_PLAYER_COUNT) break;
 		static_readPlayerNames[i] = file.readAsciiString();
 	}
@@ -469,19 +469,19 @@ void SidesList::prepareForMP_or_Skirmish(void)
 {
 	m_skirmishTeamrec.clear();
 	Int i;
-	for (i = 0; i < getNumTeams(); i++)
+	for (int i = 0; i < getNumTeams(); i++)
 	{
 		Dict *tdict = getTeamInfo(i)->getDict();
 		m_skirmishTeamrec.addTeam(tdict);
 	}
 	m_teamrec.clear();
 
-	for (i = 0; i < MAX_PLAYER_COUNT; i++) {
+	for (int i = 0; i < MAX_PLAYER_COUNT; i++) {
 		m_skirmishSides[i].clear();
 	}
 	m_numSkirmishSides = 0;
 
-	for (i = 0; i < m_numSides; i++) 
+	for (int i = 0; i < m_numSides; i++) 
 	{
 		m_skirmishSides[m_numSkirmishSides] = m_sides[i];
 		m_numSkirmishSides++;
@@ -494,7 +494,7 @@ void SidesList::prepareForMP_or_Skirmish(void)
 		i--;
 	}
 	Bool gotScripts = false;
-	for (i=0; i<m_numSkirmishSides; i++) {
+	for (int i =0; i<m_numSkirmishSides; i++) {
 		if (m_skirmishSides[i].getDict()->getAsciiString(TheKey_playerFaction) == "FactionCivilian") {
 			// Don't consider FactionCivilian.
 			continue;
@@ -523,10 +523,10 @@ void SidesList::prepareForMP_or_Skirmish(void)
 				ScriptList *scripts[MAX_PLAYER_COUNT];
 				Int count = ScriptList::getReadScripts(scripts);
 				Int i;
-				for (i=0; i<count; i++) {
+				for (int i =0; i<count; i++) {
 					Int curSide = -1;
 					Int j;
-					for (j=0; j<m_numSkirmishSides; j++) {
+					for (int j =0; j<m_numSkirmishSides; j++) {
  						AsciiString name = getSkirmishSideInfo(j)->getDict()->getAsciiString(TheKey_playerName);
 						if (name == static_readPlayerNames[i]) {
 							curSide = j;
@@ -542,7 +542,7 @@ void SidesList::prepareForMP_or_Skirmish(void)
 						pSL->deleteInstance();
 					scripts[i] = NULL;
 				}
-				for (i=0; i<MAX_PLAYER_COUNT; i++) {
+				for (int i =0; i<MAX_PLAYER_COUNT; i++) {
 					static_readPlayerNames[i].clear();
 				}
 		}
@@ -577,7 +577,7 @@ void SidesList::emptySides()
 
 	m_numSides = 0; 
 	m_numSkirmishSides = 0; 
-	for (i = 0; i < MAX_PLAYER_COUNT; i++) {
+	for (int i = 0; i < MAX_PLAYER_COUNT; i++) {
 		m_sides[i].clear(); 
 		m_skirmishSides[i].clear();
 	}
@@ -720,7 +720,7 @@ Bool SidesList::validateSides()
 	Int i;
 	Int neutral = -1;
 	Int num = getNumSides();
-	for (i = 0; i < num; i++)
+	for (int i = 0; i < num; i++)
 	{
 		if (getSideInfo(i)->getDict()->getAsciiString(TheKey_playerName).isEmpty())
 		{
@@ -735,7 +735,7 @@ Bool SidesList::validateSides()
 	}
 
 	// now ensure that every player has a proper "default team"
-	for (i = 0; i < getNumSides(); i++) 
+	for (int i = 0; i < getNumSides(); i++) 
 	{
 		Dict *pdict = getSideInfo(i)->getDict();
 		AsciiString pname = pdict->getAsciiString(TheKey_playerName);
@@ -793,7 +793,7 @@ Bool SidesList::validateSides()
 	// ensure there's no overlap between team names and player names.
 	// (if there is, the player wins and the team is whacked.)
 validate_team_names:
-	for (i = 0; i < getNumTeams(); i++)
+	for (int i = 0; i < getNumTeams(); i++)
 	{
 		Dict *tdict = getTeamInfo(i)->getDict();
 		AsciiString tname = tdict->getAsciiString(TheKey_teamName);
@@ -806,7 +806,7 @@ validate_team_names:
 		}
 	}
 
-	for (i = 0; i < getNumTeams(); i++)
+	for (int i = 0; i < getNumTeams(); i++)
 	{
 		Dict *tdict = getTeamInfo(i)->getDict();
 		AsciiString tname = tdict->getAsciiString(TheKey_teamName);
@@ -927,7 +927,7 @@ m_buildingName(AsciiString::TheEmptyString)
 	m_selected = FALSE;
 
 	Int i;
-	for (i=0; i<MAX_RESOURCE_GATHERERS; i++) 
+	for (int i =0; i<MAX_RESOURCE_GATHERERS; i++) 
 	{
 		m_resourceGatherers[i] = INVALID_ID;
 	}
@@ -1090,7 +1090,7 @@ void TeamsInfoRec::clear()
 { 
 	Int i;
 
-	for (i = 0; i < m_numTeamsAllocated; i++) 
+	for (int i = 0; i < m_numTeamsAllocated; i++) 
 		m_teams[i].clear(); 
 
 	m_numTeams = 0; 
@@ -1128,7 +1128,7 @@ void TeamsInfoRec::addTeam(const Dict* d)
 		
 		Int i;
 
-		for (i = 0; i < m_numTeams; i++)
+		for (int i = 0; i < m_numTeams; i++)
 			nti[i] = m_teams[i];
 
 		for ( ; i < m_numTeamsAllocated + TEAM_ALLOC_CHUNK; i++) 

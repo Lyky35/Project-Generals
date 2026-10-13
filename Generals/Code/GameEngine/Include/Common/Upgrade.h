@@ -40,12 +40,12 @@
 // FORWARD REFERENCES /////////////////////////////////////////////////////////////////////////////
 class Player;
 class UpgradeTemplate;
-enum NameKeyType;
+enum NameKeyType : int;
 class Image;
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-enum UpgradeStatusType
+enum UpgradeStatusType : int
 {
 	UPGRADE_STATUS_INVALID = 0,
 	UPGRADE_STATUS_IN_PRODUCTION,
@@ -95,7 +95,7 @@ protected:
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-enum UpgradeType
+enum UpgradeType : int
 {
 	UPGRADE_TYPE_PLAYER = 0,						// upgrade applies to a player as a whole
 	UPGRADE_TYPE_OBJECT,								// upgrade applies to an object instance only

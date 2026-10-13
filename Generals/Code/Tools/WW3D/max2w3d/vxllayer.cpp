@@ -166,7 +166,7 @@ VoxelLayerClass::VoxelLayerClass
 	memset ( &(Solid[0][0]), 0, sizeof(Solid));
 
 	// Go through the list of objects and intersect them with the plane.
-	for ( i = 0; i < object_list.Num_Nodes(); i++ )
+	for (int i = 0; i < object_list.Num_Nodes(); i++ )
 	{
 		// Get relavent data from MAX
 		INode 	 * inode = object_list[i];
@@ -418,14 +418,14 @@ void VoxelLayerClass::Scan_Triangle
 	float miny = polyvert[0].Pos.y;
 	float maxy = polyvert[0].Pos.y;
 
-	for (i=1; i<numverts; i++) {
+	for (int i =1; i<numverts; i++) {
 		if (polyvert[i].Pos.y < miny) miny = polyvert[i].Pos.y;
 		if (polyvert[i].Pos.y > maxy) maxy = polyvert[i].Pos.y;
 	}
 	
 	// scanconvert the triangle
 	int start = numverts - 1;
-	for (i=0; i<numverts; i++) {
+	for (int i =0; i<numverts; i++) {
 		scan_edge(polyvert[start],polyvert[i]);
 		start = i;
 	}
@@ -434,7 +434,7 @@ void VoxelLayerClass::Scan_Triangle
 	fixup_scan_table((int)floor(miny),(int)floor(maxy));
 
 	// draw the scanlines
-	for (i=(int)floor(miny); i<=(int)floor(maxy); i++) {
+	for (int i =(int)floor(miny); i<=(int)floor(maxy); i++) {
 
 //		if (_scantab[i].P[LEFT].Pos.x != EMPTY_SPAN) {
 
@@ -521,7 +521,7 @@ static void clip_poly
 	*outnum = 0;
 
 	p0 = inverts[innum-1];
-	for (i=0; i<innum; i++) {
+	for (int i =0; i<innum; i++) {
 		p1 = inverts[i];
 
 		if (inside(p1,clipplane)) { 
@@ -677,7 +677,7 @@ static void fixup_scan_table(int y0,int y1)
 	assert(y1 >= y0);
 
 	// Ensure the left -> right convention is followed.
-	for (i=y0; i<=y1; i++) {
+	for (int i =y0; i<=y1; i++) {
 		if (_scantab[i].P[LEFT].Pos.x > _scantab[i].P[RIGHT].Pos.x) {
 			vertexstruct tmp = _scantab[i].P[LEFT];
 			_scantab[i].P[LEFT] = _scantab[i].P[RIGHT];
@@ -686,7 +686,7 @@ static void fixup_scan_table(int y0,int y1)
 	}
 
 	// Ensure that we leave no gaps.
-	for (i=y0; i<y1; i++) {
+	for (int i =y0; i<y1; i++) {
 		if (_scantab[i+1].P[RIGHT].Pos.x < _scantab[i].P[LEFT].Pos.x) {
 			
 			_scantab[i+1].P[RIGHT].Pos.x = _scantab[i].P[LEFT].Pos.x;

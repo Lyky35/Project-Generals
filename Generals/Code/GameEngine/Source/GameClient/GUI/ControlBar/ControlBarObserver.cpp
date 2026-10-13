@@ -213,7 +213,7 @@ void ControlBar::populateObserverList( void )
 	if(TheRecorder->isMultiplayer())
 	{
 	
-		for (i = 0; i < MAX_SLOTS; ++i)
+		for (int i = 0; i < MAX_SLOTS; ++i)
 		{
 			AsciiString name;
 			name.format("player%d", i);
@@ -259,7 +259,7 @@ void ControlBar::populateObserverList( void )
 	}
 	else
 	{
-		for(i =0; i < MAX_PLAYER_COUNT; ++i)
+		for (int i =0; i < MAX_PLAYER_COUNT; ++i)
 		{
 			Player *p = ThePlayerList->getNthPlayer(i);
 			if(p && !p->isPlayerObserver() && p->getPlayerType() == PLAYER_HUMAN)

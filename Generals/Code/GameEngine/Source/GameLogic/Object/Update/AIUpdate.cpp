@@ -250,7 +250,7 @@ AIUpdateInterface::AIUpdateInterface( Thing *thing, const ModuleData* moduleData
 	m_curLocomotorSet = LOCOMOTORSET_INVALID;
 	m_locomotorGoalType = NONE;
 	m_locomotorGoalData.zero();
-	for (i = 0; i < MAX_TURRETS; i++)
+	for (int i = 0; i < MAX_TURRETS; i++)
 		m_turretAI[i] = NULL;
 	m_turretSyncFlag = TURRET_INVALID;
 	m_attitude = AI_NORMAL;
@@ -286,7 +286,7 @@ AIUpdateInterface::AIUpdateInterface( Thing *thing, const ModuleData* moduleData
 
 	// ---------------------------------------------
 
-	for (i = 0; i < MAX_TURRETS; i++)
+	for (int i = 0; i < MAX_TURRETS; i++)
 	{
 		if (getAIUpdateModuleData()->m_turretData[i])
 		{
@@ -4789,7 +4789,7 @@ void AIUpdateInterface::xfer( Xfer *xfer )
 		throw SC_INVALID_DATA;
 	}
 	Int i;
-	for (i=0; i<m_waypointCount; i++) {
+	for (int i =0; i<m_waypointCount; i++) {
 		xfer->xferCoord3D(&m_waypointQueue[i]);
 	}
 	xfer->xferInt(&m_waypointIndex);
@@ -4894,7 +4894,7 @@ void AIUpdateInterface::xfer( Xfer *xfer )
 	xfer->xferUser(&m_locomotorGoalType, sizeof(m_locomotorGoalType));
 	xfer->xferCoord3D(&m_locomotorGoalData);
 
-	for (i=0; i<MAX_TURRETS; i++) {
+	for (int i =0; i<MAX_TURRETS; i++) {
 		if (m_turretAI[i]) {
 			xfer->xferSnapshot(m_turretAI[i]);
 		}

@@ -202,7 +202,7 @@ static Bool parseBitFlag( const char *flagString, UnsignedInt *bits,
 	const char **c;
 	int i;
 
-	for( i = 0, c = flagList; *c; i++, c++ )
+	for (i = 0, c = flagList; *c; i++, c++ )
 	{
 
 		if( !stricmp( *c, flagString ) )
@@ -1068,7 +1068,7 @@ static Bool parseTextColor( char *token, WinInstanceData *instData,
 	Bool first = TRUE;
 
 
-	for( i = 0; i < states; i++ )
+	for (int i = 0; i < states; i++ )
 	{
 
 		if( i == 0 )
@@ -1246,7 +1246,7 @@ static Bool parseDrawData( char *token, WinInstanceData *instData,
 	char *c;
 	char *seps       = " :,\n\r\t";
 
-	for( i = 0; i < MAX_DRAW_DATA; i++ )
+	for (int i = 0; i < MAX_DRAW_DATA; i++ )
 	{
 
 		// get the right draw data

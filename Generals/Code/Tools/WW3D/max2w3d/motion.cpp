@@ -192,7 +192,7 @@ void MotionClass::init(void)
 		throw (ErrorClass("Out of Memory"));
 	}
 	
-	for (i=0; i<BasePose->Num_Nodes(); i++) {
+	for (int i =0; i<BasePose->Num_Nodes(); i++) {
 		MotionMatrix[i] = new Matrix3[NumFrames];
 		if (MotionMatrix[i] == NULL) {
 			throw (ErrorClass("Out of Memory"));
@@ -201,12 +201,12 @@ void MotionClass::init(void)
 		/*
 		** Initialize all of the matrices to identity.
 		*/
-		for (j=0; j<NumFrames; j++) {
+		for (int j =0; j<NumFrames; j++) {
 			MotionMatrix[i][j] = Matrix3(1);
 		}
 	}
 
-	for (i=0; i<BasePose->Num_Nodes(); i++) {
+	for (int i =0; i<BasePose->Num_Nodes(); i++) {
 		EulerDelta[i] = new Point3[NumFrames];
 		if (EulerDelta[i] == NULL) {
 			throw (ErrorClass("Out of Memory"));
@@ -215,7 +215,7 @@ void MotionClass::init(void)
 		/*
 		** Initialize all of the Euler angles to 0,0,0
 		*/
-		for (j=0; j<NumFrames; j++) {
+		for (int j =0; j<NumFrames; j++) {
 			EulerDelta[i][j] = Point3(0,0,0);
 		}
 	}
@@ -225,13 +225,13 @@ void MotionClass::init(void)
 	*/
 	VisData = new BooleanVectorClass[BasePose->Num_Nodes()];
 
-	for (i=0; i<BasePose->Num_Nodes(); i++) {
+	for (int i =0; i<BasePose->Num_Nodes(); i++) {
 		VisData[i].Resize(NumFrames);
 
 		/* 
 		** initialize to always visible
 		*/
-		for (j=0; j<NumFrames; j++) {
+		for (int j =0; j<NumFrames; j++) {
 			VisData[i][j] = true;
 		}
 	}
@@ -241,13 +241,13 @@ void MotionClass::init(void)
 	//
 	BinMoveData = new BooleanVectorClass[BasePose->Num_Nodes()];
 
-	for (i=0; i<BasePose->Num_Nodes(); i++) {
+	for (int i =0; i<BasePose->Num_Nodes(); i++) {
 		BinMoveData[i].Resize(NumFrames);
 
 		/* 
 		** initialize to always interpolate
 		*/
-		for (j=0; j<NumFrames; j++) {
+		for (int j =0; j<NumFrames; j++) {
 			BinMoveData[i][j] = false;
 		}
 	}
@@ -261,14 +261,14 @@ void MotionClass::init(void)
 	*/
 	NodeValidFlags.Resize(BasePose->Num_Nodes());
 
-	for (i=0; i<BasePose->Num_Nodes(); i++) {
+	for (int i =0; i<BasePose->Num_Nodes(); i++) {
 		NodeValidFlags[i] = 0;
 	}
 
 	/*
 	** Compute motion data for each frame
 	*/
-	for (i=0; i < NumFrames; i++) {
+	for (int i =0; i < NumFrames; i++) {
 		ExportLog::rprintf("( %d ) ", i);
 		ExportLog::updatebar(i, NumFrames);
 		compute_frame_motion(i);
@@ -296,14 +296,14 @@ MotionClass::~MotionClass(void)
 {
 	int i;
 
-	for (i=0; i<BasePose->Num_Nodes(); i++) {
+	for (int i =0; i<BasePose->Num_Nodes(); i++) {
 		if (MotionMatrix[i]) delete[] MotionMatrix[i];
 	}
 	if (MotionMatrix) {
 		delete[] MotionMatrix;
 	}
 
-	for (i=0; i<BasePose->Num_Nodes(); i++) {
+	for (int i =0; i<BasePose->Num_Nodes(); i++) {
 		if (EulerDelta[i]) delete[] EulerDelta[i];
 	}
 	if (EulerDelta) {

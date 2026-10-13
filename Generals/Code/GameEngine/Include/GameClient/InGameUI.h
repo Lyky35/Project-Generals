@@ -59,13 +59,13 @@ class WindowLayout;
 class Anim2DTemplate;
 class Anim2D;
 class Shadow;
-enum LegalBuildCode;
-enum KindOfType;
-enum ShadowType;
-enum CanAttackResult;
+enum LegalBuildCode : int;
+enum KindOfType : int;
+enum ShadowType : int;
+enum CanAttackResult : int;
 
 // ------------------------------------------------------------------------------------------------
-enum RadiusCursorType
+enum RadiusCursorType : int
 {
 	RADIUSCURSOR_NONE = 0,
 	RADIUSCURSOR_ATTACK_DAMAGE_AREA,
@@ -273,7 +273,7 @@ enum
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 // ------------------------------------------------------------------------------------------------
-enum WorldAnimationOptions
+enum WorldAnimationOptions : int
 {
 	WORLD_ANIM_NO_OPTIONS								= 0x00000000,
 	WORLD_ANIM_FADE_ON_EXPIRE						= 0x00000001,

@@ -434,7 +434,7 @@ void PolygonClass::Compute_Plane(void)
 
 	int i,j;
 
-	for (i=0; i<NumVerts; i++) {
+	for (int i =0; i<NumVerts; i++) {
 		j = (i+1) % NumVerts;
 		
 		nx += (double)(Verts[i].Position.Y - Verts[j].Position.Y) * (double)(Verts[i].Position.Z + Verts[j].Position.Z);
@@ -498,7 +498,7 @@ void PolygonClass::Split(const PlaneClass & plane,PolygonClass & front,PolygonCl
 	// find a vertex on one side or the other
 	int side = BPT_ON;
 	int i;
-	for (i = 0; (i < NumVerts) && ((side = Verts[i].Which_Side(plane)) == BPT_ON); i++);
+	for (int i = 0; (i < NumVerts) && ((side = Verts[i].Which_Side(plane)) == BPT_ON); i++);
 
 	// perform clipping
 	int iprev = i;
@@ -624,8 +624,8 @@ bool PolygonClass::Is_Degenerate(void)
 		return true;
 	}
 
-	for (i=0; i<NumVerts; i++) {
-		for (j = i+1; j < NumVerts; j++) {
+	for (int i =0; i<NumVerts; i++) {
+		for (int j = i+1; j < NumVerts; j++) {
 			
 			float delta = (Verts[i].Position - Verts[j].Position).Length();
 			if (delta < BPT_COINCIDENCE_EPSILON) {
@@ -635,7 +635,7 @@ bool PolygonClass::Is_Degenerate(void)
 		}
 	}
 
-	for (i=0; i<NumVerts; i++) {
+	for (int i =0; i<NumVerts; i++) {
 		int side = Verts[i].Which_Side(Plane);
 		if (side != BPT_ON) {
 

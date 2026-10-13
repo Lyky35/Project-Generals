@@ -571,7 +571,7 @@ void Render2DClass::Render(void)
 		unsigned char *vb=(unsigned char*)Lock.Get_Formatted_Vertex_Array();
 		int i;
 
-		for (i=0; i<Vertices.Count(); i++)
+		for (int i =0; i<Vertices.Count(); i++)
 		{
 			Vector3 temp(Vertices[i].X,Vertices[i].Y,ZValue);
 			*(Vector3*)(vb+fi.Get_Location_Offset())=temp;

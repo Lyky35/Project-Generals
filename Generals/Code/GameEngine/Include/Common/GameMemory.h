@@ -878,8 +878,7 @@ extern void userMemoryAdjustPoolSize(const char *poolName, Int& initialAllocatio
 	// additional overloads for 'placement new'
 	//inline void* __cdecl operator new							(size_t s, void *p) { return p; }
 	//inline void __cdecl operator delete						(void *, void *p)		{ }
-	inline void* __cdecl operator new[]						(size_t s, void *p) { return p; }
-	inline void __cdecl operator delete[]					(void *, void *p)		{ }
+	// Placement new/delete provided by <new> in C++11+
 
 #endif
 

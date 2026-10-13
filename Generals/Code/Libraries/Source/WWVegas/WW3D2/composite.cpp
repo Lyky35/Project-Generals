@@ -517,7 +517,7 @@ void CompositeRenderObjClass::Update_Obj_Space_Bounding_Volumes(void)
 	robj->Release_Ref();
 	box.Init(obj_aabox);
 
-	for (i=1; i<Get_Num_Sub_Objects(); i++) {
+	for (int i =1; i<Get_Num_Sub_Objects(); i++) {
 		
 		robj = Get_Sub_Object(i);
 		WWASSERT(robj);

@@ -320,7 +320,7 @@ MultiFixedPoolDecalSystemClass::MultiFixedPoolDecalSystemClass(const MultiFixedP
 	// Allocate arrays (we dont' copy array contents because those are mesh-specific and will be
 	// filled when the state is set anyway)
 	if (PoolCount) Pools = W3DNEWARRAY LogicalDecalPoolClass [PoolCount];
-	for (i = 0; i < PoolCount; i++) {
+	for (int i = 0; i < PoolCount; i++) {
 		Pools[i].Initialize(that.Pools[i].Size);
 	}
 }

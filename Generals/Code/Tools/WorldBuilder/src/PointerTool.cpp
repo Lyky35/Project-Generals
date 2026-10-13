@@ -156,7 +156,7 @@ void PointerTool::clearSelection(void) ///< Clears the selected objects selected
 	}
 	// Clear selected build list items.
 	Int i;
-	for (i=0; i<TheSidesList->getNumSides(); i++) {
+	for (int i =0; i<TheSidesList->getNumSides(); i++) {
 		SidesInfo *pSide = TheSidesList->getSideInfo(i); 
 		for (BuildListInfo *pBuild = pSide->getBuildList(); pBuild; pBuild = pBuild->getNext()) {
 			if (pBuild->isSelected()) {

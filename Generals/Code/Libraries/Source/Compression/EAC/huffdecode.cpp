@@ -253,7 +253,7 @@ static int HUFF_decompress(unsigned char *packbuf, unsigned char *unpackbuf)
                         SQmemset(leap,0,256);
                         nextchar = (unsigned char) -1;
 
-                        for (i=0;i<numchars;++i)
+                        for (int i =0;i<numchars;++i)
                         {
                             int leapdelta=0;
 
@@ -310,7 +310,7 @@ static int HUFF_decompress(unsigned char *packbuf, unsigned char *unpackbuf)
                                 cluelen = bits;
                                 nextlen = 96;                   /* will force out of main loop */
                             }
-                            for (i=0; i<numbitentries; ++i)
+                            for (int i =0; i<numbitentries; ++i)
                             {
                                 *quickcodeptr++ = (unsigned char) nextcode;
                                 *quicklenptr++ = (unsigned char) nextlen;

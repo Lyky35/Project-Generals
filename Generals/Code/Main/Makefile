@@ -130,13 +130,13 @@ RTS/fast:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Main/CMakeFiles/RTS.dir/build.make Generals/Code/Main/CMakeFiles/RTS.dir/build
 .PHONY : RTS/fast
 
-WinMain.obj: WinMain.cpp.obj
-.PHONY : WinMain.obj
+WinMain.o: WinMain.cpp.o
+.PHONY : WinMain.o
 
 # target to build an object file
-WinMain.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Main/CMakeFiles/RTS.dir/build.make Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.obj
-.PHONY : WinMain.cpp.obj
+WinMain.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Main/CMakeFiles/RTS.dir/build.make Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.o
+.PHONY : WinMain.cpp.o
 
 WinMain.i: WinMain.cpp.i
 .PHONY : WinMain.i
@@ -163,7 +163,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... RTS"
-	@echo "... WinMain.obj"
+	@echo "... WinMain.o"
 	@echo "... WinMain.i"
 	@echo "... WinMain.s"
 .PHONY : help

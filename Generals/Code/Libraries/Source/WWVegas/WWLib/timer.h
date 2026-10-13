@@ -561,7 +561,7 @@ template<class T>
 inline CDTimerClass<T>::operator int(void) const
 {
 	int remain = DelayTime;
-	if (Started != 0xFFFFFFFFU) {
+	if (BasicTimerClass<T>::Started != 0xFFFFFFFFU) {
 		int value = BasicTimerClass<T>::Value();
 		if (value < remain) {
 			return(remain - value);

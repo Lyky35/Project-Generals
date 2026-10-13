@@ -72,202 +72,271 @@ include Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/fl
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/codegen:
 .PHONY : Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/codegen
 
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.obj: Generals/Code/Libraries/Source/Compression/LZHCompress/NoxCompress.cpp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.obj -MF CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.obj.d -o CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/LZHCompress/NoxCompress.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.o: Generals/Code/Libraries/Source/Compression/LZHCompress/NoxCompress.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.o -MF CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.o.d -o CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/LZHCompress/NoxCompress.cpp
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/LZHCompress/NoxCompress.cpp > CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/LZHCompress/NoxCompress.cpp > CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.i
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/LZHCompress/NoxCompress.cpp -o CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/LZHCompress/NoxCompress.cpp -o CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.s
 
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.obj: Generals/Code/Libraries/Source/Compression/EAC/btreeabout.cpp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.obj -MF CMakeFiles/Compression.dir/EAC/btreeabout.cpp.obj.d -o CMakeFiles/Compression.dir/EAC/btreeabout.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreeabout.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.o: Generals/Code/Libraries/Source/Compression/LZHCompress/noxcompress.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.o -MF CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.o.d -o CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/LZHCompress/noxcompress.cpp
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/LZHCompress/noxcompress.cpp > CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.i
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/LZHCompress/noxcompress.cpp -o CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.s
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.o: Generals/Code/Libraries/Source/Compression/EAC/btreeabout.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.o -MF CMakeFiles/Compression.dir/EAC/btreeabout.cpp.o.d -o CMakeFiles/Compression.dir/EAC/btreeabout.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreeabout.cpp
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/EAC/btreeabout.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreeabout.cpp > CMakeFiles/Compression.dir/EAC/btreeabout.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreeabout.cpp > CMakeFiles/Compression.dir/EAC/btreeabout.cpp.i
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/EAC/btreeabout.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreeabout.cpp -o CMakeFiles/Compression.dir/EAC/btreeabout.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreeabout.cpp -o CMakeFiles/Compression.dir/EAC/btreeabout.cpp.s
 
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.obj: Generals/Code/Libraries/Source/Compression/EAC/btreedecode.cpp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.obj -MF CMakeFiles/Compression.dir/EAC/btreedecode.cpp.obj.d -o CMakeFiles/Compression.dir/EAC/btreedecode.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreedecode.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreecodex.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreecodex.cpp.o: Generals/Code/Libraries/Source/Compression/EAC/btreecodex.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreecodex.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreecodex.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreecodex.cpp.o -MF CMakeFiles/Compression.dir/EAC/btreecodex.cpp.o.d -o CMakeFiles/Compression.dir/EAC/btreecodex.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreecodex.cpp
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreecodex.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/EAC/btreecodex.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreecodex.cpp > CMakeFiles/Compression.dir/EAC/btreecodex.cpp.i
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreecodex.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/EAC/btreecodex.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreecodex.cpp -o CMakeFiles/Compression.dir/EAC/btreecodex.cpp.s
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.o: Generals/Code/Libraries/Source/Compression/EAC/btreedecode.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.o -MF CMakeFiles/Compression.dir/EAC/btreedecode.cpp.o.d -o CMakeFiles/Compression.dir/EAC/btreedecode.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreedecode.cpp
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/EAC/btreedecode.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreedecode.cpp > CMakeFiles/Compression.dir/EAC/btreedecode.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreedecode.cpp > CMakeFiles/Compression.dir/EAC/btreedecode.cpp.i
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/EAC/btreedecode.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreedecode.cpp -o CMakeFiles/Compression.dir/EAC/btreedecode.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreedecode.cpp -o CMakeFiles/Compression.dir/EAC/btreedecode.cpp.s
 
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.obj: Generals/Code/Libraries/Source/Compression/EAC/btreeencode.cpp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.obj -MF CMakeFiles/Compression.dir/EAC/btreeencode.cpp.obj.d -o CMakeFiles/Compression.dir/EAC/btreeencode.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreeencode.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.o: Generals/Code/Libraries/Source/Compression/EAC/btreeencode.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.o -MF CMakeFiles/Compression.dir/EAC/btreeencode.cpp.o.d -o CMakeFiles/Compression.dir/EAC/btreeencode.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreeencode.cpp
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/EAC/btreeencode.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreeencode.cpp > CMakeFiles/Compression.dir/EAC/btreeencode.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreeencode.cpp > CMakeFiles/Compression.dir/EAC/btreeencode.cpp.i
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/EAC/btreeencode.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreeencode.cpp -o CMakeFiles/Compression.dir/EAC/btreeencode.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreeencode.cpp -o CMakeFiles/Compression.dir/EAC/btreeencode.cpp.s
 
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.obj: Generals/Code/Libraries/Source/Compression/EAC/huffabout.cpp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.obj -MF CMakeFiles/Compression.dir/EAC/huffabout.cpp.obj.d -o CMakeFiles/Compression.dir/EAC/huffabout.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffabout.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.o: Generals/Code/Libraries/Source/Compression/EAC/huffabout.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.o -MF CMakeFiles/Compression.dir/EAC/huffabout.cpp.o.d -o CMakeFiles/Compression.dir/EAC/huffabout.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffabout.cpp
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/EAC/huffabout.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffabout.cpp > CMakeFiles/Compression.dir/EAC/huffabout.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffabout.cpp > CMakeFiles/Compression.dir/EAC/huffabout.cpp.i
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/EAC/huffabout.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffabout.cpp -o CMakeFiles/Compression.dir/EAC/huffabout.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffabout.cpp -o CMakeFiles/Compression.dir/EAC/huffabout.cpp.s
 
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.obj: Generals/Code/Libraries/Source/Compression/EAC/huffdecode.cpp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.obj -MF CMakeFiles/Compression.dir/EAC/huffdecode.cpp.obj.d -o CMakeFiles/Compression.dir/EAC/huffdecode.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffdecode.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffcodex.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffcodex.cpp.o: Generals/Code/Libraries/Source/Compression/EAC/huffcodex.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffcodex.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffcodex.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffcodex.cpp.o -MF CMakeFiles/Compression.dir/EAC/huffcodex.cpp.o.d -o CMakeFiles/Compression.dir/EAC/huffcodex.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffcodex.cpp
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffcodex.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/EAC/huffcodex.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffcodex.cpp > CMakeFiles/Compression.dir/EAC/huffcodex.cpp.i
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffcodex.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/EAC/huffcodex.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffcodex.cpp -o CMakeFiles/Compression.dir/EAC/huffcodex.cpp.s
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.o: Generals/Code/Libraries/Source/Compression/EAC/huffdecode.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.o -MF CMakeFiles/Compression.dir/EAC/huffdecode.cpp.o.d -o CMakeFiles/Compression.dir/EAC/huffdecode.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffdecode.cpp
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/EAC/huffdecode.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffdecode.cpp > CMakeFiles/Compression.dir/EAC/huffdecode.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffdecode.cpp > CMakeFiles/Compression.dir/EAC/huffdecode.cpp.i
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/EAC/huffdecode.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffdecode.cpp -o CMakeFiles/Compression.dir/EAC/huffdecode.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffdecode.cpp -o CMakeFiles/Compression.dir/EAC/huffdecode.cpp.s
 
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.obj: Generals/Code/Libraries/Source/Compression/EAC/huffencode.cpp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.obj -MF CMakeFiles/Compression.dir/EAC/huffencode.cpp.obj.d -o CMakeFiles/Compression.dir/EAC/huffencode.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffencode.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.o: Generals/Code/Libraries/Source/Compression/EAC/huffencode.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.o -MF CMakeFiles/Compression.dir/EAC/huffencode.cpp.o.d -o CMakeFiles/Compression.dir/EAC/huffencode.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffencode.cpp
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/EAC/huffencode.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffencode.cpp > CMakeFiles/Compression.dir/EAC/huffencode.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffencode.cpp > CMakeFiles/Compression.dir/EAC/huffencode.cpp.i
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/EAC/huffencode.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffencode.cpp -o CMakeFiles/Compression.dir/EAC/huffencode.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffencode.cpp -o CMakeFiles/Compression.dir/EAC/huffencode.cpp.s
 
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.obj: Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.obj -MF CMakeFiles/Compression.dir/EAC/refabout.cpp.obj.d -o CMakeFiles/Compression.dir/EAC/refabout.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.o: Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.o -MF CMakeFiles/Compression.dir/EAC/refabout.cpp.o.d -o CMakeFiles/Compression.dir/EAC/refabout.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/EAC/refabout.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp > CMakeFiles/Compression.dir/EAC/refabout.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp > CMakeFiles/Compression.dir/EAC/refabout.cpp.i
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/EAC/refabout.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp -o CMakeFiles/Compression.dir/EAC/refabout.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp -o CMakeFiles/Compression.dir/EAC/refabout.cpp.s
 
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.obj: Generals/Code/Libraries/Source/Compression/EAC/refdecode.cpp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.obj -MF CMakeFiles/Compression.dir/EAC/refdecode.cpp.obj.d -o CMakeFiles/Compression.dir/EAC/refdecode.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refdecode.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refcodex.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refcodex.cpp.o: Generals/Code/Libraries/Source/Compression/EAC/refcodex.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refcodex.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refcodex.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refcodex.cpp.o -MF CMakeFiles/Compression.dir/EAC/refcodex.cpp.o.d -o CMakeFiles/Compression.dir/EAC/refcodex.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refcodex.cpp
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refcodex.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/EAC/refcodex.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refcodex.cpp > CMakeFiles/Compression.dir/EAC/refcodex.cpp.i
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refcodex.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/EAC/refcodex.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refcodex.cpp -o CMakeFiles/Compression.dir/EAC/refcodex.cpp.s
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.o: Generals/Code/Libraries/Source/Compression/EAC/refdecode.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.o -MF CMakeFiles/Compression.dir/EAC/refdecode.cpp.o.d -o CMakeFiles/Compression.dir/EAC/refdecode.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refdecode.cpp
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/EAC/refdecode.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refdecode.cpp > CMakeFiles/Compression.dir/EAC/refdecode.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refdecode.cpp > CMakeFiles/Compression.dir/EAC/refdecode.cpp.i
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/EAC/refdecode.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refdecode.cpp -o CMakeFiles/Compression.dir/EAC/refdecode.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refdecode.cpp -o CMakeFiles/Compression.dir/EAC/refdecode.cpp.s
 
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.obj: Generals/Code/Libraries/Source/Compression/EAC/refencode.cpp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.obj -MF CMakeFiles/Compression.dir/EAC/refencode.cpp.obj.d -o CMakeFiles/Compression.dir/EAC/refencode.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refencode.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.o: Generals/Code/Libraries/Source/Compression/EAC/refencode.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.o -MF CMakeFiles/Compression.dir/EAC/refencode.cpp.o.d -o CMakeFiles/Compression.dir/EAC/refencode.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refencode.cpp
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/EAC/refencode.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refencode.cpp > CMakeFiles/Compression.dir/EAC/refencode.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refencode.cpp > CMakeFiles/Compression.dir/EAC/refencode.cpp.i
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/EAC/refencode.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refencode.cpp -o CMakeFiles/Compression.dir/EAC/refencode.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refencode.cpp -o CMakeFiles/Compression.dir/EAC/refencode.cpp.s
 
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.obj: Generals/Code/Libraries/Source/Compression/CompressionManager.cpp
-Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.obj: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.obj -MF CMakeFiles/Compression.dir/CompressionManager.cpp.obj.d -o CMakeFiles/Compression.dir/CompressionManager.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/CompressionManager.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.o: Generals/Code/Libraries/Source/Compression/CompressionManager.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.o -MF CMakeFiles/Compression.dir/CompressionManager.cpp.o.d -o CMakeFiles/Compression.dir/CompressionManager.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/CompressionManager.cpp
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/CompressionManager.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/CompressionManager.cpp > CMakeFiles/Compression.dir/CompressionManager.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/CompressionManager.cpp > CMakeFiles/Compression.dir/CompressionManager.cpp.i
 
 Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/CompressionManager.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/CompressionManager.cpp -o CMakeFiles/Compression.dir/CompressionManager.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/CompressionManager.cpp -o CMakeFiles/Compression.dir/CompressionManager.cpp.s
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compressionmanager.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/flags.make
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compressionmanager.cpp.o: Generals/Code/Libraries/Source/Compression/compressionmanager.cpp
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compressionmanager.cpp.o: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compressionmanager.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compressionmanager.cpp.o -MF CMakeFiles/Compression.dir/compressionmanager.cpp.o.d -o CMakeFiles/Compression.dir/compressionmanager.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/compressionmanager.cpp
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compressionmanager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Compression.dir/compressionmanager.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/compressionmanager.cpp > CMakeFiles/Compression.dir/compressionmanager.cpp.i
+
+Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compressionmanager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Compression.dir/compressionmanager.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/compressionmanager.cpp -o CMakeFiles/Compression.dir/compressionmanager.cpp.s
 
 # Object files for target Compression
 Compression_OBJECTS = \
-"CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.obj" \
-"CMakeFiles/Compression.dir/EAC/btreeabout.cpp.obj" \
-"CMakeFiles/Compression.dir/EAC/btreedecode.cpp.obj" \
-"CMakeFiles/Compression.dir/EAC/btreeencode.cpp.obj" \
-"CMakeFiles/Compression.dir/EAC/huffabout.cpp.obj" \
-"CMakeFiles/Compression.dir/EAC/huffdecode.cpp.obj" \
-"CMakeFiles/Compression.dir/EAC/huffencode.cpp.obj" \
-"CMakeFiles/Compression.dir/EAC/refabout.cpp.obj" \
-"CMakeFiles/Compression.dir/EAC/refdecode.cpp.obj" \
-"CMakeFiles/Compression.dir/EAC/refencode.cpp.obj" \
-"CMakeFiles/Compression.dir/CompressionManager.cpp.obj"
+"CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.o" \
+"CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.o" \
+"CMakeFiles/Compression.dir/EAC/btreeabout.cpp.o" \
+"CMakeFiles/Compression.dir/EAC/btreecodex.cpp.o" \
+"CMakeFiles/Compression.dir/EAC/btreedecode.cpp.o" \
+"CMakeFiles/Compression.dir/EAC/btreeencode.cpp.o" \
+"CMakeFiles/Compression.dir/EAC/huffabout.cpp.o" \
+"CMakeFiles/Compression.dir/EAC/huffcodex.cpp.o" \
+"CMakeFiles/Compression.dir/EAC/huffdecode.cpp.o" \
+"CMakeFiles/Compression.dir/EAC/huffencode.cpp.o" \
+"CMakeFiles/Compression.dir/EAC/refabout.cpp.o" \
+"CMakeFiles/Compression.dir/EAC/refcodex.cpp.o" \
+"CMakeFiles/Compression.dir/EAC/refdecode.cpp.o" \
+"CMakeFiles/Compression.dir/EAC/refencode.cpp.o" \
+"CMakeFiles/Compression.dir/CompressionManager.cpp.o" \
+"CMakeFiles/Compression.dir/compressionmanager.cpp.o"
 
 # External object files for target Compression
 Compression_EXTERNAL_OBJECTS =
 
-lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.obj
-lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.obj
-lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.obj
-lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.obj
-lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.obj
-lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.obj
-lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.obj
-lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.obj
-lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.obj
-lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.obj
-lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.obj
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreecodex.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffcodex.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refcodex.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.o
+lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compressionmanager.cpp.o
 lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make
 lib/libCompression.a: Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX static library ../../../../../lib/libCompression.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX static library ../../../../../lib/libCompression.a"
 	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && $(CMAKE_COMMAND) -P CMakeFiles/Compression.dir/cmake_clean_target.cmake
 	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Compression.dir/link.txt --verbose=$(VERBOSE)
 

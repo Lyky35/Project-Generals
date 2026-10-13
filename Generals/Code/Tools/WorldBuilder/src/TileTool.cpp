@@ -116,7 +116,7 @@ void TileTool::mouseMoved(TTrackingMode m, CPoint viewPt, WbView* pView, CWorldB
 
 	count /= 2;
 	if (count<1) count = 1;
-	for (k=0; k<=count; k++) {
+	for (int k =0; k<=count; k++) {
 		CPoint curViewPt;
 		curViewPt.x = viewPt.x + ((count-k)*dx)/count;
 		curViewPt.y = viewPt.y + ((count-k)*dy)/count;
@@ -141,9 +141,9 @@ void TileTool::mouseMoved(TTrackingMode m, CPoint viewPt, WbView* pView, CWorldB
 		Int i, j;
 		Int minX = ndx.x - (width)/2;
 		Int minY = ndx.y - (width)/2;
-		for (i=minX; i<minX+width; i++) {
+		for (int i =minX; i<minX+width; i++) {
 			if (i<0 || i>=m_htMapEditCopy->getXExtent()) continue;
-			for (j=minY; j<minY+width; j++) {
+			for (int j =minY; j<minY+width; j++) {
 				if (j<0 || j>=m_htMapEditCopy->getYExtent()) continue;
 				if (TerrainMaterial::isPaintingPathingInfo()) {
 					m_htMapEditCopy->setCliff(i, j, !TerrainMaterial::isPaintingPassable());

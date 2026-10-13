@@ -446,7 +446,7 @@ AsciiString GameState::findNextSaveFilename( UnicodeString desc )
 
 	Int i;
 	AsciiString adesc;
-	for (i = 0; i < desc.getLength(); ++i)
+	for (int i = 0; i < desc.getLength(); ++i)
 	{
 		char c = (char)desc.getCharAt(i);
 		if (isalnum(c))
@@ -455,7 +455,7 @@ AsciiString GameState::findNextSaveFilename( UnicodeString desc )
 			adesc.concat('_');
 	}
 
-	for (i = 1; i <= 9999; ++i)
+	for (int i = 1; i <= 9999; ++i)
 	{
 		AsciiString leaf;
 		leaf.format("%s_%04d%s", adesc.str(), i, SAVE_GAME_EXTENSION);

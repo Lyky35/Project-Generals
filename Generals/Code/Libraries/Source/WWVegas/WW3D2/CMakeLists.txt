@@ -1,4 +1,8 @@
+# Exclude web browser file (requires Windows DLL)
+set(WW3D2_EXCLUDE dx8webbrowser.cpp)
 file(GLOB WW3D2_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+# Exclude web browser file (requires Windows DLL)
+list(FILTER WW3D2_SOURCES EXCLUDE REGEX "dx8webbrowser\.cpp$")
 
 add_library(WW3D2 STATIC ${WW3D2_SOURCES})
 

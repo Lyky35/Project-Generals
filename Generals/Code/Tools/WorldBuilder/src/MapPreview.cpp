@@ -234,9 +234,9 @@ void MapPreview::buildMapPreviewTexture( CString tgaName )
 	CWorldBuilderDoc* pDoc = CWorldBuilderDoc::GetActiveDoc();
 	WorldHeightMapEdit *pMap = pDoc->GetHeightMap();
 	pMap->getBoundary(0, &boundary );
-	for(i = 0; i < MAP_PREVIEW_HEIGHT; ++i)
+	for (int i = 0; i < MAP_PREVIEW_HEIGHT; ++i)
 	{
-		for(j = 0; j < MAP_PREVIEW_WIDTH; ++j)
+		for (int j = 0; j < MAP_PREVIEW_WIDTH; ++j)
 		{	
 			radarPoint.x = j;
 			radarPoint.y = i;
@@ -255,10 +255,10 @@ void MapPreview::buildMapPreviewTexture( CString tgaName )
 
 
 //	Color paddingColor = GameMakeColor( 100, 100, 100, 255 );
-	for( y = 0; y < MAP_PREVIEW_HEIGHT; y++ )
+	for (int y = 0; y < MAP_PREVIEW_HEIGHT; y++ )
 	{
 
-		for( x = 0; x < MAP_PREVIEW_WIDTH; x++ )
+		for (int x = 0; x < MAP_PREVIEW_WIDTH; x++ )
 		{
 
 			// what point are we inspecting
@@ -281,13 +281,13 @@ void MapPreview::buildMapPreviewTexture( CString tgaName )
 				sampleColor.red = sampleColor.green = sampleColor.blue = 0.0f;
 				samples = 0;
 
-				for( j = y - waterSamplesAway; j <= y + waterSamplesAway; j++ )
+				for (int j = y - waterSamplesAway; j <= y + waterSamplesAway; j++ )
 				{
 
 					if( j >= 0 && j < MAP_PREVIEW_HEIGHT )
 					{
 
-						for( i = x - waterSamplesAway; i <= x + waterSamplesAway; i++ )
+						for (int i = x - waterSamplesAway; i <= x + waterSamplesAway; i++ )
 						{
 
 							if( i >= 0 && i < MAP_PREVIEW_WIDTH )
@@ -345,13 +345,13 @@ void MapPreview::buildMapPreviewTexture( CString tgaName )
 				sampleColor.red = sampleColor.green = sampleColor.blue = 0.0f;
 				samples = 0;
 
-				for( j = y - samplesAway; j <= y + samplesAway; j++ )
+				for (int j = y - samplesAway; j <= y + samplesAway; j++ )
 				{
 
 					if( j >= 0 && j < MAP_PREVIEW_HEIGHT )
 					{
 
-						for( i = x - samplesAway; i <= x + samplesAway; i++ )
+						for (int i = x - samplesAway; i <= x + samplesAway; i++ )
 						{
 
 							if( i >= 0 && i < MAP_PREVIEW_WIDTH )

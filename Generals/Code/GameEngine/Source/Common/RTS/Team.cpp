@@ -1365,7 +1365,7 @@ Team::~Team()
 
 	// Tell the players a team is going away.
 	Int i;
-	for (i=0; i<ThePlayerList->getPlayerCount(); i++) {
+	for (int i =0; i<ThePlayerList->getPlayerCount(); i++) {
 		Player *plyr = ThePlayerList->getNthPlayer(i);
 		if (plyr) {
 			plyr->preTeamDestroy(this);

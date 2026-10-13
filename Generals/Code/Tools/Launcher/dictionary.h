@@ -141,7 +141,7 @@ void Dictionary<K,V>::clear()
   DNode<K,V> *temp,*del;
   uint32 i;
   //free all the data
-  for (i=0; i<size; i++)
+  for (int i =0; i<size; i++)
   {
     temp=table[i];
     while(temp!=NULL)
@@ -175,7 +175,7 @@ void Dictionary<K,V>::print(IN FILE *out) const
   uint32 i;
 
   fprintf(out,"--------------------\n");
-  for (i=0; i<getSize(); i++)
+  for (int i =0; i<getSize(); i++)
   {
     temp=table[i];
 
@@ -437,7 +437,7 @@ bit8 Dictionary<K,V>::removeAny(OUT K &key,OUT V &value)
 
   int i;
   offset=-1;
-  for (i=0; i<(int)getSize(); i++)
+  for (int i =0; i<(int)getSize(); i++)
     if (table[i]!=NULL)
     {
       offset=i;
@@ -528,7 +528,7 @@ void Dictionary<K,V>::shrink(void)
   assert(table!=NULL);
   memset((void *)table,0,size*sizeof(void *)); 
 
-  for (i=0; i<oldsize; i++)
+  for (int i =0; i<oldsize; i++)
   {
     temp=oldtable[i];
     while (temp!=NULL)
@@ -567,7 +567,7 @@ void Dictionary<K,V>::expand(void)
   assert(table!=NULL);
   memset((void *)table,0,size*sizeof(void *));       
 
-  for (i=0; i<oldsize; i++)
+  for (int i =0; i<oldsize; i++)
   {
     temp=oldtable[i];
     while (temp!=NULL)

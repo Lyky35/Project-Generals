@@ -1,3 +1,6 @@
+#include <algorithm>
+template <class T> static inline T min(T a, T b) { return a < b ? a : b; }
+template <class T> static inline T max(T a, T b) { return a > b ? a : b; }
 /*
 **	Command & Conquer Generals(tm)
 **	Copyright 2025 Electronic Arts Inc.

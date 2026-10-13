@@ -130,13 +130,13 @@ WWUtil/fast:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/build.make Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/build
 .PHONY : WWUtil/fast
 
-mathutil.obj: mathutil.cpp.obj
-.PHONY : mathutil.obj
+mathutil.o: mathutil.cpp.o
+.PHONY : mathutil.o
 
 # target to build an object file
-mathutil.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/build.make Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.obj
-.PHONY : mathutil.cpp.obj
+mathutil.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/build.make Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.o
+.PHONY : mathutil.cpp.o
 
 mathutil.i: mathutil.cpp.i
 .PHONY : mathutil.i
@@ -154,13 +154,13 @@ mathutil.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/build.make Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.s
 .PHONY : mathutil.cpp.s
 
-miscutil.obj: miscutil.cpp.obj
-.PHONY : miscutil.obj
+miscutil.o: miscutil.cpp.o
+.PHONY : miscutil.o
 
 # target to build an object file
-miscutil.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/build.make Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.obj
-.PHONY : miscutil.cpp.obj
+miscutil.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/build.make Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.o
+.PHONY : miscutil.cpp.o
 
 miscutil.i: miscutil.cpp.i
 .PHONY : miscutil.i
@@ -187,10 +187,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... WWUtil"
-	@echo "... mathutil.obj"
+	@echo "... mathutil.o"
 	@echo "... mathutil.i"
 	@echo "... mathutil.s"
-	@echo "... miscutil.obj"
+	@echo "... miscutil.o"
 	@echo "... miscutil.i"
 	@echo "... miscutil.s"
 .PHONY : help

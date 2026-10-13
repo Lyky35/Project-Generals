@@ -1,2 +1,2 @@
-x86_64-w64-mingw32-gcc-ar qc ../../../../../lib/libVulkanRenderer.a CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.obj CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.obj CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.obj CMakeFiles/VulkanRenderer.dir/VkShader.cpp.obj CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.obj
-x86_64-w64-mingw32-gcc-ranlib ../../../../../lib/libVulkanRenderer.a
+/usr/bin/ar qc ../../../../../lib/libVulkanRenderer.a CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.o CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.o CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.o CMakeFiles/VulkanRenderer.dir/VkShader.cpp.o CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.o CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.o CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.o CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.o CMakeFiles/VulkanRenderer.dir/vkshader.cpp.o CMakeFiles/VulkanRenderer.dir/vktexture.cpp.o
+/usr/bin/ranlib ../../../../../lib/libVulkanRenderer.a

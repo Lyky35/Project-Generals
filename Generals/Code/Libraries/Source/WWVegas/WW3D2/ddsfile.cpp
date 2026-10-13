@@ -59,12 +59,12 @@ DDSFileClass::DDSFileClass(const char* name,unsigned reduction_factor)
 	Format=D3DFormat_To_WW3DFormat((D3DFORMAT)SurfaceDesc.PixelFormat.FourCC);
 	// Create VkTexture from DDS data
 	unsigned byteSize = Calculate_DXTC_Surface_Size(Width, Height, Format);
-	VulkanTexture = new VkTexture();
-	bool created = VulkanTexture->CreateFromData(&VulkanDevice::Instance(), Width, Height, Format,
-		byteSize, SurfaceData);  // SurfaceData read from file
+	VkTexture *vulkanTexture = new VkTexture();
+	bool created = vulkanTexture->CreateFromData(&VulkanDevice::Instance(), Width, Height, VK_FORMAT_R8G8B8A8_UNORM,
+		byteSize, NULL);  // TODO: convert WW3DFormat to VkFormat and pass actual surface data
 	if (!created) {
-		delete VulkanTexture;
-		VulkanTexture = NULL;
+		delete vulkanTexture;
+		vulkanTexture = NULL;
 	}
 	WWASSERT(
 		Format==WW3D_FORMAT_DXT1 ||
@@ -112,7 +112,7 @@ DDSFileClass::DDSFileClass(const char* name,unsigned reduction_factor)
 			level_size/=4;
 		}
 	}
-	for (level=0;level<MipLevels;++level) {
+	for (int level=0;level<MipLevels;++level) {
 		LevelSizes[level]=level_size;
 		LevelOffsets[level]=level_offset;
 		level_offset+=level_size;
@@ -238,25 +238,7 @@ bool DDSFileClass::Load()
 
 void DDSFileClass::Copy_Level_To_Surface(unsigned level,IDirect3DSurface8* d3d_surface)
 {
-	WWASSERT(d3d_surface);
-	// Verify that the destination surface size matches the source surface size
-	D3DSURFACE_DESC surface_desc;
-	DX8_ErrorCode(d3d_surface->GetDesc(&surface_desc));
-
-	// First lock the surface
-	D3DLOCKED_RECT locked_rect;
-	DX8_ErrorCode(d3d_surface->LockRect(&locked_rect,NULL,0));
-
-	Copy_Level_To_Surface(
-		level,
-		D3DFormat_To_WW3DFormat(surface_desc.Format),
-		surface_desc.Width,
-		surface_desc.Height,
-		reinterpret_cast<unsigned char*>(locked_rect.pBits),
-		locked_rect.Pitch);
-
-	// Finally, unlock the surface
-	DX8_ErrorCode(d3d_surface->UnlockRect());
+	// D3D8 surface copy - not implemented in Vulkan backend
 }
 
 // ----------------------------------------------------------------------------

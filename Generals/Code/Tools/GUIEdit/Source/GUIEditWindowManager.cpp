@@ -527,10 +527,10 @@ void GUIEditWindowManager::incrementName( GameWindow *window )
 	// the string is turned real number, incremented, and replaces the
 	// existing number string
 	//
-	for( i = 0; i < MAX_WINDOW_NAME_LEN; i++ )
+	for (int i = 0; i < MAX_WINDOW_NAME_LEN; i++ )
 		numberBuffer[ i ] = ' ';
 	numberBuffer[ MAX_WINDOW_NAME_LEN - 1 ] = '\0';
-	for( i = len - 1, j = MAX_WINDOW_NAME_LEN - 2; i >= 0; i-- )
+	for (int i = len - 1, j = MAX_WINDOW_NAME_LEN - 2; i >= 0; i-- )
 	{
 
 		c = name[ i ];
@@ -569,7 +569,7 @@ void GUIEditWindowManager::incrementName( GameWindow *window )
 		// put number string OVER the original number string in the name
 		len = strlen( numberBuffer );
 		charsAdded = 0;
-		for( i = 0; i < len; i++ )
+		for (int i = 0; i < len; i++ )
 		{
 			if( i + numberStartIndex <= MAX_WINDOW_NAME_LEN - 2 )
 			{

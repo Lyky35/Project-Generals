@@ -7,9 +7,9 @@
 #endif
 
 #include <cstdint>
+#include <windows.h>
 #include <vulkan/vulkan.h>
 #include <vulkan/vulkan_win32.h>
-#include <windows.h>
 #include <vector>
 #include <cassert>
 
@@ -20,6 +20,7 @@ class VulkanDevice
 public:
     static const int MAX_FRAMES_IN_FLIGHT = 2;
 
+    static VulkanDevice &Instance();
     VulkanDevice();
     ~VulkanDevice();
 
@@ -27,6 +28,9 @@ public:
     VulkanDevice &operator=(const VulkanDevice &) = delete;
 
     bool Init(HWND hwnd);
+
+    bool PickPhysicalDevice();
+    int RatePhysicalDevice(VkPhysicalDevice device);
     void Shutdown();
 
     bool BeginFrame();
@@ -39,6 +43,7 @@ public:
     VkFormat GetSwapchainFormat() const { return m_swapchainFormat; }
     VkExtent2D GetSwapchainExtent() const { return m_swapchainExtent; }
     VkRenderPass GetRenderPass() const { return m_renderPass; }
+    VkFormat GetDepthFormat() const { return m_depthFormat; }
     uint32_t GetFrameIndex() const { return m_frameIndex; }
     VkCommandBuffer GetCommandBuffer() const { return m_commandBuffers[m_frameIndex]; }
 
@@ -61,6 +66,7 @@ private:
     bool CreateCommandBuffers();
     bool CreateSyncObjects();
     void CleanupSwapchain();
+    public:
     bool RecreateSwapchain();
 
     VkInstance m_instance;
@@ -96,45 +102,18 @@ private:
     uint32_t m_imageIndex;
     bool m_framebufferResized;
     VkExtent2D m_swapExtent;
-    std::vector<VkImage> m_swapImages;
+
+public:
+    // Accessor methods
+    VkFramebuffer GetFramebuffer() const { return m_framebuffers[0]; }
+    VkExtent2D GetSwapExtent() const { return m_swapExtent; }
+    VkFormat GetSwapFormat() const { return m_swapFormat; }
+    bool IsInitialized() const { return true; }
+    uint32_t GetImageIndex() const { return m_imageIndex; }
+    VkRenderPass GetRtRenderPass() const { return m_rtRenderPass; }
+    bool HasStencil() const { return false; }
+        std::vector<VkImage> m_swapImages;
+    const std::vector<VkImage>& GetSwapImages() const { return m_swapImages; }
     std::vector<VkImageView> m_swapImageViews;
     std::vector<VkFramebuffer> m_framebuffers;
-    VkImageView m_depthView;
-    VkRenderPass m_rtRenderPass;
-    VkCommandPool m_commandPool;
-    std::vector<VkSemaphore> m_imageAvailable;
-    std::vector<VkSemaphore> m_renderFinished;
-    std::vector<VkFence> m_inFlight;
-    std::vector<VkFence> m_imagesInFlight;
-    VkQueue m_graphicsQueue;
-    VkQueue m_presentQueue;
-    VkSwapchainKHR m_swapchain;
-    VkFormat m_swapchainFormat;
-    VkExtent2D m_swapchainExtent;
-    VkRenderPass m_renderPass;
-    VkDebugUtilsMessengerEXT m_debugMessenger;
-    VkSurfaceKHR m_surface;
-    HWND m_hwnd;
-    uint32_t m_frameIndex;
-    VkCommandPool m_commandPool;
-    VkFormat m_swapFormat;
-    VkImage m_depthImage;
-    VkDeviceMemory m_depthMemory;
-    VkImageView m_depthView;
-    VkFormat m_depthFormat;
-    VkRenderPass m_rtRenderPass;
-    VkCommandPool m_commandPool;
-    VkExtent2D m_swapExtent;
-    std::vector<VkImage> m_swapImages;
-    std::vector<VkImageView> m_swapImageViews;
-    std::vector<VkFramebuffer> m_framebuffers;
-    VkImageView m_depthView;
-    VkRenderPass m_rtRenderPass;
-    VkCommandPool m_commandPool;
-    std::vector<VkSemaphore> m_imageAvailable;
-    std::vector<VkSemaphore> m_renderFinished;
-    std::vector<VkFence> m_inFlight;
-    std::vector<VkFence> m_imagesInFlight;
-    bool m_framebufferResized;
-    uint32_t m_imageIndex;
-    VkCommandPool m_commandPool;
+};

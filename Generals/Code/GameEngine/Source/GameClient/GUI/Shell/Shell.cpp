@@ -59,7 +59,7 @@ Shell::Shell( void )
 	Int i;
 
 	m_screenCount = 0;
-	for( i = 0; i < MAX_SHELL_STACK; i++ )
+	for (int i = 0; i < MAX_SHELL_STACK; i++ )
 		m_screenStack[ i ] = NULL;
 
 	m_pendingPush = FALSE;
@@ -227,7 +227,7 @@ WindowLayout *Shell::findScreenByFilename( AsciiString filename )
 	// search screen list
 	WindowLayout *screen;
 	Int i;
-	for( i = 0; i < MAX_SHELL_STACK; i++ )
+	for (int i = 0; i < MAX_SHELL_STACK; i++ )
 	{
 
 		screen = m_screenStack[ i ];
@@ -247,7 +247,7 @@ void Shell::hide( Bool hide )
 {
 	Int i;
 
-	for( i = 0; i < MAX_SHELL_STACK; i++ )
+	for (int i = 0; i < MAX_SHELL_STACK; i++ )
 		if( m_screenStack[ i ] )
 			m_screenStack[ i ]->hide( hide );
 

@@ -98,7 +98,7 @@ void AlphaModifierClass::ModifyObject(TimeValue t, ModContext &mc, ObjectState *
 
 		assert(vdata);
 
-		for (i = 0; i < numVert; i++)
+		for (int i = 0; i < numVert; i++)
 		{
 			if (mesh->VertSel()[i]) 
 			{
@@ -120,7 +120,7 @@ void AlphaModifierClass::ModifyObject(TimeValue t, ModContext &mc, ObjectState *
 		pblock->GetValue(DL_FIND_CHECK_BOX, t, box_checked, valid);
 		if (!box_checked)
 		{
-			for (i = 0; i < numVert; i++)
+			for (int i = 0; i < numVert; i++)
 			{
 				if (SelectedVertices[i]) 
 				{
@@ -141,7 +141,7 @@ void AlphaModifierClass::ModifyObject(TimeValue t, ModContext &mc, ObjectState *
 	{
 		assert(vdata);
 		// Find the vertices that have the user entered value.
-		for (i = 0; i < numVert; i++)
+		for (int i = 0; i < numVert; i++)
 		{
 			if (vdata[i] == sparam) 
 			{
@@ -164,7 +164,7 @@ void AlphaModifierClass::ModifyObject(TimeValue t, ModContext &mc, ObjectState *
 
 		SelectedVertices = mesh->VertSel();
 
-		for (i = 0; i < numVert; i++)
+		for (int i = 0; i < numVert; i++)
 		{
 			if (SelectedVertices[i]) 
 			{
@@ -180,7 +180,7 @@ void AlphaModifierClass::ModifyObject(TimeValue t, ModContext &mc, ObjectState *
 
 	// Always select the vertices that have been saved by the modifier.
 	// This must be done because the mesh changes each time ModfiyObject is called.
-	for (i = 0; i < numVert; i++)
+	for (int i = 0; i < numVert; i++)
 	{
 		if (SelectedVertices[i]) 
 		{

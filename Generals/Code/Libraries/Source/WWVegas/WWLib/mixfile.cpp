@@ -353,7 +353,7 @@ MixFileFactoryClass::Flush_Changes (void)
 		//
 		//	Add the new files that are pending
 		//
-		for (index = 0; index < PendingAddFileList.Count (); index ++) {
+		for (int index = 0; index < PendingAddFileList.Count (); index ++) {
 			new_mix_file.Add_File (PendingAddFileList[index].FullPath, PendingAddFileList[index].Filename);
 		}
 	}
@@ -448,7 +448,7 @@ MixFileCreator::~MixFileCreator( void )
 		}
 
 		// Save file info (CRC, Offset, Size )
-		for ( i = 0; i < num_files; i++ ) {
+		for (int i = 0; i < num_files; i++ ) {
 			MixFile->Write( &FileInfo[i].CRC, 4 );
 			MixFile->Write( &FileInfo[i].Offset, 4 );
 			MixFile->Write( &FileInfo[i].Size, 4 );
@@ -464,7 +464,7 @@ MixFileCreator::~MixFileCreator( void )
 		MixFile->Write( &num_files, sizeof( num_files ) );
 
 		// Save file info
-		for ( i = 0; i < num_files; i++ ) {
+		for (int i = 0; i < num_files; i++ ) {
 			const char * filename = FileInfo[i].Filename;
 			int size = FileInfo[i].Filename.Get_Length()+1;
 			WWASSERT( size < 255 );

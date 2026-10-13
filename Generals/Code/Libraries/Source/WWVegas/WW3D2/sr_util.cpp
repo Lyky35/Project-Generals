@@ -505,7 +505,7 @@ bool Get_ZClamped_Camera_Frustum_Corners(const CameraClass * camera,
 
 	// Transform the eight corners of the view frustum from camera space to world space.
    Matrix3D cam_mat = camera->Get_Transform();
-	for (i = 0; i < 8; i++) {
+	for (int i = 0; i < 8; i++) {
 		Matrix3D::Transform_Vector(cam_mat, points[i], &(points[i]));
 	}
 

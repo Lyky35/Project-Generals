@@ -283,7 +283,7 @@ WaterRenderObjClass::~WaterRenderObjClass(void)
 
 	Int i;
 
-	for(i=0; i<TIME_OF_DAY_COUNT; i++)
+	for (int i =0; i<TIME_OF_DAY_COUNT; i++)
 	{	REF_PTR_RELEASE(m_settings[i].skyTexture);
 		REF_PTR_RELEASE(m_settings[i].waterTexture);
 	}
@@ -300,7 +300,7 @@ WaterRenderObjClass::~WaterRenderObjClass(void)
 	m_meshDataSize = 0;
 
 	//Release strings allocated inside global water settings.
-	for  (i=0; i<TIME_OF_DAY_COUNT; i++)
+	for (int i =0; i<TIME_OF_DAY_COUNT; i++)
 	{	WaterSettings[i].m_skyTextureFile.clear();
 		WaterSettings[i].m_waterTextureFile.clear();
 	}
@@ -664,9 +664,9 @@ HRESULT WaterRenderObjClass::generateVertexBuffer( Int sizeX, Int sizeY, Int ver
 		return hr;
 
 	Int x,z;
-	for (z=0; z<sizeY; z++)
+	for (int z =0; z<sizeY; z++)
 	{
-		for (x=0; x<sizeX; x++)
+		for (int x =0; x<sizeX; x++)
 		{
 			pVertices->x=(float)x;
 			pVertices->y=m_level;
@@ -723,7 +723,7 @@ HRESULT WaterRenderObjClass::generateIndexBuffer(Int sizeX, Int sizeY)
 
 	Int i,j,k;
 
-	for (i=0,j=0,k=0; i<m_numIndices; j++)
+	for (int i =0,j=0,k=0; i<m_numIndices; j++)
 	{
 		for (;k<(sizeX*(j+1)); k++,i+=2)
 		{
@@ -749,11 +749,11 @@ HRESULT WaterRenderObjClass::generateIndexBuffer(Int sizeX, Int sizeY)
 
 
 	Int x,z,s_toggle=1;
-	for (z=step; z<size; z+=step)
+	for (int z =step; z<size; z+=step)
 	{
 		if (s_toggle)
 		{
-			for (x=0; x<(size-step); x+=step)
+			for (int x =0; x<(size-step); x+=step)
 			{
 				*pIndices++=(WORD)((z-0)*size+(x));
 				*pIndices++=(WORD)((z-step)*size+(x));
@@ -768,7 +768,7 @@ HRESULT WaterRenderObjClass::generateIndexBuffer(Int sizeX, Int sizeY)
 		{
 			*pIndices++=(WORD)((z-step)*size+(size-1));
 			*pIndices++=(WORD)((z-0)*size+(size-1));
-			for (x=size-1; x>0; x-=step)
+			for (int x =size-1; x>0; x-=step)
 			{
 				*pIndices++=(WORD)((z-step)*size+(x-step));
 				*pIndices++=(WORD)((z-0)*size+(x-step));
@@ -1112,10 +1112,10 @@ void WaterRenderObjClass::reset( void )
 		Int my = m_gridCellsY + 1;
 
 		// go through each mesh point and adjust the height according to the velocity
-		for( j = 0, pData = m_meshData; j < (my + 2); j++ )
+		for (int j = 0, pData = m_meshData; j < (my + 2); j++ )
 		{	
 
-			for( i = 0; i < (mx + 2); i++ )
+			for (int i = 0; i < (mx + 2); i++ )
 			{
 
 				// areset grid values for this cell
@@ -1216,10 +1216,10 @@ void WaterRenderObjClass::update( void )
 			m_meshInMotion = FALSE;
 
 			// go through each mesh point and adjust the height according to the velocity
-			for( j = 0, pData = m_meshData; j < (my + 2); j++ )
+			for (int j = 0, pData = m_meshData; j < (my + 2); j++ )
 			{	
 
-				for( i = 0; i < (mx + 2); i++ )
+				for (int i = 0; i < (mx + 2); i++ )
 				{
 
 					// only pay attention to mesh points that are in motion
@@ -1967,7 +1967,7 @@ void WaterRenderObjClass::renderWater(void)
 					continue;
 				} 
 				Int k;
-				for (k=1; k<pTrig->getNumPoints()-1; k=k+2) {
+				for (int k =1; k<pTrig->getNumPoints()-1; k=k+2) {
 					ICoord3D pt3 = *pTrig->getPoint(0);
 					ICoord3D pt2 = *pTrig->getPoint(k);
 					ICoord3D pt1 = *pTrig->getPoint(k+1);
@@ -2238,9 +2238,9 @@ void WaterRenderObjClass::renderWaterMesh(void)
 	static Real PhasePerFrameY=0.1f;
 
 	//update the mesh heights for this frame (update buffer is 2 samples wider/taller due to border)
-	for (j=0,pData=m_meshData; j<(my+2); j++)
+	for (int j =0,pData=m_meshData; j<(my+2); j++)
 	{	
-		for (i=0; i<(mx+2); i++)
+		for (int i =0; i<(mx+2); i++)
 		{
 			//*pData = WATER_AMP * sin(WATER_FREQ*(0.7f*i + 0.7f*j) - PhasePerFrame);
 
@@ -2281,13 +2281,13 @@ void WaterRenderObjClass::renderWaterMesh(void)
 	Real bumpSizeDiv2=0.3f*cellSizeY/BUMP_SIZE;
 
 	//Data has a 1 vertex padding all around it so we don't need to special-case edges.  Improves performance
-	for (j=0,pData=m_meshData+mx+2+1; j<my; j++,pData+=2)	//skip 2 horizontal border samples after each row
+	for (int j =0,pData=m_meshData+mx+2+1; j<my; j++,pData+=2)	//skip 2 horizontal border samples after each row
 	{	
 		Real y=(float)j*cellSizeY;
 		Real v1Offset=m_riverVOrigin+(float)j*vScale + uvCosScale*WWMath::Fast_Sin(sinOffset+y*PI/(8*MAP_XY_FACTOR));
 		Real v2Offset=((float)j+originScale)*bumpSizeDiv + (float)j*bumpSizeDiv2;
 
-		for (i=0; i<mx; i++)
+		for (int i =0; i<mx; i++)
 		{
 			//compute normal by looking at 4 vertex neightbors
 #ifdef USE_MESH_NORMALS
@@ -2462,9 +2462,9 @@ void WaterRenderObjClass::addVelocity( Real worldX, Real worldY,
 			if (maxY > m_gridCellsY)
 				maxY = m_gridCellsY;	//clamp extent to fall within box
 
-			for (y=minY; y<=maxY; y++)
+			for (int y =minY; y<=maxY; y++)
 			{
-				for (x=minX; x<=maxX; x++)
+				for (int x =minX; x<=maxX; x++)
 				{	
 
 					// get the mesh point that we're concerned with
@@ -2523,9 +2523,9 @@ void WaterRenderObjClass::changeGridHeight(Real wx, Real wy, Real delta)
 		if (maxY > m_gridCellsY)
 			maxY = m_gridCellsY;	//clamp extent to fall within box
 
-		for (y=minY; y<=maxY; y++)
+		for (int y =minY; y<=maxY; y++)
 		{
-			for (x=minX; x<=maxX; x++)
+			for (int x =minX; x<=maxX; x++)
 			{	oldData = &m_meshData[(y+1)*(m_gridCellsX+1+2)+x+1].height;
 				distance = (gx - (Real)x)*(gx - (Real)x) + (gy - (Real)y)*(gy - (Real)y);
 				distance = sqrt(distance);
@@ -2739,7 +2739,7 @@ void WaterRenderObjClass::drawRiverWater(PolygonTrigger *pTrig)
 	Real endLen=0;
 	Real totalLen=0;
 	Int i;
-	for (i=0; i<pTrig->getNumPoints()-1; i++) {
+	for (int i =0; i<pTrig->getNumPoints()-1; i++) {
 		ICoord3D innerPt = *pTrig->getPoint(i);
 		ICoord3D outerPt = *pTrig->getPoint(i+1);
 		Real dx = innerPt.x-outerPt.x;
@@ -2767,7 +2767,7 @@ void WaterRenderObjClass::drawRiverWater(PolygonTrigger *pTrig)
 
 		Real constA=3*m_riverVOrigin;
 
-		for (i=0; i<(pTrig->getNumPoints()/2); i++)
+		for (int i =0; i<(pTrig->getNumPoints()/2); i++)
 		{
 			Real x,y;
 			ICoord3D innerPt = *pTrig->getPoint(outerNdx);
@@ -2985,8 +2985,8 @@ void WaterRenderObjClass::drawTrapezoidWater(Vector3 points[4])
 	{
 		DynamicIBAccessClass::WriteLockClass lockib(&ib_access);
  		UnsignedShort *curIb = lockib.Get_Index_Array();
-		for (j=0; j<vCount-1; j++)
-			for (i=0; i<uCount-1; i++)
+		for (int j =0; j<vCount-1; j++)
+			for (int i =0; i<uCount-1; i++)
 			{
 				//triangle 1
 				curIb[0] = (j)*uCount + i;
@@ -3066,11 +3066,11 @@ void WaterRenderObjClass::drawTrapezoidWater(Vector3 points[4])
 		//Keep diffuse from lighting calculations but substitute custom alpha
 		Int customDiffuse = (diffuse & 0x00ffffff) | (Alpha<< 24);//(0x80 << 16)|(0x90 << 8)|0xa0;
 
-		for (j=0; j<vCount; j++)
+		for (int j =0; j<vCount; j++)
 		{
 			Real dv = j;
 			dv /= (vCount-1);
-			for (i=0; i<uCount; i++)
+			for (int i =0; i<uCount; i++)
 			{
 				Real du = i;
 				du /= (uCount-1);
@@ -3115,11 +3115,11 @@ void WaterRenderObjClass::drawTrapezoidWater(Vector3 points[4])
 		Real constE=1.0f/(Real)(vCount-1);
 		Real constF=1.0f/(Real)(uCount-1);
 
-		for (j=0; j<vCount; j++)
+		for (int j =0; j<vCount; j++)
 		{
 			Real dv = (Real)j * constE;
 
-			for (i=0; i<uCount; i++)
+			for (int i =0; i<uCount; i++)
 			{
 				Real du = (Real)i * constF;
 				Vector3 vertex = origin;

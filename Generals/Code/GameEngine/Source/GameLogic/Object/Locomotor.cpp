@@ -1506,8 +1506,8 @@ Bool Locomotor::fixInvalidPosition(Object* obj, PhysicsBehavior *physics)
 	Int dx = 0;
 	Int dy = 0;
 	Int i, j;
-	for (j=-1; j<2; j++) {
-		for (i=-1; i<2; i++) {
+	for (int j =-1; j<2; j++) {
+		for (int i =-1; i<2; i++) {
 			Coord3D thePos = *obj->getPosition();
 			thePos.x += i*PATHFIND_CELL_SIZE_F;
 			thePos.y += j*PATHFIND_CELL_SIZE_F;

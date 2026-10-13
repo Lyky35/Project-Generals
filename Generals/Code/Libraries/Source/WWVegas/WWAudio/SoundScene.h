@@ -178,6 +178,7 @@ class SoundSceneClass
 		//////////////////////////////////////////////////////////////////////
 		//	Collection methods
 		//////////////////////////////////////////////////////////////////////		
+	public:
 		class AudibleInfoClass : public MultiListObjectClass, public AutoPoolClass<AudibleInfoClass, 64>
 		{
 		public:
@@ -197,7 +198,7 @@ class SoundSceneClass
 
 		virtual void			Collect_Audible_Sounds (Listener3DClass *listener, COLLECTED_SOUNDS &list);
 
-	private:
+	protected:
 
 		//////////////////////////////////////////////////////////////////////
 		//	Private member data

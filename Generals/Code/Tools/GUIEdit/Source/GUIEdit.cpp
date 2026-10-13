@@ -4036,11 +4036,11 @@ void GUIEdit::deleteSelected( void )
 	}  // end if
 
 	// fill out the delete list
-	for( i = 0, select = m_selectList; i < count; i++, select = select->next )
+	for (int i = 0, select = m_selectList; i < count; i++, select = select->next )
 		deleteList[ i ] = select->window;
 
 	// delete them all
-	for( i = 0; i < count; i++ )
+	for (int i = 0; i < count; i++ )
 		deleteWindow( deleteList[ i ] );
 
 	// free memory for the delete list
@@ -4081,11 +4081,11 @@ void GUIEdit::bringSelectedToTop( void )
 	// take the snapshot
 	Int i;
 	WindowSelectionEntry *select;
-	for( i = 0, select = m_selectList; i < count; i++, select = select->next )
+	for (int i = 0, select = m_selectList; i < count; i++, select = select->next )
 		snapshot[ i ] = select->window;
 
 	// bring all the selected windows to the top
-	for( i = 0; i < count; i++ )
+	for (int i = 0; i < count; i++ )
 	{
 
 		// bring window to the top

@@ -484,7 +484,7 @@ GarrisonContain::GarrisonContain( Thing *thing, const ModuleData *moduleData ) :
 	m_garrisonPointsInUse = 0;
 	m_garrisonPointsInitialized = FALSE;
 
-	for( i = 0; i < MAX_GARRISON_POINTS; i++ )
+	for (int i = 0; i < MAX_GARRISON_POINTS; i++ )
 	{
 		
 		m_garrisonPointData[ i ].object = NULL;
@@ -493,7 +493,7 @@ GarrisonContain::GarrisonContain( Thing *thing, const ModuleData *moduleData ) :
 		m_garrisonPointData[ i ].lastEffectFrame = 0;
 		m_garrisonPointData[ i ].effect = NULL;
 
-		for( j = 0; j < MAX_GARRISON_POINT_CONDITIONS; ++j )
+		for (int j = 0; j < MAX_GARRISON_POINT_CONDITIONS; ++j )
 			m_garrisonPoint[ j ][ i ].zero();
 
 	}  // end for i
@@ -734,7 +734,7 @@ void GarrisonContain::redeployOccupants( void )
 	Int i;
 
 	// copy the current set of garrison point data sets
-	for( i = 0; i < MAX_GARRISON_POINTS; ++i )
+	for (int i = 0; i < MAX_GARRISON_POINTS; ++i )
 		garrisonPointDataCopy[ i ] = m_garrisonPointData[ i ];
 
 	// remove the occupants
@@ -745,7 +745,7 @@ void GarrisonContain::redeployOccupants( void )
 
 	// restore the frame markers that things were recorded as entering their point
 	Int index;
-	for( i = 0; i < MAX_GARRISON_POINTS; ++i )
+	for (int i = 0; i < MAX_GARRISON_POINTS; ++i )
 	{
 
 		if( garrisonPointDataCopy[ i ].object )
@@ -1080,8 +1080,8 @@ void GarrisonContain::loadGarrisonPoints( void )
 	// initialize all the garrison points to the center of the object, this assumes that we
 	// will never move (these points are cached)
 	//
-	for( i = 0; i < MAX_GARRISON_POINT_CONDITIONS; ++i )
-		for( j = 0; j < MAX_GARRISON_POINTS; ++j )
+	for (int i = 0; i < MAX_GARRISON_POINT_CONDITIONS; ++i )
+		for (int j = 0; j < MAX_GARRISON_POINTS; ++j )
 			m_garrisonPoint[ i ][ j ] = *(structure->getPosition());
 
 	//
@@ -1507,7 +1507,7 @@ void GarrisonContain::xfer( Xfer *xfer )
 	// garrison point data
 	UnsignedShort pointDataCount = MAX_GARRISON_POINTS;
 	xfer->xferUnsignedShort( &pointDataCount );
-	for( i = 0; i < pointDataCount; ++i )
+	for (int i = 0; i < pointDataCount; ++i )
 	{
 
 		if( xfer->getXferMode() == XFER_SAVE )

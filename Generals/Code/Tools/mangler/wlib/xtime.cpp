@@ -519,7 +519,7 @@ bit8 Xtime::ParseDate(char *in)
   while ((!isgraph(*ptr))&&(*ptr!=0)) ptr++;  // skip to start of string
   if (*ptr==0) return(FALSE);
   t.tm_wday_=-1;
-  for (i=0; i<7; i++)  // parse day_ of week
+  for (int i =0; i<7; i++)  // parse day_ of week
     if (strncmp(ptr,DAYS[i],strlen(DAYS[i]))==0)
       t.tm_wday_=i;
   if (t.tm_wday_==-1)
@@ -530,7 +530,7 @@ bit8 Xtime::ParseDate(char *in)
   while ((!isalpha(*ptr))&&(*ptr!=0)) ptr++;  // skip to month
   if (*ptr==0) return(FALSE);
   t.tm_mon=-1;
-  for (i=0; i<12; i++)  // match month
+  for (int i =0; i<12; i++)  // match month
     if (strncmp(ptr,MONTHS[i],strlen(MONTHS[i]))==0) t.tm_mon=i;
   if (t.tm_mon==-1) return(FALSE);
   while ((!isdigit(*ptr))&&(*ptr!=0)) ptr++;
@@ -716,7 +716,7 @@ bit8 Xtime::getTime(int &month, int &mday, int &year, int &hour, int &minute, in
   month=0;
 
   bit8 isleap=IS_LEAP(year);
-  for (i=0; i<12; i++)
+  for (int i =0; i<12; i++)
   {
     if (DaysAtMonth[isleap][i] >= dayofyear)
       break;

@@ -189,7 +189,7 @@ void W3DRadar::reconstructViewBox( void )
 																									getTerrainAverageZ() );
 
 	// convert each of the 4 points in the world to radar cell positions
-	for( i = 0; i < 4; i++ )
+	for (int i = 0; i < 4; i++ )
 	{
 
 		// first convert to radar cells
@@ -573,7 +573,7 @@ void W3DRadar::drawEvents( Int pixelX, Int pixelY, Int width, Int height )
 {
 	Int i;
 
-	for( i = 0;  i < MAX_RADAR_EVENTS; i++ )
+	for (int i = 0;  i < MAX_RADAR_EVENTS; i++ )
 	{
 
 		// only 'active' events actually have something to draw
@@ -1051,10 +1051,10 @@ void W3DRadar::buildTerrainTexture( TerrainLogic *terrain )
 	ICoord2D radarPoint;
 	Coord3D worldPoint;
 	Bridge *bridge;
-	for( y = 0; y < m_textureHeight; y++ )
+	for (int y = 0; y < m_textureHeight; y++ )
 	{
 
-		for( x = 0; x < m_textureWidth; x++ )
+		for (int x = 0; x < m_textureWidth; x++ )
 		{
 
 			// what point are we inspecting
@@ -1093,13 +1093,13 @@ void W3DRadar::buildTerrainTexture( TerrainLogic *terrain )
 				sampleColor.red = sampleColor.green = sampleColor.blue = 0.0f;
 				samples = 0;
 
-				for( j = y - waterSamplesAway; j <= y + waterSamplesAway; j++ )
+				for (int j = y - waterSamplesAway; j <= y + waterSamplesAway; j++ )
 				{
 
 					if( j >= 0 && j < m_textureHeight )
 					{
 
-						for( i = x - waterSamplesAway; i <= x + waterSamplesAway; i++ )
+						for (int i = x - waterSamplesAway; i <= x + waterSamplesAway; i++ )
 						{
 
 							if( i >= 0 && i < m_textureWidth )
@@ -1159,13 +1159,13 @@ void W3DRadar::buildTerrainTexture( TerrainLogic *terrain )
 				sampleColor.red = sampleColor.green = sampleColor.blue = 0.0f;
 				samples = 0;
 
-				for( j = y - samplesAway; j <= y + samplesAway; j++ )
+				for (int j = y - samplesAway; j <= y + samplesAway; j++ )
 				{
 
 					if( j >= 0 && j < m_textureHeight )
 					{
 
-						for( i = x - samplesAway; i <= x + samplesAway; i++ )
+						for (int i = x - samplesAway; i <= x + samplesAway; i++ )
 						{
 
 							if( i >= 0 && i < m_textureWidth )

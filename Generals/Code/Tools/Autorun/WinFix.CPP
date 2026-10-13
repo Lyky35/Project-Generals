@@ -218,7 +218,7 @@ WindowsVersionInfo::WindowsVersionInfo(void) :
 	int i;
 
 	adjusted_minor = MinorVersionNumber;
-	for (i = 0; i < 4; i++) {
+	for (int i = 0; i < 4; i++) {
 		if ((adjusted_minor & 0x000f) != 0) {
 			break;
 		}

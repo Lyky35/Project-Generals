@@ -35,17 +35,53 @@
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 #include "definitionmgr.h"
+#include <algorithm>
+using std::min;
+using std::max;
 #include "definition.h"
+#include <algorithm>
+using std::min;
+using std::max;
 #include "definitionfactory.h"
+#include <algorithm>
+using std::min;
+using std::max;
 #include "definitionfactorymgr.h"
+#include <algorithm>
+using std::min;
+using std::max;
 #include "definitionclassids.h"
+#include <algorithm>
+using std::min;
+using std::max;
 #include "chunkio.h"
+#include <algorithm>
+using std::min;
+using std::max;
 #include "persistfactory.h"
+#include <algorithm>
+using std::min;
+using std::max;
 #include "wwdebug.h"
+#include <algorithm>
+using std::min;
+using std::max;
 #include "wwmemlog.h"
+#include <algorithm>
+using std::min;
+using std::max;
 #include "twiddler.h"
+#include <algorithm>
+using std::min;
+using std::max;
 #include <string.h>
+#include <algorithm>
+using std::min;
+using std::max;
 #include "wwprofile.h"
+#include <algorithm>
+using std::min;
+using std::max;
 
 
 //////////////////////////////////////////////////////////////////////////////////

@@ -48,6 +48,7 @@
 #include <stdio.h>
 
 #include <wpaudio/profiler.h>
+#include <wpaudio/time.h>
 
 /*****************************************************************************
 **          Externals                                                       **

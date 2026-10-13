@@ -288,7 +288,7 @@ void Wstring::cellCopy(char *dest, uint32 len)
   uint32 i;
 
   strncpy(dest, str, len);
-  for(i = (uint32)strlen(str); i < len; i++)
+  for (int i = (uint32)strlen(str); i < len; i++)
     dest[i] = ' ';
   dest[len] = 0;
 }
@@ -469,7 +469,7 @@ void Wstring::toLower(void)
   uint32 i;
   int    strlength=length();
 
-  for(i = 0; i < (uint32)strlength; i++)
+  for (int i = 0; i < (uint32)strlength; i++)
   {
     if((str[i] >= 'A') && (str[i] <= 'Z'))
       str[i] = (sint8)tolower(str[i]);
@@ -484,7 +484,7 @@ void Wstring::toUpper(void)
   uint32 i;
   int    strlength=length();
 
-  for(i = 0; i < (uint32)strlength; i++)
+  for (int i = 0; i < (uint32)strlength; i++)
   {
     if((str[i] >= 'a') && (str[i] <= 'z'))
       str[i] = (sint8)toupper(str[i]);
@@ -529,7 +529,7 @@ sint32 Wstring::getToken(int offset,char *delim,Wstring &out) RO
   if (offset<0)  // check for bad input
     return(-1);
 
-  for (i=offset; i<(int)length(); i++) {
+  for (int i =offset; i<(int)length(); i++) {
     if(strchr(delim,str[i])==NULL)
       break;
   }

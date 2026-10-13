@@ -161,7 +161,7 @@ bit8 Read_Process_Info(ConfigFile &config,OUT Process &info, IN char *key)
     }
 
     strcpy(info.command,string+i);
-    for (i=0; i<int(strlen(info.command)); i++)
+    for (int i =0; i<int(strlen(info.command)); i++)
       if ((info.command[i]=='\n')||(info.command[i]=='\r'))
         info.command[i]=0;
 

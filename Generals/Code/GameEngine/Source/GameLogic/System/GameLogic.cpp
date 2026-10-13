@@ -657,7 +657,7 @@ static void checkForDuplicateColors( GameInfo *game )
 	// Here, we check for collisions in the color choice.  If there is a
 	// collision, the first player will get the color, and the other(s)
 	// will map to random.
-	for (i=MAX_SLOTS-1; i>=0; --i)
+	for (int i =MAX_SLOTS-1; i>=0; --i)
 	{
 		GameSlot *slot = game->getSlot(i);
 
@@ -692,7 +692,7 @@ static void populateRandomSideAndColor( GameInfo *game )
 #define MORE_RANDOM
 #ifdef MORE_RANDOM
 	std::vector<Int> startSlots;
-	for (i = 0; i < ThePlayerTemplateStore->getPlayerTemplateCount(); ++i)
+	for (int i = 0; i < ThePlayerTemplateStore->getPlayerTemplateCount(); ++i)
 	{
 		const PlayerTemplate* ptTest = ThePlayerTemplateStore->getNthPlayerTemplate(i);
 		if (!ptTest || ptTest->getStartingBuilding().isEmpty())
@@ -701,7 +701,7 @@ static void populateRandomSideAndColor( GameInfo *game )
 	}
 #endif
 
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		GameSlot *slot = game->getSlot(i);
 
@@ -775,7 +775,7 @@ static void populateRandomStartPosition( GameInfo *game )
 
 	// generate a map of start spot distances
 	Real startSpotDistance[MAX_SLOTS][MAX_SLOTS];
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		for (Int j=0; j<MAX_SLOTS; ++j)
 		{
@@ -808,11 +808,11 @@ static void populateRandomStartPosition( GameInfo *game )
 	// see if a start spot has been chosen at all yet
 	Bool hasStartSpotBeenPicked = FALSE;
 	Bool taken[MAX_SLOTS];
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		taken[i] = (i<numPlayers)?FALSE:TRUE;
 	}
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		GameSlot *slot = game->getSlot(i);
 
@@ -828,7 +828,7 @@ static void populateRandomStartPosition( GameInfo *game )
 	}
 
 	// now pick non-observer spots
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		GameSlot *slot = game->getSlot(i);
 
@@ -898,13 +898,13 @@ static void populateRandomStartPosition( GameInfo *game )
 
 	// now go back & assign observer spots
 	Int numPlayersInGame = 0;
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		const GameSlot *slot = game->getConstSlot(i);
 		if (slot->isOccupied() && slot->getPlayerTemplate() != PLAYERTEMPLATE_OBSERVER)
 			++numPlayersInGame;
 	}
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		GameSlot *slot = game->getSlot(i);
 
@@ -2399,11 +2399,11 @@ inline void GameLogic::validateSleepyUpdate() const
 
 	int i;
 	//DEBUG_LOG(("\n\n"));
-	//for (i = 0; i < sz; ++i)
+	//for (int i = 0; i < sz; ++i)
 	//{
 	//	DEBUG_LOG(("u %04d: %08lx %08lx\n",i,m_sleepyUpdates[i],m_sleepyUpdates[i]->friend_getNextCallFrame()));
 	//}
-	for (i = 0; i < sz; ++i)
+	for (int i = 0; i < sz; ++i)
 	{
 		DEBUG_ASSERTCRASH(m_sleepyUpdates[i]->friend_getIndexInLogic() == i, ("index mismatch: expected %d, got %d\n",i,m_sleepyUpdates[i]->friend_getIndexInLogic()));
 		UnsignedInt pri = m_sleepyUpdates[i]->friend_getPriority();
@@ -2983,8 +2983,8 @@ static void unitTimings(void)
 #endif
 			DEBUG_LOG(("Doing thing %s -", btt->getName().str()));
 			Int i, j;
-			for (i=0; i<10; i++) {
-				for (j=0; j<10; j++) {
+			for (int i =0; i<10; i++) {
+				for (int j =0; j<10; j++) {
 					Team *team = ThePlayerList->getNthPlayer(1)->getDefaultTeam();
 					Object *obj = TheThingFactory->newObject( btt, team );
 					if (obj==NULL) break;

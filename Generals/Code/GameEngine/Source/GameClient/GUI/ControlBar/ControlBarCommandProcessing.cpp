@@ -331,7 +331,7 @@ CBCommandStatus ControlBar::processCommandUI( GameWindow *control,
 			Int i;
 
 			// find out which index (i) in the queue represents the button clicked
-			for( i = 0; i < MAX_BUILD_QUEUE_BUTTONS; i++ )
+			for (int i = 0; i < MAX_BUILD_QUEUE_BUTTONS; i++ )
 				if( m_queueData[ i ].control == control )
 					break;
 
@@ -455,7 +455,7 @@ CBCommandStatus ControlBar::processCommandUI( GameWindow *control,
 			Int i;
 
 			// find out which index (i) in the queue represents the button clicked
-			for( i = 0; i < MAX_BUILD_QUEUE_BUTTONS; i++ )
+			for (int i = 0; i < MAX_BUILD_QUEUE_BUTTONS; i++ )
 				if( m_queueData[ i ].control == control )
 					break;
 
@@ -517,7 +517,7 @@ CBCommandStatus ControlBar::processCommandUI( GameWindow *control,
 			// find the object ID that wants to exit by scanning through the transport data and looking
 			// for the matching control button
 			//
-			for( i = 0; i < MAX_COMMANDS_PER_SET; i++ )
+			for (int i = 0; i < MAX_COMMANDS_PER_SET; i++ )
 				if( m_containData[ i ].control == control )
 					objID = m_containData[ i ].objectID;
 

@@ -404,7 +404,7 @@ bool VkTexture::CreateDepth(VulkanDevice *device, uint32_t width, uint32_t heigh
 	return true;
 }
 
-VkSampler VkTexture::FindOrCreateSampler(bool filtered, bool repeat) const
+VkSampler VkTexture::FindOrCreateSampler(bool filtered, bool repeat)
 {
 	for (int i = 0; i < m_samplerCount; i++) {
 		if (m_samplers[i].filtered == filtered && m_samplers[i].repeat == repeat)
@@ -438,7 +438,7 @@ VkSampler VkTexture::FindOrCreateSampler(bool filtered, bool repeat) const
 	return sampler;
 }
 
-VkSampler VkTexture::GetSampler(bool filtered, bool repeat) const
+VkSampler VkTexture::GetSampler(bool filtered, bool repeat)
 {
 	return FindOrCreateSampler(filtered, repeat);
 }

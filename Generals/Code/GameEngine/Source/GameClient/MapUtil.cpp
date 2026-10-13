@@ -219,8 +219,8 @@ static Bool ParseSizeOnly(DataChunkInput &file, DataChunkInfo *info, void *userD
 		Int newWidth = (m_width+1)/2;
 		Int newHeight = (m_height+1)/2;
 		Int i, j;
-		for (i=0; i<newHeight; i++) {
-			for (j=0; j<newWidth; j++) {
+		for (int i =0; i<newHeight; i++) {
+			for (int j =0; j<newWidth; j++) {
 				m_data[i*newWidth+j] = m_data[2*i*m_width+2*j];
 			}
 		}
@@ -1221,8 +1221,8 @@ Bool parseMapPreviewChunk(DataChunkInput &file, DataChunkInfo *info, void *userD
 	DEBUG_LOG(("BeginMapPreviewInfo\n"));
 	UnsignedInt *buffer = new UnsignedInt[size.x * size.y];
 	Int x,y;
-	for (y=0; y<size.y; y++) {
-		for(x = 0; x< size.x; x++)
+	for (int y =0; y<size.y; y++) {
+		for (int x = 0; x< size.x; x++)
 		{
 			surface->DrawPixel( x, y, file.readInt() );
 			buffer[y + x] = file.readInt();

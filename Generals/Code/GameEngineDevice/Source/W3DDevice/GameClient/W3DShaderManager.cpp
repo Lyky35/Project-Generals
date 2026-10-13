@@ -915,7 +915,7 @@ Bool ScreenMotionBlurFilter::postRender(enum FilterModes mode, Coord2D &scrollDe
 	}
 	Int	 i, j;
 	if (!pan) {
-		for (i=0; i<4; i++) {
+		for (int i =0; i<4; i++) {
 			Real factor = 1.0f - (m_maxCount/(Real)MAX_COUNT)*0.90f;
 			factor = sqrt(factor);
 			v[i].u = ((v[i].u-center.x)*factor) + center.x;
@@ -932,8 +932,8 @@ Bool ScreenMotionBlurFilter::postRender(enum FilterModes mode, Coord2D &scrollDe
 	{
 		Int limit = m_maxCount;
 		if (m_maxCount>30) limit = 30;
-		for (j=0; j<limit; j++) {
-			for (i=0; i<4; i++) {
+		for (int j =0; j<limit; j++) {
+			for (int i =0; i<4; i++) {
 				Real factor = 0.99f;
 				if (m_additive) factor = 0.98f;
 				Int alpha = 0x15;
@@ -2343,14 +2343,14 @@ W3DShaderManager::W3DShaderManager(void)
 	m_oldDepthSurface = NULL;
 	m_renderingToTexture = false;
 	Int i;
-	for (i=0; i<W3DShaderManager::ST_MAX; i++)
+	for (int i =0; i<W3DShaderManager::ST_MAX; i++)
 	{	W3DShaders[i]=NULL;
 		W3DShadersPassCount[i]=0;
 	}
-	for (i=0; i<FT_MAX; i++)
+	for (int i =0; i<FT_MAX; i++)
 	{	W3DFilters[i]=NULL;
 	}
-	for (i=0; i<8; i++)
+	for (int i =0; i<8; i++)
 	{
 		m_Textures[i]=NULL;
 	}
@@ -2405,10 +2405,10 @@ void W3DShaderManager::init(void)
 
 	W3DShaderInterface **shaders;
 
-	for (i=0; MasterShaderList[i] != NULL; i++)
+	for (int i =0; MasterShaderList[i] != NULL; i++)
 	{	
 		shaders=MasterShaderList[i];
-		for (j=0; shaders[j] != NULL; j++)
+		for (int j =0; shaders[j] != NULL; j++)
 		{
 			if (shaders[j]->init())
 				break;	//found a working shader
@@ -2416,10 +2416,10 @@ void W3DShaderManager::init(void)
 	}
 	W3DFilterInterface **filters;
 
-	for (i=0; MasterFilterList[i] != NULL; i++)
+	for (int i =0; MasterFilterList[i] != NULL; i++)
 	{	
 		filters=MasterFilterList[i];
-		for (j=0; filters[j] != NULL; j++)
+		for (int j =0; filters[j] != NULL; j++)
 		{
 			if (filters[j]->init())
 				break;	//found a working shader
@@ -2451,7 +2451,7 @@ void W3DShaderManager::shutdown(void)
 		}
 	}
 
- 	for ( i=0; i < FT_MAX; i++)
+ 	for (int i =0; i < FT_MAX; i++)
  	{	
  		if (W3DFilters[i])
  		{
@@ -2900,7 +2900,7 @@ Real W3DShaderManager::GetCPUBenchTime(void)
     ymod = 5471.0;
     itot = 560000;	//total iterations. This value ends up running at ~30 fps on our P4-2.2Ghz.
 
-    for(j=1; j<=itot; j++)
+    for (int j =1; j<=itot; j++)
     {
 		iprod = 27611 * ixran;
 		ixran = iprod - 74383*(long int)(iprod/74383);

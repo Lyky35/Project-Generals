@@ -55,7 +55,7 @@ void ControlBar::resetCommonCommandData( void )
 {
 	Int i;
 
-	for( i = 0; i < MAX_COMMANDS_PER_SET; i++ )
+	for (int i = 0; i < MAX_COMMANDS_PER_SET; i++ )
 	{
 		m_commonCommands[ i ] = NULL;
 		//Clear out any remnant overlays.
@@ -92,7 +92,7 @@ void ControlBar::addCommonCommands( Drawable *draw, Bool firstDrawable )
 		// if there is no command set for this drawable, none of the selected drawables
 		// can possibly have matching commands so we'll get rid of them all
 		//
-		for( i = 0; i < MAX_COMMANDS_PER_SET; i++ )
+		for (int i = 0; i < MAX_COMMANDS_PER_SET; i++ )
 		{
 
 			m_commonCommands[ i ] = NULL;
@@ -116,7 +116,7 @@ void ControlBar::addCommonCommands( Drawable *draw, Bool firstDrawable )
 	{
 
 		// just add each command that is classified as a common command
-		for( i = 0; i < MAX_COMMANDS_PER_SET; i++ )
+		for (int i = 0; i < MAX_COMMANDS_PER_SET; i++ )
 		{
 
 			// get command
@@ -145,7 +145,7 @@ void ControlBar::addCommonCommands( Drawable *draw, Bool firstDrawable )
 	{
 
 		// go through each command one by one
-		for( i = 0; i < MAX_COMMANDS_PER_SET; i++ )
+		for (int i = 0; i < MAX_COMMANDS_PER_SET; i++ )
 		{
 		
 			// get the command
@@ -327,7 +327,7 @@ void ControlBar::updateContextMultiSelect( void )
 			continue;
 
 		// for each of the visible command windows make sure the object can execute the command
-		for( i = 0; i < MAX_COMMANDS_PER_SET; i++ )
+		for (int i = 0; i < MAX_COMMANDS_PER_SET; i++ )
 		{
 
 			// get the control window
@@ -387,7 +387,7 @@ void ControlBar::updateContextMultiSelect( void )
 	// for each command, if any objects can do the command we enable the window, otherwise
 	// we disable it
 	//
-	for( i = 0; i < MAX_COMMANDS_PER_SET; i++ )
+	for (int i = 0; i < MAX_COMMANDS_PER_SET; i++ )
 	{
 
 		// don't consider hidden commands

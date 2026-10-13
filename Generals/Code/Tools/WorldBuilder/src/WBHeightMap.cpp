@@ -85,8 +85,8 @@ void WBHeightMap::setFlattenHeights(Bool flat)
 void WBHeightMap::flattenHeights(void) {
 	Real theZ = THE_Z;
 	Int i, j;
-	for (j=0; j<m_numVBTilesY; j++)
-		for (i=0; i<m_numVBTilesX; i++)
+	for (int j =0; j<m_numVBTilesY; j++)
+		for (int i =0; i<m_numVBTilesX; i++)
 		{
 			static int count = 0;
 			count++;
@@ -181,7 +181,7 @@ Bool WBHeightMap::Cast_Ray(RayCollisionTestClass & raytest)
 	result.ComputeContactPoint=true;
 
 	Int p;
-	for (p=0; p<3; p++) {
+	for (int p =0; p<3; p++) {
 		//find intersection point of ray and terrain bounding box
 		if (CollisionMath::Collide(lineseg,hbox,&result))
 		{	//ray intersects terrain or starts inside the terrain.

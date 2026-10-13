@@ -127,7 +127,7 @@ Bool ImagePacker::validateImages( void )
 	Bool proceed = TRUE;
 
 	// loop through all images
-	for( i = 0; i < m_imageCount; i++ )
+	for (int i = 0; i < m_imageCount; i++ )
 	{
 
 		// get this image
@@ -214,7 +214,7 @@ Bool ImagePacker::packImages( void )
 	}  // end if
 
 	// loop through all images
-	for( i = 0; i < m_imageCount; i++ )
+	for (int i = 0; i < m_imageCount; i++ )
 	{
 
 		// update status
@@ -829,7 +829,7 @@ void ImagePacker::addImage( char *path )
 	// save the filename only without path
 	Int i;
 	char *c;
-	for( i = len - 1; i >= 0; i-- )
+	for (int i = len - 1; i >= 0; i-- )
 	{
 
 		if( path[ i ] == '\\' )
@@ -1039,7 +1039,7 @@ Bool ImagePacker::getSettingsFromDialog( HWND dialog )
 	
 	// check for illegal characters in the output name
 	Int len = strlen( m_outputFile );
-	for( i = 0; i < len; i++ )
+	for (int i = 0; i < len; i++ )
 	{
 		char *illegal = "/\\:*?<>|";
 		Int illegalLen = strlen( illegal );
@@ -1074,7 +1074,7 @@ Bool ImagePacker::getSettingsFromDialog( HWND dialog )
 	// add all the image directories specified in the folder listbox
 	Int count = SendDlgItemMessage( dialog, LIST_FOLDERS, LB_GETCOUNT, 0, 0 );
 	char buffer[ _MAX_PATH ];
-	for( i = 0; i < count; i++ )
+	for (int i = 0; i < count; i++ )
 	{
 
 		// get text from the listbox

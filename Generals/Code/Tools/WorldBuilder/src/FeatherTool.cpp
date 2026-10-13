@@ -112,7 +112,7 @@ void FeatherTool::mouseDown(TTrackingMode m, CPoint viewPt, WbView* pView, CWorl
 	Int size = m_htMapRateCopy->getXExtent() * m_htMapRateCopy->getYExtent();
 	UnsignedByte *pData = m_htMapRateCopy->getDataPtr();
 	Int i;
-	for (i=0; i<size; i++) {
+	for (int i =0; i<size; i++) {
 		*pData++ = 0;
 	}
 	m_prevXIndex = -1;
@@ -161,11 +161,11 @@ void FeatherTool::mouseMoved(TTrackingMode m, CPoint viewPt, WbView* pView, CWor
 	Int i, j;
 	Bool redoRate = false;
 
-	for (i= ndx.x-sub; i< ndx.x+add; i++) {
+	for (int i = ndx.x-sub; i< ndx.x+add; i++) {
 		if (i<0 || i>=m_htMapEditCopy->getXExtent()) {
 			continue;
 		}
-		for (j=ndx.y-sub; j<ndx.y+add; j++) {					
+		for (int j =ndx.y-sub; j<ndx.y+add; j++) {					
 			if (j<0 || j>=m_htMapEditCopy->getYExtent()) {
 				continue;
 			}
@@ -238,7 +238,7 @@ void FeatherTool::mouseMoved(TTrackingMode m, CPoint viewPt, WbView* pView, CWor
 		UnsignedByte *pFeather = m_htMapFeatherCopy->getDataPtr();
 		UnsignedByte *pEdit = m_htMapEditCopy->getDataPtr();
 		Int i;
-		for (i=0; i<size; i++) {
+		for (int i =0; i<size; i++) {
 			*pData++ = 0;
 			*pFeather = *pEdit;
 			pFeather++; pEdit++;

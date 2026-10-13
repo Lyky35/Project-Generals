@@ -951,7 +951,7 @@ void PointGroupClass::Render(RenderInfoClass &rinfo)
 			unsigned char *vb=(unsigned char*)Lock.Get_Formatted_Vertex_Array();			
 			const FVFInfoClass& fvfinfo=PointVerts.FVF_Info();			
 
-			for (i = current; i < current + delta; i++)
+			for (int i = current; i < current + delta; i++)
 			{
 				/// @todo lorenzen sez: use pointer arithmetic throughout this block
 				/// @todo lorenzen sez: delare thes locals outside this loop
@@ -1036,9 +1036,9 @@ void PointGroupClass::Update_Arrays(
 
 	if (VertexLoc.Length() < total_vnum) {
 		// Resize arrays (2x guardband to prevent frequent reallocations).
-		VertexLoc.Resize(total_vnum * 2, false);		
-		VertexUV.Resize(total_vnum * 2, false);
-		VertexDiffuse.Resize(total_vnum * 2, false);
+		VertexLoc.Resize(total_vnum * 2, NULL);		
+		VertexUV.Resize(total_vnum * 2, NULL);
+		VertexDiffuse.Resize(total_vnum * 2, NULL);
 	}
 
 	int vert, i, j;
@@ -1085,7 +1085,7 @@ void PointGroupClass::Update_Arrays(
 				scaled_offset[2] = _TriVertexLocationOrientationTable[DefaultPointOrientation][2] * DefaultPointSize;
 
 				// Add vertex offsets to point locations to get vertex locations
-				for (i = 0; i < active_points; i++) {
+				for (int i = 0; i < active_points; i++) {
 					vertex_loc[vert + 0] = point_loc[i] + scaled_offset[0];
 					vertex_loc[vert + 1] = point_loc[i] + scaled_offset[1];
 					vertex_loc[vert + 2] = point_loc[i] + scaled_offset[2];
@@ -1097,7 +1097,7 @@ void PointGroupClass::Update_Arrays(
 		case TRIS_SIZE_NOORIENT:
 			{
 				// Scale vertex offsets and add them to point locations to get vertex locations
-				for (i = 0; i < active_points; i++) {
+				for (int i = 0; i < active_points; i++) {
 					vertex_loc[vert + 0] = point_loc[i] +
 						_TriVertexLocationOrientationTable[DefaultPointOrientation][0] * point_size[i];
 					vertex_loc[vert + 1] = point_loc[i] +
@@ -1112,7 +1112,7 @@ void PointGroupClass::Update_Arrays(
 		case TRIS_NOSIZE_ORIENT:
 			{
 				// Scale vertex offsets and add them to point locations to get vertex locations
-				for (i = 0; i < active_points; i++) {
+				for (int i = 0; i < active_points; i++) {
 					vertex_loc[vert + 0] = point_loc[i] +
 						_TriVertexLocationOrientationTable[point_orientation[i]][0] * DefaultPointSize;
 					vertex_loc[vert + 1] = point_loc[i] +
@@ -1127,7 +1127,7 @@ void PointGroupClass::Update_Arrays(
 		case TRIS_SIZE_ORIENT:
 			{
 				// Scale vertex offsets and add them to point locations to get vertex locations
-				for (i = 0; i < active_points; i++) {
+				for (int i = 0; i < active_points; i++) {
 					vertex_loc[vert + 0] = point_loc[i] +
 						_TriVertexLocationOrientationTable[point_orientation[i]][0] * point_size[i];
 					vertex_loc[vert + 1] = point_loc[i] +
@@ -1149,7 +1149,7 @@ void PointGroupClass::Update_Arrays(
 				scaled_offset[3] = _QuadVertexLocationOrientationTable[DefaultPointOrientation][3] * DefaultPointSize;
 
 				// Add vertex offsets to point locations to get vertex locations
-				for (i = 0; i < active_points; i++) {
+				for (int i = 0; i < active_points; i++) {
 					vertex_loc[vert + 0] = point_loc[i] + scaled_offset[0];
 					vertex_loc[vert + 1] = point_loc[i] + scaled_offset[1];
 					vertex_loc[vert + 2] = point_loc[i] + scaled_offset[2];
@@ -1162,7 +1162,7 @@ void PointGroupClass::Update_Arrays(
 		case QUADS_SIZE_NOORIENT:
 			{
 				// Scale vertex offsets and add them to point locations to get vertex locations
-				for (i = 0; i < active_points; i++) {
+				for (int i = 0; i < active_points; i++) {
 					vertex_loc[vert + 0] = point_loc[i] +
 						_QuadVertexLocationOrientationTable[DefaultPointOrientation][0] * point_size[i];
 					vertex_loc[vert + 1] = point_loc[i] +
@@ -1179,7 +1179,7 @@ void PointGroupClass::Update_Arrays(
 		case QUADS_NOSIZE_ORIENT:
 			{
 				// Scale vertex offsets and add them to point locations to get vertex locations
-				for (i = 0; i < active_points; i++) {
+				for (int i = 0; i < active_points; i++) {
 					vertex_loc[vert + 0] = point_loc[i] +
 						_QuadVertexLocationOrientationTable[point_orientation[i]][0] * DefaultPointSize;
 					vertex_loc[vert + 1] = point_loc[i] +
@@ -1202,7 +1202,7 @@ void PointGroupClass::Update_Arrays(
 				}
 
 				// Scale vertex offsets and add them to point locations to get vertex locations
-				for (i = 0; i < active_points; i++) {
+				for (int i = 0; i < active_points; i++) {
 					if (!Billboard) {
 						// If we're not billboarding, then the coordinate we have is in screen space.
 						Matrix4 rotMat;
@@ -1296,7 +1296,7 @@ void PointGroupClass::Update_Arrays(
 
 				// Add vertex offsets to point locations to get vertex locations
 				int size_idx = (DefaultPointSize <= 1.0f) ? 0 : 1;
-				for (i = 0; i < active_points; i++) {
+				for (int i = 0; i < active_points; i++) {
 					vertex_loc[vert + 0] = point_loc[i] + scaled_locs[size_idx][0];
 					vertex_loc[vert + 1] = point_loc[i] + scaled_locs[size_idx][1];
 					vertex_loc[vert + 2] = point_loc[i] + scaled_locs[size_idx][2];
@@ -1329,7 +1329,7 @@ void PointGroupClass::Update_Arrays(
 				}
 
 				// Add vertex offsets to point locations to get vertex locations
-				for (i = 0; i < active_points; i++) {
+				for (int i = 0; i < active_points; i++) {
 					int size_idx = (point_size[i] <= 1.0f) ? 0 : 1;
 					vertex_loc[vert + 0] = point_loc[i] + scaled_locs[size_idx][0];
 					vertex_loc[vert + 1] = point_loc[i] + scaled_locs[size_idx][1];
@@ -1414,8 +1414,8 @@ void PointGroupClass::Update_Arrays(
 	vert = 0;	
 	if (point_diffuse) {
 		Vector4* vertex_color = &VertexDiffuse[0];
-		for (i = 0; i < active_points; i++) {
-			for (j = 0; j < verts_per_point; j++) {
+		for (int i = 0; i < active_points; i++) {
+			for (int j = 0; j < verts_per_point; j++) {
 				vertex_color[vert + j] = point_diffuse[i];
 			}
 			vert += verts_per_point;
@@ -1461,15 +1461,15 @@ void PointGroupClass::_Init(void)
 
 	float angle = 0.0f;	// In radians
 	float angle_step = (WWMATH_PI * 2.0f) / 256.0f;	// In radians
-	for (i = 0; i < 256; i++) {
+	for (int i = 0; i < 256; i++) {
 		float c = WWMath::Fast_Cos(angle);
 		float s = WWMath::Fast_Sin(angle);
-		for (j = 0; j < 3; j++) {
+		for (int j = 0; j < 3; j++) {
 			_TriVertexLocationOrientationTable[i][j].X = tri_locs[j].X * c - tri_locs[j].Y * s;
 			_TriVertexLocationOrientationTable[i][j].Y = tri_locs[j].X * s + tri_locs[j].Y * c;
 			_TriVertexLocationOrientationTable[i][j].Z = tri_locs[j].Z;
 		}
-		for (j = 0; j < 4; j++) {
+		for (int j = 0; j < 4; j++) {
 			_QuadVertexLocationOrientationTable[i][j].X = quad_locs[j].X * c - quad_locs[j].Y * s;
 			_QuadVertexLocationOrientationTable[i][j].Y = quad_locs[j].X * s + quad_locs[j].Y * c;
 			_QuadVertexLocationOrientationTable[i][j].Z = quad_locs[j].Z;
@@ -1494,7 +1494,7 @@ void PointGroupClass::_Init(void)
 	};
 
 	/// @todo lorenzen sez: umwrap and use pointers
-	for (i = 0; i < 5; i++) {
+	for (int i = 0; i < 5; i++) {
 
 		unsigned int rows = 1 << i;
 		unsigned int count = rows * rows;
@@ -1536,7 +1536,7 @@ void PointGroupClass::_Init(void)
 	{
 		DX8IndexBufferClass::WriteLockClass locktris(Tris);
 		unsigned short *ib=locktris.Get_Index_Array();	
-		for (i=0; i<MAX_TRI_IB_SIZE; i++) ib[i]=(unsigned short) i;
+		for (int i =0; i<MAX_TRI_IB_SIZE; i++) ib[i]=(unsigned short) i;
 	}	
 
 	{
@@ -1544,7 +1544,7 @@ void PointGroupClass::_Init(void)
 		DX8IndexBufferClass::WriteLockClass lockquads(Quads);
 		unsigned short *ib=lockquads.Get_Index_Array();
 		vert=0;
-		for (i=0; i<MAX_QUAD_IB_SIZE; i+=6)
+		for (int i =0; i<MAX_QUAD_IB_SIZE; i+=6)
 		{
 /// @todo lorenzen sez: pointer arithmetic like "++ib=vert+1"
 
@@ -1562,7 +1562,7 @@ void PointGroupClass::_Init(void)
 	{
 		SortingIndexBufferClass::WriteLockClass locktris(SortingTris);
 		unsigned short *ib=locktris.Get_Index_Array();	
-		for (i=0; i<MAX_TRI_IB_SIZE; i++) ib[i]=(unsigned short) i;
+		for (int i =0; i<MAX_TRI_IB_SIZE; i++) ib[i]=(unsigned short) i;
 	}	
 
 	{
@@ -1570,7 +1570,7 @@ void PointGroupClass::_Init(void)
 		SortingIndexBufferClass::WriteLockClass lockquads(SortingQuads);
 		unsigned short *ib=lockquads.Get_Index_Array();
 		vert=0;
-		for (i=0; i<MAX_QUAD_IB_SIZE; i+=6)
+		for (int i =0; i<MAX_QUAD_IB_SIZE; i+=6)
 		{
 			/// @todo lorenzen sez: pointers!
 			ib[i]=vert;
@@ -1870,7 +1870,7 @@ void PointGroupClass::RenderVolumeParticle(RenderInfoClass &rinfo, unsigned int 
 				const FVFInfoClass& fvfinfo = PointVerts.FVF_Info();			
 
 
-				for (i = current; i < current + delta; i++)
+				for (int i = current; i < current + delta; i++)
 				{
 					/// @todo lorenzen sez: use pointer arithmetic throughout this block
 					/// @todo lorenzen sez: delare thes locals outside this loop

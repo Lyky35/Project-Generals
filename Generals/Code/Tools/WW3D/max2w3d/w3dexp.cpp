@@ -374,7 +374,7 @@ void W3dExportClass::DoOriginBasedExport(char *rootname,ChunkSaveClass &csave)
 	unsigned int	i, count = origin_list->Num_Nodes();
 	INode				*base_origin = NULL;
 
-	for (i = 0; i < count; i++)
+	for (int i = 0; i < count; i++)
 	{
 		INode *node = (*origin_list)[i];
 		if (Is_Base_Origin(node))
@@ -416,7 +416,7 @@ void W3dExportClass::DoOriginBasedExport(char *rootname,ChunkSaveClass &csave)
 		** Write the damage animations.
 		*/
 		Progress_Meter_Class damagemeter(meter, meter.Increment);
-		for (i = 0; i < damage_list->Num_Nodes(); i++)
+		for (int i = 0; i < damage_list->Num_Nodes(); i++)
 		{
 			if (!Export_Damage_Animations(rootname, csave, damagemeter, (*damage_list)[i]))
 			{
@@ -456,7 +456,7 @@ void W3dExportClass::DoOriginBasedExport(char *rootname,ChunkSaveClass &csave)
 		count = 1;
 	}
 	
-	for (i = 0; i < count; i++)
+	for (int i = 0; i < count; i++)
 	{
 		/*
 		** Get the current origin.
@@ -517,7 +517,7 @@ void W3dExportClass::DoOriginBasedExport(char *rootname,ChunkSaveClass &csave)
 	/*
 	** Deallocate the array of mesh connections.
 	*/
-	for (i = 0; i < count; i++)
+	for (int i = 0; i < count; i++)
 	{
 		if (connections[i] != NULL)
 			delete connections[i];
@@ -755,7 +755,7 @@ bool W3dExportClass::Export_Geometry(char * name,ChunkSaveClass & csave,Progress
 	unsigned int materialColors[16*16];	///@todo: MW: Fix this to remove solid colors.
 	char	materialColorFilename[_MAX_FNAME + 1];
 	memset(materialColors,0,sizeof(materialColors));
-	for (i=0; i<TEAM_COLOR_PALETTE_SIZE; i++)
+	for (int i =0; i<TEAM_COLOR_PALETTE_SIZE; i++)
 	{	//preset the first 16 colors to predefined set of house colors
 		materialColors[i]=houseColorScale[i] << 16;
 	}
@@ -788,7 +788,7 @@ bool W3dExportClass::Export_Geometry(char * name,ChunkSaveClass & csave,Progress
 		ExportLog::printf("\nDiscarding extra meshes since we are not exporting a hierarchical model.\n");
 	}
 
-	for (i=0; i<geometry_count; i++) {
+	for (int i =0; i<geometry_count; i++) {
 		GeometryExportTaskClass * export_task = GeometryExportTaskClass::Create_Task((*geometry_list)[i],context);
 		if (export_task != NULL) {
 			export_tasks.Add(export_task);
@@ -832,7 +832,7 @@ bool W3dExportClass::Export_Geometry(char * name,ChunkSaveClass & csave,Progress
 	/*
 	** Export each piece of geometry
 	*/
-	for (i=0; i<export_tasks.Count(); i++) {
+	for (int i =0; i<export_tasks.Count(); i++) {
 		Progress_Meter_Class meshmeter(meter,meter.Increment);
 		context.ProgressMeter = &meshmeter;
 
@@ -857,7 +857,7 @@ bool W3dExportClass::Export_Geometry(char * name,ChunkSaveClass & csave,Progress
 		//clear to black
 		memset(imageBuffer,0,sizeof(imageBuffer));
 
-		for (i=0; i<(16+context.numMaterialColors); i++)
+		for (int i =0; i<(16+context.numMaterialColors); i++)
 		{
 			//get coordinates of this material within texture page
 			px=(i%16);	///@todo: MW: Remove hard-coded texture size
@@ -888,7 +888,7 @@ bool W3dExportClass::Export_Geometry(char * name,ChunkSaveClass & csave,Progress
 	/*
 	** Cleanup
 	*/
-	for (i=0; i<export_tasks.Count(); i++) {
+	for (int i =0; i<export_tasks.Count(); i++) {
 		delete export_tasks[i];
 	}
 	
@@ -1240,7 +1240,7 @@ bool W3dExportClass::get_base_object_tm (Matrix3 &tm)
 
 	unsigned int	i, count = origin_list->Num_Nodes();
 	INode				*base_origin = NULL;
-	for (i = 0; i < count; i++)
+	for (int i = 0; i < count; i++)
 	{
 		INode *node = (*origin_list)[i];
 		if (Is_Base_Origin(node))

@@ -127,7 +127,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 			if (position.x<=0) continue; // all real tile offsets start at 2.  jba.
 
 			Int i,j;
-			for (j=0; j<tilePixelExtent; j++) {
+			for (int j =0; j<tilePixelExtent; j++) {
 				UnsignedByte *pBGR = pTile->getRGBDataForWidth(tilePixelExtent);
 				pBGR += (tilePixelExtent-1-j)*TILE_BYTES_PER_PIXEL*tilePixelExtent; // invert to match.
 				Int row = position.y+j;
@@ -136,7 +136,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 
 				Int column = position.x;
 				pBGRX += column*pixelBytes;
-				for (i=0; i<tilePixelExtent; i++) {
+				for (int i =0; i<tilePixelExtent; i++) {
 					*((Short*)pBGRX) = 0x8000 + ((pBGR[2]>>3)<<10) + ((pBGR[1]>>3)<<5) + (pBGR[0]>>3);
 					pBGRX +=pixelBytes;
 					pBGR +=TILE_BYTES_PER_PIXEL;
@@ -152,7 +152,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 			width *= TILE_PIXEL_EXTENT;
 			// Duplicate 4 columns of pixels before and after.
 			Int j;
-			for (j=0; j<width; j++) {
+			for (int j =0; j<width; j++) {
 				Int row = origin.y+j;
 				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect.pBits) +
 							(row)*surface_desc.Width*pixelBytes;
@@ -166,7 +166,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 			}
 
 			// Duplicate 4 rows of pixels before and after.
-			for (j=0; j<4; j++) {
+			for (int j =0; j<4; j++) {
 				// copy before.
 				Int row = origin.y-j-1;
 				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect.pBits) +
@@ -260,7 +260,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 #endif
 				if (htMap->getSourceTile(tileNdx)) {
 					Int i,j;
-					for (j=0; j<tilePixelExtent; j++) {
+					for (int j =0; j<tilePixelExtent; j++) {
 						UnsignedByte *pBGR = htMap->getSourceTile(tileNdx)->getRGBDataForWidth(tilePixelExtent);
 						pBGR += (tilePixelExtent-1-j)*TILE_BYTES_PER_PIXEL*tilePixelExtent; // invert to match.
 						Int row = cellY*tilePixelExtent+j;
@@ -273,7 +273,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 						column += TILE_OFFSET*(cellX/2);
 						pBGRX += column*pixelBytes;
 						pBGRX += (TILE_OFFSET/2)*pixelBytes;
-						for (i=0; i<tilePixelExtent; i++) {
+						for (int i =0; i<tilePixelExtent; i++) {
 							*((Short*)pBGRX) = 0x8000 + ((pBGR[2]>>3)<<10) + ((pBGR[1]>>3)<<5) + (pBGR[0]>>3);
 							pBGRX +=pixelBytes;
 							pBGR +=TILE_BYTES_PER_PIXEL;
@@ -290,7 +290,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 			for (cellX = 0; cellX < tilesPerRow; cellX++) {
 			// Duplicate 4 rows of pixels before and after.
 				Int j;
-				for (j=0; j<tilePixelExtent; j++) {
+				for (int j =0; j<tilePixelExtent; j++) {
 					Int row = cellY*tilePixelExtent+j;
 					row += TILE_OFFSET/2; 
 					row += TILE_OFFSET*(cellY/2);
@@ -414,7 +414,7 @@ int TerrainTextureClass::update256(WorldHeightMap *htMap)
 #endif
 				if (htMap->getSourceTile(tileNdx)) {
 					Int i,j;
-					for (j=0; j<tilePixelExtent; j++) {
+					for (int j =0; j<tilePixelExtent; j++) {
 						UnsignedByte *pBGR = htMap->getSourceTile(tileNdx)->getRGBDataForWidth(tilePixelExtent);
 						pBGR += (tilePixelExtent-1-j)*TILE_BYTES_PER_PIXEL*tilePixelExtent; // invert to match.
 						Int row = cellY*tilePixelExtent+j;
@@ -427,7 +427,7 @@ int TerrainTextureClass::update256(WorldHeightMap *htMap)
 						column += tileOffset*(cellX/2);
 						pBGRX += column*pixelBytes;
 						pBGRX += (tileOffset/2)*pixelBytes;
-						for (i=0; i<tilePixelExtent; i++) {
+						for (int i =0; i<tilePixelExtent; i++) {
 							*((Short*)pBGRX) = 0x8000 + ((pBGR[2]>>3)<<10) + ((pBGR[1]>>3)<<5) + (pBGR[0]>>3);
 							pBGRX +=pixelBytes;
 							pBGR +=TILE_BYTES_PER_PIXEL;
@@ -443,7 +443,7 @@ int TerrainTextureClass::update256(WorldHeightMap *htMap)
 			for (cellX = 0; cellX < tilesPerRow; cellX++) {
 			// Duplicate 1 rows of pixels before and after.
 				Int j;
-				for (j=0; j<tilePixelExtent; j++) {
+				for (int j =0; j<tilePixelExtent; j++) {
 					Int row = cellY*tilePixelExtent+j;
 					row += tileOffset/2; 
 					row += tileOffset*(cellY/2);
@@ -881,7 +881,7 @@ int AlphaEdgeTextureClass::update(WorldHeightMap *htMap)
 			if (position.x<=0) continue; // all real edge offsets start at 4.  jba.
 			Int i,j;
 			Int column = position.x;
-			for (j=0; j<tilePixelExtent; j++) {
+			for (int j =0; j<tilePixelExtent; j++) {
 				Int row = position.y+j;
 				UnsignedByte *pBGR = htMap->getEdgeTile(tileNdx)->getRGBDataForWidth(tilePixelExtent);
 				pBGR += (tilePixelExtent-1-j)*TILE_BYTES_PER_PIXEL*tilePixelExtent; // invert to match.
@@ -889,7 +889,7 @@ int AlphaEdgeTextureClass::update(WorldHeightMap *htMap)
 							(row)*surface_desc.Width*pixelBytes;
 				pBGRX += column*pixelBytes;
 
-				for (i=0; i<tilePixelExtent; i++) {
+				for (int i =0; i<tilePixelExtent; i++) {
 					pBGRX[0] = pBGR[0];  //r
 					pBGRX[1] = pBGR[1];	//g
 					pBGRX[2] = pBGR[2];	//b
@@ -1125,7 +1125,7 @@ void CloudMapTerrainTextureClass::restore(void)
 		//This method is a backdoor specific to Nvidia based cards.  It will fail on
 		//other hardware.  Allows single pass blend of 2 textures and post modulate diffuse.
 		Int i;
-		for (i=0; i<8; i++) {
+		for (int i =0; i<8; i++) {
 			DX8Wrapper::Set_DX8_Texture_Stage_State( i, D3DTSS_COLOROP, D3DTOP_DISABLE);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( i, D3DTSS_TEXCOORDINDEX, i);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( i, D3DTSS_COLORARG1, D3DTA_TEXTURE);

@@ -229,7 +229,7 @@ bool TCBSpline3DClass::Load(ChunkLoadClass &cload)
 				break;
 
 			case TCB3D_CHUNK_PARAMS:
-				for (i=0; i<Keys.Count(); i++) {
+				for (int i =0; i<Keys.Count(); i++) {
 					cload.Read(&(param.Tension),sizeof(param.Tension));
 					cload.Read(&(param.Continuity),sizeof(param.Continuity));
 					cload.Read(&(param.Bias),sizeof(param.Bias));

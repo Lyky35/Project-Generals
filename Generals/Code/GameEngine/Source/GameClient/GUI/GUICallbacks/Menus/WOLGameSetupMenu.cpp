@@ -836,7 +836,7 @@ static void StartPressed(void)
 	// Check for too few teams
 	int numRandom = 0;
 	std::set<Int> teams; 
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (Int i =0; i<MAX_SLOTS; ++i)
 	{
 		GameSlot *slot = myGame->getSlot(i);
 		if (slot && slot->isOccupied() && slot->getPlayerTemplate() != PLAYERTEMPLATE_OBSERVER)
@@ -1607,7 +1607,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 				break;
 			case PeerResponse::PEERRESPONSE_PLAYERJOIN:
 				{
-					if (resp.player.roomType != StagingRoom)
+					if (resp.player.roomType != ROOM_TYPE_GAME)
 					{
 						break;
 					}
@@ -1834,7 +1834,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 							UnsignedShort ports[MAX_SLOTS];
 							UnsignedInt ips[MAX_SLOTS];
 							Int i;
-							for (i=0; i<MAX_SLOTS; ++i)
+							for (Int i =0; i<MAX_SLOTS; ++i)
 							{
 								if (game && game->getConstSlot(i))
 								{
@@ -1850,7 +1850,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 							Bool optionsOK = ParseAsciiStringToGameInfo(game, options.str());
 							if (TheNAT)
 							{
-								for (i=0; i<MAX_SLOTS; ++i)
+								for (Int i =0; i<MAX_SLOTS; ++i)
 								{
 									if (game && game->getSlot(i))
 									{
@@ -2395,7 +2395,7 @@ WindowMsgHandledType WOLGameSetupMenuSystem( GameWindow *window, UnsignedInt msg
 														 WindowMsgData mData1, WindowMsgData mData2 )
 {
 	UnicodeString txtInput;
-	static buttonCommunicatorID = NAMEKEY_INVALID;
+	static NameKeyType buttonCommunicatorID = NAMEKEY_INVALID;
 	switch( msg )
 	{
 		//-------------------------------------------------------------------------------------------------	
@@ -2495,7 +2495,7 @@ WindowMsgHandledType WOLGameSetupMenuSystem( GameWindow *window, UnsignedInt msg
 
 				GameWindow *control = (GameWindow *)mData1;
 				Int controlID = control->winGetWindowId();
-				static buttonCommunicatorID = NAMEKEY("GameSpyGameOptionsMenu.wnd:ButtonCommunicator");
+				static NameKeyType buttonCommunicatorID = NAMEKEY("GameSpyGameOptionsMenu.wnd:ButtonCommunicator");
 
 				if ( controlID == buttonBackID )
 				{

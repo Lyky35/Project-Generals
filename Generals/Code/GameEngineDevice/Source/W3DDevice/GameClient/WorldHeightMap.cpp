@@ -411,7 +411,7 @@ WorldHeightMap::~WorldHeightMap(void)
 		m_cellCliffState = NULL;
 	}
 	int i;
-	for (i=0; i<NUM_SOURCE_TILES; i++) {
+	for (int i =0; i<NUM_SOURCE_TILES; i++) {
 		REF_PTR_RELEASE(m_sourceTiles[i]);
 		REF_PTR_RELEASE(m_edgeTiles[i]);
 	}
@@ -450,7 +450,7 @@ WorldHeightMap::WorldHeightMap():
 	m_terrainTex(NULL), m_alphaTerrainTex(NULL), m_numBitmapTiles(0), m_numBlendedTiles(1)
 {
 	Int i;
-	for (i=0; i<NUM_SOURCE_TILES; i++) {
+	for (int i =0; i<NUM_SOURCE_TILES; i++) {
 		m_sourceTiles[i] = NULL;
 		m_edgeTiles[i] = NULL;
 	}
@@ -489,7 +489,7 @@ WorldHeightMap::WorldHeightMap(ChunkInputStream *pStrm, Bool logicalDataOnly):
 {
 
 	int i;
-	for (i=0; i<NUM_SOURCE_TILES; i++) {
+	for (int i =0; i<NUM_SOURCE_TILES; i++) {
 		m_sourceTiles[i]=NULL;
 		m_edgeTiles[i]=NULL;
 	}
@@ -522,7 +522,7 @@ WorldHeightMap::WorldHeightMap(ChunkInputStream *pStrm, Bool logicalDataOnly):
 	}
 	// patch bad maps. 
 	if (!logicalDataOnly) {
-		for(i=0; i<m_dataSize; i++) {
+		for (int i =0; i<m_dataSize; i++) {
 			if (m_cliffInfoNdxes[i]<0 || m_cliffInfoNdxes[i]>= m_numCliffInfo) {
 				m_cliffInfoNdxes[i] = 0;		
 			}
@@ -618,14 +618,14 @@ Bool WorldHeightMap::ParseLightingDataChunk(DataChunkInput &file, DataChunkInfo 
 		GlobalData::TerrainLighting	initLightValues	= { { 0,0,0},{0,0,0},{0,0,-1.0f}};
 
 		// initialize the directions of the lights to not be totally invalid, in case old maps are read
-		for (i=0; i<4; i++) {
+		for (int i =0; i<4; i++) {
 			for (Int j=0;j<MAX_GLOBAL_LIGHTS; j++) {
 				TheWritableGlobalData->m_terrainObjectsLighting[i+TIME_OF_DAY_FIRST][j]=initLightValues;
 				TheWritableGlobalData->m_terrainLighting[i+TIME_OF_DAY_FIRST][j]=initLightValues;
 			}
 		}
 
-		for (i=0; i<4; i++) {
+		for (int i =0; i<4; i++) {
 			TheWritableGlobalData->m_terrainLighting[i+TIME_OF_DAY_FIRST][0].ambient.red = file.readReal();
 			TheWritableGlobalData->m_terrainLighting[i+TIME_OF_DAY_FIRST][0].ambient.green = file.readReal();
 			TheWritableGlobalData->m_terrainLighting[i+TIME_OF_DAY_FIRST][0].ambient.blue = file.readReal();
@@ -753,8 +753,8 @@ Bool WorldHeightMap::ParseHeightMapData(DataChunkInput &file, DataChunkInfo *inf
 		Int newWidth = (m_width+1)/2;
 		Int newHeight = (m_height+1)/2;
 		Int i, j;
-		for (i=0; i<newHeight; i++) {
-			for (j=0; j<newWidth; j++) {
+		for (int i =0; i<newHeight; i++) {
+			for (int j =0; j<newWidth; j++) {
 				m_data[i*newWidth+j] = m_data[2*i*m_width+2*j];
 			}
 		}
@@ -817,8 +817,8 @@ Bool WorldHeightMap::ParseSizeOnly(DataChunkInput &file, DataChunkInfo *info, vo
 		Int newWidth = (m_width+1)/2;
 		Int newHeight = (m_height+1)/2;
 		Int i, j;
-		for (i=0; i<newHeight; i++) {
-			for (j=0; j<newWidth; j++) {
+		for (int i =0; i<newHeight; i++) {
+			for (int j =0; j<newWidth; j++) {
 				m_data[i*newWidth+j] = m_data[2*i*m_width+2*j];
 			}
 		}
@@ -943,7 +943,7 @@ Bool WorldHeightMap::ParseBlendTileData(DataChunkInput &file, DataChunkInfo *inf
 	int i;
 	m_numTextureClasses	= file.readInt();
 	DEBUG_ASSERTCRASH(m_numTextureClasses>0 && m_numTextureClasses<200, ("Unlikely m_numTextureClasses."));
-	for (i=0; i<m_numTextureClasses; i++) {
+	for (int i =0; i<m_numTextureClasses; i++) {
 		m_textureClasses[i].globalTextureClass = -1;
 		m_textureClasses[i].firstTile = file.readInt();
 		m_textureClasses[i].numTiles = file.readInt();
@@ -961,7 +961,7 @@ Bool WorldHeightMap::ParseBlendTileData(DataChunkInput &file, DataChunkInfo *inf
 	if (info->version >= K_BLEND_TILE_VERSION_4) {
 		m_numEdgeTiles	= file.readInt();
 		m_numEdgeTextureClasses	= file.readInt();
-		for (i=0; i<m_numEdgeTextureClasses; i++) {
+		for (int i =0; i<m_numEdgeTextureClasses; i++) {
 			m_edgeTextureClasses[i].globalTextureClass = -1;
 			m_edgeTextureClasses[i].firstTile = file.readInt();
 			m_edgeTextureClasses[i].numTiles = file.readInt();
@@ -970,7 +970,7 @@ Bool WorldHeightMap::ParseBlendTileData(DataChunkInput &file, DataChunkInfo *inf
 			readTexClass(&m_edgeTextureClasses[i], m_edgeTiles);
 		}
 	}
-	for (i=1; i<m_numBlendedTiles; i++) {
+	for (int i =1; i<m_numBlendedTiles; i++) {
 		Int flag;
 		m_blendedTiles[i].blendNdx = file.readInt();
 		m_blendedTiles[i].horiz = file.readByte();
@@ -1001,7 +1001,7 @@ Bool WorldHeightMap::ParseBlendTileData(DataChunkInput &file, DataChunkInfo *inf
 		}
 	}
 	if (info->version >= K_BLEND_TILE_VERSION_5) {
-		for (i=1; i<m_numCliffInfo; i++) {
+		for (int i =1; i<m_numCliffInfo; i++) {
 			m_cliffInfo[i].tileIndex = file.readInt();
 			m_cliffInfo[i].u0 = file.readReal();
 			m_cliffInfo[i].v0 = file.readReal();
@@ -1020,8 +1020,8 @@ Bool WorldHeightMap::ParseBlendTileData(DataChunkInput &file, DataChunkInfo *inf
 		Int newWidth = (m_width+1)/2;
 		Int newHeight = (m_height+1)/2;
 		Int i, j;
-		for (i=0; i<newHeight; i++) {
-			for (j=0; j<newWidth; j++) {
+		for (int i =0; i<newHeight; i++) {
+			for (int j =0; j<newWidth; j++) {
 				m_tileNdxes[i*newWidth+j] = m_tileNdxes[2*i*m_width+2*j];
 				m_blendTileNdxes[i*newWidth+j] = 0;
 				m_extraBlendTileNdxes[i*newWidth+j] = 0;
@@ -1201,7 +1201,7 @@ Bool WorldHeightMap::readTiles(InputStream *pStr, TileData **tiles, Int numRows)
 	if (bytesPerPixel < 3) return(false);
 	if (bytesPerPixel > 4) return(false);
 	int i;
-	for (i=0; i<numRows*numRows; i++) {
+	for (int i =0; i<numRows*numRows; i++) {
 		if (tiles[i] == NULL) 
 			tiles[i] = MSGNEW("WorldHeightMap_readTiles") TileData;	
 	}
@@ -1245,7 +1245,7 @@ Bool WorldHeightMap::readTiles(InputStream *pStr, TileData **tiles, Int numRows)
 		}
 		DEBUG_ASSERTCRASH(repeatCount==0, ("Invalid tga."));
 	}
-	for (i=0; i<numRows*numRows; i++) {
+	for (int i =0; i<numRows*numRows; i++) {
 		tiles[i]->updateMips();
 	}
 	return(true);
@@ -1269,7 +1269,7 @@ Int WorldHeightMap::updateTileTexturePositions(Int *edgeHeight)
 		}
 	}
 
-	for (i=0; i<m_numBitmapTiles; i++) {
+	for (int i =0; i<m_numBitmapTiles; i++) {
 		if (m_sourceTiles[i]) {
 			m_sourceTiles[i]->m_tileLocationInTexture.x = 0;
 			m_sourceTiles[i]->m_tileLocationInTexture.y = 0;
@@ -1289,8 +1289,8 @@ Int WorldHeightMap::updateTileTexturePositions(Int *edgeHeight)
 				for (column=0; column<tilesPerRow-width+1 && !found; column++) {
 					if (availableGrid[row][column]) {
 						Bool open = true;
-						for (i=0; i<width && open; i++) {
-							for (j=0; j<width&&open; j++) {
+						for (int i =0; i<width && open; i++) {
+							for (int j =0; j<width&&open; j++) {
 								if (!availableGrid[row+j][column+i]) {
 									open = false;
 								}
@@ -1315,8 +1315,8 @@ Int WorldHeightMap::updateTileTexturePositions(Int *edgeHeight)
 			Int classHeight = yOrigin + width*TILE_PIXEL_EXTENT+ TILE_OFFSET/2;
 			if (maxHeight < classHeight) maxHeight = classHeight;
 
-			for (i=0; i<width; i++) {
-				for (j=0; j<width; j++) {
+			for (int i =0; i<width; i++) {
+				for (int j =0; j<width; j++) {
 					availableGrid[row+j][column+i] = false;
 					Int baseNdx = m_textureClasses[texClass].firstTile + i + j*width;
 					// In case we are just checking for room...
@@ -1330,7 +1330,7 @@ Int WorldHeightMap::updateTileTexturePositions(Int *edgeHeight)
 		}
 	}
 
-	for (i=0; i<m_numBitmapTiles; i++) {
+	for (int i =0; i<m_numBitmapTiles; i++) {
 		if (m_edgeTiles[i]) {
 			m_edgeTiles[i]->m_tileLocationInTexture.x = 0;
 			m_edgeTiles[i]->m_tileLocationInTexture.y = 0;
@@ -1353,8 +1353,8 @@ Int WorldHeightMap::updateTileTexturePositions(Int *edgeHeight)
 			for (column=0; column<tilesPerRow-width+1 && !found; column++) {
 				if (availableGrid[row][column]) {
 					Bool open = true;
-					for (i=0; i<width && open; i++) {
-						for (j=0; j<width&&open; j++) {
+					for (int i =0; i<width && open; i++) {
+						for (int j =0; j<width&&open; j++) {
 							if (!availableGrid[row+j][column+i]) {
 								open = false;
 							}
@@ -1379,8 +1379,8 @@ Int WorldHeightMap::updateTileTexturePositions(Int *edgeHeight)
 		Int classHeight = yOrigin + width*TILE_PIXEL_EXTENT+ TILE_OFFSET/2;
 		if (maxEdgeHeight < classHeight) maxEdgeHeight = classHeight;
 
-		for (i=0; i<width; i++) {
-			for (j=0; j<width; j++) {
+		for (int i =0; i<width; i++) {
+			for (int j =0; j<width; j++) {
 				availableGrid[row+j][column+i] = false;
 				Int baseNdx = m_edgeTextureClasses[texClass].firstTile + i + j*width;
 				// In case we are just checking for room...
@@ -1540,7 +1540,7 @@ Bool WorldHeightMap::getUVForTileIndex(Int ndx, Short tileNdx, float U[4], float
 			Int ndx1 = tileNdx>>2;
 			Int ndx2 = info.tileIndex>>2;
 			Int i;
-			for (i=0; i<this->m_numTextureClasses; i++) {
+			for (int i =0; i<this->m_numTextureClasses; i++) {
 				if (ndx1 >= m_textureClasses[i].firstTile && ndx1 < m_textureClasses[i].firstTile + m_textureClasses[i].numTiles) {
 					tilesMatch = ndx2 >= m_textureClasses[i].firstTile && ndx2 < m_textureClasses[i].firstTile + m_textureClasses[i].numTiles;
 					//tilesMatch = true;
@@ -1741,18 +1741,18 @@ Bool WorldHeightMap::getUVForTileIndex(Int ndx, Short tileNdx, float U[4], float
 			Real adjU = 0;
 			Real adjV = 0;
 			Int i;
-			for (i=0; i<4; i++) {
+			for (int i =0; i<4; i++) {
 				if (nVb - V[i] > adjV) adjV = nVb - V[i];
 			}
-			for (i=0; i<4; i++) {
+			for (int i =0; i<4; i++) {
 				V[i] += adjV;
 			}
 			adjV = 0;
-			for (i=0; i<4; i++) {
+			for (int i =0; i<4; i++) {
 				if (U[i] - xUb > adjU) adjU = U[i]-xUb;
 				if (V[i] - xVb > adjV) adjV = V[i]-xVb;
 			}
-			for (i=0; i<4; i++) {
+			for (int i =0; i<4; i++) {
 				U[i] -= adjU;
 				V[i] -= adjV;
 			}
@@ -2098,7 +2098,7 @@ Int WorldHeightMap::getTextureClassFromNdx(Int tileNdx)
 {
 	Int i;
 	tileNdx = tileNdx>>2;
-	for (i=0; i<m_numTextureClasses; i++) {
+	for (int i =0; i<m_numTextureClasses; i++) {
 		if (m_textureClasses[i].firstTile<0) {
 			continue;
 		}
@@ -2160,7 +2160,7 @@ AsciiString WorldHeightMap::getTerrainNameAt(Real x, Real y)
 	tileNdx = tileNdx>>2;	 // We pack 4 grids into a tile.
 
 	Int i;
-	for (i=0; i<this->m_numTextureClasses; i++) {
+	for (int i =0; i<this->m_numTextureClasses; i++) {
 		if (tileNdx >= m_textureClasses[i].firstTile && tileNdx < m_textureClasses[i].firstTile + m_textureClasses[i].numTiles) {
 			return(m_textureClasses[i].name);
 		}

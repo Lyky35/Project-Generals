@@ -84,6 +84,7 @@ class DX8PolygonRendererAttachClass;
 class DX8SkinFVFCategoryContainer;
 
 struct VertexFormatXYZNDUV2;
+class MeshModelClass;
 
 /**
 ** MeshModelClass

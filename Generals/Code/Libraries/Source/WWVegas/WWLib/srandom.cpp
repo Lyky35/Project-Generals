@@ -146,7 +146,7 @@ void SecureRandomClass::Generate_Seed(void)
 	FILE *in=fopen("/dev/random","r");
 	if (in)
 	{
-		for (i=0; i<SeedLength; i++)
+		for (int i =0; i<SeedLength; i++)
 			Seeds[i]^=fgetc(in); 
 		fclose(in);
 	}
@@ -174,7 +174,7 @@ void SecureRandomClass::Generate_Seed(void)
 
 	GetComputerName(comp_name, &comp_len);
 	GetUserName(user_name, &name_len);
-	for (i=0; i<128; i++)
+	for (int i =0; i<128; i++)
 	{
 		// Offset in case user_name == comp_name
 		Seeds[(i+0) % SeedLength]^=comp_name[i];
@@ -183,7 +183,7 @@ void SecureRandomClass::Generate_Seed(void)
 
 #endif
 
-	for (i=0; i<int_seed_length; i++)
+	for (int i =0; i<int_seed_length; i++)
 	{
 		if ((i % 4) == 0)
 			int_seeds[i]^=time(NULL);

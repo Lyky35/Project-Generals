@@ -45,7 +45,16 @@
 #define __STRTOK_R_H__
 
 #ifndef _UNIX
+#ifndef _STRtok_r_DECLARED_
+#define _STRtok_r_DECLARED_
+#ifdef __cplusplus
+extern "C" {
+#endif
 char *strtok_r(char *strptr, const char *delimiters, char **lasts);
+#ifdef __cplusplus
+}
+#endif
+#endif
 #endif
 
 #endif

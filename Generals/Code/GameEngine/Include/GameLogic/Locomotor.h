@@ -44,14 +44,14 @@ class Locomotor;
 class LocomotorTemplate;
 class INI;
 class PhysicsBehavior;
-enum BodyDamageType;
-enum PhysicsTurningType;
+enum BodyDamageType : int;
+enum PhysicsTurningType : int;
 
 // if we ever re-enable jets circling for landing, we need this. so keep in around just in case. (srj)
 #define NO_CIRCLE_FOR_LANDING
 
 //-------------------------------------------------------------------------------------------------
-enum LocomotorAppearance
+enum LocomotorAppearance : int
 {
 	LOCO_LEGS_TWO,
 	LOCO_WHEELS_FOUR,
@@ -63,7 +63,7 @@ enum LocomotorAppearance
 	LOCO_OTHER
 };
 
-enum LocomotorPriority
+enum LocomotorPriority : int
 {
 	LOCO_MOVES_BACK=0,				// In a group, this one moves toward the back
 	LOCO_MOVES_MIDDLE=1,			// In a group, this one stays in the middle
@@ -87,7 +87,7 @@ static const char *TheLocomotorAppearanceNames[] =
 #endif
 
 //-------------------------------------------------------------------------------------------------
-enum LocomotorBehaviorZ
+enum LocomotorBehaviorZ : int
 {
 	Z_NO_Z_MOTIVE_FORCE,							// does whatever physics tells it, but has no z-force of its own.
 	Z_SEA_LEVEL,											// keep at surface-of-water level

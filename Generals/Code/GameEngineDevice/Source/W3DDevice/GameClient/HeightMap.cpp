@@ -326,7 +326,7 @@ UnsignedInt HeightMapRenderObjClass::doTheDynamicLight(VERTEX_FORMAT *vb, VERTEX
 
 	Int alpha = (diffuse>>24)&0x00FF;
 	Int k;
-	for (k=0; k<numLights; k++) {
+	for (int k =0; k<numLights; k++) {
 		W3DDynamicLight *pLight = pLights[k];
 		if (!pLight->isEnabled()) {
 			continue; // he is turned off.
@@ -474,7 +474,7 @@ Int HeightMapRenderObjClass::updateVB(DX8VertexBufferClass	*pVB, char *data, Int
 		// At the bottom, we will copy the final vertex data for one cell into the 
 		// hardware vertex buffer. 
 		
-		for (j=y0; j<y1; j++)
+		for (int j =y0; j<y1; j++)
 		{
 			VERTEX_FORMAT *vb = vBase;
 			if (m_halfResMesh) {
@@ -493,7 +493,7 @@ Int HeightMapRenderObjClass::updateVB(DX8VertexBufferClass	*pVB, char *data, Int
 				vp1=pMap->getYExtent()-pMap->getDrawOrgY()-1;
 
 			yCoord = getYWithOrigin(j)+pMap->getDrawOrgY();
-			for (i=x0; i<x1; i++)
+			for (int i =x0; i<x1; i++)
 			{
 				if (m_halfResMesh) {
 					if (i&1) continue;
@@ -726,14 +726,14 @@ Int HeightMapRenderObjClass::updateVBForLight(DX8VertexBufferClass	*pVB, char *d
 		VERTEX_FORMAT *vBase = (VERTEX_FORMAT*)lockVtxBuffer.Get_Vertex_Array();
 		VERTEX_FORMAT *vb;
 		
-		for (j=y0; j<y1; j++)
+		for (int j =y0; j<y1; j++)
 		{
 			if (m_halfResMesh) {
 				if (j&1) continue;
 			}
 			Int yCoord = getYWithOrigin(j)+m_map->getDrawOrgY()-m_map->getBorderSize();
 			Bool intersect = false;
-			for (k=0; k<numLights; k++) {
+			for (int k =0; k<numLights; k++) {
 				if (pLights[k]->m_minY <= yCoord+1 && 
 					pLights[k]->m_maxY >= yCoord) {
 					intersect = true;
@@ -753,14 +753,14 @@ Int HeightMapRenderObjClass::updateVBForLight(DX8VertexBufferClass	*pVB, char *d
 			if (vp1 >= m_map->getYExtent()-m_map->getDrawOrgY())
 				vp1=m_map->getYExtent()-m_map->getDrawOrgY()-1;
 
-			for (i=x0; i<x1; i++)
+			for (int i =x0; i<x1; i++)
 			{
 				if (m_halfResMesh) {
 					if (i&1) continue;
 				}
 				Int xCoord = getXWithOrigin(i)+m_map->getDrawOrgX()-m_map->getBorderSize();
 				Bool intersect = false;
-				for (k=0; k<numLights; k++) {
+				for (int k =0; k<numLights; k++) {
 					if (pLights[k]->m_minX <= xCoord+1 && 
 						pLights[k]->m_maxX >= xCoord &&
 						pLights[k]->m_minY <= yCoord+1 && 
@@ -901,14 +901,14 @@ Int HeightMapRenderObjClass::updateVBForLightOptimized(DX8VertexBufferClass	*pVB
 		// i,j loop over the quads affected by the light.  Each quad has its *own* 4 vertices.  This
 		// means that for any vertex position on the map, there are actually 4 copies of the vertex. 
 		//
-		for (j=y0; j<y1; j++)
+		for (int j =y0; j<y1; j++)
 		{
 			if (m_halfResMesh) {
 				if (j&1) continue;
 			}
 			Int yCoord = getYWithOrigin(j)+m_map->getDrawOrgY()-m_map->getBorderSize();
 			Bool intersect = false;
-			for (k=0; k<numLights; k++) {
+			for (int k =0; k<numLights; k++) {
 				if (pLights[k]->m_minY <= yCoord+1 && 
 					pLights[k]->m_maxY >= yCoord) {
 					intersect = true;
@@ -928,14 +928,14 @@ Int HeightMapRenderObjClass::updateVBForLightOptimized(DX8VertexBufferClass	*pVB
 			if (vp1 >= m_map->getYExtent()-m_map->getDrawOrgY())
 				vp1=m_map->getYExtent()-m_map->getDrawOrgY()-1;
 
-			for (i=x0; i<x1; i++)
+			for (int i =x0; i<x1; i++)
 			{
 				if (m_halfResMesh) {
 					if (i&1) continue;
 				}
 				Int xCoord = getXWithOrigin(i)+m_map->getDrawOrgX()-m_map->getBorderSize();
 				Bool intersect = false;
-				for (k=0; k<numLights; k++) {
+				for (int k =0; k<numLights; k++) {
 					if (pLights[k]->m_minX <= xCoord+1 && 
 						pLights[k]->m_maxX >= xCoord &&
 						pLights[k]->m_minY <= yCoord+1 && 
@@ -1105,7 +1105,7 @@ void HeightMapRenderObjClass::doPartialUpdate(const IRegion2D &partialRange, Wor
 
 	Int i, j;
 	//First remove any existing extra blend tiles within this partial region
-	for (j=0; j<m_numExtraBlendTiles; j++)
+	for (int j =0; j<m_numExtraBlendTiles; j++)
 	{	Int x = m_extraBlendTilePositions[j] & 0xffff;
 		Int y = m_extraBlendTilePositions[j] >> 16;
 		if (x >= partialRange.lo.x && x < partialRange.hi.x &&
@@ -1117,8 +1117,8 @@ void HeightMapRenderObjClass::doPartialUpdate(const IRegion2D &partialRange, Wor
 		}
 	}
 
-	for (j=partialRange.lo.y; j<partialRange.hi.y; j++)
-		for (i=partialRange.lo.x; i<partialRange.hi.x; i++)
+	for (int j =partialRange.lo.y; j<partialRange.hi.y; j++)
+		for (int i =partialRange.lo.x; i<partialRange.hi.x; i++)
 		{
 			if (j<0 || i<0) continue;
 			Real U[4],V[4];
@@ -1165,7 +1165,7 @@ Int HeightMapRenderObjClass::updateBlock(Int x0, Int y0, Int x1, Int y1,  WorldH
 	DX8VertexBufferClass	**pVB;
 	Int originX,originY;
 	//step through each vertex buffer that needs updating
-	for (j=0; j<m_numVBTilesY; j++)
+	for (int j =0; j<m_numVBTilesY; j++)
 	{
 		originY=j*VERTEX_BUFFER_TILE_LENGTH;	//location of this VB on the large full-size heightmap
 		Int yMin, yMax;
@@ -1176,7 +1176,7 @@ Int HeightMapRenderObjClass::updateBlock(Int x0, Int y0, Int x1, Int y1,  WorldH
 		if (yMin >= yMax) {
 			continue;
 		}
-		for (i=0; i<m_numVBTilesX; i++)
+		for (int i =0; i<m_numVBTilesX; i++)
 		{	
 			originX=i*VERTEX_BUFFER_TILE_LENGTH;	//location of this VB on the large full-size heightmap
 			Int xMin, xMax;
@@ -1649,7 +1649,7 @@ bool HeightMapRenderObjClass::Cast_Ray(RayCollisionTestClass & raytest)
 	result.ComputeContactPoint=true;
 
 	Int p;
-	for (p=0; p<3; p++) {
+	for (int p =0; p<3; p++) {
 		//find intersection point of ray and terrain bounding box
 		result.Reset();
 		result.ComputeContactPoint=true;
@@ -1694,8 +1694,8 @@ bool HeightMapRenderObjClass::Cast_Ray(RayCollisionTestClass & raytest)
 		minHt = m_map->getMaxHeightValue();
 		maxHt = 0;
 
-		for (j=StartCellY; j<=EndCellY; j++) {
-			for (i=StartCellX; i<=EndCellX; i++) {
+		for (int j =StartCellY; j<=EndCellY; j++) {
+			for (int i =StartCellX; i<=EndCellX; i++) {
 				Short cur = getClipHeight(i+m_map->getBorderSize(),j+m_map->getBorderSize());
 				if (cur<minHt) minHt = cur;
 				if (maxHt<cur) maxHt = cur;
@@ -2470,7 +2470,7 @@ void HeightMapRenderObjClass::updateShorelineTiles(Int minX, Int minY, Int maxX,
 	Real transparentDepth=TheWaterTransparency->m_transparentWaterDepth*TheWaterTransparency->m_minWaterOpacity;
 	Real depthScaleFactor = 1.0f/transparentDepth;
 
-	for (j=minY; j<maxY; j++)
+	for (int j =minY; j<maxY; j++)
 		for (Int i=minX; i<maxX; i++)
 		{
 				waterSide=(waterZ0=TheWaterRenderObj->getWaterHeight((i-border)*MAP_XY_FACTOR,(j-border)*MAP_XY_FACTOR)) > ((terrainZ0=MAP_HEIGHT_SCALE*pMap->getHeight(i,j)));
@@ -2609,8 +2609,8 @@ Int HeightMapRenderObjClass::initHeightData(Int x, Int y, WorldHeightMap *pMap, 
 		minHt = pMap->getMaxHeightValue();
 		maxHt = 0;
 
-		for (j=0; j<m_mapDY; j++) {
-			for (i=0; i<m_mapDX; i++) {
+		for (int j =0; j<m_mapDY; j++) {
+			for (int i =0; i<m_mapDX; i++) {
 				Short cur = pMap->getHeight(i,j);
 				if (cur<minHt) minHt = cur;
 				if (maxHt<cur) maxHt = cur;
@@ -2627,8 +2627,8 @@ Int HeightMapRenderObjClass::initHeightData(Int x, Int y, WorldHeightMap *pMap, 
 		
 		//Find list of all extra blend tiles used on map.  These are tiles with 3 materials/textures
 		//over the same tile and require an extra render pass.
-		for (j=0; j<(m_mapDY-1); j++)
-			for (i=0; i<(m_mapDX-1); i++)
+		for (int j =0; j<(m_mapDY-1); j++)
+			for (int i =0; i<(m_mapDX-1); i++)
 			{
 				Real U[4],V[4];
 				UnsignedByte alpha[4];
@@ -2690,9 +2690,9 @@ Int HeightMapRenderObjClass::initHeightData(Int x, Int y, WorldHeightMap *pMap, 
 		DX8IndexBufferClass::WriteLockClass lockIdxBuffer(m_indexBuffer);
 		UnsignedShort *ib=lockIdxBuffer.Get_Index_Array();
 			
-		for (j=0; j<(VERTEX_BUFFER_TILE_LENGTH*VERTEX_BUFFER_TILE_LENGTH*4); j+=VERTEX_BUFFER_TILE_LENGTH*4)
+		for (int j =0; j<(VERTEX_BUFFER_TILE_LENGTH*VERTEX_BUFFER_TILE_LENGTH*4); j+=VERTEX_BUFFER_TILE_LENGTH*4)
 		{
-			for (i=j; i<(j+VERTEX_BUFFER_TILE_LENGTH*4); i+=4)	//4 vertices per 2x2 block
+			for (int i =j; i<(j+VERTEX_BUFFER_TILE_LENGTH*4); i+=4)	//4 vertices per 2x2 block
 			{
 				ib[0]=i;
 				ib[1]=i+2;
@@ -2710,12 +2710,12 @@ Int HeightMapRenderObjClass::initHeightData(Int x, Int y, WorldHeightMap *pMap, 
 		//First round dimensions to next multiple of VERTEX_BUFFER_TILE_LENGTH since that's our
 		//blocksize
 		m_numVBTilesX=1;
-		for (i=VERTEX_BUFFER_TILE_LENGTH+1; i<x;)
+		for (int i =VERTEX_BUFFER_TILE_LENGTH+1; i<x;)
 		{	i+=VERTEX_BUFFER_TILE_LENGTH;
 			m_numVBTilesX++;
 		}
 		m_numVBTilesY=1;
-		for (j=VERTEX_BUFFER_TILE_LENGTH+1; j<y;)
+		for (int j =VERTEX_BUFFER_TILE_LENGTH+1; j<y;)
 		{	j+=VERTEX_BUFFER_TILE_LENGTH;
 			m_numVBTilesY++;
 		}
@@ -2740,7 +2740,7 @@ Int HeightMapRenderObjClass::initHeightData(Int x, Int y, WorldHeightMap *pMap, 
 		}
 #endif
 
-		for (i=0; i<m_numVertexBufferTiles; i++) {
+		for (int i =0; i<m_numVertexBufferTiles; i++) {
 #ifdef USE_NORMALS	 
 			m_vertexBufferTiles[i]=NEW_REF(DX8VertexBufferClass,(DX8_FVF_XYZNUV2,numVertex,DX8VertexBufferClass::USAGE_DEFAULT));
 #else
@@ -2883,8 +2883,8 @@ void HeightMapRenderObjClass::updateScorches(void)
 		}
 		Int startVertex = m_curNumScorchVertices;
 		Int i, j;
-		for (j=minY; j<maxY; j++) {
-			for (i=minX; i<maxX; i++) {
+		for (int j =minY; j<maxY; j++) {
+			for (int i =minX; i<maxX; i++) {
 				if (m_curNumScorchVertices >= MAX_SCORCH_VERTEX) return;
 				curVb->diffuse = diffuse;
 				Real theZ; 
@@ -2911,8 +2911,8 @@ void HeightMapRenderObjClass::updateScorches(void)
 			}
 		}
 		Int yOffset = maxX-minX;
-		for (j=0; j<maxY-minY-1; j++) {
-			for (i=0; i<maxX-minX-1; i++) {
+		for (int j =0; j<maxY-minY-1; j++) {
+			for (int i =0; i<maxX-minX-1; i++) {
 				if (m_curNumScorchIndices+6 > MAX_SCORCH_INDEX) return;
 				Int xNdx = i+minX+m_map->getBorderSize();
 				Int yNdx = j+minY+m_map->getBorderSize();
@@ -2971,7 +2971,7 @@ void HeightMapRenderObjClass::addScorch(Vector3 location, Real radius, Scorches 
 #ifdef DO_SCORCH
 	if (m_numScorches >= MAX_SCORCH_MARKS) {
 		Int i;
-		for (i=0; i<MAX_SCORCH_MARKS-1; i++) {
+		for (int i =0; i<MAX_SCORCH_MARKS-1; i++) {
 			m_scorches[i] = m_scorches[i+1];
 		}
 		m_numScorches--;
@@ -2979,7 +2979,7 @@ void HeightMapRenderObjClass::addScorch(Vector3 location, Real radius, Scorches 
 
 	Int i;
 	Real limit = radius/4;
-	for (i=0; i<m_numScorches; i++) {		
+	for (int i =0; i<m_numScorches; i++) {		
 		if ( abs(location.X-m_scorches[i].location.X) < limit &&  
 				 abs(location.Y-m_scorches[i].location.Y) < limit && 
 				 abs(radius - m_scorches[i].radius) < limit &&
@@ -3253,7 +3253,7 @@ void HeightMapRenderObjClass::On_Frame_Update(void)
 	}
 	if (numDynaLights > 0) {
 		//step through each vertex buffer that needs updating
-		for (j=0; j<m_numVBTilesY; j++)
+		for (int j =0; j<m_numVBTilesY; j++)
 		{
 			originY=j*VERTEX_BUFFER_TILE_LENGTH;	//location of this VB on the large full-size heightmap
 			Int yMin, yMax;
@@ -3264,7 +3264,7 @@ void HeightMapRenderObjClass::On_Frame_Update(void)
 			Int yCoordMax = getYWithOrigin(yMax-1)+m_map->getDrawOrgY()+1-m_map->getBorderSize();
 			if (yCoordMax>yCoordMin) {
 				// no wrap occurred.
-				for (k=0; k<numDynaLights; k++) {
+				for (int k =0; k<numDynaLights; k++) {
 					if (enabledLights[k]->m_minY < yCoordMax && 
 						enabledLights[k]->m_maxY > yCoordMin) {
 						intersect = true;
@@ -3281,7 +3281,7 @@ void HeightMapRenderObjClass::On_Frame_Update(void)
 				int tmp=yCoordMin;
 				yCoordMin = yCoordMax;
 				yCoordMax = tmp;
-				for (k=0; k<numDynaLights; k++) {
+				for (int k =0; k<numDynaLights; k++) {
 					if (enabledLights[k]->m_minY <=  yCoordMin || 
 						enabledLights[k]->m_maxY >= yCoordMax) {
 						intersect = true;
@@ -3298,7 +3298,7 @@ void HeightMapRenderObjClass::On_Frame_Update(void)
 				continue;
 			}
 
-			for (i=0; i<m_numVBTilesX; i++)
+			for (int i =0; i<m_numVBTilesX; i++)
 			{	
 				originX=i*VERTEX_BUFFER_TILE_LENGTH;	//location of this VB on the large full-size heightmap
 				Int xMin, xMax;
@@ -3310,7 +3310,7 @@ void HeightMapRenderObjClass::On_Frame_Update(void)
 				Int xCoordMax = getXWithOrigin(xMax-1)+m_map->getDrawOrgX()+1-m_map->getBorderSize();
 				if (xCoordMax>xCoordMin) {
 					// no wrap occurred.
-					for (k=0; k<numDynaLights; k++) {
+					for (int k =0; k<numDynaLights; k++) {
 						if (enabledLights[k]->m_minX < xCoordMax && 
 							enabledLights[k]->m_maxX > xCoordMin) {
 							intersect = true;
@@ -3327,7 +3327,7 @@ void HeightMapRenderObjClass::On_Frame_Update(void)
 					int tmp=xCoordMin;
 					xCoordMin = xCoordMax;
 					xCoordMax = tmp;
-					for (k=0; k<numDynaLights; k++) {
+					for (int k =0; k<numDynaLights; k++) {
 						if (enabledLights[k]->m_minX <=  xCoordMin || 
 							enabledLights[k]->m_maxX >= xCoordMax) {
 							intersect = true;
@@ -3614,8 +3614,8 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 
 	Real intersectionZ;
 	minHt = m_map->getMaxHeightValue();
-	for (i=0; i<m_x; i++) {
-		for (j=0; j<m_y; j++) {
+	for (int i =0; i<m_x; i++) {
+		for (int j =0; j<m_y; j++) {
 			Short cur = m_map->getDisplayHeight(i,j);
 			if (cur<minHt) minHt = cur;
 		}
@@ -3633,8 +3633,8 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 	float maxX = -minX;
 	float minY = 200000;
 	float maxY = -minY;
-	for (i=0; i<2; i++) {
-		for (j=0; j<2; j++) {
+	for (int i =0; i<2; i++) {
+		for (int j =0; j<2; j++) {
 			float xmod = (-i + 0.5 + viewport.Min.X) * zmod * xscale;// / aspect;
 			float ymod = (j - 0.5 - viewport.Min.Y) * zmod * yscale;// * aspect;
 
@@ -3936,7 +3936,7 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 	}
 
 	Int pass;
- 	for (pass=0; pass<devicePasses; pass++) {
+ 	for (int pass =0; pass<devicePasses; pass++) {
 #ifdef TIMING_TESTS
 #endif
 		if (!doMultiPassWireFrame)	//multi-pass wireframe doesn't use regular shaders.
@@ -3949,8 +3949,8 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 			}
 		}
 
-		for (j=0; j<m_numVBTilesY; j++)
-			for (i=0; i<m_numVBTilesX; i++)
+		for (int j =0; j<m_numVBTilesY; j++)
+			for (int i =0; i<m_numVBTilesX; i++)
 			{
 				static int count = 0;
 				count++;

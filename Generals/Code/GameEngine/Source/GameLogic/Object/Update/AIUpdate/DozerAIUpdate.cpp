@@ -1443,13 +1443,13 @@ DozerAIUpdate::DozerAIUpdate( Thing *thing, const ModuleData* moduleData ) :
 {
 	Int i, j;
 
-	for( i = 0; i < DOZER_NUM_TASKS; i++ )
+	for (int i = 0; i < DOZER_NUM_TASKS; i++ )
 	{
 
 		m_task[ i ].m_targetObjectID = INVALID_ID;
 		m_task[ i ].m_taskOrderFrame = 0;
 
-		for( j = 0; j < DOZER_NUM_DOCK_POINTS; j++ )
+		for (int j = 0; j < DOZER_NUM_DOCK_POINTS; j++ )
 		{
 
 			m_dockPoint[ i ][ j ].valid = FALSE;
@@ -2237,7 +2237,7 @@ void DozerAIUpdate::onDelete( void )
 	Int i;
 
 	// cancel any of the tasks we had queued up
-	for( i = DOZER_TASK_FIRST; i < DOZER_NUM_TASKS; ++i )
+	for (int i = DOZER_TASK_FIRST; i < DOZER_NUM_TASKS; ++i )
 	{
 		
 		if( isTaskPending( (DozerTask)i ) )
@@ -2245,7 +2245,7 @@ void DozerAIUpdate::onDelete( void )
 			
 	}  // end for i
 
-	for( i = 0; i < DOZER_NUM_TASKS; i++ )
+	for (int i = 0; i < DOZER_NUM_TASKS; i++ )
 	{
 		Object* goalObject = TheGameLogic->findObjectByID(m_task[i].m_targetObjectID);
 		if (goalObject != NULL)
@@ -2264,7 +2264,7 @@ DozerTask DozerAIUpdate::getMostRecentCommand( void )
 	DozerTask mostRecentTask = DOZER_TASK_INVALID;
 	UnsignedInt mostRecentFrame = 0;
 
-	for( i = 0; i < DOZER_NUM_TASKS; i++ )
+	for (int i = 0; i < DOZER_NUM_TASKS; i++ )
 	{
 
 		if( isTaskPending( (DozerTask)i ) )
@@ -2456,7 +2456,7 @@ void DozerAIUpdate::xfer( Xfer *xfer )
 		throw SC_INVALID_DATA;
 	}
 	Int i, j;
-	for (i=0; i<DOZER_NUM_TASKS; i++) {
+	for (int i =0; i<DOZER_NUM_TASKS; i++) {
 		xfer->xferObjectID(&m_task[i].m_targetObjectID);
 		xfer->xferUnsignedInt(&m_task[i].m_taskOrderFrame);
 	}
@@ -2469,8 +2469,8 @@ void DozerAIUpdate::xfer( Xfer *xfer )
 		DEBUG_CRASH(("DOZER_NUM_DOCK_POINTS changed unexpectedly."));
 		throw SC_INVALID_DATA;
 	}
-	for (i=0; i<DOZER_NUM_TASKS; i++) {
-		for (j=0; j<DOZER_NUM_DOCK_POINTS; j++) {
+	for (int i =0; i<DOZER_NUM_TASKS; i++) {
+		for (int j =0; j<DOZER_NUM_DOCK_POINTS; j++) {
 			xfer->xferBool(&m_dockPoint[i][j].valid);
 			xfer->xferCoord3D(&m_dockPoint[i][j].location);
 		}

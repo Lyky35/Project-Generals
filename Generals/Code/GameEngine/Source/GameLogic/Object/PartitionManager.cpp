@@ -56,6 +56,16 @@
 #include "Common/MessageStream.h"
 #include "Common/NameKeyGenerator.h"
 #include "Common/PerfTimer.h"
+
+// Forward declarations for static functions defined later in this file
+static void hLineAddLooker(Int x1, Int x2, Int y, void *playerIndexVoid);
+static void hLineRemoveLooker(Int x1, Int x2, Int y, void *playerIndexVoid);
+static void hLineAddShrouder(Int x1, Int x2, Int y, void *playerIndexVoid);
+static void hLineRemoveShrouder(Int x1, Int x2, Int y, void *playerIndexVoid);
+static void hLineAddThreat(Int x1, Int x2, Int y, void *threatValueParms);
+static void hLineRemoveThreat(Int x1, Int x2, Int y, void *threatValueParms);
+static void hLineAddValue(Int x1, Int x2, Int y, void *threatValueParms);
+static void hLineRemoveValue(Int x1, Int x2, Int y, void *threatValueParms);
 #include "Common/Player.h"
 #include "Common/PlayerList.h"
 #include "Common/Radar.h"
@@ -107,6 +117,16 @@ const Real HUGE_DIST_SQR = (HUGE_DIST*HUGE_DIST);
 //------------------------------------------------------------------------------ Performance Timers 
 //#include "Common/PerfMetrics.h"
 //#include "Common/PerfTimer.h"
+
+// Forward declarations for static functions defined later in this file
+static void hLineAddLooker(Int x1, Int x2, Int y, void *playerIndexVoid);
+static void hLineRemoveLooker(Int x1, Int x2, Int y, void *playerIndexVoid);
+static void hLineAddShrouder(Int x1, Int x2, Int y, void *playerIndexVoid);
+static void hLineRemoveShrouder(Int x1, Int x2, Int y, void *playerIndexVoid);
+static void hLineAddThreat(Int x1, Int x2, Int y, void *threatValueParms);
+static void hLineRemoveThreat(Int x1, Int x2, Int y, void *threatValueParms);
+static void hLineAddValue(Int x1, Int x2, Int y, void *threatValueParms);
+static void hLineRemoveValue(Int x1, Int x2, Int y, void *threatValueParms);
 
 //-------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
@@ -205,7 +225,7 @@ inline Bool filtersAllow(PartitionFilter **filters, Object *objOther)
 	{
 		if (calls == 0)
 		{
-			for (idx = 0; idx < MAXR; ++idx)
+			for (int idx = 0; idx < MAXR; ++idx)
 			{
 				names[idx] = NULL;
 				rejections[idx] = 0;
@@ -223,7 +243,7 @@ inline Bool filtersAllow(PartitionFilter **filters, Object *objOther)
 			if (DoFilterProfiling)
 			{
 				const char** namesarr = names;
-				for (idx = 0; idx < maxEver; ++idx)
+				for (int idx = 0; idx < maxEver; ++idx)
 					if (namesarr[idx] == (*fp)->debugGetName())
 						break;
 				if (idx == maxEver)
@@ -248,7 +268,7 @@ inline Bool filtersAllow(PartitionFilter **filters, Object *objOther)
 	if (DoFilterProfiling && calls > 0 && calls % 1000==0)
 	{
 		DEBUG_LOG(("\n\n"));
-		for (idx = 0; idx < maxEver; idx++)
+		for (int idx = 0; idx < maxEver; idx++)
 		{
 			DEBUG_LOG(("rejections[%s] = %d (useful = %d)\n",names[idx],rejections[idx],usefulRejections[idx]));
 		}
@@ -4712,7 +4732,7 @@ void PartitionManager::getMostValuableLocation( Int playerIndex, UnsignedInt whi
 	Int totalPlayerCount = ThePlayerList->getPlayerCount();
 	
 	Int i;
-	for (i = 0; i < totalPlayerCount; ++i) {
+	for (int i = 0; i < totalPlayerCount; ++i) {
 		Player *player = ThePlayerList->getNthPlayer(i);
 		if (!player) {
 			continue;
@@ -4723,7 +4743,7 @@ void PartitionManager::getMostValuableLocation( Int playerIndex, UnsignedInt whi
 
 	Int greatestValueCell = -1;
 	Int maxCellValue = -1;
-	for (i = 0; i < cellCount; ++i) {
+	for (int i = 0; i < cellCount; ++i) {
 		Int cellValue = 0;
 
 		for (Int player = 0; player < MAX_PLAYER_COUNT; ++player) {
@@ -4768,7 +4788,7 @@ void PartitionManager::getNearestGroupWithValue( Int playerIndex, UnsignedInt wh
 	Int totalPlayerCount = ThePlayerList->getPlayerCount();
 	
 	Int i;
-	for (i = 0; i < totalPlayerCount; ++i) {
+	for (int i = 0; i < totalPlayerCount; ++i) {
 		Player *player = ThePlayerList->getNthPlayer(i);
 		if (!player) {
 			continue;
@@ -4782,7 +4802,7 @@ void PartitionManager::getNearestGroupWithValue( Int playerIndex, UnsignedInt wh
 	parms.greaterThan = valueRequired;
 	parms.valueType = valType;
 	parms.allowedPlayersMasks = playerMask;
-	for (i = 0; i < MAX_PLAYER_COUNT; ++i) 
+	for (int i = 0; i < MAX_PLAYER_COUNT; ++i) 
 		parms.allPlayersMask[i] = allPlayerMasks[i];
 	
 	Int nearestGreat = iterateCellsBreadthFirst(sourceLocation, cellValueProc, &parms);
@@ -4805,22 +4825,22 @@ void PartitionManager::storeFoggedCells(ShroudStatusStoreRestore &outPartitionSt
 		outPartitionStore.m_cellsWide = m_cellCountX;
 		
 		// Resize all of our arrays.
-		for (p = 0; p < MAX_PLAYER_COUNT; ++p) {
+		for (int p = 0; p < MAX_PLAYER_COUNT; ++p) {
 			outPartitionStore.m_foggedOrRevealed[p].resize(m_totalCellCount);
-			for (i = 0; i < m_totalCellCount; ++i) {
+			for (int i = 0; i < m_totalCellCount; ++i) {
 				outPartitionStore.m_foggedOrRevealed[p][i] = STORE_DONTTOUCH;
 			}
 		}
 	}
 
-	for (p = 0; p < MAX_PLAYER_COUNT; ++p) {
+	for (int p = 0; p < MAX_PLAYER_COUNT; ++p) {
 		if (outPartitionStore.m_foggedOrRevealed[p].size() != m_totalCellCount) {
 			DEBUG_CRASH(("PartitionManager::storeFoggedCells: jkmcd - x36872"));
 			continue;
 		}
 
-		for (j = 0; j < m_cellCountY; ++j) {
-			for (i = 0; i < m_cellCountX; ++i) {
+		for (int j = 0; j < m_cellCountY; ++j) {
+			for (int i = 0; i < m_cellCountX; ++i) {
 				UnsignedByte &byteToWrite = outPartitionStore.m_foggedOrRevealed[p][j * m_cellCountX + i]; 
 
 				if (storeToFog && m_cells[j * m_cellCountX + i].getShroudStatusForPlayer(p) == CELLSHROUD_FOGGED) {
@@ -4843,14 +4863,14 @@ void PartitionManager::restoreFoggedCells(const ShroudStatusStoreRestore &inPart
 	Int storeWidth = inPartitionStore.m_cellsWide;
 	Int storeHeight = inPartitionStore.m_foggedOrRevealed[0].size() / storeWidth;
 
-	for (p = 0; p < MAX_PLAYER_COUNT; ++p) {
-		for (j = 0; j < storeHeight; ++j) {
+	for (int p = 0; p < MAX_PLAYER_COUNT; ++p) {
+		for (int j = 0; j < storeHeight; ++j) {
 			if (j >= m_cellCountY) {
 				// All done.
 				return;
 			}
 
-			for (i = 0; i < storeWidth; ++i) {
+			for (int i = 0; i < storeWidth; ++i) {
 				if (i >= m_cellCountX) {
 					// Skip to the next line. This info will be thrown away.
 					break;

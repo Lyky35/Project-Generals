@@ -153,7 +153,7 @@ static void HUFF_maketree(struct HuffEncodeContext *EC)
 	nodes = HUFFCODES;
 	i1 = 0;
 	list_count[i1++] = 0L;
-	for (i=0; i<HUFFCODES; ++i)
+	for (int i =0; i<HUFFCODES; ++i)
 	{	EC->bitsarray[i] = 99;
 		if (EC->count[i])
 		{	list_count[i1] = (unsigned int) EC->count[i];
@@ -417,7 +417,7 @@ static void HUFF_analysis(struct HuffEncodeContext *EC,
     i3 - checksum
 */
 
-	for (i=0; i<768; ++i)
+	for (int i =0; i<768; ++i)
 		EC->count[i] = 0;
 
 	bptr1 = EC->buffer;
@@ -464,7 +464,7 @@ static void HUFF_analysis(struct HuffEncodeContext *EC,
 	EC->clues = 0;
 	EC->dclues = 0;
 	i3 = 0;
-	for (i=0;i<HUFFCODES; ++i)
+	for (int i =0;i<HUFFCODES; ++i)
 	{	i1 = i;
 		i2 = 0;
 		if (EC->count[i]<EC->count[i3])
@@ -530,16 +530,16 @@ static void HUFF_analysis(struct HuffEncodeContext *EC,
 		EC->maxdelta = EC->dclues+EC->mindelta;
 		thres = (int) (EC->ulen/25);
 
-		for (i=1;i<=(unsigned int)EC->maxdelta;++i)
+		for (int i =1;i<=(unsigned int)EC->maxdelta;++i)
 			if (EC->count[256+i] > thres)
 				EC->count[EC->dclue+(i-1)*2] = EC->count[256+i];
-		for (i=1;i<=(unsigned int)(-EC->mindelta);++i)
+		for (int i =1;i<=(unsigned int)(-EC->mindelta);++i)
 			if (EC->count[512-i] > thres)
 				EC->count[EC->dclue+(i-1)*2+1] = EC->count[512-i];
 
 /* adjust delta clues */
 
-		for (i=0, i2=0;i<EC->dclues;++i)
+		for (int i =0, i2=0;i<EC->dclues;++i)
 			if (EC->count[EC->dclue+i])
 				i2 = i;
 		di = EC->dclues-i2-1;
@@ -556,7 +556,7 @@ static void HUFF_analysis(struct HuffEncodeContext *EC,
 
 	if (EC->clues)
 	{
-		for (i=0;i<EC->clues;++i)
+		for (int i =0;i<EC->clues;++i)
 			EC->count[EC->clue+i] = EC->count[512+i];
 	}
 
@@ -577,7 +577,7 @@ static void HUFF_analysis(struct HuffEncodeContext *EC,
 
 	if (EC->clues>1)
 	{
-		for (i=1; i<EC->clues; ++i)
+		for (int i =1; i<EC->clues; ++i)
 		{	i1 = i-1;
 			if (i1>8)
 				i1 = 8;
@@ -600,7 +600,7 @@ static void HUFF_analysis(struct HuffEncodeContext *EC,
     i3 - rep2
 */
 
-	for (i=0; i<HUFFCODES; ++i)
+	for (int i =0; i<HUFFCODES; ++i)
 	{	count2[i] = EC->count[i];
 		dcount[i] = 0;
 		EC->count[i] = 0;
@@ -734,7 +734,7 @@ static void HUFF_analysis(struct HuffEncodeContext *EC,
 	i1 = 99;
 	while (i1>chainsaw)
 	{	i1 = 0;
-		for (i=0; i<HUFFCODES; ++i)					/* find intest code */
+		for (int i =0; i<HUFFCODES; ++i)					/* find intest code */
 		{	if (EC->count[i])
 			{	if (EC->bitsarray[i]>=i1)
 				{	i3 = i2;
@@ -755,7 +755,7 @@ static void HUFF_analysis(struct HuffEncodeContext *EC,
 				}
 				++i1;
 			}
-			for (i=i1; i<HUFFCODES; ++i)				/* find code to graft to */
+			for (int i =i1; i<HUFFCODES; ++i)				/* find code to graft to */
 			{	if (EC->count[i])
 				{
 					if ((EC->bitsarray[i]<chainsaw) && (EC->bitsarray[i]>EC->bitsarray[i1]))
@@ -785,7 +785,7 @@ static void HUFF_analysis(struct HuffEncodeContext *EC,
 	if ((~opt) & 8)
 	{
 		i1 = 8;
-		for (i=0; i<HUFFCODES; ++i)
+		for (int i =0; i<HUFFCODES; ++i)
 			EC->bitsarray[i] = i1;
 	}
 
@@ -798,9 +798,9 @@ static void HUFF_analysis(struct HuffEncodeContext *EC,
     i3 -
 */
 
-	for (i=0; i<=HUFFMAXBITS; ++i)
+	for (int i =0; i<=HUFFMAXBITS; ++i)
 		EC->bitnum[i] = 0;
-	for (i=0; i<HUFFCODES; ++i)
+	for (int i =0; i<HUFFCODES; ++i)
 	{	if (EC->bitsarray[i]<=HUFFMAXBITS)
 			++EC->bitnum[EC->bitsarray[i]];
 	}
@@ -837,7 +837,7 @@ static void HUFF_analysis(struct HuffEncodeContext *EC,
 
 	pattern = 0L;
 	i2 = 0;
-	for (i=0; i<EC->codes; ++i)
+	for (int i =0; i<EC->codes; ++i)
 	{	i1 = EC->sortptr[i];
 		while (i2 < EC->bitsarray[i1])
 		{	++i2;
@@ -907,10 +907,10 @@ static void HUFF_pack(struct HuffEncodeContext *EC,
 			rladjust = 0;
 		}
 
-		for (i=1; i <= EC->mostbits; ++i)
+		for (int i =1; i <= EC->mostbits; ++i)
 			HUFF_writenum(EC,dest,(unsigned int) EC->bitnum[i]);
 
-		for (i=0; i<HUFFCODES; ++i)
+		for (int i =0; i<HUFFCODES; ++i)
 			EC->qleapcode[i] = 0;
 
 		i = 0;
@@ -1084,7 +1084,7 @@ static int HUFF_packfile(struct HuffEncodeContext *EC,
 	EC->workpattern = 0L;
 	chainsaw = 15;
 	EC->masks[0] = 0;
-	for (i=1;i<17;++i)
+	for (int i =1;i<17;++i)
 		EC->masks[i] = (EC->masks[i-1] << 1) + 1;
 
 /* initialize huffman vars */

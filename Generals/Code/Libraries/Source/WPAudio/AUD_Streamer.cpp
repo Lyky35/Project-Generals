@@ -50,10 +50,20 @@
 #include <wpaudio/Streamer.h>
 #include <wpaudio/StreamBuffering.h>
 #include <wpaudio/source.h>
-#include <wsys/file.h>
+#include <wsys/File.h>
 #include <wpaudio/device.h>
+#include <wpaudio/time.h>
+#include <wpaudio/level.h>
 #include <wpaudio/channel.h>
 #include <wpaudio/thread.h>
+
+// Missing macros
+#define ArrayLen(a) (sizeof(a)/sizeof((a)[0]))
+#define ArrayEnd(a) (a)[ArrayLen(a)-1] = 0
+#define MINUTES(x) ((x) * 60000)
+#define IN_MINUTES(x) ((x) / 60000)
+#define IN_SECONDS(x) ((x) / 1000)
+#define IN_MSECONDS(x) ((x))
 
 // 'assignment within condition expression'.
 #pragma warning(disable : 4706)
@@ -78,6 +88,26 @@ DBG_DECLARE_TYPE ( AudioStreamer );
 #define AS_LOOPING				0x00000020		// seamlessly loop stream
 
 #define MIN_FRAME_SIZE (4*1024)
+#define AUDIO_VOLUME_MIN 0
+typedef int Int;
+
+// Filesystem stub
+struct FileSystemStub {
+    File *open(const char *path, int mode) {
+        File *f = new File();
+        if (f->open(path, mode) != 0) { delete f; return NULL; }
+        return f;
+    }
+};
+static FileSystemStub TheFileSystemObj;
+static FileSystemStub *TheFileSystem = &TheFileSystemObj;
+#define print printf
+#define AUDIO_VOLUME_MIN 0
+typedef int Int;
+
+// Forward declarations
+int AudioChannelBufferTime(AudioChannel *chan);
+#define max(a,b) ((a)>(b)?(a):(b))
 
 /*****************************************************************************
 **        Private Types                                                     **
@@ -118,6 +148,12 @@ typedef struct AudioStreamerTag
 						DBG_TYPE()
 
 } AudioStreamer;
+
+
+// Forward declarations for functions defined later in this file
+void AudioStreamerStop(AudioStreamer *as);
+void AudioStreamerDestroy(AudioStreamer *as);
+void AudioStreamerClose(AudioStreamer *as);
 
 
 
@@ -1534,7 +1570,7 @@ static void streamDump ( AudioStreamer *as, int index, void (*print) ( char *tex
 	char gauge[vRANGE+1];
 	uint i;
 
-	for ( i =0; i < vRANGE; i++)
+	for (int i =0; i < vRANGE; i++)
 	{
 		gauge[i] = ' ';
 	}
@@ -1543,15 +1579,15 @@ static void streamDump ( AudioStreamer *as, int index, void (*print) ( char *tex
 
 	if ( out_pos > in_pos )
 	{
-		for ( i =out_pos+1; i < vRANGE; i++)
+		for (int i =out_pos+1; i < vRANGE; i++)
 			gauge[i] = '*';
 
-		for ( i =0; i < in_pos; i++)
+		for (int i =0; i < in_pos; i++)
 			gauge[i] = '*';
 	}
 	else
 	{
-		for ( i =out_pos+1; i < in_pos; i++)
+		for (int i =out_pos+1; i < in_pos; i++)
 			gauge[i] = '*';
 	}
 
@@ -1620,7 +1656,7 @@ void	AudioStreamerDump ( void (*print) ( char *text ))
 
 	print ("\nAudio Streamer\n" );
 
-	AudioServiceInfoDump ( AUD_ThreadServiceInfo (thread), temp );
+	AudioServiceInfoDump ( AUD_ThreadServiceInfo (thread) );
 	sprintf ( buffer, "service:%s\n", temp );
 	print (buffer );
 

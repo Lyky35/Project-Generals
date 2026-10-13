@@ -191,7 +191,7 @@ static int refcompress(unsigned char *from, int len, unsigned char *dest, int ma
             }
             else
             {
-                for (i=0; i < (int)blen; ++i)
+                for (int i =0; i < (int)blen; ++i)
                 {
                     hash = HASH(cptr);
                     hoffset = (cptr-from);

@@ -94,7 +94,7 @@ BOOL CALLBACK ImageErrorProc( HWND hWndDialog, UINT message,
 			ImageInfo *image;
 
 			count = TheImagePacker->getImageCount();
-			for( i = 0; i < count; i++ )
+			for (int i = 0; i < count; i++ )
 			{
 
 				// get image

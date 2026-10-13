@@ -1,3 +1,6 @@
+#include <algorithm>
+using std::min;
+using std::max;
 /*
 **	Command & Conquer Generals(tm)
 **	Copyright 2025 Electronic Arts Inc.
@@ -36,9 +39,9 @@
 
 
 #include "always.h"
-#include <Windows.H>
+#include <windows.h>
 #include "WWAudio.H"
-#include "WWDebug.H"
+#include "wwdebug.h"
 #include "Utils.H"
 #include "RealCRC.H"
 #include "SoundBuffer.H"
@@ -59,7 +62,7 @@
 
 
 #ifdef G_CODE_BASE
-#include "..\wwlib\argv.h"
+#include "../wwlib/argv.h"
 #endif
 
 

@@ -1116,17 +1116,17 @@ void ThingTemplate::resolveNames()
 {
 	Int i, j;
 
-	for (i = 0; i < m_prereqInfo.size(); i++)
+	for (int i = 0; i < m_prereqInfo.size(); i++)
 	{
 		m_prereqInfo[i].resolveNames();
 	}
 
 	const Int MAX_BF = 32;
 	const ThingTemplate* tmpls[MAX_BF];
-	for (i = 0; i < m_prereqInfo.size(); i++)
+	for (int i = 0; i < m_prereqInfo.size(); i++)
 	{
 		Int count = m_prereqInfo[i].getAllPossibleBuildFacilityTemplates(tmpls, MAX_BF);
-		for (j = 0; j < count; j++)
+		for (int j = 0; j < count; j++)
 		{
 			// casting const away is a little evil, but justified in this case:
 			// PropductionPrerequisite should only be allowed 'const' access,
@@ -1169,7 +1169,8 @@ void ThingTemplate::initForLTA(const AsciiString& name)
 
 	char buffer[1024];
 	strncpy(buffer, name.str(), sizeof(buffer));
-	for (int i=0; buffer[i]; i++) {
+	int i;
+	for (int i =0; buffer[i]; i++) {
 		if (buffer[i] == '/') {
 			i++;
 			break;
@@ -1336,12 +1337,12 @@ Bool ThingTemplate::isEquivalentTo(const ThingTemplate* tt) const
 	Int i;
 
 	Int numVariations = m_buildVariations.size();
-	for (i = 0; i < numVariations; ++i) 
+	for (int i = 0; i < numVariations; ++i) 
 		if (m_buildVariations[i].compareNoCase(tt->getName()) == 0)
 			return true;
 	
 	numVariations = tt->m_buildVariations.size();
-	for (i = 0; i < numVariations; ++i)
+	for (int i = 0; i < numVariations; ++i)
 		if (tt->m_buildVariations[i].compareNoCase(getName()) == 0)
 			return true;
 

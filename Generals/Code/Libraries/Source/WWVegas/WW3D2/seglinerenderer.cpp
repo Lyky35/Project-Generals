@@ -1099,7 +1099,7 @@ void SegLineRendererClass::Render
 			unsigned char *vb=(unsigned char*)Lock.Get_Formatted_Vertex_Array();			
 			const FVFInfoClass& fvfinfo=Verts.FVF_Info();			
 
-			for (i=0; i<vnum; i++)
+			for (int i =0; i<vnum; i++)
 			{
 				// Copy Locations
 				((Vector3*)(vb+fvfinfo.Get_Location_Offset()))->X=vArray[i].x;
@@ -1118,7 +1118,7 @@ void SegLineRendererClass::Render
 			DynamicIBAccessClass::WriteLockClass lock(&ib_access);
 			unsigned short* inds=lock.Get_Index_Array();
 
-			for (i=0; i<tidx; i++)
+			for (int i =0; i<tidx; i++)
 			{
 				*inds++=v_index_array[i].I;
 				*inds++=v_index_array[i].J;

@@ -132,7 +132,7 @@ void ControlBar::populateStructureInventory( Object *building )
 
 	// get window handles for each of the inventory buttons
 	AsciiString windowName;
-	for( i = 0; i < MAX_STRUCTURE_INVENTORY_BUTTONS; i++ )
+	for (int i = 0; i < MAX_STRUCTURE_INVENTORY_BUTTONS; i++ )
 	{
 		// show the window
 		m_commandWindows[ i ]->winHide( FALSE );

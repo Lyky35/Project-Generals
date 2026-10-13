@@ -449,11 +449,11 @@ Int W3DProjectedShadowManager::renderProjectedTerrainShadow(W3DProjectedShadow *
 		if(pvVertices)
 		{
 			//insert each cell's bottom/left edge vertex
-			for (j=startY; j <= endY; j++)
+			for (int j =startY; j <= endY; j++)
 			{
 				float ycoord = (float)j * MAP_XY_FACTOR;
 
-				for (i=startX; i <= endX; i++)
+				for (int i =startX; i <= endX; i++)
 				{	
 					pvVertices->x=(float)i*MAP_XY_FACTOR;
 					pvVertices->y=ycoord;
@@ -482,9 +482,9 @@ Int W3DProjectedShadowManager::renderProjectedTerrainShadow(W3DProjectedShadow *
 		if(pvIndices)
 		{		//fill each cell's vertex indices
 				Int rowStart;
-				for (j=startY,rowStart=0; j<endY; j++,rowStart+=vertsPerRow)
+				for (int j =startY,rowStart=0; j<endY; j++,rowStart+=vertsPerRow)
 				{
-					for (i=rowStart,k=startX; k<endX; i++,k++)
+					for (int i =rowStart,k=startX; k<endX; i++,k++)
 					{	///@todo: Fix this to deal with flipped triangles
 						hmap->getAlphaUVData(k, j, UA, VA, alpha, &flipForBlend, false);
 /*						if (flipForBlend)
@@ -1073,11 +1073,11 @@ void W3DProjectedShadowManager::queueDecal(W3DProjectedShadow *shadow)
 		if(pvVertices)
 		{
 			if (layerHeight)
-				for (j=startY; j <= endY; j++)
+				for (int j =startY; j <= endY; j++)
 				{
 					hmapVertex.Y=(float)(j-borderSize) * MAP_XY_FACTOR;
 
-					for (i=startX; i <= endX; i++)
+					for (int i =startX; i <= endX; i++)
 					{	
 						hmapVertex.X=(float)(i-borderSize)*MAP_XY_FACTOR;
 						hmapVertex.Z=__max((float)hmap->getHeight(i,j)*MAP_HEIGHT_SCALE,layerHeight);
@@ -1092,11 +1092,11 @@ void W3DProjectedShadowManager::queueDecal(W3DProjectedShadow *shadow)
 				}
 			else
 			//insert each cell's bottom/left edge vertex
-			for (j=startY; j <= endY; j++)
+			for (int j =startY; j <= endY; j++)
 			{
 				hmapVertex.Y=(float)(j-borderSize) * MAP_XY_FACTOR;
 
-				for (i=startX; i <= endX; i++)
+				for (int i =startX; i <= endX; i++)
 				{	
 					hmapVertex.X=(float)(i-borderSize)*MAP_XY_FACTOR;
 					hmapVertex.Z=(float)hmap->getHeight(i,j)*MAP_HEIGHT_SCALE+0.01f * MAP_XY_FACTOR;
@@ -1133,9 +1133,9 @@ void W3DProjectedShadowManager::queueDecal(W3DProjectedShadow *shadow)
 		if(pvIndices)
 		{	//fill each cell's vertex indices
 			Int rowStart;
-			for (j=startY,rowStart=0; j<endY; j++,rowStart+=vertsPerRow)
+			for (int j =startY,rowStart=0; j<endY; j++,rowStart+=vertsPerRow)
 			{
-				for (i=rowStart,k=startX; k<endX; i++,k++)
+				for (int i =rowStart,k=startX; k<endX; i++,k++)
 				{	
 					///@todo: fix the winding order in heightmap to be in strip order like above!
 					if (hmap->getFlipState(k,j))

@@ -390,7 +390,7 @@ void RailedTransportAIUpdate::xfer( Xfer *xfer )
 		throw SC_INVALID_DATA;
 	}
 	Int i;
-	for (i=0; i<m_numPaths; i++) {
+	for (int i =0; i<m_numPaths; i++) {
 		xfer->xferUnsignedInt(&m_path[i].startWaypointID);
 		xfer->xferUnsignedInt(&m_path[i].endWaypointID);
 	}

@@ -151,7 +151,7 @@ BOOL GameMtlShaderDlg::Dialog_Proc (HWND dlg_wnd, UINT message, WPARAM wparam, L
 	{
 
 		case WM_INITDIALOG:
-			for(i = 0; i <= NUM_SHADER_BLEND_PRESETS; i++) {
+			for (int i = 0; i <= NUM_SHADER_BLEND_PRESETS; i++) {
 				SendDlgItemMessage(dlg_wnd,IDC_PRESET_COMBO,CB_ADDSTRING,0,(LONG)_ShaderBlendSettingPresetNames[i]);
 			}
 			SendDlgItemMessage(dlg_wnd,IDC_PRESET_COMBO,CB_SETCURSEL,0,0);

@@ -72,63 +72,60 @@ include Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/fl
 Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/codegen:
 .PHONY : Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/codegen
 
-Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDebug/wwdebug.cpp
-Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.obj -MF CMakeFiles/WWDebug.dir/wwdebug.cpp.obj.d -o CMakeFiles/WWDebug.dir/wwdebug.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwdebug.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDebug/wwdebug.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.o -MF CMakeFiles/WWDebug.dir/wwdebug.cpp.o.d -o CMakeFiles/WWDebug.dir/wwdebug.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwdebug.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWDebug.dir/wwdebug.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwdebug.cpp > CMakeFiles/WWDebug.dir/wwdebug.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwdebug.cpp > CMakeFiles/WWDebug.dir/wwdebug.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWDebug.dir/wwdebug.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwdebug.cpp -o CMakeFiles/WWDebug.dir/wwdebug.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwdebug.cpp -o CMakeFiles/WWDebug.dir/wwdebug.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp
-Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.obj -MF CMakeFiles/WWDebug.dir/wwmemlog.cpp.obj.d -o CMakeFiles/WWDebug.dir/wwmemlog.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.o -MF CMakeFiles/WWDebug.dir/wwmemlog.cpp.o.d -o CMakeFiles/WWDebug.dir/wwmemlog.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWDebug.dir/wwmemlog.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp > CMakeFiles/WWDebug.dir/wwmemlog.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp > CMakeFiles/WWDebug.dir/wwmemlog.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWDebug.dir/wwmemlog.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp -o CMakeFiles/WWDebug.dir/wwmemlog.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp -o CMakeFiles/WWDebug.dir/wwmemlog.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDebug/wwprofile.cpp
-Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.obj -MF CMakeFiles/WWDebug.dir/wwprofile.cpp.obj.d -o CMakeFiles/WWDebug.dir/wwprofile.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwprofile.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDebug/wwprofile.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.o -MF CMakeFiles/WWDebug.dir/wwprofile.cpp.o.d -o CMakeFiles/WWDebug.dir/wwprofile.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwprofile.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWDebug.dir/wwprofile.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwprofile.cpp > CMakeFiles/WWDebug.dir/wwprofile.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwprofile.cpp > CMakeFiles/WWDebug.dir/wwprofile.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWDebug.dir/wwprofile.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwprofile.cpp -o CMakeFiles/WWDebug.dir/wwprofile.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDebug/wwprofile.cpp -o CMakeFiles/WWDebug.dir/wwprofile.cpp.s
 
 # Object files for target WWDebug
 WWDebug_OBJECTS = \
-"CMakeFiles/WWDebug.dir/wwdebug.cpp.obj" \
-"CMakeFiles/WWDebug.dir/wwmemlog.cpp.obj" \
-"CMakeFiles/WWDebug.dir/wwprofile.cpp.obj"
+"CMakeFiles/WWDebug.dir/wwdebug.cpp.o" \
+"CMakeFiles/WWDebug.dir/wwmemlog.cpp.o" \
+"CMakeFiles/WWDebug.dir/wwprofile.cpp.o"
 
 # External object files for target WWDebug
 WWDebug_EXTERNAL_OBJECTS =
 
-lib/libWWDebug.a: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.obj
-lib/libWWDebug.a: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.obj
-lib/libWWDebug.a: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.obj
+lib/libWWDebug.a: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.o
+lib/libWWDebug.a: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.o
+lib/libWWDebug.a: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.o
 lib/libWWDebug.a: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/build.make
 lib/libWWDebug.a: Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library ../../../../../../lib/libWWDebug.a"

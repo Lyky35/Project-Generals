@@ -1140,7 +1140,7 @@ void ProductionUpdate::cancelAndRefundAllProduction( void )
   // Empirically, in release the code can loop forever.  So we limit to 100 passes. jba. [8/31/2003]
   const Int productionLimit = 100;// With luck, we never queue up 100 units. [8/31/2003]
   Int i;
-  for (i=0; i<productionLimit; i++) 
+  for (int i =0; i<productionLimit; i++) 
   {
     // iterate through our production queue
     if( m_productionQueue )

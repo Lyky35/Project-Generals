@@ -606,7 +606,7 @@ void TerrainTracksRenderObjClassSystem::ReAcquireResources(void)
 		DX8IndexBufferClass::WriteLockClass lockIdxBuffer(m_indexBuffer);
 		UnsignedShort *ib=lockIdxBuffer.Get_Index_Array();
 
-		for (i=0; i<(m_maxTankTrackEdges-1); i++)
+		for (int i =0; i<(m_maxTankTrackEdges-1); i++)
 		{
 			ib[3]=ib[0]=i*2;
 			ib[1]=i*2+1;
@@ -666,7 +666,7 @@ void TerrainTracksRenderObjClassSystem::init( SceneClass *TerrainTracksScene )
 	}  // end if
 
 	// allocate our modules for this system
-	for( i = 0; i < numModules; i++ )
+	for (int i = 0; i < numModules; i++ )
 	{
 
 		mod = NEW_REF( TerrainTracksRenderObjClass, () );
@@ -756,7 +756,7 @@ void TerrainTracksRenderObjClassSystem::update()
 		if (!TheGlobalData->m_makeTrackMarks)
 			mod->m_haveAnchor=false;	//force a track restart next time around.
 
-		for (i=0,index=mod->m_bottomIndex; i<mod->m_activeEdgeCount; i++,index++)
+		for (int i =0,index=mod->m_bottomIndex; i<mod->m_activeEdgeCount; i++,index++)
 		{
 			if (index >= m_maxTankTrackEdges)
 				index=0;
@@ -842,7 +842,7 @@ Try improving the fit to vertical surfaces like cliffs.
 
 			if (mod->m_activeEdgeCount >= 2 && mod->Is_Really_Visible())
 			{
-				for (i=0,index=mod->m_bottomIndex; i<mod->m_activeEdgeCount; i++,index++)
+				for (int i =0,index=mod->m_bottomIndex; i<mod->m_activeEdgeCount; i++,index++)
 				{
 					if (index >= m_maxTankTrackEdges)
 						index=0;

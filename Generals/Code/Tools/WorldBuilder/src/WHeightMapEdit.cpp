@@ -54,8 +54,8 @@ WorldHeightMapEdit::~WorldHeightMapEdit(void)
 void WorldHeightMapEdit::shutdown(void)
 {
 	Int i, j;
-	for (i=0; i<m_numGlobalTextureClasses; i++) {
-		for (j=0; j<MAX_TILES_PER_CLASS; j++) {
+	for (int i =0; i<m_numGlobalTextureClasses; i++) {
+		for (int j =0; j<MAX_TILES_PER_CLASS; j++) {
 
 			REF_PTR_RELEASE(m_globalTextureClasses[i].tiles[j]);
 			m_globalTextureClasses[i].name.clear();
@@ -70,8 +70,8 @@ void WorldHeightMapEdit::shutdown(void)
 void WorldHeightMapEdit::init(void)
 {
 	Int i, j;
-	for (i=0; i<NUM_TEXTURE_CLASSES; i++) {
-		for (j=0; j<MAX_TILES_PER_CLASS; j++) {
+	for (int i =0; i<NUM_TEXTURE_CLASSES; i++) {
+		for (int j =0; j<MAX_TILES_PER_CLASS; j++) {
 			m_globalTextureClasses[i].tiles[j] = NULL;
 		}
 		m_globalTextureClasses[i].terrainType = NULL;
@@ -89,7 +89,7 @@ WorldHeightMapEdit::WorldHeightMapEdit(Int width, Int height, UnsignedByte initi
 					m_warnTooManyBlend(false)
 {
 	int i;
-	for (i=0; i<NUM_SOURCE_TILES; i++) {
+	for (int i =0; i<NUM_SOURCE_TILES; i++) {
 		m_sourceTiles[i]=NULL;
 		m_edgeTiles[i]=NULL;
 	}
@@ -137,7 +137,7 @@ WorldHeightMapEdit::WorldHeightMapEdit(Int width, Int height, UnsignedByte initi
 		m_dataSize = 0;
 	} else {
 		Int i;
-		for (i=0; i<m_dataSize; i++) {
+		for (int i =0; i<m_dataSize; i++) {
 			m_tileNdxes[i] = 0;
 			m_blendTileNdxes[i] = 0;
 			m_extraBlendTileNdxes[i] = 0;
@@ -147,8 +147,8 @@ WorldHeightMapEdit::WorldHeightMapEdit(Int width, Int height, UnsignedByte initi
 	}
 
 	// fill the map with a certain terrain texture
-	for (i=0; i<m_width; i++) {
-		for (j=0; j<m_height; j++) {
+	for (int i =0; i<m_width; i++) {
+		for (int j =0; j<m_height; j++) {
 			Short ndx = getTileNdxForClass( i, j, m_numGlobalTextureClasses-1 );
 			m_tileNdxes[i+m_width*j] = ndx;
 		}
@@ -170,7 +170,7 @@ m_warnTooManyTex(false),
 m_warnTooManyBlend(false)
 {
 	int i;
-	for (i=0; i<NUM_SOURCE_TILES; i++) {
+	for (int i =0; i<NUM_SOURCE_TILES; i++) {
 		m_edgeTiles[i]=NULL;
 	}
 	REF_PTR_SET(m_alphaEdgeTex, pThis->m_alphaEdgeTex);
@@ -195,11 +195,11 @@ m_warnTooManyBlend(false)
 	m_numBlendedTiles = pThis->m_numBlendedTiles;
 	m_numCliffInfo = pThis->m_numCliffInfo;
 	m_numTextureClasses = pThis->m_numTextureClasses;
-	for (i=0; i<m_numGlobalTextureClasses; i++) {
+	for (int i =0; i<m_numGlobalTextureClasses; i++) {
 		m_textureClasses[i] = pThis->m_textureClasses[i];
 	}
 	m_numEdgeTextureClasses = pThis->m_numEdgeTextureClasses;
-	for (i=0; i<m_numGlobalTextureClasses; i++) {
+	for (int i =0; i<m_numGlobalTextureClasses; i++) {
 		m_edgeTextureClasses[i] = pThis->m_edgeTextureClasses[i];
 	}
 	m_tileNdxes = new Short[m_dataSize];
@@ -224,24 +224,24 @@ m_warnTooManyBlend(false)
 		m_dataSize = 0;
 	} else {
 		Int i;
-		for (i=0; i<NUM_SOURCE_TILES; i++) {
+		for (int i =0; i<NUM_SOURCE_TILES; i++) {
 			REF_PTR_SET(m_sourceTiles[i], pThis->m_sourceTiles[i]);
 			REF_PTR_SET(m_edgeTiles[i], pThis->m_edgeTiles[i]);
 		}
-		for (i=0; i<pThis->m_numBlendedTiles; i++) {
+		for (int i =0; i<pThis->m_numBlendedTiles; i++) {
 			m_blendedTiles[i] = pThis->m_blendedTiles[i];
 		}
-		for (i=0; i<pThis->m_numCliffInfo; i++) {
+		for (int i =0; i<pThis->m_numCliffInfo; i++) {
 			m_cliffInfo[i] = pThis->m_cliffInfo[i];
 		}
-		for (i=0; i<m_dataSize; i++) {
+		for (int i =0; i<m_dataSize; i++) {
 			m_data[i] = pThis->m_data[i];
 			m_tileNdxes[i] = pThis->m_tileNdxes[i];
 			m_blendTileNdxes[i] = pThis->m_blendTileNdxes[i];
 			m_extraBlendTileNdxes[i] = pThis->m_extraBlendTileNdxes[i];
 			m_cliffInfoNdxes[i] = pThis->m_cliffInfoNdxes[i];
 		}
-		for (i=0; i<m_flipStateWidth*numBytesY; i++) {
+		for (int i =0; i<m_flipStateWidth*numBytesY; i++) {
 			m_cellFlipState[i] = pThis->m_cellFlipState[i];
 			m_cellCliffState[i] = pThis->m_cellCliffState[i];
 		}
@@ -262,8 +262,8 @@ WorldHeightMapEdit::WorldHeightMapEdit(ChunkInputStream *pStrm):
 {
 	Bool didMajorRemap = false;
 	Int i, j;
-	for (i=0; i<m_numGlobalTextureClasses; i++) {
-		for (j=0; j<m_numTextureClasses; j++) {
+	for (int i =0; i<m_numGlobalTextureClasses; i++) {
+		for (int j =0; j<m_numTextureClasses; j++) {
 			if (m_globalTextureClasses[i].name == m_textureClasses[j].name) {
 				DEBUG_ASSERTCRASH(m_textureClasses[j].globalTextureClass == -1, ("oops")); // should be unintialized at this point.
 				if (m_globalTextureClasses[i].width != m_textureClasses[i].width) {
@@ -278,7 +278,7 @@ WorldHeightMapEdit::WorldHeightMapEdit(ChunkInputStream *pStrm):
 	Bool didCancel = false;
 
 	// check for missing texture classes.
-	for (i=0; i<m_numTextureClasses; i++) {
+	for (int i =0; i<m_numTextureClasses; i++) {
 		if (m_textureClasses[i].globalTextureClass < 0) {
 			TerrainModal modalTerrainDlg(m_textureClasses[i].name, this);	
 			if (IDOK==modalTerrainDlg.DoModal()) {
@@ -288,7 +288,7 @@ WorldHeightMapEdit::WorldHeightMapEdit(ChunkInputStream *pStrm):
 				didMajorRemap = true;
 			} else {
 				didCancel = true;
-				for (j=0; j<m_textureClasses[i].numTiles; j++) {
+				for (int j =0; j<m_textureClasses[i].numTiles; j++) {
 					REF_PTR_RELEASE(m_sourceTiles[m_textureClasses[i].firstTile+j]);
 				}
 			}
@@ -303,11 +303,11 @@ WorldHeightMapEdit::WorldHeightMapEdit(ChunkInputStream *pStrm):
 		return; // won't check out right.
 	}
 //	Int curTile = 0;
-	for (i=0; i<m_numTextureClasses; i++) {
+	for (int i =0; i<m_numTextureClasses; i++) {
 		DEBUG_ASSERTCRASH(m_textureClasses[i].globalTextureClass >= 0, ("oops"));
 	}
 
-	for (i=0; i<m_dataSize; i++) {
+	for (int i =0; i<m_dataSize; i++) {
 		Int texNdx = this->m_tileNdxes[i];
 		DEBUG_ASSERTCRASH( (texNdx>>2) < m_numBitmapTiles,("oops"));
 		Int texClass = getTextureClassFromNdx(texNdx);
@@ -324,7 +324,7 @@ Bool WorldHeightMapEdit::remapTextures(void)
 {
 	Int i;
 	Bool anyChanges;
-	for (i=0; i<m_numTextureClasses; i++) {
+	for (int i =0; i<m_numTextureClasses; i++) {
 		TerrainModal modalTerrainDlg(m_textureClasses[i].name, this);	
 		if (IDOK==modalTerrainDlg.DoModal()) {
 			Int globalTex = modalTerrainDlg.getNewNdx();
@@ -360,7 +360,7 @@ void WorldHeightMapEdit::loadBitmap(char *path, const char *uiName)
 
 	Int texToUse = m_numGlobalTextureClasses;
 	Int j;
-	for (j=0; j<MAX_TILES_PER_CLASS; j++) {
+	for (int j =0; j<MAX_TILES_PER_CLASS; j++) {
 		REF_PTR_RELEASE(m_globalTextureClasses[texToUse].tiles[j]);
 	}
 	for (width = 10; width >= 1; width--) {
@@ -482,7 +482,7 @@ void WorldHeightMapEdit::loadImagesFromTerrainType( TerrainType *terrain )
 	// setup our entry in the global textures classes
 	Int texToUse = m_numGlobalTextureClasses;
 	Int j;
-	for( j = 0; j < MAX_TILES_PER_CLASS; j++ )
+	for (int j = 0; j < MAX_TILES_PER_CLASS; j++ )
 		REF_PTR_RELEASE( m_globalTextureClasses[ texToUse ].tiles[ j ] );
 
 	for (width = 10; width >= 1; width--) {
@@ -527,7 +527,7 @@ Bool  WorldHeightMapEdit::getRawTileData(Short tileNdx, Int width,
 		Int yOffset=0;
 		if (tileNdx & 1) xOffset = width;
 		if (tileNdx & 2) yOffset = width;
-		for (j=0; j<width; j++) {
+		for (int j =0; j<width; j++) {
 			UnsignedByte *pDestData = buffer;
 			pDestData += j*(width)*TILE_BYTES_PER_PIXEL;
 			UnsignedByte *pSrc = pSrcData;
@@ -562,8 +562,8 @@ void WorldHeightMapEdit::getTexClassNeighbors(Int xIndex, Int yIndex, Int textur
 	Int i,j;
 	int sideCount=0;
 	int totalCount=0;
-	for (i=xIndex-1; i<xIndex+2; i++) {
-		for (j=yIndex-1; j<yIndex+2; j++) {
+	for (int i =xIndex-1; i<xIndex+2; i++) {
+		for (int j =yIndex-1; j<yIndex+2; j++) {
 			if (i==xIndex && j==yIndex) continue;  // don't count self.
 			// Use x and y for indexing, in case we are along an edge.
 			// If we fall off the edge, clamp to the edge so that 
@@ -618,7 +618,7 @@ void WorldHeightMapEdit::saveToFile(DataChunkOutput &chunkWriter)
 		chunkWriter.writeInt(m_height);
 		chunkWriter.writeInt(m_borderSize);
 		chunkWriter.writeInt(numBoundaries);
-		for (i = 0; i < numBoundaries; ++i) {
+		for (int i = 0; i < numBoundaries; ++i) {
 			chunkWriter.writeInt(m_boundaries[i].x);
 			chunkWriter.writeInt(m_boundaries[i].y);
 		}
@@ -650,7 +650,7 @@ void WorldHeightMapEdit::saveToFile(DataChunkOutput &chunkWriter)
 		// write out the terrain texture information
 		// -->
 		chunkWriter.writeInt(m_numTextureClasses);
-		for (i=0; i<m_numTextureClasses; i++) {
+		for (int i =0; i<m_numTextureClasses; i++) {
 			chunkWriter.writeInt(m_textureClasses[i].firstTile);
 			chunkWriter.writeInt(m_textureClasses[i].numTiles);
 			chunkWriter.writeInt(m_textureClasses[i].width);
@@ -662,14 +662,14 @@ void WorldHeightMapEdit::saveToFile(DataChunkOutput &chunkWriter)
 		// -->
 		chunkWriter.writeInt(m_numEdgeTiles);
 		chunkWriter.writeInt(m_numEdgeTextureClasses);
-		for (i=0; i<m_numEdgeTextureClasses; i++) {
+		for (int i =0; i<m_numEdgeTextureClasses; i++) {
 			chunkWriter.writeInt(m_edgeTextureClasses[i].firstTile);
 			chunkWriter.writeInt(m_edgeTextureClasses[i].numTiles);
 			chunkWriter.writeInt(m_edgeTextureClasses[i].width);
 			chunkWriter.writeAsciiString(m_edgeTextureClasses[i].name);
 		}
 
-		for (i=1; i<m_numBlendedTiles; i++) {
+		for (int i =1; i<m_numBlendedTiles; i++) {
 			Int flag = FLAG_VAL;
 			chunkWriter.writeInt(m_blendedTiles[i].blendNdx);
 			chunkWriter.writeByte(m_blendedTiles[i].horiz);
@@ -681,7 +681,7 @@ void WorldHeightMapEdit::saveToFile(DataChunkOutput &chunkWriter)
 			chunkWriter.writeInt(m_blendedTiles[i].customBlendEdgeClass);
 			chunkWriter.writeInt(flag);
 		}
-		for (i=1; i<m_numCliffInfo; i++) {
+		for (int i =1; i<m_numCliffInfo; i++) {
 			chunkWriter.writeInt(m_cliffInfo[i].tileIndex);
 			chunkWriter.writeReal(m_cliffInfo[i].u0);
 			chunkWriter.writeReal(m_cliffInfo[i].v0);
@@ -759,7 +759,7 @@ void WorldHeightMapEdit::saveToFile(DataChunkOutput &chunkWriter)
 	/***************GLOBAL LIGHTING DATA ***************/
 	chunkWriter.openDataChunk("GlobalLighting", 	K_LIGHTING_VERSION_3);
 		chunkWriter.writeInt(TheGlobalData->m_timeOfDay);
-		for (i=0; i<4; i++) {
+		for (int i =0; i<4; i++) {
 			chunkWriter.writeReal(TheGlobalData->m_terrainLighting[i+TIME_OF_DAY_FIRST][0].ambient.red);
 			chunkWriter.writeReal(TheGlobalData->m_terrainLighting[i+TIME_OF_DAY_FIRST][0].ambient.green);
 			chunkWriter.writeReal(TheGlobalData->m_terrainLighting[i+TIME_OF_DAY_FIRST][0].ambient.blue);
@@ -792,7 +792,7 @@ void WorldHeightMapEdit::saveToFile(DataChunkOutput &chunkWriter)
 				chunkWriter.writeReal(TheGlobalData->m_terrainObjectsLighting[i+TIME_OF_DAY_FIRST][j].lightPos.y);
 				chunkWriter.writeReal(TheGlobalData->m_terrainObjectsLighting[i+TIME_OF_DAY_FIRST][j].lightPos.z);
 			}
-			for (j=1; j<MAX_GLOBAL_LIGHTS; j++)
+			for (int j =1; j<MAX_GLOBAL_LIGHTS; j++)
 			{
 				chunkWriter.writeReal(TheGlobalData->m_terrainLighting[i+TIME_OF_DAY_FIRST][j].ambient.red);
 				chunkWriter.writeReal(TheGlobalData->m_terrainLighting[i+TIME_OF_DAY_FIRST][j].ambient.green);
@@ -810,7 +810,7 @@ void WorldHeightMapEdit::saveToFile(DataChunkOutput &chunkWriter)
 	chunkWriter.closeDataChunk();
 
 #ifdef _DEBUG
-	for (i=0; i<m_dataSize; i++) {
+	for (int i =0; i<m_dataSize; i++) {
 		Int texNdx = this->m_tileNdxes[i];
 		DEBUG_ASSERTCRASH((texNdx>>2) < m_numBitmapTiles,("oops"));
 		Int texClass = getTextureClassFromNdx(texNdx);
@@ -858,7 +858,7 @@ Int WorldHeightMapEdit::getTextureClassFromNdx(Int tileNdx)
 {
 	Int i;
 	tileNdx = tileNdx>>2;
-	for (i=0; i<m_numTextureClasses; i++) {
+	for (int i =0; i<m_numTextureClasses; i++) {
 		if (m_textureClasses[i].firstTile<0) {
 			continue;
 		}
@@ -928,7 +928,7 @@ Int WorldHeightMapEdit::allocateTiles(Int textureClass)
 		m_numTextureClasses++;
 		REF_PTR_RELEASE(m_terrainTex); // need to update the texture.
 		updateTileTexturePositions(NULL);
-		for (i=0; i<m_numTextureClasses; i++) {
+		for (int i =0; i<m_numTextureClasses; i++) {
 			if (m_textureClasses[i].positionInTexture.x == 0) {
 				// Couldn't fit the tiles in the texture.
 				m_warnTooManyTex = true;
@@ -937,7 +937,7 @@ Int WorldHeightMapEdit::allocateTiles(Int textureClass)
 			}
 		}
 		Int numTiles = m_globalTextureClasses[textureClass].numTiles;
-		for (i=0; i<numTiles; i++) {
+		for (int i =0; i<numTiles; i++) {
 			REF_PTR_SET(m_sourceTiles[m_numBitmapTiles+i],m_globalTextureClasses[textureClass].tiles[i]); 
 		}
 		m_numBitmapTiles += numTiles;
@@ -976,7 +976,7 @@ Int WorldHeightMapEdit::allocateEdgeTiles(Int globalTextureClass)
 		m_numEdgeTextureClasses++;
 		REF_PTR_RELEASE(m_terrainTex); // need to update the texture.
 		updateTileTexturePositions(NULL);
-		for (i=0; i<m_numEdgeTextureClasses; i++) {
+		for (int i =0; i<m_numEdgeTextureClasses; i++) {
 			if (m_edgeTextureClasses[i].positionInTexture.x == 0) {
 				// Couldn't fit the tiles in the texture.
 				m_warnTooManyTex = true;
@@ -985,7 +985,7 @@ Int WorldHeightMapEdit::allocateEdgeTiles(Int globalTextureClass)
 			}
 		}
 		Int numTiles = m_globalTextureClasses[globalTextureClass].numTiles;
-		for (i=0; i<numTiles; i++) {
+		for (int i =0; i<numTiles; i++) {
 			REF_PTR_SET(m_edgeTiles[m_numEdgeTiles+i],m_globalTextureClasses[globalTextureClass].tiles[i]); 
 		}
 		m_numEdgeTiles += numTiles;
@@ -1043,7 +1043,7 @@ Bool WorldHeightMapEdit::canFitTexture(Int textureClass)
 
 		updateTileTexturePositions(NULL);
 		m_numTextureClasses--;
-		for (i=0; i<m_numTextureClasses+1; i++) {
+		for (int i =0; i<m_numTextureClasses+1; i++) {
 			if (m_textureClasses[i].positionInTexture.x == 0) {
 				// Couldn't fit the tiles in the texture.
 				return false;
@@ -1094,7 +1094,7 @@ Int WorldHeightMapEdit::findOrCreateBlendTile(TBlendTileInfo *pBlendInfo)
 	}
 	// Make a quick scan through the blended tiles, and see if we already got this one.
 	int k;
-	for (k=1; k<m_numBlendedTiles; k++) {
+	for (int k =1; k<m_numBlendedTiles; k++) {
 		TBlendTileInfo *curInfo = &m_blendedTiles[k];
 		#define MATCH(x) (curInfo->x==pBlendInfo->x)
 		if (MATCH(blendNdx) && MATCH(horiz) && MATCH(vert) && MATCH(rightDiagonal) &&
@@ -1242,7 +1242,7 @@ void WorldHeightMapEdit::autoBlendOut(Int xIndex, Int yIndex, Int globalEdgeClas
 
 	Int i,j;
 	UnsignedByte *pProcessed = new UnsignedByte[m_dataSize];
-	for (i=0; i<m_dataSize; i++) {
+	for (int i =0; i<m_dataSize; i++) {
 		pProcessed[i] = false;
 	}
 	if (pProcessed == NULL) {
@@ -1261,10 +1261,10 @@ void WorldHeightMapEdit::autoBlendOut(Int xIndex, Int yIndex, Int globalEdgeClas
 		pNodesToProcess = pCurNode->m_next;
 		pCurNode->m_next = NULL;
 		Int curNdx = (pCurNode->m_y*m_width)+pCurNode->m_x;
-		for (i=pCurNode->m_x-1; i<pCurNode->m_x+2; i++) {
+		for (int i =pCurNode->m_x-1; i<pCurNode->m_x+2; i++) {
 			if (i<0) continue;
 			if (i>=m_width) continue;
-			for (j=pCurNode->m_y-1; j<pCurNode->m_y+2; j++) {
+			for (int j =pCurNode->m_y-1; j<pCurNode->m_y+2; j++) {
 				if (j<0) continue;
 				if (j>=m_height) continue;
 				curNdx = (j*m_width)+i;
@@ -1307,7 +1307,7 @@ void WorldHeightMapEdit::autoBlendOut(Int xIndex, Int yIndex, Int globalEdgeClas
 	}
 
 	// Reinit the processed flags;
-	for (i=0; i<m_dataSize; i++) {
+	for (int i =0; i<m_dataSize; i++) {
 		pProcessed[i] = false;
 	}
 
@@ -1318,10 +1318,10 @@ void WorldHeightMapEdit::autoBlendOut(Int xIndex, Int yIndex, Int globalEdgeClas
 		pNodesToProcess = pCurNode->m_next;
 		pCurNode->m_next = NULL;
 		Int curNdx = (pCurNode->m_y*m_width)+pCurNode->m_x;
-		for (i=pCurNode->m_x-1; i<pCurNode->m_x+2; i++) {
+		for (int i =pCurNode->m_x-1; i<pCurNode->m_x+2; i++) {
 			if (i<0) continue;
 			if (i>=m_width) continue;
-			for (j=pCurNode->m_y-1; j<pCurNode->m_y+2; j++) {
+			for (int j =pCurNode->m_y-1; j<pCurNode->m_y+2; j++) {
 				if (j<0) continue;
 				if (j>=m_height) continue;
 //				int thisTexClass = 
@@ -1367,10 +1367,10 @@ void WorldHeightMapEdit::blendToThisClass(Int xIndex, Int yIndex,
 //	Bool longDiagonal = false;
 	if (sides==0) {
 		// corner blend.
-		for (i=xIndex-1; i<xIndex+2; i++) {
+		for (int i =xIndex-1; i<xIndex+2; i++) {
 			if (i<0) continue;
 			if (i>=m_width) continue;
-			for (j=yIndex-1; j<yIndex+2; j++) {
+			for (int j =yIndex-1; j<yIndex+2; j++) {
 				if (j<0) continue;
 				if (j>=m_height) continue;
 				if (i==xIndex && j==yIndex) continue;  // don't do self.
@@ -1384,10 +1384,10 @@ void WorldHeightMapEdit::blendToThisClass(Int xIndex, Int yIndex,
 
 	} else if (sides==1) {
 		// slide blend.
-		for (i=xIndex-1; i<xIndex+2; i++) {
+		for (int i =xIndex-1; i<xIndex+2; i++) {
 			if (i<0) continue;
 			if (i>=m_width) continue;
-			for (j=yIndex-1; j<yIndex+2; j++) {
+			for (int j =yIndex-1; j<yIndex+2; j++) {
 				if (i!=xIndex && j!=yIndex) {
 					continue;  // skip corners.
 				}
@@ -1408,10 +1408,10 @@ void WorldHeightMapEdit::blendToThisClass(Int xIndex, Int yIndex,
 		Bool bottom=false;
 		Bool left=false;
 		Bool right=false;
-		for (i=xIndex-1; i<xIndex+2; i++) {
+		for (int i =xIndex-1; i<xIndex+2; i++) {
 			if (i<0) continue;
 			if (i>=m_width) continue;
-			for (j=yIndex-1; j<yIndex+2; j++) {
+			for (int j =yIndex-1; j<yIndex+2; j++) {
 				if (i!=xIndex && j!=yIndex) {
 					continue;  // skip corners.
 				}
@@ -1470,7 +1470,7 @@ Bool WorldHeightMapEdit::floodFill(Int xIndex, Int yIndex, Int textureClass, Boo
 	}
 	Int i;
 	Bool textureExistsInMap = false;
-	for (i=0; i<m_numTextureClasses; i++) {
+	for (int i =0; i<m_numTextureClasses; i++) {
 		if (m_textureClasses[i].globalTextureClass==textureClass) {
 			textureExistsInMap = true;
 		}
@@ -1490,7 +1490,7 @@ Bool WorldHeightMapEdit::floodFill(Int xIndex, Int yIndex, Int textureClass, Boo
 		if (m_globalTextureClasses[textureClass].numTiles <= m_globalTextureClasses[curTileClass].numTiles) {
 			Int i;
 			Int localClass = -1;
-			for (i=0; i<m_numTextureClasses; i++) {
+			for (int i =0; i<m_numTextureClasses; i++) {
 				if (m_textureClasses[i].globalTextureClass == curTileClass) {
 					localClass = i;
 					break;
@@ -1503,7 +1503,7 @@ Bool WorldHeightMapEdit::floodFill(Int xIndex, Int yIndex, Int textureClass, Boo
 			m_textureClasses[localClass].isBlendEdgeTile = m_globalTextureClasses[textureClass].isBlendEdgeTile;
 			REF_PTR_RELEASE(m_terrainTex); // need to update the texture.
 			Int numTiles = m_globalTextureClasses[textureClass].numTiles;
-			for (i=0; i<numTiles; i++) {
+			for (int i =0; i<numTiles; i++) {
 				REF_PTR_SET(m_sourceTiles[m_textureClasses[localClass].firstTile+i],m_globalTextureClasses[textureClass].tiles[i]); 
 			}
 			optimizeTiles();
@@ -1513,8 +1513,8 @@ Bool WorldHeightMapEdit::floodFill(Int xIndex, Int yIndex, Int textureClass, Boo
 	}
 	Int j;
 	if (doReplace) {
-		for (i=0; i<m_width; i++) {
-			for (j=0; j<m_height; j++) {
+		for (int i =0; i<m_width; i++) {
+			for (int j =0; j<m_height; j++) {
  				ndx = (j*m_width)+i;
 				Int blendNdx = m_blendTileNdxes[ndx];
 				if (curTileClass == getTextureClass(i,j,true)) {
@@ -1548,10 +1548,10 @@ Bool WorldHeightMapEdit::floodFill(Int xIndex, Int yIndex, Int textureClass, Boo
 			setTileNdx(pCurNode->m_x, pCurNode->m_y, textureClass, false);
 			m_blendTileNdxes[ndx] = blendNdx;
 			m_cliffInfoNdxes[ndx] = 0; // remove any cliff adjustment as we are doing a new texture.
-			for (i=pCurNode->m_x-1; i<pCurNode->m_x+2; i++) {
+			for (int i =pCurNode->m_x-1; i<pCurNode->m_x+2; i++) {
 				if (i<0) continue;
 				if (i>=m_width-1) continue;
-				for (j=pCurNode->m_y-1; j<pCurNode->m_y+2; j++) {
+				for (int j =pCurNode->m_y-1; j<pCurNode->m_y+2; j++) {
 					if (j<0) continue;
 					if (j>=m_height-1) continue;	 
  					ndx = (j*m_width)+i;
@@ -1608,7 +1608,7 @@ void WorldHeightMapEdit::resetResources(void)
 void WorldHeightMapEdit::reloadTextures(void)
 {
 	Int i;
-	for (i=0; i<m_numGlobalTextureClasses; i++) {
+	for (int i =0; i<m_numGlobalTextureClasses; i++) {
 		if (m_globalTextureClasses[i].numTiles == 0) continue;
 		CachedFileInputStream stream;
 		if (!stream.open(m_globalTextureClasses[i].filePath)) {
@@ -1676,7 +1676,7 @@ Bool WorldHeightMapEdit::optimizeTiles(void)
 {
 	// Run through all the tile indexes changing to tile classes.
 	Int i;
-	for (i=0; i<m_dataSize; i++) {
+	for (int i =0; i<m_dataSize; i++) {
 		Int texNdx = this->m_tileNdxes[i];
 		Int texClass = getTextureClassFromNdx(texNdx);
 		DEBUG_ASSERTCRASH((texClass>=0),("oops"));
@@ -1686,7 +1686,7 @@ Bool WorldHeightMapEdit::optimizeTiles(void)
 
 	// Run through all the blend tiles changing tile index to class.
 	TBlendTileInfo blendInfo[NUM_BLEND_TILES];
-	for (i=1; i<m_numBlendedTiles; i++) {
+	for (int i =1; i<m_numBlendedTiles; i++) {
 		blendInfo[i] = m_blendedTiles[i];
 		blendInfo[i].blendNdx = getTextureClassFromNdx(blendInfo[i].blendNdx);
 		DEBUG_ASSERTCRASH((blendInfo[i].blendNdx>=0),("oops"));
@@ -1694,7 +1694,7 @@ Bool WorldHeightMapEdit::optimizeTiles(void)
 	}
 
 	// Run through all the blend tiles changing tile index to class.
-	for (i=1; i<m_numCliffInfo; i++) {
+	for (int i =1; i<m_numCliffInfo; i++) {
 		Int texClass  = getTextureClassFromNdx(m_cliffInfo[i].tileIndex);
 		if (texClass<0) texClass=0;
 		m_cliffInfo[i].tileIndex = texClass;
@@ -1702,7 +1702,7 @@ Bool WorldHeightMapEdit::optimizeTiles(void)
 
 
 	// Release all the tiles.
-	for (i=0; i<NUM_SOURCE_TILES; i++) {
+	for (int i =0; i<NUM_SOURCE_TILES; i++) {
 		REF_PTR_RELEASE(m_sourceTiles[i]);
 	}
 	m_numBitmapTiles = 0;
@@ -1711,8 +1711,8 @@ Bool WorldHeightMapEdit::optimizeTiles(void)
 	m_numTextureClasses = 0;
 	// Reallocate the textures and blends.
 	Int x, y;
-	for (x=0; x<m_width; x++) {
-		for (y=0; y<m_height; y++) {
+	for (int x =0; x<m_width; x++) {
+		for (int y =0; y<m_height; y++) {
 			i = y*m_width+x;
 			Int texClass = m_tileNdxes[i];
 			m_tileNdxes[i] = getTileNdxForClass(x,y,texClass);
@@ -1770,7 +1770,7 @@ Bool WorldHeightMapEdit::optimizeTiles(void)
 		}
 	}		
 	// Run through all the blend tiles changing tile index to class.
-	for (i=1; i<m_numCliffInfo; i++) {
+	for (int i =1; i<m_numCliffInfo; i++) {
 		Int texClass  = m_cliffInfo[i].tileIndex;
 		m_cliffInfo[i].tileIndex = getTileNdxForClass(x,y,texClass);
 	}
@@ -1833,8 +1833,8 @@ Bool WorldHeightMapEdit::resize(Int newXSize, Int newYSize, Int newHeight, Int n
 	Short  *cliffInfoNdxes = new Short[newDataSize];  	
 	
 	Int i, j;
-	for (i=0; i<newXSize; i++) {
-		for (j=0; j<newYSize; j++) {
+	for (int i =0; i<newXSize; i++) {
+		for (int j =0; j<newYSize; j++) {
 			Int newNdx = i+j*newXSize;	
 			Int oldI = i+xOffset;
 			Bool inRange = true;
@@ -1895,7 +1895,7 @@ Bool WorldHeightMapEdit::resize(Int newXSize, Int newYSize, Int newHeight, Int n
 	m_cellCliffState	= MSGNEW("WorldHeightMapEdit::resize") UnsignedByte[numBytesX*m_height];
 
 	// Verify index remapping
-	for(i=0; i<m_dataSize; i++) {
+	for (int i =0; i<m_dataSize; i++) {
 		if (m_cliffInfoNdxes[i]<0 || m_cliffInfoNdxes[i]>= m_numCliffInfo) {
 			m_cliffInfoNdxes[i] = 0;		
 		}
@@ -1919,7 +1919,7 @@ current map. */
 Bool WorldHeightMapEdit::isTexClassUsed(Int textureClass)
 {
 	Int i;
-	for (i=0; i<m_numTextureClasses; i++) {
+	for (int i =0; i<m_numTextureClasses; i++) {
 		Int globalClass = m_textureClasses[i].globalTextureClass;
 		if (globalClass == textureClass) {
 			return(true);
@@ -1933,7 +1933,7 @@ used, returns -1. */
 Int WorldHeightMapEdit::getFirstTile(Int textureClass)
 {
 	Int i;
-	for (i=0; i<m_numTextureClasses; i++) {
+	for (int i =0; i<m_numTextureClasses; i++) {
 		Int globalClass = m_textureClasses[i].globalTextureClass;
 		if (globalClass == textureClass) {
 			return(m_textureClasses[i].firstTile);
@@ -1950,10 +1950,10 @@ void WorldHeightMapEdit::dbgVerifyAfterUndo(void)
 {
 #ifdef _DEBUG
 	Int i, j;
-	for (i=0; i<m_numGlobalTextureClasses; i++) {
+	for (int i =0; i<m_numGlobalTextureClasses; i++) {
 		m_globalTextureClasses[i].forDebugOnly_fileTextureClass = -1;
 	}
-	for (j=0; j<m_numTextureClasses; j++) {
+	for (int j =0; j<m_numTextureClasses; j++) {
 		Int globalClass = m_textureClasses[j].globalTextureClass;
 		DEBUG_ASSERTCRASH((globalClass >= 0),("oops"));
 		DEBUG_ASSERTCRASH((globalClass < m_numGlobalTextureClasses),("oops"));
@@ -1968,7 +1968,7 @@ void WorldHeightMapEdit::dbgVerifyAfterUndo(void)
 		DEBUG_ASSERTCRASH((j == m_globalTextureClasses[globalClass].forDebugOnly_fileTextureClass),("oops"));
 	}
 
-	for (i=0; i<m_numGlobalTextureClasses; i++) {
+	for (int i =0; i<m_numGlobalTextureClasses; i++) {
 		Int localClass = m_globalTextureClasses[i].forDebugOnly_fileTextureClass;
 		DEBUG_ASSERTCRASH((localClass < NUM_TEXTURE_CLASSES),("oops"));
 		if (localClass >= 0) {
@@ -1982,7 +1982,7 @@ void WorldHeightMapEdit::dbgVerifyAfterUndo(void)
 		} 
 	}
 
-	for (i=0; i<m_numTextureClasses; i++) {
+	for (int i =0; i<m_numTextureClasses; i++) {
 		DEBUG_ASSERTCRASH((m_textureClasses[i].globalTextureClass >= 0),("oops"));
 		if (m_textureClasses[i].globalTextureClass >= 0) {
 			AsciiString path1 = m_globalTextureClasses[m_textureClasses[i].globalTextureClass].name;
@@ -1992,7 +1992,7 @@ void WorldHeightMapEdit::dbgVerifyAfterUndo(void)
 		}
 	}
 
-	for (i=0; i<m_dataSize; i++) {
+	for (int i =0; i<m_dataSize; i++) {
 		Int texNdx = this->m_tileNdxes[i];
 		DEBUG_ASSERTCRASH(( (texNdx>>2) < m_numBitmapTiles),("oops"));
 		Int texClass = getTextureClassFromNdx(texNdx);
@@ -2144,7 +2144,7 @@ Bool WorldHeightMapEdit::selectInvalidTeam(void)
 	std::set<AsciiString> validTeamNames;
 	std::set<AsciiString> invalidTeamNames;
 	std::set<AsciiString>::const_iterator it;
-	for (i = 0; i < TheSidesList->getNumTeams(); i++)
+	for (int i = 0; i < TheSidesList->getNumTeams(); i++)
 	{
 		name = TheSidesList->getTeamInfo(i)->getDict()->getAsciiString(TheKey_teamName);
 		if (name == NEUTRAL_TEAM_INTERNAL_STR)
@@ -2254,7 +2254,7 @@ Bool WorldHeightMapEdit::doCliffAdjustment(Int xIndex, Int yIndex)
 
 	Int i, j;
 	UnsignedByte *pProcessed = new UnsignedByte[m_dataSize];
-	for (i=0; i<m_dataSize; i++) {
+	for (int i =0; i<m_dataSize; i++) {
 		pProcessed[i] = false;
 	}
 	if (pProcessed == NULL) {
@@ -2460,10 +2460,10 @@ Bool WorldHeightMapEdit::doCliffAdjustment(Int xIndex, Int yIndex)
 
 			CProcessNode *pNodes[4] = {NULL,NULL,NULL,NULL};
 			Int k = 0;
-			for (i=pCurNode->m_x-1; i<pCurNode->m_x+2; i++) {
+			for (int i =pCurNode->m_x-1; i<pCurNode->m_x+2; i++) {
 				if (i<0) continue;
 				if (i>=m_width-1) continue;
-				for (j=pCurNode->m_y-1; j<pCurNode->m_y+2; j++) {
+				for (int j =pCurNode->m_y-1; j<pCurNode->m_y+2; j++) {
 					if (i==pCurNode->m_x && j==pCurNode->m_y) continue;
 					if (i!=pCurNode->m_x && j!=pCurNode->m_y) continue;
 					if (j<0) continue;
@@ -2497,7 +2497,7 @@ Bool WorldHeightMapEdit::doCliffAdjustment(Int xIndex, Int yIndex)
 			while (k)	{
 				Real maxLen = -1;
 				Int curNdx = -1;
-				for (i=0; i<k; i++) {
+				for (int i =0; i<k; i++) {
 					if (pNodes[i]) {
 						if (pNodes[i]->m_len > maxLen) {
 							curNdx = i;
@@ -2547,8 +2547,8 @@ Bool WorldHeightMapEdit::doCliffAdjustment(Int xIndex, Int yIndex)
 
 	if (nodesProcessed) {
 		Real vDelta = (-textureClassExtent/2) - (uvRange.hi.y + uvRange.lo.y)/2;
-		for (i=0; i<m_width; i++) {
-			for (j=0; j<m_height; j++) {
+		for (int i =0; i<m_width; i++) {
+			for (int j =0; j<m_height; j++) {
  				ndx = (j*m_width)+i;
 				if (pProcessed[ndx]) {
 					Int cliffNdx = m_cliffInfoNdxes[ndx];
@@ -2766,10 +2766,10 @@ void WorldHeightMapEdit::updateForAdjacentCliffs(Int xIndex, Int yIndex,
 		Bool lock3 = false;
 		Bool anyMutant = false;
 		Int i, j;
-		for (i=xIndex-1; i<xIndex+2; i+=1) {
+		for (int i =xIndex-1; i<xIndex+2; i+=1) {
 			if (i<0) continue;
 			if (i>=m_width-1) continue;
-			for (j=yIndex-1; j<yIndex+2; j+=1) {
+			for (int j =yIndex-1; j<yIndex+2; j+=1) {
 				if (i==xIndex && j==yIndex) continue;
 				if (i!=xIndex && j!=yIndex) continue;
 				if (j<0) continue;
@@ -3135,10 +3135,10 @@ void WorldHeightMapEdit::updateFlatCellForAdjacentCliffs(Int xIndex, Int yIndex,
 	Real textureClassExtent = m_globalTextureClasses[curTileClass].width*TILE_PIXEL_EXTENT;
 	textureClassExtent /= TEXTURE_WIDTH; 
 	Int i, j;
-	for (i=xIndex-1; i<xIndex+2; i+=1) {
+	for (int i =xIndex-1; i<xIndex+2; i+=1) {
 		if (i<0) continue;
 		if (i>=m_width-1) continue;
-		for (j=yIndex-1; j<yIndex+2; j+=1) {
+		for (int j =yIndex-1; j<yIndex+2; j+=1) {
 			if (i==xIndex && j==yIndex) continue;
 			if (i!=xIndex && j!=yIndex) continue;
 			if (j<0) continue;

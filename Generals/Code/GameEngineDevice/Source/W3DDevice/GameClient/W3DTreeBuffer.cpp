@@ -175,7 +175,7 @@ void W3DTreeBuffer::sort(Int numIterations)
 			cur++;
 		}
 		Int i;
-		for (i=cur+1; i<m_numTrees-iter; i++) {
+		for (int i =cur+1; i<m_numTrees-iter; i++) {
 			if (m_trees[i].visible) {
 				if (m_trees[cur].sortKey > m_trees[i].sortKey) {
 					TTree tmp = m_trees[cur];
@@ -378,7 +378,7 @@ void W3DTreeBuffer::loadTreesInVertexAndIndexBuffers(RefRenderObjListIterator *p
 			if (m_trees[curTree].panelStart/3 + 2 > numIndex) {
 				continue; // not enought polygons for the offset.  jba.
 			}
-			for (j=0; j<6; j++) {
+			for (int j =0; j<6; j++) {
 				i = ((Int *)pPoly)[j+m_trees[curTree].panelStart];
 				if (m_curNumTreeVertices >= MAX_TREE_VERTEX) 
 					break;
@@ -420,7 +420,7 @@ void W3DTreeBuffer::loadTreesInVertexAndIndexBuffers(RefRenderObjListIterator *p
 				m_curNumTreeVertices++;
 			}
 
-			for (i=0; i<6; i++) {
+			for (int i =0; i<6; i++) {
 				if (m_curNumTreeIndices+4 > MAX_TREE_INDEX) 
 					break;
 				curIb--;
@@ -428,7 +428,7 @@ void W3DTreeBuffer::loadTreesInVertexAndIndexBuffers(RefRenderObjListIterator *p
 				m_curNumTreeIndices++;
 			}
 		} else {
-			for (i=0; i<numVertex; i++) {
+			for (int i =0; i<numVertex; i++) {
 				if (m_curNumTreeVertices >= MAX_TREE_VERTEX) 
 					break;
 
@@ -469,7 +469,7 @@ void W3DTreeBuffer::loadTreesInVertexAndIndexBuffers(RefRenderObjListIterator *p
 				m_curNumTreeVertices++;
 			}
 
-			for (i=0; i<numIndex; i++) {
+			for (int i =0; i<numIndex; i++) {
 				if (m_curNumTreeIndices+4 > MAX_TREE_INDEX) 
 					break;
 				curIb-=3;
@@ -498,7 +498,7 @@ W3DTreeBuffer::~W3DTreeBuffer(void)
 	freeTreeBuffers();
 	REF_PTR_RELEASE(m_treeTexture);
 	Int i;
-	for (i=0; i<MAX_TYPES; i++) {
+	for (int i =0; i<MAX_TYPES; i++) {
 		REF_PTR_RELEASE(m_typeMesh[i]);
 	}
 }
@@ -522,7 +522,7 @@ W3DTreeBuffer::W3DTreeBuffer(void)
 	clearAllTrees();
 	allocateTreeBuffers();
 	Int i;
-	for (i=0; i<MAX_TYPES; i++) {
+	for (int i =0; i<MAX_TYPES; i++) {
 		m_typeMesh[i] = 0;
 	}
 	if (WW3DAssetManager::Get_Instance()==NULL)
@@ -531,7 +531,7 @@ W3DTreeBuffer::W3DTreeBuffer(void)
 	m_treeTexture = NEW_REF(TextureClass, ("trees.tga"));
 	m_treeTexture->Set_U_Addr_Mode(TextureClass::TEXTURE_ADDRESS_CLAMP);
 	m_treeTexture->Set_V_Addr_Mode(TextureClass::TEXTURE_ADDRESS_CLAMP);
-	for (i=0; i<MAX_TYPES; i++) {
+	for (int i =0; i<MAX_TYPES; i++) {
 		switch(i) {
 		case 0:
 			m_typeMesh[i] = (MeshClass*)WW3DAssetManager::Get_Instance()->Create_Render_Obj("ALPINETREE.TREE 1" );

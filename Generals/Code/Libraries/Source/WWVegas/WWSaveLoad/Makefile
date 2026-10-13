@@ -130,13 +130,13 @@ WWSaveLoad/fast:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build
 .PHONY : WWSaveLoad/fast
 
-definition.obj: definition.cpp.obj
-.PHONY : definition.obj
+definition.o: definition.cpp.o
+.PHONY : definition.o
 
 # target to build an object file
-definition.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.obj
-.PHONY : definition.cpp.obj
+definition.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.o
+.PHONY : definition.cpp.o
 
 definition.i: definition.cpp.i
 .PHONY : definition.i
@@ -154,13 +154,13 @@ definition.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.s
 .PHONY : definition.cpp.s
 
-definitionfactory.obj: definitionfactory.cpp.obj
-.PHONY : definitionfactory.obj
+definitionfactory.o: definitionfactory.cpp.o
+.PHONY : definitionfactory.o
 
 # target to build an object file
-definitionfactory.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.obj
-.PHONY : definitionfactory.cpp.obj
+definitionfactory.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.o
+.PHONY : definitionfactory.cpp.o
 
 definitionfactory.i: definitionfactory.cpp.i
 .PHONY : definitionfactory.i
@@ -178,13 +178,13 @@ definitionfactory.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.s
 .PHONY : definitionfactory.cpp.s
 
-definitionfactorymgr.obj: definitionfactorymgr.cpp.obj
-.PHONY : definitionfactorymgr.obj
+definitionfactorymgr.o: definitionfactorymgr.cpp.o
+.PHONY : definitionfactorymgr.o
 
 # target to build an object file
-definitionfactorymgr.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.obj
-.PHONY : definitionfactorymgr.cpp.obj
+definitionfactorymgr.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.o
+.PHONY : definitionfactorymgr.cpp.o
 
 definitionfactorymgr.i: definitionfactorymgr.cpp.i
 .PHONY : definitionfactorymgr.i
@@ -202,13 +202,13 @@ definitionfactorymgr.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.s
 .PHONY : definitionfactorymgr.cpp.s
 
-definitionmgr.obj: definitionmgr.cpp.obj
-.PHONY : definitionmgr.obj
+definitionmgr.o: definitionmgr.cpp.o
+.PHONY : definitionmgr.o
 
 # target to build an object file
-definitionmgr.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.obj
-.PHONY : definitionmgr.cpp.obj
+definitionmgr.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.o
+.PHONY : definitionmgr.cpp.o
 
 definitionmgr.i: definitionmgr.cpp.i
 .PHONY : definitionmgr.i
@@ -226,13 +226,13 @@ definitionmgr.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.s
 .PHONY : definitionmgr.cpp.s
 
-parameter.obj: parameter.cpp.obj
-.PHONY : parameter.obj
+parameter.o: parameter.cpp.o
+.PHONY : parameter.o
 
 # target to build an object file
-parameter.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.obj
-.PHONY : parameter.cpp.obj
+parameter.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.o
+.PHONY : parameter.cpp.o
 
 parameter.i: parameter.cpp.i
 .PHONY : parameter.i
@@ -250,13 +250,13 @@ parameter.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.s
 .PHONY : parameter.cpp.s
 
-persistfactory.obj: persistfactory.cpp.obj
-.PHONY : persistfactory.obj
+persistfactory.o: persistfactory.cpp.o
+.PHONY : persistfactory.o
 
 # target to build an object file
-persistfactory.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.obj
-.PHONY : persistfactory.cpp.obj
+persistfactory.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.o
+.PHONY : persistfactory.cpp.o
 
 persistfactory.i: persistfactory.cpp.i
 .PHONY : persistfactory.i
@@ -274,13 +274,13 @@ persistfactory.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.s
 .PHONY : persistfactory.cpp.s
 
-pointerremap.obj: pointerremap.cpp.obj
-.PHONY : pointerremap.obj
+pointerremap.o: pointerremap.cpp.o
+.PHONY : pointerremap.o
 
 # target to build an object file
-pointerremap.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.obj
-.PHONY : pointerremap.cpp.obj
+pointerremap.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.o
+.PHONY : pointerremap.cpp.o
 
 pointerremap.i: pointerremap.cpp.i
 .PHONY : pointerremap.i
@@ -298,13 +298,13 @@ pointerremap.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.s
 .PHONY : pointerremap.cpp.s
 
-saveload.obj: saveload.cpp.obj
-.PHONY : saveload.obj
+saveload.o: saveload.cpp.o
+.PHONY : saveload.o
 
 # target to build an object file
-saveload.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.obj
-.PHONY : saveload.cpp.obj
+saveload.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.o
+.PHONY : saveload.cpp.o
 
 saveload.i: saveload.cpp.i
 .PHONY : saveload.i
@@ -322,13 +322,13 @@ saveload.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.s
 .PHONY : saveload.cpp.s
 
-saveloadstatus.obj: saveloadstatus.cpp.obj
-.PHONY : saveloadstatus.obj
+saveloadstatus.o: saveloadstatus.cpp.o
+.PHONY : saveloadstatus.o
 
 # target to build an object file
-saveloadstatus.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.obj
-.PHONY : saveloadstatus.cpp.obj
+saveloadstatus.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.o
+.PHONY : saveloadstatus.cpp.o
 
 saveloadstatus.i: saveloadstatus.cpp.i
 .PHONY : saveloadstatus.i
@@ -346,13 +346,13 @@ saveloadstatus.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.s
 .PHONY : saveloadstatus.cpp.s
 
-saveloadsubsystem.obj: saveloadsubsystem.cpp.obj
-.PHONY : saveloadsubsystem.obj
+saveloadsubsystem.o: saveloadsubsystem.cpp.o
+.PHONY : saveloadsubsystem.o
 
 # target to build an object file
-saveloadsubsystem.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.obj
-.PHONY : saveloadsubsystem.cpp.obj
+saveloadsubsystem.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.o
+.PHONY : saveloadsubsystem.cpp.o
 
 saveloadsubsystem.i: saveloadsubsystem.cpp.i
 .PHONY : saveloadsubsystem.i
@@ -370,13 +370,13 @@ saveloadsubsystem.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.s
 .PHONY : saveloadsubsystem.cpp.s
 
-twiddler.obj: twiddler.cpp.obj
-.PHONY : twiddler.obj
+twiddler.o: twiddler.cpp.o
+.PHONY : twiddler.o
 
 # target to build an object file
-twiddler.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.obj
-.PHONY : twiddler.cpp.obj
+twiddler.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.o
+.PHONY : twiddler.cpp.o
 
 twiddler.i: twiddler.cpp.i
 .PHONY : twiddler.i
@@ -394,13 +394,13 @@ twiddler.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.s
 .PHONY : twiddler.cpp.s
 
-wwsaveload.obj: wwsaveload.cpp.obj
-.PHONY : wwsaveload.obj
+wwsaveload.o: wwsaveload.cpp.o
+.PHONY : wwsaveload.o
 
 # target to build an object file
-wwsaveload.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.obj
-.PHONY : wwsaveload.cpp.obj
+wwsaveload.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.o
+.PHONY : wwsaveload.cpp.o
 
 wwsaveload.i: wwsaveload.cpp.i
 .PHONY : wwsaveload.i
@@ -427,40 +427,40 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... WWSaveLoad"
-	@echo "... definition.obj"
+	@echo "... definition.o"
 	@echo "... definition.i"
 	@echo "... definition.s"
-	@echo "... definitionfactory.obj"
+	@echo "... definitionfactory.o"
 	@echo "... definitionfactory.i"
 	@echo "... definitionfactory.s"
-	@echo "... definitionfactorymgr.obj"
+	@echo "... definitionfactorymgr.o"
 	@echo "... definitionfactorymgr.i"
 	@echo "... definitionfactorymgr.s"
-	@echo "... definitionmgr.obj"
+	@echo "... definitionmgr.o"
 	@echo "... definitionmgr.i"
 	@echo "... definitionmgr.s"
-	@echo "... parameter.obj"
+	@echo "... parameter.o"
 	@echo "... parameter.i"
 	@echo "... parameter.s"
-	@echo "... persistfactory.obj"
+	@echo "... persistfactory.o"
 	@echo "... persistfactory.i"
 	@echo "... persistfactory.s"
-	@echo "... pointerremap.obj"
+	@echo "... pointerremap.o"
 	@echo "... pointerremap.i"
 	@echo "... pointerremap.s"
-	@echo "... saveload.obj"
+	@echo "... saveload.o"
 	@echo "... saveload.i"
 	@echo "... saveload.s"
-	@echo "... saveloadstatus.obj"
+	@echo "... saveloadstatus.o"
 	@echo "... saveloadstatus.i"
 	@echo "... saveloadstatus.s"
-	@echo "... saveloadsubsystem.obj"
+	@echo "... saveloadsubsystem.o"
 	@echo "... saveloadsubsystem.i"
 	@echo "... saveloadsubsystem.s"
-	@echo "... twiddler.obj"
+	@echo "... twiddler.o"
 	@echo "... twiddler.i"
 	@echo "... twiddler.s"
-	@echo "... wwsaveload.obj"
+	@echo "... wwsaveload.o"
 	@echo "... wwsaveload.i"
 	@echo "... wwsaveload.s"
 .PHONY : help

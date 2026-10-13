@@ -752,7 +752,7 @@ static inline void obbtri_compute_contact_point
 
 	case AXIS_N:		// part of the box is touching the face of the triangle
 
-		for (i = 0; i < 3; i++) {
+		for (int i = 0; i < 3; i++) {
 			x[i] = eval_side(context.AN[i],context.Side) * context.Box.Extent[i];
       }
 		break;

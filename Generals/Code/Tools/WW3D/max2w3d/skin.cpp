@@ -290,7 +290,7 @@ RefResult SkinWSMObjectClass::NotifyRefChanged(Interval changeInt,RefTargetHandl
 	switch (message) {
 
 		case REFMSG_TARGET_DELETED:
-			for (i=0; i<BoneTab.Count(); i++) {
+			for (int i =0; i<BoneTab.Count(); i++) {
 				if (BoneTab[i] == hTarget) {
 					break;
 				}
@@ -349,11 +349,11 @@ void SkinWSMObjectClass::BuildMesh(TimeValue t)
 	*/
 	mesh.setNumVerts(NumBoneIconVerts);
 	mesh.setNumFaces(NumBoneIconFaces);
-	for (i=0; i<NumBoneIconVerts; i++) {
+	for (int i =0; i<NumBoneIconVerts; i++) {
 		mesh.setVert(i, Point3(BoneIconVerts[i].X, BoneIconVerts[i].Y, BoneIconVerts[i].Z));
 	}
 
-	for (i=0; i<NumBoneIconFaces; i++) {
+	for (int i =0; i<NumBoneIconFaces; i++) {
 		Build_Tri(&(mesh.faces[i]),BoneIconFaces[i].V0,BoneIconFaces[i].V1,BoneIconFaces[i].V2);
 	}
 

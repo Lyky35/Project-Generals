@@ -250,7 +250,7 @@ Bool W3DBridge::load(enum BodyDamageType curDamageState)
 	RenderObjClass *pObj = pMgr->Create_Render_Obj(modelName );
 	if (!pObj) return false;
 	Int i;
-	for (i=0; i<pObj->Get_Num_Sub_Objects(); i++) {
+	for (int i =0; i<pObj->Get_Num_Sub_Objects(); i++) {
 		RenderObjClass *pSub = pObj->Get_Sub_Object(i);
 		Matrix3D mtx = pSub->Get_Transform();
 		if (0==strnicmp(left, pSub->Get_Name(), strlen(left))) {
@@ -293,7 +293,7 @@ Bool W3DBridge::load(enum BodyDamageType curDamageState)
 	m_leftMaxX = -FLT_MAX;
 	m_minY = FLT_MAX;
 	m_maxY = -FLT_MAX;
-	for (i=0; i<numVertex; i++) {
+	for (int i =0; i<numVertex; i++) {
 		Vector3 vert;
 		Matrix3D::Transform_Vector(m_leftMtx, pVert[i], &vert);
 		if (m_leftMinX > vert.X) m_leftMinX = vert.X;
@@ -306,7 +306,7 @@ Bool W3DBridge::load(enum BodyDamageType curDamageState)
 		pVert = m_sectionMesh->Peek_Model()->Get_Vertex_Array();
 		m_sectionMinX = FLT_MAX;
 		m_sectionMaxX = -FLT_MAX;
-		for (i=0; i<numVertex; i++) {
+		for (int i =0; i<numVertex; i++) {
 			Vector3 vert;
 			Matrix3D::Transform_Vector(m_sectionMtx, pVert[i], &vert);
 			if (m_sectionMinX > vert.X) m_sectionMinX = vert.X;
@@ -317,7 +317,7 @@ Bool W3DBridge::load(enum BodyDamageType curDamageState)
 		pVert = m_rightMesh->Peek_Model()->Get_Vertex_Array();
 		m_rightMinX = FLT_MAX;
 		m_rightMaxX = -FLT_MAX;
-		for (i=0; i<numVertex; i++) {
+		for (int i =0; i<numVertex; i++) {
 			Vector3 vert;
 			Matrix3D::Transform_Vector(m_rightMtx, pVert[i], &vert);
 			if (m_rightMinX > vert.X) m_rightMinX = vert.X;
@@ -431,7 +431,7 @@ Int W3DBridge::getModelVertices(VertexFormatXYZNDUV1 *destination_vb, Int curVer
 	const Vector2*uvs=pMesh->Peek_Model()->Get_UV_Array_By_Index(0);
 	VertexFormatXYZNDUV1 *curVb = destination_vb+curVertex;
 
-	for (i=0; i<numVertex; i++) {
+	for (int i =0; i<numVertex; i++) {
 		curVb->u1 = uvs[i].U;
 		curVb->v1 = uvs[i].V;
 		Vector3 vLoc;
@@ -562,7 +562,7 @@ void W3DBridge::getIndicesNVertices(UnsignedShort *destination_ib, VertexFormatX
 
 	Int i;
 	// draw the spans.
-	for (i=0; i<numSpans; i++) {
+	for (int i =0; i<numSpans; i++) {
 		numV = getModelVertices(destination_vb, *curVertexP, xOffset+i*spanLength, vec, vecNormal, vecZ, m_start, 
 			m_sectionMtx, m_sectionMesh, pLightsIterator);
 		numI = getModelIndices( destination_ib, *curIndexP, *curVertexP, m_sectionMesh);
@@ -599,7 +599,7 @@ Int W3DBridge::getModelIndices(UnsignedShort *destination_ib, Int curIndex, Int 
 	}
 	UnsignedShort *curIb = destination_ib+curIndex;
 	Int i;
-	for (i=0; i<numPoly; i++) {
+	for (int i =0; i<numPoly; i++) {
 		*curIb++ = vertexOffset + pPoly[i].I;
 		*curIb++ = vertexOffset + pPoly[i].J;
 		*curIb++ = vertexOffset + pPoly[i].K;

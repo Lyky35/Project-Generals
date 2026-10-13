@@ -119,12 +119,12 @@ void MaterialInfoClass::Free(void)
 {
 	int i;
 	
-	for (i=0; i<VertexMaterials.Count(); i++) {
+	for (int i =0; i<VertexMaterials.Count(); i++) {
 		REF_PTR_RELEASE(VertexMaterials[i]);
 	}
 	VertexMaterials.Delete_All(); 
 
-	for (i=0; i<Textures.Count(); i++) {
+	for (int i =0; i<Textures.Count(); i++) {
 		REF_PTR_RELEASE(Textures[i]);
 	}
 	Textures.Delete_All();

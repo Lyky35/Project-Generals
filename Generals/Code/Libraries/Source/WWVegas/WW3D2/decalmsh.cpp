@@ -259,17 +259,17 @@ RigidDecalMeshClass::~RigidDecalMeshClass(void)
 	int i;
 
 	// Notify the system that this decal mesh is being destroyed.
-	for (i=0; i<Decals.Count(); i++) {
+	for (int i =0; i<Decals.Count(); i++) {
 		DecalSystem->Decal_Mesh_Destroyed(Decals[i].DecalID,this);
 	}
 
 	// Release all of our references.  The memory in the arrays will automatically be 
 	// released by the SimpleDynVecClass...
-	for (i=0; i<Polys.Count(); i++) {
+	for (int i =0; i<Polys.Count(); i++) {
 		REF_PTR_RELEASE(Textures[i]);
 	}
 
-	for (i=0; i<Verts.Count(); i++) {
+	for (int i =0; i<Verts.Count(); i++) {
 		REF_PTR_RELEASE(VertexMaterials[i]);
 	}
 }
@@ -492,7 +492,7 @@ bool RigidDecalMeshClass::Create_Decal
 	bool added_polys = false;
 	Vector3 pdir = localbox.Basis.Get_Z_Vector();
 
-	for (i=0; i<apt.Count(); i++) {
+	for (int i =0; i<apt.Count(); i++) {
 
 		/*
 		** check if the polygon is backfacing
@@ -507,7 +507,7 @@ bool RigidDecalMeshClass::Create_Decal
 			*/
 			_DecalPoly0.Reset();
 			const Vector3i & poly = src_polys[apt[i]];
-			for (j=0; j<3; j++) {
+			for (int j =0; j<3; j++) {
 				_DecalPoly0.Add_Vertex(src_verts[poly[j]] /*+ zbias_offset*/,src_vnorms[poly[j]]);
 			}
 
@@ -529,7 +529,7 @@ bool RigidDecalMeshClass::Create_Decal
 				*/
 				int first_vert = Verts.Count();
 
-				for (j=1; j<_DecalPoly0.Verts.Count()-1; j++) {
+				for (int j =1; j<_DecalPoly0.Verts.Count()-1; j++) {
 
 					/*
 					** Check if this triangle is degenerate (Sutherland-Hodgeman can sometimes create degenerate tris)
@@ -548,7 +548,7 @@ bool RigidDecalMeshClass::Create_Decal
 				/*
 				** Extract verts from the clipped polygon
 				*/
-				for (j=0; j<_DecalPoly0.Verts.Count(); j++) {
+				for (int j =0; j<_DecalPoly0.Verts.Count(); j++) {
 
 					Verts.Add(_DecalPoly0.Verts[j]);
 					_DecalPoly0.VertNorms[j].Normalize();
@@ -741,17 +741,17 @@ SkinDecalMeshClass::~SkinDecalMeshClass(void)
 	int i;
 
 	// Notify the system that this decal mesh is being destroyed.
-	for (i=0; i<Decals.Count(); i++) {
+	for (int i =0; i<Decals.Count(); i++) {
 		DecalSystem->Decal_Mesh_Destroyed(Decals[i].DecalID,this);
 	}
 
 	// Release all of our references.  The memory in the arrays will automatically be 
 	// released by the SimpleDynVecClass...
-	for (i=0; i<Polys.Count(); i++) {
+	for (int i =0; i<Polys.Count(); i++) {
 		REF_PTR_RELEASE(Textures[i]);
 	}
 
-	for (i=0; i<ParentVertexIndices.Count(); i++) {
+	for (int i =0; i<ParentVertexIndices.Count(); i++) {
 		REF_PTR_RELEASE(VertexMaterials[i]);
 	}
 }
@@ -953,7 +953,7 @@ bool SkinDecalMeshClass::Create_Decal(DecalGeneratorClass * generator,
 	*/
 	int face_size_hint = Polys.Count() + apt.Count();
 	int first_vert = ParentVertexIndices.Count();
-	for (i = 0; i < apt.Count(); i++) {
+	for (int i = 0; i < apt.Count(); i++) {
 		int offset = first_vert + i * 3;
 		Polys.Add(Vector3i(offset, offset + 1, offset + 2), face_size_hint);
 		
@@ -967,7 +967,7 @@ bool SkinDecalMeshClass::Create_Decal(DecalGeneratorClass * generator,
 	*/
 	int vertex_size_hint = ParentVertexIndices.Count() + 3 * apt.Count();
 
-	for (i = 0; i < apt.Count(); i++) {
+	for (int i = 0; i < apt.Count(); i++) {
 		int face_index = apt[i];
 		for (int vi = 0; vi < 3; vi++) {
 

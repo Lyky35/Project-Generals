@@ -314,7 +314,7 @@ void StructureCollapseUpdate::doPhaseStuff(StructureCollapsePhaseType scphase, c
 	{
 		count = d->m_fxCount[scphase];
 		buildNonDupRandomIndexList(listSize, count, idxList);
-		for (i = 0; i < count; ++i)
+		for (int i = 0; i < count; ++i)
 		{
 			idx = idxList[i];
 			const FXVec& v = d->m_fxs[scphase];
@@ -329,7 +329,7 @@ void StructureCollapseUpdate::doPhaseStuff(StructureCollapsePhaseType scphase, c
 	{
 		count = d->m_oclCount[scphase];
 		buildNonDupRandomIndexList(listSize, count, idxList);
-		for (i = 0; i < count; ++i)
+		for (int i = 0; i < count; ++i)
 		{
 			idx = idxList[i];
 			const OCLVec& v = d->m_ocls[scphase];

@@ -23,7 +23,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "Lib\BaseType.h"
+#include "Lib/BaseType.h"
 #include "BlendMaterial.h"
 #include "WHeightMapEdit.h"
 #include "WorldBuilderDoc.h"
@@ -236,7 +236,7 @@ void BlendMaterial::updateTextures(void)
 	CString label;
 	label.LoadString(IDS_ALPHA_BLEND);
 	addTerrain(label, -1, TVI_ROOT);
-	for (i=WorldHeightMapEdit::getNumTexClasses()-1; i>=0; i--) {
+	for (int i =WorldHeightMapEdit::getNumTexClasses()-1; i>=0; i--) {
 		char path[_MAX_PATH];
 		AsciiString uiName = WorldHeightMapEdit::getTexClassUiName(i);
 		strncpy(path, uiName.str(), _MAX_PATH-2);

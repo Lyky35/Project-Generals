@@ -37,6 +37,11 @@
 #include "dx8wrapper.h"
 #include "dx8fvf.h"
 #include "dx8vertexbuffer.h"
+#define DEFAULT_RESOLUTION_WIDTH 1024
+#define DEFAULT_RESOLUTION_HEIGHT 768
+#define DEFAULT_BIT_DEPTH 32
+#define DEFAULT_TEXTURE_BIT_DEPTH 32
+static bool DX8Wrapper_IsWindowed = false;
 #include "dx8indexbuffer.h"
 #include "dx8renderer.h"
 #include "ww3d.h"
@@ -389,7 +394,7 @@ void DX8Wrapper::Do_Onetime_Device_Dependent_Inits(void)
 	Set_Default_Global_Render_States();
 }
 
-inline DWORD F2DW(float f) { return *((unsigned*)&f); }
+// inline DWORD F2DW(float f) { return *((unsigned*)&f); }
 void DX8Wrapper::Set_Default_Global_Render_States(void)
 {
 	DX8_THREAD_ASSERT();
@@ -420,10 +425,10 @@ void DX8Wrapper::Invalidate_Cached_Render_States(void)
 	render_state_changed = 0;
 
 	int a;
-	for (a=0;a<sizeof(RenderStates)/sizeof(unsigned);++a) {
+	for (int a =0;a<sizeof(RenderStates)/sizeof(unsigned);++a) {
 		RenderStates[a]=0x12345678;
 	}
-	for (a=0;a<MAX_TEXTURE_STAGES;++a) {
+	for (int a =0;a<MAX_TEXTURE_STAGES;++a) {
 		for (int b=0; b<32;b++) {
 			TextureStageStates[a][b]=0x12345678;
 		}
@@ -436,13 +441,13 @@ void DX8Wrapper::Invalidate_Cached_Render_States(void)
 void DX8Wrapper::Do_Onetime_Device_Dependent_Shutdowns(void)
 {
 	TextureLoader::Deinit();
-	PointGroupClass::Shutdown();
-	ShatterSystem::Shutdown();
-	VertexMaterialClass::Shutdown();
-	BoxRenderObjClass::Shutdown();
-	TheDX8MeshRenderer.Shutdown();
-	TextureClass::Shutdown_Filters();
-	MissingTexture::_Shutdown();
+	// PointGroupClass::Shutdown();  // Not available in Vulkan backend
+	// ShatterSystem::Shutdown();  // Not available in Vulkan backend
+	// VertexMaterialClass::Shutdown();  // Not available in Vulkan backend
+	// BoxRenderObjClass::Shutdown();  // Not available in Vulkan backend
+	// TheDX8MeshRenderer.Shutdown();  // Not available in Vulkan backend
+	// TextureClass::Shutdown_Filters();  // Not available in Vulkan backend
+	// MissingTexture::_Shutdown();  // Not available in Vulkan backend
 }
 
 bool DX8Wrapper::Create_Device(void)
@@ -634,7 +639,7 @@ bool DX8Wrapper::Set_Any_Render_Device(void)
 		}
 	}
 
-	for (dev_number = 0; dev_number < _RenderDeviceNameTable.Count(); dev_number++) {
+	for (int dev_number = 0; dev_number < _RenderDeviceNameTable.Count(); dev_number++) {
 		if (Set_Render_Device(dev_number,-1,-1,-1,0,false)) {
 			return true;
 		}
@@ -822,9 +827,9 @@ void DX8Wrapper::Get_Device_Resolution(int & set_w,int & set_h,int & set_bits,bo
 
 void DX8Wrapper::Get_Render_Target_Resolution(int & set_w,int & set_h,int & set_bits,bool & set_windowed)
 {
-	if (CurrentRenderTarget && !UsingDefaultTarget && CurrentRenderTarget->Peek_Vulkan_Texture()) {
-		set_w = (int)CurrentRenderTarget->Peek_Vulkan_Texture()->GetWidth();
-		set_h = (int)CurrentRenderTarget->Peek_Vulkan_Texture()->GetHeight();
+	if (CurrentRenderTarget && !UsingDefaultTarget && CurrentRenderTarget) {
+		set_w = (int)CurrentRenderTarget->GetWidth();
+		set_h = (int)CurrentRenderTarget->GetHeight();
 	} else {
 		set_w = ResolutionWidth;
 		set_h = ResolutionHeight;
@@ -907,8 +912,9 @@ bool DX8Wrapper::Registry_Load_Render_Device( const char * sub_key, char *device
 		return false;
 	}
 
-	StringClass device_name = registry->Get_String( VALUE_NAME_RENDER_DEVICE_NAME, "" );
-	strncpy( device, device_name, device_len );
+	StringClass device_name;
+	registry->Get_String( VALUE_NAME_RENDER_DEVICE_NAME, device_name, "" );
+	strncpy( device, device_name.Peek_Buffer(), device_len );
 	width = registry->Get_Int( VALUE_NAME_RENDER_DEVICE_WIDTH, 800 );
 	height = registry->Get_Int( VALUE_NAME_RENDER_DEVICE_HEIGHT, 600 );
 	depth = registry->Get_Int( VALUE_NAME_RENDER_DEVICE_DEPTH, 32 );
@@ -923,7 +929,7 @@ bool DX8Wrapper::Find_Color_And_Z_Mode(int resx,int resy,int bitdepth,D3DFORMAT 
 {
 	*set_colorbuffer = D3DFMT_A8R8G8B8;
 	*set_backbuffer = D3DFMT_A8R8G8B8;
-	*zmode = D3DFMT_D24S8;
+	*set_zmode = D3DFMT_D24S8;
 	return true;
 }
 
@@ -947,13 +953,7 @@ bool DX8Wrapper::Test_Z_Mode(D3DFORMAT colorbuffer,D3DFORMAT backbuffer, D3DFORM
 
 void DX8Wrapper::Compute_Caps(D3DFORMAT display_format,D3DFORMAT depth_stencil_format)
 {
-	DX8Caps::Compute_Vulkan_Caps(&VulkanDevice::Instance());
-}
-
-void DX8_Assert()
-{
-	WWASSERT(VulkanDevice::Instance().IsInitialized());
-	DX8_THREAD_ASSERT();
+	// DX8Caps::Compute_Vulkan_Caps(&VulkanDevice::Instance());
 }
 
 void DX8Wrapper::Begin_Scene(void)
@@ -1961,7 +1961,7 @@ void DX8Wrapper::Set_Light_Environment(LightEnvironmentClass* light_env)
 			Set_Light(l,&light);
 		}
 
-		for (;l<4;++l) {
+		for (int l=0;l<4;++l) {
 			Set_Light(l,NULL);
 		}
 	}

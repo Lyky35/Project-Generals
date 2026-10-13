@@ -72,66 +72,111 @@ include Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.
 Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/codegen:
 .PHONY : Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/codegen
 
-Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDownload/Download.cpp
-Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.obj -MF CMakeFiles/WWDownload.dir/Download.cpp.obj.d -o CMakeFiles/WWDownload.dir/Download.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/Download.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/Download.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.o -MF CMakeFiles/WWDownload.dir/Download.cpp.o.d -o CMakeFiles/WWDownload.dir/Download.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/Download.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWDownload.dir/Download.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/Download.cpp > CMakeFiles/WWDownload.dir/Download.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/Download.cpp > CMakeFiles/WWDownload.dir/Download.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWDownload.dir/Download.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/Download.cpp -o CMakeFiles/WWDownload.dir/Download.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/Download.cpp -o CMakeFiles/WWDownload.dir/Download.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDownload/registry.cpp
-Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.obj -MF CMakeFiles/WWDownload.dir/registry.cpp.obj.d -o CMakeFiles/WWDownload.dir/registry.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/registry.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/download.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/download.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/download.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/download.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/download.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/download.cpp.o -MF CMakeFiles/WWDownload.dir/download.cpp.o.d -o CMakeFiles/WWDownload.dir/download.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/download.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/download.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWDownload.dir/download.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/download.cpp > CMakeFiles/WWDownload.dir/download.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/download.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWDownload.dir/download.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/download.cpp -o CMakeFiles/WWDownload.dir/download.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/ftp.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/ftp.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/ftp.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/ftp.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/ftp.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/ftp.cpp.o -MF CMakeFiles/WWDownload.dir/ftp.cpp.o.d -o CMakeFiles/WWDownload.dir/ftp.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/ftp.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/ftp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWDownload.dir/ftp.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/ftp.cpp > CMakeFiles/WWDownload.dir/ftp.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/ftp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWDownload.dir/ftp.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/ftp.cpp -o CMakeFiles/WWDownload.dir/ftp.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/registry.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.o -MF CMakeFiles/WWDownload.dir/registry.cpp.o.d -o CMakeFiles/WWDownload.dir/registry.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/registry.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWDownload.dir/registry.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/registry.cpp > CMakeFiles/WWDownload.dir/registry.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/registry.cpp > CMakeFiles/WWDownload.dir/registry.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWDownload.dir/registry.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/registry.cpp -o CMakeFiles/WWDownload.dir/registry.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/registry.cpp -o CMakeFiles/WWDownload.dir/registry.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDownload/urlBuilder.cpp
-Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.obj -MF CMakeFiles/WWDownload.dir/urlBuilder.cpp.obj.d -o CMakeFiles/WWDownload.dir/urlBuilder.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/urlBuilder.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/urlBuilder.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.o -MF CMakeFiles/WWDownload.dir/urlBuilder.cpp.o.d -o CMakeFiles/WWDownload.dir/urlBuilder.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/urlBuilder.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWDownload.dir/urlBuilder.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/urlBuilder.cpp > CMakeFiles/WWDownload.dir/urlBuilder.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/urlBuilder.cpp > CMakeFiles/WWDownload.dir/urlBuilder.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWDownload.dir/urlBuilder.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/urlBuilder.cpp -o CMakeFiles/WWDownload.dir/urlBuilder.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/urlBuilder.cpp -o CMakeFiles/WWDownload.dir/urlBuilder.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlbuilder.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlbuilder.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/urlbuilder.cpp
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlbuilder.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlbuilder.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlbuilder.cpp.o -MF CMakeFiles/WWDownload.dir/urlbuilder.cpp.o.d -o CMakeFiles/WWDownload.dir/urlbuilder.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/urlbuilder.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlbuilder.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWDownload.dir/urlbuilder.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/urlbuilder.cpp > CMakeFiles/WWDownload.dir/urlbuilder.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlbuilder.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWDownload.dir/urlbuilder.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/urlbuilder.cpp -o CMakeFiles/WWDownload.dir/urlbuilder.cpp.s
 
 # Object files for target WWDownload
 WWDownload_OBJECTS = \
-"CMakeFiles/WWDownload.dir/Download.cpp.obj" \
-"CMakeFiles/WWDownload.dir/registry.cpp.obj" \
-"CMakeFiles/WWDownload.dir/urlBuilder.cpp.obj"
+"CMakeFiles/WWDownload.dir/Download.cpp.o" \
+"CMakeFiles/WWDownload.dir/download.cpp.o" \
+"CMakeFiles/WWDownload.dir/ftp.cpp.o" \
+"CMakeFiles/WWDownload.dir/registry.cpp.o" \
+"CMakeFiles/WWDownload.dir/urlBuilder.cpp.o" \
+"CMakeFiles/WWDownload.dir/urlbuilder.cpp.o"
 
 # External object files for target WWDownload
 WWDownload_EXTERNAL_OBJECTS =
 
-lib/libWWDownload.a: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.obj
-lib/libWWDownload.a: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.obj
-lib/libWWDownload.a: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.obj
+lib/libWWDownload.a: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.o
+lib/libWWDownload.a: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/download.cpp.o
+lib/libWWDownload.a: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/ftp.cpp.o
+lib/libWWDownload.a: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.o
+lib/libWWDownload.a: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.o
+lib/libWWDownload.a: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlbuilder.cpp.o
 lib/libWWDownload.a: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make
 lib/libWWDownload.a: Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library ../../../../../../lib/libWWDownload.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library ../../../../../../lib/libWWDownload.a"
 	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && $(CMAKE_COMMAND) -P CMakeFiles/WWDownload.dir/cmake_clean_target.cmake
 	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/WWDownload.dir/link.txt --verbose=$(VERBOSE)
 

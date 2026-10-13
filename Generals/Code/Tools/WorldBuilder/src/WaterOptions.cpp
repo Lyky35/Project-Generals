@@ -21,7 +21,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "Lib\BaseType.h"
+#include "Lib/BaseType.h"
 #include "CUndoable.h"
 #include "WaterOptions.h"
 #include "WaypointOptions.h"
@@ -206,7 +206,7 @@ void WaterOptions::OnMakeRiver()
 				if (curPoint>0) curPoint--;
 				if (curPoint>0) curPoint--;
 				Int i;
-				for (i=curPoint; i<theTrigger->getNumPoints()-1 && i<curPoint+4; i++) {
+				for (int i =curPoint; i<theTrigger->getNumPoints()-1 && i<curPoint+4; i++) {
 					ICoord3D innerPt = *theTrigger->getPoint(i);
 					ICoord3D outerPt = *theTrigger->getPoint(i+1);
 					Real dx = innerPt.x-outerPt.x;
@@ -224,7 +224,7 @@ void WaterOptions::OnMakeRiver()
 
 				endLen=0;	
 				Int endPoint = 0;
-				for (i=0; i<theTrigger->getNumPoints()-1; i++) {
+				for (int i =0; i<theTrigger->getNumPoints()-1; i++) {
 					if (i>=newPoint-1 && i<=newPoint+1) continue;
 					ICoord3D innerPt = *theTrigger->getPoint(i);
 					ICoord3D outerPt = *theTrigger->getPoint(i+1);
@@ -252,7 +252,7 @@ void WaterOptions::OnMakeRiver()
 						theTrigger->setRiverStart(0);
 					}
 					while(theTrigger->getNumPoints()) theTrigger->deletePoint(theTrigger->getNumPoints()-1);
-					for (i=0; i<pNew->getNumPoints(); i++) {
+					for (int i =0; i<pNew->getNumPoints(); i++) {
 						theTrigger->addPoint(*pNew->getPoint(i));
 					}
 					pNew->deleteInstance();
@@ -421,7 +421,7 @@ void WaterOptions::startUpdateHeight(void)
 	}
 	m_originalHeight = theTrigger->getPoint(0)->z;
 	Int i;
-	for (i=0; i<theTrigger->getNumPoints(); i++) {
+	for (int i =0; i<theTrigger->getNumPoints(); i++) {
 		ICoord3D loc = *theTrigger->getPoint(i);
 		loc.z = m_originalHeight;
 		theTrigger->setPoint(loc, i);

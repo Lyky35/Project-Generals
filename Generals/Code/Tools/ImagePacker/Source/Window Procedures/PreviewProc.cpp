@@ -102,10 +102,10 @@ LRESULT CALLBACK PreviewProc( HWND hWnd, UINT message,
 					Byte r, g, b;
 					HPEN prevPen, pen;
 
-					for( y = 0; y < page->getHeight(); y++ )
+					for (int y = 0; y < page->getHeight(); y++ )
 					{
 
-						for( x = 0; x < page->getWidth(); x++ )
+						for (int x = 0; x < page->getWidth(); x++ )
 						{
 
 							// get the color here

@@ -197,7 +197,7 @@ bool CardinalSpline3DClass::Load(ChunkLoadClass &cload)
 				break;
 
 			case CARDINAL3D_CHUNK_TIGHTNESSKEYS:
-				for (i=0; i<Keys.Count(); i++) {
+				for (int i =0; i<Keys.Count(); i++) {
 					cload.Read(&(tightness),sizeof(tightness));
 					Tightness.Add(tightness);
 				}
@@ -336,7 +336,7 @@ bool CardinalSpline1DClass::Load(ChunkLoadClass &cload)
 				break;
 
 			case CARDINAL1D_CHUNK_TIGHTNESSKEYS:
-				for (i=0; i<Keys.Count(); i++) {
+				for (int i =0; i<Keys.Count(); i++) {
 					cload.Read(&(tightness),sizeof(tightness));
 					Tightness.Add(tightness);
 				}

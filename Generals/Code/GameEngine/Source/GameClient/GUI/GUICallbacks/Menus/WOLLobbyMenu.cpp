@@ -569,10 +569,11 @@ void PopulateLobbyPlayerListbox(void)
 		{
 			std::set<Int>::const_iterator indexIt;
 			Int *newIndices = NEW Int[indicesToSelect.size()];
-			for (i=0, indexIt = indicesToSelect.begin(); indexIt != indicesToSelect.end(); ++i, ++indexIt)
+			std::set<Int>::const_iterator indexIt2 = indicesToSelect.begin();
+			for (Int i = 0; indexIt2 != indicesToSelect.end(); ++i, ++indexIt2)
 			{
-				newIndices[i] = *indexIt;
-				DEBUG_LOG(("Queueing up index %d to re-select\n", *indexIt));
+				newIndices[i] = *indexIt2;
+				DEBUG_LOG(("Queueing up index %d to re-select\n", *indexIt2));
 			}
 			GadgetListBoxSetSelected(listboxLobbyPlayers, newIndices, indicesToSelect.size());
 			delete[] newIndices;
@@ -639,7 +640,7 @@ void WOLLobbyMenuInit( WindowLayout *layout, void *userData )
 	comboLobbyGroupRoomsID = TheNameKeyGenerator->nameToKey(AsciiString("WOLCustomLobby.wnd:ComboBoxGroupRooms"));
 	comboLobbyGroupRooms = TheWindowManager->winGetWindowFromId(parent, comboLobbyGroupRoomsID);
 
-	GadgetTextEntrySetText(textEntryChat, UnicodeString.TheEmptyString);
+	GadgetTextEntrySetText(textEntryChat, UnicodeString::TheEmptyString);
 
 	populateGroupRoomListbox(comboLobbyGroupRooms);
 
@@ -986,7 +987,7 @@ void WOLLobbyMenuUpdate( WindowLayout * layout, void *userData)
 				break;
 			case PeerResponse::PEERRESPONSE_PLAYERJOIN:
 				{
-					if (resp.player.roomType == GroupRoom)
+					if (resp.player.roomType == ROOM_TYPE_CHAT)
 					{
 						PlayerInfo p;
 						fillPlayerInfo(&resp, &p);
@@ -1180,7 +1181,7 @@ void WOLLobbyMenuUpdate( WindowLayout * layout, void *userData)
 							Int i;
 							AsciiString gsMapName = resp.stagingRoomMapName.c_str();
 							AsciiString mapName = "";
-							for (i=0; i<gsMapName.getLength(); ++i)
+							for (Int i =0; i<gsMapName.getLength(); ++i)
 							{
 								char c = gsMapName.getCharAt(i);
 								if (c != '/')
@@ -1191,7 +1192,7 @@ void WOLLobbyMenuUpdate( WindowLayout * layout, void *userData)
 							room.setMap(TheGameState->portableMapPathToRealMapPath(mapName));
 
 							Int numPlayers = 0;
-							for (i=0; i<MAX_SLOTS; ++i)
+							for (Int i =0; i<MAX_SLOTS; ++i)
 							{
 								GameSpyGameSlot *slot = room.getGameSpySlot(i);
 								if (slot)

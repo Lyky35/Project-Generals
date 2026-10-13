@@ -87,7 +87,7 @@ VertexMaterialClass::VertexMaterialClass(void):
 {
 	int i;
 
-	for (i=0; i<MeshBuilderClass::MAX_STAGES; i++)
+	for (int i =0; i<MeshBuilderClass::MAX_STAGES; i++)
 	{
 		Mapper[i]=NULL;		
 		UVSource[i] = i;
@@ -121,7 +121,7 @@ VertexMaterialClass::VertexMaterialClass(const VertexMaterialClass & src) :
 	CRCDirty(true)
 {
 	int i;
-	for (i=0; i<MeshBuilderClass::MAX_STAGES; i++)
+	for (int i =0; i<MeshBuilderClass::MAX_STAGES; i++)
 	{
 		Mapper[i]=NULL;
 		if (src.Mapper[i])
@@ -153,7 +153,7 @@ VertexMaterialClass::~VertexMaterialClass(void)
 {
 	int i;
 
-	for (i=0; i<MeshBuilderClass::MAX_STAGES; i++)
+	for (int i =0; i<MeshBuilderClass::MAX_STAGES; i++)
 	{
 		if (Mapper[i])
 		{
@@ -182,13 +182,13 @@ VertexMaterialClass & VertexMaterialClass::operator = (const VertexMaterialClass
 		UniqueID=src.UniqueID;
 		CRCDirty=src.CRCDirty;
 		int stage;
-		for (stage=0;stage<MeshBuilderClass::MAX_STAGES;++stage) {
+		for (int stage =0;stage<MeshBuilderClass::MAX_STAGES;++stage) {
 			if (Mapper[stage] != NULL) {
 				Mapper[stage]->Release_Ref();
 				Mapper[stage] = NULL;
 			}
 		}
-		for (stage=0;stage<MeshBuilderClass::MAX_STAGES;++stage) {
+		for (int stage =0;stage<MeshBuilderClass::MAX_STAGES;++stage) {
 			if (src.Mapper[stage]) {
 				TextureMapperClass *mapper = src.Mapper[stage]->Clone();
 				Set_Mapper(mapper,stage);
@@ -219,7 +219,7 @@ unsigned long VertexMaterialClass::Compute_CRC(void) const
 	crc = CRC_Memory(reinterpret_cast<const unsigned char *>(&UniqueID),sizeof(UniqueID),crc);
 
 	int i;
-	for (i=0; i<MeshBuilderClass::MAX_STAGES; i++)
+	for (int i =0; i<MeshBuilderClass::MAX_STAGES; i++)
 	{
 		if (Mapper[i]) crc = CRC_Memory(reinterpret_cast<const unsigned char *>(&(Mapper[i])),sizeof(TextureMapperClass*),crc);
 	}
@@ -913,7 +913,7 @@ void VertexMaterialClass::Apply(void) const
 	DX8Wrapper::Set_DX8_Render_State(D3DRS_EMISSIVEMATERIALSOURCE,EmissiveColorSource);
 
 	// set to default values if no mappers
-	for (i=0; i<MeshBuilderClass::MAX_STAGES; i++) {
+	for (int i =0; i<MeshBuilderClass::MAX_STAGES; i++) {
 		if (Mapper[i]) {
 			Mapper[i]->Apply(UVSource[i]);
 		} else {
@@ -943,7 +943,7 @@ void VertexMaterialClass::Apply_Null(void)
 	DX8Wrapper::Set_DX8_Render_State(D3DRS_EMISSIVEMATERIALSOURCE,D3DMCS_MATERIAL);
 
 	// set to default values if no mappers
-	for (i=0; i<MeshBuilderClass::MAX_STAGES; i++) {
+	for (int i =0; i<MeshBuilderClass::MAX_STAGES; i++) {
 		DX8Wrapper::Set_DX8_Texture_Stage_State(i,D3DTSS_TEXCOORDINDEX,D3DTSS_TCI_PASSTHRU | i);	
 		DX8Wrapper::Set_DX8_Texture_Stage_State(i,D3DTSS_TEXTURETRANSFORMFLAGS,D3DTTFF_DISABLE);		
 	}
@@ -968,7 +968,7 @@ void VertexMaterialClass::Apply_Null(void)
 void VertexMaterialClass::Init()
 {
 	int i;
-	for (i=0; i<PRESET_COUNT;i++)
+	for (int i =0; i<PRESET_COUNT;i++)
 		Presets[i]=NEW_REF(VertexMaterialClass,());
 
 	// Set up presets
@@ -996,7 +996,7 @@ void VertexMaterialClass::Init()
 void VertexMaterialClass::Shutdown()
 {
 	int i;
-	for (i=0; i<PRESET_COUNT;i++)
+	for (int i =0; i<PRESET_COUNT;i++)
 		REF_PTR_RELEASE(Presets[i]);
 }
 

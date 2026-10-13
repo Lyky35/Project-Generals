@@ -76,14 +76,14 @@ static int BTREE_decompress(unsigned char *packbuf,unsigned char *unpackbuf)
         ulen = ggetm(s,3);
         s += 3;
 
-        for (i=0;i<256;++i)                     /* 0 means a code is a leaf */
+        for (int i =0;i<256;++i)                     /* 0 means a code is a leaf */
             DC.cluetbl[i] = 0;
 
         clue = *s++;
         DC.cluetbl[clue] = 1;                   /* mark clue as special */
 
         nodes = *s++;
-        for (i=0;i<nodes;++i)
+        for (int i =0;i<nodes;++i)
         {   node = *s++;
             DC.left[node]  = *s++;
             DC.right[node] = *s++;

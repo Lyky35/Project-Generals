@@ -195,7 +195,7 @@ NeutronMissileSlowDeathBehavior::NeutronMissileSlowDeathBehavior( Thing *thing, 
 
 	m_scorchPlaced = FALSE;
 	m_activationFrame = 0;
-	for( i = 0; i < MAX_NEUTRON_BLASTS; i++ )
+	for (int i = 0; i < MAX_NEUTRON_BLASTS; i++ )
 	{
 
 		m_completedBlasts[ i ] = FALSE;
@@ -504,11 +504,11 @@ void NeutronMissileSlowDeathBehavior::xfer( Xfer *xfer )
 
 	// completed blasts
 	UnsignedByte i;
-	for( i = 0; i < maxNeutronBlasts; ++i )
+	for (int i = 0; i < maxNeutronBlasts; ++i )
 		xfer->xferBool( &m_completedBlasts[ i ] );
 
 	// completed scorch blasts
-	for( i = 0; i < maxNeutronBlasts; ++i )
+	for (int i = 0; i < maxNeutronBlasts; ++i )
 		xfer->xferBool( &m_completedScorchBlasts[ i ] );
 
 	// scorch placed

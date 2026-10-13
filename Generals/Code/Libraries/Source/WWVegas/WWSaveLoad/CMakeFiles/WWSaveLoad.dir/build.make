@@ -72,216 +72,204 @@ include Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/codegen:
 .PHONY : Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/codegen
 
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definition.cpp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.obj -MF CMakeFiles/WWSaveLoad.dir/definition.cpp.obj.d -o CMakeFiles/WWSaveLoad.dir/definition.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definition.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definition.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.o -MF CMakeFiles/WWSaveLoad.dir/definition.cpp.o.d -o CMakeFiles/WWSaveLoad.dir/definition.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definition.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWSaveLoad.dir/definition.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definition.cpp > CMakeFiles/WWSaveLoad.dir/definition.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definition.cpp > CMakeFiles/WWSaveLoad.dir/definition.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWSaveLoad.dir/definition.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definition.cpp -o CMakeFiles/WWSaveLoad.dir/definition.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definition.cpp -o CMakeFiles/WWSaveLoad.dir/definition.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactory.cpp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.obj -MF CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.obj.d -o CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactory.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactory.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.o -MF CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.o.d -o CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactory.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactory.cpp > CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactory.cpp > CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactory.cpp -o CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactory.cpp -o CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactorymgr.cpp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.obj -MF CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.obj.d -o CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactorymgr.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactorymgr.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.o -MF CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.o.d -o CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactorymgr.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactorymgr.cpp > CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactorymgr.cpp > CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactorymgr.cpp -o CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionfactorymgr.cpp -o CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionmgr.cpp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.obj -MF CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.obj.d -o CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionmgr.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionmgr.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.o -MF CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.o.d -o CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionmgr.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionmgr.cpp > CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionmgr.cpp > CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionmgr.cpp -o CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/definitionmgr.cpp -o CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/parameter.cpp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.obj -MF CMakeFiles/WWSaveLoad.dir/parameter.cpp.obj.d -o CMakeFiles/WWSaveLoad.dir/parameter.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/parameter.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/parameter.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.o -MF CMakeFiles/WWSaveLoad.dir/parameter.cpp.o.d -o CMakeFiles/WWSaveLoad.dir/parameter.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/parameter.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWSaveLoad.dir/parameter.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/parameter.cpp > CMakeFiles/WWSaveLoad.dir/parameter.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/parameter.cpp > CMakeFiles/WWSaveLoad.dir/parameter.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWSaveLoad.dir/parameter.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/parameter.cpp -o CMakeFiles/WWSaveLoad.dir/parameter.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/parameter.cpp -o CMakeFiles/WWSaveLoad.dir/parameter.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/persistfactory.cpp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.obj -MF CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.obj.d -o CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/persistfactory.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/persistfactory.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.o -MF CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.o.d -o CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/persistfactory.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/persistfactory.cpp > CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/persistfactory.cpp > CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/persistfactory.cpp -o CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/persistfactory.cpp -o CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/pointerremap.cpp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.obj -MF CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.obj.d -o CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/pointerremap.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/pointerremap.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.o -MF CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.o.d -o CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/pointerremap.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/pointerremap.cpp > CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/pointerremap.cpp > CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/pointerremap.cpp -o CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/pointerremap.cpp -o CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveload.cpp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.obj -MF CMakeFiles/WWSaveLoad.dir/saveload.cpp.obj.d -o CMakeFiles/WWSaveLoad.dir/saveload.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveload.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveload.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.o -MF CMakeFiles/WWSaveLoad.dir/saveload.cpp.o.d -o CMakeFiles/WWSaveLoad.dir/saveload.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveload.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWSaveLoad.dir/saveload.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveload.cpp > CMakeFiles/WWSaveLoad.dir/saveload.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveload.cpp > CMakeFiles/WWSaveLoad.dir/saveload.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWSaveLoad.dir/saveload.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveload.cpp -o CMakeFiles/WWSaveLoad.dir/saveload.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveload.cpp -o CMakeFiles/WWSaveLoad.dir/saveload.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadstatus.cpp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.obj -MF CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.obj.d -o CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadstatus.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadstatus.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.o -MF CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.o.d -o CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadstatus.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadstatus.cpp > CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadstatus.cpp > CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadstatus.cpp -o CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadstatus.cpp -o CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadsubsystem.cpp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.obj -MF CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.obj.d -o CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadsubsystem.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadsubsystem.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.o -MF CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.o.d -o CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadsubsystem.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadsubsystem.cpp > CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadsubsystem.cpp > CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadsubsystem.cpp -o CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/saveloadsubsystem.cpp -o CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/twiddler.cpp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.obj -MF CMakeFiles/WWSaveLoad.dir/twiddler.cpp.obj.d -o CMakeFiles/WWSaveLoad.dir/twiddler.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/twiddler.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/twiddler.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.o -MF CMakeFiles/WWSaveLoad.dir/twiddler.cpp.o.d -o CMakeFiles/WWSaveLoad.dir/twiddler.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/twiddler.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWSaveLoad.dir/twiddler.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/twiddler.cpp > CMakeFiles/WWSaveLoad.dir/twiddler.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/twiddler.cpp > CMakeFiles/WWSaveLoad.dir/twiddler.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWSaveLoad.dir/twiddler.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/twiddler.cpp -o CMakeFiles/WWSaveLoad.dir/twiddler.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/twiddler.cpp -o CMakeFiles/WWSaveLoad.dir/twiddler.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/wwsaveload.cpp
-Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.obj -MF CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.obj.d -o CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/wwsaveload.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/wwsaveload.cpp
+Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.o -MF CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.o.d -o CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/wwsaveload.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/wwsaveload.cpp > CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/wwsaveload.cpp > CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/wwsaveload.cpp -o CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/wwsaveload.cpp -o CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.s
 
 # Object files for target WWSaveLoad
 WWSaveLoad_OBJECTS = \
-"CMakeFiles/WWSaveLoad.dir/definition.cpp.obj" \
-"CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.obj" \
-"CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.obj" \
-"CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.obj" \
-"CMakeFiles/WWSaveLoad.dir/parameter.cpp.obj" \
-"CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.obj" \
-"CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.obj" \
-"CMakeFiles/WWSaveLoad.dir/saveload.cpp.obj" \
-"CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.obj" \
-"CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.obj" \
-"CMakeFiles/WWSaveLoad.dir/twiddler.cpp.obj" \
-"CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.obj"
+"CMakeFiles/WWSaveLoad.dir/definition.cpp.o" \
+"CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.o" \
+"CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.o" \
+"CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.o" \
+"CMakeFiles/WWSaveLoad.dir/parameter.cpp.o" \
+"CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.o" \
+"CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.o" \
+"CMakeFiles/WWSaveLoad.dir/saveload.cpp.o" \
+"CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.o" \
+"CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.o" \
+"CMakeFiles/WWSaveLoad.dir/twiddler.cpp.o" \
+"CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.o"
 
 # External object files for target WWSaveLoad
 WWSaveLoad_EXTERNAL_OBJECTS =
 
-lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.obj
-lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.obj
-lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.obj
-lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.obj
-lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.obj
-lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.obj
-lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.obj
-lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.obj
-lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.obj
-lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.obj
-lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.obj
-lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.obj
+lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definition.cpp.o
+lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactory.cpp.o
+lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionfactorymgr.cpp.o
+lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/definitionmgr.cpp.o
+lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/parameter.cpp.o
+lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/persistfactory.cpp.o
+lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/pointerremap.cpp.o
+lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveload.cpp.o
+lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadstatus.cpp.o
+lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/saveloadsubsystem.cpp.o
+lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/twiddler.cpp.o
+lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/wwsaveload.cpp.o
 lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/build.make
 lib/libWWSaveLoad.a: Generals/Code/Libraries/Source/WWVegas/WWSaveLoad/CMakeFiles/WWSaveLoad.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX static library ../../../../../../lib/libWWSaveLoad.a"

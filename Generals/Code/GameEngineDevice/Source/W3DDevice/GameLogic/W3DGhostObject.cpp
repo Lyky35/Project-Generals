@@ -804,7 +804,7 @@ void W3DGhostObject::xfer( Xfer *xfer )
 		UnsignedByte i;
 
 		// how much data is here
-		for( i = 0; i < shroudednessCount; ++i )
+		for (int i = 0; i < shroudednessCount; ++i )
 		{
 
 			// which player index is this data for

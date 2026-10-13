@@ -139,7 +139,7 @@ void PlayerList::newGame()
 
 	// ok, now create the rest of players we need.
 	Bool setLocal = false;
-	for( i = 0; i < TheSidesList->getNumSides(); i++)
+	for (int i = 0; i < TheSidesList->getNumSides(); i++)
 	{
 		Dict *d = TheSidesList->getSideInfo(i)->getDict();
 		AsciiString pname = d->getAsciiString(TheKey_playerName);
@@ -174,7 +174,7 @@ void PlayerList::newGame()
 	if (!setLocal)
 	{
 		DEBUG_ASSERTCRASH(TheNetwork, ("*** Map has no human player... picking first nonneutral player for control\n"));
-		for( i = 0; i < TheSidesList->getNumSides(); i++)
+		for (int i = 0; i < TheSidesList->getNumSides(); i++)
 		{
 			Player* p = getNthPlayer(i);
 			if (p != getNeutralPlayer())
@@ -190,7 +190,7 @@ void PlayerList::newGame()
 	// must reset teams *after* creating players.
 	TheTeamFactory->initFromSides(TheSidesList);
 
-	for( i = 0; i < TheSidesList->getNumSides(); i++)
+	for (int i = 0; i < TheSidesList->getNumSides(); i++)
 	{
 		Dict *d = TheSidesList->getSideInfo(i)->getDict();
 		Player* p = findPlayerWithNameKey(NAMEKEY(d->getAsciiString(TheKey_playerName)));
@@ -356,7 +356,7 @@ Player *PlayerList::getPlayerFromMask( PlayerMaskType mask )
 	Player *player = NULL;
 	Int i;
 
-	for( i = 0; i < MAX_PLAYER_COUNT; i++ )
+	for (int i = 0; i < MAX_PLAYER_COUNT; i++ )
 	{
 		
 		player = getNthPlayer( i );
@@ -376,7 +376,7 @@ Player *PlayerList::getEachPlayerFromMask( PlayerMaskType& maskToAdjust )
 	Player *player = NULL;
 	Int i;
 
-	for( i = 0; i < MAX_PLAYER_COUNT; i++ )
+	for (int i = 0; i < MAX_PLAYER_COUNT; i++ )
 	{
 		
 		player = getNthPlayer( i );

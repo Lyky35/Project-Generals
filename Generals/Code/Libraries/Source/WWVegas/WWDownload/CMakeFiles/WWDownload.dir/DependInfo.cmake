@@ -8,9 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/Download.cpp" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.obj" "gcc" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.obj.d"
-  "/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/registry.cpp" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.obj" "gcc" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.obj.d"
-  "/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/urlBuilder.cpp" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.obj" "gcc" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.obj.d"
+  "/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/Download.cpp" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.o" "gcc" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.o.d"
+  "/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/download.cpp" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/download.cpp.o" "gcc" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/download.cpp.o.d"
+  "/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/ftp.cpp" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/ftp.cpp.o" "gcc" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/ftp.cpp.o.d"
+  "/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/registry.cpp" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.o" "gcc" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.o.d"
+  "/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/urlBuilder.cpp" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.o" "gcc" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.o.d"
+  "/home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWDownload/urlbuilder.cpp" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlbuilder.cpp.o" "gcc" "Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlbuilder.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

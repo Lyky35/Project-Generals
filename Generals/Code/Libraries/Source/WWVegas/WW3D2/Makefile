@@ -130,13 +130,13 @@ WW3D2/fast:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build
 .PHONY : WW3D2/fast
 
-FramGrab.obj: FramGrab.cpp.obj
-.PHONY : FramGrab.obj
+FramGrab.o: FramGrab.cpp.o
+.PHONY : FramGrab.o
 
 # target to build an object file
-FramGrab.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.obj
-.PHONY : FramGrab.cpp.obj
+FramGrab.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.o
+.PHONY : FramGrab.cpp.o
 
 FramGrab.i: FramGrab.cpp.i
 .PHONY : FramGrab.i
@@ -154,13 +154,13 @@ FramGrab.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.s
 .PHONY : FramGrab.cpp.s
 
-aabtree.obj: aabtree.cpp.obj
-.PHONY : aabtree.obj
+aabtree.o: aabtree.cpp.o
+.PHONY : aabtree.o
 
 # target to build an object file
-aabtree.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.obj
-.PHONY : aabtree.cpp.obj
+aabtree.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.o
+.PHONY : aabtree.cpp.o
 
 aabtree.i: aabtree.cpp.i
 .PHONY : aabtree.i
@@ -178,13 +178,13 @@ aabtree.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.s
 .PHONY : aabtree.cpp.s
 
-aabtreebuilder.obj: aabtreebuilder.cpp.obj
-.PHONY : aabtreebuilder.obj
+aabtreebuilder.o: aabtreebuilder.cpp.o
+.PHONY : aabtreebuilder.o
 
 # target to build an object file
-aabtreebuilder.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.obj
-.PHONY : aabtreebuilder.cpp.obj
+aabtreebuilder.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.o
+.PHONY : aabtreebuilder.cpp.o
 
 aabtreebuilder.i: aabtreebuilder.cpp.i
 .PHONY : aabtreebuilder.i
@@ -202,13 +202,13 @@ aabtreebuilder.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.s
 .PHONY : aabtreebuilder.cpp.s
 
-agg_def.obj: agg_def.cpp.obj
-.PHONY : agg_def.obj
+agg_def.o: agg_def.cpp.o
+.PHONY : agg_def.o
 
 # target to build an object file
-agg_def.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.obj
-.PHONY : agg_def.cpp.obj
+agg_def.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.o
+.PHONY : agg_def.cpp.o
 
 agg_def.i: agg_def.cpp.i
 .PHONY : agg_def.i
@@ -226,13 +226,13 @@ agg_def.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.s
 .PHONY : agg_def.cpp.s
 
-animobj.obj: animobj.cpp.obj
-.PHONY : animobj.obj
+animobj.o: animobj.cpp.o
+.PHONY : animobj.o
 
 # target to build an object file
-animobj.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.obj
-.PHONY : animobj.cpp.obj
+animobj.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.o
+.PHONY : animobj.cpp.o
 
 animobj.i: animobj.cpp.i
 .PHONY : animobj.i
@@ -250,13 +250,13 @@ animobj.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.s
 .PHONY : animobj.cpp.s
 
-assetmgr.obj: assetmgr.cpp.obj
-.PHONY : assetmgr.obj
+assetmgr.o: assetmgr.cpp.o
+.PHONY : assetmgr.o
 
 # target to build an object file
-assetmgr.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.obj
-.PHONY : assetmgr.cpp.obj
+assetmgr.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.o
+.PHONY : assetmgr.cpp.o
 
 assetmgr.i: assetmgr.cpp.i
 .PHONY : assetmgr.i
@@ -274,13 +274,13 @@ assetmgr.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.s
 .PHONY : assetmgr.cpp.s
 
-bitmaphandler.obj: bitmaphandler.cpp.obj
-.PHONY : bitmaphandler.obj
+bitmaphandler.o: bitmaphandler.cpp.o
+.PHONY : bitmaphandler.o
 
 # target to build an object file
-bitmaphandler.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.obj
-.PHONY : bitmaphandler.cpp.obj
+bitmaphandler.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.o
+.PHONY : bitmaphandler.cpp.o
 
 bitmaphandler.i: bitmaphandler.cpp.i
 .PHONY : bitmaphandler.i
@@ -298,13 +298,13 @@ bitmaphandler.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.s
 .PHONY : bitmaphandler.cpp.s
 
-bmp2d.obj: bmp2d.cpp.obj
-.PHONY : bmp2d.obj
+bmp2d.o: bmp2d.cpp.o
+.PHONY : bmp2d.o
 
 # target to build an object file
-bmp2d.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.obj
-.PHONY : bmp2d.cpp.obj
+bmp2d.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.o
+.PHONY : bmp2d.cpp.o
 
 bmp2d.i: bmp2d.cpp.i
 .PHONY : bmp2d.i
@@ -322,13 +322,13 @@ bmp2d.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.s
 .PHONY : bmp2d.cpp.s
 
-boxrobj.obj: boxrobj.cpp.obj
-.PHONY : boxrobj.obj
+boxrobj.o: boxrobj.cpp.o
+.PHONY : boxrobj.o
 
 # target to build an object file
-boxrobj.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.obj
-.PHONY : boxrobj.cpp.obj
+boxrobj.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.o
+.PHONY : boxrobj.cpp.o
 
 boxrobj.i: boxrobj.cpp.i
 .PHONY : boxrobj.i
@@ -346,13 +346,13 @@ boxrobj.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.s
 .PHONY : boxrobj.cpp.s
 
-bw_render.obj: bw_render.cpp.obj
-.PHONY : bw_render.obj
+bw_render.o: bw_render.cpp.o
+.PHONY : bw_render.o
 
 # target to build an object file
-bw_render.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.obj
-.PHONY : bw_render.cpp.obj
+bw_render.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.o
+.PHONY : bw_render.cpp.o
 
 bw_render.i: bw_render.cpp.i
 .PHONY : bw_render.i
@@ -370,13 +370,13 @@ bw_render.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.s
 .PHONY : bw_render.cpp.s
 
-bwrender.obj: bwrender.cpp.obj
-.PHONY : bwrender.obj
+bwrender.o: bwrender.cpp.o
+.PHONY : bwrender.o
 
 # target to build an object file
-bwrender.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.obj
-.PHONY : bwrender.cpp.obj
+bwrender.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.o
+.PHONY : bwrender.cpp.o
 
 bwrender.i: bwrender.cpp.i
 .PHONY : bwrender.i
@@ -394,13 +394,13 @@ bwrender.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.s
 .PHONY : bwrender.cpp.s
 
-camera.obj: camera.cpp.obj
-.PHONY : camera.obj
+camera.o: camera.cpp.o
+.PHONY : camera.o
 
 # target to build an object file
-camera.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.obj
-.PHONY : camera.cpp.obj
+camera.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.o
+.PHONY : camera.cpp.o
 
 camera.i: camera.cpp.i
 .PHONY : camera.i
@@ -418,13 +418,13 @@ camera.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.s
 .PHONY : camera.cpp.s
 
-collect.obj: collect.cpp.obj
-.PHONY : collect.obj
+collect.o: collect.cpp.o
+.PHONY : collect.o
 
 # target to build an object file
-collect.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.obj
-.PHONY : collect.cpp.obj
+collect.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.o
+.PHONY : collect.cpp.o
 
 collect.i: collect.cpp.i
 .PHONY : collect.i
@@ -442,13 +442,13 @@ collect.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.s
 .PHONY : collect.cpp.s
 
-coltest.obj: coltest.cpp.obj
-.PHONY : coltest.obj
+coltest.o: coltest.cpp.o
+.PHONY : coltest.o
 
 # target to build an object file
-coltest.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.obj
-.PHONY : coltest.cpp.obj
+coltest.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.o
+.PHONY : coltest.cpp.o
 
 coltest.i: coltest.cpp.i
 .PHONY : coltest.i
@@ -466,13 +466,13 @@ coltest.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.s
 .PHONY : coltest.cpp.s
 
-composite.obj: composite.cpp.obj
-.PHONY : composite.obj
+composite.o: composite.cpp.o
+.PHONY : composite.o
 
 # target to build an object file
-composite.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.obj
-.PHONY : composite.cpp.obj
+composite.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.o
+.PHONY : composite.cpp.o
 
 composite.i: composite.cpp.i
 .PHONY : composite.i
@@ -490,13 +490,13 @@ composite.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.s
 .PHONY : composite.cpp.s
 
-dazzle.obj: dazzle.cpp.obj
-.PHONY : dazzle.obj
+dazzle.o: dazzle.cpp.o
+.PHONY : dazzle.o
 
 # target to build an object file
-dazzle.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.obj
-.PHONY : dazzle.cpp.obj
+dazzle.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.o
+.PHONY : dazzle.cpp.o
 
 dazzle.i: dazzle.cpp.i
 .PHONY : dazzle.i
@@ -514,13 +514,13 @@ dazzle.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.s
 .PHONY : dazzle.cpp.s
 
-ddsfile.obj: ddsfile.cpp.obj
-.PHONY : ddsfile.obj
+ddsfile.o: ddsfile.cpp.o
+.PHONY : ddsfile.o
 
 # target to build an object file
-ddsfile.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.obj
-.PHONY : ddsfile.cpp.obj
+ddsfile.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.o
+.PHONY : ddsfile.cpp.o
 
 ddsfile.i: ddsfile.cpp.i
 .PHONY : ddsfile.i
@@ -538,13 +538,13 @@ ddsfile.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.s
 .PHONY : ddsfile.cpp.s
 
-decalmsh.obj: decalmsh.cpp.obj
-.PHONY : decalmsh.obj
+decalmsh.o: decalmsh.cpp.o
+.PHONY : decalmsh.o
 
 # target to build an object file
-decalmsh.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.obj
-.PHONY : decalmsh.cpp.obj
+decalmsh.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.o
+.PHONY : decalmsh.cpp.o
 
 decalmsh.i: decalmsh.cpp.i
 .PHONY : decalmsh.i
@@ -562,13 +562,13 @@ decalmsh.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.s
 .PHONY : decalmsh.cpp.s
 
-decalsys.obj: decalsys.cpp.obj
-.PHONY : decalsys.obj
+decalsys.o: decalsys.cpp.o
+.PHONY : decalsys.o
 
 # target to build an object file
-decalsys.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.obj
-.PHONY : decalsys.cpp.obj
+decalsys.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.o
+.PHONY : decalsys.cpp.o
 
 decalsys.i: decalsys.cpp.i
 .PHONY : decalsys.i
@@ -586,13 +586,13 @@ decalsys.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.s
 .PHONY : decalsys.cpp.s
 
-distlod.obj: distlod.cpp.obj
-.PHONY : distlod.obj
+distlod.o: distlod.cpp.o
+.PHONY : distlod.o
 
 # target to build an object file
-distlod.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.obj
-.PHONY : distlod.cpp.obj
+distlod.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.o
+.PHONY : distlod.cpp.o
 
 distlod.i: distlod.cpp.i
 .PHONY : distlod.i
@@ -610,13 +610,13 @@ distlod.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.s
 .PHONY : distlod.cpp.s
 
-dx8caps.obj: dx8caps.cpp.obj
-.PHONY : dx8caps.obj
+dx8caps.o: dx8caps.cpp.o
+.PHONY : dx8caps.o
 
 # target to build an object file
-dx8caps.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.obj
-.PHONY : dx8caps.cpp.obj
+dx8caps.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.o
+.PHONY : dx8caps.cpp.o
 
 dx8caps.i: dx8caps.cpp.i
 .PHONY : dx8caps.i
@@ -634,13 +634,13 @@ dx8caps.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.s
 .PHONY : dx8caps.cpp.s
 
-dx8fvf.obj: dx8fvf.cpp.obj
-.PHONY : dx8fvf.obj
+dx8fvf.o: dx8fvf.cpp.o
+.PHONY : dx8fvf.o
 
 # target to build an object file
-dx8fvf.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.obj
-.PHONY : dx8fvf.cpp.obj
+dx8fvf.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.o
+.PHONY : dx8fvf.cpp.o
 
 dx8fvf.i: dx8fvf.cpp.i
 .PHONY : dx8fvf.i
@@ -658,13 +658,13 @@ dx8fvf.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.s
 .PHONY : dx8fvf.cpp.s
 
-dx8indexbuffer.obj: dx8indexbuffer.cpp.obj
-.PHONY : dx8indexbuffer.obj
+dx8indexbuffer.o: dx8indexbuffer.cpp.o
+.PHONY : dx8indexbuffer.o
 
 # target to build an object file
-dx8indexbuffer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.obj
-.PHONY : dx8indexbuffer.cpp.obj
+dx8indexbuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.o
+.PHONY : dx8indexbuffer.cpp.o
 
 dx8indexbuffer.i: dx8indexbuffer.cpp.i
 .PHONY : dx8indexbuffer.i
@@ -682,13 +682,13 @@ dx8indexbuffer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.s
 .PHONY : dx8indexbuffer.cpp.s
 
-dx8polygonrenderer.obj: dx8polygonrenderer.cpp.obj
-.PHONY : dx8polygonrenderer.obj
+dx8polygonrenderer.o: dx8polygonrenderer.cpp.o
+.PHONY : dx8polygonrenderer.o
 
 # target to build an object file
-dx8polygonrenderer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.obj
-.PHONY : dx8polygonrenderer.cpp.obj
+dx8polygonrenderer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.o
+.PHONY : dx8polygonrenderer.cpp.o
 
 dx8polygonrenderer.i: dx8polygonrenderer.cpp.i
 .PHONY : dx8polygonrenderer.i
@@ -706,13 +706,13 @@ dx8polygonrenderer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.s
 .PHONY : dx8polygonrenderer.cpp.s
 
-dx8renderer.obj: dx8renderer.cpp.obj
-.PHONY : dx8renderer.obj
+dx8renderer.o: dx8renderer.cpp.o
+.PHONY : dx8renderer.o
 
 # target to build an object file
-dx8renderer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.obj
-.PHONY : dx8renderer.cpp.obj
+dx8renderer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.o
+.PHONY : dx8renderer.cpp.o
 
 dx8renderer.i: dx8renderer.cpp.i
 .PHONY : dx8renderer.i
@@ -730,13 +730,13 @@ dx8renderer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.s
 .PHONY : dx8renderer.cpp.s
 
-dx8texman.obj: dx8texman.cpp.obj
-.PHONY : dx8texman.obj
+dx8texman.o: dx8texman.cpp.o
+.PHONY : dx8texman.o
 
 # target to build an object file
-dx8texman.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.obj
-.PHONY : dx8texman.cpp.obj
+dx8texman.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.o
+.PHONY : dx8texman.cpp.o
 
 dx8texman.i: dx8texman.cpp.i
 .PHONY : dx8texman.i
@@ -754,13 +754,13 @@ dx8texman.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.s
 .PHONY : dx8texman.cpp.s
 
-dx8vertexbuffer.obj: dx8vertexbuffer.cpp.obj
-.PHONY : dx8vertexbuffer.obj
+dx8vertexbuffer.o: dx8vertexbuffer.cpp.o
+.PHONY : dx8vertexbuffer.o
 
 # target to build an object file
-dx8vertexbuffer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.obj
-.PHONY : dx8vertexbuffer.cpp.obj
+dx8vertexbuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.o
+.PHONY : dx8vertexbuffer.cpp.o
 
 dx8vertexbuffer.i: dx8vertexbuffer.cpp.i
 .PHONY : dx8vertexbuffer.i
@@ -778,13 +778,13 @@ dx8vertexbuffer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.s
 .PHONY : dx8vertexbuffer.cpp.s
 
-dx8webbrowser.obj: dx8webbrowser.cpp.obj
-.PHONY : dx8webbrowser.obj
+dx8webbrowser.o: dx8webbrowser.cpp.o
+.PHONY : dx8webbrowser.o
 
 # target to build an object file
-dx8webbrowser.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.obj
-.PHONY : dx8webbrowser.cpp.obj
+dx8webbrowser.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.o
+.PHONY : dx8webbrowser.cpp.o
 
 dx8webbrowser.i: dx8webbrowser.cpp.i
 .PHONY : dx8webbrowser.i
@@ -802,13 +802,13 @@ dx8webbrowser.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.s
 .PHONY : dx8webbrowser.cpp.s
 
-dx8wrapper.obj: dx8wrapper.cpp.obj
-.PHONY : dx8wrapper.obj
+dx8wrapper.o: dx8wrapper.cpp.o
+.PHONY : dx8wrapper.o
 
 # target to build an object file
-dx8wrapper.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.obj
-.PHONY : dx8wrapper.cpp.obj
+dx8wrapper.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.o
+.PHONY : dx8wrapper.cpp.o
 
 dx8wrapper.i: dx8wrapper.cpp.i
 .PHONY : dx8wrapper.i
@@ -826,13 +826,13 @@ dx8wrapper.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.s
 .PHONY : dx8wrapper.cpp.s
 
-dynamesh.obj: dynamesh.cpp.obj
-.PHONY : dynamesh.obj
+dynamesh.o: dynamesh.cpp.o
+.PHONY : dynamesh.o
 
 # target to build an object file
-dynamesh.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.obj
-.PHONY : dynamesh.cpp.obj
+dynamesh.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.o
+.PHONY : dynamesh.cpp.o
 
 dynamesh.i: dynamesh.cpp.i
 .PHONY : dynamesh.i
@@ -850,13 +850,13 @@ dynamesh.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.s
 .PHONY : dynamesh.cpp.s
 
-font3d.obj: font3d.cpp.obj
-.PHONY : font3d.obj
+font3d.o: font3d.cpp.o
+.PHONY : font3d.o
 
 # target to build an object file
-font3d.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.obj
-.PHONY : font3d.cpp.obj
+font3d.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.o
+.PHONY : font3d.cpp.o
 
 font3d.i: font3d.cpp.i
 .PHONY : font3d.i
@@ -874,13 +874,13 @@ font3d.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.s
 .PHONY : font3d.cpp.s
 
-formconv.obj: formconv.cpp.obj
-.PHONY : formconv.obj
+formconv.o: formconv.cpp.o
+.PHONY : formconv.o
 
 # target to build an object file
-formconv.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.obj
-.PHONY : formconv.cpp.obj
+formconv.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.o
+.PHONY : formconv.cpp.o
 
 formconv.i: formconv.cpp.i
 .PHONY : formconv.i
@@ -898,13 +898,37 @@ formconv.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.s
 .PHONY : formconv.cpp.s
 
-hanim.obj: hanim.cpp.obj
-.PHONY : hanim.obj
+framgrab.o: framgrab.cpp.o
+.PHONY : framgrab.o
 
 # target to build an object file
-hanim.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.obj
-.PHONY : hanim.cpp.obj
+framgrab.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/framgrab.cpp.o
+.PHONY : framgrab.cpp.o
+
+framgrab.i: framgrab.cpp.i
+.PHONY : framgrab.i
+
+# target to preprocess a source file
+framgrab.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/framgrab.cpp.i
+.PHONY : framgrab.cpp.i
+
+framgrab.s: framgrab.cpp.s
+.PHONY : framgrab.s
+
+# target to generate assembly for a file
+framgrab.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/framgrab.cpp.s
+.PHONY : framgrab.cpp.s
+
+hanim.o: hanim.cpp.o
+.PHONY : hanim.o
+
+# target to build an object file
+hanim.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.o
+.PHONY : hanim.cpp.o
 
 hanim.i: hanim.cpp.i
 .PHONY : hanim.i
@@ -922,13 +946,13 @@ hanim.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.s
 .PHONY : hanim.cpp.s
 
-hanimmgr.obj: hanimmgr.cpp.obj
-.PHONY : hanimmgr.obj
+hanimmgr.o: hanimmgr.cpp.o
+.PHONY : hanimmgr.o
 
 # target to build an object file
-hanimmgr.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.obj
-.PHONY : hanimmgr.cpp.obj
+hanimmgr.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.o
+.PHONY : hanimmgr.cpp.o
 
 hanimmgr.i: hanimmgr.cpp.i
 .PHONY : hanimmgr.i
@@ -946,13 +970,13 @@ hanimmgr.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.s
 .PHONY : hanimmgr.cpp.s
 
-hcanim.obj: hcanim.cpp.obj
-.PHONY : hcanim.obj
+hcanim.o: hcanim.cpp.o
+.PHONY : hcanim.o
 
 # target to build an object file
-hcanim.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.obj
-.PHONY : hcanim.cpp.obj
+hcanim.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.o
+.PHONY : hcanim.cpp.o
 
 hcanim.i: hcanim.cpp.i
 .PHONY : hcanim.i
@@ -970,13 +994,13 @@ hcanim.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.s
 .PHONY : hcanim.cpp.s
 
-hlod.obj: hlod.cpp.obj
-.PHONY : hlod.obj
+hlod.o: hlod.cpp.o
+.PHONY : hlod.o
 
 # target to build an object file
-hlod.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.obj
-.PHONY : hlod.cpp.obj
+hlod.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.o
+.PHONY : hlod.cpp.o
 
 hlod.i: hlod.cpp.i
 .PHONY : hlod.i
@@ -994,13 +1018,13 @@ hlod.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.s
 .PHONY : hlod.cpp.s
 
-hmdldef.obj: hmdldef.cpp.obj
-.PHONY : hmdldef.obj
+hmdldef.o: hmdldef.cpp.o
+.PHONY : hmdldef.o
 
 # target to build an object file
-hmdldef.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.obj
-.PHONY : hmdldef.cpp.obj
+hmdldef.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.o
+.PHONY : hmdldef.cpp.o
 
 hmdldef.i: hmdldef.cpp.i
 .PHONY : hmdldef.i
@@ -1018,13 +1042,13 @@ hmdldef.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.s
 .PHONY : hmdldef.cpp.s
 
-hmorphanim.obj: hmorphanim.cpp.obj
-.PHONY : hmorphanim.obj
+hmorphanim.o: hmorphanim.cpp.o
+.PHONY : hmorphanim.o
 
 # target to build an object file
-hmorphanim.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.obj
-.PHONY : hmorphanim.cpp.obj
+hmorphanim.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.o
+.PHONY : hmorphanim.cpp.o
 
 hmorphanim.i: hmorphanim.cpp.i
 .PHONY : hmorphanim.i
@@ -1042,13 +1066,13 @@ hmorphanim.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.s
 .PHONY : hmorphanim.cpp.s
 
-hrawanim.obj: hrawanim.cpp.obj
-.PHONY : hrawanim.obj
+hrawanim.o: hrawanim.cpp.o
+.PHONY : hrawanim.o
 
 # target to build an object file
-hrawanim.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.obj
-.PHONY : hrawanim.cpp.obj
+hrawanim.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.o
+.PHONY : hrawanim.cpp.o
 
 hrawanim.i: hrawanim.cpp.i
 .PHONY : hrawanim.i
@@ -1066,13 +1090,13 @@ hrawanim.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.s
 .PHONY : hrawanim.cpp.s
 
-htree.obj: htree.cpp.obj
-.PHONY : htree.obj
+htree.o: htree.cpp.o
+.PHONY : htree.o
 
 # target to build an object file
-htree.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.obj
-.PHONY : htree.cpp.obj
+htree.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.o
+.PHONY : htree.cpp.o
 
 htree.i: htree.cpp.i
 .PHONY : htree.i
@@ -1090,13 +1114,13 @@ htree.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.s
 .PHONY : htree.cpp.s
 
-htreemgr.obj: htreemgr.cpp.obj
-.PHONY : htreemgr.obj
+htreemgr.o: htreemgr.cpp.o
+.PHONY : htreemgr.o
 
 # target to build an object file
-htreemgr.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.obj
-.PHONY : htreemgr.cpp.obj
+htreemgr.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.o
+.PHONY : htreemgr.cpp.o
 
 htreemgr.i: htreemgr.cpp.i
 .PHONY : htreemgr.i
@@ -1114,13 +1138,13 @@ htreemgr.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.s
 .PHONY : htreemgr.cpp.s
 
-intersec.obj: intersec.cpp.obj
-.PHONY : intersec.obj
+intersec.o: intersec.cpp.o
+.PHONY : intersec.o
 
 # target to build an object file
-intersec.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.obj
-.PHONY : intersec.cpp.obj
+intersec.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.o
+.PHONY : intersec.cpp.o
 
 intersec.i: intersec.cpp.i
 .PHONY : intersec.i
@@ -1138,13 +1162,13 @@ intersec.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.s
 .PHONY : intersec.cpp.s
 
-layer.obj: layer.cpp.obj
-.PHONY : layer.obj
+layer.o: layer.cpp.o
+.PHONY : layer.o
 
 # target to build an object file
-layer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.obj
-.PHONY : layer.cpp.obj
+layer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.o
+.PHONY : layer.cpp.o
 
 layer.i: layer.cpp.i
 .PHONY : layer.i
@@ -1162,13 +1186,13 @@ layer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.s
 .PHONY : layer.cpp.s
 
-light.obj: light.cpp.obj
-.PHONY : light.obj
+light.o: light.cpp.o
+.PHONY : light.o
 
 # target to build an object file
-light.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.obj
-.PHONY : light.cpp.obj
+light.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.o
+.PHONY : light.cpp.o
 
 light.i: light.cpp.i
 .PHONY : light.i
@@ -1186,13 +1210,13 @@ light.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.s
 .PHONY : light.cpp.s
 
-lightenvironment.obj: lightenvironment.cpp.obj
-.PHONY : lightenvironment.obj
+lightenvironment.o: lightenvironment.cpp.o
+.PHONY : lightenvironment.o
 
 # target to build an object file
-lightenvironment.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.obj
-.PHONY : lightenvironment.cpp.obj
+lightenvironment.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.o
+.PHONY : lightenvironment.cpp.o
 
 lightenvironment.i: lightenvironment.cpp.i
 .PHONY : lightenvironment.i
@@ -1210,13 +1234,13 @@ lightenvironment.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.s
 .PHONY : lightenvironment.cpp.s
 
-line3d.obj: line3d.cpp.obj
-.PHONY : line3d.obj
+line3d.o: line3d.cpp.o
+.PHONY : line3d.o
 
 # target to build an object file
-line3d.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.obj
-.PHONY : line3d.cpp.obj
+line3d.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.o
+.PHONY : line3d.cpp.o
 
 line3d.i: line3d.cpp.i
 .PHONY : line3d.i
@@ -1234,13 +1258,13 @@ line3d.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.s
 .PHONY : line3d.cpp.s
 
-mapper.obj: mapper.cpp.obj
-.PHONY : mapper.obj
+mapper.o: mapper.cpp.o
+.PHONY : mapper.o
 
 # target to build an object file
-mapper.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.obj
-.PHONY : mapper.cpp.obj
+mapper.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.o
+.PHONY : mapper.cpp.o
 
 mapper.i: mapper.cpp.i
 .PHONY : mapper.i
@@ -1258,13 +1282,13 @@ mapper.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.s
 .PHONY : mapper.cpp.s
 
-matinfo.obj: matinfo.cpp.obj
-.PHONY : matinfo.obj
+matinfo.o: matinfo.cpp.o
+.PHONY : matinfo.o
 
 # target to build an object file
-matinfo.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.obj
-.PHONY : matinfo.cpp.obj
+matinfo.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.o
+.PHONY : matinfo.cpp.o
 
 matinfo.i: matinfo.cpp.i
 .PHONY : matinfo.i
@@ -1282,13 +1306,13 @@ matinfo.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.s
 .PHONY : matinfo.cpp.s
 
-matpass.obj: matpass.cpp.obj
-.PHONY : matpass.obj
+matpass.o: matpass.cpp.o
+.PHONY : matpass.o
 
 # target to build an object file
-matpass.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.obj
-.PHONY : matpass.cpp.obj
+matpass.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.o
+.PHONY : matpass.cpp.o
 
 matpass.i: matpass.cpp.i
 .PHONY : matpass.i
@@ -1306,13 +1330,13 @@ matpass.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.s
 .PHONY : matpass.cpp.s
 
-matrixmapper.obj: matrixmapper.cpp.obj
-.PHONY : matrixmapper.obj
+matrixmapper.o: matrixmapper.cpp.o
+.PHONY : matrixmapper.o
 
 # target to build an object file
-matrixmapper.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.obj
-.PHONY : matrixmapper.cpp.obj
+matrixmapper.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.o
+.PHONY : matrixmapper.cpp.o
 
 matrixmapper.i: matrixmapper.cpp.i
 .PHONY : matrixmapper.i
@@ -1330,13 +1354,13 @@ matrixmapper.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.s
 .PHONY : matrixmapper.cpp.s
 
-mesh.obj: mesh.cpp.obj
-.PHONY : mesh.obj
+mesh.o: mesh.cpp.o
+.PHONY : mesh.o
 
 # target to build an object file
-mesh.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.obj
-.PHONY : mesh.cpp.obj
+mesh.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.o
+.PHONY : mesh.cpp.o
 
 mesh.i: mesh.cpp.i
 .PHONY : mesh.i
@@ -1354,13 +1378,13 @@ mesh.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.s
 .PHONY : mesh.cpp.s
 
-meshbuild.obj: meshbuild.cpp.obj
-.PHONY : meshbuild.obj
+meshbuild.o: meshbuild.cpp.o
+.PHONY : meshbuild.o
 
 # target to build an object file
-meshbuild.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.obj
-.PHONY : meshbuild.cpp.obj
+meshbuild.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.o
+.PHONY : meshbuild.cpp.o
 
 meshbuild.i: meshbuild.cpp.i
 .PHONY : meshbuild.i
@@ -1378,13 +1402,13 @@ meshbuild.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.s
 .PHONY : meshbuild.cpp.s
 
-meshdam.obj: meshdam.cpp.obj
-.PHONY : meshdam.obj
+meshdam.o: meshdam.cpp.o
+.PHONY : meshdam.o
 
 # target to build an object file
-meshdam.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.obj
-.PHONY : meshdam.cpp.obj
+meshdam.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.o
+.PHONY : meshdam.cpp.o
 
 meshdam.i: meshdam.cpp.i
 .PHONY : meshdam.i
@@ -1402,13 +1426,13 @@ meshdam.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.s
 .PHONY : meshdam.cpp.s
 
-meshgeometry.obj: meshgeometry.cpp.obj
-.PHONY : meshgeometry.obj
+meshgeometry.o: meshgeometry.cpp.o
+.PHONY : meshgeometry.o
 
 # target to build an object file
-meshgeometry.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.obj
-.PHONY : meshgeometry.cpp.obj
+meshgeometry.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.o
+.PHONY : meshgeometry.cpp.o
 
 meshgeometry.i: meshgeometry.cpp.i
 .PHONY : meshgeometry.i
@@ -1426,13 +1450,13 @@ meshgeometry.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.s
 .PHONY : meshgeometry.cpp.s
 
-meshmatdesc.obj: meshmatdesc.cpp.obj
-.PHONY : meshmatdesc.obj
+meshmatdesc.o: meshmatdesc.cpp.o
+.PHONY : meshmatdesc.o
 
 # target to build an object file
-meshmatdesc.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.obj
-.PHONY : meshmatdesc.cpp.obj
+meshmatdesc.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.o
+.PHONY : meshmatdesc.cpp.o
 
 meshmatdesc.i: meshmatdesc.cpp.i
 .PHONY : meshmatdesc.i
@@ -1450,13 +1474,13 @@ meshmatdesc.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.s
 .PHONY : meshmatdesc.cpp.s
 
-meshmdl.obj: meshmdl.cpp.obj
-.PHONY : meshmdl.obj
+meshmdl.o: meshmdl.cpp.o
+.PHONY : meshmdl.o
 
 # target to build an object file
-meshmdl.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.obj
-.PHONY : meshmdl.cpp.obj
+meshmdl.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.o
+.PHONY : meshmdl.cpp.o
 
 meshmdl.i: meshmdl.cpp.i
 .PHONY : meshmdl.i
@@ -1474,13 +1498,13 @@ meshmdl.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.s
 .PHONY : meshmdl.cpp.s
 
-meshmdlio.obj: meshmdlio.cpp.obj
-.PHONY : meshmdlio.obj
+meshmdlio.o: meshmdlio.cpp.o
+.PHONY : meshmdlio.o
 
 # target to build an object file
-meshmdlio.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.obj
-.PHONY : meshmdlio.cpp.obj
+meshmdlio.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.o
+.PHONY : meshmdlio.cpp.o
 
 meshmdlio.i: meshmdlio.cpp.i
 .PHONY : meshmdlio.i
@@ -1498,13 +1522,13 @@ meshmdlio.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.s
 .PHONY : meshmdlio.cpp.s
 
-metalmap.obj: metalmap.cpp.obj
-.PHONY : metalmap.obj
+metalmap.o: metalmap.cpp.o
+.PHONY : metalmap.o
 
 # target to build an object file
-metalmap.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.obj
-.PHONY : metalmap.cpp.obj
+metalmap.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.o
+.PHONY : metalmap.cpp.o
 
 metalmap.i: metalmap.cpp.i
 .PHONY : metalmap.i
@@ -1522,13 +1546,13 @@ metalmap.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.s
 .PHONY : metalmap.cpp.s
 
-missingtexture.obj: missingtexture.cpp.obj
-.PHONY : missingtexture.obj
+missingtexture.o: missingtexture.cpp.o
+.PHONY : missingtexture.o
 
 # target to build an object file
-missingtexture.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.obj
-.PHONY : missingtexture.cpp.obj
+missingtexture.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.o
+.PHONY : missingtexture.cpp.o
 
 missingtexture.i: missingtexture.cpp.i
 .PHONY : missingtexture.i
@@ -1546,13 +1570,13 @@ missingtexture.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.s
 .PHONY : missingtexture.cpp.s
 
-motchan.obj: motchan.cpp.obj
-.PHONY : motchan.obj
+motchan.o: motchan.cpp.o
+.PHONY : motchan.o
 
 # target to build an object file
-motchan.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.obj
-.PHONY : motchan.cpp.obj
+motchan.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.o
+.PHONY : motchan.cpp.o
 
 motchan.i: motchan.cpp.i
 .PHONY : motchan.i
@@ -1570,13 +1594,13 @@ motchan.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.s
 .PHONY : motchan.cpp.s
 
-nullrobj.obj: nullrobj.cpp.obj
-.PHONY : nullrobj.obj
+nullrobj.o: nullrobj.cpp.o
+.PHONY : nullrobj.o
 
 # target to build an object file
-nullrobj.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.obj
-.PHONY : nullrobj.cpp.obj
+nullrobj.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.o
+.PHONY : nullrobj.cpp.o
 
 nullrobj.i: nullrobj.cpp.i
 .PHONY : nullrobj.i
@@ -1594,13 +1618,13 @@ nullrobj.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.s
 .PHONY : nullrobj.cpp.s
 
-part_buf.obj: part_buf.cpp.obj
-.PHONY : part_buf.obj
+part_buf.o: part_buf.cpp.o
+.PHONY : part_buf.o
 
 # target to build an object file
-part_buf.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.obj
-.PHONY : part_buf.cpp.obj
+part_buf.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.o
+.PHONY : part_buf.cpp.o
 
 part_buf.i: part_buf.cpp.i
 .PHONY : part_buf.i
@@ -1618,13 +1642,13 @@ part_buf.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.s
 .PHONY : part_buf.cpp.s
 
-part_emt.obj: part_emt.cpp.obj
-.PHONY : part_emt.obj
+part_emt.o: part_emt.cpp.o
+.PHONY : part_emt.o
 
 # target to build an object file
-part_emt.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.obj
-.PHONY : part_emt.cpp.obj
+part_emt.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.o
+.PHONY : part_emt.cpp.o
 
 part_emt.i: part_emt.cpp.i
 .PHONY : part_emt.i
@@ -1642,13 +1666,13 @@ part_emt.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.s
 .PHONY : part_emt.cpp.s
 
-part_ldr.obj: part_ldr.cpp.obj
-.PHONY : part_ldr.obj
+part_ldr.o: part_ldr.cpp.o
+.PHONY : part_ldr.o
 
 # target to build an object file
-part_ldr.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.obj
-.PHONY : part_ldr.cpp.obj
+part_ldr.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.o
+.PHONY : part_ldr.cpp.o
 
 part_ldr.i: part_ldr.cpp.i
 .PHONY : part_ldr.i
@@ -1666,13 +1690,13 @@ part_ldr.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.s
 .PHONY : part_ldr.cpp.s
 
-pivot.obj: pivot.cpp.obj
-.PHONY : pivot.obj
+pivot.o: pivot.cpp.o
+.PHONY : pivot.o
 
 # target to build an object file
-pivot.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.obj
-.PHONY : pivot.cpp.obj
+pivot.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.o
+.PHONY : pivot.cpp.o
 
 pivot.i: pivot.cpp.i
 .PHONY : pivot.i
@@ -1690,13 +1714,13 @@ pivot.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.s
 .PHONY : pivot.cpp.s
 
-pointgr.obj: pointgr.cpp.obj
-.PHONY : pointgr.obj
+pointgr.o: pointgr.cpp.o
+.PHONY : pointgr.o
 
 # target to build an object file
-pointgr.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.obj
-.PHONY : pointgr.cpp.obj
+pointgr.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.o
+.PHONY : pointgr.cpp.o
 
 pointgr.i: pointgr.cpp.i
 .PHONY : pointgr.i
@@ -1714,13 +1738,13 @@ pointgr.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.s
 .PHONY : pointgr.cpp.s
 
-polyinfo.obj: polyinfo.cpp.obj
-.PHONY : polyinfo.obj
+polyinfo.o: polyinfo.cpp.o
+.PHONY : polyinfo.o
 
 # target to build an object file
-polyinfo.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.obj
-.PHONY : polyinfo.cpp.obj
+polyinfo.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.o
+.PHONY : polyinfo.cpp.o
 
 polyinfo.i: polyinfo.cpp.i
 .PHONY : polyinfo.i
@@ -1738,13 +1762,13 @@ polyinfo.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.s
 .PHONY : polyinfo.cpp.s
 
-predlod.obj: predlod.cpp.obj
-.PHONY : predlod.obj
+predlod.o: predlod.cpp.o
+.PHONY : predlod.o
 
 # target to build an object file
-predlod.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.obj
-.PHONY : predlod.cpp.obj
+predlod.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.o
+.PHONY : predlod.cpp.o
 
 predlod.i: predlod.cpp.i
 .PHONY : predlod.i
@@ -1762,13 +1786,13 @@ predlod.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.s
 .PHONY : predlod.cpp.s
 
-prim_anim.obj: prim_anim.cpp.obj
-.PHONY : prim_anim.obj
+prim_anim.o: prim_anim.cpp.o
+.PHONY : prim_anim.o
 
 # target to build an object file
-prim_anim.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.obj
-.PHONY : prim_anim.cpp.obj
+prim_anim.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.o
+.PHONY : prim_anim.cpp.o
 
 prim_anim.i: prim_anim.cpp.i
 .PHONY : prim_anim.i
@@ -1786,13 +1810,13 @@ prim_anim.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.s
 .PHONY : prim_anim.cpp.s
 
-projector.obj: projector.cpp.obj
-.PHONY : projector.obj
+projector.o: projector.cpp.o
+.PHONY : projector.o
 
 # target to build an object file
-projector.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.obj
-.PHONY : projector.cpp.obj
+projector.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.o
+.PHONY : projector.cpp.o
 
 projector.i: projector.cpp.i
 .PHONY : projector.i
@@ -1810,13 +1834,13 @@ projector.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.s
 .PHONY : projector.cpp.s
 
-proto.obj: proto.cpp.obj
-.PHONY : proto.obj
+proto.o: proto.cpp.o
+.PHONY : proto.o
 
 # target to build an object file
-proto.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.obj
-.PHONY : proto.cpp.obj
+proto.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.o
+.PHONY : proto.cpp.o
 
 proto.i: proto.cpp.i
 .PHONY : proto.i
@@ -1834,13 +1858,13 @@ proto.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.s
 .PHONY : proto.cpp.s
 
-render2d.obj: render2d.cpp.obj
-.PHONY : render2d.obj
+render2d.o: render2d.cpp.o
+.PHONY : render2d.o
 
 # target to build an object file
-render2d.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.obj
-.PHONY : render2d.cpp.obj
+render2d.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.o
+.PHONY : render2d.cpp.o
 
 render2d.i: render2d.cpp.i
 .PHONY : render2d.i
@@ -1858,13 +1882,13 @@ render2d.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.s
 .PHONY : render2d.cpp.s
 
-render2dsentence.obj: render2dsentence.cpp.obj
-.PHONY : render2dsentence.obj
+render2dsentence.o: render2dsentence.cpp.o
+.PHONY : render2dsentence.o
 
 # target to build an object file
-render2dsentence.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.obj
-.PHONY : render2dsentence.cpp.obj
+render2dsentence.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.o
+.PHONY : render2dsentence.cpp.o
 
 render2dsentence.i: render2dsentence.cpp.i
 .PHONY : render2dsentence.i
@@ -1882,13 +1906,13 @@ render2dsentence.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.s
 .PHONY : render2dsentence.cpp.s
 
-renderobjectrecycler.obj: renderobjectrecycler.cpp.obj
-.PHONY : renderobjectrecycler.obj
+renderobjectrecycler.o: renderobjectrecycler.cpp.o
+.PHONY : renderobjectrecycler.o
 
 # target to build an object file
-renderobjectrecycler.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.obj
-.PHONY : renderobjectrecycler.cpp.obj
+renderobjectrecycler.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.o
+.PHONY : renderobjectrecycler.cpp.o
 
 renderobjectrecycler.i: renderobjectrecycler.cpp.i
 .PHONY : renderobjectrecycler.i
@@ -1906,13 +1930,13 @@ renderobjectrecycler.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.s
 .PHONY : renderobjectrecycler.cpp.s
 
-rendobj.obj: rendobj.cpp.obj
-.PHONY : rendobj.obj
+rendobj.o: rendobj.cpp.o
+.PHONY : rendobj.o
 
 # target to build an object file
-rendobj.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.obj
-.PHONY : rendobj.cpp.obj
+rendobj.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.o
+.PHONY : rendobj.cpp.o
 
 rendobj.i: rendobj.cpp.i
 .PHONY : rendobj.i
@@ -1930,13 +1954,13 @@ rendobj.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.s
 .PHONY : rendobj.cpp.s
 
-rinfo.obj: rinfo.cpp.obj
-.PHONY : rinfo.obj
+rinfo.o: rinfo.cpp.o
+.PHONY : rinfo.o
 
 # target to build an object file
-rinfo.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.obj
-.PHONY : rinfo.cpp.obj
+rinfo.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.o
+.PHONY : rinfo.cpp.o
 
 rinfo.i: rinfo.cpp.i
 .PHONY : rinfo.i
@@ -1954,13 +1978,13 @@ rinfo.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.s
 .PHONY : rinfo.cpp.s
 
-ringobj.obj: ringobj.cpp.obj
-.PHONY : ringobj.obj
+ringobj.o: ringobj.cpp.o
+.PHONY : ringobj.o
 
 # target to build an object file
-ringobj.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.obj
-.PHONY : ringobj.cpp.obj
+ringobj.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.o
+.PHONY : ringobj.cpp.o
 
 ringobj.i: ringobj.cpp.i
 .PHONY : ringobj.i
@@ -1978,13 +2002,13 @@ ringobj.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.s
 .PHONY : ringobj.cpp.s
 
-scene.obj: scene.cpp.obj
-.PHONY : scene.obj
+scene.o: scene.cpp.o
+.PHONY : scene.o
 
 # target to build an object file
-scene.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.obj
-.PHONY : scene.cpp.obj
+scene.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.o
+.PHONY : scene.cpp.o
 
 scene.i: scene.cpp.i
 .PHONY : scene.i
@@ -2002,13 +2026,13 @@ scene.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.s
 .PHONY : scene.cpp.s
 
-segline.obj: segline.cpp.obj
-.PHONY : segline.obj
+segline.o: segline.cpp.o
+.PHONY : segline.o
 
 # target to build an object file
-segline.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.obj
-.PHONY : segline.cpp.obj
+segline.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.o
+.PHONY : segline.cpp.o
 
 segline.i: segline.cpp.i
 .PHONY : segline.i
@@ -2026,13 +2050,13 @@ segline.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.s
 .PHONY : segline.cpp.s
 
-seglinerenderer.obj: seglinerenderer.cpp.obj
-.PHONY : seglinerenderer.obj
+seglinerenderer.o: seglinerenderer.cpp.o
+.PHONY : seglinerenderer.o
 
 # target to build an object file
-seglinerenderer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.obj
-.PHONY : seglinerenderer.cpp.obj
+seglinerenderer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.o
+.PHONY : seglinerenderer.cpp.o
 
 seglinerenderer.i: seglinerenderer.cpp.i
 .PHONY : seglinerenderer.i
@@ -2050,13 +2074,13 @@ seglinerenderer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.s
 .PHONY : seglinerenderer.cpp.s
 
-shader.obj: shader.cpp.obj
-.PHONY : shader.obj
+shader.o: shader.cpp.o
+.PHONY : shader.o
 
 # target to build an object file
-shader.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.obj
-.PHONY : shader.cpp.obj
+shader.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.o
+.PHONY : shader.cpp.o
 
 shader.i: shader.cpp.i
 .PHONY : shader.i
@@ -2074,13 +2098,13 @@ shader.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.s
 .PHONY : shader.cpp.s
 
-shattersystem.obj: shattersystem.cpp.obj
-.PHONY : shattersystem.obj
+shattersystem.o: shattersystem.cpp.o
+.PHONY : shattersystem.o
 
 # target to build an object file
-shattersystem.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.obj
-.PHONY : shattersystem.cpp.obj
+shattersystem.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.o
+.PHONY : shattersystem.cpp.o
 
 shattersystem.i: shattersystem.cpp.i
 .PHONY : shattersystem.i
@@ -2098,13 +2122,13 @@ shattersystem.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.s
 .PHONY : shattersystem.cpp.s
 
-snappts.obj: snappts.cpp.obj
-.PHONY : snappts.obj
+snappts.o: snappts.cpp.o
+.PHONY : snappts.o
 
 # target to build an object file
-snappts.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.obj
-.PHONY : snappts.cpp.obj
+snappts.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.o
+.PHONY : snappts.cpp.o
 
 snappts.i: snappts.cpp.i
 .PHONY : snappts.i
@@ -2122,13 +2146,13 @@ snappts.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.s
 .PHONY : snappts.cpp.s
 
-sortingrenderer.obj: sortingrenderer.cpp.obj
-.PHONY : sortingrenderer.obj
+sortingrenderer.o: sortingrenderer.cpp.o
+.PHONY : sortingrenderer.o
 
 # target to build an object file
-sortingrenderer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.obj
-.PHONY : sortingrenderer.cpp.obj
+sortingrenderer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.o
+.PHONY : sortingrenderer.cpp.o
 
 sortingrenderer.i: sortingrenderer.cpp.i
 .PHONY : sortingrenderer.i
@@ -2146,13 +2170,13 @@ sortingrenderer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.s
 .PHONY : sortingrenderer.cpp.s
 
-soundrobj.obj: soundrobj.cpp.obj
-.PHONY : soundrobj.obj
+soundrobj.o: soundrobj.cpp.o
+.PHONY : soundrobj.o
 
 # target to build an object file
-soundrobj.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.obj
-.PHONY : soundrobj.cpp.obj
+soundrobj.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.o
+.PHONY : soundrobj.cpp.o
 
 soundrobj.i: soundrobj.cpp.i
 .PHONY : soundrobj.i
@@ -2170,13 +2194,13 @@ soundrobj.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.s
 .PHONY : soundrobj.cpp.s
 
-sphereobj.obj: sphereobj.cpp.obj
-.PHONY : sphereobj.obj
+sphereobj.o: sphereobj.cpp.o
+.PHONY : sphereobj.o
 
 # target to build an object file
-sphereobj.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.obj
-.PHONY : sphereobj.cpp.obj
+sphereobj.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.o
+.PHONY : sphereobj.cpp.o
 
 sphereobj.i: sphereobj.cpp.i
 .PHONY : sphereobj.i
@@ -2194,13 +2218,13 @@ sphereobj.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.s
 .PHONY : sphereobj.cpp.s
 
-sr_util.obj: sr_util.cpp.obj
-.PHONY : sr_util.obj
+sr_util.o: sr_util.cpp.o
+.PHONY : sr_util.o
 
 # target to build an object file
-sr_util.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.obj
-.PHONY : sr_util.cpp.obj
+sr_util.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.o
+.PHONY : sr_util.cpp.o
 
 sr_util.i: sr_util.cpp.i
 .PHONY : sr_util.i
@@ -2218,13 +2242,13 @@ sr_util.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.s
 .PHONY : sr_util.cpp.s
 
-statistics.obj: statistics.cpp.obj
-.PHONY : statistics.obj
+statistics.o: statistics.cpp.o
+.PHONY : statistics.o
 
 # target to build an object file
-statistics.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.obj
-.PHONY : statistics.cpp.obj
+statistics.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.o
+.PHONY : statistics.cpp.o
 
 statistics.i: statistics.cpp.i
 .PHONY : statistics.i
@@ -2242,13 +2266,13 @@ statistics.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.s
 .PHONY : statistics.cpp.s
 
-streak.obj: streak.cpp.obj
-.PHONY : streak.obj
+streak.o: streak.cpp.o
+.PHONY : streak.o
 
 # target to build an object file
-streak.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.obj
-.PHONY : streak.cpp.obj
+streak.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.o
+.PHONY : streak.cpp.o
 
 streak.i: streak.cpp.i
 .PHONY : streak.i
@@ -2266,13 +2290,13 @@ streak.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.s
 .PHONY : streak.cpp.s
 
-streakRender.obj: streakRender.cpp.obj
-.PHONY : streakRender.obj
+streakRender.o: streakRender.cpp.o
+.PHONY : streakRender.o
 
 # target to build an object file
-streakRender.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.obj
-.PHONY : streakRender.cpp.obj
+streakRender.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.o
+.PHONY : streakRender.cpp.o
 
 streakRender.i: streakRender.cpp.i
 .PHONY : streakRender.i
@@ -2290,13 +2314,37 @@ streakRender.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.s
 .PHONY : streakRender.cpp.s
 
-stripoptimizer.obj: stripoptimizer.cpp.obj
-.PHONY : stripoptimizer.obj
+streakrender.o: streakrender.cpp.o
+.PHONY : streakrender.o
 
 # target to build an object file
-stripoptimizer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.obj
-.PHONY : stripoptimizer.cpp.obj
+streakrender.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakrender.cpp.o
+.PHONY : streakrender.cpp.o
+
+streakrender.i: streakrender.cpp.i
+.PHONY : streakrender.i
+
+# target to preprocess a source file
+streakrender.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakrender.cpp.i
+.PHONY : streakrender.cpp.i
+
+streakrender.s: streakrender.cpp.s
+.PHONY : streakrender.s
+
+# target to generate assembly for a file
+streakrender.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakrender.cpp.s
+.PHONY : streakrender.cpp.s
+
+stripoptimizer.o: stripoptimizer.cpp.o
+.PHONY : stripoptimizer.o
+
+# target to build an object file
+stripoptimizer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.o
+.PHONY : stripoptimizer.cpp.o
 
 stripoptimizer.i: stripoptimizer.cpp.i
 .PHONY : stripoptimizer.i
@@ -2314,13 +2362,13 @@ stripoptimizer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.s
 .PHONY : stripoptimizer.cpp.s
 
-surfaceclass.obj: surfaceclass.cpp.obj
-.PHONY : surfaceclass.obj
+surfaceclass.o: surfaceclass.cpp.o
+.PHONY : surfaceclass.o
 
 # target to build an object file
-surfaceclass.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.obj
-.PHONY : surfaceclass.cpp.obj
+surfaceclass.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.o
+.PHONY : surfaceclass.cpp.o
 
 surfaceclass.i: surfaceclass.cpp.i
 .PHONY : surfaceclass.i
@@ -2338,13 +2386,13 @@ surfaceclass.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.s
 .PHONY : surfaceclass.cpp.s
 
-texfcach.obj: texfcach.cpp.obj
-.PHONY : texfcach.obj
+texfcach.o: texfcach.cpp.o
+.PHONY : texfcach.o
 
 # target to build an object file
-texfcach.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.obj
-.PHONY : texfcach.cpp.obj
+texfcach.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.o
+.PHONY : texfcach.cpp.o
 
 texfcach.i: texfcach.cpp.i
 .PHONY : texfcach.i
@@ -2362,13 +2410,13 @@ texfcach.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.s
 .PHONY : texfcach.cpp.s
 
-texproject.obj: texproject.cpp.obj
-.PHONY : texproject.obj
+texproject.o: texproject.cpp.o
+.PHONY : texproject.o
 
 # target to build an object file
-texproject.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.obj
-.PHONY : texproject.cpp.obj
+texproject.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.o
+.PHONY : texproject.cpp.o
 
 texproject.i: texproject.cpp.i
 .PHONY : texproject.i
@@ -2386,13 +2434,13 @@ texproject.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.s
 .PHONY : texproject.cpp.s
 
-textdraw.obj: textdraw.cpp.obj
-.PHONY : textdraw.obj
+textdraw.o: textdraw.cpp.o
+.PHONY : textdraw.o
 
 # target to build an object file
-textdraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.obj
-.PHONY : textdraw.cpp.obj
+textdraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.o
+.PHONY : textdraw.cpp.o
 
 textdraw.i: textdraw.cpp.i
 .PHONY : textdraw.i
@@ -2410,13 +2458,13 @@ textdraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.s
 .PHONY : textdraw.cpp.s
 
-texture.obj: texture.cpp.obj
-.PHONY : texture.obj
+texture.o: texture.cpp.o
+.PHONY : texture.o
 
 # target to build an object file
-texture.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.obj
-.PHONY : texture.cpp.obj
+texture.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.o
+.PHONY : texture.cpp.o
 
 texture.i: texture.cpp.i
 .PHONY : texture.i
@@ -2434,13 +2482,13 @@ texture.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.s
 .PHONY : texture.cpp.s
 
-texturefile.obj: texturefile.cpp.obj
-.PHONY : texturefile.obj
+texturefile.o: texturefile.cpp.o
+.PHONY : texturefile.o
 
 # target to build an object file
-texturefile.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.obj
-.PHONY : texturefile.cpp.obj
+texturefile.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.o
+.PHONY : texturefile.cpp.o
 
 texturefile.i: texturefile.cpp.i
 .PHONY : texturefile.i
@@ -2458,13 +2506,13 @@ texturefile.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.s
 .PHONY : texturefile.cpp.s
 
-textureloader.obj: textureloader.cpp.obj
-.PHONY : textureloader.obj
+textureloader.o: textureloader.cpp.o
+.PHONY : textureloader.o
 
 # target to build an object file
-textureloader.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.obj
-.PHONY : textureloader.cpp.obj
+textureloader.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.o
+.PHONY : textureloader.cpp.o
 
 textureloader.i: textureloader.cpp.i
 .PHONY : textureloader.i
@@ -2482,13 +2530,13 @@ textureloader.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.s
 .PHONY : textureloader.cpp.s
 
-texturethumbnail.obj: texturethumbnail.cpp.obj
-.PHONY : texturethumbnail.obj
+texturethumbnail.o: texturethumbnail.cpp.o
+.PHONY : texturethumbnail.o
 
 # target to build an object file
-texturethumbnail.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.obj
-.PHONY : texturethumbnail.cpp.obj
+texturethumbnail.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.o
+.PHONY : texturethumbnail.cpp.o
 
 texturethumbnail.i: texturethumbnail.cpp.i
 .PHONY : texturethumbnail.i
@@ -2506,13 +2554,13 @@ texturethumbnail.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.s
 .PHONY : texturethumbnail.cpp.s
 
-txt.obj: txt.cpp.obj
-.PHONY : txt.obj
+txt.o: txt.cpp.o
+.PHONY : txt.o
 
 # target to build an object file
-txt.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.obj
-.PHONY : txt.cpp.obj
+txt.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.o
+.PHONY : txt.cpp.o
 
 txt.i: txt.cpp.i
 .PHONY : txt.i
@@ -2530,13 +2578,13 @@ txt.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.s
 .PHONY : txt.cpp.s
 
-txt2d.obj: txt2d.cpp.obj
-.PHONY : txt2d.obj
+txt2d.o: txt2d.cpp.o
+.PHONY : txt2d.o
 
 # target to build an object file
-txt2d.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.obj
-.PHONY : txt2d.cpp.obj
+txt2d.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.o
+.PHONY : txt2d.cpp.o
 
 txt2d.i: txt2d.cpp.i
 .PHONY : txt2d.i
@@ -2554,13 +2602,13 @@ txt2d.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.s
 .PHONY : txt2d.cpp.s
 
-vertmaterial.obj: vertmaterial.cpp.obj
-.PHONY : vertmaterial.obj
+vertmaterial.o: vertmaterial.cpp.o
+.PHONY : vertmaterial.o
 
 # target to build an object file
-vertmaterial.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.obj
-.PHONY : vertmaterial.cpp.obj
+vertmaterial.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.o
+.PHONY : vertmaterial.cpp.o
 
 vertmaterial.i: vertmaterial.cpp.i
 .PHONY : vertmaterial.i
@@ -2578,13 +2626,13 @@ vertmaterial.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.s
 .PHONY : vertmaterial.cpp.s
 
-visrasterizer.obj: visrasterizer.cpp.obj
-.PHONY : visrasterizer.obj
+visrasterizer.o: visrasterizer.cpp.o
+.PHONY : visrasterizer.o
 
 # target to build an object file
-visrasterizer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.obj
-.PHONY : visrasterizer.cpp.obj
+visrasterizer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.o
+.PHONY : visrasterizer.cpp.o
 
 visrasterizer.i: visrasterizer.cpp.i
 .PHONY : visrasterizer.i
@@ -2602,13 +2650,13 @@ visrasterizer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.s
 .PHONY : visrasterizer.cpp.s
 
-w3d_dep.obj: w3d_dep.cpp.obj
-.PHONY : w3d_dep.obj
+w3d_dep.o: w3d_dep.cpp.o
+.PHONY : w3d_dep.o
 
 # target to build an object file
-w3d_dep.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.obj
-.PHONY : w3d_dep.cpp.obj
+w3d_dep.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.o
+.PHONY : w3d_dep.cpp.o
 
 w3d_dep.i: w3d_dep.cpp.i
 .PHONY : w3d_dep.i
@@ -2626,13 +2674,13 @@ w3d_dep.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.s
 .PHONY : w3d_dep.cpp.s
 
-w3d_util.obj: w3d_util.cpp.obj
-.PHONY : w3d_util.obj
+w3d_util.o: w3d_util.cpp.o
+.PHONY : w3d_util.o
 
 # target to build an object file
-w3d_util.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.obj
-.PHONY : w3d_util.cpp.obj
+w3d_util.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.o
+.PHONY : w3d_util.cpp.o
 
 w3d_util.i: w3d_util.cpp.i
 .PHONY : w3d_util.i
@@ -2650,13 +2698,13 @@ w3d_util.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.s
 .PHONY : w3d_util.cpp.s
 
-w3dexclusionlist.obj: w3dexclusionlist.cpp.obj
-.PHONY : w3dexclusionlist.obj
+w3dexclusionlist.o: w3dexclusionlist.cpp.o
+.PHONY : w3dexclusionlist.o
 
 # target to build an object file
-w3dexclusionlist.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.obj
-.PHONY : w3dexclusionlist.cpp.obj
+w3dexclusionlist.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.o
+.PHONY : w3dexclusionlist.cpp.o
 
 w3dexclusionlist.i: w3dexclusionlist.cpp.i
 .PHONY : w3dexclusionlist.i
@@ -2674,13 +2722,13 @@ w3dexclusionlist.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.s
 .PHONY : w3dexclusionlist.cpp.s
 
-ww3d.obj: ww3d.cpp.obj
-.PHONY : ww3d.obj
+ww3d.o: ww3d.cpp.o
+.PHONY : ww3d.o
 
 # target to build an object file
-ww3d.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.obj
-.PHONY : ww3d.cpp.obj
+ww3d.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.o
+.PHONY : ww3d.cpp.o
 
 ww3d.i: ww3d.cpp.i
 .PHONY : ww3d.i
@@ -2698,13 +2746,13 @@ ww3d.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.s
 .PHONY : ww3d.cpp.s
 
-ww3dformat.obj: ww3dformat.cpp.obj
-.PHONY : ww3dformat.obj
+ww3dformat.o: ww3dformat.cpp.o
+.PHONY : ww3dformat.o
 
 # target to build an object file
-ww3dformat.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.obj
-.PHONY : ww3dformat.cpp.obj
+ww3dformat.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.o
+.PHONY : ww3dformat.cpp.o
 
 ww3dformat.i: ww3dformat.cpp.i
 .PHONY : ww3dformat.i
@@ -2731,328 +2779,334 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... WW3D2"
-	@echo "... FramGrab.obj"
+	@echo "... FramGrab.o"
 	@echo "... FramGrab.i"
 	@echo "... FramGrab.s"
-	@echo "... aabtree.obj"
+	@echo "... aabtree.o"
 	@echo "... aabtree.i"
 	@echo "... aabtree.s"
-	@echo "... aabtreebuilder.obj"
+	@echo "... aabtreebuilder.o"
 	@echo "... aabtreebuilder.i"
 	@echo "... aabtreebuilder.s"
-	@echo "... agg_def.obj"
+	@echo "... agg_def.o"
 	@echo "... agg_def.i"
 	@echo "... agg_def.s"
-	@echo "... animobj.obj"
+	@echo "... animobj.o"
 	@echo "... animobj.i"
 	@echo "... animobj.s"
-	@echo "... assetmgr.obj"
+	@echo "... assetmgr.o"
 	@echo "... assetmgr.i"
 	@echo "... assetmgr.s"
-	@echo "... bitmaphandler.obj"
+	@echo "... bitmaphandler.o"
 	@echo "... bitmaphandler.i"
 	@echo "... bitmaphandler.s"
-	@echo "... bmp2d.obj"
+	@echo "... bmp2d.o"
 	@echo "... bmp2d.i"
 	@echo "... bmp2d.s"
-	@echo "... boxrobj.obj"
+	@echo "... boxrobj.o"
 	@echo "... boxrobj.i"
 	@echo "... boxrobj.s"
-	@echo "... bw_render.obj"
+	@echo "... bw_render.o"
 	@echo "... bw_render.i"
 	@echo "... bw_render.s"
-	@echo "... bwrender.obj"
+	@echo "... bwrender.o"
 	@echo "... bwrender.i"
 	@echo "... bwrender.s"
-	@echo "... camera.obj"
+	@echo "... camera.o"
 	@echo "... camera.i"
 	@echo "... camera.s"
-	@echo "... collect.obj"
+	@echo "... collect.o"
 	@echo "... collect.i"
 	@echo "... collect.s"
-	@echo "... coltest.obj"
+	@echo "... coltest.o"
 	@echo "... coltest.i"
 	@echo "... coltest.s"
-	@echo "... composite.obj"
+	@echo "... composite.o"
 	@echo "... composite.i"
 	@echo "... composite.s"
-	@echo "... dazzle.obj"
+	@echo "... dazzle.o"
 	@echo "... dazzle.i"
 	@echo "... dazzle.s"
-	@echo "... ddsfile.obj"
+	@echo "... ddsfile.o"
 	@echo "... ddsfile.i"
 	@echo "... ddsfile.s"
-	@echo "... decalmsh.obj"
+	@echo "... decalmsh.o"
 	@echo "... decalmsh.i"
 	@echo "... decalmsh.s"
-	@echo "... decalsys.obj"
+	@echo "... decalsys.o"
 	@echo "... decalsys.i"
 	@echo "... decalsys.s"
-	@echo "... distlod.obj"
+	@echo "... distlod.o"
 	@echo "... distlod.i"
 	@echo "... distlod.s"
-	@echo "... dx8caps.obj"
+	@echo "... dx8caps.o"
 	@echo "... dx8caps.i"
 	@echo "... dx8caps.s"
-	@echo "... dx8fvf.obj"
+	@echo "... dx8fvf.o"
 	@echo "... dx8fvf.i"
 	@echo "... dx8fvf.s"
-	@echo "... dx8indexbuffer.obj"
+	@echo "... dx8indexbuffer.o"
 	@echo "... dx8indexbuffer.i"
 	@echo "... dx8indexbuffer.s"
-	@echo "... dx8polygonrenderer.obj"
+	@echo "... dx8polygonrenderer.o"
 	@echo "... dx8polygonrenderer.i"
 	@echo "... dx8polygonrenderer.s"
-	@echo "... dx8renderer.obj"
+	@echo "... dx8renderer.o"
 	@echo "... dx8renderer.i"
 	@echo "... dx8renderer.s"
-	@echo "... dx8texman.obj"
+	@echo "... dx8texman.o"
 	@echo "... dx8texman.i"
 	@echo "... dx8texman.s"
-	@echo "... dx8vertexbuffer.obj"
+	@echo "... dx8vertexbuffer.o"
 	@echo "... dx8vertexbuffer.i"
 	@echo "... dx8vertexbuffer.s"
-	@echo "... dx8webbrowser.obj"
+	@echo "... dx8webbrowser.o"
 	@echo "... dx8webbrowser.i"
 	@echo "... dx8webbrowser.s"
-	@echo "... dx8wrapper.obj"
+	@echo "... dx8wrapper.o"
 	@echo "... dx8wrapper.i"
 	@echo "... dx8wrapper.s"
-	@echo "... dynamesh.obj"
+	@echo "... dynamesh.o"
 	@echo "... dynamesh.i"
 	@echo "... dynamesh.s"
-	@echo "... font3d.obj"
+	@echo "... font3d.o"
 	@echo "... font3d.i"
 	@echo "... font3d.s"
-	@echo "... formconv.obj"
+	@echo "... formconv.o"
 	@echo "... formconv.i"
 	@echo "... formconv.s"
-	@echo "... hanim.obj"
+	@echo "... framgrab.o"
+	@echo "... framgrab.i"
+	@echo "... framgrab.s"
+	@echo "... hanim.o"
 	@echo "... hanim.i"
 	@echo "... hanim.s"
-	@echo "... hanimmgr.obj"
+	@echo "... hanimmgr.o"
 	@echo "... hanimmgr.i"
 	@echo "... hanimmgr.s"
-	@echo "... hcanim.obj"
+	@echo "... hcanim.o"
 	@echo "... hcanim.i"
 	@echo "... hcanim.s"
-	@echo "... hlod.obj"
+	@echo "... hlod.o"
 	@echo "... hlod.i"
 	@echo "... hlod.s"
-	@echo "... hmdldef.obj"
+	@echo "... hmdldef.o"
 	@echo "... hmdldef.i"
 	@echo "... hmdldef.s"
-	@echo "... hmorphanim.obj"
+	@echo "... hmorphanim.o"
 	@echo "... hmorphanim.i"
 	@echo "... hmorphanim.s"
-	@echo "... hrawanim.obj"
+	@echo "... hrawanim.o"
 	@echo "... hrawanim.i"
 	@echo "... hrawanim.s"
-	@echo "... htree.obj"
+	@echo "... htree.o"
 	@echo "... htree.i"
 	@echo "... htree.s"
-	@echo "... htreemgr.obj"
+	@echo "... htreemgr.o"
 	@echo "... htreemgr.i"
 	@echo "... htreemgr.s"
-	@echo "... intersec.obj"
+	@echo "... intersec.o"
 	@echo "... intersec.i"
 	@echo "... intersec.s"
-	@echo "... layer.obj"
+	@echo "... layer.o"
 	@echo "... layer.i"
 	@echo "... layer.s"
-	@echo "... light.obj"
+	@echo "... light.o"
 	@echo "... light.i"
 	@echo "... light.s"
-	@echo "... lightenvironment.obj"
+	@echo "... lightenvironment.o"
 	@echo "... lightenvironment.i"
 	@echo "... lightenvironment.s"
-	@echo "... line3d.obj"
+	@echo "... line3d.o"
 	@echo "... line3d.i"
 	@echo "... line3d.s"
-	@echo "... mapper.obj"
+	@echo "... mapper.o"
 	@echo "... mapper.i"
 	@echo "... mapper.s"
-	@echo "... matinfo.obj"
+	@echo "... matinfo.o"
 	@echo "... matinfo.i"
 	@echo "... matinfo.s"
-	@echo "... matpass.obj"
+	@echo "... matpass.o"
 	@echo "... matpass.i"
 	@echo "... matpass.s"
-	@echo "... matrixmapper.obj"
+	@echo "... matrixmapper.o"
 	@echo "... matrixmapper.i"
 	@echo "... matrixmapper.s"
-	@echo "... mesh.obj"
+	@echo "... mesh.o"
 	@echo "... mesh.i"
 	@echo "... mesh.s"
-	@echo "... meshbuild.obj"
+	@echo "... meshbuild.o"
 	@echo "... meshbuild.i"
 	@echo "... meshbuild.s"
-	@echo "... meshdam.obj"
+	@echo "... meshdam.o"
 	@echo "... meshdam.i"
 	@echo "... meshdam.s"
-	@echo "... meshgeometry.obj"
+	@echo "... meshgeometry.o"
 	@echo "... meshgeometry.i"
 	@echo "... meshgeometry.s"
-	@echo "... meshmatdesc.obj"
+	@echo "... meshmatdesc.o"
 	@echo "... meshmatdesc.i"
 	@echo "... meshmatdesc.s"
-	@echo "... meshmdl.obj"
+	@echo "... meshmdl.o"
 	@echo "... meshmdl.i"
 	@echo "... meshmdl.s"
-	@echo "... meshmdlio.obj"
+	@echo "... meshmdlio.o"
 	@echo "... meshmdlio.i"
 	@echo "... meshmdlio.s"
-	@echo "... metalmap.obj"
+	@echo "... metalmap.o"
 	@echo "... metalmap.i"
 	@echo "... metalmap.s"
-	@echo "... missingtexture.obj"
+	@echo "... missingtexture.o"
 	@echo "... missingtexture.i"
 	@echo "... missingtexture.s"
-	@echo "... motchan.obj"
+	@echo "... motchan.o"
 	@echo "... motchan.i"
 	@echo "... motchan.s"
-	@echo "... nullrobj.obj"
+	@echo "... nullrobj.o"
 	@echo "... nullrobj.i"
 	@echo "... nullrobj.s"
-	@echo "... part_buf.obj"
+	@echo "... part_buf.o"
 	@echo "... part_buf.i"
 	@echo "... part_buf.s"
-	@echo "... part_emt.obj"
+	@echo "... part_emt.o"
 	@echo "... part_emt.i"
 	@echo "... part_emt.s"
-	@echo "... part_ldr.obj"
+	@echo "... part_ldr.o"
 	@echo "... part_ldr.i"
 	@echo "... part_ldr.s"
-	@echo "... pivot.obj"
+	@echo "... pivot.o"
 	@echo "... pivot.i"
 	@echo "... pivot.s"
-	@echo "... pointgr.obj"
+	@echo "... pointgr.o"
 	@echo "... pointgr.i"
 	@echo "... pointgr.s"
-	@echo "... polyinfo.obj"
+	@echo "... polyinfo.o"
 	@echo "... polyinfo.i"
 	@echo "... polyinfo.s"
-	@echo "... predlod.obj"
+	@echo "... predlod.o"
 	@echo "... predlod.i"
 	@echo "... predlod.s"
-	@echo "... prim_anim.obj"
+	@echo "... prim_anim.o"
 	@echo "... prim_anim.i"
 	@echo "... prim_anim.s"
-	@echo "... projector.obj"
+	@echo "... projector.o"
 	@echo "... projector.i"
 	@echo "... projector.s"
-	@echo "... proto.obj"
+	@echo "... proto.o"
 	@echo "... proto.i"
 	@echo "... proto.s"
-	@echo "... render2d.obj"
+	@echo "... render2d.o"
 	@echo "... render2d.i"
 	@echo "... render2d.s"
-	@echo "... render2dsentence.obj"
+	@echo "... render2dsentence.o"
 	@echo "... render2dsentence.i"
 	@echo "... render2dsentence.s"
-	@echo "... renderobjectrecycler.obj"
+	@echo "... renderobjectrecycler.o"
 	@echo "... renderobjectrecycler.i"
 	@echo "... renderobjectrecycler.s"
-	@echo "... rendobj.obj"
+	@echo "... rendobj.o"
 	@echo "... rendobj.i"
 	@echo "... rendobj.s"
-	@echo "... rinfo.obj"
+	@echo "... rinfo.o"
 	@echo "... rinfo.i"
 	@echo "... rinfo.s"
-	@echo "... ringobj.obj"
+	@echo "... ringobj.o"
 	@echo "... ringobj.i"
 	@echo "... ringobj.s"
-	@echo "... scene.obj"
+	@echo "... scene.o"
 	@echo "... scene.i"
 	@echo "... scene.s"
-	@echo "... segline.obj"
+	@echo "... segline.o"
 	@echo "... segline.i"
 	@echo "... segline.s"
-	@echo "... seglinerenderer.obj"
+	@echo "... seglinerenderer.o"
 	@echo "... seglinerenderer.i"
 	@echo "... seglinerenderer.s"
-	@echo "... shader.obj"
+	@echo "... shader.o"
 	@echo "... shader.i"
 	@echo "... shader.s"
-	@echo "... shattersystem.obj"
+	@echo "... shattersystem.o"
 	@echo "... shattersystem.i"
 	@echo "... shattersystem.s"
-	@echo "... snappts.obj"
+	@echo "... snappts.o"
 	@echo "... snappts.i"
 	@echo "... snappts.s"
-	@echo "... sortingrenderer.obj"
+	@echo "... sortingrenderer.o"
 	@echo "... sortingrenderer.i"
 	@echo "... sortingrenderer.s"
-	@echo "... soundrobj.obj"
+	@echo "... soundrobj.o"
 	@echo "... soundrobj.i"
 	@echo "... soundrobj.s"
-	@echo "... sphereobj.obj"
+	@echo "... sphereobj.o"
 	@echo "... sphereobj.i"
 	@echo "... sphereobj.s"
-	@echo "... sr_util.obj"
+	@echo "... sr_util.o"
 	@echo "... sr_util.i"
 	@echo "... sr_util.s"
-	@echo "... statistics.obj"
+	@echo "... statistics.o"
 	@echo "... statistics.i"
 	@echo "... statistics.s"
-	@echo "... streak.obj"
+	@echo "... streak.o"
 	@echo "... streak.i"
 	@echo "... streak.s"
-	@echo "... streakRender.obj"
+	@echo "... streakRender.o"
 	@echo "... streakRender.i"
 	@echo "... streakRender.s"
-	@echo "... stripoptimizer.obj"
+	@echo "... streakrender.o"
+	@echo "... streakrender.i"
+	@echo "... streakrender.s"
+	@echo "... stripoptimizer.o"
 	@echo "... stripoptimizer.i"
 	@echo "... stripoptimizer.s"
-	@echo "... surfaceclass.obj"
+	@echo "... surfaceclass.o"
 	@echo "... surfaceclass.i"
 	@echo "... surfaceclass.s"
-	@echo "... texfcach.obj"
+	@echo "... texfcach.o"
 	@echo "... texfcach.i"
 	@echo "... texfcach.s"
-	@echo "... texproject.obj"
+	@echo "... texproject.o"
 	@echo "... texproject.i"
 	@echo "... texproject.s"
-	@echo "... textdraw.obj"
+	@echo "... textdraw.o"
 	@echo "... textdraw.i"
 	@echo "... textdraw.s"
-	@echo "... texture.obj"
+	@echo "... texture.o"
 	@echo "... texture.i"
 	@echo "... texture.s"
-	@echo "... texturefile.obj"
+	@echo "... texturefile.o"
 	@echo "... texturefile.i"
 	@echo "... texturefile.s"
-	@echo "... textureloader.obj"
+	@echo "... textureloader.o"
 	@echo "... textureloader.i"
 	@echo "... textureloader.s"
-	@echo "... texturethumbnail.obj"
+	@echo "... texturethumbnail.o"
 	@echo "... texturethumbnail.i"
 	@echo "... texturethumbnail.s"
-	@echo "... txt.obj"
+	@echo "... txt.o"
 	@echo "... txt.i"
 	@echo "... txt.s"
-	@echo "... txt2d.obj"
+	@echo "... txt2d.o"
 	@echo "... txt2d.i"
 	@echo "... txt2d.s"
-	@echo "... vertmaterial.obj"
+	@echo "... vertmaterial.o"
 	@echo "... vertmaterial.i"
 	@echo "... vertmaterial.s"
-	@echo "... visrasterizer.obj"
+	@echo "... visrasterizer.o"
 	@echo "... visrasterizer.i"
 	@echo "... visrasterizer.s"
-	@echo "... w3d_dep.obj"
+	@echo "... w3d_dep.o"
 	@echo "... w3d_dep.i"
 	@echo "... w3d_dep.s"
-	@echo "... w3d_util.obj"
+	@echo "... w3d_util.o"
 	@echo "... w3d_util.i"
 	@echo "... w3d_util.s"
-	@echo "... w3dexclusionlist.obj"
+	@echo "... w3dexclusionlist.o"
 	@echo "... w3dexclusionlist.i"
 	@echo "... w3dexclusionlist.s"
-	@echo "... ww3d.obj"
+	@echo "... ww3d.o"
 	@echo "... ww3d.i"
 	@echo "... ww3d.s"
-	@echo "... ww3dformat.obj"
+	@echo "... ww3dformat.o"
 	@echo "... ww3dformat.i"
 	@echo "... ww3dformat.s"
 .PHONY : help

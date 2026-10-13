@@ -99,7 +99,7 @@ NamedSelSetList& NamedSelSetList::operator=(NamedSelSetList& from)
 	Sets.SetCount(0);
 	Names.SetCount(0);
 
-	for (i=0; i<from.Count(); i++) {
+	for (int i =0; i<from.Count(); i++) {
 		Append_Set(from[i],*(from.Names[i]));
 	}
 

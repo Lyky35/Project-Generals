@@ -312,7 +312,7 @@ void ScriptDialog::updateScriptWarning(Script *pScript)
 		for (pCondition = pOr->getFirstAndCondition(); pCondition; pCondition = pCondition->getNext()) {
 			pCondition->setWarnings(false);
 			Int i;
-			for (i=0; i<pCondition->getNumParameters(); i++) {
+			for (int i =0; i<pCondition->getNumParameters(); i++) {
 				AsciiString warning;
 				warning = EditParameter::getWarningText(pCondition->getParameter(i));
 				if (!warning.isEmpty()) {
@@ -326,7 +326,7 @@ void ScriptDialog::updateScriptWarning(Script *pScript)
 	for (pAction = pScript->getAction(); pAction; pAction = pAction->getNext()) {
 		pAction->setWarnings(false);
 		Int i;
-		for (i=0; i<pAction->getNumParameters(); i++) {
+		for (int i =0; i<pAction->getNumParameters(); i++) {
 			AsciiString warning;
 			warning = EditParameter::getWarningText(pAction->getParameter(i));
 			if (!warning.isEmpty()) {
@@ -343,7 +343,7 @@ void ScriptDialog::updateWarnings()
 	SidesList *sidesListP = TheSidesList;
 	Int i;
 	if (m_staticThis) sidesListP = &m_staticThis->m_sides;
-	for (i=0; i<sidesListP->getNumSides(); i++) {
+	for (int i =0; i<sidesListP->getNumSides(); i++) {
 		ScriptList *pSL = sidesListP->getSideInfo(i)->getScriptList();
 		Script *pScr;
 		for (pScr = pSL->getScript(); pScr; pScr=pScr->getNext()) {
@@ -392,7 +392,7 @@ BOOL ScriptDialog::OnInitDialog()
 	if (pTree) {
 		m_imageList.Create(IDB_FOLDERSCRIPT, 16, 2, ILC_COLOR4);
 		pTree->SetImageList(&m_imageList, TVSIL_STATE);
-		for (i=0; i<m_sides.getNumSides(); i++) {
+		for (int i =0; i<m_sides.getNumSides(); i++) {
 			HTREEITEM hItem = addPlayer(i);
 			if (!didSelect && hItem != NULL) {
 				pTree->SelectItem(hItem);
@@ -990,7 +990,7 @@ void ScriptDialog::markWaypoint(MapObject *pObj)
 		CWorldBuilderDoc* pDoc = CWorldBuilderDoc::GetActiveDoc();
 		Int curID = pObj->getWaypointID();
 		Int i;
-		for (i = 0; i<pDoc->getNumWaypointLinks(); i++) {
+		for (int i = 0; i<pDoc->getNumWaypointLinks(); i++) {
 //			Bool gotLocation=false;
 			Int waypointID1, waypointID2;
 			pDoc->getWaypointLink(i, &waypointID1, &waypointID2);
@@ -1088,7 +1088,7 @@ void ScriptDialog::scanForWaypointsAndTeams(Script *pScript, Bool doUnits, Bool 
 		Condition *pCondition;
 		for (pCondition = pOr->getFirstAndCondition(); pCondition; pCondition = pCondition->getNext()) {
 			Int i;
-			for (i=0; i<pCondition->getNumParameters(); i++) {
+			for (int i =0; i<pCondition->getNumParameters(); i++) {
 				scanParmForWaypointsAndTeams(pCondition->getParameter(i), doUnits, doWaypoints, doTriggers);
 			}
 		}
@@ -1097,7 +1097,7 @@ void ScriptDialog::scanForWaypointsAndTeams(Script *pScript, Bool doUnits, Bool 
 	for (pAction = pScript->getAction(); pAction; pAction = pAction->getNext()) {
 		pAction->setWarnings(false);
 		Int i;
-		for (i=0; i<pAction->getNumParameters(); i++) {
+		for (int i =0; i<pAction->getNumParameters(); i++) {
 			scanParmForWaypointsAndTeams(pAction->getParameter(i), doUnits, doWaypoints, doTriggers);
 		}
 	}
@@ -1127,7 +1127,7 @@ void ScriptDialog::OnSave()
 	ScriptGroup *pGroup = getCurGroup();
 
 	ScriptList *scripts[MAX_PLAYER_COUNT];
-	for (i=0; i<MAX_PLAYER_COUNT; i++) {
+	for (int i =0; i<MAX_PLAYER_COUNT; i++) {
 		scripts[i] = NULL;
 	}
 
@@ -1169,13 +1169,13 @@ void ScriptDialog::OnSave()
 		}
 	}
 
-	for (i = 0; i < m_sides.getNumTeams(); i++) {
+	for (int i = 0; i < m_sides.getNumTeams(); i++) {
 		m_sides.getTeamInfo(i)->getDict()->setBool(TheKey_exportWithScript, doAllScripts);
 	}
 	Int numScriptLists = 0;
 	if (doAllScripts) {
 		numScriptLists = m_sides.getNumSides();
-		for (i=0; i<numScriptLists; i++) {
+		for (int i =0; i<numScriptLists; i++) {
 			scripts[i] = m_sides.getSideInfo(i)->getScriptList();
 		}
 	} else {
@@ -1197,7 +1197,7 @@ void ScriptDialog::OnSave()
 			return;
 		}
 	}
-	for (i=0; i<numScriptLists; i++) {
+	for (int i =0; i<numScriptLists; i++) {
 		ScriptList *pSL = scripts[i];
 		Script *pScr;
 		for (pScr = pSL->getScript(); pScr; pScr=pScr->getNext()) {
@@ -1223,7 +1223,7 @@ void ScriptDialog::OnSave()
 		chunkWriter.openDataChunk("ScriptsPlayers", 	K_PLAYERS_NAMES_FOR_SCRIPTS_VERSION_1);
 		if (doAllScripts) {
 			chunkWriter.writeInt(m_sides.getNumSides());
-			for (i=0; i<m_sides.getNumSides(); i++) {
+			for (int i =0; i<m_sides.getNumSides(); i++) {
 				AsciiString name = m_sides.getSideInfo(i)->getDict()->getAsciiString(TheKey_playerName);
 				chunkWriter.writeAsciiString(name);
 			}
@@ -1276,7 +1276,7 @@ void ScriptDialog::OnSave()
 				chunkWriter.writeInt(pTrig->getRiverStart());
 				chunkWriter.writeInt(pTrig->getNumPoints()); 
 				Int i;
-				for (i=0; i<pTrig->getNumPoints(); i++) {
+				for (int i =0; i<pTrig->getNumPoints(); i++) {
 					ICoord3D loc = *pTrig->getPoint(i);
 					chunkWriter.writeInt( loc.x);
 					chunkWriter.writeInt( loc.y);
@@ -1286,7 +1286,7 @@ void ScriptDialog::OnSave()
 		chunkWriter.closeDataChunk();
  		/***************TEAMS DATA ***************/
 		chunkWriter.openDataChunk("ScriptTeams", 	K_LOCAL_TEAMS_VERSION_1);
-			for (i = 0; i < m_sides.getNumTeams(); i++)
+			for (int i = 0; i < m_sides.getNumTeams(); i++)
 			{
 				if (m_sides.getTeamInfo(i)->getDict()->getBool(TheKey_exportWithScript)) {
 					chunkWriter.writeDict(*m_sides.getTeamInfo(i)->getDict());
@@ -1299,7 +1299,7 @@ void ScriptDialog::OnSave()
 			CWorldBuilderDoc *pDoc = CWorldBuilderDoc::GetActiveDoc();
 			Int i;
 			count = 0;
-			for (i = 0; i<pDoc->getNumWaypointLinks(); i++) {
+			for (int i = 0; i<pDoc->getNumWaypointLinks(); i++) {
 					Int waypointID1, waypointID2;
 				MapObject *pWay1, *pWay2;
 				pDoc->getWaypointLink(i, &waypointID1, &waypointID2);
@@ -1318,7 +1318,7 @@ void ScriptDialog::OnSave()
 
 		chunkWriter.openDataChunk("WaypointsList", 	K_WAYPOINTS_VERSION_1);
 			chunkWriter.writeInt(count);
-			for (i = 0; i<pDoc->getNumWaypointLinks(); i++) {
+			for (int i = 0; i<pDoc->getNumWaypointLinks(); i++) {
 					Int waypointID1, waypointID2;
 				MapObject *pWay1, *pWay2;
 				pDoc->getWaypointLink(i, &waypointID1, &waypointID2);
@@ -1416,14 +1416,14 @@ void ScriptDialog::OnLoad()
 		ScriptList *scripts[MAX_PLAYER_COUNT];
 		Int count = ScriptList::getReadScripts(scripts);
 		Int i;
-		for (i=0; i<count; i++) {
+		for (int i =0; i<count; i++) {
 			if (scripts[i]->getScript() == NULL && scripts[i]->getScriptGroup()==NULL) continue;
 			Int curSide = -1;
 			if (count==1) {
 				curSide = m_curSelection.m_playerIndex;
 			} else {
 				Int j;
-				for (j=0; j<m_sides.getNumSides(); j++) {
+				for (int j =0; j<m_sides.getNumSides(); j++) {
  					AsciiString name = m_sides.getSideInfo(i)->getDict()->getAsciiString(TheKey_playerName);
 					if (name == m_readPlayerNames[j]) {
 						curSide = j;
@@ -1575,7 +1575,7 @@ Bool ScriptDialog::ParseWaypointDataChunk(DataChunkInput &file, DataChunkInfo *i
 	CWorldBuilderDoc *pDoc = CWorldBuilderDoc::GetActiveDoc();
 	ScriptDialog *pThis = (ScriptDialog *)userData;
 	Int i;
-	for (i=0; i<count; i++) {
+	for (int i =0; i<count; i++) {
 		Int waypoint1 = file.readInt();
 		Int waypoint2 = file.readInt();
 		pDoc->addWaypointLink(waypoint1+pThis->m_waypointBase, waypoint2+pThis->m_waypointBase);
@@ -1642,7 +1642,7 @@ Bool ScriptDialog::ParsePlayersDataChunk(DataChunkInput &file, DataChunkInfo *in
 	ScriptDialog *pThis = (ScriptDialog *)userData;
 	Int numNames = file.readInt();
 	Int i;
-	for (i=0; i<numNames; i++) {
+	for (int i =0; i<numNames; i++) {
 		if (i>=MAX_PLAYER_COUNT) break;
 		pThis->m_readPlayerNames[i] = file.readAsciiString();
 	}
@@ -1692,7 +1692,7 @@ Bool ScriptDialog::ParsePolygonTriggersDataChunk(DataChunkInput &file, DataChunk
 		pTrig->setRiver(isRiver);
 		pTrig->setRiverStart(riverStart);
 		Int i;
-		for (i=0; i<numPoints; i++) {
+		for (int i =0; i<numPoints; i++) {
 			ICoord3D loc;
 			loc.x = file.readInt();
 			loc.y = file.readInt();

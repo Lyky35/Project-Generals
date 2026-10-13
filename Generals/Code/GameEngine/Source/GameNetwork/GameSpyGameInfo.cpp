@@ -462,7 +462,7 @@ void GameSpyStartGame( void )
 		int i;
 
 		int numUsers = 0;
-		for (i=0; i<MAX_SLOTS; ++i)
+		for (int i =0; i<MAX_SLOTS; ++i)
 		{
 			GameSlot *slot = TheGameSpyGame->getSlot(i);
 			if (slot && slot->isOccupied())
@@ -670,7 +670,7 @@ AsciiString GameSpyGameInfo::generateGameResultsPacket( void )
 	Int numPlayers = 0;
 	Int numTeamsAtGameEnd = 0;
 	Int lastTeamAtGameEnd = -1;
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		AsciiString playerName;
 		playerName.format("player%d", i);
@@ -702,7 +702,7 @@ AsciiString GameSpyGameInfo::generateGameResultsPacket( void )
 		endFrame, numPlayers, m_isQM);
 
 	Int playerID = 0;
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		AsciiString playerName;
 		playerName.format("player%d", i);

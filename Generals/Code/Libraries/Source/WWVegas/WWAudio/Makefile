@@ -130,13 +130,13 @@ WWAudio/fast:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build
 .PHONY : WWAudio/fast
 
-AudibleSound.obj: AudibleSound.cpp.obj
-.PHONY : AudibleSound.obj
+AudibleSound.o: AudibleSound.cpp.o
+.PHONY : AudibleSound.o
 
 # target to build an object file
-AudibleSound.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.obj
-.PHONY : AudibleSound.cpp.obj
+AudibleSound.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.o
+.PHONY : AudibleSound.cpp.o
 
 AudibleSound.i: AudibleSound.cpp.i
 .PHONY : AudibleSound.i
@@ -154,13 +154,13 @@ AudibleSound.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.s
 .PHONY : AudibleSound.cpp.s
 
-AudioSaveLoad.obj: AudioSaveLoad.cpp.obj
-.PHONY : AudioSaveLoad.obj
+AudioSaveLoad.o: AudioSaveLoad.cpp.o
+.PHONY : AudioSaveLoad.o
 
 # target to build an object file
-AudioSaveLoad.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.obj
-.PHONY : AudioSaveLoad.cpp.obj
+AudioSaveLoad.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.o
+.PHONY : AudioSaveLoad.cpp.o
 
 AudioSaveLoad.i: AudioSaveLoad.cpp.i
 .PHONY : AudioSaveLoad.i
@@ -178,13 +178,13 @@ AudioSaveLoad.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.s
 .PHONY : AudioSaveLoad.cpp.s
 
-FilteredSound.obj: FilteredSound.cpp.obj
-.PHONY : FilteredSound.obj
+FilteredSound.o: FilteredSound.cpp.o
+.PHONY : FilteredSound.o
 
 # target to build an object file
-FilteredSound.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.obj
-.PHONY : FilteredSound.cpp.obj
+FilteredSound.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.o
+.PHONY : FilteredSound.cpp.o
 
 FilteredSound.i: FilteredSound.cpp.i
 .PHONY : FilteredSound.i
@@ -202,13 +202,13 @@ FilteredSound.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.s
 .PHONY : FilteredSound.cpp.s
 
-Listener.obj: Listener.cpp.obj
-.PHONY : Listener.obj
+Listener.o: Listener.cpp.o
+.PHONY : Listener.o
 
 # target to build an object file
-Listener.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.obj
-.PHONY : Listener.cpp.obj
+Listener.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.o
+.PHONY : Listener.cpp.o
 
 Listener.i: Listener.cpp.i
 .PHONY : Listener.i
@@ -226,13 +226,13 @@ Listener.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.s
 .PHONY : Listener.cpp.s
 
-LogicalListener.obj: LogicalListener.cpp.obj
-.PHONY : LogicalListener.obj
+LogicalListener.o: LogicalListener.cpp.o
+.PHONY : LogicalListener.o
 
 # target to build an object file
-LogicalListener.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.obj
-.PHONY : LogicalListener.cpp.obj
+LogicalListener.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.o
+.PHONY : LogicalListener.cpp.o
 
 LogicalListener.i: LogicalListener.cpp.i
 .PHONY : LogicalListener.i
@@ -250,13 +250,13 @@ LogicalListener.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.s
 .PHONY : LogicalListener.cpp.s
 
-LogicalSound.obj: LogicalSound.cpp.obj
-.PHONY : LogicalSound.obj
+LogicalSound.o: LogicalSound.cpp.o
+.PHONY : LogicalSound.o
 
 # target to build an object file
-LogicalSound.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.obj
-.PHONY : LogicalSound.cpp.obj
+LogicalSound.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.o
+.PHONY : LogicalSound.cpp.o
 
 LogicalSound.i: LogicalSound.cpp.i
 .PHONY : LogicalSound.i
@@ -274,13 +274,13 @@ LogicalSound.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.s
 .PHONY : LogicalSound.cpp.s
 
-Sound3D.obj: Sound3D.cpp.obj
-.PHONY : Sound3D.obj
+Sound3D.o: Sound3D.cpp.o
+.PHONY : Sound3D.o
 
 # target to build an object file
-Sound3D.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.obj
-.PHONY : Sound3D.cpp.obj
+Sound3D.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.o
+.PHONY : Sound3D.cpp.o
 
 Sound3D.i: Sound3D.cpp.i
 .PHONY : Sound3D.i
@@ -298,13 +298,13 @@ Sound3D.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.s
 .PHONY : Sound3D.cpp.s
 
-SoundBuffer.obj: SoundBuffer.cpp.obj
-.PHONY : SoundBuffer.obj
+SoundBuffer.o: SoundBuffer.cpp.o
+.PHONY : SoundBuffer.o
 
 # target to build an object file
-SoundBuffer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.obj
-.PHONY : SoundBuffer.cpp.obj
+SoundBuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.o
+.PHONY : SoundBuffer.cpp.o
 
 SoundBuffer.i: SoundBuffer.cpp.i
 .PHONY : SoundBuffer.i
@@ -322,13 +322,13 @@ SoundBuffer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.s
 .PHONY : SoundBuffer.cpp.s
 
-SoundPseudo3D.obj: SoundPseudo3D.cpp.obj
-.PHONY : SoundPseudo3D.obj
+SoundPseudo3D.o: SoundPseudo3D.cpp.o
+.PHONY : SoundPseudo3D.o
 
 # target to build an object file
-SoundPseudo3D.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.obj
-.PHONY : SoundPseudo3D.cpp.obj
+SoundPseudo3D.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.o
+.PHONY : SoundPseudo3D.cpp.o
 
 SoundPseudo3D.i: SoundPseudo3D.cpp.i
 .PHONY : SoundPseudo3D.i
@@ -346,13 +346,13 @@ SoundPseudo3D.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.s
 .PHONY : SoundPseudo3D.cpp.s
 
-SoundScene.obj: SoundScene.cpp.obj
-.PHONY : SoundScene.obj
+SoundScene.o: SoundScene.cpp.o
+.PHONY : SoundScene.o
 
 # target to build an object file
-SoundScene.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.obj
-.PHONY : SoundScene.cpp.obj
+SoundScene.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.o
+.PHONY : SoundScene.cpp.o
 
 SoundScene.i: SoundScene.cpp.i
 .PHONY : SoundScene.i
@@ -370,13 +370,13 @@ SoundScene.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.s
 .PHONY : SoundScene.cpp.s
 
-SoundSceneObj.obj: SoundSceneObj.cpp.obj
-.PHONY : SoundSceneObj.obj
+SoundSceneObj.o: SoundSceneObj.cpp.o
+.PHONY : SoundSceneObj.o
 
 # target to build an object file
-SoundSceneObj.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.obj
-.PHONY : SoundSceneObj.cpp.obj
+SoundSceneObj.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.o
+.PHONY : SoundSceneObj.cpp.o
 
 SoundSceneObj.i: SoundSceneObj.cpp.i
 .PHONY : SoundSceneObj.i
@@ -394,13 +394,13 @@ SoundSceneObj.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.s
 .PHONY : SoundSceneObj.cpp.s
 
-Threads.obj: Threads.cpp.obj
-.PHONY : Threads.obj
+Threads.o: Threads.cpp.o
+.PHONY : Threads.o
 
 # target to build an object file
-Threads.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.obj
-.PHONY : Threads.cpp.obj
+Threads.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.o
+.PHONY : Threads.cpp.o
 
 Threads.i: Threads.cpp.i
 .PHONY : Threads.i
@@ -418,13 +418,13 @@ Threads.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.s
 .PHONY : Threads.cpp.s
 
-Utils.obj: Utils.cpp.obj
-.PHONY : Utils.obj
+Utils.o: Utils.cpp.o
+.PHONY : Utils.o
 
 # target to build an object file
-Utils.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.obj
-.PHONY : Utils.cpp.obj
+Utils.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.o
+.PHONY : Utils.cpp.o
 
 Utils.i: Utils.cpp.i
 .PHONY : Utils.i
@@ -442,13 +442,13 @@ Utils.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.s
 .PHONY : Utils.cpp.s
 
-WWAudio.obj: WWAudio.cpp.obj
-.PHONY : WWAudio.obj
+WWAudio.o: WWAudio.cpp.o
+.PHONY : WWAudio.o
 
 # target to build an object file
-WWAudio.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.obj
-.PHONY : WWAudio.cpp.obj
+WWAudio.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.o
+.PHONY : WWAudio.cpp.o
 
 WWAudio.i: WWAudio.cpp.i
 .PHONY : WWAudio.i
@@ -466,13 +466,109 @@ WWAudio.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.s
 .PHONY : WWAudio.cpp.s
 
-listenerhandle.obj: listenerhandle.cpp.obj
-.PHONY : listenerhandle.obj
+audiblesound.o: audiblesound.cpp.o
+.PHONY : audiblesound.o
 
 # target to build an object file
-listenerhandle.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.obj
-.PHONY : listenerhandle.cpp.obj
+audiblesound.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiblesound.cpp.o
+.PHONY : audiblesound.cpp.o
+
+audiblesound.i: audiblesound.cpp.i
+.PHONY : audiblesound.i
+
+# target to preprocess a source file
+audiblesound.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiblesound.cpp.i
+.PHONY : audiblesound.cpp.i
+
+audiblesound.s: audiblesound.cpp.s
+.PHONY : audiblesound.s
+
+# target to generate assembly for a file
+audiblesound.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiblesound.cpp.s
+.PHONY : audiblesound.cpp.s
+
+audiosaveload.o: audiosaveload.cpp.o
+.PHONY : audiosaveload.o
+
+# target to build an object file
+audiosaveload.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiosaveload.cpp.o
+.PHONY : audiosaveload.cpp.o
+
+audiosaveload.i: audiosaveload.cpp.i
+.PHONY : audiosaveload.i
+
+# target to preprocess a source file
+audiosaveload.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiosaveload.cpp.i
+.PHONY : audiosaveload.cpp.i
+
+audiosaveload.s: audiosaveload.cpp.s
+.PHONY : audiosaveload.s
+
+# target to generate assembly for a file
+audiosaveload.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiosaveload.cpp.s
+.PHONY : audiosaveload.cpp.s
+
+filteredsound.o: filteredsound.cpp.o
+.PHONY : filteredsound.o
+
+# target to build an object file
+filteredsound.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/filteredsound.cpp.o
+.PHONY : filteredsound.cpp.o
+
+filteredsound.i: filteredsound.cpp.i
+.PHONY : filteredsound.i
+
+# target to preprocess a source file
+filteredsound.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/filteredsound.cpp.i
+.PHONY : filteredsound.cpp.i
+
+filteredsound.s: filteredsound.cpp.s
+.PHONY : filteredsound.s
+
+# target to generate assembly for a file
+filteredsound.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/filteredsound.cpp.s
+.PHONY : filteredsound.cpp.s
+
+listener.o: listener.cpp.o
+.PHONY : listener.o
+
+# target to build an object file
+listener.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listener.cpp.o
+.PHONY : listener.cpp.o
+
+listener.i: listener.cpp.i
+.PHONY : listener.i
+
+# target to preprocess a source file
+listener.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listener.cpp.i
+.PHONY : listener.cpp.i
+
+listener.s: listener.cpp.s
+.PHONY : listener.s
+
+# target to generate assembly for a file
+listener.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listener.cpp.s
+.PHONY : listener.cpp.s
+
+listenerhandle.o: listenerhandle.cpp.o
+.PHONY : listenerhandle.o
+
+# target to build an object file
+listenerhandle.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.o
+.PHONY : listenerhandle.cpp.o
 
 listenerhandle.i: listenerhandle.cpp.i
 .PHONY : listenerhandle.i
@@ -490,13 +586,61 @@ listenerhandle.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.s
 .PHONY : listenerhandle.cpp.s
 
-sound2dhandle.obj: sound2dhandle.cpp.obj
-.PHONY : sound2dhandle.obj
+logicallistener.o: logicallistener.cpp.o
+.PHONY : logicallistener.o
 
 # target to build an object file
-sound2dhandle.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.obj
-.PHONY : sound2dhandle.cpp.obj
+logicallistener.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicallistener.cpp.o
+.PHONY : logicallistener.cpp.o
+
+logicallistener.i: logicallistener.cpp.i
+.PHONY : logicallistener.i
+
+# target to preprocess a source file
+logicallistener.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicallistener.cpp.i
+.PHONY : logicallistener.cpp.i
+
+logicallistener.s: logicallistener.cpp.s
+.PHONY : logicallistener.s
+
+# target to generate assembly for a file
+logicallistener.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicallistener.cpp.s
+.PHONY : logicallistener.cpp.s
+
+logicalsound.o: logicalsound.cpp.o
+.PHONY : logicalsound.o
+
+# target to build an object file
+logicalsound.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicalsound.cpp.o
+.PHONY : logicalsound.cpp.o
+
+logicalsound.i: logicalsound.cpp.i
+.PHONY : logicalsound.i
+
+# target to preprocess a source file
+logicalsound.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicalsound.cpp.i
+.PHONY : logicalsound.cpp.i
+
+logicalsound.s: logicalsound.cpp.s
+.PHONY : logicalsound.s
+
+# target to generate assembly for a file
+logicalsound.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicalsound.cpp.s
+.PHONY : logicalsound.cpp.s
+
+sound2dhandle.o: sound2dhandle.cpp.o
+.PHONY : sound2dhandle.o
+
+# target to build an object file
+sound2dhandle.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.o
+.PHONY : sound2dhandle.cpp.o
 
 sound2dhandle.i: sound2dhandle.cpp.i
 .PHONY : sound2dhandle.i
@@ -514,13 +658,37 @@ sound2dhandle.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.s
 .PHONY : sound2dhandle.cpp.s
 
-sound3dhandle.obj: sound3dhandle.cpp.obj
-.PHONY : sound3dhandle.obj
+sound3d.o: sound3d.cpp.o
+.PHONY : sound3d.o
 
 # target to build an object file
-sound3dhandle.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.obj
-.PHONY : sound3dhandle.cpp.obj
+sound3d.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3d.cpp.o
+.PHONY : sound3d.cpp.o
+
+sound3d.i: sound3d.cpp.i
+.PHONY : sound3d.i
+
+# target to preprocess a source file
+sound3d.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3d.cpp.i
+.PHONY : sound3d.cpp.i
+
+sound3d.s: sound3d.cpp.s
+.PHONY : sound3d.s
+
+# target to generate assembly for a file
+sound3d.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3d.cpp.s
+.PHONY : sound3d.cpp.s
+
+sound3dhandle.o: sound3dhandle.cpp.o
+.PHONY : sound3dhandle.o
+
+# target to build an object file
+sound3dhandle.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.o
+.PHONY : sound3dhandle.cpp.o
 
 sound3dhandle.i: sound3dhandle.cpp.i
 .PHONY : sound3dhandle.i
@@ -538,13 +706,37 @@ sound3dhandle.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.s
 .PHONY : sound3dhandle.cpp.s
 
-soundhandle.obj: soundhandle.cpp.obj
-.PHONY : soundhandle.obj
+soundbuffer.o: soundbuffer.cpp.o
+.PHONY : soundbuffer.o
 
 # target to build an object file
-soundhandle.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.obj
-.PHONY : soundhandle.cpp.obj
+soundbuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundbuffer.cpp.o
+.PHONY : soundbuffer.cpp.o
+
+soundbuffer.i: soundbuffer.cpp.i
+.PHONY : soundbuffer.i
+
+# target to preprocess a source file
+soundbuffer.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundbuffer.cpp.i
+.PHONY : soundbuffer.cpp.i
+
+soundbuffer.s: soundbuffer.cpp.s
+.PHONY : soundbuffer.s
+
+# target to generate assembly for a file
+soundbuffer.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundbuffer.cpp.s
+.PHONY : soundbuffer.cpp.s
+
+soundhandle.o: soundhandle.cpp.o
+.PHONY : soundhandle.o
+
+# target to build an object file
+soundhandle.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.o
+.PHONY : soundhandle.cpp.o
 
 soundhandle.i: soundhandle.cpp.i
 .PHONY : soundhandle.i
@@ -562,13 +754,85 @@ soundhandle.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.s
 .PHONY : soundhandle.cpp.s
 
-soundstreamhandle.obj: soundstreamhandle.cpp.obj
-.PHONY : soundstreamhandle.obj
+soundpseudo3d.o: soundpseudo3d.cpp.o
+.PHONY : soundpseudo3d.o
 
 # target to build an object file
-soundstreamhandle.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.obj
-.PHONY : soundstreamhandle.cpp.obj
+soundpseudo3d.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.o
+.PHONY : soundpseudo3d.cpp.o
+
+soundpseudo3d.i: soundpseudo3d.cpp.i
+.PHONY : soundpseudo3d.i
+
+# target to preprocess a source file
+soundpseudo3d.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.i
+.PHONY : soundpseudo3d.cpp.i
+
+soundpseudo3d.s: soundpseudo3d.cpp.s
+.PHONY : soundpseudo3d.s
+
+# target to generate assembly for a file
+soundpseudo3d.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.s
+.PHONY : soundpseudo3d.cpp.s
+
+soundscene.o: soundscene.cpp.o
+.PHONY : soundscene.o
+
+# target to build an object file
+soundscene.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundscene.cpp.o
+.PHONY : soundscene.cpp.o
+
+soundscene.i: soundscene.cpp.i
+.PHONY : soundscene.i
+
+# target to preprocess a source file
+soundscene.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundscene.cpp.i
+.PHONY : soundscene.cpp.i
+
+soundscene.s: soundscene.cpp.s
+.PHONY : soundscene.s
+
+# target to generate assembly for a file
+soundscene.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundscene.cpp.s
+.PHONY : soundscene.cpp.s
+
+soundsceneobj.o: soundsceneobj.cpp.o
+.PHONY : soundsceneobj.o
+
+# target to build an object file
+soundsceneobj.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundsceneobj.cpp.o
+.PHONY : soundsceneobj.cpp.o
+
+soundsceneobj.i: soundsceneobj.cpp.i
+.PHONY : soundsceneobj.i
+
+# target to preprocess a source file
+soundsceneobj.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundsceneobj.cpp.i
+.PHONY : soundsceneobj.cpp.i
+
+soundsceneobj.s: soundsceneobj.cpp.s
+.PHONY : soundsceneobj.s
+
+# target to generate assembly for a file
+soundsceneobj.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundsceneobj.cpp.s
+.PHONY : soundsceneobj.cpp.s
+
+soundstreamhandle.o: soundstreamhandle.cpp.o
+.PHONY : soundstreamhandle.o
+
+# target to build an object file
+soundstreamhandle.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.o
+.PHONY : soundstreamhandle.cpp.o
 
 soundstreamhandle.i: soundstreamhandle.cpp.i
 .PHONY : soundstreamhandle.i
@@ -586,6 +850,78 @@ soundstreamhandle.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.s
 .PHONY : soundstreamhandle.cpp.s
 
+threads.o: threads.cpp.o
+.PHONY : threads.o
+
+# target to build an object file
+threads.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/threads.cpp.o
+.PHONY : threads.cpp.o
+
+threads.i: threads.cpp.i
+.PHONY : threads.i
+
+# target to preprocess a source file
+threads.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/threads.cpp.i
+.PHONY : threads.cpp.i
+
+threads.s: threads.cpp.s
+.PHONY : threads.s
+
+# target to generate assembly for a file
+threads.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/threads.cpp.s
+.PHONY : threads.cpp.s
+
+utils.o: utils.cpp.o
+.PHONY : utils.o
+
+# target to build an object file
+utils.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/utils.cpp.o
+.PHONY : utils.cpp.o
+
+utils.i: utils.cpp.i
+.PHONY : utils.i
+
+# target to preprocess a source file
+utils.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/utils.cpp.i
+.PHONY : utils.cpp.i
+
+utils.s: utils.cpp.s
+.PHONY : utils.s
+
+# target to generate assembly for a file
+utils.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/utils.cpp.s
+.PHONY : utils.cpp.s
+
+wwaudio.o: wwaudio.cpp.o
+.PHONY : wwaudio.o
+
+# target to build an object file
+wwaudio.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/wwaudio.cpp.o
+.PHONY : wwaudio.cpp.o
+
+wwaudio.i: wwaudio.cpp.i
+.PHONY : wwaudio.i
+
+# target to preprocess a source file
+wwaudio.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/wwaudio.cpp.i
+.PHONY : wwaudio.cpp.i
+
+wwaudio.s: wwaudio.cpp.s
+.PHONY : wwaudio.s
+
+# target to generate assembly for a file
+wwaudio.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/wwaudio.cpp.s
+.PHONY : wwaudio.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -595,63 +931,105 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... WWAudio"
-	@echo "... AudibleSound.obj"
+	@echo "... AudibleSound.o"
 	@echo "... AudibleSound.i"
 	@echo "... AudibleSound.s"
-	@echo "... AudioSaveLoad.obj"
+	@echo "... AudioSaveLoad.o"
 	@echo "... AudioSaveLoad.i"
 	@echo "... AudioSaveLoad.s"
-	@echo "... FilteredSound.obj"
+	@echo "... FilteredSound.o"
 	@echo "... FilteredSound.i"
 	@echo "... FilteredSound.s"
-	@echo "... Listener.obj"
+	@echo "... Listener.o"
 	@echo "... Listener.i"
 	@echo "... Listener.s"
-	@echo "... LogicalListener.obj"
+	@echo "... LogicalListener.o"
 	@echo "... LogicalListener.i"
 	@echo "... LogicalListener.s"
-	@echo "... LogicalSound.obj"
+	@echo "... LogicalSound.o"
 	@echo "... LogicalSound.i"
 	@echo "... LogicalSound.s"
-	@echo "... Sound3D.obj"
+	@echo "... Sound3D.o"
 	@echo "... Sound3D.i"
 	@echo "... Sound3D.s"
-	@echo "... SoundBuffer.obj"
+	@echo "... SoundBuffer.o"
 	@echo "... SoundBuffer.i"
 	@echo "... SoundBuffer.s"
-	@echo "... SoundPseudo3D.obj"
+	@echo "... SoundPseudo3D.o"
 	@echo "... SoundPseudo3D.i"
 	@echo "... SoundPseudo3D.s"
-	@echo "... SoundScene.obj"
+	@echo "... SoundScene.o"
 	@echo "... SoundScene.i"
 	@echo "... SoundScene.s"
-	@echo "... SoundSceneObj.obj"
+	@echo "... SoundSceneObj.o"
 	@echo "... SoundSceneObj.i"
 	@echo "... SoundSceneObj.s"
-	@echo "... Threads.obj"
+	@echo "... Threads.o"
 	@echo "... Threads.i"
 	@echo "... Threads.s"
-	@echo "... Utils.obj"
+	@echo "... Utils.o"
 	@echo "... Utils.i"
 	@echo "... Utils.s"
-	@echo "... WWAudio.obj"
+	@echo "... WWAudio.o"
 	@echo "... WWAudio.i"
 	@echo "... WWAudio.s"
-	@echo "... listenerhandle.obj"
+	@echo "... audiblesound.o"
+	@echo "... audiblesound.i"
+	@echo "... audiblesound.s"
+	@echo "... audiosaveload.o"
+	@echo "... audiosaveload.i"
+	@echo "... audiosaveload.s"
+	@echo "... filteredsound.o"
+	@echo "... filteredsound.i"
+	@echo "... filteredsound.s"
+	@echo "... listener.o"
+	@echo "... listener.i"
+	@echo "... listener.s"
+	@echo "... listenerhandle.o"
 	@echo "... listenerhandle.i"
 	@echo "... listenerhandle.s"
-	@echo "... sound2dhandle.obj"
+	@echo "... logicallistener.o"
+	@echo "... logicallistener.i"
+	@echo "... logicallistener.s"
+	@echo "... logicalsound.o"
+	@echo "... logicalsound.i"
+	@echo "... logicalsound.s"
+	@echo "... sound2dhandle.o"
 	@echo "... sound2dhandle.i"
 	@echo "... sound2dhandle.s"
-	@echo "... sound3dhandle.obj"
+	@echo "... sound3d.o"
+	@echo "... sound3d.i"
+	@echo "... sound3d.s"
+	@echo "... sound3dhandle.o"
 	@echo "... sound3dhandle.i"
 	@echo "... sound3dhandle.s"
-	@echo "... soundhandle.obj"
+	@echo "... soundbuffer.o"
+	@echo "... soundbuffer.i"
+	@echo "... soundbuffer.s"
+	@echo "... soundhandle.o"
 	@echo "... soundhandle.i"
 	@echo "... soundhandle.s"
-	@echo "... soundstreamhandle.obj"
+	@echo "... soundpseudo3d.o"
+	@echo "... soundpseudo3d.i"
+	@echo "... soundpseudo3d.s"
+	@echo "... soundscene.o"
+	@echo "... soundscene.i"
+	@echo "... soundscene.s"
+	@echo "... soundsceneobj.o"
+	@echo "... soundsceneobj.i"
+	@echo "... soundsceneobj.s"
+	@echo "... soundstreamhandle.o"
 	@echo "... soundstreamhandle.i"
 	@echo "... soundstreamhandle.s"
+	@echo "... threads.o"
+	@echo "... threads.i"
+	@echo "... threads.s"
+	@echo "... utils.o"
+	@echo "... utils.i"
+	@echo "... utils.s"
+	@echo "... wwaudio.o"
+	@echo "... wwaudio.i"
+	@echo "... wwaudio.s"
 .PHONY : help
 
 

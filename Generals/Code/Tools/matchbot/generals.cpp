@@ -281,7 +281,7 @@ void GeneralsMatcher::sendMatchInfo(std::string name1, std::string name2, std::s
 	DBGMSG("Random map #" << whichMap << "/" << numMaps);
 
 	int i;
-	for (i=0; i<(int)user1->maps.size(); ++i)
+	for (int i =0; i<(int)user1->maps.size(); ++i)
 	{
 		if (tmp[i])
 			--whichMap;

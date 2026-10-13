@@ -658,7 +658,7 @@ void GameClient::update( void )
 				{
 	#ifdef DEBUG_FOG_MEMORY
 					Int *playerIndex=nonLocalPlayerIndices;
-					for (i=0; i<numNonLocalPlayers; i++, playerIndex++)
+					for (int i =0; i<numNonLocalPlayers; i++, playerIndex++)
 						object->getShroudedStatus(*playerIndex);
 	#endif
 					ObjectShroudStatus ss=object->getShroudedStatus(localPlayerIndex);
@@ -1142,7 +1142,7 @@ void GameClient::preloadAssets( TimeOfDay timeOfDay )
 	};
 
 	GlobalMemoryStatus(&before);
-	for (i=0; *textureNames[i]; ++i)
+	for (int i=0; *textureNames[i]; ++i)
 		TheDisplay->preloadTextureAssets(textureNames[i]);
 	GlobalMemoryStatus(&after);
 

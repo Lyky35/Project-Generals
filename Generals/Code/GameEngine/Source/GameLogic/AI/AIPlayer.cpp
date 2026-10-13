@@ -96,7 +96,7 @@ m_curWarehouseID(INVALID_ID)
 	p->setCanBuildUnits(false); // turn off ai production by default.
 
 	Int i;
-	for (i=0; i<MAX_STRUCTURES_TO_REPAIR; i++) {
+	for (int i =0; i<MAX_STRUCTURES_TO_REPAIR; i++) {
 		m_structuresToRepair[i] = INVALID_ID;
 	}
 	m_repairDozerOrigin.zero();
@@ -652,7 +652,7 @@ Object *AIPlayer::buildStructureWithDozer(const ThingTemplate *bldgPlan, BuildLi
 		if (count<2) count = 2;
 		Int i;
 		color.green = 1;
-		for (i=1; i<count; i++) {
+		for (int i =1; i<count; i++) {
 			myPos.x = dozer->getPosition()->x + (pos.x-dozer->getPosition()->x)*i/count;
 			myPos.y = dozer->getPosition()->y + (pos.y-dozer->getPosition()->y)*i/count;
 			myPos.z = TheTerrainLogic->getGroundHeight( myPos.x, myPos.y ) + 0.5f;
@@ -1166,8 +1166,8 @@ void AIPlayer::computeSuperweaponTarget(const SpecialPowerTemplate *power, Coord
 	Coord3D bestPos;
 	Int i, j;
 
-	for (i=0; i<xCount; i++) {
-		for (j=0; j<yCount; j++) {
+	for (int i =0; i<xCount; i++) {
+		for (int j =0; j<yCount; j++) {
 			pos.x = bounds.lo.x + (bounds.width()*i)/xCount;
 			pos.y = bounds.lo.y + (bounds.height()*j)/yCount;
 			pos.z = 0;
@@ -1184,8 +1184,8 @@ void AIPlayer::computeSuperweaponTarget(const SpecialPowerTemplate *power, Coord
 	yCount = 11;
 	cash = -1;
 	Int count = 0;
-	for (i=0; i<xCount; i++) {
-		for (j=0; j<yCount; j++) {
+	for (int i =0; i<xCount; i++) {
+		for (int j =0; j<yCount; j++) {
 			pos.x = bestPos.x + (i-5)*(weaponRadius/10);
 			pos.y = bestPos.y+ (j-5)*(weaponRadius/10);
 			pos.z = 0;
@@ -1422,7 +1422,7 @@ Bool AIPlayer::selectTeamToReinforce( Int minPriority )
 	Team *curTeam = NULL;
 	Int curPriority = minPriority; // Don't reinforce a team unless it is above min priority.
 	const ThingTemplate *curThing = NULL;
-	for (t = m_player->getPlayerTeams()->begin(); t != m_player->getPlayerTeams()->end(); ++t)
+	for (auto t = m_player->getPlayerTeams()->begin(); t != m_player->getPlayerTeams()->end(); ++t)
 	{
 		TeamPrototype *proto = (*t);
 		Bool busy = false;
@@ -1541,7 +1541,7 @@ Bool AIPlayer::selectTeamToBuild( void )
 	Int hiPri = invalidPri;
 	// collect all teams that are possible to build, and are at the highest priority
 	Player::PlayerTeamList candidateList1;
-	for (t = m_player->getPlayerTeams()->begin(); t != m_player->getPlayerTeams()->end(); ++t)
+	for (auto t = m_player->getPlayerTeams()->begin(); t != m_player->getPlayerTeams()->end(); ++t)
 	{
 		if (isAGoodIdeaToBuildTeam(*t))
 		{
@@ -1570,7 +1570,7 @@ Bool AIPlayer::selectTeamToBuild( void )
 	// collect all teams that are possible to build, and are at the highest priority
 	Player::PlayerTeamList candidateList;
 	Int count = 0;
-	for (t = candidateList1.begin(); t != candidateList1.end(); ++t)
+	for (auto t = candidateList1.begin(); t != candidateList1.end(); ++t)
 	{
 		if ((*t)->getTemplateInfo()->m_productionPriority == hiPri)
 		{
@@ -1584,7 +1584,7 @@ Bool AIPlayer::selectTeamToBuild( void )
 
 	TeamPrototype *teamProto = NULL;
 	Int i = 0;
-	for (t = candidateList.begin(); t != candidateList.end(); ++t)
+	for (auto t = candidateList.begin(); t != candidateList.end(); ++t)
 	{
 		if (i == which)
 		{
@@ -1941,7 +1941,7 @@ void AIPlayer::repairStructure(ObjectID structure)
 		// Locate the correct post to repair.
 	}
 	Int i;
-	for (i=0; i<m_structuresInQueue; i++) {
+	for (int i =0; i<m_structuresInQueue; i++) {
 		if (m_structuresToRepair[i] == structureObj->getID()) {
 			DEBUG_LOG(("info - Bridge already queued for repair.\n"));
 			return;
@@ -1981,7 +1981,7 @@ void AIPlayer::updateBridgeRepair(void)
 		bridgeObj = TheGameLogic->findObjectByID(m_structuresToRepair[0]);
 		if (bridgeObj==NULL) {
 			Int i;
-			for (i=0; i<m_structuresInQueue-1; i++) {
+			for (int i =0; i<m_structuresInQueue-1; i++) {
 				m_structuresToRepair[i] = m_structuresToRepair[i+1];
 			}
 			m_structuresInQueue--;
@@ -2032,7 +2032,7 @@ void AIPlayer::updateBridgeRepair(void)
 				DEBUG_LOG(("Dozer finished repairing structure.\n"));
 				// we're done.
 				Int i;
-				for (i=0; i<m_structuresInQueue-1; i++) {
+				for (int i =0; i<m_structuresInQueue-1; i++) {
 					m_structuresToRepair[i] = m_structuresToRepair[i+1];
 				}
 				m_structuresInQueue--;
@@ -2111,7 +2111,7 @@ void AIPlayer::buildSpecificAITeam( TeamPrototype *teamProto, Bool priorityBuild
 		WorkOrder *orders = NULL;
 		Int i;
 		// Queue up optional units.
-		for( i=0; i<teamProto->getTemplateInfo()->m_numUnitsInfo; i++ )
+		for (int i =0; i<teamProto->getTemplateInfo()->m_numUnitsInfo; i++ )
 		{
 			const ThingTemplate *thing = TheThingFactory->findTemplate( unitInfo[i].unitThingName );
 			if (thing)
@@ -2129,7 +2129,7 @@ void AIPlayer::buildSpecificAITeam( TeamPrototype *teamProto, Bool priorityBuild
 			}
 		}
 		// Queue up required units.
-		for( i=0; i<teamProto->getTemplateInfo()->m_numUnitsInfo; i++ )
+		for (int i =0; i<teamProto->getTemplateInfo()->m_numUnitsInfo; i++ )
 		{
 			const ThingTemplate *thing = TheThingFactory->findTemplate( unitInfo[i].unitThingName );
 			if (thing)
@@ -2224,7 +2224,7 @@ void AIPlayer::recruitSpecificAITeam(TeamPrototype *teamProto, Real recruitRadiu
 		Int i;
 		Int unitsRecruited = 0;
 		// Recruit.
-		for( i=0; i<teamProto->getTemplateInfo()->m_numUnitsInfo; i++ )
+		for (int i =0; i<teamProto->getTemplateInfo()->m_numUnitsInfo; i++ )
 		{
 			const ThingTemplate *thing = TheThingFactory->findTemplate( unitInfo[i].unitThingName );
 			if (thing)
@@ -2636,7 +2636,7 @@ void AIPlayer::doUpgradesAndSkills( void )
 			case 4: skillset = &sideInfo->m_skillSet5; break;
 		}
 		Int i;
-		for (i=0; i<skillset->m_numSkills; i++) {
+		for (int i =0; i<skillset->m_numSkills; i++) {
 			ScienceType science = skillset->m_skills[i];
 			if (m_player->isCapableOfPurchasingScience(science)) {
 				if (m_player->attemptToPurchaseScience(science)) {

@@ -122,7 +122,7 @@ Surface * Read_PCX_File(FileClass & file_handle, PaletteClass * palette, void * 
 			i = 0;
 			rle = 0;
 			for ( scan_pos = j = 0 ; j < height ; j ++, scan_pos += width ) {
-				for ( i = 0 ; i < width ; ) {
+				for (int i = 0 ; i < width ; ) {
 					rle = READ_CHAR ();
 					if ( rle > 192 ) {
 						rle -= 192 ;
@@ -140,7 +140,7 @@ Surface * Read_PCX_File(FileClass & file_handle, PaletteClass * palette, void * 
 
 		} else {
 
-			for ( i = 0 ; i < width * height ; ) {
+			for (int i = 0 ; i < width * height ; ) {
   				rle = READ_CHAR ();
   				rle &= 0xff;
   				if ( rle > 192 ) {

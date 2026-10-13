@@ -341,11 +341,11 @@ void CWorldBuilderView::OnPaint()
 		dc.FillSolidRect(&rect, RGB(255,255,255));
 	}
 
-	for (j=maxJ-1; j>=minJ; j--) { // map goes up, screen goes down.
+	for (int j =maxJ-1; j>=minJ; j--) { // map goes up, screen goes down.
 
 		rect.bottom = (pMap->getYExtent()-j)*m_cellSize;
 		rect.top = rect.bottom-m_cellSize;
-		for (i=minI; i<maxI; i++) {
+		for (int i =minI; i<maxI; i++) {
 			UnsignedByte ht = pMap->getHeight(i, j);
 			rect.left = i*m_cellSize;
 			rect.right = rect.left+m_cellSize;
@@ -570,8 +570,8 @@ void CWorldBuilderView::drawContours(CDC *pDc, CRgn *pRgn, Int minX, Int maxX, I
 		savObj = pDc->SelectObject(&pen);
 		Int i, j;
 		CRect rect;
-		for (i=minX; i<maxX; i++) {
-			for (j=minY; j<maxY; j++) {
+		for (int i =minX; i<maxX; i++) {
+			for (int j =minY; j<maxY; j++) {
 				rect.bottom = (pMap->getYExtent()-j)*m_cellSize;
 				rect.top = rect.bottom-m_cellSize;
 				rect.left = i*m_cellSize;

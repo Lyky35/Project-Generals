@@ -20,6 +20,10 @@
 #ifndef SIMPLEPLAYER_H
 #define SIMPLEPLAYER_H
 
+#ifndef _T
+#define _T(x) x
+#endif
+
 #include "wmsdk.h"
 
 //
@@ -31,9 +35,9 @@ typedef struct WAVEHDR_LIST {
     struct WAVEHDR_LIST *next;
 }   WAVEHDR_LIST;
 
-#define SIMPLE_PLAYER_OPEN_EVENT  _T( "45ab58e0-382e-4d1c-ac50-88a5f9601851" )
-#define SIMPLE_PLAYER_CLOSE_EVENT _T( "276095fa-a8e0-48e6-ac61-8b0002345607" )
-#define WMAPLAY_EVENT             _T( "9e828a72-64f3-48f0-9de8-13dafd0cbd3a" )
+#define SIMPLE_PLAYER_OPEN_EVENT  "45ab58e0-382e-4d1c-ac50-88a5f9601851"
+#define SIMPLE_PLAYER_CLOSE_EVENT "276095fa-a8e0-48e6-ac61-8b0002345607"
+#define WMAPLAY_EVENT             "9e828a72-64f3-48f0-9de8-13dafd0cbd3a"
 ///////////////////////////////////////////////////////////////////////////////
 class CSimplePlayer : public IWMReaderCallback
 {

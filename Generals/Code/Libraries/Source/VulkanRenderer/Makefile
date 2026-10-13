@@ -144,13 +144,13 @@ VulkanShaders/fast:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanShaders.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanShaders.dir/build
 .PHONY : VulkanShaders/fast
 
-VkDescriptors.obj: VkDescriptors.cpp.obj
-.PHONY : VkDescriptors.obj
+VkDescriptors.o: VkDescriptors.cpp.o
+.PHONY : VkDescriptors.o
 
 # target to build an object file
-VkDescriptors.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.obj
-.PHONY : VkDescriptors.cpp.obj
+VkDescriptors.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.o
+.PHONY : VkDescriptors.cpp.o
 
 VkDescriptors.i: VkDescriptors.cpp.i
 .PHONY : VkDescriptors.i
@@ -168,13 +168,13 @@ VkDescriptors.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.s
 .PHONY : VkDescriptors.cpp.s
 
-VkDevice.obj: VkDevice.cpp.obj
-.PHONY : VkDevice.obj
+VkDevice.o: VkDevice.cpp.o
+.PHONY : VkDevice.o
 
 # target to build an object file
-VkDevice.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.obj
-.PHONY : VkDevice.cpp.obj
+VkDevice.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.o
+.PHONY : VkDevice.cpp.o
 
 VkDevice.i: VkDevice.cpp.i
 .PHONY : VkDevice.i
@@ -192,13 +192,13 @@ VkDevice.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.s
 .PHONY : VkDevice.cpp.s
 
-VkGpuBuffer.obj: VkGpuBuffer.cpp.obj
-.PHONY : VkGpuBuffer.obj
+VkGpuBuffer.o: VkGpuBuffer.cpp.o
+.PHONY : VkGpuBuffer.o
 
 # target to build an object file
-VkGpuBuffer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.obj
-.PHONY : VkGpuBuffer.cpp.obj
+VkGpuBuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.o
+.PHONY : VkGpuBuffer.cpp.o
 
 VkGpuBuffer.i: VkGpuBuffer.cpp.i
 .PHONY : VkGpuBuffer.i
@@ -216,13 +216,13 @@ VkGpuBuffer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.s
 .PHONY : VkGpuBuffer.cpp.s
 
-VkShader.obj: VkShader.cpp.obj
-.PHONY : VkShader.obj
+VkShader.o: VkShader.cpp.o
+.PHONY : VkShader.o
 
 # target to build an object file
-VkShader.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.obj
-.PHONY : VkShader.cpp.obj
+VkShader.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.o
+.PHONY : VkShader.cpp.o
 
 VkShader.i: VkShader.cpp.i
 .PHONY : VkShader.i
@@ -240,13 +240,13 @@ VkShader.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.s
 .PHONY : VkShader.cpp.s
 
-VkTexture.obj: VkTexture.cpp.obj
-.PHONY : VkTexture.obj
+VkTexture.o: VkTexture.cpp.o
+.PHONY : VkTexture.o
 
 # target to build an object file
-VkTexture.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.obj
-.PHONY : VkTexture.cpp.obj
+VkTexture.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.o
+.PHONY : VkTexture.cpp.o
 
 VkTexture.i: VkTexture.cpp.i
 .PHONY : VkTexture.i
@@ -264,6 +264,126 @@ VkTexture.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.s
 .PHONY : VkTexture.cpp.s
 
+vkdescriptors.o: vkdescriptors.cpp.o
+.PHONY : vkdescriptors.o
+
+# target to build an object file
+vkdescriptors.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.o
+.PHONY : vkdescriptors.cpp.o
+
+vkdescriptors.i: vkdescriptors.cpp.i
+.PHONY : vkdescriptors.i
+
+# target to preprocess a source file
+vkdescriptors.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.i
+.PHONY : vkdescriptors.cpp.i
+
+vkdescriptors.s: vkdescriptors.cpp.s
+.PHONY : vkdescriptors.s
+
+# target to generate assembly for a file
+vkdescriptors.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.s
+.PHONY : vkdescriptors.cpp.s
+
+vkdevice.o: vkdevice.cpp.o
+.PHONY : vkdevice.o
+
+# target to build an object file
+vkdevice.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.o
+.PHONY : vkdevice.cpp.o
+
+vkdevice.i: vkdevice.cpp.i
+.PHONY : vkdevice.i
+
+# target to preprocess a source file
+vkdevice.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.i
+.PHONY : vkdevice.cpp.i
+
+vkdevice.s: vkdevice.cpp.s
+.PHONY : vkdevice.s
+
+# target to generate assembly for a file
+vkdevice.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.s
+.PHONY : vkdevice.cpp.s
+
+vkgpubuffer.o: vkgpubuffer.cpp.o
+.PHONY : vkgpubuffer.o
+
+# target to build an object file
+vkgpubuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.o
+.PHONY : vkgpubuffer.cpp.o
+
+vkgpubuffer.i: vkgpubuffer.cpp.i
+.PHONY : vkgpubuffer.i
+
+# target to preprocess a source file
+vkgpubuffer.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.i
+.PHONY : vkgpubuffer.cpp.i
+
+vkgpubuffer.s: vkgpubuffer.cpp.s
+.PHONY : vkgpubuffer.s
+
+# target to generate assembly for a file
+vkgpubuffer.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.s
+.PHONY : vkgpubuffer.cpp.s
+
+vkshader.o: vkshader.cpp.o
+.PHONY : vkshader.o
+
+# target to build an object file
+vkshader.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkshader.cpp.o
+.PHONY : vkshader.cpp.o
+
+vkshader.i: vkshader.cpp.i
+.PHONY : vkshader.i
+
+# target to preprocess a source file
+vkshader.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkshader.cpp.i
+.PHONY : vkshader.cpp.i
+
+vkshader.s: vkshader.cpp.s
+.PHONY : vkshader.s
+
+# target to generate assembly for a file
+vkshader.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkshader.cpp.s
+.PHONY : vkshader.cpp.s
+
+vktexture.o: vktexture.cpp.o
+.PHONY : vktexture.o
+
+# target to build an object file
+vktexture.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vktexture.cpp.o
+.PHONY : vktexture.cpp.o
+
+vktexture.i: vktexture.cpp.i
+.PHONY : vktexture.i
+
+# target to preprocess a source file
+vktexture.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vktexture.cpp.i
+.PHONY : vktexture.cpp.i
+
+vktexture.s: vktexture.cpp.s
+.PHONY : vktexture.s
+
+# target to generate assembly for a file
+vktexture.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vktexture.cpp.s
+.PHONY : vktexture.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -274,21 +394,36 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... VulkanShaders"
 	@echo "... VulkanRenderer"
-	@echo "... VkDescriptors.obj"
+	@echo "... VkDescriptors.o"
 	@echo "... VkDescriptors.i"
 	@echo "... VkDescriptors.s"
-	@echo "... VkDevice.obj"
+	@echo "... VkDevice.o"
 	@echo "... VkDevice.i"
 	@echo "... VkDevice.s"
-	@echo "... VkGpuBuffer.obj"
+	@echo "... VkGpuBuffer.o"
 	@echo "... VkGpuBuffer.i"
 	@echo "... VkGpuBuffer.s"
-	@echo "... VkShader.obj"
+	@echo "... VkShader.o"
 	@echo "... VkShader.i"
 	@echo "... VkShader.s"
-	@echo "... VkTexture.obj"
+	@echo "... VkTexture.o"
 	@echo "... VkTexture.i"
 	@echo "... VkTexture.s"
+	@echo "... vkdescriptors.o"
+	@echo "... vkdescriptors.i"
+	@echo "... vkdescriptors.s"
+	@echo "... vkdevice.o"
+	@echo "... vkdevice.i"
+	@echo "... vkdevice.s"
+	@echo "... vkgpubuffer.o"
+	@echo "... vkgpubuffer.i"
+	@echo "... vkgpubuffer.s"
+	@echo "... vkshader.o"
+	@echo "... vkshader.i"
+	@echo "... vkshader.s"
+	@echo "... vktexture.o"
+	@echo "... vktexture.i"
+	@echo "... vktexture.s"
 .PHONY : help
 
 

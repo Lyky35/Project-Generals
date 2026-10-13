@@ -23,7 +23,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "Lib\BaseType.h"
+#include "Lib/BaseType.h"
 #include "TerrainModal.h"
 #include "terrainmaterial.h"
 #include "WHeightMapEdit.h"
@@ -225,7 +225,7 @@ void TerrainModal::updateTextures(void)
 {
 	m_terrainTreeView.DeleteAllItems();
 	Int i;
-	for (i=0; i<WorldHeightMapEdit::getNumTexClasses(); i++) {
+	for (int i =0; i<WorldHeightMapEdit::getNumTexClasses(); i++) {
 		if (m_map->isTexClassUsed(i)) {
 			if (m_currentFgTexture == i) {
 				m_currentFgTexture++;

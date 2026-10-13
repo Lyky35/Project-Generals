@@ -150,7 +150,7 @@ char const * GameFileClass::Set_Name( char const *filename )
 	}
 	Int j = 0;
 	// Strip out spaces.
-	for (i=0; name[i]; i++) {
+	for (int i =0; name[i]; i++) {
 		if (name[i] != ' ') {
 			name[j] = name[i];
 			j++;

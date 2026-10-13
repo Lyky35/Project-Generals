@@ -43,7 +43,7 @@
 #include "Common/INI.h"
 #include "GameLogic/Module/UpdateModule.h"
 class DamageInfo;
-enum ModelConditionFlagType;
+enum ModelConditionFlagType : int;
 
 //-------------------------------------------------------------------------------------------------
 class MobMemberSlavedUpdateModuleData : public UpdateModuleData
@@ -79,7 +79,7 @@ public:
 };
 
 
-enum MobStates
+enum MobStates : int
 {
 	MOB_STATE_NONE,
 	MOB_STATE_IDLE,

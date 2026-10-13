@@ -356,7 +356,7 @@ void W3DGadgetRadioButtonImageDraw( GameWindow *window,
 
 	TheDisplay->setClipRegion(&clipLeft);
 	
-	for( i = 0; i < pieces; i++ )
+	for (int i = 0; i < pieces; i++ )
 	{
 		end.x = start.x + centerImage->getImageWidth();
 		TheWindowManager->winDrawImage( centerImage, 

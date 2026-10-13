@@ -695,6 +695,7 @@ int DynamicMeshClass::Set_Vertex_Material(VertexMaterialClass *material, bool do
 			}
 			mat->Release_Ref();
 		}
+		bool found = false;
 		if (!found) {
 			Peek_Material_Info()->Add_Vertex_Material(material);
 			VertexMaterialIdx[pass] = Peek_Material_Info()->Vertex_Material_Count() - 1;
@@ -756,6 +757,7 @@ int DynamicMeshClass::Set_Texture(TextureClass *texture, bool dont_search, int p
 			}
 			tex->Release_Ref();
 		}
+		bool found = false;
 		if (!found) {
 			Peek_Material_Info()->Add_Texture(texture);
 			TextureIdx[pass] = Peek_Material_Info()->Texture_Count() - 1;

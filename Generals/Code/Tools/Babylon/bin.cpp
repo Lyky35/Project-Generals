@@ -153,7 +153,7 @@ BinItem*		Bin::GetBinItem	( void *item )
 	int i;
 
 	
-	for ( i=0; i< num_buckets; i++)
+	for (int i =0; i< num_buckets; i++)
 	{
 
 		if ( ( bitem = (BinItem *) bucket[i].Find ( item )))
@@ -346,7 +346,7 @@ BinIDItem*		BinID::GetBinIDItem	( void *item )
 	int i;
 
 	
-	for ( i=0; i< num_buckets; i++)
+	for (int i =0; i< num_buckets; i++)
 	{
 
 		if ( ( bitem = (BinIDItem *) bucket[i].Find ( item )))

@@ -337,14 +337,14 @@ bool VisRasterizerClass::Render_Triangles_Clip
 			Vector3 * final_verts = &(_VisPoly0.Verts[0]);
 
 			int i;
-			for (i=0; i<final_vcount; i++) {
+			for (int i =0; i<final_vcount; i++) {
 				Camera->Project_Camera_Space_Point(final_verts[i],final_verts[i]);
 			}
 		
 			/*
 			** Pass the resulting triangle fan to the IDBuffer
 			*/
-			for (i=1; i<final_vcount - 1; i++) {
+			for (int i =1; i<final_vcount - 1; i++) {
 
 				pixel_passed |= IDBuffer.Render_Triangle(final_verts[0],final_verts[i],final_verts[i+1]);
 				if (pixel_passed && (IDBuffer.Get_Render_Mode() == IDBufferClass::NON_OCCLUDER_MODE)) {

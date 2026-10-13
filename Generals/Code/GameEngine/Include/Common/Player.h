@@ -84,11 +84,11 @@ class SpecialPowerModule;
 
 class BattlePlanBonuses;
 
-enum BattlePlanStatus;
-enum UpgradeStatusType;
-enum CommandSourceType;
+enum BattlePlanStatus : int;
+enum UpgradeStatusType : int;
+enum CommandSourceType : int;
 
-enum ScienceAvailabilityType
+enum ScienceAvailabilityType : int
 {
 	SCIENCE_AVAILABILITY_INVALID = -1,
 

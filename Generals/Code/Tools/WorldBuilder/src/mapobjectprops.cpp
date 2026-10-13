@@ -354,7 +354,7 @@ void MapObjectProps::_DictToTeam(void)
 	AsciiString name;
 	CComboBox *owner = (CComboBox*)GetDlgItem(IDC_MAPOBJECT_Team);
 	owner->ResetContent();
-	for (i = 0; i < TheSidesList->getNumTeams(); i++)
+	for (int i = 0; i < TheSidesList->getNumTeams(); i++)
 	{
 		name = TheSidesList->getTeamInfo(i)->getDict()->getAsciiString(TheKey_teamName);
 		if (name == NEUTRAL_TEAM_INTERNAL_STR)

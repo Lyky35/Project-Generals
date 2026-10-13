@@ -7,15 +7,7 @@
 
 extern Codex g_BTreeCodex;
 
-int BTREE_encode(void *dest, int *destLen, const void *source, int sourceLen);
-int BTREE_decode(void *dest, int *destLen, const void *source, int sourceLen);
-
-// CODEXABOUT structure
-typedef struct {
-    const char *name;
-    const char *version;
-} CODEXABOUT;
-
-extern CODEXABOUT CODEXABOUT;
+int BTREE_encode(void *dest, const void *source, int sourceLen);
+int BTREE_decode(void *dest, void *source, int sourceLen);
 
 #endif // __EAC_BTREECODEX_H__

@@ -50,6 +50,7 @@
 #include <assert.h>
 
 #include <wpaudio/time.h>
+#include <wpaudio/level.h>
 
 /*****************************************************************************
 **          Externals                                                       **

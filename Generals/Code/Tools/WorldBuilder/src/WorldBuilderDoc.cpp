@@ -294,7 +294,7 @@ void CWorldBuilderDoc::Serialize(CArchive& ar)
  			/***************WAYPOINTS DATA ***************/
 			chunkWriter->openDataChunk("WaypointsList", 	K_WAYPOINTS_VERSION_1);
 			chunkWriter->writeInt(this->m_numWaypointLinks);
-			for (i=0; i<m_numWaypointLinks; i++) {
+			for (int i =0; i<m_numWaypointLinks; i++) {
 				chunkWriter->writeInt(this->m_waypointLinks[i].waypoint1);
 				chunkWriter->writeInt(this->m_waypointLinks[i].waypoint2);
 			}
@@ -784,7 +784,7 @@ Bool CWorldBuilderDoc::ParseWaypointData(DataChunkInput &file, DataChunkInfo *in
 {
 	m_numWaypointLinks = file.readInt();
 	Int i;
-	for (i=0; i<m_numWaypointLinks; i++) {
+	for (int i =0; i<m_numWaypointLinks; i++) {
 		this->m_waypointLinks[i].waypoint1 = file.readInt();
 		this->m_waypointLinks[i].waypoint2 = file.readInt();
 		//DEBUG_LOG(("Waypoint link from %d to %d\n", m_waypointLinks[i].waypoint1, m_waypointLinks[i].waypoint2));
@@ -831,7 +831,7 @@ void CWorldBuilderDoc::autoSave(void)
  			/***************WAYPOINTS DATA ***************/
 			chunkWriter.openDataChunk("WaypointsList", 	K_WAYPOINTS_VERSION_1);
 			chunkWriter.writeInt(this->m_numWaypointLinks);
-			for (i=0; i<m_numWaypointLinks; i++) {
+			for (int i =0; i<m_numWaypointLinks; i++) {
 				chunkWriter.writeInt(this->m_waypointLinks[i].waypoint1);
 				chunkWriter.writeInt(this->m_waypointLinks[i].waypoint2);
 			}
@@ -1589,7 +1589,7 @@ void CWorldBuilderDoc::compressWaypointIds(void)
 		}
 	}
 	Int i, j;
-	for (i=0; i<m_numWaypointLinks; i++) {
+	for (int i =0; i<m_numWaypointLinks; i++) {
 		MapObject *pWay1 = getWaypointByID(m_waypointLinks[i].waypoint1);
 		MapObject *pWay2 = getWaypointByID(m_waypointLinks[i].waypoint2);
 		if (pWay1 &&	pWay2) {
@@ -1597,7 +1597,7 @@ void CWorldBuilderDoc::compressWaypointIds(void)
 			m_waypointLinks[i].waypoint2 = pWay2->getWaypointID();
 		} else {
 			// Delete the link.
-			for (j=i; j<m_numWaypointLinks-1; j++) {
+			for (int j =i; j<m_numWaypointLinks-1; j++) {
 				m_waypointLinks[j] = m_waypointLinks[j+1];
 			}
 			m_numWaypointLinks--;
@@ -1607,7 +1607,7 @@ void CWorldBuilderDoc::compressWaypointIds(void)
 	m_waypointTableNeedsUpdate = true;
 	updateWaypointTable();
 #ifdef _DEBUG
-	for (i=0; i<m_numWaypointLinks; i++) {
+	for (int i =0; i<m_numWaypointLinks; i++) {
 		MapObject *pWay1 = getWaypointByID(m_waypointLinks[i].waypoint1);
 		MapObject *pWay2 = getWaypointByID(m_waypointLinks[i].waypoint2);
 		DEBUG_ASSERTCRASH(pWay1 && pWay1->getWaypointID() == m_waypointLinks[i].waypoint1, ("Bad waypoint."));
@@ -1636,7 +1636,7 @@ void CWorldBuilderDoc::updateWaypointTable(void)
 	if (m_waypointTableNeedsUpdate) {
 		m_waypointTableNeedsUpdate=false;
 		Int i;
-		for (i=0; i<MAX_WAYPOINTS; i++) {
+		for (int i =0; i<MAX_WAYPOINTS; i++) {
 			m_waypointTable[i] = NULL;
 		}
 
@@ -1667,7 +1667,7 @@ void CWorldBuilderDoc::updateWaypointTable(void)
 void CWorldBuilderDoc::addWaypointLink(Int waypointID1, Int waypointID2) 
 {
 	Int i;
-	for (i=0; i<m_numWaypointLinks; i++) {
+	for (int i =0; i<m_numWaypointLinks; i++) {
 		if (m_waypointLinks[i].waypoint1 == waypointID1 &&
 			m_waypointLinks[i].waypoint2 == waypointID2) {
 			return; // already linked.
@@ -1689,7 +1689,7 @@ void CWorldBuilderDoc::addWaypointLink(Int waypointID1, Int waypointID2)
 void CWorldBuilderDoc::removeWaypointLink(Int waypointID1, Int waypointID2) 
 {
 	Int i;
-	for (i=0; i<m_numWaypointLinks; i++) {
+	for (int i =0; i<m_numWaypointLinks; i++) {
 		if (m_waypointLinks[i].waypoint1 == waypointID1 &&
 			m_waypointLinks[i].waypoint2 == waypointID2) {
 			for (i; i<m_numWaypointLinks-1; i++) {
@@ -1729,7 +1729,7 @@ Bool CWorldBuilderDoc::isWaypointLinked(MapObject *pWay)
 {
 	updateWaypointTable();
 	Int i;
-	for (i=0; i<m_numWaypointLinks; i++) {
+	for (int i =0; i<m_numWaypointLinks; i++) {
 		Int waypointID = m_waypointLinks[i].waypoint1;
 		DEBUG_ASSERTCRASH(waypointID>=0 && waypointID<MAX_WAYPOINTS, ("Invalid id."));
 		if (waypointID>0 && waypointID<MAX_WAYPOINTS) {
@@ -1755,7 +1755,7 @@ void CWorldBuilderDoc::updateLinkedWaypointLabels(MapObject *pWay)
 {
 	updateWaypointTable();
 	Int i;
-	for (i=0; i<m_numWaypointLinks; i++) {
+	for (int i =0; i<m_numWaypointLinks; i++) {
 		m_waypointLinks[i].processedFlag = false;
 	}
 	updateLWL(pWay, pWay);
@@ -1801,7 +1801,7 @@ void CWorldBuilderDoc::updateLWL(MapObject *pWay, MapObject *pSrcWay)
 		pWay = NULL;
 		Int i;
 
-		for (i=0; i<m_numWaypointLinks; i++) {
+		for (int i =0; i<m_numWaypointLinks; i++) {
 			if (m_waypointLinks[i].processedFlag) continue;
 			Bool process = false;
 			MapObject *pNewWay = NULL;
@@ -1858,7 +1858,7 @@ or both waypoints may have been deleted. */
 Bool CWorldBuilderDoc::waypointLinkExists(Int waypointID1, Int waypointID2) 
 {
 	Int i;
-	for (i=0; i<m_numWaypointLinks; i++) {
+	for (int i =0; i<m_numWaypointLinks; i++) {
 		if (m_waypointLinks[i].waypoint1 == waypointID1 &&
 			m_waypointLinks[i].waypoint2 == waypointID2) {
 			return true; // already linked.
@@ -2330,7 +2330,7 @@ void CWorldBuilderDoc::OnDumpDocToText(void)
 
 		fprintf(theLogFile,"\nTeams\n");
 		Int j;
-		for (j=0; j<TheSidesList->getNumSides(); j++) {
+		for (int j =0; j<TheSidesList->getNumSides(); j++) {
 			Dict *d = TheSidesList->getSideInfo(j)->getDict();
 #ifdef DUMP_RAW_DICTS
 writeRawDict( theLogFile, "TeamDict",d );
@@ -2391,7 +2391,7 @@ writeRawDict( theLogFile, "TeamInfo",ti->getDict() );
 
 		fprintf(theLogFile,"\nScripts\n");
 		Int i, groupNdx;
-		for (i=0; i<TheSidesList->getNumSides(); i++) {
+		for (int i =0; i<TheSidesList->getNumSides(); i++) {
 			Dict *d = TheSidesList->getSideInfo(i)->getDict();
 #ifdef DUMP_RAW_DICTS
 writeRawDict( theLogFile, "Scripts",d );

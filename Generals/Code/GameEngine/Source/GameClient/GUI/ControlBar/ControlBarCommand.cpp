@@ -278,7 +278,7 @@ void ControlBar::populateCommand( Object *obj )
 	{
 
 		// hide all the buttons
-		for( i = 0; i < MAX_COMMANDS_PER_SET; i++ )
+		for (int i = 0; i < MAX_COMMANDS_PER_SET; i++ )
 			m_commandWindows[ i ]->winHide( TRUE );
 
 		// nothing left to do
@@ -292,7 +292,7 @@ void ControlBar::populateCommand( Object *obj )
 
 	// populate the button with commands defined
 	const CommandButton *commandButton;
-	for( i = 0; i < MAX_COMMANDS_PER_SET; i++ )
+	for (int i = 0; i < MAX_COMMANDS_PER_SET; i++ )
 	{
 
 		// get command button
@@ -438,7 +438,7 @@ void ControlBar::resetContainData( void )
 {
 	Int i;
 
-	for( i = 0; i < MAX_COMMANDS_PER_SET; i++ )
+	for (int i = 0; i < MAX_COMMANDS_PER_SET; i++ )
 	{
 
 		m_containData[ i ].control = NULL;
@@ -455,7 +455,7 @@ void ControlBar::resetBuildQueueData( void )
 {
 	Int i;
 
-	for( i = 0; i < MAX_BUILD_QUEUE_BUTTONS; i++ )
+	for (int i = 0; i < MAX_BUILD_QUEUE_BUTTONS; i++ )
 	{
 
 		m_queueData[ i ].control = NULL;
@@ -487,7 +487,7 @@ void ControlBar::populateBuildQueue( Object *producer )
 	{
 		AsciiString buttonName;
 
-		for( i = 0; i < MAX_BUILD_QUEUE_BUTTONS; i++ )
+		for (int i = 0; i < MAX_BUILD_QUEUE_BUTTONS; i++ )
 		{
 			
 			buttonName.format( "ControlBar.wnd:ButtonQueue%02d", i + 1 );
@@ -500,7 +500,7 @@ void ControlBar::populateBuildQueue( Object *producer )
 	}  // end if
 
 	// get window pointers to all the buttons for the build queue
-	for( i = 0; i < MAX_BUILD_QUEUE_BUTTONS; i++ )
+	for (int i = 0; i < MAX_BUILD_QUEUE_BUTTONS; i++ )
 	{
 
 		// get window commented out cause I believe we already set this.  We'll see in a few minutes
@@ -727,7 +727,7 @@ void ControlBar::updateContextCommand( void )
 	}  // end if
 
 	// evaluate each command on whether or not it should be enabled
-	for( i = 0; i < MAX_COMMANDS_PER_SET; i++ )
+	for (int i = 0; i < MAX_COMMANDS_PER_SET; i++ )
 	{
 		GameWindow *win;
 		const CommandButton *command;

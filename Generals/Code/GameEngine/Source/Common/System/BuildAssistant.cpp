@@ -306,7 +306,7 @@ void BuildAssistant::xferTheSellList( Xfer *xfer )
 	if (xfer->getXferMode() == XFER_LOAD)	{
 		m_sellList.clear();
 		Int i;
-		for (i=0; i<count; i++) {
+		for (int i =0; i<count; i++) {
 			// add this object to the list of objects being sold
 			sellInfo = newInstance(ObjectSellInfo);
 			xfer->xferObjectID(&sellInfo->m_id);
@@ -611,7 +611,7 @@ void BuildAssistant::iterateFootprint( const ThingTemplate *build,
 	//
 	Real x, y;
 	Vector3 v;
-	for( y = -halfFootprintHeight; 
+	for (int y = -halfFootprintHeight; 
 			 y < halfFootprintHeight + sampleResolution; 
 			 y += sampleResolution )
 	{
@@ -620,7 +620,7 @@ void BuildAssistant::iterateFootprint( const ThingTemplate *build,
 		if( y > halfFootprintHeight )
 			y = halfFootprintHeight;
 
-		for( x = -halfFootprintWidth; 
+		for (int x = -halfFootprintWidth; 
 				 x < halfFootprintWidth + sampleResolution; 
 				 x += sampleResolution )
 		{
@@ -1217,7 +1217,7 @@ Bool BuildAssistant::isPossibleToMakeUnit( Object *builder, const ThingTemplate 
 	const CommandButton *commandButton;
 	const CommandButton *foundCommand = NULL;
 	Int i;
-	for( i = 0; i < MAX_COMMANDS_PER_SET; i++ )
+	for (int i = 0; i < MAX_COMMANDS_PER_SET; i++ )
 	{
 		
 		// get this button

@@ -139,7 +139,7 @@ Bool Transport::init( UnsignedInt ip, UnsignedShort port )
 		m_delayedInBuffer[i].message.length = 0;
 #endif
 	}
-	for (i=0; i<MAX_TRANSPORT_STATISTICS_SECONDS; ++i)
+	for (int i =0; i<MAX_TRANSPORT_STATISTICS_SECONDS; ++i)
 	{
 		m_incomingBytes[i] = 0;
 		m_outgoingBytes[i] = 0;
@@ -220,7 +220,7 @@ Bool Transport::doSend() {
 
 	// Send all messages
 	int i;
-	for (i=0; i<MAX_MESSAGES; ++i)
+	for (int i =0; i<MAX_MESSAGES; ++i)
 	{
 		if (m_outBuffer[i].length != 0)
 		{
@@ -246,13 +246,13 @@ Bool Transport::doSend() {
 				//DEBUG_LOG(("Transport::doSend returning FALSE\n"));
 			}
 		}
-	} // for (i=0; i<MAX_MESSAGES; ++i)
+	} // for (int i =0; i<MAX_MESSAGES; ++i)
 
 #if defined(_DEBUG) || defined(_INTERNAL)
 	// Latency simulation - deliver anything we're holding on to that is ready
 	if (m_useLatency)
 	{
-		for (i=0; i<MAX_MESSAGES; ++i)
+		for (int i =0; i<MAX_MESSAGES; ++i)
 		{
 			if (m_delayedInBuffer[i].message.length != 0 && m_delayedInBuffer[i].deliveryTime <= now)
 			{
@@ -387,7 +387,7 @@ Bool Transport::queueSend(UnsignedInt addr, UnsignedShort port, const UnsignedBy
 		return false;
 	}
 
-	for (i=0; i<MAX_MESSAGES; ++i)
+	for (int i =0; i<MAX_MESSAGES; ++i)
 	{
 		if (m_outBuffer[i].length == 0)
 		{

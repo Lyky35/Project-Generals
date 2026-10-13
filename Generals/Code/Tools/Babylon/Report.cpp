@@ -180,7 +180,7 @@ void CReport::OnOK()
 	strcpy ( filename, fd.GetPathName ());
 
 	num_langs = 0;
-	for ( i = 0; i <count; i++ )
+	for (int i = 0; i <count; i++ )
 	{
 		LANGINFO *info;
 

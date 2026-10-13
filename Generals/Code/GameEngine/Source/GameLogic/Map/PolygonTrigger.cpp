@@ -99,7 +99,7 @@ void PolygonTrigger::reallocate(void)
 		m_sizePoints += m_sizePoints;
 		ICoord3D *newPts = NEW ICoord3D[m_sizePoints];
 		Int i;
-		for (i=0; i<m_numPoints; i++) {
+		for (int i =0; i<m_numPoints; i++) {
 			newPts[i] = m_points[i];
 		}
 		delete [] m_points;
@@ -171,7 +171,7 @@ Bool PolygonTrigger::ParsePolygonTriggersDataChunk(DataChunkInput &file, DataChu
 			maxTriggerId = triggerID;
 		}
 		Int i;
-		for (i=0; i<numPoints; i++) {
+		for (int i =0; i<numPoints; i++) {
 			loc.x = file.readInt();
 			loc.y = file.readInt();
 			loc.z = file.readInt();
@@ -240,7 +240,7 @@ void PolygonTrigger::WritePolygonTriggersDataChunk(DataChunkOutput &chunkWriter)
 			chunkWriter.writeInt(pTrig->getRiverStart());
 			chunkWriter.writeInt(pTrig->getNumPoints()); 
 			Int i;
-			for (i=0; i<pTrig->getNumPoints(); i++) {
+			for (int i =0; i<pTrig->getNumPoints(); i++) {
 				ICoord3D loc = *pTrig->getPoint(i);
 				chunkWriter.writeInt( loc.x);
 				chunkWriter.writeInt( loc.y);
@@ -260,7 +260,7 @@ void PolygonTrigger::updateBounds(void)	const
 	m_bounds.lo.x = m_bounds.lo.y = BIG_INT;
 	m_bounds.hi.x = m_bounds.hi.y = -BIG_INT;
 	Int i;
-	for (i=0; i<m_numPoints; i++) {
+	for (int i =0; i<m_numPoints; i++) {
 		if (m_points[i].x < m_bounds.lo.x) m_bounds.lo.x = m_points[i].x;
 		if (m_points[i].y < m_bounds.lo.y) m_bounds.lo.y = m_points[i].y;
 		if (m_points[i].x > m_bounds.hi.x) m_bounds.hi.x = m_points[i].x;
@@ -294,7 +294,8 @@ void PolygonTrigger::addPolygonTrigger(PolygonTrigger *pTrigger)
 void PolygonTrigger::removePolygonTrigger(PolygonTrigger *pTrigger)
 {	
 	PolygonTrigger *pPrev = NULL;
-	for (PolygonTrigger *pTrig=getFirstPolygonTrigger(); pTrig; pTrig = pTrig->getNext()) {
+	PolygonTrigger *pTrig = NULL;
+	for (pTrig=getFirstPolygonTrigger(); pTrig; pTrig = pTrig->getNext()) {
 		if (pTrig==pTrigger) break;
 		pPrev = pTrig;
 	}
@@ -375,7 +376,7 @@ void PolygonTrigger::insertPoint(const ICoord3D &point, Int ndx)
 		reallocate();
 	}
 	Int i;
-	for (i=m_numPoints; i>ndx; i--) {
+	for (int i =m_numPoints; i>ndx; i--) {
 		m_points[i] = m_points[i-1];
 	}
 	m_points[ndx] = point;
@@ -393,7 +394,7 @@ void PolygonTrigger::deletePoint(Int ndx)
 	DEBUG_ASSERTCRASH(ndx>=0 && ndx < m_numPoints, ("Invalid ndx."));
 	if (ndx<0 || ndx>=m_numPoints) return;
 	Int i;
-	for (i=ndx; i<m_numPoints-1; i++) {
+	for (int i =ndx; i<m_numPoints-1; i++) {
 		m_points[i] = m_points[i+1];
 	}
 	m_numPoints--;
@@ -440,7 +441,7 @@ Bool PolygonTrigger::pointInTrigger(ICoord3D &point) const
 
 	Bool inside = false;
 	Int i;
-	for (i=0; i<m_numPoints; i++) {
+	for (int i =0; i<m_numPoints; i++) {
 		ICoord3D pt1 = m_points[i];
 		ICoord3D pt2;
 		if (i==m_numPoints-1) {

@@ -355,7 +355,7 @@ void WaveGuideUpdate::transformWaveShape( void )
 	Int i;
 	Object *waveGuide = getObject();
 
-	for( i = 0; i < m_shapePointCount; i++ )
+	for (int i = 0; i < m_shapePointCount; i++ )
 	{
 
 		// transform the point
@@ -383,10 +383,10 @@ void WaveGuideUpdate::doShapeEffects( void )
 	Int i, j;
 	ParticleSystem *particleSys;
 	Coord3D pos;
-	for( i = 0; i < m_shapePointCount; i++ )
+	for (int i = 0; i < m_shapePointCount; i++ )
 	{
 
-		for( j = 0; j < MAX_SHAPE_EFFECTS; j++ )
+		for (int j = 0; j < MAX_SHAPE_EFFECTS; j++ )
 		{
 
 			// get the particle system here
@@ -429,7 +429,7 @@ void WaveGuideUpdate::doWaterMotion( void )
 	// iterate the waveguide shape points ... at certain points we will create water "up force"
 	Int i;
 //	const Matrix3D *transform = waveGuide->getTransformMatrix();
-	for( i = 0; i < m_shapePointCount; i++ )
+	for (int i = 0; i < m_shapePointCount; i++ )
 	{
 
 		// push up the water here
@@ -465,7 +465,7 @@ void WaveGuideUpdate::doShoreEffects( void )
 	// "crest" is rising up ... we will use these points to make collide with shore effects
 	//
 	Coord3D effectPoints[ MAX_WAVEGUIDE_SHAPE_POINTS ];
-	for( i = 0; i < m_shapePointCount; i++ )
+	for (int i = 0; i < m_shapePointCount; i++ )
 	{
 
 		// setup point to be a distance "behind" the wave shape points
@@ -488,7 +488,7 @@ void WaveGuideUpdate::doShoreEffects( void )
 	Real terrainZ;
 	Bool underWater = TRUE;
 	Coord3D *point;
-	for( i = 0; i < m_shapePointCount; i++ )
+	for (int i = 0; i < m_shapePointCount; i++ )
 	{
 
 		// get the point in question

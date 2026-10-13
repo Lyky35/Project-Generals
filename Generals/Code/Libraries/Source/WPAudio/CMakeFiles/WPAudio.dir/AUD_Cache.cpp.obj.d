@@ -1,77 +1,77 @@
 Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.obj: \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WPAudio/AUD_Cache.cpp \
- /usr/include/string.h /usr/include/bits/libc-header-start.h \
- /usr/include/features.h /usr/include/features-time64.h \
- /usr/include/bits/wordsize.h /usr/include/bits/timesize.h \
- /usr/include/stdc-predef.h /usr/include/sys/cdefs.h \
- /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
- /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/stddef.h \
- /usr/x86_64-w64-mingw32/include/stddef.h \
+ /usr/x86_64-w64-mingw32/include/string.h \
  /usr/x86_64-w64-mingw32/include/crtdefs.h \
  /usr/x86_64-w64-mingw32/include/corecrt.h \
  /usr/x86_64-w64-mingw32/include/_mingw.h \
  /usr/x86_64-w64-mingw32/include/_mingw_mac.h \
  /usr/x86_64-w64-mingw32/include/_mingw_secapi.h \
  /usr/x86_64-w64-mingw32/include/vadefs.h \
- /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
- /usr/include/strings.h /usr/include/memory.h \
+ /usr/x86_64-w64-mingw32/include/sec_api/string_s.h \
+ /usr/x86_64-w64-mingw32/include/memory.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/altypes.h \
  /usr/x86_64-w64-mingw32/include/c++/16.2.0/cassert \
  /usr/x86_64-w64-mingw32/include/c++/16.2.0/x86_64-w64-mingw32/bits/c++config.h \
  /usr/x86_64-w64-mingw32/include/c++/16.2.0/x86_64-w64-mingw32/bits/os_defines.h \
  /usr/x86_64-w64-mingw32/include/c++/16.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
  /usr/x86_64-w64-mingw32/include/c++/16.2.0/pstl/pstl_config.h \
- /usr/include/assert.h /usr/include/SDL2/SDL.h \
- /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
- /usr/include/SDL2/SDL_config.h /usr/include/SDL2/SDL_platform.h \
- /usr/include/SDL2/begin_code.h /usr/include/SDL2/close_code.h \
- /usr/include/SDL2/SDL_config_windows.h \
+ /usr/x86_64-w64-mingw32/include/assert.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/stdlib.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/cstdlib \
+ /usr/x86_64-w64-mingw32/include/stdlib.h \
+ /usr/x86_64-w64-mingw32/include/corecrt_wstdlib.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/limits.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/syslimits.h \
+ /usr/x86_64-w64-mingw32/include/limits.h \
+ /usr/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+ /usr/x86_64-w64-mingw32/include/malloc.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/mm_malloc.h \
+ /usr/x86_64-w64-mingw32/include/errno.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/std_abs.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/cstdio \
+ /usr/x86_64-w64-mingw32/include/stdio.h \
+ /usr/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
+ /usr/x86_64-w64-mingw32/include/_mingw_off_t.h \
+ /usr/x86_64-w64-mingw32/include/swprintf.inl \
+ /usr/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/cstring \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/version.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/cstdint \
+ /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/stdint.h \
+ /usr/x86_64-w64-mingw32/include/stdint.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/stddef.h \
+ /usr/x86_64-w64-mingw32/include/stddef.h \
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWLib/bittype.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_main.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_stdinc.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_config.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_platform.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/begin_code.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/close_code.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_config_windows.h \
  /usr/x86_64-w64-mingw32/include/winsdkver.h \
  /usr/x86_64-w64-mingw32/include/winapifamily.h \
  /usr/x86_64-w64-mingw32/include/sdkddkver.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/stdarg.h \
  /usr/x86_64-w64-mingw32/include/stdarg.h \
- /usr/x86_64-w64-mingw32/include/_mingw_stdarg.h /usr/include/stdint.h \
- /usr/include/bits/types.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/wchar.h \
- /usr/include/bits/stdint-intn.h /usr/include/bits/stdint-uintn.h \
- /usr/include/bits/stdint-least.h /usr/include/SDL2/SDL_assert.h \
- /usr/include/SDL2/SDL_atomic.h /usr/include/SDL2/SDL_audio.h \
- /usr/include/SDL2/SDL_error.h /usr/include/SDL2/SDL_endian.h \
- /usr/include/SDL2/SDL_mutex.h /usr/include/SDL2/SDL_thread.h \
+ /usr/x86_64-w64-mingw32/include/_mingw_stdarg.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_assert.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_atomic.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_audio.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_error.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_endian.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_mutex.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_thread.h \
  /usr/x86_64-w64-mingw32/include/process.h \
  /usr/x86_64-w64-mingw32/include/corecrt_startup.h \
- /usr/include/sys/types.h /usr/include/bits/types/clock_t.h \
- /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/timer_t.h /usr/include/endian.h \
- /usr/include/bits/endian.h /usr/include/bits/endianness.h \
- /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
- /usr/include/sys/select.h /usr/include/bits/select.h \
- /usr/include/bits/types/sigset_t.h /usr/include/bits/types/__sigset_t.h \
- /usr/include/bits/types/struct_timeval.h \
- /usr/include/bits/types/struct_timespec.h \
- /usr/include/bits/pthreadtypes.h /usr/include/bits/thread-shared-types.h \
- /usr/include/bits/pthreadtypes-arch.h \
- /usr/include/bits/atomic_wide_counter.h /usr/include/bits/struct_mutex.h \
- /usr/include/bits/struct_rwlock.h /usr/include/SDL2/SDL_rwops.h \
- /usr/include/SDL2/SDL_clipboard.h /usr/include/SDL2/SDL_cpuinfo.h \
- /usr/x86_64-w64-mingw32/include/intrin.h /usr/include/setjmp.h \
- /usr/include/bits/setjmp.h \
- /usr/include/bits/types/struct___jmp_buf_tag.h \
+ /usr/x86_64-w64-mingw32/include/sys/types.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_rwops.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_clipboard.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_cpuinfo.h \
+ /usr/x86_64-w64-mingw32/include/intrin.h \
+ /usr/x86_64-w64-mingw32/include/setjmp.h \
  /usr/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h \
- /usr/include/stdlib.h /usr/include/bits/waitflags.h \
- /usr/include/bits/waitstatus.h /usr/include/bits/floatn.h \
- /usr/include/bits/floatn-common.h /usr/include/alloca.h \
- /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
- /usr/include/errno.h /usr/include/bits/errno.h \
- /usr/include/linux/errno.h /usr/include/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /usr/include/malloc.h /usr/include/stdio.h \
- /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
- /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
- /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
- /usr/include/bits/types/cookie_io_functions_t.h \
- /usr/include/bits/stdio_lim.h /usr/include/bits/stdio.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/x86intrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/x86gprintrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/ia32intrin.h \
@@ -115,7 +115,6 @@ Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.obj:
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/immintrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/mmintrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/xmmintrin.h \
- /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/mm_malloc.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/emmintrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/pmmintrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/tmmintrin.h \
@@ -187,26 +186,45 @@ Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.obj:
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/ammintrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/xopintrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/cpuid.h \
- /usr/include/SDL2/SDL_events.h /usr/include/SDL2/SDL_video.h \
- /usr/include/SDL2/SDL_pixels.h /usr/include/SDL2/SDL_rect.h \
- /usr/include/SDL2/SDL_surface.h /usr/include/SDL2/SDL_blendmode.h \
- /usr/include/SDL2/SDL_keyboard.h /usr/include/SDL2/SDL_keycode.h \
- /usr/include/SDL2/SDL_scancode.h /usr/include/SDL2/SDL_mouse.h \
- /usr/include/SDL2/SDL_joystick.h /usr/include/SDL2/SDL_guid.h \
- /usr/include/SDL2/SDL_gamecontroller.h /usr/include/SDL2/SDL_sensor.h \
- /usr/include/SDL2/SDL_quit.h /usr/include/SDL2/SDL_gesture.h \
- /usr/include/SDL2/SDL_touch.h /usr/include/SDL2/SDL_filesystem.h \
- /usr/include/SDL2/SDL_haptic.h /usr/include/SDL2/SDL_hidapi.h \
- /usr/include/SDL2/SDL_hints.h /usr/include/SDL2/SDL_loadso.h \
- /usr/include/SDL2/SDL_log.h /usr/include/SDL2/SDL_messagebox.h \
- /usr/include/SDL2/SDL_metal.h /usr/include/SDL2/SDL_power.h \
- /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_shape.h \
- /usr/include/SDL2/SDL_system.h /usr/include/SDL2/SDL_timer.h \
- /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
- /usr/include/SDL2/SDL_misc.h /usr/include/AL/al.h /usr/include/AL/alc.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_events.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_video.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_pixels.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_rect.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_surface.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_blendmode.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_keyboard.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_keycode.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_scancode.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_mouse.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_joystick.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_guid.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_gamecontroller.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_sensor.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_quit.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_gesture.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_touch.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_filesystem.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_haptic.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_hidapi.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_hints.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_loadso.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_log.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_messagebox.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_metal.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_power.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_render.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_shape.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_system.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_timer.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_version.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_locale.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/SDL2/SDL_misc.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/AL/al.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/AL/alc.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/memory.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/list.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/source.h \
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wsys/File.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/cache.h \
- /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/profiler.h \
- /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wsys/File.h
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/lock.h \
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/wpaudio/profiler.h

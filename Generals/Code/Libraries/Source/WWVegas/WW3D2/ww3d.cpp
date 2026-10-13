@@ -1263,9 +1263,9 @@ void WW3D::Make_Screen_Shot( const char * filename_base )
 
 	char *image=W3DNEWARRAY char[3*width*height];
 
-	for (y=0; y<height; y++)
+	for (int y =0; y<height; y++)
 	{
-		for (x=0; x<width; x++)
+		for (int x =0; x<width; x++)
 		{
 			// index for image
 			index=3*(x+y*width);
@@ -1545,9 +1545,9 @@ void WW3D::Update_Movie_Capture( void )
 
 	char *image=(char *)Movie->GetBuffer();
 
-	for (y=0; y<height; y++)
+	for (int y =0; y<height; y++)
 	{
-		for (x=0; x<width; x++)
+		for (int x =0; x<width; x++)
 		{
 			// index for image
 			index=3*(x+(height-y-1)*width);

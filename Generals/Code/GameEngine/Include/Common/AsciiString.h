@@ -51,7 +51,13 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
+#include <cstring>
 #include "Lib/BaseType.h"
+#ifndef _stricmp
+#define _stricmp strcasecmp
+#include <strings.h>
+#endif
+#include <cstring>
 #include "Common/Debug.h"
 #include "Common/Errors.h"
 

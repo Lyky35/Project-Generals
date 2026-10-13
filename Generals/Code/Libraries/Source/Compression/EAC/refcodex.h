@@ -7,14 +7,7 @@
 
 extern Codex g_RefCodex;
 
-int REF_encode(void *dest, int *destLen, const void *source, int sourceLen);
-int REF_decode(void *dest, int *destLen, const void *source, int sourceLen);
-
-typedef struct {
-    const char *name;
-    const char *version;
-} CODEXABOUT;
-
-extern CODEXABOUT CODEXABOUT;
+int REF_encode(void *dest, const void *source, int sourceLen);
+int REF_decode(void *dest, void *source, int sourceLen);
 
 #endif // __EAC_REFCODEX_H__

@@ -60,6 +60,7 @@
 #include "Lib/BaseType.h"
 #include "Common/SubsystemInterface.h"
 #include "Common/GameMemory.h"
+#include <list>
 
 //-----------------------------------------------------------------------------
 // FORWARD REFERENCES /////////////////////////////////////////////////////////
@@ -80,7 +81,7 @@ class ProcessAnimateWindow;
 // TYPE DEFINES ///////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------
 
-enum AnimTypes
+enum AnimTypes : int
 {
 	WIN_ANIMATION_NONE = 0,
 	WIN_ANIMATION_SLIDE_RIGHT,
@@ -95,6 +96,9 @@ enum AnimTypes
 } ;
 
 //-----------------------------------------------------------------------------
+// Workaround: Windows API declares AnimateWindow as a function in winuser.h
+// We rename the class to GameAnimateWindow to avoid the conflict
+#define AnimateWindow GameAnimateWindow
 class AnimateWindow : public MemoryPoolObject
 {
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(AnimateWindow, "AnimateWindow")		

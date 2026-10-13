@@ -1605,7 +1605,7 @@ void MPEXPORT XMP_Inverse_A_Mod_B(digit * result, digit const * number, digit co
 	digit y[MAX_UNIT_PRECISION];
 
 	int i;
-	for (i = 1; !XMP_Test_Eq_Int(g[i%3], 0, precision); i++) {
+	for (int i = 1; !XMP_Test_Eq_Int(g[i%3], 0, precision); i++) {
 		XMP_Unsigned_Div(g[(i+1)%3], y, g[(i-1)%3], g[i%3], precision);
 
 		XMP_Unsigned_Mult(result, v[i%3], y, precision);
@@ -2378,7 +2378,7 @@ bool MPEXPORT XMP_Rabin_Miller_Test(Straw & rng, digit const * w, int rounds, in
 
 	unsigned maxbitprecision = precision * sizeof(digit) * 8;
 	unsigned a;
-	for (a = 0; a < maxbitprecision; a++) {
+	for (int a = 0; a < maxbitprecision; a++) {
 		if (XMP_Test_Bit(wminus1, a)) {
 			break;
 		}
@@ -2402,7 +2402,7 @@ bool MPEXPORT XMP_Rabin_Miller_Test(Straw & rng, digit const * w, int rounds, in
 		}
 
 		unsigned j;
-		for (j = 1; j < a; j++) {
+		for (int j = 1; j < a; j++) {
 			digit t2[MAX_UNIT_PRECISION];
 			XMP_Exponent_Mod(t2, z, temp, w, precision);
 

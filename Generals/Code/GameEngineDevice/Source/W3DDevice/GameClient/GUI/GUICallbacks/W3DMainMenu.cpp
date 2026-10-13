@@ -431,7 +431,7 @@ void W3DMainMenuMapBorder( GameWindow *window, WinInstanceData *instData )
 	if(image)
 	{
 		
-		for( x=(originalX + 10); x <= x2; x += BORDER_LINE_SIZE )
+		for (int x =(originalX + 10); x <= x2; x += BORDER_LINE_SIZE )
 		{
 			
 			TheDisplay->drawImage( image,
@@ -486,7 +486,7 @@ void W3DMainMenuMapBorder( GameWindow *window, WinInstanceData *instData )
 		x2 = maxX - 10;
 		y2 = maxY - (10 + BORDER_LINE_SIZE);
 
-		for( y=(originalY + 10); y <= y2; y += BORDER_LINE_SIZE )
+		for (int y =(originalY + 10); y <= y2; y += BORDER_LINE_SIZE )
 		{
 
 			TheDisplay->drawImage( image,
@@ -687,7 +687,7 @@ void W3DMainMenuButtonDropShadowDraw( GameWindow *window,
 		start.y = origin.y + yOffset;
 		end.y = start.y + size.y + yOffset; //centerImage->getImageHeight() + yOffset;
 //		TheDisplay->setClipRegion(&clipRegion);
-		for( i = 0; i < pieces; i++ )
+		for (int i = 0; i < pieces; i++ )
 		{
 
 			end.x = start.x + centerImage->getImageWidth();

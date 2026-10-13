@@ -47,7 +47,7 @@ Connection::Connection() {
 	// clearing out the latency tracker
 	m_averageLatency = 0.0f;
 	Int i;
-	for(i = 0; i < CONNECTION_LATENCY_HISTORY_LENGTH; i++)
+	for (int i = 0; i < CONNECTION_LATENCY_HISTORY_LENGTH; i++)
 	{
 		m_latencies[i] = 0.0f;
 	}

@@ -64,13 +64,19 @@ class STLSpecialAlloc;
 
 // FORWARD DECLARATIONS
 class Object;
-enum NameKeyType;
-enum ObjectID;
-enum DrawableID;
+enum NameKeyType : int;
+enum ObjectID : int;
+enum DrawableID : int;
 
 #include <algorithm>
 #include <bitset>
 #include <hash_map>
+namespace std { using __gnu_cxx::hash_map; }
+#include <cstring>
+#include <string.h>
+
+// Include headers that define these enums
+#include "Common/GameType.h"
 #include <list>
 #include <map>
 #include <queue>

@@ -60,6 +60,18 @@
 #include <wpaudio/attributes.h>
 #include <wpaudio/handle.h>
 
+// Forward declarations for functions defined later in this file
+static int AudioEventClassNumSound(AudioEventClass *eclass);
+int AudioEventClassNeverEnds(AudioEventClass *eclass);
+char *AudioEventClassName(AudioEventClass *eclass);
+char *AudioEventName(AudioEvent *event);
+char *AudioEventName(AudioEventClass *eclass);
+
+// Missing defines
+#define AUDIO_EVENT_CTRL_NONE 0
+#define AUDIO_EVENT_NORMAL_PRIORITY AUD_NORMAL_PRIORITY
+#define msg_warning(cond, msg) do { if(!(cond)) DBGPRINTF msg; } while(0)
+
 // 'assignment within condition expression'.
 #pragma warning(disable : 4706)
 
@@ -431,7 +443,7 @@ static AudioSample*	eventFirstSample ( AudioEvent *event )
 			return NULL;
 		}
 		
-		for ( i=0 ; i < event->numSequence; i++, j++ )
+		for (int i =0 ; i < event->numSequence; i++, j++ )
 		{
 			event->sequence[ i ] = j;
 		}
@@ -496,7 +508,7 @@ static AudioSample*	eventNextSample ( AudioEvent *event )
 		event->currentItem =event->sequence[ndx];
 		// remove from sequence
 
-		for ( i=ndx; i < event->numSequence -1 ; i++)
+		for (int i =ndx; i < event->numSequence -1 ; i++)
 		{
 			event->sequence[i] = event->sequence[i+1];
 		}
@@ -621,7 +633,7 @@ static int eventLoadSchedule( AudioEvent *event )
 
 		if ( eclass->control & AUDIO_EVENT_CTRL_ALL )
 		{
-			for ( i = eclass->attackCount + todAdjustStart(event); i < eclass->numSamples - (eclass->decayCount + todAdjustEnd(event)); i++ )
+			for (int i = eclass->attackCount + todAdjustStart(event); i < eclass->numSamples - (eclass->decayCount + todAdjustEnd(event)); i++ )
 			{
 				event->loadSequence[ ndx++ ] = i;
 			}
@@ -660,7 +672,7 @@ static int eventLoadSchedule( AudioEvent *event )
 		item_ndx = currentSampleIndex = event->loadSequence[ ndx ];
 
 		// remove from sequence
-		for ( i = ndx; i < event->numLoadSequence - 1; i++ )
+		for (int i = ndx; i < event->numLoadSequence - 1; i++ )
 		{
 			event->loadSequence[ i ] = event->loadSequence[ i + 1 ];
 		}
@@ -750,7 +762,7 @@ static void	eventLoadAndLockSamples ( AudioEvent *event )
 
 		if ( eclass->control & AUDIO_EVENT_CTRL_ALL )
 		{
-			for ( i=eclass->attackCount + todAdjustStart(event); i < eclass->numSamples - (eclass->decayCount + todAdjustEnd(event)); i++ )
+			for (int i =eclass->attackCount + todAdjustStart(event); i < eclass->numSamples - (eclass->decayCount + todAdjustEnd(event)); i++ )
 			{
 				eventLoadItem( event, i );
 			}
@@ -812,7 +824,7 @@ static void eventUnlockSamples ( AudioEvent *event )
 
 	DBG_ASSERT_TYPE ( event, AudioEvent );
 
-	for ( i=0; i < event->numItems; i++ )
+	for (int i =0; i < event->numItems; i++ )
 	{
 		AudioCacheItemUnlock ( event->item[i] );
 		event->item[i] = NULL;
@@ -1021,9 +1033,9 @@ static void	bucketReset( void )
 	int						i, k;
 	EClassBucket	*ecb;
 
-	for ( i = 0, ecb = eClassBucket; i < NUM_BUCKETS_PRI; i++, ecb++ )
+	for (i = 0, ecb = eClassBucket; i < NUM_BUCKETS_PRI; i++, ecb++ )
 	{
-		for ( k = 0; k < NUM_BUCKETS_VOL; k++ )
+		for (int k = 0; k < NUM_BUCKETS_VOL; k++ )
 		{
 			ListInit( &ecb->bucketVol[ k ] );
 		}
@@ -1119,7 +1131,7 @@ static AudioEventClass *bucketGetWeaker( AudioPriority pri )
 	ListNode				*node;
 	int							i, v;
 
-	for ( i = 0, ecb = eClassBucket; i < pri; i++, ecb++ )
+	for (i = 0, ecb = eClassBucket; i < pri; i++, ecb++ )
 	{
 		for ( v = 0; v < NUM_BUCKETS_VOL; v++ )
 		{

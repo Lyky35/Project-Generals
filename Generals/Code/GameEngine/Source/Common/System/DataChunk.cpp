@@ -29,7 +29,7 @@
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #include "stdlib.h"
-#include "string.h"
+#include "Common/wsys_string.h"
 #include "Compression.h"
 #include "Common/DataChunk.h"
 #include "Common/File.h"
@@ -424,7 +424,7 @@ DataChunkTableOfContents::~DataChunkTableOfContents()
 	Mapping *m, *next;
 
 	// free all list elements
-	for( m=m_list; m; m=next )
+	for (m = m_list; m; m=next )
 	{
 		next = m->next;
 		m->deleteInstance();
@@ -436,7 +436,7 @@ Mapping *DataChunkTableOfContents::findMapping( const AsciiString& name )
 {
 	Mapping *m;
 
-	for( m=m_list; m; m=m->next )
+	for (m = m_list; m; m=m->next )
 		if (name == m->name )
 			return m;
 
@@ -460,7 +460,7 @@ AsciiString DataChunkTableOfContents::getName( UnsignedInt id )
 {
 	Mapping *m;
 
-	for( m=m_list; m; m=m->next )
+	for (m = m_list; m; m=m->next )
 		if (m->id == id)
 			return m->name;
 
@@ -506,7 +506,7 @@ void DataChunkTableOfContents::write( OutputStream &s )
 	s.write( (void *)&this->m_listLength, sizeof(Int) );
 
 	// output symbol table
-	for( m=this->m_list; m; m=m->next )
+	for (m = this->m_list; m; m=m->next )
 	{
 		len = m->name.getLength();
 		s.write( (char *)&len, sizeof(unsigned char) );
@@ -534,7 +534,7 @@ void DataChunkTableOfContents::read( ChunkInputStream &s)
 	// get number of symbols in table
 	s.read( (char *)&count, sizeof(Int) );
 
-	for( i=0; i<count; i++ )
+	for (int i =0; i<count; i++ )
 	{
 		// allocate new id mapping
 		m = newInstance(Mapping);
@@ -589,7 +589,7 @@ DataChunkInput::~DataChunkInput()
 	clearChunkStack();
 
 	UserParser *p, *next;
-	for (p=m_parserList; p; p=next) {
+	for (p = m_parserList; p; p=next) {
 		next = p->next;
 		p->deleteInstance();
 	}
@@ -686,7 +686,7 @@ void DataChunkInput::clearChunkStack( void )
 {
 	InputChunk *c, *next;
 
-	for( c=m_chunkStack; c; c=next )
+	for (c = m_chunkStack; c; c=next )
 	{
 		next = c->next;
 		c->deleteInstance();

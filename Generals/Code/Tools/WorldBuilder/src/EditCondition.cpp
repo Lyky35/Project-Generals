@@ -78,7 +78,7 @@ BOOL EditCondition::OnInitDialog()
 	CComboBox *pCmbo = (CComboBox *)GetDlgItem(IDC_CONDITION_TYPE);
 	pCmbo->ResetContent();
 	Int i;
-	for (i=0; i<Condition::NUM_ITEMS; i++) {
+	for (int i =0; i<Condition::NUM_ITEMS; i++) {
 		const ConditionTemplate *pTemplate = TheScriptEngine->getConditionTemplate(i);
 		Int ndx = pCmbo->AddString(pTemplate->getName().str());
 		if (i == m_condition->getConditionType()) {
@@ -125,7 +125,7 @@ void EditCondition::formatConditionText(Int parameterNdx) {
 	Int numStrings = m_condition->getUiStrings(strings);
 	Int i;
 	AsciiString warningText;
-	for (i=0; i<MAX_PARMS; i++) {
+	for (int i =0; i<MAX_PARMS; i++) {
 		if (i<numStrings) {
 			curChar += strings[i].getLength();
 		}
@@ -182,7 +182,7 @@ BOOL EditCondition::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 				AsciiString strings[MAX_PARMS];
 				Int numStrings = m_condition->getUiStrings(strings);
 				Int i;
-				for (i=0; i<MAX_PARMS; i++) {
+				for (int i =0; i<MAX_PARMS; i++) {
 					if (i<numStrings) {
 						curChar += strings[i].getLength();
 					}
@@ -242,7 +242,7 @@ void EditCondition::OnSelchangeConditionType()
 	CString str; 
 	pCmbo->GetWindowText(str);
 	Int i;
-	for (i=0; i<ScriptAction::NUM_ITEMS; i++) {
+	for (int i =0; i<ScriptAction::NUM_ITEMS; i++) {
 		const ConditionTemplate *pTemplate = TheScriptEngine->getConditionTemplate(i);
 		if (str == pTemplate->getName().str()) {
 			index = i;

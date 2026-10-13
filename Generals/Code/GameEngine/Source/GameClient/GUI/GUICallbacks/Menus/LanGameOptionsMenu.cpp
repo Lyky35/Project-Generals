@@ -207,7 +207,7 @@ static void playerTooltip(GameWindow *window,
 	if (idx == -1)
 		return;
 
-	LANGameSlot *slot = TheLAN->GetMyGame()->getLANSlot(i);
+	LANGameSlot *slot = TheLAN->GetMyGame()->getLANSlot(idx);
 	if (!slot)
 		return;
 
@@ -240,7 +240,7 @@ void StartPressed(void)
 
 	int numUsers = 0;
 	int numHumans = 0;
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		GameSlot *slot = myGame->getSlot(i);
 		if (slot && slot->isOccupied() && slot->getPlayerTemplate() != PLAYERTEMPLATE_OBSERVER)
@@ -290,7 +290,7 @@ void StartPressed(void)
 	// Check for too few teams
 	int numRandom = 0;
 	std::set<Int> teams; 
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		GameSlot *slot = myGame->getSlot(i);
 		if (slot && slot->isOccupied() && slot->getPlayerTemplate() != PLAYERTEMPLATE_OBSERVER)
@@ -337,7 +337,7 @@ void StartPressed(void)
 		mapDisplayName.format(L"%hs", myGame->getMap().str());
 		willTransfer = WouldMapTransfer(myGame->getMap());
 	}
-	for( i = 0; i < MAX_SLOTS; i++ )
+	for (int i = 0; i < MAX_SLOTS; i++ )
 	{
 		LANGameSlot *slot = myGame->getLANSlot(i);
 		if( slot->isHuman() && !slot->isAccepted())
@@ -360,7 +360,7 @@ void StartPressed(void)
 
 	if(isReady)
 	{
-		for( i = 0; i < MAX_SLOTS; i++ )
+		for (int i = 0; i < MAX_SLOTS; i++ )
 		{
 			LANGameSlot *slot = myGame->getLANSlot(i);
 			if (slot && slot->isOpen())
@@ -838,7 +838,7 @@ void LanGameOptionsMenuInit( WindowLayout *layout, void *userData )
 //		buttonStartPosition[i]->winEnable(FALSE);
 	}
 
-//	for (i = 0; i < MAX_SLOTS; ++i)
+//	for (int i = 0; i < MAX_SLOTS; ++i)
 //	{
 //		if (buttonStartPosition[i])
 //			buttonStartPosition[i]->winHide(TRUE); // not picking start spots this way any more

@@ -35,7 +35,7 @@
 #include "GameNetwork/NetworkDefs.h"
 #include "GameNetwork/FirewallHelper.h"
 
-enum SlotState
+enum SlotState : int
 {
 	SLOT_OPEN,
 	SLOT_CLOSED,

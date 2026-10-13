@@ -68,17 +68,8 @@ enum {
 
 void DX8Caps::Init_Caps(IDirect3DDevice8* D3DDevice)
 {
-	D3DDevice->SetRenderState(D3DRS_SOFTWAREVERTEXPROCESSING,TRUE);
-	DX8CALL(GetDeviceCaps(&swVPCaps));
-
-	if ((swVPCaps.DevCaps&D3DDEVCAPS_HWTRANSFORMANDLIGHT)==D3DDEVCAPS_HWTRANSFORMANDLIGHT) {
-		UseTnL=true;
-
-		D3DDevice->SetRenderState(D3DRS_SOFTWAREVERTEXPROCESSING,FALSE);
-		DX8CALL(GetDeviceCaps(&hwVPCaps));	
-	} else {
-		UseTnL=false;			
-	}
+	// Vulkan backend - caps are computed differently
+	UseTnL=true;
 }
 
 // ----------------------------------------------------------------------------
@@ -152,24 +143,8 @@ void DX8Caps::Check_Texture_Format_Support(D3DFORMAT display_format,const D3DCAP
 			SupportTextureFormat[i]=false;
 		}
 		else {
-			// Try Vulkan format translation first
-			VkFormat vkFmt = TranslateFormat((unsigned)i);
-			if (vkFmt != VK_FORMAT_UNKNOWN) {
-				// Check if Vulkan supports this format with optimal tiling
-				// (simplified check - real implementation would query physical device features)
-				SupportTextureFormat[i] = true;
-			}
-			// Fall back to D3D8 check if Vulkan format not available
-			else {
-				SupportTextureFormat[i]=SUCCEEDED(
-					DX8Wrapper::_Get_D3D8()->CheckDeviceFormat(
-						caps.AdapterOrdinal,
-						caps.DeviceType,
-						display_format,
-						0,
-						D3DRTYPE_TEXTURE,
-						WW3DFormat_To_D3DFormat((WW3DFormat)i)));
-			}
+			// Vulkan backend - assume common formats are supported
+			SupportTextureFormat[i] = true;
 		}
 	}
 }

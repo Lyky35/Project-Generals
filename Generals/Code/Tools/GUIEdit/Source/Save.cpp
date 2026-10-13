@@ -115,7 +115,7 @@ static void clearBufferToSpaces( void )
 {
 	Int i;
 
-	for( i = 0; i < BUFFER_SIZE; i++ )
+	for (int i = 0; i < BUFFER_SIZE; i++ )
 		buffer[ i ] = ' ';
 
 }  // end clearBufferToSpaces
@@ -446,7 +446,7 @@ static Bool saveTextColor( GameWindow *window, FILE *fp, Int dataIndent )
 	UnsignedByte r, g, b, a, br, bg, bb, ba;
 	Color color, border;
 
-	for( i = 0; i < max; i++ )
+	for (int i = 0; i < max; i++ )
 	{
 
 		switch( i )
@@ -557,11 +557,11 @@ static Bool saveDrawData( char *token, GameWindow *window,
 	// format spaces so it looks pretty and lines up in the text file
 	Int len = strlen( token );
 	assert( len < sizeof( spaces ) );
-	for( i = 0; i < len; i++ )
+	for (int i = 0; i < len; i++ )
 		spaces[ i ] = ' ';
 	spaces[ i ] = 0;  // terminate
 
-	for( i = 0; i < MAX_DRAW_DATA; i++ )
+	for (int i = 0; i < MAX_DRAW_DATA; i++ )
 	{
 		WinDrawData *drawData;
 		UnsignedByte r, g, b, a, br, bg, bb, ba;

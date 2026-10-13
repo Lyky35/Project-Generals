@@ -966,7 +966,7 @@ Int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		if (argc>2 && strcmp(argv[1],"-DX")==0) {  
 			Int i;
 			DEBUG_LOG(("\n--- DX STACK DUMP\n"));
-			for (i=2; i<argc; i++) {
+			for (int i =2; i<argc; i++) {
 				Int pc;
 				pc = 0;
 				sscanf(argv[i], "%x",  &pc);

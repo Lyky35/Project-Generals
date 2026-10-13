@@ -498,7 +498,7 @@ PolygonTrigger * WaterTool::adjustSpacing(PolygonTrigger *trigger, Real spacing)
 	ICoord3D pt = *trigger->getPoint(0);
 	pNew->addPoint(pt);
 	Bool didCurPoint = true;
-	for (i=0; i<trigger->getNumPoints()-1; i++) {
+	for (int i =0; i<trigger->getNumPoints()-1; i++) {
 		ICoord3D curPt = *trigger->getPoint(i);
 		ICoord3D nextPt = *trigger->getPoint(i+1);
 		Real dx = nextPt.x-curPt.x;

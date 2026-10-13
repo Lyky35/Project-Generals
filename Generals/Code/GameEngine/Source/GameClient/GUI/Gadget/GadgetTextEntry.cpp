@@ -509,7 +509,7 @@ void InformEntry( WideChar c )
 
 			TheWindowManager->winSendSystemMsg( e->constructList, GLM_DEL_ALL, 0, 0 );
 
-			for( i=0; i<listCount; i++ )
+			for (int i =0; i<listCount; i++ )
 			{
 				Int tempWidth;
 

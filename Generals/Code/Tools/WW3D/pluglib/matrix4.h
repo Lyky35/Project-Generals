@@ -470,11 +470,11 @@ inline Matrix4 Matrix4::Inverse() const    // Gauss-Jordan elimination with part
 	int i, j, i1;
 
 	// Loop over cols of a from left to right, eliminating above and below diagonal
-	for (j=0; j<4; j++) {
+	for (int j =0; j<4; j++) {
 
 		// Find largest pivot in column j among rows j..3
 		i1 = j;
-		for (i=j+1; i<4; i++) {
+		for (int i =j+1; i<4; i++) {
 			if (WWMath::Fabs(a[i][j]) > WWMath::Fabs(a[i1][j])) {
 				i1 = i;
 			}
@@ -492,7 +492,7 @@ inline Matrix4 Matrix4::Inverse() const    // Gauss-Jordan elimination with part
 		a.Row[j] /= a.Row[j][j];
 
 		// Eliminate off-diagonal elems in col j of a, doing identical ops to b
-		for (i=0; i<4; i++) {
+		for (int i =0; i<4; i++) {
 			if (i != j) {
 				b.Row[i] -= a[i][j] * b.Row[j];
 				a.Row[i] -= a[i][j] * a.Row[j];

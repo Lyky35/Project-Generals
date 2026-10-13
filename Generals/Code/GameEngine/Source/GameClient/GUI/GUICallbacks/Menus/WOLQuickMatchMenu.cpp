@@ -874,7 +874,7 @@ void WOLQuickMatchMenuInit( WindowLayout *layout, void *userData )
 	Color c = GameSpyColor[GSCOLOR_DEFAULT];
 	GadgetComboBoxReset( comboBoxNumPlayers );
 	Int i;
-	for (i=1; i<5; ++i)
+	for (int i =1; i<5; ++i)
 	{
 		s.format(TheGameText->fetch("GUI:PlayersVersusPlayers"), i, i);
 		GadgetComboBoxAddEntry( comboBoxNumPlayers, s, c );
@@ -883,7 +883,7 @@ void WOLQuickMatchMenuInit( WindowLayout *layout, void *userData )
 
 	GadgetComboBoxReset(comboBoxMaxDisconnects);
 	GadgetComboBoxAddEntry( comboBoxMaxDisconnects, TheGameText->fetch("GUI:Any"), c);
-	for( i = 1; i < MAX_DISCONNECTS_COUNT; ++i )
+	for (int i = 1; i < MAX_DISCONNECTS_COUNT; ++i )
 	{
 		s.format(L"%d", MAX_DISCONNECTS[i]);
 		GadgetComboBoxAddEntry( comboBoxMaxDisconnects, s, c );
@@ -894,7 +894,7 @@ void WOLQuickMatchMenuInit( WindowLayout *layout, void *userData )
 	GadgetComboBoxReset( comboBoxMaxPing );
 	maxPingEntries = (TheGameSpyConfig->getPingTimeoutInMs() - 1) / 100;
 	maxPingEntries++; // need to add the entry for the actual timeout
-	for (i=1; i <maxPingEntries; ++i)
+	for (int i =1; i <maxPingEntries; ++i)
 	{
 		s.format(TheGameText->fetch("GUI:TimeInMilliseconds"), i*100);
 		GadgetComboBoxAddEntry( comboBoxMaxPing, s, c );
@@ -1268,7 +1268,7 @@ void WOLQuickMatchMenuUpdate( WindowLayout * layout, void *userData)
 
 							Int i;
 							Int numPlayers = 0;
-							for (i=0; i<MAX_SLOTS; ++i)
+							for (int i =0; i<MAX_SLOTS; ++i)
 							{
 								if (!resp.stagingRoomPlayerNames[i].empty())
 									++numPlayers;
@@ -1305,7 +1305,7 @@ void WOLQuickMatchMenuUpdate( WindowLayout * layout, void *userData)
 							if (!numPlayersPerTeam)
 								numPlayersPerTeam = 1;
 
-							for (i=0; i<MAX_SLOTS; ++i)
+							for (int i =0; i<MAX_SLOTS; ++i)
 							{
 								GameSpyGameSlot *slot = TheGameSpyGame->getGameSpySlot(i);
 								if (resp.stagingRoomPlayerNames[i].empty())

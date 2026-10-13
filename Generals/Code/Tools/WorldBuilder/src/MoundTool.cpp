@@ -162,11 +162,11 @@ void MoundTool::mouseMoved(TTrackingMode m, CPoint viewPt, WbView* pView, CWorld
 	if (!m_raising) htDelta = -m_moundHeight;
 	// round brush
 	Int i, j;
-	for (i=ndx.x-sub; i<ndx.x+add; i++) {
+	for (int i =ndx.x-sub; i<ndx.x+add; i++) {
 		if (i<0 || i>=m_htMapEditCopy->getXExtent()) {
 			continue;
 		}
-		for (j=ndx.y-sub; j<ndx.y+add; j++) {					
+		for (int j =ndx.y-sub; j<ndx.y+add; j++) {					
 			if (j<0 || j>=m_htMapEditCopy->getYExtent()) {
 				continue;
 			}

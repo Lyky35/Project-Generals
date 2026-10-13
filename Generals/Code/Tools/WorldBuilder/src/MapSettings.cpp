@@ -25,7 +25,7 @@
 #include "stdafx.h"
 #include "worldbuilder.h"
 #include "MapSettings.h"
-#include "Common\GlobalData.h"
+#include "Common/GlobalData.h"
 #include "Common/WellKnownKeys.h"
 #include "Compression.h"
 
@@ -79,7 +79,7 @@ BOOL MapSettings::OnInitDialog()
 
 	CComboBox *timeofday = (CComboBox*)GetDlgItem(IDC_MAP_TIMEOFDAY);
 	timeofday->ResetContent();
-	for (i = TIME_OF_DAY_FIRST; i < TIME_OF_DAY_COUNT; i++)
+	for (int i = TIME_OF_DAY_FIRST; i < TIME_OF_DAY_COUNT; i++)
 	{
 		timeofday->AddString(TimeOfDayNames[i]);
 	}
@@ -88,7 +88,7 @@ BOOL MapSettings::OnInitDialog()
 	
 	CComboBox *weather = (CComboBox*)GetDlgItem(IDC_MAP_WEATHER);
 	weather->ResetContent();
-	for (i = 0; i < WEATHER_COUNT; i++)
+	for (int i = 0; i < WEATHER_COUNT; i++)
 	{
 		weather->AddString(WeatherNames[i]);
 	}
@@ -109,7 +109,7 @@ BOOL MapSettings::OnInitDialog()
 
 	CComboBox *compressionComboBox = (CComboBox*)GetDlgItem(IDC_MAP_COMPRESSION);
 	compressionComboBox->ResetContent();
-	for (i = COMPRESSION_MIN; i <= COMPRESSION_MAX; i++)
+	for (int i = COMPRESSION_MIN; i <= COMPRESSION_MAX; i++)
 	{
 		compressionComboBox->AddString(CompressionManager::getCompressionNameByType((CompressionType)i));
 	}

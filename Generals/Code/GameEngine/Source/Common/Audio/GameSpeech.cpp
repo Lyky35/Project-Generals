@@ -40,10 +40,10 @@
 #include "wpaudio/attributes.h"
 
 #include "wsys/File.h"
-#include "wsys/List.h"
+#include "Common/List.h"
 #include "wpaudio/Streamer.h"
-#include "wpaudio/Time.h"
-#include "wpaudio/Device.h"
+#include "wpaudio/time.h"
+#include "wpaudio/device.h"
 #include "wpaudio/Streamer.h"
 
 #define DEFINE_DLG_EVENT_PRIORITY_NAMES

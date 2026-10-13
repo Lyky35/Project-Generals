@@ -142,7 +142,7 @@ NameKeyType NameKeyGenerator::nameToKey(const char* nameString)
 	for (Int i = 0; i < SOCKET_COUNT; ++i)
 	{
 		Int numInThisSocket = 0;
-		for (b = m_sockets[i]; b; b = b->m_nextInSocket)
+		for (int b = m_sockets[i]; b; b = b->m_nextInSocket)
 			++numInThisSocket;
 
 		if (numInThisSocket > maxThresh)

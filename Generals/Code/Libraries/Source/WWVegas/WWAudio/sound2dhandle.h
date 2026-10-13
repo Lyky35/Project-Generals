@@ -41,6 +41,7 @@
 #ifndef __SOUND2DHANDLE_H
 #define __SOUND2DHANDLE_H
 
+#include <wpaudio/altypes.h>
 #include "soundhandle.h"
 
 

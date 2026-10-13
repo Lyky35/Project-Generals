@@ -268,7 +268,7 @@ void RoadSegment::SetVertexBuffer(VertexFormatXYZDUV1 *vb, Int numVertex)
 	m_numVertex = numVertex;
 	memcpy(m_vb, vb, numVertex*sizeof(VertexFormatXYZDUV1));
 	Int i;
-	for (i=0; i<numVertex; i++) {
+	for (int i =0; i<numVertex; i++) {
 		verts[i].X = m_vb[i].x;
 		verts[i].Y = m_vb[i].y;
 		verts[i].Z = m_vb[i].z;
@@ -319,7 +319,7 @@ Int RoadSegment::GetIndices(UnsignedShort *destination_ib, Int numToCopy, Int of
 	if (m_ib == NULL || numToCopy<1) return	(0);
 	if (numToCopy > m_numIndex) return(0);
 	Int i;
-	for (i=0; i<numToCopy; i++) {
+	for (int i =0; i<numToCopy; i++) {
 		destination_ib[i] = m_ib[i]+offset;
 	}
 	return(numToCopy);
@@ -333,7 +333,7 @@ Int RoadSegment::GetIndices(UnsignedShort *destination_ib, Int numToCopy, Int of
 void RoadSegment::updateSegLighting(void)
 {
 	Int i;
-	for (i=0; i<m_numVertex; i++) {
+	for (int i =0; i<m_numVertex; i++) {
 		Int x = m_vb[i].x/MAP_XY_FACTOR+0.5;
 		Int y = m_vb[i].y/MAP_XY_FACTOR+0.5;
 		x += TheTerrainRenderObject->getMap()->getBorderSize();
@@ -622,7 +622,7 @@ void W3DRoadBuffer::loadFloat4PtSection(RoadSegment *pRoad, Vector2 loc,
 	v2 = cornersP[topRight] - cornersP[bottomRight];
 	Vector3 vVector2(v2.X, v2.Y, 0);
 	uVector2 += (vVector1 - vVector2);
-	for (i=0; i<=uCount; i++) {
+	for (int i =0; i<=uCount; i++) {
 		Real iFactor = ((Real)i / (uCount-1));
 		Real iBarFactor = 1.0f-iFactor;
 		if (i<uCount) {
@@ -633,7 +633,7 @@ void W3DRoadBuffer::loadFloat4PtSection(RoadSegment *pRoad, Vector2 loc,
 
 			Real minHeight=m_map->getMaxHeightValue()*MAP_HEIGHT_SCALE;
 			Real maxHeight = m_map->getMinHeightValue()*MAP_HEIGHT_SCALE;
-			for (j=0; j<vCount; j++) {
+			for (int j =0; j<vCount; j++) {
 				Real jFactor = ((Real)j / (vCount-1));
 				Real jBarFactor = 1.0f-jFactor;
 				nextColumn.vtx[j] = origin +  (uVector1 * jBarFactor * iFactor) + (uVector2 * jFactor * iFactor) +
@@ -660,7 +660,7 @@ void W3DRoadBuffer::loadFloat4PtSection(RoadSegment *pRoad, Vector2 loc,
 				nextColumn.vtx[1] = nextColumn.vtx[vCount-1];
 				nextColumn.vtx[1].Z = maxHeight;
 			}	else {
-				for (j=0; j<vCount; j++) {
+				for (int j =0; j<vCount; j++) {
 					nextColumn.vtx[j].Z = maxHeight;
 				}
 			}
@@ -689,7 +689,7 @@ void W3DRoadBuffer::loadFloat4PtSection(RoadSegment *pRoad, Vector2 loc,
 		}
 		if (!curColumn.deleted && i!=1) {
 			// Write out the vertices.
-			for (j=0; j<vCount; j++) {
+			for (int j =0; j<vCount; j++) {
 				Real U, V;
 				if (numRoadVertices >= MAX_SEG_INDEX) {
 					break;
@@ -861,7 +861,7 @@ void W3DRoadBuffer::loadLit4PtSection(RoadSegment *pRoad, UnsignedShort *ib, Ver
 	v2 = info.corners[topRight] - info.corners[bottomRight];
 	Vector3 vVector2(v2.X, v2.Y, 0);
 	uVector2 += (vVector1 - vVector2);
-	for (i=0; i<=uCount; i++) {
+	for (int i =0; i<=uCount; i++) {
 		Real iFactor = ((Real)i / (uCount-1));
 		Real iBarFactor = 1.0f-iFactor;
 		if (i<uCount) {
@@ -872,7 +872,7 @@ void W3DRoadBuffer::loadLit4PtSection(RoadSegment *pRoad, UnsignedShort *ib, Ver
 
 			Real minHeight=m_map->getMaxHeightValue()*MAP_HEIGHT_SCALE;
 			Real maxHeight = m_map->getMinHeightValue()*MAP_HEIGHT_SCALE;
-			for (j=0; j<vCount; j++) {
+			for (int j =0; j<vCount; j++) {
 				Real jFactor = ((Real)j / (vCount-1));
 				Real jBarFactor = 1.0f-jFactor;
 				nextColumn.vtx[j] = origin +  (uVector1 * jBarFactor * iFactor) + (uVector2 * jFactor * iFactor) +
@@ -883,7 +883,7 @@ void W3DRoadBuffer::loadLit4PtSection(RoadSegment *pRoad, UnsignedShort *ib, Ver
 				nextColumn.vertexIndex[j] = -1;
 				nextColumn.vtx[j].Z = z;
 				Int k;
-				for (k=0; k<numLights; k++) {
+				for (int k =0; k<numLights; k++) {
 					Vector3 offset = nextColumn.vtx[j] - lights[k]->Get_Position();
 					Real range = lights[k]->Get_Attenuation_Range();
 					// for culling, expand one cell radius.
@@ -899,7 +899,7 @@ void W3DRoadBuffer::loadLit4PtSection(RoadSegment *pRoad, UnsignedShort *ib, Ver
 				nextColumn.vtx[1] = nextColumn.vtx[vCount-1];
 				nextColumn.vtx[1].Z = maxHeight;
 			}	else {
-				for (j=0; j<vCount; j++) {
+				for (int j =0; j<vCount; j++) {
 					nextColumn.vtx[j].Z = maxHeight;
 				}
 			}
@@ -928,7 +928,7 @@ void W3DRoadBuffer::loadLit4PtSection(RoadSegment *pRoad, UnsignedShort *ib, Ver
 		}
 		if (!curColumn.deleted && i!=1) {
 			// Write out the vertices.
-			for (j=0; j<vCount; j++) {
+			for (int j =0; j<vCount; j++) {
 				Real U, V;
 				if (m_curNumRoadVertices >= m_maxRoadVertex) {
 					break;
@@ -942,7 +942,7 @@ void W3DRoadBuffer::loadLit4PtSection(RoadSegment *pRoad, UnsignedShort *ib, Ver
 				shadeG = ((diffuse>>8) & 0xFF)/255.0;
 				shadeR = ((diffuse>>16) & 0xFF)/255.0;
 				Int k;
-				for (k=0; k<numLights; k++) {
+				for (int k =0; k<numLights; k++) {
 					Real factor;
 					if (lights[k]->Get_Type() == LightClass::POINT) {
 						Vector3 lightLoc = lights[k]->Get_Position();
@@ -1355,11 +1355,11 @@ void W3DRoadBuffer::moveRoadSegTo(Int fromNdx, Int toNdx)
 	RoadSegment cur = m_roads[fromNdx];
 	Int i;
 	if (fromNdx<toNdx) {
-		for (i=fromNdx; i<toNdx; i++) {
+		for (int i =fromNdx; i<toNdx; i++) {
 			m_roads[i] = m_roads[i+1];
 		}
 	} else {
-		for (i=fromNdx; i>toNdx; i--) {
+		for (int i =fromNdx; i>toNdx; i--) {
 			m_roads[i] = m_roads[i-1];
 		}
 	}
@@ -1508,7 +1508,7 @@ void W3DRoadBuffer::addMapObject(RoadSegment *pRoad, Bool updateTheCounts)
 	Bool addBefore = false;
 	Bool addAfter = false;
 	Bool bothMatch = false;
-	for (i=0; i<m_numRoads; i++) {
+	for (int i =0; i<m_numRoads; i++) {
 		bothMatch = false;
 		if ( (m_roads[i].m_pt1.loc==loc1 && m_roads[i].m_pt2.loc==loc2) ||
 			(m_roads[i].m_pt1.loc==loc2 && m_roads[i].m_pt2.loc==loc1) ) {
@@ -1547,7 +1547,7 @@ void W3DRoadBuffer::addMapObject(RoadSegment *pRoad, Bool updateTheCounts)
 		addIndex++;
 	}
 	if (addIndex < m_numRoads) {
-		for (i=m_numRoads; i>addIndex; i--) {
+		for (int i =m_numRoads; i>addIndex; i--) {
 			m_roads[i] = m_roads[i-1];
 		}
 	}
@@ -1607,7 +1607,7 @@ void W3DRoadBuffer::addMapObjects()
 			const Real DEFAULT_SCALE = 30;
 			if (!found) {
 				Int i;
-				for (i=0; i<m_maxRoadTypes; i++) {
+				for (int i =0; i<m_maxRoadTypes; i++) {
 					if (pMapObj->getName() == m_roadTypes[i].getPath()) {
 						curRoad.m_scale = DEFAULT_SCALE; 
 						curRoad.m_uniqueID = m_roadTypes[i].getUniqueID();
@@ -1639,7 +1639,7 @@ void W3DRoadBuffer::addMapObjects()
 	Int curCount = m_numRoads;
 	Int i;
 	m_numRoads = 0;
-	for (i=0; i<curCount; i++) {
+	for (int i =0; i<curCount; i++) {
 		RoadSegment curRoad = m_roads[i];
 		addMapObject(&curRoad, false);
 	}
@@ -1663,7 +1663,7 @@ void W3DRoadBuffer::updateCounts(RoadSegment *pRoad)
 	loc1 = pRoad->m_pt1.loc;
 	loc2 = pRoad->m_pt2.loc;
 	Int i;
-	for (i=0; i<m_numRoads; i++) {
+	for (int i =0; i<m_numRoads; i++) {
 		// Only connect same type of road.
 		if (m_roads[i].m_uniqueID != pRoad->m_uniqueID) {
 			continue;
@@ -1699,17 +1699,17 @@ void W3DRoadBuffer::updateCounts(RoadSegment *pRoad)
 void W3DRoadBuffer::updateCountsAndFlags()
 {
 	Int i, j;
-	for (i=0; i<m_numRoads; i++) {
+	for (int i =0; i<m_numRoads; i++) {
 		m_roads[i].m_pt1.last = true;
 		m_roads[i].m_pt2.last = true;
 		m_roads[i].m_pt1.count = 0;
 		m_roads[i].m_pt2.count = 0;
 	}
-	for (j=m_numRoads-1; j>0; j--) {
+	for (int j =m_numRoads-1; j>0; j--) {
 		Vector2 loc1, loc2;
 		loc1 = m_roads[j].m_pt1.loc;
 		loc2 = m_roads[j].m_pt2.loc;
-		for (i=0; i<j; i++) {
+		for (int i =0; i<j; i++) {
 			if (m_roads[i].m_uniqueID != m_roads[j].m_uniqueID) {
 				continue;
 			}
@@ -1772,7 +1772,7 @@ void W3DRoadBuffer::insertTee(Vector2 loc, Int index1, Real scale)
 	Int i;
 	Int index2=0;
 	Int index3=0;
-	for (i = index1+1; i<m_numRoads; i++) {
+	for (int i = index1+1; i<m_numRoads; i++) {
 		if (m_roads[i].m_pt1.loc == loc) {
 			m_roads[i].m_pt1.count = -2;
 			if (pr2==NULL) {
@@ -1966,7 +1966,7 @@ Bool W3DRoadBuffer::insertY(Vector2 loc, Int index1, Real scale)
 	Int i;
 	Int index2=0;
 	Int index3=0;
-	for (i = index1+1; i<m_numRoads; i++) {
+	for (int i = index1+1; i<m_numRoads; i++) {
 		if (m_roads[i].m_pt1.loc == loc) {
 			m_roads[i].m_pt1.count = -2;
 			if (pr2==NULL) {
@@ -2414,7 +2414,7 @@ void W3DRoadBuffer::insert4Way(Vector2 loc, Int index1, Real scale)
 		pc1 = &m_roads[index1].m_pt2;
 	}
 	Int i;
-	for (i = index1+1; i<m_numRoads; i++) {
+	for (int i = index1+1; i<m_numRoads; i++) {
 		if (m_roads[i].m_pt1.loc == loc) {
 			m_roads[i].m_pt1.count = -2;
 			if (pr2==NULL) {
@@ -2566,7 +2566,7 @@ void W3DRoadBuffer::insertTeeIntersections(void)
 	Int numRoadSegments = m_numRoads;
 	Int i;
 //	Int segmentStartIndex = -1;
-	for (i=0; i<numRoadSegments; i++) {
+	for (int i =0; i<numRoadSegments; i++) {
 		if (m_roads[i].m_type != SEGMENT) {
 			continue;
 		}
@@ -2596,7 +2596,7 @@ void W3DRoadBuffer::insertCurveSegments(void)
 	Int numRoadSegments = m_numRoads;
 	Int i;
 	Int segmentStartIndex = -1;
-	for (i=0; i<numRoadSegments; i++) {
+	for (int i =0; i<numRoadSegments; i++) {
 		if (i<numRoadSegments-1 && m_roads[i].m_pt1.loc == m_roads[i+1].m_pt2.loc) {
 			if (m_roads[i+1].m_pt2.count==1 && m_roads[i].m_pt1.count==1) {
 				insertCurveSegmentAt(i, i+1);
@@ -2625,7 +2625,7 @@ Int W3DRoadBuffer::findCrossTypeJoinVector(Vector2 loc, Vector2 *joinVector, Int
 	// Insert the curve segments. 
 	Int numRoadSegments = m_numRoads;
 	Int i;
-	for (i=0; i<numRoadSegments; i++) {	
+	for (int i =0; i<numRoadSegments; i++) {	
 		// we only want different road types.
 		if (m_roads[i].m_uniqueID == uniqueID) continue;
 		// Only join to straight line segments.
@@ -2678,13 +2678,13 @@ Int W3DRoadBuffer::findCrossTypeJoinVector(Vector2 loc, Vector2 *joinVector, Int
 void W3DRoadBuffer::adjustStacking(Int topUniqueID, Int bottomUniqueID)
 {
 	Int i, j;
-	for (i=0; i<m_maxRoadTypes; i++) {
+	for (int i =0; i<m_maxRoadTypes; i++) {
 		if (m_roadTypes[i].getUniqueID() == topUniqueID) break;
 	}
 	DEBUG_ASSERTLOG(i<m_maxRoadTypes, ("***** Wrong unique id- john a should fix.\n"));
 	if (i>=m_maxRoadTypes) return;
 
-	for (j=0; j<m_maxRoadTypes; j++) {
+	for (int j =0; j<m_maxRoadTypes; j++) {
 		if (m_roadTypes[j].getUniqueID() == bottomUniqueID) break;
 	}
 	DEBUG_ASSERTLOG(j<m_maxRoadTypes, ("***** Wrong unique id- john a should fix.\n"));
@@ -2694,7 +2694,7 @@ void W3DRoadBuffer::adjustStacking(Int topUniqueID, Int bottomUniqueID)
 		return; // It's already on top.
 	}
 	Int newStacking = m_roadTypes[j].getStacking();
-	for (j=0; j<m_maxRoadTypes; j++) {
+	for (int j =0; j<m_maxRoadTypes; j++) {
 		if (m_roadTypes[j].getStacking()>newStacking) {
 			m_roadTypes[j].setStacking(m_roadTypes[j].getStacking()+1);
 		}
@@ -2714,7 +2714,7 @@ void W3DRoadBuffer::insertCrossTypeJoins(void)
 	// Insert the curve segments. 
 	Int numRoadSegments = m_numRoads;
 	Int i;
-	for (i=0; i<numRoadSegments; i++) {
+	for (int i =0; i<numRoadSegments; i++) {
 		Vector2 loc1, loc2;
 		Bool isPt1 = false;
 		if ((m_roads[i].m_pt2.count==0 && m_roads[i].m_pt2.isJoin)) {
@@ -2947,7 +2947,7 @@ void W3DRoadBuffer::insertCurveSegmentAt(Int ndx1, Int ndx2)
 		m_numRoads++;		
 		if (count > 2.0) {
 			Int i;
-			for (i=2; i<count; i++) {
+			for (int i =2; i<count; i++) {
 				// offset = normal of the vector from pt1 to pt2.
 				direction.Rotate(angle);
 				rotateAbout(&pt2, centerOfCurve, angle);
@@ -3145,13 +3145,13 @@ void W3DRoadBuffer::clearAllRoads(void)
 {
 	Int i;
 	if (m_roads)
-	for (i=0; i<m_numRoads; i++) {
+	for (int i =0; i<m_numRoads; i++) {
 		m_roads[i].SetIndexBuffer(NULL,0);
 		m_roads[i].SetVertexBuffer(NULL,0);
 	}
 	m_numRoads = 0;
 	if (m_roadTypes)
-	for (i=0; i<m_maxRoadTypes; i++) {
+	for (int i =0; i<m_maxRoadTypes; i++) {
 		m_roadTypes[i].setStacking(0); // Reset stacking orders
 	}
 }
@@ -3220,7 +3220,7 @@ void W3DRoadBuffer::drawRoads(CameraClass * camera, TextureClass *cloudTexture, 
 	Int i;
 
 	Int maxStacking = 0;
-	for (i=0; i<m_maxRoadTypes; i++) {
+	for (int i =0; i<m_maxRoadTypes; i++) {
 		if (m_roadTypes[i].getStacking() > maxStacking) {
 			maxStacking = m_roadTypes[i].getStacking();
 		}
@@ -3244,7 +3244,7 @@ void W3DRoadBuffer::drawRoads(CameraClass * camera, TextureClass *cloudTexture, 
 	W3DShaderManager::setTexture(2,noiseTexture);	//noise/lightmap
 
 	for (stacking=0; stacking <= maxStacking; stacking++) {
-		for (i=0; i<m_maxRoadTypes; i++) {
+		for (int i =0; i<m_maxRoadTypes; i++) {
 			if (stacking != m_roadTypes[i].getStacking()) {
 				continue;
 			}
@@ -3280,7 +3280,7 @@ void W3DRoadBuffer::drawRoads(CameraClass * camera, TextureClass *cloudTexture, 
 	DX8Wrapper::Set_Index_Buffer(NULL,0);
 	DX8Wrapper::Set_Vertex_Buffer(NULL);
 	if (pDynamicLightsIterator) {
-		for (i=0; i<m_maxRoadTypes; i++) {
+		for (int i =0; i<m_maxRoadTypes; i++) {
 			m_curRoadType = i;
 			m_curUniqueID = m_roadTypes[i].getUniqueID();
 			if (m_curUniqueID < 0 || m_curUniqueID >= m_maxRoadTypes) continue;

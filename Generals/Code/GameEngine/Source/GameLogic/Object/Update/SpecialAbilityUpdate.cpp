@@ -1388,7 +1388,7 @@ void SpecialAbilityUpdate::triggerAbilityEffect()
 			{
 				//If there is no target object nor position, then we are detonating the existing charges.
 				std::list<ObjectID>::iterator i;
-				for( i = m_specialObjectIDList.begin(); i != m_specialObjectIDList.end(); ++i )
+				for (auto i = m_specialObjectIDList.begin(); i != m_specialObjectIDList.end(); ++i )
 				{
 					Object *specialObject = TheGameLogic->findObjectByID( *i );
 					if( specialObject )
@@ -1520,7 +1520,7 @@ void SpecialAbilityUpdate::killSpecialObjects()
 	Object *specialObject;
 
 	std::list<ObjectID>::iterator i;
-	for( i = m_specialObjectIDList.begin(); i != m_specialObjectIDList.end(); ++i )
+	for (auto i = m_specialObjectIDList.begin(); i != m_specialObjectIDList.end(); ++i )
 	{
 		specialObject = TheGameLogic->findObjectByID( *i );
 		if( specialObject )
@@ -1767,7 +1767,7 @@ Object* SpecialAbilityUpdate::findSpecialObjectWithProducerID( const Object *tar
 {
 	Object *specialObject;
 	std::list<ObjectID>::iterator i;
-	for( i = m_specialObjectIDList.begin(); i != m_specialObjectIDList.end(); ++i )
+	for (auto i = m_specialObjectIDList.begin(); i != m_specialObjectIDList.end(); ++i )
 	{
 		specialObject = TheGameLogic->findObjectByID( *i );
 		if( specialObject )

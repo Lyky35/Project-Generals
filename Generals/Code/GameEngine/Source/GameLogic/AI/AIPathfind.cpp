@@ -1184,7 +1184,7 @@ PathfindCell::~PathfindCell( void )
 { 	
 	if (m_info) PathfindCellInfo::releaseACellInfo(m_info);
 	m_info = NULL;
-	static warn = true;
+	static Bool warn = true;
 	if (warn) {
 		warn = false;
 		DEBUG_LOG( ("PathfindCell::~PathfindCell m_info Allocated."));
@@ -1503,7 +1503,7 @@ PathfindCell *PathfindCell::putOnSortedOpenList( PathfindCell *list )
 	{
 		// insertion sort
 		PathfindCell *c, *lastCell = NULL;
-		for( c = list; c; c = c->getNextOpen() )
+		for (c = list; c; c = c->getNextOpen() )
 		{
 			if (c->m_info->m_totalCost > m_info->m_totalCost)
 				break;
@@ -1832,13 +1832,13 @@ static void __fastcall resolveBlockZones(Int srcZone, Int targetZone, UnsignedSh
 	// We have two zones being combined now. Keep the lower zone.
 	DEBUG_ASSERTCRASH(srcZone!=0 && targetZone!=0,  ("Bad resolve zones	."));
 	if (targetZone<srcZone) {
-		for (i=0; i<sizeOfZE; i++) {
+		for (int i =0; i<sizeOfZE; i++) {
 			if (zoneEquivalency[i] == srcZone) {
 				zoneEquivalency[i] = targetZone;
 			}
 		}
 	} else {
-		for (i=0; i<sizeOfZE; i++) {
+		for (int i =0; i<sizeOfZE; i++) {
 			if (zoneEquivalency[i] == targetZone) {
 				zoneEquivalency[i] = srcZone;
 			}
@@ -1862,7 +1862,7 @@ static void __fastcall resolveZones(Int srcZone, Int targetZone, UnsignedShort *
 		finalZone = zoneEquivalency[srcZone];
 	}
 	DEBUG_ASSERTCRASH(finalZone<sizeOfZE ,  ("Bad resolve zones	."));
-	for (i=0; i<sizeOfZE; i++) { 
+	for (int i =0; i<sizeOfZE; i++) { 
 		UnsignedShort ze = zoneEquivalency[i];
 		if (ze == targetZone || ze == srcZone) {
 			zoneEquivalency[i] = finalZone;
@@ -1873,7 +1873,7 @@ static void __fastcall resolveZones(Int srcZone, Int targetZone, UnsignedShort *
 static void flattenZones(UnsignedShort *zoneArray, UnsignedShort *zoneHierarchical, Int sizeOfZones)
 {
 	Int i;
-	for (i=0; i<sizeOfZones; i++) {
+	for (int i =0; i<sizeOfZones; i++) {
 		Int zone1 = zoneArray[i];
 		Int zone2 = zoneHierarchical[zone1];
 		zone1 = zoneArray[zone2];
@@ -1882,7 +1882,7 @@ static void flattenZones(UnsignedShort *zoneArray, UnsignedShort *zoneHierarchic
 	}
 #if 1
 
-	for (i=0; i<sizeOfZones; i++) {
+	for (int i =0; i<sizeOfZones; i++) {
 		Int zone1 = zoneArray[i];
 		Int zone2 = zoneHierarchical[i];
 		if (zone1!=zone2) {
@@ -1977,8 +1977,8 @@ void ZoneBlock::blockCalculateZones(PathfindCell **map, PathfindLayer layers[], 
 	UnsignedInt minZone = map[bounds.lo.x][bounds.lo.y].getZone();
 	UnsignedInt maxZone = minZone;
 
-	for( j=bounds.lo.y; j<=bounds.hi.y; j++ )	{
-		for( i=bounds.lo.x; i<=bounds.hi.x; i++ )	{
+	for (int j =bounds.lo.y; j<=bounds.hi.y; j++ )	{
+		for (int i =bounds.lo.x; i<=bounds.hi.x; i++ )	{
 			PathfindCell *cell = &map[i][j];
 			UnsignedShort zone = cell->getZone();
 			if (minZone>zone) minZone=zone;
@@ -1993,15 +1993,15 @@ void ZoneBlock::blockCalculateZones(PathfindCell **map, PathfindLayer layers[], 
 	if (m_numZones==1) return; // all zones are equivalent.
 
 	// Determine water/ground equivalent zones, and ground/cliff equivalent zones.
-	for (i=0; i<m_zonesAllocated; i++) {
+	for (int i =0; i<m_zonesAllocated; i++) {
 		m_groundCliffZones[i] = i+m_firstZone;
 		m_groundWaterZones[i] = i+m_firstZone;
 		m_groundRubbleZones[i] = i+m_firstZone;
 		m_crusherZones[i] = i+m_firstZone;
 	}
 
-	for( j=bounds.lo.y; j<=bounds.hi.y; j++ )	{
-		for( i=bounds.lo.x; i<=bounds.hi.x; i++ )	{
+	for (int j =bounds.lo.y; j<=bounds.hi.y; j++ )	{
+		for (int i =bounds.lo.x; i<=bounds.hi.x; i++ )	{
 			if (i>bounds.lo.x && map[i][j].getZone()!=map[i-1][j].getZone()) {
 
 				if (waterGround(map[i][j], map[i-1][j])) {
@@ -2228,7 +2228,7 @@ void PathfindZoneManager::allocateBlocks(const IRegion2D &globalBounds)
 	m_blockOfZoneBlocks = MSGNEW("PathfindZoneBlocks") ZoneBlock[(m_zoneBlockExtent.x)*(m_zoneBlockExtent.y)];
 	m_zoneBlocks = MSGNEW("PathfindZoneBlocks") ZoneBlockP[m_zoneBlockExtent.x];
 	Int i;
-	for (i=0; i<m_zoneBlockExtent.x; i++) {
+	for (int i =0; i<m_zoneBlockExtent.x; i++) {
 		m_zoneBlocks[i] = &m_blockOfZoneBlocks[i*(m_zoneBlockExtent.y)];
 	}
 }
@@ -2268,10 +2268,10 @@ void PathfindZoneManager::calculateZones( PathfindCell **map, PathfindLayer laye
 	const Int maxZones=24000;
 	UnsignedShort zoneEquivalency[maxZones];
 	Int i, j;
-	for (i=0; i<maxZones; i++) {
+	for (int i =0; i<maxZones; i++) {
 		zoneEquivalency[i] = i;
 	}
-	for (i=0; i<=LAYER_LAST; i++) {
+	for (int i =0; i<=LAYER_LAST; i++) {
 		layers[i].setZone(0);
 	}
 
@@ -2297,8 +2297,8 @@ void PathfindZoneManager::calculateZones( PathfindCell **map, PathfindLayer laye
 				continue;
 			}
 			m_zoneBlocks[xBlock][yBlock].setInteractsWithBridge(false);
-			for( j=bounds.lo.y; j<=bounds.hi.y; j++ )	{
-				for( i=bounds.lo.x; i<=bounds.hi.x; i++ )	{
+			for (int j =bounds.lo.y; j<=bounds.hi.y; j++ )	{
+				for (int i =bounds.lo.x; i<=bounds.hi.x; i++ )	{
 					PathfindCell *cell = &map[i][j];
 					cell->setZone(0);
 
@@ -2339,7 +2339,7 @@ void PathfindZoneManager::calculateZones( PathfindCell **map, PathfindLayer laye
 	m_maxZone = 1;
 	Int collapsedZones[maxZones];
 	collapsedZones[0] = 0;
-	for (i=1; i<totalZones; i++) {
+	for (int i =1; i<totalZones; i++) {
 		Int zone = zoneEquivalency[i];
 		if (zone == i) {
 			collapsedZones[i] = m_maxZone;
@@ -2356,15 +2356,15 @@ void PathfindZoneManager::calculateZones( PathfindCell **map, PathfindLayer laye
 #endif
 #endif
 	// Now map the zones in the map back into the collapsed zones.
-	for( j=globalBounds.lo.y; j<=globalBounds.hi.y; j++ )	{
-		for( i=globalBounds.lo.x; i<=globalBounds.hi.x; i++ )	{
+	for (int j =globalBounds.lo.y; j<=globalBounds.hi.y; j++ )	{
+		for (int i =globalBounds.lo.x; i<=globalBounds.hi.x; i++ )	{
 			map[i][j].setZone(collapsedZones[map[i][j].getZone()]);
 			if (map[i][j].getZone()==0) {
 				DEBUG_CRASH(("Zone not set cell %d, %d", i, j));
 			}
 		}
 	}
-	for (i=0; i<=LAYER_LAST; i++) {
+	for (int i =0; i<=LAYER_LAST; i++) {
 		Int zone = collapsedZones[layers[i].getZone()];
 		if (zone == 0) {
 			zone = m_maxZone;
@@ -2416,7 +2416,7 @@ void PathfindZoneManager::calculateZones( PathfindCell **map, PathfindLayer laye
 #endif
 
 	// Determine water/ground equivalent zones, and ground/cliff equivalent zones.
-	for (i=0; i<m_zonesAllocated; i++) {
+	for (int i =0; i<m_zonesAllocated; i++) {
 		m_groundCliffZones[i] = i;
 		m_groundWaterZones[i] = i;
 		m_groundRubbleZones[i] = i;
@@ -2425,8 +2425,8 @@ void PathfindZoneManager::calculateZones( PathfindCell **map, PathfindLayer laye
 		m_hierarchicalZones[i] = i;
 	}
 
-	for( j=globalBounds.lo.y; j<=globalBounds.hi.y; j++ )	{
-		for( i=globalBounds.lo.x; i<=globalBounds.hi.x; i++ )	{
+	for (int j =globalBounds.lo.y; j<=globalBounds.hi.y; j++ )	{
+		for (int i =globalBounds.lo.x; i<=globalBounds.hi.x; i++ )	{
 			if ( (map[i][j].getConnectLayer() > LAYER_GROUND) && 
 				(map[i][j].getType() == PathfindCell::CELL_CLEAR) ) {
 				PathfindLayer *layer = layers + map[i][j].getConnectLayer();
@@ -2502,7 +2502,7 @@ void PathfindZoneManager::calculateZones( PathfindCell **map, PathfindLayer laye
 	if (m_maxZone >= m_zonesAllocated) {
 		RELEASE_CRASH("Pathfind allocation error - fatal. see jba.");
 	}
-	for (i=1; i<m_maxZone; i++) {
+	for (int i =1; i<m_maxZone; i++) {
 		// Flatten hierarchical zones.
 		Int zone = m_hierarchicalZones[i];
 		m_hierarchicalZones[i] = m_hierarchicalZones[zone];
@@ -2528,8 +2528,8 @@ void PathfindZoneManager::calculateZones( PathfindCell **map, PathfindLayer laye
 		RGBColor color;
 		memset(&color, 0, sizeof(Color));
 		addIcon(NULL, 0, 0, color);
-		for( j=0; j<globalBounds.hi.y; j++ )	{
-			for( i=0; i<globalBounds.hi.x; i++ )	{
+		for (int j =0; j<globalBounds.hi.y; j++ )	{
+			for (int i =0; i<globalBounds.hi.x; i++ )	{
 				Int zone = map[i][j].getZone();
 				//zone = m_terrainZones[zone];
 				zone = m_groundCliffZones[zone];
@@ -2794,8 +2794,8 @@ void PathfindLayer::reset(void)
 	m_bridge = NULL;
 	if (m_layerCells) {
 		Int i, j;
-		for (i=0; i<m_width; i++) {
-			for (j=0; j<m_height; j++) {
+		for (int i =0; i<m_width; i++) {
+			for (int j =0; j<m_height; j++) {
 				PathfindCell *cell = &m_layerCells[i][j];
 				cell->reset();
 			}
@@ -2958,7 +2958,7 @@ void PathfindLayer::allocateCells(const IRegion2D *extent)
 	m_blockOfMapCells = MSGNEW("PathfindMapCells") PathfindCell[m_width*m_height];
 	m_layerCells = MSGNEW("PathfindMapCells") PathfindCellP[m_width];
 	Int i;
-	for (i=0; i<m_width; i++) {
+	for (int i =0; i<m_width; i++) {
 		m_layerCells[i] = &m_blockOfMapCells[i*m_height];
 	}
 }
@@ -2974,7 +2974,7 @@ void PathfindLayer::allocateCellsForWallLayer(const IRegion2D *extent, ObjectID 
 
 	Int i; 
 	Bool first = true;
-	for (i=0; i<numPieces; i++) {
+	for (int i =0; i<numPieces; i++) {
 		Object *obj = TheGameLogic->findObjectByID(wallPieces[i]);
 		Region2D objBounds;
 		if (obj==NULL) continue;
@@ -3016,7 +3016,7 @@ void PathfindLayer::allocateCellsForWallLayer(const IRegion2D *extent, ObjectID 
 	m_blockOfMapCells = MSGNEW("PathfindMapCells") PathfindCell[m_width*m_height];
 	m_layerCells = MSGNEW("PathfindMapCells") PathfindCellP[m_width];
 
-	for (i=0; i<m_width; i++) {
+	for (int i =0; i<m_width; i++) {
 		m_layerCells[i] = &m_blockOfMapCells[i*m_height];
 	}
 }
@@ -3033,8 +3033,8 @@ Bool PathfindLayer::connectsZones(PathfindZoneManager *zm, const LocomotorSet& l
 	Bool found1 = false;
 	Bool found2 = false;
 	Int i, j;
-	for (i=0; i<m_width; i++) {
-		for (j=0; j<m_height; j++) {
+	for (int i =0; i<m_width; i++) {
+		for (int j =0; j<m_height; j++) {
 			PathfindCell *cell = &m_layerCells[i][j];
 			if (cell->getConnectLayer()==LAYER_GROUND) {
 					PathfindCell *groundCell = TheAI->pathfinder()->getCell(LAYER_GROUND, i+m_xOrigin, j+m_yOrigin);
@@ -3062,8 +3062,8 @@ void PathfindLayer::classifyCells()
 	m_endCell.x = -1;
 	m_endCell.y = -1;
 	Int i, j;
-	for (i=0; i<m_width; i++) {
-		for (j=0; j<m_height; j++) {
+	for (int i =0; i<m_width; i++) {
+		for (int j =0; j<m_height; j++) {
 			PathfindCell *cell = &m_layerCells[i][j];
 			cell->setConnectLayer(LAYER_INVALID);
 			cell->setLayer(m_layer);
@@ -3086,8 +3086,8 @@ void PathfindLayer::classifyCells()
 	}
 	if (m_destroyed) {
 		Int i, j;
-		for (i=0; i<m_width; i++) {
-			for (j=0; j<m_height; j++) {
+		for (int i =0; i<m_width; i++) {
+			for (int j =0; j<m_height; j++) {
 				PathfindCell *cell = &m_layerCells[i][j];
 				if (cell->getConnectLayer() == LAYER_GROUND) {
 					PathfindCell *groundCell = TheAI->pathfinder()->getCell(LAYER_GROUND, i+m_xOrigin, j+m_yOrigin);
@@ -3113,8 +3113,8 @@ void PathfindLayer::classifyWallCells(ObjectID *wallPieces, Int numPieces)
 	if (m_layerCells == NULL) return;
 
 	Int i, j;
-	for (i=0; i<m_width; i++) {
-		for (j=0; j<m_height; j++) {
+	for (int i =0; i<m_width; i++) {
+		for (int j =0; j<m_height; j++) {
 			PathfindCell *cell = &m_layerCells[i][j];
 			cell->setConnectLayer(LAYER_INVALID);
 			cell->setLayer(m_layer);
@@ -3124,8 +3124,8 @@ void PathfindLayer::classifyWallCells(ObjectID *wallPieces, Int numPieces)
 	}
 	if (m_destroyed) {
 		Int i, j;
-		for (i=0; i<m_width; i++) {
-			for (j=0; j<m_height; j++) {
+		for (int i =0; i<m_width; i++) {
+			for (int j =0; j<m_height; j++) {
 				PathfindCell *cell = &m_layerCells[i][j];
 				if (cell->getConnectLayer() == LAYER_GROUND) {
 					PathfindCell *groundCell = TheAI->pathfinder()->getCell(LAYER_GROUND, i+m_xOrigin, j+m_yOrigin);
@@ -3141,11 +3141,11 @@ void PathfindLayer::classifyWallCells(ObjectID *wallPieces, Int numPieces)
 	}
 
 	// Tighten up 1 cell.
-	for (i=1; i<m_width-1; i++) {
-		for (j=1; j<m_height-1; j++) {
+	for (int i =1; i<m_width-1; i++) {
+		for (int j =1; j<m_height-1; j++) {
 			PathfindCell *cell = &m_layerCells[i][j];
 			Int k, l;
-			for (k=i-1; k<i+2; k++) {
+			for (int k =i-1; k<i+2; k++) {
 				for (l=j-1; l<j+2; l++) {
 					PathfindCell *adjacentCell = &m_layerCells[k][l];
 					if (adjacentCell->getType() != PathfindCell::CELL_CLEAR) {
@@ -3155,8 +3155,8 @@ void PathfindLayer::classifyWallCells(ObjectID *wallPieces, Int numPieces)
 			}
 		}
 	}
-	for (i=0; i<m_width; i++) {
-		for (j=0; j<m_height; j++) {
+	for (int i =0; i<m_width; i++) {
+		for (int j =0; j<m_height; j++) {
 			PathfindCell *cell = &m_layerCells[i][j];
 			if (cell->getPinched() && cell->getType() == PathfindCell::CELL_CLEAR) {
 				cell->setType(PathfindCell::CELL_CLIFF);
@@ -3185,8 +3185,8 @@ Bool PathfindLayer::setDestroyed(Bool destroyed)
 void PathfindLayer::applyZone( void )
 {
 	Int i, j;
-	for (i=0; i<m_width; i++) {
-		for (j=0; j<m_height; j++) {
+	for (int i =0; i<m_width; i++) {
+		for (int j =0; j<m_height; j++) {
 			PathfindCell *cell = &m_layerCells[i][j];
 			cell->setZone(m_zone);
 		}
@@ -3311,7 +3311,7 @@ void PathfindLayer::classifyLayerMapCell( Int i, Int j , PathfindCell *cell, Bri
 Bool PathfindLayer::isPointOnWall(ObjectID *wallPieces, Int numPieces, const Coord3D *pt)
 {
 	Int i; 
-	for (i=0; i<numPieces; i++) {
+	for (int i =0; i<numPieces; i++) {
 		Object *obj = TheGameLogic->findObjectByID(wallPieces[i]);
 		if (obj==NULL) continue;
 		Real major = obj->getGeometryInfo().getMajorRadius();
@@ -3411,7 +3411,7 @@ void Pathfinder::reset( void )
 	}
 
 	Int i;
-	for (i=0; i<=LAYER_LAST; i++) {
+	for (int i =0; i<=LAYER_LAST; i++) {
 		m_layers[i].reset();
 	}
 
@@ -3447,7 +3447,7 @@ void Pathfinder::reset( void )
 	m_queuePRTail = 0;
 
 	m_numWallPieces = 0;
-	for (i=0; i<MAX_WALL_PIECES; ++i)
+	for (int i =0; i<MAX_WALL_PIECES; ++i)
 	{
 		m_wallPieces[i] = INVALID_ID;
 	}
@@ -3689,7 +3689,7 @@ void Pathfinder::classifyObjectFootprint( Object *obj, Bool insert )
 			if (!m_layers[LAYER_WALL].isUnused()) {
 				Int i;
 				ObjectID curID = obj->getID();
-				for (i=0; i<m_numWallPieces; i++) {
+				for (int i =0; i<m_numWallPieces; i++) {
 					if (curID == m_wallPieces[i]) {
 						m_wallPieces[i]=INVALID_ID;
 					}
@@ -3865,9 +3865,9 @@ void Pathfinder::internal_classifyObjectFootprint( Object *obj, Bool insert )
 	// Expand building bounds 1 cell.
 #define no_EXPAND_ONE_CELL
 #ifdef EXPAND_ONE_CELL
-	for( j=cellBounds.lo.y; j<=cellBounds.hi.y; j++ )
+	for (int j =cellBounds.lo.y; j<=cellBounds.hi.y; j++ )
 	{
-		for( i=cellBounds.lo.x; i<=cellBounds.hi.x; i++ )
+		for (int i =cellBounds.lo.x; i<=cellBounds.hi.x; i++ )
 		{
 			if (!insert) {
 				if (m_map[i][j].getType() == PathfindCell::CELL_IMPASSABLE) {
@@ -3884,7 +3884,7 @@ void Pathfinder::internal_classifyObjectFootprint( Object *obj, Bool insert )
 			if (m_map[i][j].getType() == PathfindCell::CELL_CLEAR) {
 				Bool obstacleAdjacent = false;
 				Int k, l;
-				for (k=i-1; k<i+2; k++) {
+				for (int k =i-1; k<i+2; k++) {
 					if (k<m_extent.lo.x || k> m_extent.hi.x) continue;
 					for (l=j-1; l<j+2; l++) {
 						if (l<m_extent.lo.y || l> m_extent.hi.y) continue;
@@ -3906,9 +3906,9 @@ void Pathfinder::internal_classifyObjectFootprint( Object *obj, Bool insert )
 	}	 
 
 	if (insert) {
-		for( j=cellBounds.lo.y; j<=cellBounds.hi.y; j++ )
+		for (int j =cellBounds.lo.y; j<=cellBounds.hi.y; j++ )
 		{
-			for( i=cellBounds.lo.x; i<=cellBounds.hi.x; i++ )
+			for (int i =cellBounds.lo.x; i<=cellBounds.hi.x; i++ )
 			{
 				if (m_map[i][j].getPinched() && m_map[i][j].getType() == PathfindCell::CELL_CLEAR) {
 					ICoord2D pos;
@@ -3926,9 +3926,9 @@ void Pathfinder::internal_classifyObjectFootprint( Object *obj, Bool insert )
 
 
 	if (!insert) {
-		for( j=cellBounds.lo.y; j<=cellBounds.hi.y; j++ )
+		for (int j =cellBounds.lo.y; j<=cellBounds.hi.y; j++ )
 		{
-			for( i=cellBounds.lo.x; i<=cellBounds.hi.x; i++ )
+			for (int i =cellBounds.lo.x; i<=cellBounds.hi.x; i++ )
 			{
 				if (m_map[i][j].getType()==PathfindCell::CELL_IMPASSABLE) {
 					m_map[i][j].setType(PathfindCell::CELL_CLEAR);
@@ -3938,16 +3938,16 @@ void Pathfinder::internal_classifyObjectFootprint( Object *obj, Bool insert )
 	}
 	// Check for pinched cells, and close them off.
 
-	for( j=cellBounds.lo.y; j<=cellBounds.hi.y; j++ )
+	for (int j =cellBounds.lo.y; j<=cellBounds.hi.y; j++ )
 	{
-		for( i=cellBounds.lo.x; i<=cellBounds.hi.x; i++ )
+		for (int i =cellBounds.lo.x; i<=cellBounds.hi.x; i++ )
 		{
 			m_map[i][j].setPinched(false);
 			if (m_map[i][j].getType() == PathfindCell::CELL_CLEAR) {
 				Int totalCount = 0;
 				Int orthogonalCount = 0;
 				Int k, l;
-				for (k=i-1; k<i+2; k++) {
+				for (int k =i-1; k<i+2; k++) {
 					if (k<m_extent.lo.x || k> m_extent.hi.x) continue;
 					for (l=j-1; l<j+2; l++) {
 						if (l<m_extent.lo.y || l> m_extent.hi.y) continue;
@@ -3969,9 +3969,9 @@ void Pathfinder::internal_classifyObjectFootprint( Object *obj, Bool insert )
 		}
 	}
 
-	for( j=cellBounds.lo.y; j<=cellBounds.hi.y; j++ )
+	for (int j =cellBounds.lo.y; j<=cellBounds.hi.y; j++ )
 	{
-		for( i=cellBounds.lo.x; i<=cellBounds.hi.x; i++ )
+		for (int i =cellBounds.lo.x; i<=cellBounds.hi.x; i++ )
 		{
 			if (m_map[i][j].getPinched() && (m_map[i][j].getType() == PathfindCell::CELL_CLEAR)) {
 				m_map[i][j].setType(PathfindCell::CELL_IMPASSABLE);
@@ -3983,14 +3983,14 @@ void Pathfinder::internal_classifyObjectFootprint( Object *obj, Bool insert )
 	// Expand building bounds 1 cell.
 #define MARK_BORDER_PINCHED
 #ifdef MARK_BORDER_PINCHED
-	for( j=cellBounds.lo.y; j<=cellBounds.hi.y; j++ )
+	for (int j =cellBounds.lo.y; j<=cellBounds.hi.y; j++ )
 	{
-		for( i=cellBounds.lo.x; i<=cellBounds.hi.x; i++ )
+		for (int i =cellBounds.lo.x; i<=cellBounds.hi.x; i++ )
 		{
 			if (m_map[i][j].getType() == PathfindCell::CELL_CLEAR) {
 				Bool objectAdjacent = false;
 				Int k, l;
-				for (k=i-1; k<i+2; k++) {
+				for (int k =i-1; k<i+2; k++) {
 					if (k<m_extent.lo.x || k> m_extent.hi.x) continue;
 					for (l=j-1; l<j+2; l++) {
 						if (l<m_extent.lo.y || l> m_extent.hi.y) continue;
@@ -4088,10 +4088,10 @@ void Pathfinder::newMap( void )
 		m_blockOfMapCells = MSGNEW("PathfindMapCells") PathfindCell[(bounds.hi.x+1)*(bounds.hi.y+1)];
 		m_map = MSGNEW("PathfindMapCells") PathfindCellP[bounds.hi.x+1];
 		Int i;
-		for (i=0; i<=bounds.hi.x; i++) {
+		for (int i =0; i<=bounds.hi.x; i++) {
 			m_map[i] = &m_blockOfMapCells[i*(bounds.hi.y+1)];
 		}
-		for (i=0; i<LAYER_LAST; i++) {
+		for (int i =0; i<LAYER_LAST; i++) {
 			if (!m_layers[i].isUnused()) {
 				m_layers[i].allocateCells(&m_extent);
 			}
@@ -4120,22 +4120,22 @@ void Pathfinder::classifyMap(void)
 
 	Int i, j;
 	// for now, sample cell corners and classify cell accordingly
-	for( j=m_extent.lo.y; j<=m_extent.hi.y; j++ )
+	for (int j =m_extent.lo.y; j<=m_extent.hi.y; j++ )
 	{
-		for( i=m_extent.lo.x; i<=m_extent.hi.x; i++ )
+		for (int i =m_extent.lo.x; i<=m_extent.hi.x; i++ )
 		{
 			classifyMapCell( i, j, &m_map[i][j]);
 		}
 	}
 #if 1
 	// Expand all cliff cells one step (mark pinched)
-	for( j=m_extent.lo.y; j<=m_extent.hi.y; j++ )
+	for (int j =m_extent.lo.y; j<=m_extent.hi.y; j++ )
 	{
-		for( i=m_extent.lo.x; i<=m_extent.hi.x; i++ )
+		for (int i =m_extent.lo.x; i<=m_extent.hi.x; i++ )
 		{
 			if (m_map[i][j].getType() & PathfindCell::CELL_CLIFF) {
 				Int k, l;
-				for (k=i-1; k<i+2; k++) {
+				for (int k =i-1; k<i+2; k++) {
 					if (k<m_extent.lo.x || k> m_extent.hi.x) continue;
 					for (l=j-1; l<j+2; l++) {
 						if (l<m_extent.lo.y || l> m_extent.hi.y) continue;
@@ -4149,9 +4149,9 @@ void Pathfinder::classifyMap(void)
 		}
 	}
 	// Convert pinched to cliff.
-	for( j=m_extent.lo.y; j<=m_extent.hi.y; j++ )
+	for (int j =m_extent.lo.y; j<=m_extent.hi.y; j++ )
 	{
-		for( i=m_extent.lo.x; i<=m_extent.hi.x; i++ )
+		for (int i =m_extent.lo.x; i<=m_extent.hi.x; i++ )
 		{
 			if (m_map[i][j].getPinched()) {
 				if (m_map[i][j].getType()==PathfindCell::CELL_CLEAR) {
@@ -4161,13 +4161,13 @@ void Pathfinder::classifyMap(void)
 		}
 	}
 	// Add a border of pinched cells to cliffs.
-	for( j=m_extent.lo.y; j<=m_extent.hi.y; j++ )
+	for (int j =m_extent.lo.y; j<=m_extent.hi.y; j++ )
 	{
-		for( i=m_extent.lo.x; i<=m_extent.hi.x; i++ )
+		for (int i =m_extent.lo.x; i<=m_extent.hi.x; i++ )
 		{
 			if (m_map[i][j].getType() & PathfindCell::CELL_CLIFF) {
 				Int k, l;
-				for (k=i-1; k<i+2; k++) {
+				for (int k =i-1; k<i+2; k++) {
 					if (k<m_extent.lo.x || k> m_extent.hi.x) continue;
 					for (l=j-1; l<j+2; l++) {
 						if (l<m_extent.lo.y || l> m_extent.hi.y) continue;
@@ -4181,7 +4181,7 @@ void Pathfinder::classifyMap(void)
 		}
 	}
 #endif
-	for (i=0; i<LAYER_LAST; i++) {
+	for (int i =0; i<LAYER_LAST; i++) {
 		if (!m_layers[i].isUnused()) {
 			m_layers[i].classifyCells();
 		}
@@ -4448,8 +4448,8 @@ Bool Pathfinder::checkDestination(const Object *obj, Int cellX, Int cellY, Pathf
 		checkForAircraft = obj->getAI()->isAircraftThatAdjustsDestination();
 		objID = obj->getID();
 	}
-	for (i=cellX-iRadius; i<cellX+numCellsAbove; i++) {
-		for (j=cellY-iRadius; j<cellY+numCellsAbove; j++) {
+	for (int i =cellX-iRadius; i<cellX+numCellsAbove; i++) {
+		for (int j =cellY-iRadius; j<cellY+numCellsAbove; j++) {
 			PathfindCell	*cell = getCell(layer, i, j);
 			if (cell) {
 				if (checkForAircraft) {
@@ -4523,8 +4523,8 @@ Bool Pathfinder::checkForMovement(const Object *obj, TCheckMovementInfo &info)
 	if (info.centerInCell) numCellsAbove++;
 	Int i, j;
 //	Bool isInfantry = obj->isKindOf(KINDOF_INFANTRY);
-	for (i=info.cell.x-info.radius; i<info.cell.x+numCellsAbove; i++) {
-		for (j=info.cell.y-info.radius; j<info.cell.y+numCellsAbove; j++) {
+	for (int i =info.cell.x-info.radius; i<info.cell.x+numCellsAbove; i++) {
+		for (int j =info.cell.y-info.radius; j<info.cell.y+numCellsAbove; j++) {
 			PathfindCell	*cell = getCell(info.layer,i, j);
 			if (cell) {
 				enum PathfindCell::CellFlags flags = cell->getFlags();
@@ -4579,7 +4579,7 @@ Bool Pathfinder::checkForMovement(const Object *obj, TCheckMovementInfo &info)
 							}
 							Bool found = false;
 							Int k;
-							for (k=0; k<numAlly; k++) {
+							for (int k =0; k<numAlly; k++) {
 								if (allies[k] == unit->getID()) {
 									found = true;
 								}
@@ -4650,8 +4650,8 @@ void Pathfinder::snapClosestGoalPosition(Object *obj, Coord3D *pos)
 
 	// Try adjusting by 1.
 	Int i,j;
-	for (i=cell.x-1; i<cell.x+2; i++) {
-		for (j=cell.y-1; j<cell.y+2; j++) {
+	for (int i =cell.x-1; i<cell.x+2; i++) {
+		for (int j =cell.y-1; j<cell.y+2; j++) {
 			if (checkDestination(obj, i, j, layer, iRadius, center)) {
 				adjustCoordToCell(i, j,  center, *pos, layer);
 				return;
@@ -4660,8 +4660,8 @@ void Pathfinder::snapClosestGoalPosition(Object *obj, Coord3D *pos)
 	}
 	if (iRadius==0) {
 		// Try to find an unoccupied cell.
-		for (i=cell.x-1; i<cell.x+2; i++) {
-			for (j=cell.y-1; j<cell.y+2; j++) {
+		for (int i =cell.x-1; i<cell.x+2; i++) {
+			for (int j =cell.y-1; j<cell.y+2; j++) {
 				PathfindCell	*newCell = getCell(layer,i, j);
 				if (newCell) {
 					if (newCell->getGoalUnit()==INVALID_ID || newCell->getGoalUnit()==obj->getID()) {
@@ -4672,8 +4672,8 @@ void Pathfinder::snapClosestGoalPosition(Object *obj, Coord3D *pos)
 			}
 		}
 		// Try to find an unoccupied cell.
-		for (i=cell.x-1; i<cell.x+2; i++) {
-			for (j=cell.y-1; j<cell.y+2; j++) {
+		for (int i =cell.x-1; i<cell.x+2; i++) {
+			for (int j =cell.y-1; j<cell.y+2; j++) {
 				PathfindCell	*newCell = getCell(layer,i, j);
 				if (newCell) {
 					if (newCell->getFlags()!=PathfindCell::UNIT_PRESENT_FIXED) {
@@ -5209,7 +5209,7 @@ void Pathfinder::doDebugIcons(void) {
 		Coord3D topLeftCorner;
 		Bool showCells = TheGlobalData->m_debugAI==AI_DEBUG_CELLS;
 		Int i;
-		for (i=0; i<=LAYER_LAST; i++) {
+		for (int i =0; i<=LAYER_LAST; i++) {
 			m_layers[i].doDebugIcons();
 		}
 		if (!showCells)	{
@@ -5998,7 +5998,7 @@ Path *Pathfinder::internalFindPath( Object *obj, const LocomotorSet& locomotorSe
 	worldToCell( to, &cell );
 
 	if (!checkDestination(obj, cell.x, cell.y, destinationLayer, radius, centerInCell)) {
-		return false;
+		return NULL;
 	}
 	// determine start cell
 	ICoord2D startCellNdx;
@@ -6169,7 +6169,7 @@ Path *Pathfinder::internalFindPath( Object *obj, const LocomotorSet& locomotorSe
 		if (count<2) count = 2;
 		Int i;
 		color.green = 0;
-		for (i=1; i<count; i++) {
+		for (int i =1; i<count; i++) {
 			pos.x = from->x + (to->x-from->x)*i/count;
 			pos.y = from->y + (to->y-from->y)*i/count;
 			pos.z = TheTerrainLogic->getGroundHeight( pos.x, pos.y ) + 0.5f;
@@ -6218,9 +6218,9 @@ Int Pathfinder::clearCellForDiameter(Bool crusher, Int cellX, Int cellY, Pathfin
 		cutCorners = true;
 		// We remove the outside corner cells from the check.
 	}
-	for (i=cellX-radius; i<cellX+numCellsAbove; i++) {
+	for (int i =cellX-radius; i<cellX+numCellsAbove; i++) {
 		Bool xMinOrMax = (i==cellX-radius) || (i==cellX+numCellsAbove-1);
-		for (j=cellY-radius; j<cellY+numCellsAbove; j++) {
+		for (int j =cellY-radius; j<cellY+numCellsAbove; j++) {
 			Bool yMinOrMax = (j==cellY-radius) || (j==cellY+numCellsAbove-1);
 			if (xMinOrMax && yMinOrMax && cutCorners) {
 				continue; // this is an outside corner cell, and we are cutting corners. jba. :)
@@ -6336,7 +6336,7 @@ Path *Pathfinder::buildHierachicalPath( const Coord3D *fromPos, PathfindCell *go
 		color.red = color.green = 1;
 		Coord3D pos;
 		Int i;
-		for (i=0; i<3; i++)
+		for (int i =0; i<3; i++)
 		for( PathNode *node = path->getFirstNode(); node; node = node->getNext() )
 		{
 
@@ -6776,7 +6776,7 @@ Path *Pathfinder::findGroundPath( const Coord3D *from,
 		if (count<2) count = 2;
 		Int i;
 		color.green = 0;
-		for (i=1; i<count; i++) {
+		for (int i =1; i<count; i++) {
 			pos.x = from->x + (to->x-from->x)*i/count;
 			pos.y = from->y + (to->y-from->y)*i/count;
 			pos.z = TheTerrainLogic->getGroundHeight( pos.x, pos.y ) + 0.5f;
@@ -6837,7 +6837,7 @@ void Pathfinder::processHierarchicalCell( const ICoord2D &scanCell, const ICoord
 		}
 		Int j;
 		Bool found=false;
-		for (j=0; j<numExZones; j++) {
+		for (int j =0; j<numExZones; j++) {
 			if (examinedZones[j] == newZone) {
 				found = true;
 				break;
@@ -7063,7 +7063,7 @@ Path *Pathfinder::internal_findHierarchicalPath( Bool isHuman, const LocomotorSu
 		
 		if (!reachedGoal && m_zoneManager.interactsWithBridge(parentCell->getXIndex(), parentCell->getYIndex())) {
 			Int i;
-			for (i=0; i<=LAYER_LAST; i++) {
+			for (int i =0; i<=LAYER_LAST; i++) {
 				if (m_layers[i].isUnused() || m_layers[i].isDestroyed()) {
 					continue;
 				}
@@ -7140,8 +7140,8 @@ Path *Pathfinder::internal_findHierarchicalPath( Bool isHuman, const LocomotorSu
 				Int i, j;
 				ICoord2D extent;
 				m_zoneManager.getExtent(extent);
-				for (i=0; i<extent.x; i++) {
-					for (j=0; j<extent.y; j++) {
+				for (int i =0; i<extent.x; i++) {
+					for (int j =0; j<extent.y; j++) {
 						extern void addIcon(const Coord3D *pos, Real width, Int numFramesDuration, RGBColor color);
  						RGBColor color;
 						color.blue = 1;
@@ -7200,7 +7200,7 @@ Path *Pathfinder::internal_findHierarchicalPath( Bool isHuman, const LocomotorSu
 		Int numExZones = 0;
 		// Left side.
 		if (blockX>0) {
-			for (i=1; i<=PathfindZoneManager::ZONE_BLOCK_SIZE; i++) {
+			for (int i =1; i<=PathfindZoneManager::ZONE_BLOCK_SIZE; i++) {
 			ICoord2D scanCell;
 				scanCell.x = blockX*PathfindZoneManager::ZONE_BLOCK_SIZE;
 				scanCell.y = (blockY*PathfindZoneManager::ZONE_BLOCK_SIZE);
@@ -7232,7 +7232,7 @@ Path *Pathfinder::internal_findHierarchicalPath( Bool isHuman, const LocomotorSu
 		// Right side.
 		if (blockX<zoneBlockExtent.x-1) {
 			numExZones = 0;
-			for (i=1; i<=PathfindZoneManager::ZONE_BLOCK_SIZE; i++) {
+			for (int i =1; i<=PathfindZoneManager::ZONE_BLOCK_SIZE; i++) {
 			ICoord2D scanCell;
 				scanCell.x = blockX*PathfindZoneManager::ZONE_BLOCK_SIZE;
 				scanCell.x += PathfindZoneManager::ZONE_BLOCK_SIZE-1;
@@ -7265,7 +7265,7 @@ Path *Pathfinder::internal_findHierarchicalPath( Bool isHuman, const LocomotorSu
 		// Top side.
 		if (blockY>0) {
 			numExZones = 0;
-			for (i=1; i<=PathfindZoneManager::ZONE_BLOCK_SIZE; i++) {
+			for (int i =1; i<=PathfindZoneManager::ZONE_BLOCK_SIZE; i++) {
 			ICoord2D scanCell;
 				scanCell.y = blockY*PathfindZoneManager::ZONE_BLOCK_SIZE;
 				scanCell.x = (blockX*PathfindZoneManager::ZONE_BLOCK_SIZE);
@@ -7297,7 +7297,7 @@ Path *Pathfinder::internal_findHierarchicalPath( Bool isHuman, const LocomotorSu
 		// Bottom side.
 		if (blockY<zoneBlockExtent.y-1) {
 			numExZones = 0;
-			for (i=1; i<=PathfindZoneManager::ZONE_BLOCK_SIZE; i++) {
+			for (int i =1; i<=PathfindZoneManager::ZONE_BLOCK_SIZE; i++) {
 			ICoord2D scanCell;
 				scanCell.y = blockY*PathfindZoneManager::ZONE_BLOCK_SIZE;
 				scanCell.y += PathfindZoneManager::ZONE_BLOCK_SIZE-1;
@@ -7341,8 +7341,8 @@ Path *Pathfinder::internal_findHierarchicalPath( Bool isHuman, const LocomotorSu
 			Int i, j;
 			ICoord2D extent;
 			m_zoneManager.getExtent(extent);
-			for (i=0; i<extent.x; i++) {
-				for (j=0; j<extent.y; j++) {
+			for (int i =0; i<extent.x; i++) {
+				for (int j =0; j<extent.y; j++) {
 					extern void addIcon(const Coord3D *pos, Real width, Int numFramesDuration, RGBColor color);
  					RGBColor color;
 					color.blue = 1;
@@ -7391,7 +7391,7 @@ Path *Pathfinder::internal_findHierarchicalPath( Bool isHuman, const LocomotorSu
 		if (count<2) count = 2;
 		Int i;
 		color.green = 0;
-		for (i=1; i<count; i++) {
+		for (int i =1; i<count; i++) {
 			pos.x = from->x + (to->x-from->x)*i/count;
 			pos.y = from->y + (to->y-from->y)*i/count;
 			pos.z = TheTerrainLogic->getGroundHeight( pos.x, pos.y ) + 0.5f;
@@ -7445,7 +7445,7 @@ Bool Pathfinder::findBrokenBridge(const LocomotorSet& locoSet,
 
 	// Check broken bridges.
 	Int i;
-	for (i=0; i<=LAYER_LAST; i++) {
+	for (int i =0; i<=LAYER_LAST; i++) {
 		if (m_layers[i].isDestroyed()) {
 			if (m_layers[i].connectsZones(&m_zoneManager, locoSet, zone1, zone2)) {
 				*bridgeID = m_layers[i].getBridgeID();
@@ -8876,7 +8876,7 @@ Bool Pathfinder::segmentIntersectsTallBuilding(const PathNode *curNode,
 	Coord3D toPos = *nextNode->getPosition();
 
 	Int i;
-	for (i=0; i<2; i++) {
+	for (int i =0; i<2; i++) {
 		Int ret = iterateCellsAlongLine(fromPos, toPos, LAYER_GROUND, segmentIntersectsBuildingCallback, &info);
 		if (ret!=0 && info.theTallBuilding) {
 			// see if toPos is inside the radius of the tall building.
@@ -9158,8 +9158,8 @@ void Pathfinder::updateGoal( Object *obj, const Coord3D *newGoalPos, PathfindLay
 	ICoord2D cellNdx;
 
 	Bool warn = true;
-	for (i=newCell.x-radius; i<newCell.x+numCellsAbove; i++) {
-		for (j=newCell.y-radius; j<newCell.y+numCellsAbove; j++) {
+	for (int i =newCell.x-radius; i<newCell.x+numCellsAbove; i++) {
+		for (int j =newCell.y-radius; j<newCell.y+numCellsAbove; j++) {
 			PathfindCell	*cell;
 			if (doLayer) {
 				cell = getCell(layer, i, j);
@@ -9234,8 +9234,8 @@ void Pathfinder::updateAircraftGoal( Object *obj, const Coord3D *newGoalPos)
 	Int i,j;
 	ICoord2D cellNdx;
 
-	for (i=newCell.x-radius; i<newCell.x+numCellsAbove; i++) {
-		for (j=newCell.y-radius; j<newCell.y+numCellsAbove; j++) {
+	for (int i =newCell.x-radius; i<newCell.x+numCellsAbove; i++) {
+		for (int j =newCell.y-radius; j<newCell.y+numCellsAbove; j++) {
 			PathfindCell	*cell;
 			cell = getCell(LAYER_GROUND, i, j);
 			if (cell) {
@@ -9280,8 +9280,8 @@ void Pathfinder::removeGoal( Object *obj)
 	ai->setPathfindGoalCell(newCell);
 	Int i,j;
 	if (goalCell.x>=0 && goalCell.y>=0) {
-		for (i=goalCell.x-radius; i<goalCell.x+numCellsAbove; i++) {
-			for (j=goalCell.y-radius; j<goalCell.y+numCellsAbove; j++) {
+		for (int i =goalCell.x-radius; i<goalCell.x+numCellsAbove; i++) {
+			for (int j =goalCell.y-radius; j<goalCell.y+numCellsAbove; j++) {
 				PathfindCell	*cell = getCell(LAYER_GROUND, i, j);
 				if (cell) {
 					if (cell->getGoalUnit()==obj->getID()) {
@@ -9376,8 +9376,8 @@ void Pathfinder::updatePos( Object *obj, const Coord3D *newPos)
 	ICoord2D cellNdx;
 	//DEBUG_LOG(("Updating unit pos at cell %d, %d\n", newCell.x, newCell.y));
 	if (curCell.x>=0 && curCell.y>=0) {
-		for (i=curCell.x-radius; i<curCell.x+numCellsAbove; i++) {
-			for (j=curCell.y-radius; j<curCell.y+numCellsAbove; j++) {
+		for (int i =curCell.x-radius; i<curCell.x+numCellsAbove; i++) {
+			for (int j =curCell.y-radius; j<curCell.y+numCellsAbove; j++) {
 				cellNdx.x = i;
 				cellNdx.y = j;
 				PathfindCell	*cell = getCell(layer, i, j);
@@ -9398,8 +9398,8 @@ void Pathfinder::updatePos( Object *obj, const Coord3D *newPos)
 			}
 		}
 	}
-	for (i=newCell.x-radius; i<newCell.x+numCellsAbove; i++) {
-		for (j=newCell.y-radius; j<newCell.y+numCellsAbove; j++) {
+	for (int i =newCell.x-radius; i<newCell.x+numCellsAbove; i++) {
+		for (int j =newCell.y-radius; j<newCell.y+numCellsAbove; j++) {
 			PathfindCell	*cell;
 			cellNdx.x = i;
 			cellNdx.y = j;
@@ -9447,8 +9447,8 @@ void Pathfinder::removePos( Object *obj)
 	ICoord2D cellNdx;
 	//DEBUG_LOG(("Updating unit pos at cell %d, %d\n", newCell.x, newCell.y));
 	if (curCell.x>=0 && curCell.y>=0) {
-		for (i=curCell.x-radius; i<curCell.x+numCellsAbove; i++) {
-			for (j=curCell.y-radius; j<curCell.y+numCellsAbove; j++) {
+		for (int i =curCell.x-radius; i<curCell.x+numCellsAbove; i++) {
+			for (int j =curCell.y-radius; j<curCell.y+numCellsAbove; j++) {
 				cellNdx.x = i;
 				cellNdx.y = j;
 				PathfindCell	*cell = getCell(layer, i, j);
@@ -9509,8 +9509,8 @@ if (g_UT_startTiming) return false;
 		ICoord2D curCell;
 		worldToCell(node->getPosition(), &curCell);
 		Int i, j;
-		for (i=curCell.x-radius; i<curCell.x+numCellsAbove; i++) {
-			for (j=curCell.y-radius; j<curCell.y+numCellsAbove; j++) {
+		for (int i =curCell.x-radius; i<curCell.x+numCellsAbove; i++) {
+			for (int j =curCell.y-radius; j<curCell.y+numCellsAbove; j++) {
 				PathfindCell	*cell = getCell(node->getLayer(), i, j);
 				if (cell) {
 					if (cell->getPosUnit()==INVALID_ID) {
@@ -9553,7 +9553,7 @@ if (g_UT_startTiming) return false;
 Path *Pathfinder::getMoveAwayFromPath(Object* obj, Object *otherObj,
 											Path *pathToAvoid, Object *otherObj2, Path *pathToAvoid2)
 {
-	if (m_isMapReady == false) return false; // Should always be ok.
+	if (m_isMapReady == false) return NULL; // Should always be ok.
 #if defined _DEBUG || defined _INTERNAL
 	Int startTimeMS = ::GetTickCount();
 #endif
@@ -9585,9 +9585,9 @@ Path *Pathfinder::getMoveAwayFromPath(Object* obj, Object *otherObj,
 	worldToCell(&startPos, &startCellNdx);
 	PathfindCell *parentCell = getClippedCell( obj->getLayer(), obj->getPosition() ); 
 	if (parentCell == NULL)
-		return false;
+		return NULL;
 	if (!obj->getAIUpdateInterface()) {
-		return false; // shouldn't happen, but can't move it without an ai.
+		return NULL; // shouldn't happen, but can't move it without an ai.
 	}
 	const LocomotorSet& locomotorSet = obj->getAIUpdateInterface()->getLocomotorSet();
 
@@ -9608,7 +9608,7 @@ Path *Pathfinder::getMoveAwayFromPath(Object* obj, Object *otherObj,
 	}
 
 	if (!parentCell->allocateInfo(startCellNdx)) {
-		return false;
+		return NULL;
 	}
 	parentCell->startPathfind(NULL);
 
@@ -9759,15 +9759,15 @@ Path *Pathfinder::patchPath( const Object *obj, const LocomotorSet& locomotorSet
 	//worldToCell(obj->getPosition(), &startCellNdx);
 	PathfindCell *parentCell = getClippedCell( obj->getLayer(), &currentPosition); 
 	if (parentCell == NULL)
-		return false;
+		return NULL;
 	if (!obj->getAIUpdateInterface()) {
-		return false; // shouldn't happen, but can't move it without an ai.
+		return NULL; // shouldn't happen, but can't move it without an ai.
 	}
 
 	m_isTunneling = false;
 	
 	if (!parentCell->allocateInfo(startCellNdx)) {
-		return false;
+		return NULL;
 	}
 	parentCell->startPathfind( NULL);
 
@@ -9904,7 +9904,7 @@ Path *Pathfinder::patchPath( const Object *obj, const LocomotorSet& locomotorSet
 		candidateGoal->releaseInfo();
 	}
 	cleanOpenAndClosedLists();
-	return false;
+	return NULL;
 }
 
 
@@ -9941,7 +9941,7 @@ Path *Pathfinder::findAttackPath( const Object *obj, const LocomotorSet& locomot
 			AS_INT(victimPos->x), AS_INT(victimPos->y), AS_INT(victimPos->z)));
 	}
 	*/
-	if (m_isMapReady == false) return false; // Should always be ok.
+	if (m_isMapReady == false) return NULL; // Should always be ok.
 #if defined _DEBUG || defined _INTERNAL
 //	Int startTimeMS = ::GetTickCount();
 #endif
@@ -9961,7 +9961,7 @@ Path *Pathfinder::findAttackPath( const Object *obj, const LocomotorSet& locomot
 		delta.x *= PATHFIND_CELL_SIZE_F;
 		delta.y *= PATHFIND_CELL_SIZE_F;
 		Int i;
-		for (i=1; i<10; i++) {
+		for (int i =1; i<10; i++) {
 			Coord3D testPos = curPos;
 			testPos.x += delta.x*i*0.5f;
 			testPos.y += delta.y*i*0.5f;
@@ -10026,14 +10026,14 @@ Path *Pathfinder::findAttackPath( const Object *obj, const LocomotorSet& locomot
 	worldToCell(&objPos, &startCellNdx);
 	PathfindCell *parentCell = getClippedCell( obj->getLayer(), &objPos ); 
 	if (parentCell == NULL)
-		return false;
+		return NULL;
 	if (!obj->getAIUpdateInterface()) {
-		return false; // shouldn't happen, but can't move it without an ai.
+		return NULL; // shouldn't happen, but can't move it without an ai.
 	}
 	const PathfindCell *startCell = parentCell;
 
 	if (!parentCell->allocateInfo(startCellNdx)) {
-		return false;
+		return NULL;
 	}
 	parentCell->startPathfind(NULL);
 
@@ -10047,7 +10047,7 @@ Path *Pathfinder::findAttackPath( const Object *obj, const LocomotorSet& locomot
 		return NULL;
 
  	if (!goalCell->allocateInfo(victimCellNdx)) {
-		return false;
+		return NULL;
 	}
 
 	// initialize "open" list to contain start cell
@@ -10202,7 +10202,7 @@ Path *Pathfinder::findAttackPath( const Object *obj, const LocomotorSet& locomot
 		goalCell->releaseInfo();
 	}
 	cleanOpenAndClosedLists();
-	return false;
+	return NULL;
 }
 
 /** Find a short, valid path to a location that is safe from the repulsors.  */
@@ -10210,7 +10210,7 @@ Path *Pathfinder::findSafePath( const Object *obj, const LocomotorSet& locomotor
 		const Coord3D *from, const Coord3D* repulsorPos1, const Coord3D* repulsorPos2, Real repulsorRadius) 
 {
 	//CRCDEBUG_LOG(("Pathfinder::findSafePath()\n"));
-	if (m_isMapReady == false) return false; // Should always be ok.
+	if (m_isMapReady == false) return NULL; // Should always be ok.
 #if defined _DEBUG || defined _INTERNAL
 //	Int startTimeMS = ::GetTickCount();
 #endif
@@ -10236,12 +10236,12 @@ Path *Pathfinder::findSafePath( const Object *obj, const LocomotorSet& locomotor
 	worldToCell(obj->getPosition(), &startCellNdx);
 	PathfindCell *parentCell = getClippedCell( obj->getLayer(), obj->getPosition() ); 
 	if (parentCell == NULL)
-		return false;
+		return NULL;
 	if (!obj->getAIUpdateInterface()) {
-		return false; // shouldn't happen, but can't move it without an ai.
+		return NULL; // shouldn't happen, but can't move it without an ai.
 	}
 	if (!parentCell->allocateInfo(startCellNdx)) {
-		return false;
+		return NULL;
 	}
 	parentCell->startPathfind( NULL);
 
@@ -10360,7 +10360,7 @@ Path *Pathfinder::findSafePath( const Object *obj, const LocomotorSet& locomotor
 #endif
 	m_isTunneling = false;
 	cleanOpenAndClosedLists();
-	return false;
+	return NULL;
 }
 
 //-----------------------------------------------------------------------------

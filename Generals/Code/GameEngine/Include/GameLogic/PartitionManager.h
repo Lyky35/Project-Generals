@@ -95,10 +95,10 @@ class ThingTemplate;
 class GhostObject;
 class CommandButton;
 
-enum CommandSourceType;
+enum CommandSourceType : int;
 
 // ----------------------------------------------------------------------------------------------
-enum ValueOrThreat
+enum ValueOrThreat : int
 {
 	VOT_CashValue = 1,
 	VOT_ThreatValue,
@@ -106,7 +106,7 @@ enum ValueOrThreat
 };
 
 // ----------------------------------------------------------------------------------------------
-enum FindPositionFlags
+enum FindPositionFlags : int
 {
 	FPF_NONE															= 0x00000000,		// no options, default behavior
 	FPF_IGNORE_WATER											= 0x00000001,		// a position found underwater is ok
@@ -148,7 +148,7 @@ struct FindPositionOptions
 //=====================================
 /** */
 //=====================================
-enum DistanceCalculationType
+enum DistanceCalculationType : int
 {
 	FROM_CENTER_2D					= 0,	///< measure from Object center in 2d.
 	FROM_CENTER_3D					= 1,	///< measure from Object center in 3d.
@@ -518,7 +518,7 @@ public:
 		for (Int i=0; i<MAX_PLAYER_COUNT; i++)
 			if (m_everSeenByPlayer[i] && m_shroudedness[i] == OBJECTSHROUD_FOGGED)
 				return i;
-		return i;
+		return -1;
 	}
 
 

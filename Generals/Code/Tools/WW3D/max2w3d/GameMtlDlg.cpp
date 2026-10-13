@@ -184,7 +184,7 @@ void GameMtlDlg::SetThing(ReferenceTarget *m)
 	int pass;
 
 	// destroy our old pass dialogs
-	for (pass=0; pass<TheMtl->Get_Pass_Count();pass++) {
+	for (int pass =0; pass<TheMtl->Get_Pass_Count();pass++) {
 		delete PassDialog[pass];
 		PassDialog[pass] = NULL;
 	}
@@ -195,7 +195,7 @@ void GameMtlDlg::SetThing(ReferenceTarget *m)
 	TheMtl->SetParamDlg(this);
 
 	// build a new set of pass dialogs
-	for (pass=0; pass<TheMtl->Get_Pass_Count(); pass++) {
+	for (int pass =0; pass<TheMtl->Get_Pass_Count(); pass++) {
 		PassDialog[pass] = new GameMtlPassDlg(HwndEdit, IParams, TheMtl, pass);
 	}
 
@@ -577,7 +577,7 @@ void GameMtlDlg::Set_Pass_Count_Dialog(void)
 
 			TheMtl->Set_Pass_Count(res);
 
-			for(i = 0; i < TheMtl->Get_Pass_Count(); i++)
+			for (int i = 0; i < TheMtl->Get_Pass_Count(); i++)
 			{
 				PassDialog[i] = new GameMtlPassDlg(HwndEdit, IParams, TheMtl, i); 
 			}

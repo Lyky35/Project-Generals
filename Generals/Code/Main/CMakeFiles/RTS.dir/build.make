@@ -72,60 +72,59 @@ include Generals/Code/Main/CMakeFiles/RTS.dir/flags.make
 Generals/Code/Main/CMakeFiles/RTS.dir/codegen:
 .PHONY : Generals/Code/Main/CMakeFiles/RTS.dir/codegen
 
-Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.obj: Generals/Code/Main/CMakeFiles/RTS.dir/flags.make
-Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.obj: Generals/Code/Main/CMakeFiles/RTS.dir/includes_CXX.rsp
-Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.obj: Generals/Code/Main/WinMain.cpp
-Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.obj: Generals/Code/Main/CMakeFiles/RTS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Main && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.obj -MF CMakeFiles/RTS.dir/WinMain.cpp.obj.d -o CMakeFiles/RTS.dir/WinMain.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Main/WinMain.cpp
+Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.o: Generals/Code/Main/CMakeFiles/RTS.dir/flags.make
+Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.o: Generals/Code/Main/WinMain.cpp
+Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.o: Generals/Code/Main/CMakeFiles/RTS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Main && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.o -MF CMakeFiles/RTS.dir/WinMain.cpp.o.d -o CMakeFiles/RTS.dir/WinMain.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Main/WinMain.cpp
 
 Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RTS.dir/WinMain.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Main && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Main/WinMain.cpp > CMakeFiles/RTS.dir/WinMain.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Main && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Main/WinMain.cpp > CMakeFiles/RTS.dir/WinMain.cpp.i
 
 Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RTS.dir/WinMain.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Main && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Main/WinMain.cpp -o CMakeFiles/RTS.dir/WinMain.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Main && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Main/WinMain.cpp -o CMakeFiles/RTS.dir/WinMain.cpp.s
 
 # Object files for target RTS
 RTS_OBJECTS = \
-"CMakeFiles/RTS.dir/WinMain.cpp.obj"
+"CMakeFiles/RTS.dir/WinMain.cpp.o"
 
 # External object files for target RTS
 RTS_EXTERNAL_OBJECTS =
 
-bin/RTS.exe: Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.obj
-bin/RTS.exe: Generals/Code/Main/CMakeFiles/RTS.dir/build.make
-bin/RTS.exe: lib/libGameEngineDevice.a
-bin/RTS.exe: lib/libGameEngine.a
-bin/RTS.exe: lib/libWW3D2.a
-bin/RTS.exe: lib/libWWDebug.a
-bin/RTS.exe: lib/libWWLib.a
-bin/RTS.exe: lib/libWWUtil.a
-bin/RTS.exe: lib/libWWSaveLoad.a
-bin/RTS.exe: lib/libCompression.a
-bin/RTS.exe: lib/libVulkanRenderer.a
-bin/RTS.exe: lib/libWWAudio.a
-bin/RTS.exe: lib/libWPAudio.a
-bin/RTS.exe: lib/libWW3D2.a
-bin/RTS.exe: lib/libWWAudio.a
-bin/RTS.exe: lib/libVulkanRenderer.a
-bin/RTS.exe: lib/libWWSaveLoad.a
-bin/RTS.exe: lib/libWWMath.a
-bin/RTS.exe: lib/libWWSaveLoad.a
-bin/RTS.exe: lib/libWWMath.a
-bin/RTS.exe: lib/libWWDebug.a
-bin/RTS.exe: lib/libWWLib.a
-bin/RTS.exe: lib/libWWDebug.a
-bin/RTS.exe: lib/libWWLib.a
-bin/RTS.exe: Generals/Code/Main/CMakeFiles/RTS.dir/linkLibs.rsp
-bin/RTS.exe: Generals/Code/Main/CMakeFiles/RTS.dir/objects1.rsp
-bin/RTS.exe: Generals/Code/Main/CMakeFiles/RTS.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../../../bin/RTS.exe"
+bin/RTS: Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.o
+bin/RTS: Generals/Code/Main/CMakeFiles/RTS.dir/build.make
+bin/RTS: Generals/Code/Main/CMakeFiles/RTS.dir/compiler_depend.ts
+bin/RTS: lib/libGameEngineDevice.a
+bin/RTS: lib/libGameEngine.a
+bin/RTS: lib/libWW3D2.a
+bin/RTS: lib/libWWDebug.a
+bin/RTS: lib/libWWLib.a
+bin/RTS: lib/libWWUtil.a
+bin/RTS: lib/libWWSaveLoad.a
+bin/RTS: lib/libCompression.a
+bin/RTS: lib/libVulkanRenderer.a
+bin/RTS: lib/libWWAudio.a
+bin/RTS: lib/libWPAudio.a
+bin/RTS: lib/libWW3D2.a
+bin/RTS: lib/libWWAudio.a
+bin/RTS: lib/libVulkanRenderer.a
+bin/RTS: /usr/lib/libvulkan.so
+bin/RTS: lib/libWWSaveLoad.a
+bin/RTS: lib/libWWMath.a
+bin/RTS: lib/libWWSaveLoad.a
+bin/RTS: lib/libWWMath.a
+bin/RTS: lib/libWWDebug.a
+bin/RTS: lib/libWWLib.a
+bin/RTS: lib/libWWDebug.a
+bin/RTS: lib/libWWLib.a
+bin/RTS: Generals/Code/Main/CMakeFiles/RTS.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../../../bin/RTS"
 	cd /home/cyklon/Work/Project-Generals/Generals/Code/Main && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/RTS.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-Generals/Code/Main/CMakeFiles/RTS.dir/build: bin/RTS.exe
+Generals/Code/Main/CMakeFiles/RTS.dir/build: bin/RTS
 .PHONY : Generals/Code/Main/CMakeFiles/RTS.dir/build
 
 Generals/Code/Main/CMakeFiles/RTS.dir/clean:

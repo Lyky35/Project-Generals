@@ -11,31 +11,43 @@ class VkTexture;
 class VkDescriptorAllocator
 {
 public:
-	VkDescriptorAllocator();
-	~VkDescriptorAllocator();
+    VkDescriptorAllocator();
+    ~VkDescriptorAllocator();
 
-	VkDescriptorAllocator(const VkDescriptorAllocator &) = delete;
-	VkDescriptorAllocator &operator=(const VkDescriptorAllocator &) = delete;
+    VkDescriptorAllocator(const VkDescriptorAllocator &) = delete;
+    VkDescriptorAllocator &operator=(const VkDescriptorAllocator &) = delete;
 
-	bool Init(VulkanDevice *device, uint32_t maxSets = 4096);
-	void Shutdown();
+    bool Init(VulkanDevice *device, uint32_t maxSets = 4096);
+    void Shutdown();
 
-	VkDescriptorSet Allocate(VkDescriptorSetLayout layout);
+    bool EnsurePool();
+    void ResetFrame();
+
+    VkDescriptorSet Allocate(VkDescriptorSetLayout layout);
+
+    VkDescriptorSet AllocateTextureSet(VkDescriptorSetLayout layout,
+        VkTexture *tex0, bool filtered0, bool repeat0,
+        VkTexture *tex1, bool filtered1, bool repeat1);
+    VkDescriptorSet AllocateFrameSet(VkDescriptorSetLayout layout, VkBuffer buffer,
+        uint32_t offset, uint32_t range);
 
 private:
-	VulkanDevice *m_device;
-	VkDescriptorPool m_pool;
+    VulkanDevice *m_device;
+    VkDescriptorPool m_pool;
+    std::vector<VkDescriptorPool> m_pools;
+    VkDescriptorSetLayout m_textureLayout;
+    uint32_t m_maxSets;
 };
 
 class VkDescriptorSetLayoutBuilder
 {
 public:
-	VkDescriptorSetLayoutBuilder();
-	~VkDescriptorSetLayoutBuilder();
+    VkDescriptorSetLayoutBuilder();
+    ~VkDescriptorSetLayoutBuilder();
 
-	VkDescriptorSetLayoutBuilder &AddBinding(uint32_t binding, VkDescriptorType type, VkShaderStageFlags stages, uint32_t count = 1);
-	VkDescriptorSetLayout Build(VulkanDevice *device);
+    VkDescriptorSetLayoutBuilder &AddBinding(uint32_t binding, VkDescriptorType type, VkShaderStageFlags stages, uint32_t count = 1);
+    VkDescriptorSetLayout Build(VulkanDevice *device);
 
 private:
-	std::vector<VkDescriptorSetLayoutBinding> m_bindings;
+    std::vector<VkDescriptorSetLayoutBinding> m_bindings;
 };

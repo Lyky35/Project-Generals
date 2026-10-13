@@ -3,44 +3,68 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 
-// File system stubs
-typedef FILE File;
+// File class - wraps FILE* with C++ interface
+class File
+{
+public:
+    enum {
+        START = SEEK_SET,
+        CURRENT = SEEK_CUR,
+        END = SEEK_END
+    };
 
-static inline File* File_Open(const char *path, const char *mode) {
-    return fopen(path, mode);
-}
+    enum {
+        READ = 0,
+        WRITE = 1,
+        BINARY = 0x8000
+    };
 
-static inline void File_Close(File *file) {
-    if (file) fclose(file);
-}
+    File() : m_fp(NULL) { m_name[0] = 0; }
+    ~File() { close(); }
 
-static inline size_t File_Read(void *buffer, size_t size, size_t count, File *file) {
-    return fread(buffer, size, count, file);
-}
+    int open(const char *path, int mode = READ) {
+        strncpy(m_name, path, sizeof(m_name)-1);
+        const char *m = (mode & WRITE) ? ((mode & BINARY) ? "wb" : "w")
+                                       : ((mode & BINARY) ? "rb" : "r");
+        m_fp = fopen(path, m);
+        return m_fp ? 0 : -1;
+    }
 
-static inline size_t File_Write(const void *buffer, size_t size, size_t count, File *file) {
-    return fwrite(buffer, size, count, file);
-}
+    void close() {
+        if (m_fp) { fclose(m_fp); m_fp = NULL; }
+    }
 
-static inline int File_Seek(File *file, long offset, int origin) {
-    return fseek(file, offset, origin);
-}
+    int read(void *buf, int bytes) {
+        return m_fp ? (int)fread(buf, 1, bytes, m_fp) : 0;
+    }
 
-static inline long File_Tell(File *file) {
-    return ftell(file);
-}
+    int write(const void *buf, int bytes) {
+        return m_fp ? (int)fwrite(buf, 1, bytes, m_fp) : 0;
+    }
 
-static inline int File_Eof(File *file) {
-    return feof(file);
-}
+    long seek(long offset, int origin = START) {
+        return m_fp ? fseek(m_fp, offset, origin) : -1;
+    }
 
-static inline int File_Size(File *file) {
-    long pos = ftell(file);
-    fseek(file, 0, SEEK_END);
-    long size = ftell(file);
-    fseek(file, pos, SEEK_SET);
-    return (int)size;
-}
+    long tell() { return m_fp ? ftell(m_fp) : -1; }
+    long position() { return tell(); }
+    long size() {
+        if (!m_fp) return 0;
+        long pos = ftell(m_fp);
+        fseek(m_fp, 0, SEEK_END);
+        long sz = ftell(m_fp);
+        fseek(m_fp, pos, SEEK_SET);
+        return sz;
+    }
+    int eof() { return m_fp ? feof(m_fp) : 1; }
+    const char *getName() const { return m_name; }
+    bool isOpen() const { return m_fp != NULL; }
+
+private:
+    FILE *m_fp;
+    char m_name[256];
+};
 
 #endif

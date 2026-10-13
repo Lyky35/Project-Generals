@@ -53,16 +53,16 @@ DisconnectManager::DisconnectManager()
 	m_haveNotifiedOtherPlayersOfCurrentFrame = FALSE;
 	m_timeOfDisconnectScreenOn = 0;
 
-	for( i = 0; i < MAX_SLOTS; ++i) {
+	for (Int i = 0; i < MAX_SLOTS; ++i) {
 		m_packetRouterFallback[i] = 0;
 	}
 	
 	m_packetRouterTimeout = 0;
-	for( i = 0; i < MAX_SLOTS -1; ++i) {
+	for (Int i = 0; i < MAX_SLOTS -1; ++i) {
 		m_playerTimeouts[i] = 0;
 	}
 
-	for( i = 0; i < MAX_SLOTS; ++i) {
+	for (Int i = 0; i < MAX_SLOTS; ++i) {
 		for (Int j = 0; j < MAX_SLOTS; ++j) {
 			m_playerVotes[i][j].vote = FALSE;
 			m_playerVotes[i][j].frame = 0;
@@ -89,7 +89,7 @@ void DisconnectManager::init() {
 		}
 	}
 
-	for (i = 0; i < MAX_SLOTS; ++i) {
+	for (Int i = 0; i < MAX_SLOTS; ++i) {
 		m_disconnectFrames[i] = 0;
 		m_disconnectFramesReceived[i] = FALSE;
 	}

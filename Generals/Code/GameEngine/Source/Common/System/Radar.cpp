@@ -306,7 +306,7 @@ void Radar::update( void )
 	// exists ... check to see if it's time for that event to die and if so, just clear
 	// out the active status
 	//
-	for( i = 0; i < MAX_RADAR_EVENTS; i++ )
+	for (int i = 0; i < MAX_RADAR_EVENTS; i++ )
 	{
 
 		if( m_event[ i ].active == TRUE && m_event[ i ].createFrame && 
@@ -356,8 +356,8 @@ void Radar::newMap( TerrainLogic *terrain )
 	m_waterAverageZ = 0.0f;
 	ICoord2D radarPoint;
 	Coord3D worldPoint;
-	for( y = 0; y < RADAR_CELL_HEIGHT; y++ )
-		for( x = 0; x < RADAR_CELL_WIDTH; x++ )
+	for (int y = 0; y < RADAR_CELL_HEIGHT; y++ )
+		for (int x = 0; x < RADAR_CELL_WIDTH; x++ )
 		{
 
 			radarPoint.x = x;
@@ -1010,7 +1010,8 @@ void Radar::createEvent( const Coord3D *world, RadarEventType type, Real seconds
 
 	// lookup the colors we are to used based on the event 
 	RGBAColorInt color[ 2 ];
-	for( Int i = 0; radarColorLookupTable[ i ].event != RADAR_EVENT_INVALID; ++i )
+	Int i;
+	for (int i = 0; radarColorLookupTable[ i ].event != RADAR_EVENT_INVALID; ++i )
 	{
 
 		if( radarColorLookupTable[ i ].event == type )

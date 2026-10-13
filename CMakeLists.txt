@@ -10,6 +10,13 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
+# Workaround: CMake ABI detection fails for MinGW cross-compilation from Linux
+# because the .loc file lacks the .exe extension, causing COPY_FILE to fail.
+# Set the pointer size manually (we know it's 64-bit x86_64).
+if(NOT CMAKE_SIZEOF_VOID_P)
+    set(CMAKE_SIZEOF_VOID_P 8)
+endif()
+
 if(NOT CMAKE_SIZEOF_VOID_P EQUAL 8)
     message(FATAL_ERROR "This project requires x64 (64-bit) build. Use -A x64 with MSVC.")
 endif()
@@ -66,10 +73,10 @@ include_directories(
     ${GAME_CODE_DIR}/Libraries/Include/Granny
     ${GAME_CODE_DIR}/Libraries/Include/MSS
     ${GAME_CODE_DIR}/Libraries/Source/GameSpy/Stub
+    ${GAME_CODE_DIR}/Libraries/Source
     ${GAME_CODE_DIR}/Libraries/Source/DX8Compat
     ${GAME_CODE_DIR}/Libraries/Source/VulkanRenderer
-    /usr/include/AL
-    /usr/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/include
     ${LIB_INCLUDE_DIR}/ZLib
 )
 

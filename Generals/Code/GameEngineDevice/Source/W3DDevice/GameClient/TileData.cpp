@@ -88,14 +88,14 @@ void TileData::updateMips(void)
 void TileData::doMip(UnsignedByte *pHiRes, Int hiRow, UnsignedByte *pLoRes) 
 {
 	Int i, j;
-	for (i=0; i<hiRow; i+=2) {
-		for (j=0; j<hiRow; j+=2) {
+	for (int i =0; i<hiRow; i+=2) {
+		for (int j =0; j<hiRow; j+=2) {
 			Int pxl;
 			Int ndx = (j*hiRow+i)*TILE_BYTES_PER_PIXEL;
 			Int loNdx = (j/2)*(hiRow/2) + (i/2);
 			loNdx *= TILE_BYTES_PER_PIXEL;
 			Int p;
-			for (p=0; p<TILE_BYTES_PER_PIXEL; p++,ndx++,loNdx++) {
+			for (int p =0; p<TILE_BYTES_PER_PIXEL; p++,ndx++,loNdx++) {
 				pxl = pHiRes[ndx] + pHiRes[ndx+TILE_BYTES_PER_PIXEL] + pHiRes[ndx+TILE_BYTES_PER_PIXEL*hiRow] + pHiRes[ndx+TILE_BYTES_PER_PIXEL*hiRow+TILE_BYTES_PER_PIXEL] +2;
 				pxl /= 4;
 				pLoRes[loNdx] = pxl;

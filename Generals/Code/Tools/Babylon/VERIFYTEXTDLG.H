@@ -1,0 +1,1 @@
+VerifyTextDlg.h

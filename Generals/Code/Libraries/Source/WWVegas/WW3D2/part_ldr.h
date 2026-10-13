@@ -41,6 +41,9 @@
 #define __PART_EMT_LDR_H
 
 
+#include <algorithm>
+using std::max;
+using std::min;
 #include "proto.h"
 #include "rendobj.h"
 #include "w3d_file.h"

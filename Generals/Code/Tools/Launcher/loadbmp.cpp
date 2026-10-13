@@ -112,7 +112,7 @@ bit8 LoadBmp::init(char *filename,HWND hwnd)
 
   palData=(char *)lpHeaderMem->bmiColors;
 
-  for (i=0; i<256; i++)
+  for (int i =0; i<256; i++)
   {
     lpLogPalette->palPalEntry[i].peRed=*palData++;
     lpLogPalette->palPalEntry[i].peGreen=*palData++;

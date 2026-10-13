@@ -84,7 +84,7 @@ BOOL EditAction::OnInitDialog()
 	CComboBox *pCmbo = (CComboBox *)GetDlgItem(IDC_CONDITION_TYPE);
 	pCmbo->ResetContent();
 	Int i;
-	for (i=0; i<ScriptAction::NUM_ITEMS; i++) {
+	for (int i =0; i<ScriptAction::NUM_ITEMS; i++) {
 		const ActionTemplate *pTemplate = TheScriptEngine->getActionTemplate(i);
 		Int ndx = pCmbo->AddString(pTemplate->getName().str());
 		if (i == m_action->getActionType()) {
@@ -133,7 +133,7 @@ void EditAction::formatScriptActionText(Int parameterNdx)
 	AsciiString warningText;
 	AsciiString informationText;
 	Int i;
-	for (i=0; i<MAX_PARMS; i++) {
+	for (int i =0; i<MAX_PARMS; i++) {
 		if (i<numStrings) {
 			curChar += strings[i].getLength();
 		}
@@ -202,7 +202,7 @@ BOOL EditAction::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 				AsciiString strings[MAX_PARMS];
 				Int numStrings = m_action->getUiStrings(strings);
 				Int i;
-				for (i=0; i<MAX_PARMS; i++) 
+				for (int i =0; i<MAX_PARMS; i++) 
 				{
 					if (i<numStrings) 
 					{
@@ -290,7 +290,7 @@ void EditAction::OnSelchangeScriptActionType()
 	CString str; 
 	pCombo->GetWindowText(str);
 	Int i;
-	for (i=0; i<ScriptAction::NUM_ITEMS; i++) {
+	for (int i =0; i<ScriptAction::NUM_ITEMS; i++) {
 		const ActionTemplate *pTemplate = TheScriptEngine->getActionTemplate(i);
 		if (str == pTemplate->getName().str()) {
 			index = i;

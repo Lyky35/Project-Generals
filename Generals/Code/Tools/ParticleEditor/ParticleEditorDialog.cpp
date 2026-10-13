@@ -74,15 +74,15 @@ m_moreParmsDialog(MoreParmsDialog::IDD, this)
 DebugWindowDialog::~DebugWindowDialog()
 {
 	int i;
-	for (i = 0; i < NUM_EMISSION_TYPES; ++i) {
+	for (int i = 0; i < NUM_EMISSION_TYPES; ++i) {
 		delete m_emissionTypePanels[i];
 	}
 
-	for (i = 0; i < NUM_VELOCITY_TYPES; ++i) {
+	for (int i = 0; i < NUM_VELOCITY_TYPES; ++i) {
 		delete m_velocityTypePanels[i];
 	}
 
-	for (i = 0; i < NUM_PARTICLE_TYPES; ++i) {
+	for (int i = 0; i < NUM_PARTICLE_TYPES; ++i) {
 		delete m_particleTypePanels[i];
 	}
 }
@@ -153,7 +153,7 @@ void DebugWindowDialog::InitPanel( void )
 		CRect rect;
 		pWnd->GetWindowRect(&rect);
 		ScreenToClient(&rect);
-		for (j = 0; j < NUM_EMISSION_TYPES; ++j) {
+		for (int j = 0; j < NUM_EMISSION_TYPES; ++j) {
 			m_emissionTypePanels[j]->Create(m_emissionTypePanels[j]->GetIDD(), this);
 			m_emissionTypePanels[j]->InitPanel();
 			m_emissionTypePanels[j]->ShowWindow(SW_HIDE);
@@ -168,7 +168,7 @@ void DebugWindowDialog::InitPanel( void )
 		CRect rect;
 		pWnd->GetWindowRect(&rect);
 		ScreenToClient(&rect);
-		for (j = 0; j < NUM_VELOCITY_TYPES; ++j) {
+		for (int j = 0; j < NUM_VELOCITY_TYPES; ++j) {
 			m_velocityTypePanels[j]->Create(m_velocityTypePanels[j]->GetIDD(), this);
 			m_velocityTypePanels[j]->InitPanel();
 			m_velocityTypePanels[j]->ShowWindow(SW_HIDE);
@@ -183,7 +183,7 @@ void DebugWindowDialog::InitPanel( void )
 		CRect rect;
 		pWnd->GetWindowRect(&rect);
 		ScreenToClient(&rect);
-		for (j = 0; j < NUM_PARTICLE_TYPES; ++j) {
+		for (int j = 0; j < NUM_PARTICLE_TYPES; ++j) {
 			m_particleTypePanels[j]->Create(m_particleTypePanels[j]->GetIDD(), this);
 			m_particleTypePanels[j]->InitPanel();
 			m_particleTypePanels[j]->ShowWindow(SW_HIDE);

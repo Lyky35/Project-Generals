@@ -39,6 +39,9 @@
 //#define ENABLE_CATEGORY_LOG
 //#define ENABLE_STRIPING
 
+#ifndef DEBUG_CRASH
+#define DEBUG_CRASH(x) {}
+#endif
 #include "dx8renderer.h"
 #include "dx8wrapper.h"
 #include "dx8polygonrenderer.h"
@@ -272,7 +275,7 @@ void DX8FVFCategoryContainer::Remove_Texture_Category(DX8TextureCategoryClass* t
 	for (unsigned pass=0;pass<passes;++pass) {
 		texture_category_list[pass].Remove(tex_category);
 	}
-	for (pass=0; pass<passes; pass++) {
+	for (int pass=0; pass<passes; pass++) {
 		// If any of the texture category lists has anything in it, no need to delete this container
 		if (texture_category_list[pass].Peek_Head() != NULL) return;
 	}
@@ -990,7 +993,7 @@ void DX8RigidFVFCategoryContainer::Add_Mesh(MeshModelClass* mmc_)
 	const Vector3 *norms=split_table.Get_Vertex_Normal_Array();
 	const unsigned *diffuse=split_table.Get_Color_Array(0);
 	const unsigned *specular=split_table.Get_Color_Array(1);
-	for (i=0; i<split_table.Get_Vertex_Count(); i++)
+	for (int i =0; i<split_table.Get_Vertex_Count(); i++)
 	{
 		*(Vector3*)(vb+fi.Get_Location_Offset())=locs[i];
 		
@@ -1051,7 +1054,7 @@ void DX8RigidFVFCategoryContainer::Add_Mesh(MeshModelClass* mmc_)
 		unsigned char *vb=(unsigned char*) l.Get_Vertex_Array();
 		const Vector2*uvs=split_table.Get_UV_Array(j);
 		if (uvs) {
-			for (i=0; i<split_table.Get_Vertex_Count(); i++)
+			for (int i =0; i<split_table.Get_Vertex_Count(); i++)
 			{
 				*(Vector2*)(vb+fi.Get_Tex_Offset(j))=uvs[i];
 				vb+=fi.Get_FVF_Size();
@@ -1553,7 +1556,7 @@ unsigned DX8TextureCategoryClass::Add_Mesh(
 					for (unsigned i=0;i<index_count;++i) {
 						unsigned short idx;
 
-						idx=unsigned short(strip[i+1]);
+						idx=(unsigned short)(strip[i+1]);
 						vmin=MIN(vmin,idx);
 						vmax=MAX(vmax,idx);
 						*dst_indices++=idx;
@@ -1600,19 +1603,19 @@ unsigned DX8TextureCategoryClass::Add_Mesh(
 				if (all_textures_same && Equal_Material(mat,material) && shd==shader) {
 					unsigned short idx;
 
-					idx=unsigned short(src_indices[i][0]+vertex_offset);
+					idx=(unsigned short)(src_indices[i][0]+vertex_offset);
 					vmin=MIN(vmin,idx);
 					vmax=MAX(vmax,idx);
 					*dst_indices++=idx;
 //					WWDEBUG_SAY(("%d, ",idx));
 
-					idx=unsigned short(src_indices[i][1]+vertex_offset);
+					idx=(unsigned short)(src_indices[i][1]+vertex_offset);
 					vmin=MIN(vmin,idx);
 					vmax=MAX(vmax,idx);
 					*dst_indices++=idx;
 //					WWDEBUG_SAY(("%d, ",idx));
 
-					idx=unsigned short(src_indices[i][2]+vertex_offset);
+					idx=(unsigned short)(src_indices[i][2]+vertex_offset);
 					vmin=MIN(vmin,idx);
 					vmax=MAX(vmax,idx);
 					*dst_indices++=idx;
@@ -1712,7 +1715,7 @@ void DX8TextureCategoryClass::Render(void)
 				case MeshGeometryClass::PRELIT_VERTEX:
 					
 					// Disable texturing on all stages and passes.
-					for (i = 0; i < MAX_TEXTURE_STAGES; i++) {
+					for (int i = 0; i < MAX_TEXTURE_STAGES; i++) {
 						DX8Wrapper::Set_Texture (i, NULL);
 					}
 					break;
@@ -1721,11 +1724,11 @@ void DX8TextureCategoryClass::Render(void)
 					
 					// Disable texturing on all but the last pass.
 					if (pass == mesh->Peek_Model()->Get_Pass_Count() - 1) {
-						for (i = 0; i < MAX_TEXTURE_STAGES; i++) {
+						for (int i = 0; i < MAX_TEXTURE_STAGES; i++) {
 							DX8Wrapper::Set_Texture (i, Peek_Texture (i));
 						}
 					} else {
-						for (i = 0; i < MAX_TEXTURE_STAGES; i++) {
+						for (int i = 0; i < MAX_TEXTURE_STAGES; i++) {
 							DX8Wrapper::Set_Texture (i, NULL);
 						}
 					}
@@ -1735,13 +1738,13 @@ void DX8TextureCategoryClass::Render(void)
 					
 					// Disable texturing on all but the zeroth stage of each pass.
 					DX8Wrapper::Set_Texture (0, Peek_Texture (0));
-					for (i = 1; i < MAX_TEXTURE_STAGES; i++) {
+					for (int i = 1; i < MAX_TEXTURE_STAGES; i++) {
 						DX8Wrapper::Set_Texture (i, NULL);
 					}
 					break;
 
 				default:
-					for (i = 0; i < MAX_TEXTURE_STAGES; i++) {
+					for (int i = 0; i < MAX_TEXTURE_STAGES; i++) {
 						DX8Wrapper::Set_Texture (i, Peek_Texture (i));
 					}
 					break;
@@ -2042,6 +2045,7 @@ void DX8MeshRendererClass::Register_Mesh_Type(MeshModelClass* mmc)
 				break;
 			}
 
+			int i;
 			if (i==texture_category_container_lists_rigid.Count()) {
 
 				/*

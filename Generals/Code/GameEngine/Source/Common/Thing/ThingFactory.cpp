@@ -210,7 +210,7 @@ void ThingFactory::reset( void )
 {
 	ThingTemplate *t;
 	// go through all templates and delete any overrides
-	for( t = m_firstTemplate; t; /* empty */ )
+	for (t = m_firstTemplate; t; /* empty */ )
 	{
 		Bool possibleAdjustment = FALSE;
 		// t itself can be deleted if it is something created for this map only. Therefore, 

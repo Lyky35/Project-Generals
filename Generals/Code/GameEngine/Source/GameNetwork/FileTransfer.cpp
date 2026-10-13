@@ -80,7 +80,7 @@ static Bool doFileTransfer( AsciiString filename, MapTransferLoadScreen *ls, Int
 			// get the progress for each player, and take the min for our overall progress
 			fileTransferDone = TRUE;
 			fileTransferPercent = 100;
-			for (i=1; i<MAX_SLOTS; ++i)
+			for (int i =1; i<MAX_SLOTS; ++i)
 			{
 				if (TheGameInfo->getConstSlot(i)->isHuman() && !TheGameInfo->getConstSlot(i)->hasMap())
 				{
@@ -246,7 +246,7 @@ Bool DoAnyMapTransfers(GameInfo *game)
 	TheGameInfo = game;
 	Int mask = 0;
 	Int i=0;
-	for (i=1; i<MAX_SLOTS; ++i)
+	for (int i =1; i<MAX_SLOTS; ++i)
 	{
 		if (TheGameInfo->getConstSlot(i)->isHuman() && !TheGameInfo->getConstSlot(i)->hasMap())
 		{

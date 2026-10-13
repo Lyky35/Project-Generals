@@ -449,7 +449,7 @@ static void Scan_Aggregate (ChunkLoadClass &cload, StringList &files, const char
 
 			// Iterate through the sub-objects.
 			unsigned int i;
-			for (i = 0; i < chunk.SubobjectCount; ++i)
+			for (int i = 0; i < chunk.SubobjectCount; ++i)
 			{
 				W3dAggregateSubobjectStruct subchunk;
 				cload.Read(&subchunk, sizeof(subchunk));

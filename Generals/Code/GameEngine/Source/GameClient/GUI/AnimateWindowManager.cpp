@@ -54,6 +54,9 @@
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #include "GameClient/AnimateWindowManager.h"
+
+// Workaround: Windows API declares AnimateWindow as a function in winuser.h
+#define AnimateWindow GameAnimateWindow
 #include "GameClient/GameWindow.h"
 #include "GameClient/Display.h"
 #include "GameClient/ProcessAnimateWindow.h"
@@ -64,7 +67,7 @@
 //-----------------------------------------------------------------------------
 // AnimateWindow PUBLIC FUNCTIONS /////////////////////////////////////////////
 //-----------------------------------------------------------------------------
-AnimateWindow::AnimateWindow( void )
+GameAnimateWindow::AnimateWindow( void )
 {
 	m_delay = 0;
 	m_startPos.x = m_startPos.y = 0;
@@ -80,12 +83,12 @@ AnimateWindow::AnimateWindow( void )
 	m_endTime = 0;
 	m_startTime = 0;
 }
-AnimateWindow::~AnimateWindow( void )
+GameAnimateWindow::~AnimateWindow( void )
 {
 	m_win = NULL;
 }
 
-void AnimateWindow::setAnimData( 	ICoord2D startPos, ICoord2D endPos, 
+void GameAnimateWindow::setAnimData( 	ICoord2D startPos, ICoord2D endPos, 
 																	ICoord2D curPos, ICoord2D restPos,
 																	Coord2D vel, UnsignedInt startTime,
 																	UnsignedInt endTime )
@@ -255,7 +258,7 @@ void AnimateWindowManager::registerGameWindow(GameWindow *win, AnimTypes animTyp
 	}
 
 	// Create a new AnimateWindow class and fill in it's data.
-	AnimateWindow *animWin = newInstance(AnimateWindow);	
+	GameAnimateWindow *animWin = newInstance(GameAnimateWindow);	
 	animWin->setGameWindow(win);
 	animWin->setAnimType(animType);
 	animWin->setNeedsToFinish(needsToFinish);

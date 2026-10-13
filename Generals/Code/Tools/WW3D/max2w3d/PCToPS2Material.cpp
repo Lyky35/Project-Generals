@@ -84,7 +84,7 @@ void PCToPS2MaterialClass::BeginEditParams(Interface *ip,IUtil *iu)
 		if (meshlist) {
 			int i;
 
-			for (i = 0; i < meshlist->Num_Nodes(); i++) {
+			for (int i = 0; i < meshlist->Num_Nodes(); i++) {
 
 				Mtl	*nodemtl = ((*meshlist)[i])->GetMtl();
 
@@ -98,7 +98,7 @@ void PCToPS2MaterialClass::BeginEditParams(Interface *ip,IUtil *iu)
 					if (nodemtl->ClassID() == GameMaterialClassID) {
 						int pass;
 
-						for (pass = 0; pass < ((GameMtl*)nodemtl)->Get_Pass_Count(); pass++) {
+						for (int pass = 0; pass < ((GameMtl*)nodemtl)->Get_Pass_Count(); pass++) {
 							// Change the material for each pass.
 							((GameMtl*)nodemtl)->Compute_PS2_Shader_From_PC_Shader(pass);
 						}
@@ -113,7 +113,7 @@ void PCToPS2MaterialClass::BeginEditParams(Interface *ip,IUtil *iu)
 						if (nodemtl->GetSubMtl(mi)->ClassID() == GameMaterialClassID) {
 							int pass;
 
-							for (pass = 0; pass < ((GameMtl*)nodemtl->GetSubMtl(mi))->Get_Pass_Count(); pass++) {
+							for (int pass = 0; pass < ((GameMtl*)nodemtl->GetSubMtl(mi))->Get_Pass_Count(); pass++) {
 								// Change the material for each pass.
 								((GameMtl*)nodemtl->GetSubMtl(mi))->Compute_PS2_Shader_From_PC_Shader(pass);
 							}

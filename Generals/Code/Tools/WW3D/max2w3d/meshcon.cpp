@@ -80,7 +80,7 @@ MeshConnectionsClass::MeshConnectionsClass
 	** For each sub-object, record the bone it is attached to and its name
 	*/
 	int count = sub_object_list.Count();
-	for (i=0; i<count; i++) {
+	for (int i =0; i<count; i++) {
 
 		ConnectionStruct con;
 		sub_object_list[i]->Get_Full_Name(con.ObjectName,sizeof(con.ObjectName));

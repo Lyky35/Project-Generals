@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/cyklon/Work/Project-Generals/Generals/Code/Main/WinMain.cpp" "Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.obj" "gcc" "Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.obj.d"
+  "/home/cyklon/Work/Project-Generals/Generals/Code/Main/WinMain.cpp" "Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.o" "gcc" "Generals/Code/Main/CMakeFiles/RTS.dir/WinMain.cpp.o.d"
+  "" "bin/RTS" "gcc" "Generals/Code/Main/CMakeFiles/RTS.dir/link.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

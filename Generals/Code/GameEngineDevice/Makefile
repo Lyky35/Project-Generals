@@ -130,13 +130,13 @@ GameEngineDevice/fast:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build
 .PHONY : GameEngineDevice/fast
 
-Source/MilesAudioDevice/MilesAudioManager.obj: Source/MilesAudioDevice/MilesAudioManager.cpp.obj
-.PHONY : Source/MilesAudioDevice/MilesAudioManager.obj
+Source/MilesAudioDevice/MilesAudioManager.o: Source/MilesAudioDevice/MilesAudioManager.cpp.o
+.PHONY : Source/MilesAudioDevice/MilesAudioManager.o
 
 # target to build an object file
-Source/MilesAudioDevice/MilesAudioManager.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/MilesAudioDevice/MilesAudioManager.cpp.obj
-.PHONY : Source/MilesAudioDevice/MilesAudioManager.cpp.obj
+Source/MilesAudioDevice/MilesAudioManager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/MilesAudioDevice/MilesAudioManager.cpp.o
+.PHONY : Source/MilesAudioDevice/MilesAudioManager.cpp.o
 
 Source/MilesAudioDevice/MilesAudioManager.i: Source/MilesAudioDevice/MilesAudioManager.cpp.i
 .PHONY : Source/MilesAudioDevice/MilesAudioManager.i
@@ -154,13 +154,37 @@ Source/MilesAudioDevice/MilesAudioManager.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/MilesAudioDevice/MilesAudioManager.cpp.s
 .PHONY : Source/MilesAudioDevice/MilesAudioManager.cpp.s
 
-Source/VideoDevice/Bink/BinkVideoPlayer.obj: Source/VideoDevice/Bink/BinkVideoPlayer.cpp.obj
-.PHONY : Source/VideoDevice/Bink/BinkVideoPlayer.obj
+Source/MilesAudioDevice/milesaudiomanager.o: Source/MilesAudioDevice/milesaudiomanager.cpp.o
+.PHONY : Source/MilesAudioDevice/milesaudiomanager.o
 
 # target to build an object file
-Source/VideoDevice/Bink/BinkVideoPlayer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/VideoDevice/Bink/BinkVideoPlayer.cpp.obj
-.PHONY : Source/VideoDevice/Bink/BinkVideoPlayer.cpp.obj
+Source/MilesAudioDevice/milesaudiomanager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/MilesAudioDevice/milesaudiomanager.cpp.o
+.PHONY : Source/MilesAudioDevice/milesaudiomanager.cpp.o
+
+Source/MilesAudioDevice/milesaudiomanager.i: Source/MilesAudioDevice/milesaudiomanager.cpp.i
+.PHONY : Source/MilesAudioDevice/milesaudiomanager.i
+
+# target to preprocess a source file
+Source/MilesAudioDevice/milesaudiomanager.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/MilesAudioDevice/milesaudiomanager.cpp.i
+.PHONY : Source/MilesAudioDevice/milesaudiomanager.cpp.i
+
+Source/MilesAudioDevice/milesaudiomanager.s: Source/MilesAudioDevice/milesaudiomanager.cpp.s
+.PHONY : Source/MilesAudioDevice/milesaudiomanager.s
+
+# target to generate assembly for a file
+Source/MilesAudioDevice/milesaudiomanager.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/MilesAudioDevice/milesaudiomanager.cpp.s
+.PHONY : Source/MilesAudioDevice/milesaudiomanager.cpp.s
+
+Source/VideoDevice/Bink/BinkVideoPlayer.o: Source/VideoDevice/Bink/BinkVideoPlayer.cpp.o
+.PHONY : Source/VideoDevice/Bink/BinkVideoPlayer.o
+
+# target to build an object file
+Source/VideoDevice/Bink/BinkVideoPlayer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/VideoDevice/Bink/BinkVideoPlayer.cpp.o
+.PHONY : Source/VideoDevice/Bink/BinkVideoPlayer.cpp.o
 
 Source/VideoDevice/Bink/BinkVideoPlayer.i: Source/VideoDevice/Bink/BinkVideoPlayer.cpp.i
 .PHONY : Source/VideoDevice/Bink/BinkVideoPlayer.i
@@ -178,13 +202,37 @@ Source/VideoDevice/Bink/BinkVideoPlayer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/VideoDevice/Bink/BinkVideoPlayer.cpp.s
 .PHONY : Source/VideoDevice/Bink/BinkVideoPlayer.cpp.s
 
-Source/W3DDevice/Common/System/W3DFunctionLexicon.obj: Source/W3DDevice/Common/System/W3DFunctionLexicon.cpp.obj
-.PHONY : Source/W3DDevice/Common/System/W3DFunctionLexicon.obj
+Source/VideoDevice/Bink/binkvideoplayer.o: Source/VideoDevice/Bink/binkvideoplayer.cpp.o
+.PHONY : Source/VideoDevice/Bink/binkvideoplayer.o
 
 # target to build an object file
-Source/W3DDevice/Common/System/W3DFunctionLexicon.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/System/W3DFunctionLexicon.cpp.obj
-.PHONY : Source/W3DDevice/Common/System/W3DFunctionLexicon.cpp.obj
+Source/VideoDevice/Bink/binkvideoplayer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/VideoDevice/Bink/binkvideoplayer.cpp.o
+.PHONY : Source/VideoDevice/Bink/binkvideoplayer.cpp.o
+
+Source/VideoDevice/Bink/binkvideoplayer.i: Source/VideoDevice/Bink/binkvideoplayer.cpp.i
+.PHONY : Source/VideoDevice/Bink/binkvideoplayer.i
+
+# target to preprocess a source file
+Source/VideoDevice/Bink/binkvideoplayer.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/VideoDevice/Bink/binkvideoplayer.cpp.i
+.PHONY : Source/VideoDevice/Bink/binkvideoplayer.cpp.i
+
+Source/VideoDevice/Bink/binkvideoplayer.s: Source/VideoDevice/Bink/binkvideoplayer.cpp.s
+.PHONY : Source/VideoDevice/Bink/binkvideoplayer.s
+
+# target to generate assembly for a file
+Source/VideoDevice/Bink/binkvideoplayer.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/VideoDevice/Bink/binkvideoplayer.cpp.s
+.PHONY : Source/VideoDevice/Bink/binkvideoplayer.cpp.s
+
+Source/W3DDevice/Common/System/W3DFunctionLexicon.o: Source/W3DDevice/Common/System/W3DFunctionLexicon.cpp.o
+.PHONY : Source/W3DDevice/Common/System/W3DFunctionLexicon.o
+
+# target to build an object file
+Source/W3DDevice/Common/System/W3DFunctionLexicon.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/System/W3DFunctionLexicon.cpp.o
+.PHONY : Source/W3DDevice/Common/System/W3DFunctionLexicon.cpp.o
 
 Source/W3DDevice/Common/System/W3DFunctionLexicon.i: Source/W3DDevice/Common/System/W3DFunctionLexicon.cpp.i
 .PHONY : Source/W3DDevice/Common/System/W3DFunctionLexicon.i
@@ -202,13 +250,13 @@ Source/W3DDevice/Common/System/W3DFunctionLexicon.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/System/W3DFunctionLexicon.cpp.s
 .PHONY : Source/W3DDevice/Common/System/W3DFunctionLexicon.cpp.s
 
-Source/W3DDevice/Common/System/W3DRadar.obj: Source/W3DDevice/Common/System/W3DRadar.cpp.obj
-.PHONY : Source/W3DDevice/Common/System/W3DRadar.obj
+Source/W3DDevice/Common/System/W3DRadar.o: Source/W3DDevice/Common/System/W3DRadar.cpp.o
+.PHONY : Source/W3DDevice/Common/System/W3DRadar.o
 
 # target to build an object file
-Source/W3DDevice/Common/System/W3DRadar.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/System/W3DRadar.cpp.obj
-.PHONY : Source/W3DDevice/Common/System/W3DRadar.cpp.obj
+Source/W3DDevice/Common/System/W3DRadar.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/System/W3DRadar.cpp.o
+.PHONY : Source/W3DDevice/Common/System/W3DRadar.cpp.o
 
 Source/W3DDevice/Common/System/W3DRadar.i: Source/W3DDevice/Common/System/W3DRadar.cpp.i
 .PHONY : Source/W3DDevice/Common/System/W3DRadar.i
@@ -226,13 +274,61 @@ Source/W3DDevice/Common/System/W3DRadar.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/System/W3DRadar.cpp.s
 .PHONY : Source/W3DDevice/Common/System/W3DRadar.cpp.s
 
-Source/W3DDevice/Common/Thing/W3DModuleFactory.obj: Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp.obj
-.PHONY : Source/W3DDevice/Common/Thing/W3DModuleFactory.obj
+Source/W3DDevice/Common/System/w3dfunctionlexicon.o: Source/W3DDevice/Common/System/w3dfunctionlexicon.cpp.o
+.PHONY : Source/W3DDevice/Common/System/w3dfunctionlexicon.o
 
 # target to build an object file
-Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp.obj
-.PHONY : Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp.obj
+Source/W3DDevice/Common/System/w3dfunctionlexicon.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/System/w3dfunctionlexicon.cpp.o
+.PHONY : Source/W3DDevice/Common/System/w3dfunctionlexicon.cpp.o
+
+Source/W3DDevice/Common/System/w3dfunctionlexicon.i: Source/W3DDevice/Common/System/w3dfunctionlexicon.cpp.i
+.PHONY : Source/W3DDevice/Common/System/w3dfunctionlexicon.i
+
+# target to preprocess a source file
+Source/W3DDevice/Common/System/w3dfunctionlexicon.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/System/w3dfunctionlexicon.cpp.i
+.PHONY : Source/W3DDevice/Common/System/w3dfunctionlexicon.cpp.i
+
+Source/W3DDevice/Common/System/w3dfunctionlexicon.s: Source/W3DDevice/Common/System/w3dfunctionlexicon.cpp.s
+.PHONY : Source/W3DDevice/Common/System/w3dfunctionlexicon.s
+
+# target to generate assembly for a file
+Source/W3DDevice/Common/System/w3dfunctionlexicon.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/System/w3dfunctionlexicon.cpp.s
+.PHONY : Source/W3DDevice/Common/System/w3dfunctionlexicon.cpp.s
+
+Source/W3DDevice/Common/System/w3dradar.o: Source/W3DDevice/Common/System/w3dradar.cpp.o
+.PHONY : Source/W3DDevice/Common/System/w3dradar.o
+
+# target to build an object file
+Source/W3DDevice/Common/System/w3dradar.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/System/w3dradar.cpp.o
+.PHONY : Source/W3DDevice/Common/System/w3dradar.cpp.o
+
+Source/W3DDevice/Common/System/w3dradar.i: Source/W3DDevice/Common/System/w3dradar.cpp.i
+.PHONY : Source/W3DDevice/Common/System/w3dradar.i
+
+# target to preprocess a source file
+Source/W3DDevice/Common/System/w3dradar.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/System/w3dradar.cpp.i
+.PHONY : Source/W3DDevice/Common/System/w3dradar.cpp.i
+
+Source/W3DDevice/Common/System/w3dradar.s: Source/W3DDevice/Common/System/w3dradar.cpp.s
+.PHONY : Source/W3DDevice/Common/System/w3dradar.s
+
+# target to generate assembly for a file
+Source/W3DDevice/Common/System/w3dradar.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/System/w3dradar.cpp.s
+.PHONY : Source/W3DDevice/Common/System/w3dradar.cpp.s
+
+Source/W3DDevice/Common/Thing/W3DModuleFactory.o: Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp.o
+.PHONY : Source/W3DDevice/Common/Thing/W3DModuleFactory.o
+
+# target to build an object file
+Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp.o
+.PHONY : Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp.o
 
 Source/W3DDevice/Common/Thing/W3DModuleFactory.i: Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp.i
 .PHONY : Source/W3DDevice/Common/Thing/W3DModuleFactory.i
@@ -250,13 +346,13 @@ Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp.s
 .PHONY : Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp.s
 
-Source/W3DDevice/Common/Thing/W3DThingFactory.obj: Source/W3DDevice/Common/Thing/W3DThingFactory.cpp.obj
-.PHONY : Source/W3DDevice/Common/Thing/W3DThingFactory.obj
+Source/W3DDevice/Common/Thing/W3DThingFactory.o: Source/W3DDevice/Common/Thing/W3DThingFactory.cpp.o
+.PHONY : Source/W3DDevice/Common/Thing/W3DThingFactory.o
 
 # target to build an object file
-Source/W3DDevice/Common/Thing/W3DThingFactory.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/Thing/W3DThingFactory.cpp.obj
-.PHONY : Source/W3DDevice/Common/Thing/W3DThingFactory.cpp.obj
+Source/W3DDevice/Common/Thing/W3DThingFactory.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/Thing/W3DThingFactory.cpp.o
+.PHONY : Source/W3DDevice/Common/Thing/W3DThingFactory.cpp.o
 
 Source/W3DDevice/Common/Thing/W3DThingFactory.i: Source/W3DDevice/Common/Thing/W3DThingFactory.cpp.i
 .PHONY : Source/W3DDevice/Common/Thing/W3DThingFactory.i
@@ -274,13 +370,61 @@ Source/W3DDevice/Common/Thing/W3DThingFactory.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/Thing/W3DThingFactory.cpp.s
 .PHONY : Source/W3DDevice/Common/Thing/W3DThingFactory.cpp.s
 
-Source/W3DDevice/Common/W3DConvert.obj: Source/W3DDevice/Common/W3DConvert.cpp.obj
-.PHONY : Source/W3DDevice/Common/W3DConvert.obj
+Source/W3DDevice/Common/Thing/w3dmodulefactory.o: Source/W3DDevice/Common/Thing/w3dmodulefactory.cpp.o
+.PHONY : Source/W3DDevice/Common/Thing/w3dmodulefactory.o
 
 # target to build an object file
-Source/W3DDevice/Common/W3DConvert.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/W3DConvert.cpp.obj
-.PHONY : Source/W3DDevice/Common/W3DConvert.cpp.obj
+Source/W3DDevice/Common/Thing/w3dmodulefactory.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/Thing/w3dmodulefactory.cpp.o
+.PHONY : Source/W3DDevice/Common/Thing/w3dmodulefactory.cpp.o
+
+Source/W3DDevice/Common/Thing/w3dmodulefactory.i: Source/W3DDevice/Common/Thing/w3dmodulefactory.cpp.i
+.PHONY : Source/W3DDevice/Common/Thing/w3dmodulefactory.i
+
+# target to preprocess a source file
+Source/W3DDevice/Common/Thing/w3dmodulefactory.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/Thing/w3dmodulefactory.cpp.i
+.PHONY : Source/W3DDevice/Common/Thing/w3dmodulefactory.cpp.i
+
+Source/W3DDevice/Common/Thing/w3dmodulefactory.s: Source/W3DDevice/Common/Thing/w3dmodulefactory.cpp.s
+.PHONY : Source/W3DDevice/Common/Thing/w3dmodulefactory.s
+
+# target to generate assembly for a file
+Source/W3DDevice/Common/Thing/w3dmodulefactory.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/Thing/w3dmodulefactory.cpp.s
+.PHONY : Source/W3DDevice/Common/Thing/w3dmodulefactory.cpp.s
+
+Source/W3DDevice/Common/Thing/w3dthingfactory.o: Source/W3DDevice/Common/Thing/w3dthingfactory.cpp.o
+.PHONY : Source/W3DDevice/Common/Thing/w3dthingfactory.o
+
+# target to build an object file
+Source/W3DDevice/Common/Thing/w3dthingfactory.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/Thing/w3dthingfactory.cpp.o
+.PHONY : Source/W3DDevice/Common/Thing/w3dthingfactory.cpp.o
+
+Source/W3DDevice/Common/Thing/w3dthingfactory.i: Source/W3DDevice/Common/Thing/w3dthingfactory.cpp.i
+.PHONY : Source/W3DDevice/Common/Thing/w3dthingfactory.i
+
+# target to preprocess a source file
+Source/W3DDevice/Common/Thing/w3dthingfactory.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/Thing/w3dthingfactory.cpp.i
+.PHONY : Source/W3DDevice/Common/Thing/w3dthingfactory.cpp.i
+
+Source/W3DDevice/Common/Thing/w3dthingfactory.s: Source/W3DDevice/Common/Thing/w3dthingfactory.cpp.s
+.PHONY : Source/W3DDevice/Common/Thing/w3dthingfactory.s
+
+# target to generate assembly for a file
+Source/W3DDevice/Common/Thing/w3dthingfactory.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/Thing/w3dthingfactory.cpp.s
+.PHONY : Source/W3DDevice/Common/Thing/w3dthingfactory.cpp.s
+
+Source/W3DDevice/Common/W3DConvert.o: Source/W3DDevice/Common/W3DConvert.cpp.o
+.PHONY : Source/W3DDevice/Common/W3DConvert.o
+
+# target to build an object file
+Source/W3DDevice/Common/W3DConvert.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/W3DConvert.cpp.o
+.PHONY : Source/W3DDevice/Common/W3DConvert.cpp.o
 
 Source/W3DDevice/Common/W3DConvert.i: Source/W3DDevice/Common/W3DConvert.cpp.i
 .PHONY : Source/W3DDevice/Common/W3DConvert.i
@@ -298,13 +442,37 @@ Source/W3DDevice/Common/W3DConvert.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/W3DConvert.cpp.s
 .PHONY : Source/W3DDevice/Common/W3DConvert.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.obj
+Source/W3DDevice/Common/w3dconvert.o: Source/W3DDevice/Common/w3dconvert.cpp.o
+.PHONY : Source/W3DDevice/Common/w3dconvert.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.cpp.obj
+Source/W3DDevice/Common/w3dconvert.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/w3dconvert.cpp.o
+.PHONY : Source/W3DDevice/Common/w3dconvert.cpp.o
+
+Source/W3DDevice/Common/w3dconvert.i: Source/W3DDevice/Common/w3dconvert.cpp.i
+.PHONY : Source/W3DDevice/Common/w3dconvert.i
+
+# target to preprocess a source file
+Source/W3DDevice/Common/w3dconvert.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/w3dconvert.cpp.i
+.PHONY : Source/W3DDevice/Common/w3dconvert.cpp.i
+
+Source/W3DDevice/Common/w3dconvert.s: Source/W3DDevice/Common/w3dconvert.cpp.s
+.PHONY : Source/W3DDevice/Common/w3dconvert.s
+
+# target to generate assembly for a file
+Source/W3DDevice/Common/w3dconvert.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/Common/w3dconvert.cpp.s
+.PHONY : Source/W3DDevice/Common/w3dconvert.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.i
@@ -322,13 +490,13 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.i
@@ -346,13 +514,13 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.i
@@ -370,13 +538,13 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.i
@@ -394,13 +562,13 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.i
@@ -418,13 +586,13 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.i
@@ -442,13 +610,13 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.i
@@ -466,13 +634,13 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.i
@@ -490,13 +658,13 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.i
@@ -514,13 +682,13 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.i
@@ -538,13 +706,13 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.i
@@ -562,13 +730,13 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.i
@@ -586,13 +754,13 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.i
@@ -610,13 +778,13 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.i
@@ -634,13 +802,13 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.cpp.s
 
-Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.obj: Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.o: Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.cpp.o
 
 Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.i: Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.i
@@ -658,13 +826,373 @@ Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.cpp.s
 
-Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.obj: Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.obj
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp.obj
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.cpp.s
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.o: Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.cpp.o
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.i: Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.cpp.i
+
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.s: Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.cpp.s
+
+Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.o: Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp.o
 
 Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.i: Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.i
@@ -682,13 +1210,13 @@ Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp.s
 
-Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.obj: Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.obj
+Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.o: Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.cpp.obj
+Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.cpp.o
 
 Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.i: Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.i
@@ -706,13 +1234,13 @@ Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.cpp.s
 
-Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.obj: Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.obj
+Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.o: Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.cpp.obj
+Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.cpp.o
 
 Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.i: Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.i
@@ -730,13 +1258,85 @@ Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.cpp.s
 
-Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.obj: Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.obj
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.o: Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.cpp.obj
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.cpp.o
+
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.i: Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.cpp.i
+
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.s: Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.cpp.s
+
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.o: Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.cpp.o
+
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.i: Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.cpp.i
+
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.s: Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.cpp.s
+
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.o: Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.cpp.o
+
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.i: Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.cpp.i
+
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.s: Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.cpp.s
+
+Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.o: Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.cpp.o
 
 Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.i: Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.i
@@ -754,13 +1354,13 @@ Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.cpp.s
 
-Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.obj: Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.o: Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.cpp.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.cpp.o
 
 Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.i: Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.i
@@ -778,13 +1378,13 @@ Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.cpp.s
 
-Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.obj: Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.o: Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp.o
 
 Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.i: Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.i
@@ -802,13 +1402,13 @@ Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp.s
 
-Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.obj: Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.o: Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp.o
 
 Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.i: Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.i
@@ -826,13 +1426,13 @@ Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp.s
 
-Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.obj: Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.o: Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.cpp.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.cpp.o
 
 Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.i: Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.i
@@ -850,13 +1450,13 @@ Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.cpp.s
 
-Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.obj: Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.o: Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.cpp.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.cpp.o
 
 Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.i: Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.i
@@ -874,13 +1474,13 @@ Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.cpp.s
 
-Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.obj: Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.o: Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.cpp.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.cpp.o
 
 Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.i: Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.i
@@ -898,13 +1498,13 @@ Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.cpp.s
 
-Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.obj: Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.o: Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.cpp.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.cpp.o
 
 Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.i: Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.i
@@ -922,13 +1522,13 @@ Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.cpp.s
 
-Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.obj: Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.o: Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.cpp.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.cpp.o
 
 Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.i: Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.i
@@ -946,13 +1546,13 @@ Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.cpp.s
 
-Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.obj: Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.o: Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.cpp.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.cpp.o
 
 Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.i: Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.i
@@ -970,13 +1570,13 @@ Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.cpp.s
 
-Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.obj: Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.o: Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp.obj
+Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp.o
 
 Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.i: Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.i
@@ -994,13 +1594,277 @@ Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp.s
 
-Source/W3DDevice/GameClient/GUI/W3DGameFont.obj: Source/W3DDevice/GameClient/GUI/W3DGameFont.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/W3DGameFont.obj
+Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.o: Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/W3DGameFont.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/W3DGameFont.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/W3DGameFont.cpp.obj
+Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.cpp.o
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.i: Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.cpp.i
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.s: Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.cpp.s
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.o: Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.cpp.o
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.i: Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.cpp.i
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.s: Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.cpp.s
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.o: Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.cpp.o
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.i: Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.cpp.i
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.s: Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.cpp.s
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.o: Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.cpp.o
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.i: Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.cpp.i
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.s: Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.cpp.s
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.o: Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.cpp.o
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.i: Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.cpp.i
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.s: Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.cpp.s
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.o: Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.cpp.o
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.i: Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.cpp.i
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.s: Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.cpp.s
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.o: Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.cpp.o
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.i: Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.cpp.i
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.s: Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.cpp.s
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.o: Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.cpp.o
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.i: Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.cpp.i
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.s: Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.cpp.s
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.o: Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.cpp.o
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.i: Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.cpp.i
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.s: Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.cpp.s
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.o: Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.cpp.o
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.i: Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.cpp.i
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.s: Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.cpp.s
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.o: Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.cpp.o
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.i: Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.cpp.i
+
+Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.s: Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.cpp.s
+
+Source/W3DDevice/GameClient/GUI/W3DGameFont.o: Source/W3DDevice/GameClient/GUI/W3DGameFont.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/W3DGameFont.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/W3DGameFont.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/W3DGameFont.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/W3DGameFont.cpp.o
 
 Source/W3DDevice/GameClient/GUI/W3DGameFont.i: Source/W3DDevice/GameClient/GUI/W3DGameFont.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/W3DGameFont.i
@@ -1018,13 +1882,13 @@ Source/W3DDevice/GameClient/GUI/W3DGameFont.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/W3DGameFont.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/W3DGameFont.cpp.s
 
-Source/W3DDevice/GameClient/GUI/W3DGameWindow.obj: Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/W3DGameWindow.obj
+Source/W3DDevice/GameClient/GUI/W3DGameWindow.o: Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/W3DGameWindow.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp.obj
+Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp.o
 
 Source/W3DDevice/GameClient/GUI/W3DGameWindow.i: Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/W3DGameWindow.i
@@ -1042,13 +1906,13 @@ Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp.s
 
-Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.obj: Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.obj
+Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.o: Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp.obj
+Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp.o
 
 Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.i: Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp.i
 .PHONY : Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.i
@@ -1066,13 +1930,85 @@ Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp.s
 .PHONY : Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp.s
 
-Source/W3DDevice/GameClient/HeightMap.obj: Source/W3DDevice/GameClient/HeightMap.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/HeightMap.obj
+Source/W3DDevice/GameClient/GUI/w3dgamefont.o: Source/W3DDevice/GameClient/GUI/w3dgamefont.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamefont.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/HeightMap.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/HeightMap.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/HeightMap.cpp.obj
+Source/W3DDevice/GameClient/GUI/w3dgamefont.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/w3dgamefont.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamefont.cpp.o
+
+Source/W3DDevice/GameClient/GUI/w3dgamefont.i: Source/W3DDevice/GameClient/GUI/w3dgamefont.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamefont.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/w3dgamefont.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/w3dgamefont.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamefont.cpp.i
+
+Source/W3DDevice/GameClient/GUI/w3dgamefont.s: Source/W3DDevice/GameClient/GUI/w3dgamefont.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamefont.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/w3dgamefont.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/w3dgamefont.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamefont.cpp.s
+
+Source/W3DDevice/GameClient/GUI/w3dgamewindow.o: Source/W3DDevice/GameClient/GUI/w3dgamewindow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamewindow.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/w3dgamewindow.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/w3dgamewindow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamewindow.cpp.o
+
+Source/W3DDevice/GameClient/GUI/w3dgamewindow.i: Source/W3DDevice/GameClient/GUI/w3dgamewindow.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamewindow.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/w3dgamewindow.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/w3dgamewindow.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamewindow.cpp.i
+
+Source/W3DDevice/GameClient/GUI/w3dgamewindow.s: Source/W3DDevice/GameClient/GUI/w3dgamewindow.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamewindow.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/w3dgamewindow.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/w3dgamewindow.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamewindow.cpp.s
+
+Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.o: Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.cpp.o
+
+Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.i: Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.cpp.i
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.cpp.i
+
+Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.s: Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.cpp.s
+.PHONY : Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.cpp.s
+
+Source/W3DDevice/GameClient/HeightMap.o: Source/W3DDevice/GameClient/HeightMap.cpp.o
+.PHONY : Source/W3DDevice/GameClient/HeightMap.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/HeightMap.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/HeightMap.cpp.o
+.PHONY : Source/W3DDevice/GameClient/HeightMap.cpp.o
 
 Source/W3DDevice/GameClient/HeightMap.i: Source/W3DDevice/GameClient/HeightMap.cpp.i
 .PHONY : Source/W3DDevice/GameClient/HeightMap.i
@@ -1090,13 +2026,13 @@ Source/W3DDevice/GameClient/HeightMap.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/HeightMap.cpp.s
 .PHONY : Source/W3DDevice/GameClient/HeightMap.cpp.s
 
-Source/W3DDevice/GameClient/Shadow/W3DBufferManager.obj: Source/W3DDevice/GameClient/Shadow/W3DBufferManager.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Shadow/W3DBufferManager.obj
+Source/W3DDevice/GameClient/Shadow/W3DBufferManager.o: Source/W3DDevice/GameClient/Shadow/W3DBufferManager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/W3DBufferManager.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Shadow/W3DBufferManager.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/W3DBufferManager.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Shadow/W3DBufferManager.cpp.obj
+Source/W3DDevice/GameClient/Shadow/W3DBufferManager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/W3DBufferManager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/W3DBufferManager.cpp.o
 
 Source/W3DDevice/GameClient/Shadow/W3DBufferManager.i: Source/W3DDevice/GameClient/Shadow/W3DBufferManager.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Shadow/W3DBufferManager.i
@@ -1114,13 +2050,13 @@ Source/W3DDevice/GameClient/Shadow/W3DBufferManager.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/W3DBufferManager.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Shadow/W3DBufferManager.cpp.s
 
-Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.obj: Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.obj
+Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.o: Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp.obj
+Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp.o
 
 Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.i: Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.i
@@ -1138,13 +2074,13 @@ Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp.s
 
-Source/W3DDevice/GameClient/Shadow/W3DShadow.obj: Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Shadow/W3DShadow.obj
+Source/W3DDevice/GameClient/Shadow/W3DShadow.o: Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/W3DShadow.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp.obj
+Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp.o
 
 Source/W3DDevice/GameClient/Shadow/W3DShadow.i: Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Shadow/W3DShadow.i
@@ -1162,13 +2098,13 @@ Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp.s
 
-Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.obj: Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.obj
+Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.o: Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp.obj
+Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp.o
 
 Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.i: Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.i
@@ -1186,13 +2122,109 @@ Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp.s
 
-Source/W3DDevice/GameClient/TerrainTex.obj: Source/W3DDevice/GameClient/TerrainTex.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/TerrainTex.obj
+Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.o: Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/TerrainTex.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/TerrainTex.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/TerrainTex.cpp.obj
+Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.cpp.o
+
+Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.i: Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.cpp.i
+
+Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.s: Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.cpp.s
+
+Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.o: Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.cpp.o
+
+Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.i: Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.cpp.i
+
+Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.s: Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.cpp.s
+
+Source/W3DDevice/GameClient/Shadow/w3dshadow.o: Source/W3DDevice/GameClient/Shadow/w3dshadow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dshadow.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Shadow/w3dshadow.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/w3dshadow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dshadow.cpp.o
+
+Source/W3DDevice/GameClient/Shadow/w3dshadow.i: Source/W3DDevice/GameClient/Shadow/w3dshadow.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dshadow.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Shadow/w3dshadow.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/w3dshadow.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dshadow.cpp.i
+
+Source/W3DDevice/GameClient/Shadow/w3dshadow.s: Source/W3DDevice/GameClient/Shadow/w3dshadow.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dshadow.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Shadow/w3dshadow.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/w3dshadow.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dshadow.cpp.s
+
+Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.o: Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.cpp.o
+
+Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.i: Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.cpp.i
+
+Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.s: Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.cpp.s
+
+Source/W3DDevice/GameClient/TerrainTex.o: Source/W3DDevice/GameClient/TerrainTex.cpp.o
+.PHONY : Source/W3DDevice/GameClient/TerrainTex.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/TerrainTex.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/TerrainTex.cpp.o
+.PHONY : Source/W3DDevice/GameClient/TerrainTex.cpp.o
 
 Source/W3DDevice/GameClient/TerrainTex.i: Source/W3DDevice/GameClient/TerrainTex.cpp.i
 .PHONY : Source/W3DDevice/GameClient/TerrainTex.i
@@ -1210,13 +2242,13 @@ Source/W3DDevice/GameClient/TerrainTex.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/TerrainTex.cpp.s
 .PHONY : Source/W3DDevice/GameClient/TerrainTex.cpp.s
 
-Source/W3DDevice/GameClient/TileData.obj: Source/W3DDevice/GameClient/TileData.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/TileData.obj
+Source/W3DDevice/GameClient/TileData.o: Source/W3DDevice/GameClient/TileData.cpp.o
+.PHONY : Source/W3DDevice/GameClient/TileData.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/TileData.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/TileData.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/TileData.cpp.obj
+Source/W3DDevice/GameClient/TileData.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/TileData.cpp.o
+.PHONY : Source/W3DDevice/GameClient/TileData.cpp.o
 
 Source/W3DDevice/GameClient/TileData.i: Source/W3DDevice/GameClient/TileData.cpp.i
 .PHONY : Source/W3DDevice/GameClient/TileData.i
@@ -1234,13 +2266,13 @@ Source/W3DDevice/GameClient/TileData.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/TileData.cpp.s
 .PHONY : Source/W3DDevice/GameClient/TileData.cpp.s
 
-Source/W3DDevice/GameClient/W3DAssetManager.obj: Source/W3DDevice/GameClient/W3DAssetManager.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DAssetManager.obj
+Source/W3DDevice/GameClient/W3DAssetManager.o: Source/W3DDevice/GameClient/W3DAssetManager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DAssetManager.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DAssetManager.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DAssetManager.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DAssetManager.cpp.obj
+Source/W3DDevice/GameClient/W3DAssetManager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DAssetManager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DAssetManager.cpp.o
 
 Source/W3DDevice/GameClient/W3DAssetManager.i: Source/W3DDevice/GameClient/W3DAssetManager.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DAssetManager.i
@@ -1258,13 +2290,13 @@ Source/W3DDevice/GameClient/W3DAssetManager.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DAssetManager.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DAssetManager.cpp.s
 
-Source/W3DDevice/GameClient/W3DAssetManagerExposed.obj: Source/W3DDevice/GameClient/W3DAssetManagerExposed.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DAssetManagerExposed.obj
+Source/W3DDevice/GameClient/W3DAssetManagerExposed.o: Source/W3DDevice/GameClient/W3DAssetManagerExposed.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DAssetManagerExposed.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DAssetManagerExposed.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DAssetManagerExposed.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DAssetManagerExposed.cpp.obj
+Source/W3DDevice/GameClient/W3DAssetManagerExposed.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DAssetManagerExposed.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DAssetManagerExposed.cpp.o
 
 Source/W3DDevice/GameClient/W3DAssetManagerExposed.i: Source/W3DDevice/GameClient/W3DAssetManagerExposed.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DAssetManagerExposed.i
@@ -1282,13 +2314,13 @@ Source/W3DDevice/GameClient/W3DAssetManagerExposed.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DAssetManagerExposed.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DAssetManagerExposed.cpp.s
 
-Source/W3DDevice/GameClient/W3DBibBuffer.obj: Source/W3DDevice/GameClient/W3DBibBuffer.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DBibBuffer.obj
+Source/W3DDevice/GameClient/W3DBibBuffer.o: Source/W3DDevice/GameClient/W3DBibBuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DBibBuffer.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DBibBuffer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DBibBuffer.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DBibBuffer.cpp.obj
+Source/W3DDevice/GameClient/W3DBibBuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DBibBuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DBibBuffer.cpp.o
 
 Source/W3DDevice/GameClient/W3DBibBuffer.i: Source/W3DDevice/GameClient/W3DBibBuffer.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DBibBuffer.i
@@ -1306,13 +2338,13 @@ Source/W3DDevice/GameClient/W3DBibBuffer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DBibBuffer.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DBibBuffer.cpp.s
 
-Source/W3DDevice/GameClient/W3DBridgeBuffer.obj: Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DBridgeBuffer.obj
+Source/W3DDevice/GameClient/W3DBridgeBuffer.o: Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DBridgeBuffer.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp.obj
+Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp.o
 
 Source/W3DDevice/GameClient/W3DBridgeBuffer.i: Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DBridgeBuffer.i
@@ -1330,13 +2362,13 @@ Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp.s
 
-Source/W3DDevice/GameClient/W3DCustomEdging.obj: Source/W3DDevice/GameClient/W3DCustomEdging.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DCustomEdging.obj
+Source/W3DDevice/GameClient/W3DCustomEdging.o: Source/W3DDevice/GameClient/W3DCustomEdging.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DCustomEdging.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DCustomEdging.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DCustomEdging.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DCustomEdging.cpp.obj
+Source/W3DDevice/GameClient/W3DCustomEdging.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DCustomEdging.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DCustomEdging.cpp.o
 
 Source/W3DDevice/GameClient/W3DCustomEdging.i: Source/W3DDevice/GameClient/W3DCustomEdging.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DCustomEdging.i
@@ -1354,13 +2386,13 @@ Source/W3DDevice/GameClient/W3DCustomEdging.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DCustomEdging.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DCustomEdging.cpp.s
 
-Source/W3DDevice/GameClient/W3DDebugDisplay.obj: Source/W3DDevice/GameClient/W3DDebugDisplay.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DDebugDisplay.obj
+Source/W3DDevice/GameClient/W3DDebugDisplay.o: Source/W3DDevice/GameClient/W3DDebugDisplay.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DDebugDisplay.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DDebugDisplay.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDebugDisplay.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DDebugDisplay.cpp.obj
+Source/W3DDevice/GameClient/W3DDebugDisplay.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDebugDisplay.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DDebugDisplay.cpp.o
 
 Source/W3DDevice/GameClient/W3DDebugDisplay.i: Source/W3DDevice/GameClient/W3DDebugDisplay.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DDebugDisplay.i
@@ -1378,13 +2410,13 @@ Source/W3DDevice/GameClient/W3DDebugDisplay.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDebugDisplay.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DDebugDisplay.cpp.s
 
-Source/W3DDevice/GameClient/W3DDebugIcons.obj: Source/W3DDevice/GameClient/W3DDebugIcons.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DDebugIcons.obj
+Source/W3DDevice/GameClient/W3DDebugIcons.o: Source/W3DDevice/GameClient/W3DDebugIcons.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DDebugIcons.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DDebugIcons.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDebugIcons.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DDebugIcons.cpp.obj
+Source/W3DDevice/GameClient/W3DDebugIcons.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDebugIcons.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DDebugIcons.cpp.o
 
 Source/W3DDevice/GameClient/W3DDebugIcons.i: Source/W3DDevice/GameClient/W3DDebugIcons.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DDebugIcons.i
@@ -1402,13 +2434,13 @@ Source/W3DDevice/GameClient/W3DDebugIcons.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDebugIcons.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DDebugIcons.cpp.s
 
-Source/W3DDevice/GameClient/W3DDisplay.obj: Source/W3DDevice/GameClient/W3DDisplay.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DDisplay.obj
+Source/W3DDevice/GameClient/W3DDisplay.o: Source/W3DDevice/GameClient/W3DDisplay.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DDisplay.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DDisplay.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDisplay.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DDisplay.cpp.obj
+Source/W3DDevice/GameClient/W3DDisplay.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDisplay.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DDisplay.cpp.o
 
 Source/W3DDevice/GameClient/W3DDisplay.i: Source/W3DDevice/GameClient/W3DDisplay.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DDisplay.i
@@ -1426,13 +2458,13 @@ Source/W3DDevice/GameClient/W3DDisplay.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDisplay.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DDisplay.cpp.s
 
-Source/W3DDevice/GameClient/W3DDisplayString.obj: Source/W3DDevice/GameClient/W3DDisplayString.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DDisplayString.obj
+Source/W3DDevice/GameClient/W3DDisplayString.o: Source/W3DDevice/GameClient/W3DDisplayString.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DDisplayString.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DDisplayString.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDisplayString.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DDisplayString.cpp.obj
+Source/W3DDevice/GameClient/W3DDisplayString.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDisplayString.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DDisplayString.cpp.o
 
 Source/W3DDevice/GameClient/W3DDisplayString.i: Source/W3DDevice/GameClient/W3DDisplayString.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DDisplayString.i
@@ -1450,13 +2482,13 @@ Source/W3DDevice/GameClient/W3DDisplayString.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDisplayString.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DDisplayString.cpp.s
 
-Source/W3DDevice/GameClient/W3DDisplayStringManager.obj: Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DDisplayStringManager.obj
+Source/W3DDevice/GameClient/W3DDisplayStringManager.o: Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DDisplayStringManager.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp.obj
+Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp.o
 
 Source/W3DDevice/GameClient/W3DDisplayStringManager.i: Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DDisplayStringManager.i
@@ -1474,13 +2506,13 @@ Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp.s
 
-Source/W3DDevice/GameClient/W3DDynamicLight.obj: Source/W3DDevice/GameClient/W3DDynamicLight.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DDynamicLight.obj
+Source/W3DDevice/GameClient/W3DDynamicLight.o: Source/W3DDevice/GameClient/W3DDynamicLight.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DDynamicLight.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DDynamicLight.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDynamicLight.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DDynamicLight.cpp.obj
+Source/W3DDevice/GameClient/W3DDynamicLight.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDynamicLight.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DDynamicLight.cpp.o
 
 Source/W3DDevice/GameClient/W3DDynamicLight.i: Source/W3DDevice/GameClient/W3DDynamicLight.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DDynamicLight.i
@@ -1498,13 +2530,13 @@ Source/W3DDevice/GameClient/W3DDynamicLight.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DDynamicLight.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DDynamicLight.cpp.s
 
-Source/W3DDevice/GameClient/W3DFileSystem.obj: Source/W3DDevice/GameClient/W3DFileSystem.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DFileSystem.obj
+Source/W3DDevice/GameClient/W3DFileSystem.o: Source/W3DDevice/GameClient/W3DFileSystem.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DFileSystem.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DFileSystem.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DFileSystem.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DFileSystem.cpp.obj
+Source/W3DDevice/GameClient/W3DFileSystem.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DFileSystem.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DFileSystem.cpp.o
 
 Source/W3DDevice/GameClient/W3DFileSystem.i: Source/W3DDevice/GameClient/W3DFileSystem.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DFileSystem.i
@@ -1522,13 +2554,13 @@ Source/W3DDevice/GameClient/W3DFileSystem.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DFileSystem.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DFileSystem.cpp.s
 
-Source/W3DDevice/GameClient/W3DGameClient.obj: Source/W3DDevice/GameClient/W3DGameClient.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DGameClient.obj
+Source/W3DDevice/GameClient/W3DGameClient.o: Source/W3DDevice/GameClient/W3DGameClient.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DGameClient.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DGameClient.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DGameClient.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DGameClient.cpp.obj
+Source/W3DDevice/GameClient/W3DGameClient.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DGameClient.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DGameClient.cpp.o
 
 Source/W3DDevice/GameClient/W3DGameClient.i: Source/W3DDevice/GameClient/W3DGameClient.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DGameClient.i
@@ -1546,13 +2578,13 @@ Source/W3DDevice/GameClient/W3DGameClient.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DGameClient.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DGameClient.cpp.s
 
-Source/W3DDevice/GameClient/W3DGranny.obj: Source/W3DDevice/GameClient/W3DGranny.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DGranny.obj
+Source/W3DDevice/GameClient/W3DGranny.o: Source/W3DDevice/GameClient/W3DGranny.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DGranny.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DGranny.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DGranny.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DGranny.cpp.obj
+Source/W3DDevice/GameClient/W3DGranny.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DGranny.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DGranny.cpp.o
 
 Source/W3DDevice/GameClient/W3DGranny.i: Source/W3DDevice/GameClient/W3DGranny.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DGranny.i
@@ -1570,13 +2602,13 @@ Source/W3DDevice/GameClient/W3DGranny.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DGranny.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DGranny.cpp.s
 
-Source/W3DDevice/GameClient/W3DInGameUI.obj: Source/W3DDevice/GameClient/W3DInGameUI.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DInGameUI.obj
+Source/W3DDevice/GameClient/W3DInGameUI.o: Source/W3DDevice/GameClient/W3DInGameUI.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DInGameUI.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DInGameUI.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DInGameUI.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DInGameUI.cpp.obj
+Source/W3DDevice/GameClient/W3DInGameUI.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DInGameUI.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DInGameUI.cpp.o
 
 Source/W3DDevice/GameClient/W3DInGameUI.i: Source/W3DDevice/GameClient/W3DInGameUI.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DInGameUI.i
@@ -1594,13 +2626,13 @@ Source/W3DDevice/GameClient/W3DInGameUI.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DInGameUI.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DInGameUI.cpp.s
 
-Source/W3DDevice/GameClient/W3DMouse.obj: Source/W3DDevice/GameClient/W3DMouse.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DMouse.obj
+Source/W3DDevice/GameClient/W3DMouse.o: Source/W3DDevice/GameClient/W3DMouse.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DMouse.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DMouse.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DMouse.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DMouse.cpp.obj
+Source/W3DDevice/GameClient/W3DMouse.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DMouse.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DMouse.cpp.o
 
 Source/W3DDevice/GameClient/W3DMouse.i: Source/W3DDevice/GameClient/W3DMouse.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DMouse.i
@@ -1618,13 +2650,13 @@ Source/W3DDevice/GameClient/W3DMouse.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DMouse.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DMouse.cpp.s
 
-Source/W3DDevice/GameClient/W3DParticleSys.obj: Source/W3DDevice/GameClient/W3DParticleSys.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DParticleSys.obj
+Source/W3DDevice/GameClient/W3DParticleSys.o: Source/W3DDevice/GameClient/W3DParticleSys.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DParticleSys.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DParticleSys.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DParticleSys.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DParticleSys.cpp.obj
+Source/W3DDevice/GameClient/W3DParticleSys.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DParticleSys.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DParticleSys.cpp.o
 
 Source/W3DDevice/GameClient/W3DParticleSys.i: Source/W3DDevice/GameClient/W3DParticleSys.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DParticleSys.i
@@ -1642,13 +2674,13 @@ Source/W3DDevice/GameClient/W3DParticleSys.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DParticleSys.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DParticleSys.cpp.s
 
-Source/W3DDevice/GameClient/W3DPoly.obj: Source/W3DDevice/GameClient/W3DPoly.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DPoly.obj
+Source/W3DDevice/GameClient/W3DPoly.o: Source/W3DDevice/GameClient/W3DPoly.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DPoly.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DPoly.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DPoly.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DPoly.cpp.obj
+Source/W3DDevice/GameClient/W3DPoly.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DPoly.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DPoly.cpp.o
 
 Source/W3DDevice/GameClient/W3DPoly.i: Source/W3DDevice/GameClient/W3DPoly.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DPoly.i
@@ -1666,13 +2698,13 @@ Source/W3DDevice/GameClient/W3DPoly.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DPoly.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DPoly.cpp.s
 
-Source/W3DDevice/GameClient/W3DRoadBuffer.obj: Source/W3DDevice/GameClient/W3DRoadBuffer.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DRoadBuffer.obj
+Source/W3DDevice/GameClient/W3DRoadBuffer.o: Source/W3DDevice/GameClient/W3DRoadBuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DRoadBuffer.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DRoadBuffer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DRoadBuffer.cpp.obj
+Source/W3DDevice/GameClient/W3DRoadBuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DRoadBuffer.cpp.o
 
 Source/W3DDevice/GameClient/W3DRoadBuffer.i: Source/W3DDevice/GameClient/W3DRoadBuffer.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DRoadBuffer.i
@@ -1690,13 +2722,13 @@ Source/W3DDevice/GameClient/W3DRoadBuffer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DRoadBuffer.cpp.s
 
-Source/W3DDevice/GameClient/W3DScene.obj: Source/W3DDevice/GameClient/W3DScene.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DScene.obj
+Source/W3DDevice/GameClient/W3DScene.o: Source/W3DDevice/GameClient/W3DScene.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DScene.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DScene.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DScene.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DScene.cpp.obj
+Source/W3DDevice/GameClient/W3DScene.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DScene.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DScene.cpp.o
 
 Source/W3DDevice/GameClient/W3DScene.i: Source/W3DDevice/GameClient/W3DScene.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DScene.i
@@ -1714,13 +2746,13 @@ Source/W3DDevice/GameClient/W3DScene.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DScene.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DScene.cpp.s
 
-Source/W3DDevice/GameClient/W3DShaderManager.obj: Source/W3DDevice/GameClient/W3DShaderManager.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DShaderManager.obj
+Source/W3DDevice/GameClient/W3DShaderManager.o: Source/W3DDevice/GameClient/W3DShaderManager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DShaderManager.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DShaderManager.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DShaderManager.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DShaderManager.cpp.obj
+Source/W3DDevice/GameClient/W3DShaderManager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DShaderManager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DShaderManager.cpp.o
 
 Source/W3DDevice/GameClient/W3DShaderManager.i: Source/W3DDevice/GameClient/W3DShaderManager.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DShaderManager.i
@@ -1738,13 +2770,13 @@ Source/W3DDevice/GameClient/W3DShaderManager.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DShaderManager.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DShaderManager.cpp.s
 
-Source/W3DDevice/GameClient/W3DShroud.obj: Source/W3DDevice/GameClient/W3DShroud.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DShroud.obj
+Source/W3DDevice/GameClient/W3DShroud.o: Source/W3DDevice/GameClient/W3DShroud.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DShroud.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DShroud.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DShroud.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DShroud.cpp.obj
+Source/W3DDevice/GameClient/W3DShroud.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DShroud.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DShroud.cpp.o
 
 Source/W3DDevice/GameClient/W3DShroud.i: Source/W3DDevice/GameClient/W3DShroud.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DShroud.i
@@ -1762,13 +2794,13 @@ Source/W3DDevice/GameClient/W3DShroud.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DShroud.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DShroud.cpp.s
 
-Source/W3DDevice/GameClient/W3DStatusCircle.obj: Source/W3DDevice/GameClient/W3DStatusCircle.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DStatusCircle.obj
+Source/W3DDevice/GameClient/W3DStatusCircle.o: Source/W3DDevice/GameClient/W3DStatusCircle.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DStatusCircle.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DStatusCircle.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DStatusCircle.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DStatusCircle.cpp.obj
+Source/W3DDevice/GameClient/W3DStatusCircle.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DStatusCircle.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DStatusCircle.cpp.o
 
 Source/W3DDevice/GameClient/W3DStatusCircle.i: Source/W3DDevice/GameClient/W3DStatusCircle.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DStatusCircle.i
@@ -1786,13 +2818,13 @@ Source/W3DDevice/GameClient/W3DStatusCircle.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DStatusCircle.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DStatusCircle.cpp.s
 
-Source/W3DDevice/GameClient/W3DTerrainTracks.obj: Source/W3DDevice/GameClient/W3DTerrainTracks.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DTerrainTracks.obj
+Source/W3DDevice/GameClient/W3DTerrainTracks.o: Source/W3DDevice/GameClient/W3DTerrainTracks.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DTerrainTracks.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DTerrainTracks.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DTerrainTracks.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DTerrainTracks.cpp.obj
+Source/W3DDevice/GameClient/W3DTerrainTracks.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DTerrainTracks.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DTerrainTracks.cpp.o
 
 Source/W3DDevice/GameClient/W3DTerrainTracks.i: Source/W3DDevice/GameClient/W3DTerrainTracks.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DTerrainTracks.i
@@ -1810,13 +2842,13 @@ Source/W3DDevice/GameClient/W3DTerrainTracks.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DTerrainTracks.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DTerrainTracks.cpp.s
 
-Source/W3DDevice/GameClient/W3DTerrainVisual.obj: Source/W3DDevice/GameClient/W3DTerrainVisual.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DTerrainVisual.obj
+Source/W3DDevice/GameClient/W3DTerrainVisual.o: Source/W3DDevice/GameClient/W3DTerrainVisual.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DTerrainVisual.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DTerrainVisual.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DTerrainVisual.cpp.obj
+Source/W3DDevice/GameClient/W3DTerrainVisual.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DTerrainVisual.cpp.o
 
 Source/W3DDevice/GameClient/W3DTerrainVisual.i: Source/W3DDevice/GameClient/W3DTerrainVisual.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DTerrainVisual.i
@@ -1834,13 +2866,13 @@ Source/W3DDevice/GameClient/W3DTerrainVisual.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DTerrainVisual.cpp.s
 
-Source/W3DDevice/GameClient/W3DTreeBuffer.obj: Source/W3DDevice/GameClient/W3DTreeBuffer.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DTreeBuffer.obj
+Source/W3DDevice/GameClient/W3DTreeBuffer.o: Source/W3DDevice/GameClient/W3DTreeBuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DTreeBuffer.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DTreeBuffer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DTreeBuffer.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DTreeBuffer.cpp.obj
+Source/W3DDevice/GameClient/W3DTreeBuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DTreeBuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DTreeBuffer.cpp.o
 
 Source/W3DDevice/GameClient/W3DTreeBuffer.i: Source/W3DDevice/GameClient/W3DTreeBuffer.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DTreeBuffer.i
@@ -1858,13 +2890,13 @@ Source/W3DDevice/GameClient/W3DTreeBuffer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DTreeBuffer.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DTreeBuffer.cpp.s
 
-Source/W3DDevice/GameClient/W3DVideoBuffer.obj: Source/W3DDevice/GameClient/W3DVideoBuffer.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DVideoBuffer.obj
+Source/W3DDevice/GameClient/W3DVideoBuffer.o: Source/W3DDevice/GameClient/W3DVideoBuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DVideoBuffer.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DVideoBuffer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DVideoBuffer.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DVideoBuffer.cpp.obj
+Source/W3DDevice/GameClient/W3DVideoBuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DVideoBuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DVideoBuffer.cpp.o
 
 Source/W3DDevice/GameClient/W3DVideoBuffer.i: Source/W3DDevice/GameClient/W3DVideoBuffer.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DVideoBuffer.i
@@ -1882,13 +2914,13 @@ Source/W3DDevice/GameClient/W3DVideoBuffer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DVideoBuffer.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DVideoBuffer.cpp.s
 
-Source/W3DDevice/GameClient/W3DView.obj: Source/W3DDevice/GameClient/W3DView.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DView.obj
+Source/W3DDevice/GameClient/W3DView.o: Source/W3DDevice/GameClient/W3DView.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DView.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DView.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DView.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DView.cpp.obj
+Source/W3DDevice/GameClient/W3DView.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DView.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DView.cpp.o
 
 Source/W3DDevice/GameClient/W3DView.i: Source/W3DDevice/GameClient/W3DView.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DView.i
@@ -1906,13 +2938,13 @@ Source/W3DDevice/GameClient/W3DView.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DView.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DView.cpp.s
 
-Source/W3DDevice/GameClient/W3DWebBrowser.obj: Source/W3DDevice/GameClient/W3DWebBrowser.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DWebBrowser.obj
+Source/W3DDevice/GameClient/W3DWebBrowser.o: Source/W3DDevice/GameClient/W3DWebBrowser.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DWebBrowser.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3DWebBrowser.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DWebBrowser.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3DWebBrowser.cpp.obj
+Source/W3DDevice/GameClient/W3DWebBrowser.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DWebBrowser.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3DWebBrowser.cpp.o
 
 Source/W3DDevice/GameClient/W3DWebBrowser.i: Source/W3DDevice/GameClient/W3DWebBrowser.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3DWebBrowser.i
@@ -1930,13 +2962,13 @@ Source/W3DDevice/GameClient/W3DWebBrowser.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3DWebBrowser.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3DWebBrowser.cpp.s
 
-Source/W3DDevice/GameClient/W3dWaypointBuffer.obj: Source/W3DDevice/GameClient/W3dWaypointBuffer.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3dWaypointBuffer.obj
+Source/W3DDevice/GameClient/W3dWaypointBuffer.o: Source/W3DDevice/GameClient/W3dWaypointBuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3dWaypointBuffer.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/W3dWaypointBuffer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3dWaypointBuffer.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/W3dWaypointBuffer.cpp.obj
+Source/W3DDevice/GameClient/W3dWaypointBuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3dWaypointBuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/W3dWaypointBuffer.cpp.o
 
 Source/W3DDevice/GameClient/W3dWaypointBuffer.i: Source/W3DDevice/GameClient/W3dWaypointBuffer.cpp.i
 .PHONY : Source/W3DDevice/GameClient/W3dWaypointBuffer.i
@@ -1954,13 +2986,13 @@ Source/W3DDevice/GameClient/W3dWaypointBuffer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/W3dWaypointBuffer.cpp.s
 .PHONY : Source/W3DDevice/GameClient/W3dWaypointBuffer.cpp.s
 
-Source/W3DDevice/GameClient/Water/W3DWater.obj: Source/W3DDevice/GameClient/Water/W3DWater.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Water/W3DWater.obj
+Source/W3DDevice/GameClient/Water/W3DWater.o: Source/W3DDevice/GameClient/Water/W3DWater.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Water/W3DWater.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Water/W3DWater.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Water/W3DWater.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Water/W3DWater.cpp.obj
+Source/W3DDevice/GameClient/Water/W3DWater.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Water/W3DWater.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Water/W3DWater.cpp.o
 
 Source/W3DDevice/GameClient/Water/W3DWater.i: Source/W3DDevice/GameClient/Water/W3DWater.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Water/W3DWater.i
@@ -1978,13 +3010,13 @@ Source/W3DDevice/GameClient/Water/W3DWater.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Water/W3DWater.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Water/W3DWater.cpp.s
 
-Source/W3DDevice/GameClient/Water/W3DWaterTracks.obj: Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Water/W3DWaterTracks.obj
+Source/W3DDevice/GameClient/Water/W3DWaterTracks.o: Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Water/W3DWaterTracks.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp.obj
+Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp.o
 
 Source/W3DDevice/GameClient/Water/W3DWaterTracks.i: Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp.i
 .PHONY : Source/W3DDevice/GameClient/Water/W3DWaterTracks.i
@@ -2002,13 +3034,61 @@ Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp.s
 .PHONY : Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp.s
 
-Source/W3DDevice/GameClient/WorldHeightMap.obj: Source/W3DDevice/GameClient/WorldHeightMap.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/WorldHeightMap.obj
+Source/W3DDevice/GameClient/Water/w3dwater.o: Source/W3DDevice/GameClient/Water/w3dwater.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Water/w3dwater.o
 
 # target to build an object file
-Source/W3DDevice/GameClient/WorldHeightMap.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/WorldHeightMap.cpp.obj
-.PHONY : Source/W3DDevice/GameClient/WorldHeightMap.cpp.obj
+Source/W3DDevice/GameClient/Water/w3dwater.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Water/w3dwater.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Water/w3dwater.cpp.o
+
+Source/W3DDevice/GameClient/Water/w3dwater.i: Source/W3DDevice/GameClient/Water/w3dwater.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Water/w3dwater.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Water/w3dwater.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Water/w3dwater.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Water/w3dwater.cpp.i
+
+Source/W3DDevice/GameClient/Water/w3dwater.s: Source/W3DDevice/GameClient/Water/w3dwater.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Water/w3dwater.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Water/w3dwater.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Water/w3dwater.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Water/w3dwater.cpp.s
+
+Source/W3DDevice/GameClient/Water/w3dwatertracks.o: Source/W3DDevice/GameClient/Water/w3dwatertracks.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Water/w3dwatertracks.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/Water/w3dwatertracks.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Water/w3dwatertracks.cpp.o
+.PHONY : Source/W3DDevice/GameClient/Water/w3dwatertracks.cpp.o
+
+Source/W3DDevice/GameClient/Water/w3dwatertracks.i: Source/W3DDevice/GameClient/Water/w3dwatertracks.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Water/w3dwatertracks.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/Water/w3dwatertracks.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Water/w3dwatertracks.cpp.i
+.PHONY : Source/W3DDevice/GameClient/Water/w3dwatertracks.cpp.i
+
+Source/W3DDevice/GameClient/Water/w3dwatertracks.s: Source/W3DDevice/GameClient/Water/w3dwatertracks.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Water/w3dwatertracks.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/Water/w3dwatertracks.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/Water/w3dwatertracks.cpp.s
+.PHONY : Source/W3DDevice/GameClient/Water/w3dwatertracks.cpp.s
+
+Source/W3DDevice/GameClient/WorldHeightMap.o: Source/W3DDevice/GameClient/WorldHeightMap.cpp.o
+.PHONY : Source/W3DDevice/GameClient/WorldHeightMap.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/WorldHeightMap.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/WorldHeightMap.cpp.o
+.PHONY : Source/W3DDevice/GameClient/WorldHeightMap.cpp.o
 
 Source/W3DDevice/GameClient/WorldHeightMap.i: Source/W3DDevice/GameClient/WorldHeightMap.cpp.i
 .PHONY : Source/W3DDevice/GameClient/WorldHeightMap.i
@@ -2026,13 +3106,829 @@ Source/W3DDevice/GameClient/WorldHeightMap.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/WorldHeightMap.cpp.s
 .PHONY : Source/W3DDevice/GameClient/WorldHeightMap.cpp.s
 
-Source/W3DDevice/GameLogic/W3DGameLogic.obj: Source/W3DDevice/GameLogic/W3DGameLogic.cpp.obj
-.PHONY : Source/W3DDevice/GameLogic/W3DGameLogic.obj
+Source/W3DDevice/GameClient/heightmap.o: Source/W3DDevice/GameClient/heightmap.cpp.o
+.PHONY : Source/W3DDevice/GameClient/heightmap.o
 
 # target to build an object file
-Source/W3DDevice/GameLogic/W3DGameLogic.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/W3DGameLogic.cpp.obj
-.PHONY : Source/W3DDevice/GameLogic/W3DGameLogic.cpp.obj
+Source/W3DDevice/GameClient/heightmap.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/heightmap.cpp.o
+.PHONY : Source/W3DDevice/GameClient/heightmap.cpp.o
+
+Source/W3DDevice/GameClient/heightmap.i: Source/W3DDevice/GameClient/heightmap.cpp.i
+.PHONY : Source/W3DDevice/GameClient/heightmap.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/heightmap.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/heightmap.cpp.i
+.PHONY : Source/W3DDevice/GameClient/heightmap.cpp.i
+
+Source/W3DDevice/GameClient/heightmap.s: Source/W3DDevice/GameClient/heightmap.cpp.s
+.PHONY : Source/W3DDevice/GameClient/heightmap.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/heightmap.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/heightmap.cpp.s
+.PHONY : Source/W3DDevice/GameClient/heightmap.cpp.s
+
+Source/W3DDevice/GameClient/terraintex.o: Source/W3DDevice/GameClient/terraintex.cpp.o
+.PHONY : Source/W3DDevice/GameClient/terraintex.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/terraintex.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/terraintex.cpp.o
+.PHONY : Source/W3DDevice/GameClient/terraintex.cpp.o
+
+Source/W3DDevice/GameClient/terraintex.i: Source/W3DDevice/GameClient/terraintex.cpp.i
+.PHONY : Source/W3DDevice/GameClient/terraintex.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/terraintex.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/terraintex.cpp.i
+.PHONY : Source/W3DDevice/GameClient/terraintex.cpp.i
+
+Source/W3DDevice/GameClient/terraintex.s: Source/W3DDevice/GameClient/terraintex.cpp.s
+.PHONY : Source/W3DDevice/GameClient/terraintex.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/terraintex.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/terraintex.cpp.s
+.PHONY : Source/W3DDevice/GameClient/terraintex.cpp.s
+
+Source/W3DDevice/GameClient/tiledata.o: Source/W3DDevice/GameClient/tiledata.cpp.o
+.PHONY : Source/W3DDevice/GameClient/tiledata.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/tiledata.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/tiledata.cpp.o
+.PHONY : Source/W3DDevice/GameClient/tiledata.cpp.o
+
+Source/W3DDevice/GameClient/tiledata.i: Source/W3DDevice/GameClient/tiledata.cpp.i
+.PHONY : Source/W3DDevice/GameClient/tiledata.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/tiledata.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/tiledata.cpp.i
+.PHONY : Source/W3DDevice/GameClient/tiledata.cpp.i
+
+Source/W3DDevice/GameClient/tiledata.s: Source/W3DDevice/GameClient/tiledata.cpp.s
+.PHONY : Source/W3DDevice/GameClient/tiledata.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/tiledata.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/tiledata.cpp.s
+.PHONY : Source/W3DDevice/GameClient/tiledata.cpp.s
+
+Source/W3DDevice/GameClient/w3dassetmanager.o: Source/W3DDevice/GameClient/w3dassetmanager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dassetmanager.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dassetmanager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dassetmanager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dassetmanager.cpp.o
+
+Source/W3DDevice/GameClient/w3dassetmanager.i: Source/W3DDevice/GameClient/w3dassetmanager.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dassetmanager.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dassetmanager.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dassetmanager.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dassetmanager.cpp.i
+
+Source/W3DDevice/GameClient/w3dassetmanager.s: Source/W3DDevice/GameClient/w3dassetmanager.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dassetmanager.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dassetmanager.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dassetmanager.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dassetmanager.cpp.s
+
+Source/W3DDevice/GameClient/w3dassetmanagerexposed.o: Source/W3DDevice/GameClient/w3dassetmanagerexposed.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dassetmanagerexposed.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dassetmanagerexposed.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dassetmanagerexposed.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dassetmanagerexposed.cpp.o
+
+Source/W3DDevice/GameClient/w3dassetmanagerexposed.i: Source/W3DDevice/GameClient/w3dassetmanagerexposed.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dassetmanagerexposed.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dassetmanagerexposed.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dassetmanagerexposed.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dassetmanagerexposed.cpp.i
+
+Source/W3DDevice/GameClient/w3dassetmanagerexposed.s: Source/W3DDevice/GameClient/w3dassetmanagerexposed.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dassetmanagerexposed.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dassetmanagerexposed.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dassetmanagerexposed.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dassetmanagerexposed.cpp.s
+
+Source/W3DDevice/GameClient/w3dbibbuffer.o: Source/W3DDevice/GameClient/w3dbibbuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dbibbuffer.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dbibbuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dbibbuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dbibbuffer.cpp.o
+
+Source/W3DDevice/GameClient/w3dbibbuffer.i: Source/W3DDevice/GameClient/w3dbibbuffer.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dbibbuffer.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dbibbuffer.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dbibbuffer.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dbibbuffer.cpp.i
+
+Source/W3DDevice/GameClient/w3dbibbuffer.s: Source/W3DDevice/GameClient/w3dbibbuffer.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dbibbuffer.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dbibbuffer.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dbibbuffer.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dbibbuffer.cpp.s
+
+Source/W3DDevice/GameClient/w3dbridgebuffer.o: Source/W3DDevice/GameClient/w3dbridgebuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dbridgebuffer.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dbridgebuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dbridgebuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dbridgebuffer.cpp.o
+
+Source/W3DDevice/GameClient/w3dbridgebuffer.i: Source/W3DDevice/GameClient/w3dbridgebuffer.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dbridgebuffer.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dbridgebuffer.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dbridgebuffer.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dbridgebuffer.cpp.i
+
+Source/W3DDevice/GameClient/w3dbridgebuffer.s: Source/W3DDevice/GameClient/w3dbridgebuffer.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dbridgebuffer.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dbridgebuffer.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dbridgebuffer.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dbridgebuffer.cpp.s
+
+Source/W3DDevice/GameClient/w3dcustomedging.o: Source/W3DDevice/GameClient/w3dcustomedging.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dcustomedging.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dcustomedging.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dcustomedging.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dcustomedging.cpp.o
+
+Source/W3DDevice/GameClient/w3dcustomedging.i: Source/W3DDevice/GameClient/w3dcustomedging.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dcustomedging.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dcustomedging.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dcustomedging.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dcustomedging.cpp.i
+
+Source/W3DDevice/GameClient/w3dcustomedging.s: Source/W3DDevice/GameClient/w3dcustomedging.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dcustomedging.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dcustomedging.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dcustomedging.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dcustomedging.cpp.s
+
+Source/W3DDevice/GameClient/w3ddebugdisplay.o: Source/W3DDevice/GameClient/w3ddebugdisplay.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3ddebugdisplay.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3ddebugdisplay.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddebugdisplay.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3ddebugdisplay.cpp.o
+
+Source/W3DDevice/GameClient/w3ddebugdisplay.i: Source/W3DDevice/GameClient/w3ddebugdisplay.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3ddebugdisplay.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3ddebugdisplay.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddebugdisplay.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3ddebugdisplay.cpp.i
+
+Source/W3DDevice/GameClient/w3ddebugdisplay.s: Source/W3DDevice/GameClient/w3ddebugdisplay.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3ddebugdisplay.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3ddebugdisplay.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddebugdisplay.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3ddebugdisplay.cpp.s
+
+Source/W3DDevice/GameClient/w3ddebugicons.o: Source/W3DDevice/GameClient/w3ddebugicons.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3ddebugicons.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3ddebugicons.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddebugicons.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3ddebugicons.cpp.o
+
+Source/W3DDevice/GameClient/w3ddebugicons.i: Source/W3DDevice/GameClient/w3ddebugicons.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3ddebugicons.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3ddebugicons.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddebugicons.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3ddebugicons.cpp.i
+
+Source/W3DDevice/GameClient/w3ddebugicons.s: Source/W3DDevice/GameClient/w3ddebugicons.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3ddebugicons.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3ddebugicons.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddebugicons.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3ddebugicons.cpp.s
+
+Source/W3DDevice/GameClient/w3ddisplay.o: Source/W3DDevice/GameClient/w3ddisplay.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3ddisplay.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3ddisplay.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddisplay.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3ddisplay.cpp.o
+
+Source/W3DDevice/GameClient/w3ddisplay.i: Source/W3DDevice/GameClient/w3ddisplay.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3ddisplay.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3ddisplay.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddisplay.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3ddisplay.cpp.i
+
+Source/W3DDevice/GameClient/w3ddisplay.s: Source/W3DDevice/GameClient/w3ddisplay.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3ddisplay.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3ddisplay.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddisplay.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3ddisplay.cpp.s
+
+Source/W3DDevice/GameClient/w3ddisplaystring.o: Source/W3DDevice/GameClient/w3ddisplaystring.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3ddisplaystring.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3ddisplaystring.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddisplaystring.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3ddisplaystring.cpp.o
+
+Source/W3DDevice/GameClient/w3ddisplaystring.i: Source/W3DDevice/GameClient/w3ddisplaystring.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3ddisplaystring.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3ddisplaystring.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddisplaystring.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3ddisplaystring.cpp.i
+
+Source/W3DDevice/GameClient/w3ddisplaystring.s: Source/W3DDevice/GameClient/w3ddisplaystring.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3ddisplaystring.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3ddisplaystring.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddisplaystring.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3ddisplaystring.cpp.s
+
+Source/W3DDevice/GameClient/w3ddisplaystringmanager.o: Source/W3DDevice/GameClient/w3ddisplaystringmanager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3ddisplaystringmanager.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3ddisplaystringmanager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddisplaystringmanager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3ddisplaystringmanager.cpp.o
+
+Source/W3DDevice/GameClient/w3ddisplaystringmanager.i: Source/W3DDevice/GameClient/w3ddisplaystringmanager.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3ddisplaystringmanager.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3ddisplaystringmanager.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddisplaystringmanager.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3ddisplaystringmanager.cpp.i
+
+Source/W3DDevice/GameClient/w3ddisplaystringmanager.s: Source/W3DDevice/GameClient/w3ddisplaystringmanager.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3ddisplaystringmanager.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3ddisplaystringmanager.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddisplaystringmanager.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3ddisplaystringmanager.cpp.s
+
+Source/W3DDevice/GameClient/w3ddynamiclight.o: Source/W3DDevice/GameClient/w3ddynamiclight.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3ddynamiclight.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3ddynamiclight.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddynamiclight.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3ddynamiclight.cpp.o
+
+Source/W3DDevice/GameClient/w3ddynamiclight.i: Source/W3DDevice/GameClient/w3ddynamiclight.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3ddynamiclight.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3ddynamiclight.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddynamiclight.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3ddynamiclight.cpp.i
+
+Source/W3DDevice/GameClient/w3ddynamiclight.s: Source/W3DDevice/GameClient/w3ddynamiclight.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3ddynamiclight.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3ddynamiclight.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3ddynamiclight.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3ddynamiclight.cpp.s
+
+Source/W3DDevice/GameClient/w3dfilesystem.o: Source/W3DDevice/GameClient/w3dfilesystem.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dfilesystem.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dfilesystem.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dfilesystem.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dfilesystem.cpp.o
+
+Source/W3DDevice/GameClient/w3dfilesystem.i: Source/W3DDevice/GameClient/w3dfilesystem.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dfilesystem.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dfilesystem.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dfilesystem.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dfilesystem.cpp.i
+
+Source/W3DDevice/GameClient/w3dfilesystem.s: Source/W3DDevice/GameClient/w3dfilesystem.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dfilesystem.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dfilesystem.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dfilesystem.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dfilesystem.cpp.s
+
+Source/W3DDevice/GameClient/w3dgameclient.o: Source/W3DDevice/GameClient/w3dgameclient.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dgameclient.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dgameclient.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dgameclient.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dgameclient.cpp.o
+
+Source/W3DDevice/GameClient/w3dgameclient.i: Source/W3DDevice/GameClient/w3dgameclient.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dgameclient.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dgameclient.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dgameclient.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dgameclient.cpp.i
+
+Source/W3DDevice/GameClient/w3dgameclient.s: Source/W3DDevice/GameClient/w3dgameclient.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dgameclient.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dgameclient.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dgameclient.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dgameclient.cpp.s
+
+Source/W3DDevice/GameClient/w3dgranny.o: Source/W3DDevice/GameClient/w3dgranny.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dgranny.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dgranny.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dgranny.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dgranny.cpp.o
+
+Source/W3DDevice/GameClient/w3dgranny.i: Source/W3DDevice/GameClient/w3dgranny.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dgranny.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dgranny.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dgranny.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dgranny.cpp.i
+
+Source/W3DDevice/GameClient/w3dgranny.s: Source/W3DDevice/GameClient/w3dgranny.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dgranny.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dgranny.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dgranny.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dgranny.cpp.s
+
+Source/W3DDevice/GameClient/w3dingameui.o: Source/W3DDevice/GameClient/w3dingameui.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dingameui.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dingameui.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dingameui.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dingameui.cpp.o
+
+Source/W3DDevice/GameClient/w3dingameui.i: Source/W3DDevice/GameClient/w3dingameui.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dingameui.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dingameui.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dingameui.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dingameui.cpp.i
+
+Source/W3DDevice/GameClient/w3dingameui.s: Source/W3DDevice/GameClient/w3dingameui.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dingameui.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dingameui.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dingameui.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dingameui.cpp.s
+
+Source/W3DDevice/GameClient/w3dmouse.o: Source/W3DDevice/GameClient/w3dmouse.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dmouse.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dmouse.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dmouse.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dmouse.cpp.o
+
+Source/W3DDevice/GameClient/w3dmouse.i: Source/W3DDevice/GameClient/w3dmouse.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dmouse.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dmouse.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dmouse.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dmouse.cpp.i
+
+Source/W3DDevice/GameClient/w3dmouse.s: Source/W3DDevice/GameClient/w3dmouse.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dmouse.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dmouse.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dmouse.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dmouse.cpp.s
+
+Source/W3DDevice/GameClient/w3dparticlesys.o: Source/W3DDevice/GameClient/w3dparticlesys.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dparticlesys.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dparticlesys.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dparticlesys.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dparticlesys.cpp.o
+
+Source/W3DDevice/GameClient/w3dparticlesys.i: Source/W3DDevice/GameClient/w3dparticlesys.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dparticlesys.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dparticlesys.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dparticlesys.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dparticlesys.cpp.i
+
+Source/W3DDevice/GameClient/w3dparticlesys.s: Source/W3DDevice/GameClient/w3dparticlesys.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dparticlesys.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dparticlesys.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dparticlesys.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dparticlesys.cpp.s
+
+Source/W3DDevice/GameClient/w3dpoly.o: Source/W3DDevice/GameClient/w3dpoly.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dpoly.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dpoly.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dpoly.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dpoly.cpp.o
+
+Source/W3DDevice/GameClient/w3dpoly.i: Source/W3DDevice/GameClient/w3dpoly.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dpoly.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dpoly.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dpoly.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dpoly.cpp.i
+
+Source/W3DDevice/GameClient/w3dpoly.s: Source/W3DDevice/GameClient/w3dpoly.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dpoly.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dpoly.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dpoly.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dpoly.cpp.s
+
+Source/W3DDevice/GameClient/w3droadbuffer.o: Source/W3DDevice/GameClient/w3droadbuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3droadbuffer.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3droadbuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3droadbuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3droadbuffer.cpp.o
+
+Source/W3DDevice/GameClient/w3droadbuffer.i: Source/W3DDevice/GameClient/w3droadbuffer.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3droadbuffer.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3droadbuffer.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3droadbuffer.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3droadbuffer.cpp.i
+
+Source/W3DDevice/GameClient/w3droadbuffer.s: Source/W3DDevice/GameClient/w3droadbuffer.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3droadbuffer.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3droadbuffer.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3droadbuffer.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3droadbuffer.cpp.s
+
+Source/W3DDevice/GameClient/w3dscene.o: Source/W3DDevice/GameClient/w3dscene.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dscene.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dscene.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dscene.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dscene.cpp.o
+
+Source/W3DDevice/GameClient/w3dscene.i: Source/W3DDevice/GameClient/w3dscene.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dscene.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dscene.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dscene.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dscene.cpp.i
+
+Source/W3DDevice/GameClient/w3dscene.s: Source/W3DDevice/GameClient/w3dscene.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dscene.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dscene.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dscene.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dscene.cpp.s
+
+Source/W3DDevice/GameClient/w3dshadermanager.o: Source/W3DDevice/GameClient/w3dshadermanager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dshadermanager.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dshadermanager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dshadermanager.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dshadermanager.cpp.o
+
+Source/W3DDevice/GameClient/w3dshadermanager.i: Source/W3DDevice/GameClient/w3dshadermanager.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dshadermanager.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dshadermanager.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dshadermanager.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dshadermanager.cpp.i
+
+Source/W3DDevice/GameClient/w3dshadermanager.s: Source/W3DDevice/GameClient/w3dshadermanager.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dshadermanager.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dshadermanager.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dshadermanager.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dshadermanager.cpp.s
+
+Source/W3DDevice/GameClient/w3dshroud.o: Source/W3DDevice/GameClient/w3dshroud.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dshroud.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dshroud.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dshroud.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dshroud.cpp.o
+
+Source/W3DDevice/GameClient/w3dshroud.i: Source/W3DDevice/GameClient/w3dshroud.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dshroud.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dshroud.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dshroud.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dshroud.cpp.i
+
+Source/W3DDevice/GameClient/w3dshroud.s: Source/W3DDevice/GameClient/w3dshroud.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dshroud.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dshroud.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dshroud.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dshroud.cpp.s
+
+Source/W3DDevice/GameClient/w3dstatuscircle.o: Source/W3DDevice/GameClient/w3dstatuscircle.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dstatuscircle.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dstatuscircle.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dstatuscircle.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dstatuscircle.cpp.o
+
+Source/W3DDevice/GameClient/w3dstatuscircle.i: Source/W3DDevice/GameClient/w3dstatuscircle.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dstatuscircle.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dstatuscircle.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dstatuscircle.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dstatuscircle.cpp.i
+
+Source/W3DDevice/GameClient/w3dstatuscircle.s: Source/W3DDevice/GameClient/w3dstatuscircle.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dstatuscircle.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dstatuscircle.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dstatuscircle.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dstatuscircle.cpp.s
+
+Source/W3DDevice/GameClient/w3dterraintracks.o: Source/W3DDevice/GameClient/w3dterraintracks.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dterraintracks.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dterraintracks.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dterraintracks.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dterraintracks.cpp.o
+
+Source/W3DDevice/GameClient/w3dterraintracks.i: Source/W3DDevice/GameClient/w3dterraintracks.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dterraintracks.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dterraintracks.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dterraintracks.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dterraintracks.cpp.i
+
+Source/W3DDevice/GameClient/w3dterraintracks.s: Source/W3DDevice/GameClient/w3dterraintracks.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dterraintracks.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dterraintracks.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dterraintracks.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dterraintracks.cpp.s
+
+Source/W3DDevice/GameClient/w3dterrainvisual.o: Source/W3DDevice/GameClient/w3dterrainvisual.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dterrainvisual.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dterrainvisual.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dterrainvisual.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dterrainvisual.cpp.o
+
+Source/W3DDevice/GameClient/w3dterrainvisual.i: Source/W3DDevice/GameClient/w3dterrainvisual.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dterrainvisual.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dterrainvisual.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dterrainvisual.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dterrainvisual.cpp.i
+
+Source/W3DDevice/GameClient/w3dterrainvisual.s: Source/W3DDevice/GameClient/w3dterrainvisual.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dterrainvisual.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dterrainvisual.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dterrainvisual.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dterrainvisual.cpp.s
+
+Source/W3DDevice/GameClient/w3dtreebuffer.o: Source/W3DDevice/GameClient/w3dtreebuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dtreebuffer.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dtreebuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dtreebuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dtreebuffer.cpp.o
+
+Source/W3DDevice/GameClient/w3dtreebuffer.i: Source/W3DDevice/GameClient/w3dtreebuffer.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dtreebuffer.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dtreebuffer.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dtreebuffer.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dtreebuffer.cpp.i
+
+Source/W3DDevice/GameClient/w3dtreebuffer.s: Source/W3DDevice/GameClient/w3dtreebuffer.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dtreebuffer.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dtreebuffer.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dtreebuffer.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dtreebuffer.cpp.s
+
+Source/W3DDevice/GameClient/w3dvideobuffer.o: Source/W3DDevice/GameClient/w3dvideobuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dvideobuffer.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dvideobuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dvideobuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dvideobuffer.cpp.o
+
+Source/W3DDevice/GameClient/w3dvideobuffer.i: Source/W3DDevice/GameClient/w3dvideobuffer.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dvideobuffer.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dvideobuffer.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dvideobuffer.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dvideobuffer.cpp.i
+
+Source/W3DDevice/GameClient/w3dvideobuffer.s: Source/W3DDevice/GameClient/w3dvideobuffer.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dvideobuffer.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dvideobuffer.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dvideobuffer.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dvideobuffer.cpp.s
+
+Source/W3DDevice/GameClient/w3dview.o: Source/W3DDevice/GameClient/w3dview.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dview.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dview.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dview.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dview.cpp.o
+
+Source/W3DDevice/GameClient/w3dview.i: Source/W3DDevice/GameClient/w3dview.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dview.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dview.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dview.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dview.cpp.i
+
+Source/W3DDevice/GameClient/w3dview.s: Source/W3DDevice/GameClient/w3dview.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dview.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dview.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dview.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dview.cpp.s
+
+Source/W3DDevice/GameClient/w3dwaypointbuffer.o: Source/W3DDevice/GameClient/w3dwaypointbuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dwaypointbuffer.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dwaypointbuffer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dwaypointbuffer.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dwaypointbuffer.cpp.o
+
+Source/W3DDevice/GameClient/w3dwaypointbuffer.i: Source/W3DDevice/GameClient/w3dwaypointbuffer.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dwaypointbuffer.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dwaypointbuffer.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dwaypointbuffer.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dwaypointbuffer.cpp.i
+
+Source/W3DDevice/GameClient/w3dwaypointbuffer.s: Source/W3DDevice/GameClient/w3dwaypointbuffer.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dwaypointbuffer.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dwaypointbuffer.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dwaypointbuffer.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dwaypointbuffer.cpp.s
+
+Source/W3DDevice/GameClient/w3dwebbrowser.o: Source/W3DDevice/GameClient/w3dwebbrowser.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dwebbrowser.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/w3dwebbrowser.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dwebbrowser.cpp.o
+.PHONY : Source/W3DDevice/GameClient/w3dwebbrowser.cpp.o
+
+Source/W3DDevice/GameClient/w3dwebbrowser.i: Source/W3DDevice/GameClient/w3dwebbrowser.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dwebbrowser.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/w3dwebbrowser.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dwebbrowser.cpp.i
+.PHONY : Source/W3DDevice/GameClient/w3dwebbrowser.cpp.i
+
+Source/W3DDevice/GameClient/w3dwebbrowser.s: Source/W3DDevice/GameClient/w3dwebbrowser.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dwebbrowser.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/w3dwebbrowser.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/w3dwebbrowser.cpp.s
+.PHONY : Source/W3DDevice/GameClient/w3dwebbrowser.cpp.s
+
+Source/W3DDevice/GameClient/worldheightmap.o: Source/W3DDevice/GameClient/worldheightmap.cpp.o
+.PHONY : Source/W3DDevice/GameClient/worldheightmap.o
+
+# target to build an object file
+Source/W3DDevice/GameClient/worldheightmap.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/worldheightmap.cpp.o
+.PHONY : Source/W3DDevice/GameClient/worldheightmap.cpp.o
+
+Source/W3DDevice/GameClient/worldheightmap.i: Source/W3DDevice/GameClient/worldheightmap.cpp.i
+.PHONY : Source/W3DDevice/GameClient/worldheightmap.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameClient/worldheightmap.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/worldheightmap.cpp.i
+.PHONY : Source/W3DDevice/GameClient/worldheightmap.cpp.i
+
+Source/W3DDevice/GameClient/worldheightmap.s: Source/W3DDevice/GameClient/worldheightmap.cpp.s
+.PHONY : Source/W3DDevice/GameClient/worldheightmap.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameClient/worldheightmap.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameClient/worldheightmap.cpp.s
+.PHONY : Source/W3DDevice/GameClient/worldheightmap.cpp.s
+
+Source/W3DDevice/GameLogic/W3DGameLogic.o: Source/W3DDevice/GameLogic/W3DGameLogic.cpp.o
+.PHONY : Source/W3DDevice/GameLogic/W3DGameLogic.o
+
+# target to build an object file
+Source/W3DDevice/GameLogic/W3DGameLogic.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/W3DGameLogic.cpp.o
+.PHONY : Source/W3DDevice/GameLogic/W3DGameLogic.cpp.o
 
 Source/W3DDevice/GameLogic/W3DGameLogic.i: Source/W3DDevice/GameLogic/W3DGameLogic.cpp.i
 .PHONY : Source/W3DDevice/GameLogic/W3DGameLogic.i
@@ -2050,13 +3946,13 @@ Source/W3DDevice/GameLogic/W3DGameLogic.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/W3DGameLogic.cpp.s
 .PHONY : Source/W3DDevice/GameLogic/W3DGameLogic.cpp.s
 
-Source/W3DDevice/GameLogic/W3DGhostObject.obj: Source/W3DDevice/GameLogic/W3DGhostObject.cpp.obj
-.PHONY : Source/W3DDevice/GameLogic/W3DGhostObject.obj
+Source/W3DDevice/GameLogic/W3DGhostObject.o: Source/W3DDevice/GameLogic/W3DGhostObject.cpp.o
+.PHONY : Source/W3DDevice/GameLogic/W3DGhostObject.o
 
 # target to build an object file
-Source/W3DDevice/GameLogic/W3DGhostObject.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/W3DGhostObject.cpp.obj
-.PHONY : Source/W3DDevice/GameLogic/W3DGhostObject.cpp.obj
+Source/W3DDevice/GameLogic/W3DGhostObject.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/W3DGhostObject.cpp.o
+.PHONY : Source/W3DDevice/GameLogic/W3DGhostObject.cpp.o
 
 Source/W3DDevice/GameLogic/W3DGhostObject.i: Source/W3DDevice/GameLogic/W3DGhostObject.cpp.i
 .PHONY : Source/W3DDevice/GameLogic/W3DGhostObject.i
@@ -2074,13 +3970,13 @@ Source/W3DDevice/GameLogic/W3DGhostObject.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/W3DGhostObject.cpp.s
 .PHONY : Source/W3DDevice/GameLogic/W3DGhostObject.cpp.s
 
-Source/W3DDevice/GameLogic/W3DTerrainLogic.obj: Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp.obj
-.PHONY : Source/W3DDevice/GameLogic/W3DTerrainLogic.obj
+Source/W3DDevice/GameLogic/W3DTerrainLogic.o: Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp.o
+.PHONY : Source/W3DDevice/GameLogic/W3DTerrainLogic.o
 
 # target to build an object file
-Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp.obj
-.PHONY : Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp.obj
+Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp.o
+.PHONY : Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp.o
 
 Source/W3DDevice/GameLogic/W3DTerrainLogic.i: Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp.i
 .PHONY : Source/W3DDevice/GameLogic/W3DTerrainLogic.i
@@ -2098,13 +3994,85 @@ Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp.s
 .PHONY : Source/W3DDevice/GameLogic/W3DTerrainLogic.cpp.s
 
-Source/Win32Device/Common/Win32BIGFile.obj: Source/Win32Device/Common/Win32BIGFile.cpp.obj
-.PHONY : Source/Win32Device/Common/Win32BIGFile.obj
+Source/W3DDevice/GameLogic/w3dgamelogic.o: Source/W3DDevice/GameLogic/w3dgamelogic.cpp.o
+.PHONY : Source/W3DDevice/GameLogic/w3dgamelogic.o
 
 # target to build an object file
-Source/Win32Device/Common/Win32BIGFile.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32BIGFile.cpp.obj
-.PHONY : Source/Win32Device/Common/Win32BIGFile.cpp.obj
+Source/W3DDevice/GameLogic/w3dgamelogic.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/w3dgamelogic.cpp.o
+.PHONY : Source/W3DDevice/GameLogic/w3dgamelogic.cpp.o
+
+Source/W3DDevice/GameLogic/w3dgamelogic.i: Source/W3DDevice/GameLogic/w3dgamelogic.cpp.i
+.PHONY : Source/W3DDevice/GameLogic/w3dgamelogic.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameLogic/w3dgamelogic.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/w3dgamelogic.cpp.i
+.PHONY : Source/W3DDevice/GameLogic/w3dgamelogic.cpp.i
+
+Source/W3DDevice/GameLogic/w3dgamelogic.s: Source/W3DDevice/GameLogic/w3dgamelogic.cpp.s
+.PHONY : Source/W3DDevice/GameLogic/w3dgamelogic.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameLogic/w3dgamelogic.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/w3dgamelogic.cpp.s
+.PHONY : Source/W3DDevice/GameLogic/w3dgamelogic.cpp.s
+
+Source/W3DDevice/GameLogic/w3dghostobject.o: Source/W3DDevice/GameLogic/w3dghostobject.cpp.o
+.PHONY : Source/W3DDevice/GameLogic/w3dghostobject.o
+
+# target to build an object file
+Source/W3DDevice/GameLogic/w3dghostobject.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/w3dghostobject.cpp.o
+.PHONY : Source/W3DDevice/GameLogic/w3dghostobject.cpp.o
+
+Source/W3DDevice/GameLogic/w3dghostobject.i: Source/W3DDevice/GameLogic/w3dghostobject.cpp.i
+.PHONY : Source/W3DDevice/GameLogic/w3dghostobject.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameLogic/w3dghostobject.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/w3dghostobject.cpp.i
+.PHONY : Source/W3DDevice/GameLogic/w3dghostobject.cpp.i
+
+Source/W3DDevice/GameLogic/w3dghostobject.s: Source/W3DDevice/GameLogic/w3dghostobject.cpp.s
+.PHONY : Source/W3DDevice/GameLogic/w3dghostobject.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameLogic/w3dghostobject.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/w3dghostobject.cpp.s
+.PHONY : Source/W3DDevice/GameLogic/w3dghostobject.cpp.s
+
+Source/W3DDevice/GameLogic/w3dterrainlogic.o: Source/W3DDevice/GameLogic/w3dterrainlogic.cpp.o
+.PHONY : Source/W3DDevice/GameLogic/w3dterrainlogic.o
+
+# target to build an object file
+Source/W3DDevice/GameLogic/w3dterrainlogic.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/w3dterrainlogic.cpp.o
+.PHONY : Source/W3DDevice/GameLogic/w3dterrainlogic.cpp.o
+
+Source/W3DDevice/GameLogic/w3dterrainlogic.i: Source/W3DDevice/GameLogic/w3dterrainlogic.cpp.i
+.PHONY : Source/W3DDevice/GameLogic/w3dterrainlogic.i
+
+# target to preprocess a source file
+Source/W3DDevice/GameLogic/w3dterrainlogic.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/w3dterrainlogic.cpp.i
+.PHONY : Source/W3DDevice/GameLogic/w3dterrainlogic.cpp.i
+
+Source/W3DDevice/GameLogic/w3dterrainlogic.s: Source/W3DDevice/GameLogic/w3dterrainlogic.cpp.s
+.PHONY : Source/W3DDevice/GameLogic/w3dterrainlogic.s
+
+# target to generate assembly for a file
+Source/W3DDevice/GameLogic/w3dterrainlogic.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/W3DDevice/GameLogic/w3dterrainlogic.cpp.s
+.PHONY : Source/W3DDevice/GameLogic/w3dterrainlogic.cpp.s
+
+Source/Win32Device/Common/Win32BIGFile.o: Source/Win32Device/Common/Win32BIGFile.cpp.o
+.PHONY : Source/Win32Device/Common/Win32BIGFile.o
+
+# target to build an object file
+Source/Win32Device/Common/Win32BIGFile.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32BIGFile.cpp.o
+.PHONY : Source/Win32Device/Common/Win32BIGFile.cpp.o
 
 Source/Win32Device/Common/Win32BIGFile.i: Source/Win32Device/Common/Win32BIGFile.cpp.i
 .PHONY : Source/Win32Device/Common/Win32BIGFile.i
@@ -2122,13 +4090,13 @@ Source/Win32Device/Common/Win32BIGFile.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32BIGFile.cpp.s
 .PHONY : Source/Win32Device/Common/Win32BIGFile.cpp.s
 
-Source/Win32Device/Common/Win32BIGFileSystem.obj: Source/Win32Device/Common/Win32BIGFileSystem.cpp.obj
-.PHONY : Source/Win32Device/Common/Win32BIGFileSystem.obj
+Source/Win32Device/Common/Win32BIGFileSystem.o: Source/Win32Device/Common/Win32BIGFileSystem.cpp.o
+.PHONY : Source/Win32Device/Common/Win32BIGFileSystem.o
 
 # target to build an object file
-Source/Win32Device/Common/Win32BIGFileSystem.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32BIGFileSystem.cpp.obj
-.PHONY : Source/Win32Device/Common/Win32BIGFileSystem.cpp.obj
+Source/Win32Device/Common/Win32BIGFileSystem.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32BIGFileSystem.cpp.o
+.PHONY : Source/Win32Device/Common/Win32BIGFileSystem.cpp.o
 
 Source/Win32Device/Common/Win32BIGFileSystem.i: Source/Win32Device/Common/Win32BIGFileSystem.cpp.i
 .PHONY : Source/Win32Device/Common/Win32BIGFileSystem.i
@@ -2146,13 +4114,13 @@ Source/Win32Device/Common/Win32BIGFileSystem.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32BIGFileSystem.cpp.s
 .PHONY : Source/Win32Device/Common/Win32BIGFileSystem.cpp.s
 
-Source/Win32Device/Common/Win32CDManager.obj: Source/Win32Device/Common/Win32CDManager.cpp.obj
-.PHONY : Source/Win32Device/Common/Win32CDManager.obj
+Source/Win32Device/Common/Win32CDManager.o: Source/Win32Device/Common/Win32CDManager.cpp.o
+.PHONY : Source/Win32Device/Common/Win32CDManager.o
 
 # target to build an object file
-Source/Win32Device/Common/Win32CDManager.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32CDManager.cpp.obj
-.PHONY : Source/Win32Device/Common/Win32CDManager.cpp.obj
+Source/Win32Device/Common/Win32CDManager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32CDManager.cpp.o
+.PHONY : Source/Win32Device/Common/Win32CDManager.cpp.o
 
 Source/Win32Device/Common/Win32CDManager.i: Source/Win32Device/Common/Win32CDManager.cpp.i
 .PHONY : Source/Win32Device/Common/Win32CDManager.i
@@ -2170,13 +4138,13 @@ Source/Win32Device/Common/Win32CDManager.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32CDManager.cpp.s
 .PHONY : Source/Win32Device/Common/Win32CDManager.cpp.s
 
-Source/Win32Device/Common/Win32GameEngine.obj: Source/Win32Device/Common/Win32GameEngine.cpp.obj
-.PHONY : Source/Win32Device/Common/Win32GameEngine.obj
+Source/Win32Device/Common/Win32GameEngine.o: Source/Win32Device/Common/Win32GameEngine.cpp.o
+.PHONY : Source/Win32Device/Common/Win32GameEngine.o
 
 # target to build an object file
-Source/Win32Device/Common/Win32GameEngine.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32GameEngine.cpp.obj
-.PHONY : Source/Win32Device/Common/Win32GameEngine.cpp.obj
+Source/Win32Device/Common/Win32GameEngine.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32GameEngine.cpp.o
+.PHONY : Source/Win32Device/Common/Win32GameEngine.cpp.o
 
 Source/Win32Device/Common/Win32GameEngine.i: Source/Win32Device/Common/Win32GameEngine.cpp.i
 .PHONY : Source/Win32Device/Common/Win32GameEngine.i
@@ -2194,13 +4162,13 @@ Source/Win32Device/Common/Win32GameEngine.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32GameEngine.cpp.s
 .PHONY : Source/Win32Device/Common/Win32GameEngine.cpp.s
 
-Source/Win32Device/Common/Win32LocalFile.obj: Source/Win32Device/Common/Win32LocalFile.cpp.obj
-.PHONY : Source/Win32Device/Common/Win32LocalFile.obj
+Source/Win32Device/Common/Win32LocalFile.o: Source/Win32Device/Common/Win32LocalFile.cpp.o
+.PHONY : Source/Win32Device/Common/Win32LocalFile.o
 
 # target to build an object file
-Source/Win32Device/Common/Win32LocalFile.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32LocalFile.cpp.obj
-.PHONY : Source/Win32Device/Common/Win32LocalFile.cpp.obj
+Source/Win32Device/Common/Win32LocalFile.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32LocalFile.cpp.o
+.PHONY : Source/Win32Device/Common/Win32LocalFile.cpp.o
 
 Source/Win32Device/Common/Win32LocalFile.i: Source/Win32Device/Common/Win32LocalFile.cpp.i
 .PHONY : Source/Win32Device/Common/Win32LocalFile.i
@@ -2218,13 +4186,13 @@ Source/Win32Device/Common/Win32LocalFile.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32LocalFile.cpp.s
 .PHONY : Source/Win32Device/Common/Win32LocalFile.cpp.s
 
-Source/Win32Device/Common/Win32LocalFileSystem.obj: Source/Win32Device/Common/Win32LocalFileSystem.cpp.obj
-.PHONY : Source/Win32Device/Common/Win32LocalFileSystem.obj
+Source/Win32Device/Common/Win32LocalFileSystem.o: Source/Win32Device/Common/Win32LocalFileSystem.cpp.o
+.PHONY : Source/Win32Device/Common/Win32LocalFileSystem.o
 
 # target to build an object file
-Source/Win32Device/Common/Win32LocalFileSystem.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32LocalFileSystem.cpp.obj
-.PHONY : Source/Win32Device/Common/Win32LocalFileSystem.cpp.obj
+Source/Win32Device/Common/Win32LocalFileSystem.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32LocalFileSystem.cpp.o
+.PHONY : Source/Win32Device/Common/Win32LocalFileSystem.cpp.o
 
 Source/Win32Device/Common/Win32LocalFileSystem.i: Source/Win32Device/Common/Win32LocalFileSystem.cpp.i
 .PHONY : Source/Win32Device/Common/Win32LocalFileSystem.i
@@ -2242,13 +4210,13 @@ Source/Win32Device/Common/Win32LocalFileSystem.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32LocalFileSystem.cpp.s
 .PHONY : Source/Win32Device/Common/Win32LocalFileSystem.cpp.s
 
-Source/Win32Device/Common/Win32OSDisplay.obj: Source/Win32Device/Common/Win32OSDisplay.cpp.obj
-.PHONY : Source/Win32Device/Common/Win32OSDisplay.obj
+Source/Win32Device/Common/Win32OSDisplay.o: Source/Win32Device/Common/Win32OSDisplay.cpp.o
+.PHONY : Source/Win32Device/Common/Win32OSDisplay.o
 
 # target to build an object file
-Source/Win32Device/Common/Win32OSDisplay.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32OSDisplay.cpp.obj
-.PHONY : Source/Win32Device/Common/Win32OSDisplay.cpp.obj
+Source/Win32Device/Common/Win32OSDisplay.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32OSDisplay.cpp.o
+.PHONY : Source/Win32Device/Common/Win32OSDisplay.cpp.o
 
 Source/Win32Device/Common/Win32OSDisplay.i: Source/Win32Device/Common/Win32OSDisplay.cpp.i
 .PHONY : Source/Win32Device/Common/Win32OSDisplay.i
@@ -2266,13 +4234,181 @@ Source/Win32Device/Common/Win32OSDisplay.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/Win32OSDisplay.cpp.s
 .PHONY : Source/Win32Device/Common/Win32OSDisplay.cpp.s
 
-Source/Win32Device/GameClient/Win32DIKeyboard.obj: Source/Win32Device/GameClient/Win32DIKeyboard.cpp.obj
-.PHONY : Source/Win32Device/GameClient/Win32DIKeyboard.obj
+Source/Win32Device/Common/win32bigfile.o: Source/Win32Device/Common/win32bigfile.cpp.o
+.PHONY : Source/Win32Device/Common/win32bigfile.o
 
 # target to build an object file
-Source/Win32Device/GameClient/Win32DIKeyboard.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/Win32DIKeyboard.cpp.obj
-.PHONY : Source/Win32Device/GameClient/Win32DIKeyboard.cpp.obj
+Source/Win32Device/Common/win32bigfile.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32bigfile.cpp.o
+.PHONY : Source/Win32Device/Common/win32bigfile.cpp.o
+
+Source/Win32Device/Common/win32bigfile.i: Source/Win32Device/Common/win32bigfile.cpp.i
+.PHONY : Source/Win32Device/Common/win32bigfile.i
+
+# target to preprocess a source file
+Source/Win32Device/Common/win32bigfile.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32bigfile.cpp.i
+.PHONY : Source/Win32Device/Common/win32bigfile.cpp.i
+
+Source/Win32Device/Common/win32bigfile.s: Source/Win32Device/Common/win32bigfile.cpp.s
+.PHONY : Source/Win32Device/Common/win32bigfile.s
+
+# target to generate assembly for a file
+Source/Win32Device/Common/win32bigfile.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32bigfile.cpp.s
+.PHONY : Source/Win32Device/Common/win32bigfile.cpp.s
+
+Source/Win32Device/Common/win32bigfilesystem.o: Source/Win32Device/Common/win32bigfilesystem.cpp.o
+.PHONY : Source/Win32Device/Common/win32bigfilesystem.o
+
+# target to build an object file
+Source/Win32Device/Common/win32bigfilesystem.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32bigfilesystem.cpp.o
+.PHONY : Source/Win32Device/Common/win32bigfilesystem.cpp.o
+
+Source/Win32Device/Common/win32bigfilesystem.i: Source/Win32Device/Common/win32bigfilesystem.cpp.i
+.PHONY : Source/Win32Device/Common/win32bigfilesystem.i
+
+# target to preprocess a source file
+Source/Win32Device/Common/win32bigfilesystem.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32bigfilesystem.cpp.i
+.PHONY : Source/Win32Device/Common/win32bigfilesystem.cpp.i
+
+Source/Win32Device/Common/win32bigfilesystem.s: Source/Win32Device/Common/win32bigfilesystem.cpp.s
+.PHONY : Source/Win32Device/Common/win32bigfilesystem.s
+
+# target to generate assembly for a file
+Source/Win32Device/Common/win32bigfilesystem.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32bigfilesystem.cpp.s
+.PHONY : Source/Win32Device/Common/win32bigfilesystem.cpp.s
+
+Source/Win32Device/Common/win32cdmanager.o: Source/Win32Device/Common/win32cdmanager.cpp.o
+.PHONY : Source/Win32Device/Common/win32cdmanager.o
+
+# target to build an object file
+Source/Win32Device/Common/win32cdmanager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32cdmanager.cpp.o
+.PHONY : Source/Win32Device/Common/win32cdmanager.cpp.o
+
+Source/Win32Device/Common/win32cdmanager.i: Source/Win32Device/Common/win32cdmanager.cpp.i
+.PHONY : Source/Win32Device/Common/win32cdmanager.i
+
+# target to preprocess a source file
+Source/Win32Device/Common/win32cdmanager.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32cdmanager.cpp.i
+.PHONY : Source/Win32Device/Common/win32cdmanager.cpp.i
+
+Source/Win32Device/Common/win32cdmanager.s: Source/Win32Device/Common/win32cdmanager.cpp.s
+.PHONY : Source/Win32Device/Common/win32cdmanager.s
+
+# target to generate assembly for a file
+Source/Win32Device/Common/win32cdmanager.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32cdmanager.cpp.s
+.PHONY : Source/Win32Device/Common/win32cdmanager.cpp.s
+
+Source/Win32Device/Common/win32gameengine.o: Source/Win32Device/Common/win32gameengine.cpp.o
+.PHONY : Source/Win32Device/Common/win32gameengine.o
+
+# target to build an object file
+Source/Win32Device/Common/win32gameengine.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32gameengine.cpp.o
+.PHONY : Source/Win32Device/Common/win32gameengine.cpp.o
+
+Source/Win32Device/Common/win32gameengine.i: Source/Win32Device/Common/win32gameengine.cpp.i
+.PHONY : Source/Win32Device/Common/win32gameengine.i
+
+# target to preprocess a source file
+Source/Win32Device/Common/win32gameengine.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32gameengine.cpp.i
+.PHONY : Source/Win32Device/Common/win32gameengine.cpp.i
+
+Source/Win32Device/Common/win32gameengine.s: Source/Win32Device/Common/win32gameengine.cpp.s
+.PHONY : Source/Win32Device/Common/win32gameengine.s
+
+# target to generate assembly for a file
+Source/Win32Device/Common/win32gameengine.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32gameengine.cpp.s
+.PHONY : Source/Win32Device/Common/win32gameengine.cpp.s
+
+Source/Win32Device/Common/win32localfile.o: Source/Win32Device/Common/win32localfile.cpp.o
+.PHONY : Source/Win32Device/Common/win32localfile.o
+
+# target to build an object file
+Source/Win32Device/Common/win32localfile.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32localfile.cpp.o
+.PHONY : Source/Win32Device/Common/win32localfile.cpp.o
+
+Source/Win32Device/Common/win32localfile.i: Source/Win32Device/Common/win32localfile.cpp.i
+.PHONY : Source/Win32Device/Common/win32localfile.i
+
+# target to preprocess a source file
+Source/Win32Device/Common/win32localfile.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32localfile.cpp.i
+.PHONY : Source/Win32Device/Common/win32localfile.cpp.i
+
+Source/Win32Device/Common/win32localfile.s: Source/Win32Device/Common/win32localfile.cpp.s
+.PHONY : Source/Win32Device/Common/win32localfile.s
+
+# target to generate assembly for a file
+Source/Win32Device/Common/win32localfile.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32localfile.cpp.s
+.PHONY : Source/Win32Device/Common/win32localfile.cpp.s
+
+Source/Win32Device/Common/win32localfilesystem.o: Source/Win32Device/Common/win32localfilesystem.cpp.o
+.PHONY : Source/Win32Device/Common/win32localfilesystem.o
+
+# target to build an object file
+Source/Win32Device/Common/win32localfilesystem.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32localfilesystem.cpp.o
+.PHONY : Source/Win32Device/Common/win32localfilesystem.cpp.o
+
+Source/Win32Device/Common/win32localfilesystem.i: Source/Win32Device/Common/win32localfilesystem.cpp.i
+.PHONY : Source/Win32Device/Common/win32localfilesystem.i
+
+# target to preprocess a source file
+Source/Win32Device/Common/win32localfilesystem.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32localfilesystem.cpp.i
+.PHONY : Source/Win32Device/Common/win32localfilesystem.cpp.i
+
+Source/Win32Device/Common/win32localfilesystem.s: Source/Win32Device/Common/win32localfilesystem.cpp.s
+.PHONY : Source/Win32Device/Common/win32localfilesystem.s
+
+# target to generate assembly for a file
+Source/Win32Device/Common/win32localfilesystem.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32localfilesystem.cpp.s
+.PHONY : Source/Win32Device/Common/win32localfilesystem.cpp.s
+
+Source/Win32Device/Common/win32osdisplay.o: Source/Win32Device/Common/win32osdisplay.cpp.o
+.PHONY : Source/Win32Device/Common/win32osdisplay.o
+
+# target to build an object file
+Source/Win32Device/Common/win32osdisplay.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32osdisplay.cpp.o
+.PHONY : Source/Win32Device/Common/win32osdisplay.cpp.o
+
+Source/Win32Device/Common/win32osdisplay.i: Source/Win32Device/Common/win32osdisplay.cpp.i
+.PHONY : Source/Win32Device/Common/win32osdisplay.i
+
+# target to preprocess a source file
+Source/Win32Device/Common/win32osdisplay.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32osdisplay.cpp.i
+.PHONY : Source/Win32Device/Common/win32osdisplay.cpp.i
+
+Source/Win32Device/Common/win32osdisplay.s: Source/Win32Device/Common/win32osdisplay.cpp.s
+.PHONY : Source/Win32Device/Common/win32osdisplay.s
+
+# target to generate assembly for a file
+Source/Win32Device/Common/win32osdisplay.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/Common/win32osdisplay.cpp.s
+.PHONY : Source/Win32Device/Common/win32osdisplay.cpp.s
+
+Source/Win32Device/GameClient/Win32DIKeyboard.o: Source/Win32Device/GameClient/Win32DIKeyboard.cpp.o
+.PHONY : Source/Win32Device/GameClient/Win32DIKeyboard.o
+
+# target to build an object file
+Source/Win32Device/GameClient/Win32DIKeyboard.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/Win32DIKeyboard.cpp.o
+.PHONY : Source/Win32Device/GameClient/Win32DIKeyboard.cpp.o
 
 Source/Win32Device/GameClient/Win32DIKeyboard.i: Source/Win32Device/GameClient/Win32DIKeyboard.cpp.i
 .PHONY : Source/Win32Device/GameClient/Win32DIKeyboard.i
@@ -2290,13 +4426,13 @@ Source/Win32Device/GameClient/Win32DIKeyboard.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/Win32DIKeyboard.cpp.s
 .PHONY : Source/Win32Device/GameClient/Win32DIKeyboard.cpp.s
 
-Source/Win32Device/GameClient/Win32DIMouse.obj: Source/Win32Device/GameClient/Win32DIMouse.cpp.obj
-.PHONY : Source/Win32Device/GameClient/Win32DIMouse.obj
+Source/Win32Device/GameClient/Win32DIMouse.o: Source/Win32Device/GameClient/Win32DIMouse.cpp.o
+.PHONY : Source/Win32Device/GameClient/Win32DIMouse.o
 
 # target to build an object file
-Source/Win32Device/GameClient/Win32DIMouse.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/Win32DIMouse.cpp.obj
-.PHONY : Source/Win32Device/GameClient/Win32DIMouse.cpp.obj
+Source/Win32Device/GameClient/Win32DIMouse.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/Win32DIMouse.cpp.o
+.PHONY : Source/Win32Device/GameClient/Win32DIMouse.cpp.o
 
 Source/Win32Device/GameClient/Win32DIMouse.i: Source/Win32Device/GameClient/Win32DIMouse.cpp.i
 .PHONY : Source/Win32Device/GameClient/Win32DIMouse.i
@@ -2314,13 +4450,13 @@ Source/Win32Device/GameClient/Win32DIMouse.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/Win32DIMouse.cpp.s
 .PHONY : Source/Win32Device/GameClient/Win32DIMouse.cpp.s
 
-Source/Win32Device/GameClient/Win32Mouse.obj: Source/Win32Device/GameClient/Win32Mouse.cpp.obj
-.PHONY : Source/Win32Device/GameClient/Win32Mouse.obj
+Source/Win32Device/GameClient/Win32Mouse.o: Source/Win32Device/GameClient/Win32Mouse.cpp.o
+.PHONY : Source/Win32Device/GameClient/Win32Mouse.o
 
 # target to build an object file
-Source/Win32Device/GameClient/Win32Mouse.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/Win32Mouse.cpp.obj
-.PHONY : Source/Win32Device/GameClient/Win32Mouse.cpp.obj
+Source/Win32Device/GameClient/Win32Mouse.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/Win32Mouse.cpp.o
+.PHONY : Source/Win32Device/GameClient/Win32Mouse.cpp.o
 
 Source/Win32Device/GameClient/Win32Mouse.i: Source/Win32Device/GameClient/Win32Mouse.cpp.i
 .PHONY : Source/Win32Device/GameClient/Win32Mouse.i
@@ -2338,6 +4474,78 @@ Source/Win32Device/GameClient/Win32Mouse.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/Win32Mouse.cpp.s
 .PHONY : Source/Win32Device/GameClient/Win32Mouse.cpp.s
 
+Source/Win32Device/GameClient/win32dikeyboard.o: Source/Win32Device/GameClient/win32dikeyboard.cpp.o
+.PHONY : Source/Win32Device/GameClient/win32dikeyboard.o
+
+# target to build an object file
+Source/Win32Device/GameClient/win32dikeyboard.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/win32dikeyboard.cpp.o
+.PHONY : Source/Win32Device/GameClient/win32dikeyboard.cpp.o
+
+Source/Win32Device/GameClient/win32dikeyboard.i: Source/Win32Device/GameClient/win32dikeyboard.cpp.i
+.PHONY : Source/Win32Device/GameClient/win32dikeyboard.i
+
+# target to preprocess a source file
+Source/Win32Device/GameClient/win32dikeyboard.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/win32dikeyboard.cpp.i
+.PHONY : Source/Win32Device/GameClient/win32dikeyboard.cpp.i
+
+Source/Win32Device/GameClient/win32dikeyboard.s: Source/Win32Device/GameClient/win32dikeyboard.cpp.s
+.PHONY : Source/Win32Device/GameClient/win32dikeyboard.s
+
+# target to generate assembly for a file
+Source/Win32Device/GameClient/win32dikeyboard.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/win32dikeyboard.cpp.s
+.PHONY : Source/Win32Device/GameClient/win32dikeyboard.cpp.s
+
+Source/Win32Device/GameClient/win32dimouse.o: Source/Win32Device/GameClient/win32dimouse.cpp.o
+.PHONY : Source/Win32Device/GameClient/win32dimouse.o
+
+# target to build an object file
+Source/Win32Device/GameClient/win32dimouse.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/win32dimouse.cpp.o
+.PHONY : Source/Win32Device/GameClient/win32dimouse.cpp.o
+
+Source/Win32Device/GameClient/win32dimouse.i: Source/Win32Device/GameClient/win32dimouse.cpp.i
+.PHONY : Source/Win32Device/GameClient/win32dimouse.i
+
+# target to preprocess a source file
+Source/Win32Device/GameClient/win32dimouse.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/win32dimouse.cpp.i
+.PHONY : Source/Win32Device/GameClient/win32dimouse.cpp.i
+
+Source/Win32Device/GameClient/win32dimouse.s: Source/Win32Device/GameClient/win32dimouse.cpp.s
+.PHONY : Source/Win32Device/GameClient/win32dimouse.s
+
+# target to generate assembly for a file
+Source/Win32Device/GameClient/win32dimouse.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/win32dimouse.cpp.s
+.PHONY : Source/Win32Device/GameClient/win32dimouse.cpp.s
+
+Source/Win32Device/GameClient/win32mouse.o: Source/Win32Device/GameClient/win32mouse.cpp.o
+.PHONY : Source/Win32Device/GameClient/win32mouse.o
+
+# target to build an object file
+Source/Win32Device/GameClient/win32mouse.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/win32mouse.cpp.o
+.PHONY : Source/Win32Device/GameClient/win32mouse.cpp.o
+
+Source/Win32Device/GameClient/win32mouse.i: Source/Win32Device/GameClient/win32mouse.cpp.i
+.PHONY : Source/Win32Device/GameClient/win32mouse.i
+
+# target to preprocess a source file
+Source/Win32Device/GameClient/win32mouse.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/win32mouse.cpp.i
+.PHONY : Source/Win32Device/GameClient/win32mouse.cpp.i
+
+Source/Win32Device/GameClient/win32mouse.s: Source/Win32Device/GameClient/win32mouse.cpp.s
+.PHONY : Source/Win32Device/GameClient/win32mouse.s
+
+# target to generate assembly for a file
+Source/Win32Device/GameClient/win32mouse.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/build.make Generals/Code/GameEngineDevice/CMakeFiles/GameEngineDevice.dir/Source/Win32Device/GameClient/win32mouse.cpp.s
+.PHONY : Source/Win32Device/GameClient/win32mouse.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -2347,282 +4555,558 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... GameEngineDevice"
-	@echo "... Source/MilesAudioDevice/MilesAudioManager.obj"
+	@echo "... Source/MilesAudioDevice/MilesAudioManager.o"
 	@echo "... Source/MilesAudioDevice/MilesAudioManager.i"
 	@echo "... Source/MilesAudioDevice/MilesAudioManager.s"
-	@echo "... Source/VideoDevice/Bink/BinkVideoPlayer.obj"
+	@echo "... Source/MilesAudioDevice/milesaudiomanager.o"
+	@echo "... Source/MilesAudioDevice/milesaudiomanager.i"
+	@echo "... Source/MilesAudioDevice/milesaudiomanager.s"
+	@echo "... Source/VideoDevice/Bink/BinkVideoPlayer.o"
 	@echo "... Source/VideoDevice/Bink/BinkVideoPlayer.i"
 	@echo "... Source/VideoDevice/Bink/BinkVideoPlayer.s"
-	@echo "... Source/W3DDevice/Common/System/W3DFunctionLexicon.obj"
+	@echo "... Source/VideoDevice/Bink/binkvideoplayer.o"
+	@echo "... Source/VideoDevice/Bink/binkvideoplayer.i"
+	@echo "... Source/VideoDevice/Bink/binkvideoplayer.s"
+	@echo "... Source/W3DDevice/Common/System/W3DFunctionLexicon.o"
 	@echo "... Source/W3DDevice/Common/System/W3DFunctionLexicon.i"
 	@echo "... Source/W3DDevice/Common/System/W3DFunctionLexicon.s"
-	@echo "... Source/W3DDevice/Common/System/W3DRadar.obj"
+	@echo "... Source/W3DDevice/Common/System/W3DRadar.o"
 	@echo "... Source/W3DDevice/Common/System/W3DRadar.i"
 	@echo "... Source/W3DDevice/Common/System/W3DRadar.s"
-	@echo "... Source/W3DDevice/Common/Thing/W3DModuleFactory.obj"
+	@echo "... Source/W3DDevice/Common/System/w3dfunctionlexicon.o"
+	@echo "... Source/W3DDevice/Common/System/w3dfunctionlexicon.i"
+	@echo "... Source/W3DDevice/Common/System/w3dfunctionlexicon.s"
+	@echo "... Source/W3DDevice/Common/System/w3dradar.o"
+	@echo "... Source/W3DDevice/Common/System/w3dradar.i"
+	@echo "... Source/W3DDevice/Common/System/w3dradar.s"
+	@echo "... Source/W3DDevice/Common/Thing/W3DModuleFactory.o"
 	@echo "... Source/W3DDevice/Common/Thing/W3DModuleFactory.i"
 	@echo "... Source/W3DDevice/Common/Thing/W3DModuleFactory.s"
-	@echo "... Source/W3DDevice/Common/Thing/W3DThingFactory.obj"
+	@echo "... Source/W3DDevice/Common/Thing/W3DThingFactory.o"
 	@echo "... Source/W3DDevice/Common/Thing/W3DThingFactory.i"
 	@echo "... Source/W3DDevice/Common/Thing/W3DThingFactory.s"
-	@echo "... Source/W3DDevice/Common/W3DConvert.obj"
+	@echo "... Source/W3DDevice/Common/Thing/w3dmodulefactory.o"
+	@echo "... Source/W3DDevice/Common/Thing/w3dmodulefactory.i"
+	@echo "... Source/W3DDevice/Common/Thing/w3dmodulefactory.s"
+	@echo "... Source/W3DDevice/Common/Thing/w3dthingfactory.o"
+	@echo "... Source/W3DDevice/Common/Thing/w3dthingfactory.i"
+	@echo "... Source/W3DDevice/Common/Thing/w3dthingfactory.s"
+	@echo "... Source/W3DDevice/Common/W3DConvert.o"
 	@echo "... Source/W3DDevice/Common/W3DConvert.i"
 	@echo "... Source/W3DDevice/Common/W3DConvert.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.obj"
+	@echo "... Source/W3DDevice/Common/w3dconvert.o"
+	@echo "... Source/W3DDevice/Common/w3dconvert.i"
+	@echo "... Source/W3DDevice/Common/w3dconvert.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DDebrisDraw.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DDependencyModelDraw.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordTankDraw.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DPoliceCarDraw.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDraw.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DRopeDraw.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DScienceModelDraw.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTracerDraw.s"
-	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.o"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.i"
 	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDraw.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.obj"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3ddebrisdraw.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3ddefaultdraw.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3ddependencymodeldraw.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dlaserdraw.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dmodeldraw.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3doverlordtankdraw.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dpolicecardraw.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dprojectilestreamdraw.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dropedraw.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dsciencemodeldraw.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dsupplydraw.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dtankdraw.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dtanktruckdraw.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dtracerdraw.s"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.o"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.i"
+	@echo "... Source/W3DDevice/GameClient/Drawable/Draw/w3dtruckdraw.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMOTD.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dcontrolbar.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmainmenu.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DComboBox.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DProgressBar.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DPushButton.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/W3DGameFont.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dcheckbox.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dcombobox.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dhorizontalslider.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dlistbox.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dprogressbar.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dpushbutton.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dradiobutton.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dstatictext.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dtabcontrol.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dtextentry.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/Gadget/w3dverticalslider.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/W3DGameFont.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/W3DGameFont.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/W3DGameFont.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/W3DGameWindow.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/W3DGameWindow.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/W3DGameWindow.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/W3DGameWindow.s"
-	@echo "... Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.o"
 	@echo "... Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.i"
 	@echo "... Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.s"
-	@echo "... Source/W3DDevice/GameClient/HeightMap.obj"
+	@echo "... Source/W3DDevice/GameClient/GUI/w3dgamefont.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/w3dgamefont.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/w3dgamefont.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/w3dgamewindow.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/w3dgamewindow.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/w3dgamewindow.s"
+	@echo "... Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.o"
+	@echo "... Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.i"
+	@echo "... Source/W3DDevice/GameClient/GUI/w3dgamewindowmanager.s"
+	@echo "... Source/W3DDevice/GameClient/HeightMap.o"
 	@echo "... Source/W3DDevice/GameClient/HeightMap.i"
 	@echo "... Source/W3DDevice/GameClient/HeightMap.s"
-	@echo "... Source/W3DDevice/GameClient/Shadow/W3DBufferManager.obj"
+	@echo "... Source/W3DDevice/GameClient/Shadow/W3DBufferManager.o"
 	@echo "... Source/W3DDevice/GameClient/Shadow/W3DBufferManager.i"
 	@echo "... Source/W3DDevice/GameClient/Shadow/W3DBufferManager.s"
-	@echo "... Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.obj"
+	@echo "... Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.o"
 	@echo "... Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.i"
 	@echo "... Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.s"
-	@echo "... Source/W3DDevice/GameClient/Shadow/W3DShadow.obj"
+	@echo "... Source/W3DDevice/GameClient/Shadow/W3DShadow.o"
 	@echo "... Source/W3DDevice/GameClient/Shadow/W3DShadow.i"
 	@echo "... Source/W3DDevice/GameClient/Shadow/W3DShadow.s"
-	@echo "... Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.obj"
+	@echo "... Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.o"
 	@echo "... Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.i"
 	@echo "... Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.s"
-	@echo "... Source/W3DDevice/GameClient/TerrainTex.obj"
+	@echo "... Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.o"
+	@echo "... Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.i"
+	@echo "... Source/W3DDevice/GameClient/Shadow/w3dbuffermanager.s"
+	@echo "... Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.o"
+	@echo "... Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.i"
+	@echo "... Source/W3DDevice/GameClient/Shadow/w3dprojectedshadow.s"
+	@echo "... Source/W3DDevice/GameClient/Shadow/w3dshadow.o"
+	@echo "... Source/W3DDevice/GameClient/Shadow/w3dshadow.i"
+	@echo "... Source/W3DDevice/GameClient/Shadow/w3dshadow.s"
+	@echo "... Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.o"
+	@echo "... Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.i"
+	@echo "... Source/W3DDevice/GameClient/Shadow/w3dvolumetricshadow.s"
+	@echo "... Source/W3DDevice/GameClient/TerrainTex.o"
 	@echo "... Source/W3DDevice/GameClient/TerrainTex.i"
 	@echo "... Source/W3DDevice/GameClient/TerrainTex.s"
-	@echo "... Source/W3DDevice/GameClient/TileData.obj"
+	@echo "... Source/W3DDevice/GameClient/TileData.o"
 	@echo "... Source/W3DDevice/GameClient/TileData.i"
 	@echo "... Source/W3DDevice/GameClient/TileData.s"
-	@echo "... Source/W3DDevice/GameClient/W3DAssetManager.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DAssetManager.o"
 	@echo "... Source/W3DDevice/GameClient/W3DAssetManager.i"
 	@echo "... Source/W3DDevice/GameClient/W3DAssetManager.s"
-	@echo "... Source/W3DDevice/GameClient/W3DAssetManagerExposed.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DAssetManagerExposed.o"
 	@echo "... Source/W3DDevice/GameClient/W3DAssetManagerExposed.i"
 	@echo "... Source/W3DDevice/GameClient/W3DAssetManagerExposed.s"
-	@echo "... Source/W3DDevice/GameClient/W3DBibBuffer.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DBibBuffer.o"
 	@echo "... Source/W3DDevice/GameClient/W3DBibBuffer.i"
 	@echo "... Source/W3DDevice/GameClient/W3DBibBuffer.s"
-	@echo "... Source/W3DDevice/GameClient/W3DBridgeBuffer.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DBridgeBuffer.o"
 	@echo "... Source/W3DDevice/GameClient/W3DBridgeBuffer.i"
 	@echo "... Source/W3DDevice/GameClient/W3DBridgeBuffer.s"
-	@echo "... Source/W3DDevice/GameClient/W3DCustomEdging.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DCustomEdging.o"
 	@echo "... Source/W3DDevice/GameClient/W3DCustomEdging.i"
 	@echo "... Source/W3DDevice/GameClient/W3DCustomEdging.s"
-	@echo "... Source/W3DDevice/GameClient/W3DDebugDisplay.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DDebugDisplay.o"
 	@echo "... Source/W3DDevice/GameClient/W3DDebugDisplay.i"
 	@echo "... Source/W3DDevice/GameClient/W3DDebugDisplay.s"
-	@echo "... Source/W3DDevice/GameClient/W3DDebugIcons.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DDebugIcons.o"
 	@echo "... Source/W3DDevice/GameClient/W3DDebugIcons.i"
 	@echo "... Source/W3DDevice/GameClient/W3DDebugIcons.s"
-	@echo "... Source/W3DDevice/GameClient/W3DDisplay.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DDisplay.o"
 	@echo "... Source/W3DDevice/GameClient/W3DDisplay.i"
 	@echo "... Source/W3DDevice/GameClient/W3DDisplay.s"
-	@echo "... Source/W3DDevice/GameClient/W3DDisplayString.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DDisplayString.o"
 	@echo "... Source/W3DDevice/GameClient/W3DDisplayString.i"
 	@echo "... Source/W3DDevice/GameClient/W3DDisplayString.s"
-	@echo "... Source/W3DDevice/GameClient/W3DDisplayStringManager.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DDisplayStringManager.o"
 	@echo "... Source/W3DDevice/GameClient/W3DDisplayStringManager.i"
 	@echo "... Source/W3DDevice/GameClient/W3DDisplayStringManager.s"
-	@echo "... Source/W3DDevice/GameClient/W3DDynamicLight.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DDynamicLight.o"
 	@echo "... Source/W3DDevice/GameClient/W3DDynamicLight.i"
 	@echo "... Source/W3DDevice/GameClient/W3DDynamicLight.s"
-	@echo "... Source/W3DDevice/GameClient/W3DFileSystem.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DFileSystem.o"
 	@echo "... Source/W3DDevice/GameClient/W3DFileSystem.i"
 	@echo "... Source/W3DDevice/GameClient/W3DFileSystem.s"
-	@echo "... Source/W3DDevice/GameClient/W3DGameClient.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DGameClient.o"
 	@echo "... Source/W3DDevice/GameClient/W3DGameClient.i"
 	@echo "... Source/W3DDevice/GameClient/W3DGameClient.s"
-	@echo "... Source/W3DDevice/GameClient/W3DGranny.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DGranny.o"
 	@echo "... Source/W3DDevice/GameClient/W3DGranny.i"
 	@echo "... Source/W3DDevice/GameClient/W3DGranny.s"
-	@echo "... Source/W3DDevice/GameClient/W3DInGameUI.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DInGameUI.o"
 	@echo "... Source/W3DDevice/GameClient/W3DInGameUI.i"
 	@echo "... Source/W3DDevice/GameClient/W3DInGameUI.s"
-	@echo "... Source/W3DDevice/GameClient/W3DMouse.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DMouse.o"
 	@echo "... Source/W3DDevice/GameClient/W3DMouse.i"
 	@echo "... Source/W3DDevice/GameClient/W3DMouse.s"
-	@echo "... Source/W3DDevice/GameClient/W3DParticleSys.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DParticleSys.o"
 	@echo "... Source/W3DDevice/GameClient/W3DParticleSys.i"
 	@echo "... Source/W3DDevice/GameClient/W3DParticleSys.s"
-	@echo "... Source/W3DDevice/GameClient/W3DPoly.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DPoly.o"
 	@echo "... Source/W3DDevice/GameClient/W3DPoly.i"
 	@echo "... Source/W3DDevice/GameClient/W3DPoly.s"
-	@echo "... Source/W3DDevice/GameClient/W3DRoadBuffer.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DRoadBuffer.o"
 	@echo "... Source/W3DDevice/GameClient/W3DRoadBuffer.i"
 	@echo "... Source/W3DDevice/GameClient/W3DRoadBuffer.s"
-	@echo "... Source/W3DDevice/GameClient/W3DScene.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DScene.o"
 	@echo "... Source/W3DDevice/GameClient/W3DScene.i"
 	@echo "... Source/W3DDevice/GameClient/W3DScene.s"
-	@echo "... Source/W3DDevice/GameClient/W3DShaderManager.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DShaderManager.o"
 	@echo "... Source/W3DDevice/GameClient/W3DShaderManager.i"
 	@echo "... Source/W3DDevice/GameClient/W3DShaderManager.s"
-	@echo "... Source/W3DDevice/GameClient/W3DShroud.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DShroud.o"
 	@echo "... Source/W3DDevice/GameClient/W3DShroud.i"
 	@echo "... Source/W3DDevice/GameClient/W3DShroud.s"
-	@echo "... Source/W3DDevice/GameClient/W3DStatusCircle.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DStatusCircle.o"
 	@echo "... Source/W3DDevice/GameClient/W3DStatusCircle.i"
 	@echo "... Source/W3DDevice/GameClient/W3DStatusCircle.s"
-	@echo "... Source/W3DDevice/GameClient/W3DTerrainTracks.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DTerrainTracks.o"
 	@echo "... Source/W3DDevice/GameClient/W3DTerrainTracks.i"
 	@echo "... Source/W3DDevice/GameClient/W3DTerrainTracks.s"
-	@echo "... Source/W3DDevice/GameClient/W3DTerrainVisual.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DTerrainVisual.o"
 	@echo "... Source/W3DDevice/GameClient/W3DTerrainVisual.i"
 	@echo "... Source/W3DDevice/GameClient/W3DTerrainVisual.s"
-	@echo "... Source/W3DDevice/GameClient/W3DTreeBuffer.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DTreeBuffer.o"
 	@echo "... Source/W3DDevice/GameClient/W3DTreeBuffer.i"
 	@echo "... Source/W3DDevice/GameClient/W3DTreeBuffer.s"
-	@echo "... Source/W3DDevice/GameClient/W3DVideoBuffer.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DVideoBuffer.o"
 	@echo "... Source/W3DDevice/GameClient/W3DVideoBuffer.i"
 	@echo "... Source/W3DDevice/GameClient/W3DVideoBuffer.s"
-	@echo "... Source/W3DDevice/GameClient/W3DView.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DView.o"
 	@echo "... Source/W3DDevice/GameClient/W3DView.i"
 	@echo "... Source/W3DDevice/GameClient/W3DView.s"
-	@echo "... Source/W3DDevice/GameClient/W3DWebBrowser.obj"
+	@echo "... Source/W3DDevice/GameClient/W3DWebBrowser.o"
 	@echo "... Source/W3DDevice/GameClient/W3DWebBrowser.i"
 	@echo "... Source/W3DDevice/GameClient/W3DWebBrowser.s"
-	@echo "... Source/W3DDevice/GameClient/W3dWaypointBuffer.obj"
+	@echo "... Source/W3DDevice/GameClient/W3dWaypointBuffer.o"
 	@echo "... Source/W3DDevice/GameClient/W3dWaypointBuffer.i"
 	@echo "... Source/W3DDevice/GameClient/W3dWaypointBuffer.s"
-	@echo "... Source/W3DDevice/GameClient/Water/W3DWater.obj"
+	@echo "... Source/W3DDevice/GameClient/Water/W3DWater.o"
 	@echo "... Source/W3DDevice/GameClient/Water/W3DWater.i"
 	@echo "... Source/W3DDevice/GameClient/Water/W3DWater.s"
-	@echo "... Source/W3DDevice/GameClient/Water/W3DWaterTracks.obj"
+	@echo "... Source/W3DDevice/GameClient/Water/W3DWaterTracks.o"
 	@echo "... Source/W3DDevice/GameClient/Water/W3DWaterTracks.i"
 	@echo "... Source/W3DDevice/GameClient/Water/W3DWaterTracks.s"
-	@echo "... Source/W3DDevice/GameClient/WorldHeightMap.obj"
+	@echo "... Source/W3DDevice/GameClient/Water/w3dwater.o"
+	@echo "... Source/W3DDevice/GameClient/Water/w3dwater.i"
+	@echo "... Source/W3DDevice/GameClient/Water/w3dwater.s"
+	@echo "... Source/W3DDevice/GameClient/Water/w3dwatertracks.o"
+	@echo "... Source/W3DDevice/GameClient/Water/w3dwatertracks.i"
+	@echo "... Source/W3DDevice/GameClient/Water/w3dwatertracks.s"
+	@echo "... Source/W3DDevice/GameClient/WorldHeightMap.o"
 	@echo "... Source/W3DDevice/GameClient/WorldHeightMap.i"
 	@echo "... Source/W3DDevice/GameClient/WorldHeightMap.s"
-	@echo "... Source/W3DDevice/GameLogic/W3DGameLogic.obj"
+	@echo "... Source/W3DDevice/GameClient/heightmap.o"
+	@echo "... Source/W3DDevice/GameClient/heightmap.i"
+	@echo "... Source/W3DDevice/GameClient/heightmap.s"
+	@echo "... Source/W3DDevice/GameClient/terraintex.o"
+	@echo "... Source/W3DDevice/GameClient/terraintex.i"
+	@echo "... Source/W3DDevice/GameClient/terraintex.s"
+	@echo "... Source/W3DDevice/GameClient/tiledata.o"
+	@echo "... Source/W3DDevice/GameClient/tiledata.i"
+	@echo "... Source/W3DDevice/GameClient/tiledata.s"
+	@echo "... Source/W3DDevice/GameClient/w3dassetmanager.o"
+	@echo "... Source/W3DDevice/GameClient/w3dassetmanager.i"
+	@echo "... Source/W3DDevice/GameClient/w3dassetmanager.s"
+	@echo "... Source/W3DDevice/GameClient/w3dassetmanagerexposed.o"
+	@echo "... Source/W3DDevice/GameClient/w3dassetmanagerexposed.i"
+	@echo "... Source/W3DDevice/GameClient/w3dassetmanagerexposed.s"
+	@echo "... Source/W3DDevice/GameClient/w3dbibbuffer.o"
+	@echo "... Source/W3DDevice/GameClient/w3dbibbuffer.i"
+	@echo "... Source/W3DDevice/GameClient/w3dbibbuffer.s"
+	@echo "... Source/W3DDevice/GameClient/w3dbridgebuffer.o"
+	@echo "... Source/W3DDevice/GameClient/w3dbridgebuffer.i"
+	@echo "... Source/W3DDevice/GameClient/w3dbridgebuffer.s"
+	@echo "... Source/W3DDevice/GameClient/w3dcustomedging.o"
+	@echo "... Source/W3DDevice/GameClient/w3dcustomedging.i"
+	@echo "... Source/W3DDevice/GameClient/w3dcustomedging.s"
+	@echo "... Source/W3DDevice/GameClient/w3ddebugdisplay.o"
+	@echo "... Source/W3DDevice/GameClient/w3ddebugdisplay.i"
+	@echo "... Source/W3DDevice/GameClient/w3ddebugdisplay.s"
+	@echo "... Source/W3DDevice/GameClient/w3ddebugicons.o"
+	@echo "... Source/W3DDevice/GameClient/w3ddebugicons.i"
+	@echo "... Source/W3DDevice/GameClient/w3ddebugicons.s"
+	@echo "... Source/W3DDevice/GameClient/w3ddisplay.o"
+	@echo "... Source/W3DDevice/GameClient/w3ddisplay.i"
+	@echo "... Source/W3DDevice/GameClient/w3ddisplay.s"
+	@echo "... Source/W3DDevice/GameClient/w3ddisplaystring.o"
+	@echo "... Source/W3DDevice/GameClient/w3ddisplaystring.i"
+	@echo "... Source/W3DDevice/GameClient/w3ddisplaystring.s"
+	@echo "... Source/W3DDevice/GameClient/w3ddisplaystringmanager.o"
+	@echo "... Source/W3DDevice/GameClient/w3ddisplaystringmanager.i"
+	@echo "... Source/W3DDevice/GameClient/w3ddisplaystringmanager.s"
+	@echo "... Source/W3DDevice/GameClient/w3ddynamiclight.o"
+	@echo "... Source/W3DDevice/GameClient/w3ddynamiclight.i"
+	@echo "... Source/W3DDevice/GameClient/w3ddynamiclight.s"
+	@echo "... Source/W3DDevice/GameClient/w3dfilesystem.o"
+	@echo "... Source/W3DDevice/GameClient/w3dfilesystem.i"
+	@echo "... Source/W3DDevice/GameClient/w3dfilesystem.s"
+	@echo "... Source/W3DDevice/GameClient/w3dgameclient.o"
+	@echo "... Source/W3DDevice/GameClient/w3dgameclient.i"
+	@echo "... Source/W3DDevice/GameClient/w3dgameclient.s"
+	@echo "... Source/W3DDevice/GameClient/w3dgranny.o"
+	@echo "... Source/W3DDevice/GameClient/w3dgranny.i"
+	@echo "... Source/W3DDevice/GameClient/w3dgranny.s"
+	@echo "... Source/W3DDevice/GameClient/w3dingameui.o"
+	@echo "... Source/W3DDevice/GameClient/w3dingameui.i"
+	@echo "... Source/W3DDevice/GameClient/w3dingameui.s"
+	@echo "... Source/W3DDevice/GameClient/w3dmouse.o"
+	@echo "... Source/W3DDevice/GameClient/w3dmouse.i"
+	@echo "... Source/W3DDevice/GameClient/w3dmouse.s"
+	@echo "... Source/W3DDevice/GameClient/w3dparticlesys.o"
+	@echo "... Source/W3DDevice/GameClient/w3dparticlesys.i"
+	@echo "... Source/W3DDevice/GameClient/w3dparticlesys.s"
+	@echo "... Source/W3DDevice/GameClient/w3dpoly.o"
+	@echo "... Source/W3DDevice/GameClient/w3dpoly.i"
+	@echo "... Source/W3DDevice/GameClient/w3dpoly.s"
+	@echo "... Source/W3DDevice/GameClient/w3droadbuffer.o"
+	@echo "... Source/W3DDevice/GameClient/w3droadbuffer.i"
+	@echo "... Source/W3DDevice/GameClient/w3droadbuffer.s"
+	@echo "... Source/W3DDevice/GameClient/w3dscene.o"
+	@echo "... Source/W3DDevice/GameClient/w3dscene.i"
+	@echo "... Source/W3DDevice/GameClient/w3dscene.s"
+	@echo "... Source/W3DDevice/GameClient/w3dshadermanager.o"
+	@echo "... Source/W3DDevice/GameClient/w3dshadermanager.i"
+	@echo "... Source/W3DDevice/GameClient/w3dshadermanager.s"
+	@echo "... Source/W3DDevice/GameClient/w3dshroud.o"
+	@echo "... Source/W3DDevice/GameClient/w3dshroud.i"
+	@echo "... Source/W3DDevice/GameClient/w3dshroud.s"
+	@echo "... Source/W3DDevice/GameClient/w3dstatuscircle.o"
+	@echo "... Source/W3DDevice/GameClient/w3dstatuscircle.i"
+	@echo "... Source/W3DDevice/GameClient/w3dstatuscircle.s"
+	@echo "... Source/W3DDevice/GameClient/w3dterraintracks.o"
+	@echo "... Source/W3DDevice/GameClient/w3dterraintracks.i"
+	@echo "... Source/W3DDevice/GameClient/w3dterraintracks.s"
+	@echo "... Source/W3DDevice/GameClient/w3dterrainvisual.o"
+	@echo "... Source/W3DDevice/GameClient/w3dterrainvisual.i"
+	@echo "... Source/W3DDevice/GameClient/w3dterrainvisual.s"
+	@echo "... Source/W3DDevice/GameClient/w3dtreebuffer.o"
+	@echo "... Source/W3DDevice/GameClient/w3dtreebuffer.i"
+	@echo "... Source/W3DDevice/GameClient/w3dtreebuffer.s"
+	@echo "... Source/W3DDevice/GameClient/w3dvideobuffer.o"
+	@echo "... Source/W3DDevice/GameClient/w3dvideobuffer.i"
+	@echo "... Source/W3DDevice/GameClient/w3dvideobuffer.s"
+	@echo "... Source/W3DDevice/GameClient/w3dview.o"
+	@echo "... Source/W3DDevice/GameClient/w3dview.i"
+	@echo "... Source/W3DDevice/GameClient/w3dview.s"
+	@echo "... Source/W3DDevice/GameClient/w3dwaypointbuffer.o"
+	@echo "... Source/W3DDevice/GameClient/w3dwaypointbuffer.i"
+	@echo "... Source/W3DDevice/GameClient/w3dwaypointbuffer.s"
+	@echo "... Source/W3DDevice/GameClient/w3dwebbrowser.o"
+	@echo "... Source/W3DDevice/GameClient/w3dwebbrowser.i"
+	@echo "... Source/W3DDevice/GameClient/w3dwebbrowser.s"
+	@echo "... Source/W3DDevice/GameClient/worldheightmap.o"
+	@echo "... Source/W3DDevice/GameClient/worldheightmap.i"
+	@echo "... Source/W3DDevice/GameClient/worldheightmap.s"
+	@echo "... Source/W3DDevice/GameLogic/W3DGameLogic.o"
 	@echo "... Source/W3DDevice/GameLogic/W3DGameLogic.i"
 	@echo "... Source/W3DDevice/GameLogic/W3DGameLogic.s"
-	@echo "... Source/W3DDevice/GameLogic/W3DGhostObject.obj"
+	@echo "... Source/W3DDevice/GameLogic/W3DGhostObject.o"
 	@echo "... Source/W3DDevice/GameLogic/W3DGhostObject.i"
 	@echo "... Source/W3DDevice/GameLogic/W3DGhostObject.s"
-	@echo "... Source/W3DDevice/GameLogic/W3DTerrainLogic.obj"
+	@echo "... Source/W3DDevice/GameLogic/W3DTerrainLogic.o"
 	@echo "... Source/W3DDevice/GameLogic/W3DTerrainLogic.i"
 	@echo "... Source/W3DDevice/GameLogic/W3DTerrainLogic.s"
-	@echo "... Source/Win32Device/Common/Win32BIGFile.obj"
+	@echo "... Source/W3DDevice/GameLogic/w3dgamelogic.o"
+	@echo "... Source/W3DDevice/GameLogic/w3dgamelogic.i"
+	@echo "... Source/W3DDevice/GameLogic/w3dgamelogic.s"
+	@echo "... Source/W3DDevice/GameLogic/w3dghostobject.o"
+	@echo "... Source/W3DDevice/GameLogic/w3dghostobject.i"
+	@echo "... Source/W3DDevice/GameLogic/w3dghostobject.s"
+	@echo "... Source/W3DDevice/GameLogic/w3dterrainlogic.o"
+	@echo "... Source/W3DDevice/GameLogic/w3dterrainlogic.i"
+	@echo "... Source/W3DDevice/GameLogic/w3dterrainlogic.s"
+	@echo "... Source/Win32Device/Common/Win32BIGFile.o"
 	@echo "... Source/Win32Device/Common/Win32BIGFile.i"
 	@echo "... Source/Win32Device/Common/Win32BIGFile.s"
-	@echo "... Source/Win32Device/Common/Win32BIGFileSystem.obj"
+	@echo "... Source/Win32Device/Common/Win32BIGFileSystem.o"
 	@echo "... Source/Win32Device/Common/Win32BIGFileSystem.i"
 	@echo "... Source/Win32Device/Common/Win32BIGFileSystem.s"
-	@echo "... Source/Win32Device/Common/Win32CDManager.obj"
+	@echo "... Source/Win32Device/Common/Win32CDManager.o"
 	@echo "... Source/Win32Device/Common/Win32CDManager.i"
 	@echo "... Source/Win32Device/Common/Win32CDManager.s"
-	@echo "... Source/Win32Device/Common/Win32GameEngine.obj"
+	@echo "... Source/Win32Device/Common/Win32GameEngine.o"
 	@echo "... Source/Win32Device/Common/Win32GameEngine.i"
 	@echo "... Source/Win32Device/Common/Win32GameEngine.s"
-	@echo "... Source/Win32Device/Common/Win32LocalFile.obj"
+	@echo "... Source/Win32Device/Common/Win32LocalFile.o"
 	@echo "... Source/Win32Device/Common/Win32LocalFile.i"
 	@echo "... Source/Win32Device/Common/Win32LocalFile.s"
-	@echo "... Source/Win32Device/Common/Win32LocalFileSystem.obj"
+	@echo "... Source/Win32Device/Common/Win32LocalFileSystem.o"
 	@echo "... Source/Win32Device/Common/Win32LocalFileSystem.i"
 	@echo "... Source/Win32Device/Common/Win32LocalFileSystem.s"
-	@echo "... Source/Win32Device/Common/Win32OSDisplay.obj"
+	@echo "... Source/Win32Device/Common/Win32OSDisplay.o"
 	@echo "... Source/Win32Device/Common/Win32OSDisplay.i"
 	@echo "... Source/Win32Device/Common/Win32OSDisplay.s"
-	@echo "... Source/Win32Device/GameClient/Win32DIKeyboard.obj"
+	@echo "... Source/Win32Device/Common/win32bigfile.o"
+	@echo "... Source/Win32Device/Common/win32bigfile.i"
+	@echo "... Source/Win32Device/Common/win32bigfile.s"
+	@echo "... Source/Win32Device/Common/win32bigfilesystem.o"
+	@echo "... Source/Win32Device/Common/win32bigfilesystem.i"
+	@echo "... Source/Win32Device/Common/win32bigfilesystem.s"
+	@echo "... Source/Win32Device/Common/win32cdmanager.o"
+	@echo "... Source/Win32Device/Common/win32cdmanager.i"
+	@echo "... Source/Win32Device/Common/win32cdmanager.s"
+	@echo "... Source/Win32Device/Common/win32gameengine.o"
+	@echo "... Source/Win32Device/Common/win32gameengine.i"
+	@echo "... Source/Win32Device/Common/win32gameengine.s"
+	@echo "... Source/Win32Device/Common/win32localfile.o"
+	@echo "... Source/Win32Device/Common/win32localfile.i"
+	@echo "... Source/Win32Device/Common/win32localfile.s"
+	@echo "... Source/Win32Device/Common/win32localfilesystem.o"
+	@echo "... Source/Win32Device/Common/win32localfilesystem.i"
+	@echo "... Source/Win32Device/Common/win32localfilesystem.s"
+	@echo "... Source/Win32Device/Common/win32osdisplay.o"
+	@echo "... Source/Win32Device/Common/win32osdisplay.i"
+	@echo "... Source/Win32Device/Common/win32osdisplay.s"
+	@echo "... Source/Win32Device/GameClient/Win32DIKeyboard.o"
 	@echo "... Source/Win32Device/GameClient/Win32DIKeyboard.i"
 	@echo "... Source/Win32Device/GameClient/Win32DIKeyboard.s"
-	@echo "... Source/Win32Device/GameClient/Win32DIMouse.obj"
+	@echo "... Source/Win32Device/GameClient/Win32DIMouse.o"
 	@echo "... Source/Win32Device/GameClient/Win32DIMouse.i"
 	@echo "... Source/Win32Device/GameClient/Win32DIMouse.s"
-	@echo "... Source/Win32Device/GameClient/Win32Mouse.obj"
+	@echo "... Source/Win32Device/GameClient/Win32Mouse.o"
 	@echo "... Source/Win32Device/GameClient/Win32Mouse.i"
 	@echo "... Source/Win32Device/GameClient/Win32Mouse.s"
+	@echo "... Source/Win32Device/GameClient/win32dikeyboard.o"
+	@echo "... Source/Win32Device/GameClient/win32dikeyboard.i"
+	@echo "... Source/Win32Device/GameClient/win32dikeyboard.s"
+	@echo "... Source/Win32Device/GameClient/win32dimouse.o"
+	@echo "... Source/Win32Device/GameClient/win32dimouse.i"
+	@echo "... Source/Win32Device/GameClient/win32dimouse.s"
+	@echo "... Source/Win32Device/GameClient/win32mouse.o"
+	@echo "... Source/Win32Device/GameClient/win32mouse.i"
+	@echo "... Source/Win32Device/GameClient/win32mouse.s"
 .PHONY : help
 
 

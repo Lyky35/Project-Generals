@@ -820,7 +820,7 @@ void CollectionClass::Update_Obj_Space_Bounding_Volumes(void)
 
 	// loop through all sub-objects, combining their bounding spheres.
 	BoundSphere = SubObjects[0]->Get_Bounding_Sphere();
-	for (i=1; i < SubObjects.Count(); i++) {
+	for (int i =1; i < SubObjects.Count(); i++) {
 		BoundSphere.Add_Sphere(SubObjects[i]->Get_Bounding_Sphere());				
 	}
 
@@ -829,7 +829,7 @@ void CollectionClass::Update_Obj_Space_Bounding_Volumes(void)
 	// root coordinate system to identity for this.
 	MinMaxAABoxClass box(Vector3(FLT_MAX,FLT_MAX,FLT_MAX),Vector3(-FLT_MAX,-FLT_MAX,-FLT_MAX));
 	
-	for (i=0; i < SubObjects.Count(); i++) {
+	for (int i =0; i < SubObjects.Count(); i++) {
 		box.Add_Box(SubObjects[i]->Get_Bounding_Box());
 	}
 

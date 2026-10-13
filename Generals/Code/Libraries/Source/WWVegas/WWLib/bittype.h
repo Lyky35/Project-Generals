@@ -43,7 +43,10 @@
 
 typedef unsigned char	uint8;
 typedef unsigned short	uint16;
-typedef unsigned long	uint32;
+#ifndef __WW_UINT32_DEFINED
+#define __WW_UINT32_DEFINED
+typedef unsigned int	uint32;
+#endif
 typedef unsigned int    uint;
 
 typedef signed char		sint8;

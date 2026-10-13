@@ -1,0 +1,1 @@
+loadbmp.cpp

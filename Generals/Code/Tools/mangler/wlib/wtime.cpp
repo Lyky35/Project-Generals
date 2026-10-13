@@ -111,7 +111,7 @@ bit8 Wtime::ParseDate(char *in)
   while ((!isgraph(*ptr))&&(*ptr!=0)) ptr++;  // skip to start of string
   if (*ptr==0) return(FALSE);
   t.tm_wday=-1;
-  for (i=0; i<7; i++)  // parse day of week
+  for (int i =0; i<7; i++)  // parse day of week
     if (strncmp(ptr,DAYS[i],strlen(DAYS[i]))==0)
       t.tm_wday=i;
   if (t.tm_wday==-1)
@@ -122,7 +122,7 @@ bit8 Wtime::ParseDate(char *in)
   while ((!isalpha(*ptr))&&(*ptr!=0)) ptr++;  // skip to month
   if (*ptr==0) return(FALSE);
   t.tm_mon=-1;
-  for (i=0; i<12; i++)  // match month
+  for (int i =0; i<12; i++)  // match month
     if (strncmp(ptr,MONTHS[i],strlen(MONTHS[i]))==0) t.tm_mon=i;
   if (t.tm_mon==-1) return(FALSE);
   while ((!isdigit(*ptr))&&(*ptr!=0)) ptr++;

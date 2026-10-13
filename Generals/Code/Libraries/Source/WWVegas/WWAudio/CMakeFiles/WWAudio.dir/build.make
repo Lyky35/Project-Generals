@@ -72,338 +72,543 @@ include Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/fl
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/codegen:
 .PHONY : Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/codegen
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/AudibleSound.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.obj -MF CMakeFiles/WWAudio.dir/AudibleSound.cpp.obj.d -o CMakeFiles/WWAudio.dir/AudibleSound.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/AudibleSound.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/AudibleSound.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.o -MF CMakeFiles/WWAudio.dir/AudibleSound.cpp.o.d -o CMakeFiles/WWAudio.dir/AudibleSound.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/AudibleSound.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/AudibleSound.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/AudibleSound.cpp > CMakeFiles/WWAudio.dir/AudibleSound.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/AudibleSound.cpp > CMakeFiles/WWAudio.dir/AudibleSound.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/AudibleSound.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/AudibleSound.cpp -o CMakeFiles/WWAudio.dir/AudibleSound.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/AudibleSound.cpp -o CMakeFiles/WWAudio.dir/AudibleSound.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/AudioSaveLoad.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.obj -MF CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.obj.d -o CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/AudioSaveLoad.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/AudioSaveLoad.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.o -MF CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.o.d -o CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/AudioSaveLoad.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/AudioSaveLoad.cpp > CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/AudioSaveLoad.cpp > CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/AudioSaveLoad.cpp -o CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/AudioSaveLoad.cpp -o CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/FilteredSound.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.obj -MF CMakeFiles/WWAudio.dir/FilteredSound.cpp.obj.d -o CMakeFiles/WWAudio.dir/FilteredSound.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/FilteredSound.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/FilteredSound.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.o -MF CMakeFiles/WWAudio.dir/FilteredSound.cpp.o.d -o CMakeFiles/WWAudio.dir/FilteredSound.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/FilteredSound.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/FilteredSound.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/FilteredSound.cpp > CMakeFiles/WWAudio.dir/FilteredSound.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/FilteredSound.cpp > CMakeFiles/WWAudio.dir/FilteredSound.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/FilteredSound.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/FilteredSound.cpp -o CMakeFiles/WWAudio.dir/FilteredSound.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/FilteredSound.cpp -o CMakeFiles/WWAudio.dir/FilteredSound.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/Listener.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.obj -MF CMakeFiles/WWAudio.dir/Listener.cpp.obj.d -o CMakeFiles/WWAudio.dir/Listener.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Listener.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/Listener.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.o -MF CMakeFiles/WWAudio.dir/Listener.cpp.o.d -o CMakeFiles/WWAudio.dir/Listener.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Listener.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/Listener.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Listener.cpp > CMakeFiles/WWAudio.dir/Listener.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Listener.cpp > CMakeFiles/WWAudio.dir/Listener.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/Listener.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Listener.cpp -o CMakeFiles/WWAudio.dir/Listener.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Listener.cpp -o CMakeFiles/WWAudio.dir/Listener.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalListener.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.obj -MF CMakeFiles/WWAudio.dir/LogicalListener.cpp.obj.d -o CMakeFiles/WWAudio.dir/LogicalListener.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalListener.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalListener.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.o -MF CMakeFiles/WWAudio.dir/LogicalListener.cpp.o.d -o CMakeFiles/WWAudio.dir/LogicalListener.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalListener.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/LogicalListener.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalListener.cpp > CMakeFiles/WWAudio.dir/LogicalListener.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalListener.cpp > CMakeFiles/WWAudio.dir/LogicalListener.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/LogicalListener.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalListener.cpp -o CMakeFiles/WWAudio.dir/LogicalListener.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalListener.cpp -o CMakeFiles/WWAudio.dir/LogicalListener.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalSound.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.obj -MF CMakeFiles/WWAudio.dir/LogicalSound.cpp.obj.d -o CMakeFiles/WWAudio.dir/LogicalSound.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalSound.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalSound.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.o -MF CMakeFiles/WWAudio.dir/LogicalSound.cpp.o.d -o CMakeFiles/WWAudio.dir/LogicalSound.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalSound.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/LogicalSound.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalSound.cpp > CMakeFiles/WWAudio.dir/LogicalSound.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalSound.cpp > CMakeFiles/WWAudio.dir/LogicalSound.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/LogicalSound.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalSound.cpp -o CMakeFiles/WWAudio.dir/LogicalSound.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/LogicalSound.cpp -o CMakeFiles/WWAudio.dir/LogicalSound.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/Sound3D.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.obj -MF CMakeFiles/WWAudio.dir/Sound3D.cpp.obj.d -o CMakeFiles/WWAudio.dir/Sound3D.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Sound3D.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/Sound3D.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.o -MF CMakeFiles/WWAudio.dir/Sound3D.cpp.o.d -o CMakeFiles/WWAudio.dir/Sound3D.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Sound3D.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/Sound3D.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Sound3D.cpp > CMakeFiles/WWAudio.dir/Sound3D.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Sound3D.cpp > CMakeFiles/WWAudio.dir/Sound3D.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/Sound3D.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Sound3D.cpp -o CMakeFiles/WWAudio.dir/Sound3D.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Sound3D.cpp -o CMakeFiles/WWAudio.dir/Sound3D.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundBuffer.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.obj -MF CMakeFiles/WWAudio.dir/SoundBuffer.cpp.obj.d -o CMakeFiles/WWAudio.dir/SoundBuffer.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundBuffer.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundBuffer.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.o -MF CMakeFiles/WWAudio.dir/SoundBuffer.cpp.o.d -o CMakeFiles/WWAudio.dir/SoundBuffer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundBuffer.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/SoundBuffer.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundBuffer.cpp > CMakeFiles/WWAudio.dir/SoundBuffer.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundBuffer.cpp > CMakeFiles/WWAudio.dir/SoundBuffer.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/SoundBuffer.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundBuffer.cpp -o CMakeFiles/WWAudio.dir/SoundBuffer.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundBuffer.cpp -o CMakeFiles/WWAudio.dir/SoundBuffer.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundPseudo3D.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.obj -MF CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.obj.d -o CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundPseudo3D.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundPseudo3D.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.o -MF CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.o.d -o CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundPseudo3D.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundPseudo3D.cpp > CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundPseudo3D.cpp > CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundPseudo3D.cpp -o CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundPseudo3D.cpp -o CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundScene.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.obj -MF CMakeFiles/WWAudio.dir/SoundScene.cpp.obj.d -o CMakeFiles/WWAudio.dir/SoundScene.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundScene.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundScene.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.o -MF CMakeFiles/WWAudio.dir/SoundScene.cpp.o.d -o CMakeFiles/WWAudio.dir/SoundScene.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundScene.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/SoundScene.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundScene.cpp > CMakeFiles/WWAudio.dir/SoundScene.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundScene.cpp > CMakeFiles/WWAudio.dir/SoundScene.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/SoundScene.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundScene.cpp -o CMakeFiles/WWAudio.dir/SoundScene.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundScene.cpp -o CMakeFiles/WWAudio.dir/SoundScene.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundSceneObj.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.obj -MF CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.obj.d -o CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundSceneObj.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundSceneObj.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.o -MF CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.o.d -o CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundSceneObj.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundSceneObj.cpp > CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundSceneObj.cpp > CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundSceneObj.cpp -o CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/SoundSceneObj.cpp -o CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/Threads.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.obj -MF CMakeFiles/WWAudio.dir/Threads.cpp.obj.d -o CMakeFiles/WWAudio.dir/Threads.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Threads.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/Threads.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.o -MF CMakeFiles/WWAudio.dir/Threads.cpp.o.d -o CMakeFiles/WWAudio.dir/Threads.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Threads.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/Threads.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Threads.cpp > CMakeFiles/WWAudio.dir/Threads.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Threads.cpp > CMakeFiles/WWAudio.dir/Threads.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/Threads.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Threads.cpp -o CMakeFiles/WWAudio.dir/Threads.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Threads.cpp -o CMakeFiles/WWAudio.dir/Threads.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/Utils.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.obj -MF CMakeFiles/WWAudio.dir/Utils.cpp.obj.d -o CMakeFiles/WWAudio.dir/Utils.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Utils.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/Utils.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.o -MF CMakeFiles/WWAudio.dir/Utils.cpp.o.d -o CMakeFiles/WWAudio.dir/Utils.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Utils.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/Utils.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Utils.cpp > CMakeFiles/WWAudio.dir/Utils.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Utils.cpp > CMakeFiles/WWAudio.dir/Utils.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/Utils.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Utils.cpp -o CMakeFiles/WWAudio.dir/Utils.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/Utils.cpp -o CMakeFiles/WWAudio.dir/Utils.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/WWAudio.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.obj -MF CMakeFiles/WWAudio.dir/WWAudio.cpp.obj.d -o CMakeFiles/WWAudio.dir/WWAudio.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/WWAudio.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/WWAudio.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.o -MF CMakeFiles/WWAudio.dir/WWAudio.cpp.o.d -o CMakeFiles/WWAudio.dir/WWAudio.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/WWAudio.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/WWAudio.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/WWAudio.cpp > CMakeFiles/WWAudio.dir/WWAudio.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/WWAudio.cpp > CMakeFiles/WWAudio.dir/WWAudio.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/WWAudio.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/WWAudio.cpp -o CMakeFiles/WWAudio.dir/WWAudio.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/WWAudio.cpp -o CMakeFiles/WWAudio.dir/WWAudio.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/listenerhandle.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.obj -MF CMakeFiles/WWAudio.dir/listenerhandle.cpp.obj.d -o CMakeFiles/WWAudio.dir/listenerhandle.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/listenerhandle.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiblesound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiblesound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/audiblesound.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiblesound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiblesound.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiblesound.cpp.o -MF CMakeFiles/WWAudio.dir/audiblesound.cpp.o.d -o CMakeFiles/WWAudio.dir/audiblesound.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/audiblesound.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiblesound.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/audiblesound.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/audiblesound.cpp > CMakeFiles/WWAudio.dir/audiblesound.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiblesound.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/audiblesound.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/audiblesound.cpp -o CMakeFiles/WWAudio.dir/audiblesound.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiosaveload.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiosaveload.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/audiosaveload.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiosaveload.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiosaveload.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiosaveload.cpp.o -MF CMakeFiles/WWAudio.dir/audiosaveload.cpp.o.d -o CMakeFiles/WWAudio.dir/audiosaveload.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/audiosaveload.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiosaveload.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/audiosaveload.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/audiosaveload.cpp > CMakeFiles/WWAudio.dir/audiosaveload.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiosaveload.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/audiosaveload.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/audiosaveload.cpp -o CMakeFiles/WWAudio.dir/audiosaveload.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/filteredsound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/filteredsound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/filteredsound.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/filteredsound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/filteredsound.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/filteredsound.cpp.o -MF CMakeFiles/WWAudio.dir/filteredsound.cpp.o.d -o CMakeFiles/WWAudio.dir/filteredsound.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/filteredsound.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/filteredsound.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/filteredsound.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/filteredsound.cpp > CMakeFiles/WWAudio.dir/filteredsound.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/filteredsound.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/filteredsound.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/filteredsound.cpp -o CMakeFiles/WWAudio.dir/filteredsound.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listener.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listener.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/listener.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listener.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listener.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listener.cpp.o -MF CMakeFiles/WWAudio.dir/listener.cpp.o.d -o CMakeFiles/WWAudio.dir/listener.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/listener.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listener.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/listener.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/listener.cpp > CMakeFiles/WWAudio.dir/listener.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listener.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/listener.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/listener.cpp -o CMakeFiles/WWAudio.dir/listener.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/listenerhandle.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.o -MF CMakeFiles/WWAudio.dir/listenerhandle.cpp.o.d -o CMakeFiles/WWAudio.dir/listenerhandle.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/listenerhandle.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/listenerhandle.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/listenerhandle.cpp > CMakeFiles/WWAudio.dir/listenerhandle.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/listenerhandle.cpp > CMakeFiles/WWAudio.dir/listenerhandle.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/listenerhandle.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/listenerhandle.cpp -o CMakeFiles/WWAudio.dir/listenerhandle.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/listenerhandle.cpp -o CMakeFiles/WWAudio.dir/listenerhandle.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/sound2dhandle.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.obj -MF CMakeFiles/WWAudio.dir/sound2dhandle.cpp.obj.d -o CMakeFiles/WWAudio.dir/sound2dhandle.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound2dhandle.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicallistener.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicallistener.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/logicallistener.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicallistener.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicallistener.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicallistener.cpp.o -MF CMakeFiles/WWAudio.dir/logicallistener.cpp.o.d -o CMakeFiles/WWAudio.dir/logicallistener.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/logicallistener.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicallistener.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/logicallistener.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/logicallistener.cpp > CMakeFiles/WWAudio.dir/logicallistener.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicallistener.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/logicallistener.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/logicallistener.cpp -o CMakeFiles/WWAudio.dir/logicallistener.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicalsound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicalsound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/logicalsound.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicalsound.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicalsound.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicalsound.cpp.o -MF CMakeFiles/WWAudio.dir/logicalsound.cpp.o.d -o CMakeFiles/WWAudio.dir/logicalsound.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/logicalsound.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicalsound.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/logicalsound.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/logicalsound.cpp > CMakeFiles/WWAudio.dir/logicalsound.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicalsound.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/logicalsound.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/logicalsound.cpp -o CMakeFiles/WWAudio.dir/logicalsound.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/sound2dhandle.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.o -MF CMakeFiles/WWAudio.dir/sound2dhandle.cpp.o.d -o CMakeFiles/WWAudio.dir/sound2dhandle.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound2dhandle.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/sound2dhandle.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound2dhandle.cpp > CMakeFiles/WWAudio.dir/sound2dhandle.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound2dhandle.cpp > CMakeFiles/WWAudio.dir/sound2dhandle.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/sound2dhandle.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound2dhandle.cpp -o CMakeFiles/WWAudio.dir/sound2dhandle.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound2dhandle.cpp -o CMakeFiles/WWAudio.dir/sound2dhandle.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/sound3dhandle.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.obj -MF CMakeFiles/WWAudio.dir/sound3dhandle.cpp.obj.d -o CMakeFiles/WWAudio.dir/sound3dhandle.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound3dhandle.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/sound3d.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3d.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3d.cpp.o -MF CMakeFiles/WWAudio.dir/sound3d.cpp.o.d -o CMakeFiles/WWAudio.dir/sound3d.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound3d.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3d.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/sound3d.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound3d.cpp > CMakeFiles/WWAudio.dir/sound3d.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3d.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/sound3d.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound3d.cpp -o CMakeFiles/WWAudio.dir/sound3d.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/sound3dhandle.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.o -MF CMakeFiles/WWAudio.dir/sound3dhandle.cpp.o.d -o CMakeFiles/WWAudio.dir/sound3dhandle.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound3dhandle.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/sound3dhandle.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound3dhandle.cpp > CMakeFiles/WWAudio.dir/sound3dhandle.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound3dhandle.cpp > CMakeFiles/WWAudio.dir/sound3dhandle.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/sound3dhandle.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound3dhandle.cpp -o CMakeFiles/WWAudio.dir/sound3dhandle.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/sound3dhandle.cpp -o CMakeFiles/WWAudio.dir/sound3dhandle.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/soundhandle.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.obj -MF CMakeFiles/WWAudio.dir/soundhandle.cpp.obj.d -o CMakeFiles/WWAudio.dir/soundhandle.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundhandle.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundbuffer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundbuffer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/soundbuffer.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundbuffer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundbuffer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundbuffer.cpp.o -MF CMakeFiles/WWAudio.dir/soundbuffer.cpp.o.d -o CMakeFiles/WWAudio.dir/soundbuffer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundbuffer.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundbuffer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/soundbuffer.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundbuffer.cpp > CMakeFiles/WWAudio.dir/soundbuffer.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundbuffer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/soundbuffer.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundbuffer.cpp -o CMakeFiles/WWAudio.dir/soundbuffer.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/soundhandle.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.o -MF CMakeFiles/WWAudio.dir/soundhandle.cpp.o.d -o CMakeFiles/WWAudio.dir/soundhandle.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundhandle.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/soundhandle.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundhandle.cpp > CMakeFiles/WWAudio.dir/soundhandle.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundhandle.cpp > CMakeFiles/WWAudio.dir/soundhandle.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/soundhandle.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundhandle.cpp -o CMakeFiles/WWAudio.dir/soundhandle.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundhandle.cpp -o CMakeFiles/WWAudio.dir/soundhandle.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/soundstreamhandle.cpp
-Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.obj -MF CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.obj.d -o CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundstreamhandle.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/soundpseudo3d.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.o -MF CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.o.d -o CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundpseudo3d.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundpseudo3d.cpp > CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundpseudo3d.cpp -o CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundscene.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundscene.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/soundscene.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundscene.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundscene.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundscene.cpp.o -MF CMakeFiles/WWAudio.dir/soundscene.cpp.o.d -o CMakeFiles/WWAudio.dir/soundscene.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundscene.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundscene.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/soundscene.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundscene.cpp > CMakeFiles/WWAudio.dir/soundscene.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundscene.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/soundscene.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundscene.cpp -o CMakeFiles/WWAudio.dir/soundscene.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundsceneobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundsceneobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/soundsceneobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundsceneobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundsceneobj.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundsceneobj.cpp.o -MF CMakeFiles/WWAudio.dir/soundsceneobj.cpp.o.d -o CMakeFiles/WWAudio.dir/soundsceneobj.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundsceneobj.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundsceneobj.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/soundsceneobj.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundsceneobj.cpp > CMakeFiles/WWAudio.dir/soundsceneobj.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundsceneobj.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/soundsceneobj.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundsceneobj.cpp -o CMakeFiles/WWAudio.dir/soundsceneobj.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/soundstreamhandle.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.o -MF CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.o.d -o CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundstreamhandle.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundstreamhandle.cpp > CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundstreamhandle.cpp > CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundstreamhandle.cpp -o CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/soundstreamhandle.cpp -o CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/threads.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/threads.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/threads.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/threads.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/threads.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/threads.cpp.o -MF CMakeFiles/WWAudio.dir/threads.cpp.o.d -o CMakeFiles/WWAudio.dir/threads.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/threads.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/threads.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/threads.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/threads.cpp > CMakeFiles/WWAudio.dir/threads.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/threads.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/threads.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/threads.cpp -o CMakeFiles/WWAudio.dir/threads.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/utils.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/utils.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/utils.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/utils.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/utils.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/utils.cpp.o -MF CMakeFiles/WWAudio.dir/utils.cpp.o.d -o CMakeFiles/WWAudio.dir/utils.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/utils.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/utils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/utils.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/utils.cpp > CMakeFiles/WWAudio.dir/utils.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/utils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/utils.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/utils.cpp -o CMakeFiles/WWAudio.dir/utils.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/wwaudio.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/wwaudio.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/wwaudio.cpp
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/wwaudio.cpp.o: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/wwaudio.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/wwaudio.cpp.o -MF CMakeFiles/WWAudio.dir/wwaudio.cpp.o.d -o CMakeFiles/WWAudio.dir/wwaudio.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/wwaudio.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/wwaudio.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWAudio.dir/wwaudio.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/wwaudio.cpp > CMakeFiles/WWAudio.dir/wwaudio.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/wwaudio.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWAudio.dir/wwaudio.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio/wwaudio.cpp -o CMakeFiles/WWAudio.dir/wwaudio.cpp.s
 
 # Object files for target WWAudio
 WWAudio_OBJECTS = \
-"CMakeFiles/WWAudio.dir/AudibleSound.cpp.obj" \
-"CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.obj" \
-"CMakeFiles/WWAudio.dir/FilteredSound.cpp.obj" \
-"CMakeFiles/WWAudio.dir/Listener.cpp.obj" \
-"CMakeFiles/WWAudio.dir/LogicalListener.cpp.obj" \
-"CMakeFiles/WWAudio.dir/LogicalSound.cpp.obj" \
-"CMakeFiles/WWAudio.dir/Sound3D.cpp.obj" \
-"CMakeFiles/WWAudio.dir/SoundBuffer.cpp.obj" \
-"CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.obj" \
-"CMakeFiles/WWAudio.dir/SoundScene.cpp.obj" \
-"CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.obj" \
-"CMakeFiles/WWAudio.dir/Threads.cpp.obj" \
-"CMakeFiles/WWAudio.dir/Utils.cpp.obj" \
-"CMakeFiles/WWAudio.dir/WWAudio.cpp.obj" \
-"CMakeFiles/WWAudio.dir/listenerhandle.cpp.obj" \
-"CMakeFiles/WWAudio.dir/sound2dhandle.cpp.obj" \
-"CMakeFiles/WWAudio.dir/sound3dhandle.cpp.obj" \
-"CMakeFiles/WWAudio.dir/soundhandle.cpp.obj" \
-"CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.obj"
+"CMakeFiles/WWAudio.dir/AudibleSound.cpp.o" \
+"CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.o" \
+"CMakeFiles/WWAudio.dir/FilteredSound.cpp.o" \
+"CMakeFiles/WWAudio.dir/Listener.cpp.o" \
+"CMakeFiles/WWAudio.dir/LogicalListener.cpp.o" \
+"CMakeFiles/WWAudio.dir/LogicalSound.cpp.o" \
+"CMakeFiles/WWAudio.dir/Sound3D.cpp.o" \
+"CMakeFiles/WWAudio.dir/SoundBuffer.cpp.o" \
+"CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.o" \
+"CMakeFiles/WWAudio.dir/SoundScene.cpp.o" \
+"CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.o" \
+"CMakeFiles/WWAudio.dir/Threads.cpp.o" \
+"CMakeFiles/WWAudio.dir/Utils.cpp.o" \
+"CMakeFiles/WWAudio.dir/WWAudio.cpp.o" \
+"CMakeFiles/WWAudio.dir/audiblesound.cpp.o" \
+"CMakeFiles/WWAudio.dir/audiosaveload.cpp.o" \
+"CMakeFiles/WWAudio.dir/filteredsound.cpp.o" \
+"CMakeFiles/WWAudio.dir/listener.cpp.o" \
+"CMakeFiles/WWAudio.dir/listenerhandle.cpp.o" \
+"CMakeFiles/WWAudio.dir/logicallistener.cpp.o" \
+"CMakeFiles/WWAudio.dir/logicalsound.cpp.o" \
+"CMakeFiles/WWAudio.dir/sound2dhandle.cpp.o" \
+"CMakeFiles/WWAudio.dir/sound3d.cpp.o" \
+"CMakeFiles/WWAudio.dir/sound3dhandle.cpp.o" \
+"CMakeFiles/WWAudio.dir/soundbuffer.cpp.o" \
+"CMakeFiles/WWAudio.dir/soundhandle.cpp.o" \
+"CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.o" \
+"CMakeFiles/WWAudio.dir/soundscene.cpp.o" \
+"CMakeFiles/WWAudio.dir/soundsceneobj.cpp.o" \
+"CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.o" \
+"CMakeFiles/WWAudio.dir/threads.cpp.o" \
+"CMakeFiles/WWAudio.dir/utils.cpp.o" \
+"CMakeFiles/WWAudio.dir/wwaudio.cpp.o"
 
 # External object files for target WWAudio
 WWAudio_EXTERNAL_OBJECTS =
 
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.obj
-lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.obj
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudibleSound.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/AudioSaveLoad.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/FilteredSound.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Listener.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalListener.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/LogicalSound.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Sound3D.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundBuffer.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundPseudo3D.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundScene.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/SoundSceneObj.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Threads.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/Utils.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/WWAudio.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiblesound.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/audiosaveload.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/filteredsound.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listener.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/listenerhandle.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicallistener.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/logicalsound.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound2dhandle.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3d.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/sound3dhandle.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundbuffer.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundhandle.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundpseudo3d.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundscene.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundsceneobj.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/soundstreamhandle.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/threads.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/utils.cpp.o
+lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/wwaudio.cpp.o
 lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/build.make
 lib/libWWAudio.a: Generals/Code/Libraries/Source/WWVegas/WWAudio/CMakeFiles/WWAudio.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX static library ../../../../../../lib/libWWAudio.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Linking CXX static library ../../../../../../lib/libWWAudio.a"
 	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && $(CMAKE_COMMAND) -P CMakeFiles/WWAudio.dir/cmake_clean_target.cmake
 	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWAudio && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/WWAudio.dir/link.txt --verbose=$(VERBOSE)
 

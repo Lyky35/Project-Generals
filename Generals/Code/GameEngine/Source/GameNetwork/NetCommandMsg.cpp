@@ -156,7 +156,7 @@ static Int indexFromMask(UnsignedInt mask)
 	Player *player = NULL;
 	Int i;
 
-	for( i = 0; i < MAX_PLAYER_COUNT; i++ )
+	for (int i = 0; i < MAX_PLAYER_COUNT; i++ )
 	{
 		player = ThePlayerList->getNthPlayer( i );
 		if( player && player->getPlayerMask() == mask )

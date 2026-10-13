@@ -244,7 +244,7 @@ bool Curve3DClass::Load(ChunkLoadClass & cload)
 				break;
 
 			case CURVE3D_CHUNK_KEYS:
-				for (i=0; i<keycount; i++) {
+				for (int i =0; i<keycount; i++) {
 					cload.Read(&(newkey.Point),sizeof(newkey.Point));
 					cload.Read(&(newkey.Time),sizeof(newkey.Time));
 					Keys.Add(newkey);
@@ -511,7 +511,7 @@ bool Curve1DClass::Load(ChunkLoadClass & cload)
 				break;
 
 			case CURVE1D_CHUNK_KEYS:
-				for (i=0; i<keycount; i++) {
+				for (int i =0; i<keycount; i++) {
 					cload.Read(&(newkey.Point),sizeof(newkey.Point));
 					cload.Read(&(newkey.Time),sizeof(newkey.Time));
 					cload.Read(&(newkey.Extra),sizeof(newkey.Extra));

@@ -163,11 +163,11 @@ class TPoint3D : public TPoint2D<T> {
 		TPoint3D<T> const operator - (void) const {return(TPoint3D<T>(-X, -Y, -Z));}
 
 		// Vector support functions.
-		T Length(void) const {return(T(sqrt(X*X + Y*Y + Z*Z)));}
+		T Length(void) const {return(T(sqrt(this->X*this->X + this->Y*this->Y + this->Z*this->Z)));}
 		TPoint3D<T> const Normalize(void) const {
-			double len = sqrt(X*X + Y*Y + Z*Z);
+			double len = sqrt(this->X*this->X + this->Y*this->Y + this->Z*this->Z);
 			if (len != 0.0) {
-				return(TPoint3D<T>(X / len, Y / len, Z / len));
+				return(TPoint3D<T>(this->X / len, this->Y / len, this->Z / len));
 			} else {
 				return(*this);
 			}

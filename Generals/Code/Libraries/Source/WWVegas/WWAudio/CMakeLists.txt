@@ -1,4 +1,6 @@
 file(GLOB WWAudio_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+# WWAudio.cpp has too many Miles SDK dependencies - stub out the AIL functions instead
+list(FILTER WWAudio_SOURCES EXCLUDE REGEX "[Ww][Ww][Aa][Uu][Dd][Ii][Oo]\.cpp$")
 
 add_library(WWAudio STATIC ${WWAudio_SOURCES})
 

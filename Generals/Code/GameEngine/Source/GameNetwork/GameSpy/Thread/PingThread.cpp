@@ -491,7 +491,7 @@ Int PingThreadClass::doPing(UnsignedInt IP, Int timeout)
     * Init data buffer printable ASCII 
     *  32 (space) through 126 (tilde)
     */
-   for (j = 0, i = 32; j < nDataLen; j++, i++)
+   for (int j = 0, i = 32; j < nDataLen; j++, i++)
    {
       if (i >= 126)
          i = 32;

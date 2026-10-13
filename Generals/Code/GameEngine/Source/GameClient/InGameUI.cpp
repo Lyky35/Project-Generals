@@ -879,7 +879,7 @@ InGameUI::InGameUI()
 	m_tooltipsDisabledUntil = 0;
 
 	// init hint lists
-	for( i = 0; i < MAX_MOVE_HINTS; i++ )
+	for (int i = 0; i < MAX_MOVE_HINTS; i++ )
 	{
 
 		m_moveHint[ i ].pos.zero();
@@ -888,7 +888,7 @@ InGameUI::InGameUI()
 
 	}  //  end for i
 
-	for( i = 0; i < MAX_BUILD_PROGRESS; i++ )
+	for (int i = 0; i < MAX_BUILD_PROGRESS; i++ )
 	{
 
 		m_buildProgress[ i ].m_thingTemplate = NULL;
@@ -901,7 +901,7 @@ InGameUI::InGameUI()
 
 	// allocate an array for the placement icons
 	m_placeIcon = NEW Drawable* [ TheGlobalData->m_maxLineBuildObjects ];
-	for( i = 0; i < TheGlobalData->m_maxLineBuildObjects; i++ )
+	for (int i = 0; i < TheGlobalData->m_maxLineBuildObjects; i++ )
 		m_placeIcon[ i ] = NULL;
 	m_pendingPlaceType = NULL;
 	m_pendingPlaceSourceObjectID = INVALID_ID;
@@ -915,7 +915,7 @@ InGameUI::InGameUI()
 	m_cameoVideoBuffer = NULL;
 
 	// message info
-	for( i = 0; i < MAX_UI_MESSAGES; i++ )
+	for (int i = 0; i < MAX_UI_MESSAGES; i++ )
 	{
 
 		m_uiMessages[ i ].fullText.clear();
@@ -1444,7 +1444,7 @@ void InGameUI::handleBuildPlacements( void )
 																															builderObject );	
 
 			// create any necessary drawables we need to "fill out" the line
-			for( i = 0; i < tileBuildInfo->tilesUsed; i++ )
+			for (int i = 0; i < tileBuildInfo->tilesUsed; i++ )
 			{
 			
 				if( m_placeIcon[ i ] == NULL )
@@ -1457,7 +1457,7 @@ void InGameUI::handleBuildPlacements( void )
 			// destroy any drawables that we're not using anymore because a previous
 			// line length was longer
 			//
-			for( i = tileBuildInfo->tilesUsed; i < maxObjects; i++ )
+			for (int i = tileBuildInfo->tilesUsed; i < maxObjects; i++ )
 			{
 
 				if( m_placeIcon[ i ] != NULL )
@@ -1470,7 +1470,7 @@ void InGameUI::handleBuildPlacements( void )
 			// march down each drawable and set the position based on its position in the
 			// line and set their angles all the same
 			//
-			for( i = 0; i < tileBuildInfo->tilesUsed; i++ )
+			for (int i = 0; i < tileBuildInfo->tilesUsed; i++ )
 			{
 
 				// set the drawble position
@@ -1558,7 +1558,7 @@ void InGameUI::update( void )
 	const int messageTimeout = m_messageDelayMS / LOGICFRAMES_PER_SECOND / 1000;
 	UnsignedByte r, g, b, a;
 	Int amount;
-	for( i = MAX_UI_MESSAGES - 1; i >= 0; i-- )
+	for (int i = MAX_UI_MESSAGES - 1; i >= 0; i-- )
 	{
 
 		if( currLogicFrame - m_uiMessages[ i ].timestamp > messageTimeout )
@@ -1826,7 +1826,7 @@ void InGameUI::reset( void )
 	freeMessageResources();
 
 	Int i;
-	for (i=0; i<MAX_PLAYER_COUNT; ++i)
+	for (int i =0; i<MAX_PLAYER_COUNT; ++i)
 	{
 		for (SuperweaponMap::iterator mapIt = m_superweapons[i].begin(); mapIt != m_superweapons[i].end(); ++mapIt)
 		{
@@ -1861,7 +1861,7 @@ void InGameUI::reset( void )
 	clearWorldAnimations();
 	resetIdleWorker();
 	// clear hint lists
-	for( i = 0; i < MAX_MOVE_HINTS; i++ )
+	for (int i = 0; i < MAX_MOVE_HINTS; i++ )
 	{
 
 		m_moveHint[ i ].pos.zero();
@@ -1892,7 +1892,7 @@ void InGameUI::freeMessageResources( void )
 	Int i;
 
 	// release display strings and set text to empty
-	for( i = 0; i < MAX_UI_MESSAGES; i++ )
+	for (int i = 0; i < MAX_UI_MESSAGES; i++ )
 	{
 
 		// emtpy text
@@ -2003,7 +2003,7 @@ void InGameUI::addMessageText( const UnicodeString& formattedMessage, const RGBC
 	m_uiMessages[ MAX_UI_MESSAGES - 1 ].timestamp = 0;
 
 	// shift all the messages down one index and remove the last one
-	for( i = MAX_UI_MESSAGES - 1; i >= 1; i-- )
+	for (int i = MAX_UI_MESSAGES - 1; i >= 1; i-- )
 		m_uiMessages[ i ] = m_uiMessages[ i - 1 ];
 
 	//
@@ -2068,7 +2068,7 @@ void InGameUI::createMoveHint( const GameMessage *msg )
 	Int i;
 
 	// first, remove any existing move hint for this source if present
-	for( i = 0; i < MAX_MOVE_HINTS; i++ )
+	for (int i = 0; i < MAX_MOVE_HINTS; i++ )
 		if( m_moveHint[ i ].sourceID == msg->getArgument( 0 )->objectID &&
 				m_moveHint[ i ].frame != 0 )
 			expireHint( MOVE_HINT, i );
@@ -2837,7 +2837,7 @@ void InGameUI::destroyPlacementIcons( void )
 {
 	Int i;
 
-	for( i = 0; i < TheGlobalData->m_maxLineBuildObjects; ++i )
+	for (int i = 0; i < TheGlobalData->m_maxLineBuildObjects; ++i )
 	{
 
 		if( m_placeIcon[ i ] ) 
@@ -3323,7 +3323,7 @@ void InGameUI::postDraw( void )
 
 		x = m_messagePosition.x;
 		y = m_messagePosition.y;
-		for( i = MAX_UI_MESSAGES - 1; i >= 0; i-- )
+		for (int i = MAX_UI_MESSAGES - 1; i >= 0; i-- )
 		{
 
 			if( m_uiMessages[ i ].displayString )

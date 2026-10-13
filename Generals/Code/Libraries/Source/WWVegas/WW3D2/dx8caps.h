@@ -47,6 +47,8 @@
 #include "ww3dformat.h"
 #include "d3d8types.h"
 
+struct IDirect3DDevice8;
+
 class DX8Caps
 {
 public:

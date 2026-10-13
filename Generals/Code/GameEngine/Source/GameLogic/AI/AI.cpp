@@ -481,7 +481,7 @@ AIGroup *AI::findGroup( UnsignedInt id )
 {
 	/// @todo Optimize this (MSB)
 	std::list<AIGroup *>::iterator i;
-	for( i=m_groupList.begin(); i!=m_groupList.end(); ++i )
+	for (auto i = m_groupList.begin(); i!=m_groupList.end(); ++i )
 		if ((*i)->getID() == id)
 			return (*i);
 

@@ -233,7 +233,7 @@ BridgeBehavior::BridgeBehavior( Thing *thing, const ModuleData *moduleData )
 	m_scaffoldObjectIDList.clear();
 	m_scaffoldPresent = FALSE;
 
-	for( i = 0; i < BRIDGE_MAX_TOWERS; ++i )
+	for (int i = 0; i < BRIDGE_MAX_TOWERS; ++i )
 		m_towerID[ i ] = INVALID_ID;
 
 	m_fxResolved = FALSE;
@@ -241,7 +241,7 @@ BridgeBehavior::BridgeBehavior( Thing *thing, const ModuleData *moduleData )
 	{
 
 		// initialize the fx and ocl lists
-		for( i = 0; i < MAX_BRIDGE_BODY_FX; ++i )
+		for (int i = 0; i < MAX_BRIDGE_BODY_FX; ++i )
 		{
 
 			m_damageToOCL[ bodyState ][ i ] = NULL;

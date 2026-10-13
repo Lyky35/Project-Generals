@@ -354,7 +354,7 @@ W3DDisplay::W3DDisplay()
 #if defined(_DEBUG) || defined(_INTERNAL)
 	m_timerAtCumuFPSStart = 0;
 #endif
-	for (i=0; i<LightEnvironmentClass::MAX_LIGHTS; i++)
+	for (int i =0; i<LightEnvironmentClass::MAX_LIGHTS; i++)
 		m_myLight[i] = NULL;
 	m_2DRender = NULL;
 	m_isClippedEnabled = FALSE;
@@ -363,7 +363,7 @@ W3DDisplay::W3DDisplay()
 	m_clipRegion.hi.x = 0;
 	m_clipRegion.hi.y = 0;
 
-	for (i = 0; i < DisplayStringCount; i++)
+	for (int i = 0; i < DisplayStringCount; i++)
 		m_displayStrings[i] = NULL;
 
 }  // end W3DDisplay
@@ -1515,7 +1515,7 @@ void W3DDisplay::calculateTerrainLOD( void )
 		TheWritableGlobalData->m_terrainLOD = curLOD;
 		m_3DScene->drawTerrainOnly(true);
 		TheTerrainRenderObject->adjustTerrainLOD(0);
-		for (i=0; i<NUM_SAMPLES; i++) {
+		for (int i =0; i<NUM_SAMPLES; i++) {
 			Int64 startTime64 = getPerformanceCounter();
 			// start render block
 			updateViews();
@@ -2897,9 +2897,9 @@ void W3DDisplay::takeScreenShot(void)
 	char *image=NEW char[3*width*height];
 #ifdef CAPTURE_TO_TARGA
 	//bytes are mixed in targa files, not rgb order.
-	for (y=0; y<height; y++)
+	for (int y =0; y<height; y++)
 	{
-		for (x=0; x<width; x++)
+		for (int x =0; x<width; x++)
 		{
 			// index for image
 			index=3*(x+y*width);
@@ -2926,9 +2926,9 @@ void W3DDisplay::takeScreenShot(void)
 	targ.Save(pathname,TGAF_IMAGE,false);
 #else	//capturing to bmp file
 	//bmp is same byte order
-	for (y=0; y<height; y++)
+	for (int y =0; y<height; y++)
 	{
-		for (x=0; x<width; x++)
+		for (int x =0; x<width; x++)
 		{
 			// index for image
 			index=3*(x+y*width);
@@ -2947,7 +2947,7 @@ void W3DDisplay::takeScreenShot(void)
 	char *ptr,*ptr1;
 	char  v,v1;
 
-	for (y = 0; y < (height >> 1); y++)
+	for (int y = 0; y < (height >> 1); y++)
 	{
 		/* Compute address of lines to exchange. */
 		ptr = (image + ((width * y) * 3));
@@ -2955,7 +2955,7 @@ void W3DDisplay::takeScreenShot(void)
 		ptr1 -= ((width * y) * 3);
 
 		/* Exchange all the pixels on this scan line. */
-		for (x = 0; x < (width * 3); x++)
+		for (int x = 0; x < (width * 3); x++)
 			{
 			v = *ptr;
 			v1 = *ptr1;

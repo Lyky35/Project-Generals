@@ -45,6 +45,38 @@
 #include <mmreg.h>
 
 #include <wpaudio/thread.h>
+#include <wpaudio/level.h>
+#include <wpaudio/source.h>
+
+// Missing macros and types
+#define MSECONDS(x) (x)
+#define ArrayLen(a) (sizeof(a)/sizeof((a)[0]))
+#define ArrayEnd(a) (a)[ArrayLen(a)-1] = 0
+#define mAUDIO_FORMAT_PCM 0x0001
+
+// RIFF/WAVE format structures
+#define vRIFF 0x46464952  // "RIFF"
+#define vWAVE 0x45564157  // "WAVE"
+#define vFMT  0x20746D66  // "fmt "
+#define vDATA 0x61746164  // "data"
+
+typedef struct {
+    uint32 riff;    // "RIFF"
+    uint32 size;
+    uint32 form;    // "WAVE"
+    uint32 type;
+} RIFF_HEADER;
+
+typedef struct {
+    uint32 type;    // chunk type (e.g. "fmt ", "data")
+    uint32 length;  // chunk length
+} RIFF_CHUNK;
+
+// MS ADPCM coefficients (same as in AUD_DSoundDriver.cpp)
+static const short MSADPCM_StdCoef[7][2] = {
+    {256, 0}, {512, -256}, {0, 0}, {192, 64},
+    {240, 0}, {460, -208}, {392, -232}
+};
 #include <wpaudio/memory.h>
 #include <wpaudio/Source.h>
 #include <wsys/File.h>

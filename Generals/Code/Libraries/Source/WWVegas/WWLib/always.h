@@ -76,23 +76,24 @@
 	#define _OPERATOR_NEW_DEFINED_
 
 	extern void * __cdecl operator new		(size_t size);
-	extern void __cdecl operator delete		(void *p);
+	extern void __cdecl operator delete		(void *p) noexcept;
 
 	extern void * __cdecl operator new[]	(size_t size);
-	extern void __cdecl operator delete[]	(void *p);
+	extern void __cdecl operator delete[]	(void *p) noexcept;
 
 	// additional overloads to account for VC/MFC funky versions
 	extern void* __cdecl operator new			(size_t nSize, const char *, int);
-	extern void __cdecl operator delete		(void *, const char *, int);
+	extern void __cdecl operator delete		(void *, const char *, int) noexcept;
 
 	extern void* __cdecl operator new[]		(size_t nSize, const char *, int);
-	extern void __cdecl operator delete[]	(void *, const char *, int);
+	extern void __cdecl operator delete[]	(void *, const char *, int) noexcept;
 
 	// additional overloads for 'placement new'
 	//inline void* __cdecl operator new							(size_t s, void *p) { return p; }
 	//inline void __cdecl operator delete						(void *, void *p)		{ }
-	inline void* __cdecl operator new[]						(size_t s, void *p) { return p; }
-	inline void __cdecl operator delete[]					(void *, void *p)		{ }
+	// Placement new/delete provided by <new> in C++11+
+	//inline void* __cdecl operator new[]						(size_t s, void *p) { return p; }
+	//inline void __cdecl operator delete[]					(void *, void *p)		{ }
 
 #endif
 
@@ -197,23 +198,7 @@ public:
 #undef max
 #endif
 
-template <class T> T min(T a,T b)
-{
-	if (a<b) {
-		return a;
-	} else {
-		return b;
-	}
-}
-
-template <class T> T max(T a,T b)
-{
-	if (a>b) {
-		return a;
-	} else {
-		return b;
-	}
-}
+// min/max templates provided by BaseType.h
 
 
 /*

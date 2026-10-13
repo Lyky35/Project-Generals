@@ -80,11 +80,11 @@ void PartitionSolver::solve(void)
 	Int i, j;
 
 	// first, determine whether there is an actual solution, or we're going to have to fudge it.
-	for (i = 0; i < m_data.size(); ++i) {
+	for (int i = 0; i < m_data.size(); ++i) {
 		minSizeForAllData += m_data[i].second;
 	}
 
-	for (i = 0; i < m_spacesForData.size(); ++i) {
+	for (int i = 0; i < m_spacesForData.size(); ++i) {
 		slotsAllotted += m_spacesForData[i].second;
 	}
 
@@ -103,9 +103,9 @@ void PartitionSolver::solve(void)
 	{
 		// we prefer the fast, but not necessarily correct solution
 		// simply start placing the stuff. Skip things you can't place.
-		for (i = 0; i < m_data.size(); ++i) 
+		for (int i = 0; i < m_data.size(); ++i) 
 		{
-			for (j = 0; j < spacesStillAvailable.size(); ++j) 
+			for (int j = 0; j < spacesStillAvailable.size(); ++j) 
 			{
 				if (m_data[i].second <= spacesStillAvailable[j].second) 
 				{

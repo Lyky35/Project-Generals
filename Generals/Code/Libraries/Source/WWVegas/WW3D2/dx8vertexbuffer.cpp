@@ -159,7 +159,7 @@ VertexBufferClass::WriteLockClass::WriteLockClass(VertexBufferClass* VertexBuffe
 	WWASSERT(!VertexBuffer->Engine_Refs());
 	VertexBuffer->Add_Ref();
 	switch (VertexBuffer->Type()) {
-	case BUFFER_TYPE_DX8:
+	case BUFFER_TYPE_DX8: {
 #ifdef VERTEX_BUFFER_LOG
 		{
 		StringClass fvf_name;
@@ -177,9 +177,10 @@ VertexBufferClass::WriteLockClass::WriteLockClass(VertexBufferClass* VertexBuffe
 		if (dxvbWriteLock->ShadowBuffer) {
 			Vertices = dxvbWriteLock->ShadowBuffer;
 		} else {
-			Vertices = dxvbWriteLock->VertexBuffer->Map();
+			Vertices = dxvbWriteLock->Get_Vulkan_Vertex_Buffer()->Map();
 		}
 		break;
+	}
 	case BUFFER_TYPE_SORTING:
 		Vertices=static_cast<SortingVertexBufferClass*>(VertexBuffer)->VertexBuffer;
 		break;
@@ -195,18 +196,19 @@ VertexBufferClass::WriteLockClass::~WriteLockClass()
 {
 	DX8_THREAD_ASSERT();
 	switch (VertexBuffer->Type()) {
-	case BUFFER_TYPE_DX8:
+	case BUFFER_TYPE_DX8: {
 #ifdef VERTEX_BUFFER_LOG
 		WWDEBUG_SAY(("VertexBuffer->Unlock()\n"));
 #endif
 		DX8_Assert();
 		DX8VertexBufferClass* dxvbWrite = static_cast<DX8VertexBufferClass*>(VertexBuffer);
 		if (dxvbWrite->ShadowBuffer) {
-			dxvbWrite->VertexBuffer->Upload((unsigned char*)dxvbWrite->ShadowBuffer + dxvbWrite->LockStart, dxvbWrite->LockSize, dxvbWrite->LockStart);
+			dxvbWrite->Get_Vulkan_Vertex_Buffer()->Upload((unsigned char*)dxvbWrite->ShadowBuffer + dxvbWrite->LockStart, dxvbWrite->LockSize, dxvbWrite->LockStart);
 		} else {
-			dxvbWrite->VertexBuffer->Unmap();
+			dxvbWrite->Get_Vulkan_Vertex_Buffer()->Unmap();
 		}
 		break;
+	}
 	case BUFFER_TYPE_SORTING:
 		break;
 	default:
@@ -232,7 +234,7 @@ VertexBufferClass::AppendLockClass::AppendLockClass(VertexBufferClass* VertexBuf
 	WWASSERT(start_index+index_range<=VertexBuffer->Get_Vertex_Count());
 	VertexBuffer->Add_Ref();
 	switch (VertexBuffer->Type()) {
-	case BUFFER_TYPE_DX8:
+	case BUFFER_TYPE_DX8: {
 #ifdef VERTEX_BUFFER_LOG
 		{
 		StringClass fvf_name;
@@ -254,6 +256,7 @@ VertexBufferClass::AppendLockClass::AppendLockClass(VertexBufferClass* VertexBuf
 			Vertices = (unsigned char*)dxvbAppendLock->VertexBuffer->Map() + dxvbAppendLock->LockStart;
 		}
 		break;
+	}
 	case BUFFER_TYPE_SORTING:
 		Vertices=static_cast<SortingVertexBufferClass*>(VertexBuffer)->VertexBuffer+start_index;
 		break;
@@ -269,7 +272,7 @@ VertexBufferClass::AppendLockClass::~AppendLockClass()
 {
 	DX8_THREAD_ASSERT();
 	switch (VertexBuffer->Type()) {
-	case BUFFER_TYPE_DX8:
+	case BUFFER_TYPE_DX8: {
 		DX8_Assert();
 #ifdef VERTEX_BUFFER_LOG
 		WWDEBUG_SAY(("VertexBuffer->Unlock()\n"));
@@ -281,6 +284,7 @@ VertexBufferClass::AppendLockClass::~AppendLockClass()
 			dxvbAppend->VertexBuffer->Unmap();
 		}
 		break;
+	}
 	case BUFFER_TYPE_SORTING:
 		break;
 	default:
@@ -831,7 +835,7 @@ DynamicVBAccessClass::WriteLockClass::WriteLockClass(DynamicVBAccessClass* dynam
 {
 	DX8_THREAD_ASSERT();
 	switch (DynamicVBAccess->Get_Type()) {
-	case BUFFER_TYPE_DYNAMIC_DX8:
+	case BUFFER_TYPE_DYNAMIC_DX8: {
 #ifdef VERTEX_BUFFER_LOG
 		{
 		WWASSERT(!dx8_lock);
@@ -851,9 +855,10 @@ DynamicVBAccessClass::WriteLockClass::WriteLockClass(DynamicVBAccessClass* dynam
 		DX8_Assert();
 		// Lock with discard contents if the buffer offset is zero
 		DX8VertexBufferClass* dxDynVbLock = static_cast<DX8VertexBufferClass*>(DynamicVBAccess->VertexBuffer);
-		Vertices = (VertexFormatXYZNDUV2*)((unsigned char*)dxDynVbLock->VertexBuffer->Map() +
+		Vertices = (VertexFormatXYZNDUV2*)((unsigned char*)dxDynVbLock->Get_Vulkan_Vertex_Buffer()->Map() +
 			DynamicVBAccess->VertexBufferOffset * dxDynVbLock->FVF_Info().Get_FVF_Size());
 		break;
+	}
 	case BUFFER_TYPE_DYNAMIC_SORTING:
 		Vertices=static_cast<SortingVertexBufferClass*>(DynamicVBAccess->VertexBuffer)->VertexBuffer;
 		Vertices+=DynamicVBAccess->VertexBufferOffset;
@@ -871,7 +876,7 @@ DynamicVBAccessClass::WriteLockClass::~WriteLockClass()
 {
 	DX8_THREAD_ASSERT();
 	switch (DynamicVBAccess->Get_Type()) {
-	case BUFFER_TYPE_DYNAMIC_DX8:
+	case BUFFER_TYPE_DYNAMIC_DX8: {
 #ifdef VERTEX_BUFFER_LOG
 		dx8_lock--;
 		WWASSERT(!dx8_lock);
@@ -879,8 +884,9 @@ DynamicVBAccessClass::WriteLockClass::~WriteLockClass()
 #endif
 		DX8_Assert();
 		DX8VertexBufferClass* dxDynVb = static_cast<DX8VertexBufferClass*>(DynamicVBAccess->VertexBuffer);
-		dxDynVb->VertexBuffer->Unmap();
+		dxDynVb->Get_Vulkan_Vertex_Buffer()->Unmap();
 		break;
+	}
 	case BUFFER_TYPE_DYNAMIC_SORTING:
 		break;
 	default:

@@ -104,7 +104,7 @@ void WinInstanceData::init( void )
 	Int i;
 
 	// init our draw data images/colors for the states
-	for( i = 0; i < MAX_DRAW_DATA; i++ )
+	for (int i = 0; i < MAX_DRAW_DATA; i++ )
 	{
 
 		m_enabledDrawData[ i ].image = NULL;

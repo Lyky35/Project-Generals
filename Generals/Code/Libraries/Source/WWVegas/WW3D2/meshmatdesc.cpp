@@ -221,8 +221,8 @@ MeshMatDescClass::MeshMatDescClass(const MeshMatDescClass & that) :
 		UV[array] = NULL;
 	}
 
-	for (pass=0; pass < MAX_PASSES; pass++) {
-		for (stage=0; stage < MAX_TEX_STAGES; stage++) {
+	for (int pass =0; pass < MAX_PASSES; pass++) {
+		for (int stage =0; stage < MAX_TEX_STAGES; stage++) {
 			UVSource[pass][stage] = -1;
 			Texture[pass][stage] = NULL;
 			TextureArray[pass][stage] = NULL;

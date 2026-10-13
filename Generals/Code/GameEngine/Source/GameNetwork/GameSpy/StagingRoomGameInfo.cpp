@@ -611,7 +611,7 @@ AsciiString GameSpyStagingRoom::generateGameSpyGameResultsPacket( void )
 	Int numAIs = 0;
 	Int numTeamsAtGameEnd = 0;
 	Int lastTeamAtGameEnd = -1;
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		AsciiString playerName;
 		playerName.format("player%d", i);
@@ -644,7 +644,7 @@ AsciiString GameSpyStagingRoom::generateGameSpyGameResultsPacket( void )
 	numPlayers = numHumans + numAIs;
 
 	AsciiString mapName;
-	for (i=0; i<getMap().getLength(); ++i)
+	for (int i =0; i<getMap().getLength(); ++i)
 	{
 		char c = getMap().getCharAt(i);
 		if (c == '\\')
@@ -657,7 +657,7 @@ AsciiString GameSpyStagingRoom::generateGameSpyGameResultsPacket( void )
 		getSeed(), m_GameSpySlot[0].getLoginName().str(), mapName.str(), numPlayers, endFrame, localSlotNum);
 
 	Int playerID = 0;
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		AsciiString playerName;
 		playerName.format("player%d", i);
@@ -705,7 +705,7 @@ AsciiString GameSpyStagingRoom::generateLadderGameResultsPacket( void )
 	Int numTeamsAtGameEnd = 0;
 	Int lastTeamAtGameEnd = -1;
 	Player* p[MAX_SLOTS];
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		AsciiString playerName;
 		playerName.format("player%d", i);
@@ -741,7 +741,7 @@ AsciiString GameSpyStagingRoom::generateLadderGameResultsPacket( void )
 	results.concat(tempStr);
 
 	Int playerID = 0;
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		AsciiString playerName;
 		playerName.format("player%d", i);

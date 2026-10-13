@@ -258,7 +258,7 @@ void TexturePage::extendImageEdges( Byte *destBuffer,
 	char color[ 3 ];
 	char alpha;
 	Bool prevPixel, currPixel;
-	for( y = 0; y < imageHeight; y++ )
+	for (int y = 0; y < imageHeight; y++ )
 	{
 
 		// compute beginning of destination row
@@ -267,7 +267,7 @@ void TexturePage::extendImageEdges( Byte *destBuffer,
 				  (image->m_pagePos.lo.x * destBPP);
 
 		prevPixel = FALSE;
-		for( x = 0; x < imageWidth; x++ )
+		for (int x = 0; x < imageWidth; x++ )
 		{
 	
 			// read the pixel
@@ -554,7 +554,7 @@ Bool TexturePage::addImageData( Byte *destBuffer,
 		//
 
 		// do all rows
-		for( y = 0; y < image->m_size.y; y++ )
+		for (int y = 0; y < image->m_size.y; y++ )
 		{
 
 			// compute source location
@@ -567,7 +567,7 @@ Bool TexturePage::addImageData( Byte *destBuffer,
 
 			// copy a row from source to destination
 			count = image->m_pagePos.hi.x - image->m_pagePos.lo.x + 1;
-			for( x = 0; x < count; x++ )
+			for (int x = 0; x < count; x++ )
 			{
 
 				// check the target and source formats
@@ -612,7 +612,7 @@ Bool TexturePage::addImageData( Byte *destBuffer,
 		// image was rotated, perform a 90 degrees rotation clockwise when we
 		// copy over the image data
 		//
-		for( y = 0; y < image->m_size.y; y++ )
+		for (int y = 0; y < image->m_size.y; y++ )
 		{
 
 
@@ -620,7 +620,7 @@ Bool TexturePage::addImageData( Byte *destBuffer,
 			src = sourceBuffer + ((image->m_size.y - 1 - y) * image->m_size.x * sourceBPP);
 
 			// for each pixel in source put it in dest rotated
-			for( x = 0; x < image->m_size.x; x++ )
+			for (int x = 0; x < image->m_size.x; x++ )
 			{
 
 				// compute destination location
@@ -700,14 +700,14 @@ Bool TexturePage::lineUsed( Int sx, Int sy, Int ex, Int ey )
 	Int x, y;
 	UnsignedByte *ptr;
 
-	for( y = sy; y <= ey; y++ )
+	for (int y = sy; y <= ey; y++ )
 	{
 
 		// compute start of row
 		ptr = m_canvas + (y * m_size.y + sx);
 
 		// scan the row
-		for( x = sx; x <= ex; x++, ptr++ )
+		for (int x = sx; x <= ex; x++, ptr++ )
 			if( *ptr == USED )
 				return USED;
 
@@ -727,7 +727,7 @@ void TexturePage::markRegionUsed( IRegion2D *region )
 	Int count;
 
 	// loop through y
-	for( y = region->lo.y; y <= region->hi.y; y++ )
+	for (int y = region->lo.y; y <= region->hi.y; y++ )
 	{
 
 		// compute start of row
@@ -932,10 +932,10 @@ Bool TexturePage::addImage( ImageInfo *image )
 		Int xGutter = 0, yGutter = 0;
 		Int imageWidth, imageHeight;
 		UnsignedInt fitBits = 0;
-		for( y = 0; y < m_size.y; y++ )
+		for (int y = 0; y < m_size.y; y++ )
 		{
 
-			for( x = 0; x < m_size.x; x++ )
+			for (int x = 0; x < m_size.x; x++ )
 			{
 
 				// get the gutter size

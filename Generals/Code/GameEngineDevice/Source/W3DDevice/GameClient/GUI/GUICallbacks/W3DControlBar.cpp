@@ -796,7 +796,7 @@ void drawSkinnyBorder( Int x, Int y, Int width, Int height)
 	x2 = maxX - (OffsetLower + BORDER_LINE_SIZE);
 	image1 = TheMappedImageCollection->findImageByName("FrameT");
 	image2 = TheMappedImageCollection->findImageByName("FrameB");
-	for( x=(originalX + 3); x <= x2; x += BORDER_LINE_SIZE )
+	for (int x =(originalX + 3); x <= x2; x += BORDER_LINE_SIZE )
 	{
 
 		TheDisplay->drawImage( image1,
@@ -847,7 +847,7 @@ void drawSkinnyBorder( Int x, Int y, Int width, Int height)
 	x2 = maxX - OffsetLower;
 	y2 = maxY - (OffsetLower + BORDER_LINE_SIZE);
 
-	for( y=(originalY + 3); y <= y2; y += BORDER_LINE_SIZE )
+	for (int y =(originalY + 3); y <= y2; y += BORDER_LINE_SIZE )
 	{
 
 		TheDisplay->drawImage( image1,

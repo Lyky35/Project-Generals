@@ -171,7 +171,7 @@ void W3DDebugIcons::compressIconsArray(void)
 	if (m_debugIcons && m_numDebugIcons > 0) {
 		Int newNum = 0;
 		Int i;
-		for (i=0; i<m_numDebugIcons; i++) {
+		for (int i =0; i<m_numDebugIcons; i++) {
 			if (m_debugIcons[i].endFrame >= TheGameLogic->getFrame() && i>newNum) {
 				m_debugIcons[newNum] = m_debugIcons[i];
 				newNum++;
@@ -228,7 +228,7 @@ void W3DDebugIcons::Render(RenderInfoClass & rinfo)
 	if (numRect > MAX_RECT) numRect = MAX_RECT;
 	offset+= 0.5f;
 	Int k;
-	for (k=0; k<m_numDebugIcons;) {	
+	for (int k =0; k<m_numDebugIcons;) {	
 		Int curIndex = 0;
 		Int	numVertex = 0;
 		DynamicVBAccessClass vb_access(BUFFER_TYPE_DYNAMIC_DX8,DX8_FVF_XYZNDUV2,numRect*4);

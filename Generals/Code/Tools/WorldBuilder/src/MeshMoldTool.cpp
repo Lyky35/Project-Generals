@@ -156,8 +156,8 @@ void MeshMoldTool::updateMeshLocation(Bool changePreview)
 				// Unapply the mesh :)
 				Int i, j;
 				WorldHeightMapEdit *pMap = pDoc->GetHeightMap();
-				for (j=0; j<m_htMapEditCopy->getYExtent(); j++) {
-					for (i=0; i<m_htMapEditCopy->getXExtent(); i++) {
+				for (int j =0; j<m_htMapEditCopy->getYExtent(); j++) {
+					for (int i =0; i<m_htMapEditCopy->getXExtent(); i++) {
 						m_htMapEditCopy->setHeight(i, j, pMap->getHeight(i, j));
 					}
 				}
@@ -192,8 +192,8 @@ void MeshMoldTool::applyMesh(CWorldBuilderDoc *pDoc)
 	}	else {
 		// Restore original heights to edit copy.
 		Int i, j;
-		for (j=0; j<m_htMapEditCopy->getYExtent(); j++) {
-			for (i=0; i<m_htMapEditCopy->getXExtent(); i++) {
+		for (int j =0; j<m_htMapEditCopy->getYExtent(); j++) {
+			for (int i =0; i<m_htMapEditCopy->getXExtent(); i++) {
 				m_htMapEditCopy->setHeight(i, j, pMap->getHeight(i, j));
 			}
 		}
@@ -223,8 +223,8 @@ void MeshMoldTool::applyMesh(CWorldBuilderDoc *pDoc)
 					maxY = m_htMapEditCopy->getYExtent();	 
 				}
 				Int i, j;
-				for (j=minY; j<maxY; j++) {
-					for (i=minX; i<maxX; i++) {
+				for (int j =minY; j<maxY; j++) {
+					for (int i =minX; i<maxX; i++) {
 						Real X, Y; 
 						X = i*MAP_XY_FACTOR; 
 						X -= m_toolPos.x;

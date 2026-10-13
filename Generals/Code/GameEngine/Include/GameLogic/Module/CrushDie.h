@@ -42,7 +42,7 @@
 // FORWARD REFERENCES /////////////////////////////////////////////////////////////////////////////
 class Thing;
 
-enum CrushEnum
+enum CrushEnum : int
 {
 	TOTAL_CRUSH,
 	BACK_END_CRUSH,

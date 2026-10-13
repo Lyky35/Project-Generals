@@ -403,10 +403,10 @@ int PASCAL WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpszCmd
 	//-------------------------------------------------------------------------
 	// Clear Argument Array.
 	//-------------------------------------------------------------------------
-	for ( i = 0; i < NUM_ARGUMENTS; i++ ) {
+	for (int i = 0; i < NUM_ARGUMENTS; i++ ) {
 		memset( Arguments[i], '\0', sizeof( Arguments[i] ));
 	}
-	for ( i = 0; i < NUM_SONGS; i++ ) {
+	for (int i = 0; i < NUM_SONGS; i++ ) {
 		memset( szWavs[i], '\0', sizeof( szWavs[i] ));
 	}
 
@@ -2188,7 +2188,7 @@ void MainWindow::Create_Buttons( HWND hWnd, RECT *dlg_rect )
 		y_pos	= 117;
 	}
 
-	for ( i = 0; i < NUM_BUTTONS; i++ ) {
+	for (int i = 0; i < NUM_BUTTONS; i++ ) {
 
 		if ( ButtonList[i] ) {
 			delete( ButtonList[i] );
@@ -2459,7 +2459,7 @@ void MainWindow::Create_Buttons( HWND hWnd, RECT *dlg_rect )
 
 #if( _DEBUG )
 	Msg( __LINE__, TEXT(__FILE__), TEXT("----------------------------------------------------------------------------------"));
-	for( i=0; i<NUM_BUTTONS; i++ ) {
+	for (int i =0; i<NUM_BUTTONS; i++ ) {
 		if ( ButtonList[i]) {
 			Msg( __LINE__, TEXT(__FILE__), TEXT("ButtonList[%d]: Id=%d, ButtonSizes=[%d,%d,%d,%d]."), 
 				i, 
@@ -2764,7 +2764,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 				//=======================================================================
 				// Load flicker bitmap.
 				//=======================================================================
-				for( i = 0; i < NUM_FLICKER_FRAMES; i++ ) {
+				for (int i = 0; i < NUM_FLICKER_FRAMES; i++ ) {
 					hFlicker[i] = 0;
 //					sprintf( buffer2, "%s%02d", buffer1, i );
 //					hFlicker[i] = LoadResourceBitmap( Main::hModule, buffer2, &hpal );
@@ -2776,7 +2776,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 				//-----------------------------------------------------------------------
 				result = 712;
 
-				for( i = 0; i < NUM_FLICKER_POSITIONS; i++ ) {
+				for (int i = 0; i < NUM_FLICKER_POSITIONS; i++ ) {
 					if( i == 8 ) {
 						FlickerPositions[i][0] = result - 33;
 					} else if( i == 9 ) {
@@ -2880,7 +2880,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 
 //				Msg( __LINE__, TEXT(__FILE__), TEXT("buttons_rect = [%d,%d,%d,%d]"), buttons_rect.left, buttons_rect.top, buttons_rect.right, buttons_rect.bottom );
 
-				for( j = 0; j < NUM_BUTTONS; j++ ) {
+				for (int j = 0; j < NUM_BUTTONS; j++ ) {
 					if ( ButtonList[j] != NULL ) {
 						buttons_rect.left	= __min( ButtonSizes[j].left							, buttons_rect.left	 ); 
 						buttons_rect.top  	= __min( ButtonSizes[j].top								, buttons_rect.top 	 );
@@ -3186,7 +3186,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 						// on. This is to prevent "flickering" by drawing the background 
 						// then the button image.
 						//---------------------------------------------------------------
-						for ( i = 0; i < NUM_BUTTONS; i++ ) {
+						for (int i = 0; i < NUM_BUTTONS; i++ ) {
 
 							if ( ButtonList[i] ) {
 
@@ -3338,7 +3338,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 						//---------------------------------------------------------------
 						// Draw each button.
 						//---------------------------------------------------------------
-						for ( i = 0; i < NUM_BUTTONS; i++ ) {
+						for (int i = 0; i < NUM_BUTTONS; i++ ) {
 
 							if ( ButtonList[i] ) {
 
@@ -3953,7 +3953,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 				//-----------------------------------------------------------------------
 				if( end_dialog ) {
 
-					for ( i = 0; i < NUM_BUTTONS; i++ ) {
+					for (int i = 0; i < NUM_BUTTONS; i++ ) {
 						if ( ButtonList[i] ) {
 							delete( ButtonList[i] );
 							ButtonList[i] = NULL;
@@ -3965,7 +3965,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 					if ( hBitmap ) {
 						DeleteObject( hBitmap );
 					}
-					for( i = 0; i < NUM_FLICKER_FRAMES; i++ ) {
+					for (int i = 0; i < NUM_FLICKER_FRAMES; i++ ) {
 						DeleteObject( hFlicker[i] );
 						hFlicker[i] = 0;
 					}
@@ -3995,7 +3995,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 			if ( w_param == SC_CLOSE ) {
 				#if(BACKGROUND_BITMAP)
 
-					for ( i = 0; i < NUM_BUTTONS; i++ ) {
+					for (int i = 0; i < NUM_BUTTONS; i++ ) {
 						if ( ButtonList[i] ) {
 							delete( ButtonList[i] );
 							ButtonList[i] = NULL;
@@ -4007,7 +4007,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 					if ( hBitmap ) {
 						DeleteObject( hBitmap );
 					}
-					for( i = 0; i < NUM_FLICKER_FRAMES; i++ ) {
+					for (int i = 0; i < NUM_FLICKER_FRAMES; i++ ) {
 						DeleteObject( hFlicker[i] );
 						hFlicker[i] = 0;
 					}
@@ -4102,7 +4102,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 				//----------------------------------------------------------------------
 				// For each button in the list...
 				//----------------------------------------------------------------------
-				for ( i = 0; i < NUM_BUTTONS; i++ ) {
+				for (int i = 0; i < NUM_BUTTONS; i++ ) {
 
 					//-------------------------------------------------------------------
 					// If mouse was clicked in one of the "buttons", then change
@@ -4152,7 +4152,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 				//-----------------------------------------------------------------------
 				// First find the button that is either focused or pressed.
 				//-----------------------------------------------------------------------
-				for ( i = 0; i < NUM_BUTTONS; i++ ) {
+				for (int i = 0; i < NUM_BUTTONS; i++ ) {
 					if ( ButtonList[i] ) {
 
 						//---------------------------------------------------------------
@@ -4168,7 +4168,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 				//-----------------------------------------------------------------------
 				// Then find the button that is to be focused or pressed.
 				//-----------------------------------------------------------------------
-				for ( i = 0; i < NUM_BUTTONS; i++ ) {
+				for (int i = 0; i < NUM_BUTTONS; i++ ) {
 					if ( ButtonList[i] && ButtonList[i]->Is_Mouse_In_Region( mouse_x, mouse_y )) {
 						found_focus = i;
 					}
@@ -4312,7 +4312,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 							//-----------------------------------------------------------
 							// Make all other buttons, NORMAL.
 							//-----------------------------------------------------------
-							for ( j = 0; j < NUM_BUTTONS; j++ ) {
+							for (int j = 0; j < NUM_BUTTONS; j++ ) {
 								if ( ButtonList[j] ) {
 									ButtonList[j]->Set_State( DrawButton::NORMAL_STATE );
 //									Msg( __LINE__, TEXT(__FILE__), TEXT("WM_MOUSEMOVE -- %s[NORMAL_STATE]]."), ButtonList[j]->Return_Normal_Bitmap());
@@ -4343,7 +4343,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 							//-----------------------------------------------------------
 							// Get the area of the button, and post it for updating.
 							//-----------------------------------------------------------
-							for ( j = 0; j < NUM_BUTTONS; j++ ) {
+							for (int j = 0; j < NUM_BUTTONS; j++ ) {
 								if ( ButtonList[j] ) {
 									ButtonList[j]->Return_Area ( &rect );
 									InvalidateRect( window_handle, &rect, FALSE );
@@ -4423,7 +4423,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 						//	button and call its action.
 						//---------------------------------------------------------------
 //						result = ( l_param & 0x40000000 );
-						for ( i = 0; i < NUM_BUTTONS; i++ ) {
+						for (int i = 0; i < NUM_BUTTONS; i++ ) {
 							if ( ButtonList[i] && ButtonList[i]->Get_State() == DrawButton::FOCUS_STATE ) {
 								SendMessage( window_handle, WM_COMMAND, ButtonList[i]->Return_Id(), 0L );
 								break;
@@ -4443,7 +4443,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 							int focused_button = 0;
 							int next_button = 0;
 
-							for ( i = 0; i < NUM_BUTTONS; i++ ) {
+							for (int i = 0; i < NUM_BUTTONS; i++ ) {
 								if ( ButtonList[i] && ButtonList[i]->Get_State() == DrawButton::FOCUS_STATE ) {
 
 									focused_button = i;
@@ -4502,7 +4502,7 @@ BOOL CALLBACK  Dialog_Box_Proc( HWND window_handle, UINT message, WPARAM w_param
 							int focused_button = 0;
 							int next_button = 0;
 
-							for ( i = 0; i < NUM_BUTTONS; i++ ) {
+							for (int i = 0; i < NUM_BUTTONS; i++ ) {
 								if ( ButtonList[i] && ButtonList[i]->Get_State() == DrawButton::FOCUS_STATE ) {
 
 									focused_button = i;
@@ -4604,7 +4604,7 @@ BOOL Options( Command_Line_Arguments *Orgs )
 	//-------------------------------------------------------------------------
 	// Scan arguments for any options ( / or - followed by a letter)
 	//-------------------------------------------------------------------------
-	for ( i = 0; i < Orgs->Get_argc(); i++ ) {
+	for (int i = 0; i < Orgs->Get_argc(); i++ ) {
 
 		//---------------------------------------------------------------------
 		// Get the next item in the list.
@@ -4914,7 +4914,7 @@ HPALETTE CreateDIBPalette ( LPBITMAPINFO lpbmi, LPINT lpiNumColors )
 		lpPal->palVersion	= 0x300;
 		lpPal->palNumEntries = (WORD)*lpiNumColors;
 
-		for ( i = 0; i < *lpiNumColors; i++ ) {
+		for (int i = 0; i < *lpiNumColors; i++ ) {
 			lpPal->palPalEntry[i].peRed   = lpbmi->bmiColors[i].rgbRed;
 			lpPal->palPalEntry[i].peGreen = lpbmi->bmiColors[i].rgbGreen;
 			lpPal->palPalEntry[i].peBlue  = lpbmi->bmiColors[i].rgbBlue;
@@ -4929,7 +4929,7 @@ HPALETTE CreateDIBPalette ( LPBITMAPINFO lpbmi, LPINT lpiNumColors )
 		char buff[2];
 
 		fileout.Open( "test.pal", MODE_WRITE_TRUNCATE );
-		for ( i = 0; i < *lpiNumColors; i++ ) {
+		for (int i = 0; i < *lpiNumColors; i++ ) {
 			sprintf( buff, "%d", lpPal->palPalEntry[i].peRed >> 2 );
 			fileout.Write(( void *)buff, 2 );
 			sprintf( buff, "%d", lpPal->palPalEntry[i].peGreen >> 2 );

@@ -343,7 +343,7 @@ void VoxelClass::Compute_Bounding_Box
 	BoxCorner[7].z = offset.z + size.z;
 	
 	// Now, scale all of them into the voxel co-ordinate system
-	for (i=0; i<8; i++) {
+	for (int i =0; i<8; i++) {
 		BoxCorner[i].x *= Scale.x;
 		BoxCorner[i].y *= Scale.y;
 		BoxCorner[i].z *= Scale.z;
@@ -384,31 +384,31 @@ void VoxelClass::Compute_Visiblity
 	// from each point along its edge.  This is identical to 
 	// the way James does his 2d visibility
 	/////////////////////////////////////////////////////////////
-	for (z = 0; z < (int)ZDim; z++) {
+	for (int z = 0; z < (int)ZDim; z++) {
 
 		// Tunneling in the X direction
-		for (y = 0; y < (int)YDim; y++)	{
+		for (int y = 0; y < (int)YDim; y++)	{
 
-			for (x = 0; x < (int)XDim; x++) {
+			for (int x = 0; x < (int)XDim; x++) {
 				if (raw_read_vis(x,y,z) == VIS_SOLID) break;
 				raw_set_vis(x,y,z,VIS_VISIBLE);
 			}
 
-			for (x = (int)XDim-1; x >= 0; x--)	{
+			for (int x = (int)XDim-1; x >= 0; x--)	{
 				if (raw_read_vis(x,y,z) == VIS_SOLID) break;
 				raw_set_vis(x,y,z,VIS_VISIBLE);
 			}
 		}
 
 		// Tunneling in the Y direction
-		for (x = 0; x < (int)XDim; x++) {
+		for (int x = 0; x < (int)XDim; x++) {
 
-			for (y = 0; y < (int)YDim; y++) {
+			for (int y = 0; y < (int)YDim; y++) {
 				if (raw_read_vis(x,y,z) == VIS_SOLID) break;
 				raw_set_vis(x,y,z,VIS_VISIBLE);
 			}
 
-			for (y = (int)YDim-1; y >= 0; y--) {
+			for (int y = (int)YDim-1; y >= 0; y--) {
 				if (raw_read_vis(x,y,z) == VIS_SOLID) break;
 				raw_set_vis(x,y,z,VIS_VISIBLE);
 			}
@@ -425,17 +425,17 @@ void VoxelClass::Compute_Visiblity
 	// (the X direction) and at each step tunnel through the
 	// Y-Z plane from all points along the top and bottom.
 	/////////////////////////////////////////////////////////////
-	for (x = 0; x < (int)XDim; x++) {
+	for (int x = 0; x < (int)XDim; x++) {
 
 		// Tunneling in the Z direction
-		for (y = 0; y < (int)YDim; y++)	{
+		for (int y = 0; y < (int)YDim; y++)	{
 
-			for (z = 0; z < (int)ZDim; z++) {
+			for (int z = 0; z < (int)ZDim; z++) {
 				if (raw_read_vis(x,y,z) == VIS_SOLID) break;
 				raw_set_vis(x,y,z,VIS_VISIBLE);
 			}
 
-			for (z = (int)ZDim-1; z >= 0; z--)	{
+			for (int z = (int)ZDim-1; z >= 0; z--)	{
 				if (raw_read_vis(x,y,z) == VIS_SOLID) break;
 				raw_set_vis(x,y,z,VIS_VISIBLE);
 			}
@@ -450,9 +450,9 @@ void VoxelClass::Compute_Visiblity
 	// Now, we search for all of the VIS_UNKNOWN voxels and
 	// set them to VIS_SOLID and we are done voxelizing
 	///////////////////////////////////////////////////////////
-	for (z = 0; z < (int)ZDim; z++) {
-		for (y = 0; y < (int)YDim; y++) {
-			for (x = 0; x < (int)XDim; x++) {
+	for (int z = 0; z < (int)ZDim; z++) {
+		for (int y = 0; y < (int)YDim; y++) {
+			for (int x = 0; x < (int)XDim; x++) {
 
 				int vis = raw_read_vis(x,y,z);
 				if (vis == VIS_UNKNOWN) {
@@ -628,9 +628,9 @@ void VoxelClass::Compute_Physical_Properties(double Volume[1],double CM[3],doubl
 	////////////////////////////////////////////////////////////////////////
 	// compute the volume and the center of mass
 	////////////////////////////////////////////////////////////////////////
-	for (k=0; k < ZDim; k++) {
-		for (j=0; j < YDim; j++) {
-			for (i=0; i < XDim; i++) {
+	for (int k =0; k < ZDim; k++) {
+		for (int j =0; j < YDim; j++) {
+			for (int i =0; i < XDim; i++) {
 				if (Is_Solid(i,j,k)) {
 
 					// Add this block's volume to the total
@@ -671,13 +671,13 @@ void VoxelClass::Compute_Physical_Properties(double Volume[1],double CM[3],doubl
 	//
 	////////////////////////////////////////////////////////////////////////
 
-	for (i=0; i < 9; i++) {
+	for (int i =0; i < 9; i++) {
 		I[i] = 0.0;
 	}
 
-	for (k=0; k < ZDim; k++) {
-		for (j=0; j < YDim; j++) {
-			for (i=0; i < XDim; i++) {
+	for (int k =0; k < ZDim; k++) {
+		for (int j =0; j < YDim; j++) {
+			for (int i =0; i < XDim; i++) {
 				if (Is_Solid(i,j,k)) {
 	
 					// position of block, relative to the CM

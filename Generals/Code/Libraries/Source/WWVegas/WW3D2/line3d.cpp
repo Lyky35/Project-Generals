@@ -283,7 +283,7 @@ void Line3DClass::Render(RenderInfoClass & rinfo)
 		int i;
 		unsigned int color=DX8Wrapper::Convert_Color(Color);
 
-		for (i=0; i<8; i++)
+		for (int i =0; i<8; i++)
 		{			
 			*(Vector3*)(vb+fi.Get_Location_Offset())=vert[i];
 			*(unsigned int*)(vb+fi.Get_Diffuse_Offset())=color;

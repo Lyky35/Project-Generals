@@ -210,9 +210,9 @@ void GridCullSystemClass::Collect_Objects(const Vector3 & point)
 		int i,j,k;
 		int address = map_indices_to_address(vol.Min[0],vol.Min[1],vol.Min[2]);
 		
-		for (k=vol.Min[2]; k<vol.Max[2]; k++) {
-			for (j=vol.Min[1]; j<vol.Max[1]; j++) {
-				for (i=vol.Min[0]; i<vol.Max[0]; i++) {
+		for (int k =vol.Min[2]; k<vol.Max[2]; k++) {
+			for (int j =vol.Min[1]; j<vol.Max[1]; j++) {
+				for (int i =vol.Min[0]; i<vol.Max[0]; i++) {
 					GRIDCULL_NODE_TRIVIALLY_ACCEPTED;
 					collect_objects_in_leaf(point,Cells[address]);
 					address++;
@@ -257,9 +257,9 @@ void GridCullSystemClass::Collect_Objects(const AABoxClass & box)
 		int i,j,k;
 		int address = map_indices_to_address(vol.Min[0],vol.Min[1],vol.Min[2]);
 		
-		for (k=vol.Min[2]; k<vol.Max[2]; k++) {
-			for (j=vol.Min[1]; j<vol.Max[1]; j++) {
-				for (i=vol.Min[0]; i<vol.Max[0]; i++) {
+		for (int k =vol.Min[2]; k<vol.Max[2]; k++) {
+			for (int j =vol.Min[1]; j<vol.Max[1]; j++) {
+				for (int i =vol.Min[0]; i<vol.Max[0]; i++) {
 					GRIDCULL_NODE_TRIVIALLY_ACCEPTED;
 					collect_objects_in_leaf(box,Cells[address]);
 					address++;
@@ -304,9 +304,9 @@ void GridCullSystemClass::Collect_Objects(const OBBoxClass & box)
 		int i,j,k;
 		int address = map_indices_to_address(vol.Min[0],vol.Min[1],vol.Min[2]);
 
-		for (k=vol.Min[2]; k<vol.Max[2]; k++) {
-			for (j=vol.Min[1]; j<vol.Max[1]; j++) {
-				for (i=vol.Min[0]; i<vol.Max[0]; i++) {
+		for (int k =vol.Min[2]; k<vol.Max[2]; k++) {
+			for (int j =vol.Min[1]; j<vol.Max[1]; j++) {
+				for (int i =vol.Min[0]; i<vol.Max[0]; i++) {
 					GRIDCULL_NODE_TRIVIALLY_ACCEPTED;
 					collect_objects_in_leaf(box,Cells[address]);
 					address++;
@@ -351,9 +351,9 @@ void GridCullSystemClass::Collect_Objects(const FrustumClass & frustum)
 		int i,j,k;
 		int address = map_indices_to_address(vol.Min[0],vol.Min[1],vol.Min[2]);
 		
-		for (k=vol.Min[2]; k<vol.Max[2]; k++) {
-			for (j=vol.Min[1]; j<vol.Max[1]; j++) {
-				for (i=vol.Min[0]; i<vol.Max[0]; i++) {
+		for (int k =vol.Min[2]; k<vol.Max[2]; k++) {
+			for (int j =vol.Min[1]; j<vol.Max[1]; j++) {
+				for (int i =vol.Min[0]; i<vol.Max[0]; i++) {
 					GRIDCULL_NODE_TRIVIALLY_ACCEPTED;
 					collect_objects_in_leaf(frustum,Cells[address]);
 					address++;

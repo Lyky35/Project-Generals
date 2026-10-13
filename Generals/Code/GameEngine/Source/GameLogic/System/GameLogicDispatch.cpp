@@ -112,7 +112,7 @@ static void doMoveTo( Object *obj, const Coord3D *pos )
 			int i;
 
 			// if this object isn't in the buildPlan set, add it
-			for( i=0; i<thePlanSubjectCount; i++ )
+			for (Int i =0; i<thePlanSubjectCount; i++ )
 				if (thePlanSubject[i] == obj)
 					break;
 
@@ -1760,7 +1760,8 @@ void GameLogic::logicMessageDispatcher( GameMessage *msg, void *userData )
 			if (msg->getArgument(0)->boolean)
 			{
 				// transfer control to any living ally
-				for (Int i=0; i<ThePlayerList->getPlayerCount(); ++i)
+				Int i;
+				for (int i =0; i<ThePlayerList->getPlayerCount(); ++i)
 				{
 					if (i != msg->getPlayerIndex())
 					{

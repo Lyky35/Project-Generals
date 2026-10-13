@@ -330,7 +330,7 @@ bit8 ConfigFile::setString(IN Wstring &_key, IN Wstring &value, IN char *section
 	// Test for a new section
 	Wstring test;
 	int i;
-	for (i=0; i<sectionList.length(); i++)
+	for (int i =0; i<sectionList.length(); i++)
 	{
 		sectionList.get(test, i);
 		if (!strcmp(test.get(), section))
@@ -387,7 +387,7 @@ bit8 ConfigFile::setInt(IN Wstring &_key,IN sint32 &value, IN char *section)
 	Wstring test;
 	//DBGMSG("Testing " << sectionList.length() << " entries for " << section);
 	int i;
-	for (i=0; i<sectionList.length(); i++)
+	for (int i =0; i<sectionList.length(); i++)
 	{
 		sectionList.get(test, i);
 		//DBGMSG("Looking at " << test.get());

@@ -152,11 +152,11 @@ void ControlBar::populatePurchaseScience( Player* player )
 	commandSet3 = TheControlBar->findCommandSet(player->getPlayerTemplate()->getPurchaseScienceCommandSetRank3()); // TEMP WILL CHANGE TO PROPER WAY ONCE WORKING
 	commandSet8 = TheControlBar->findCommandSet(player->getPlayerTemplate()->getPurchaseScienceCommandSetRank8()); // TEMP WILL CHANGE TO PROPER WAY ONCE WORKING
 
-	for( i = 0; i < MAX_PURCHASE_SCIENCE_RANK_1; i++ )
+	for (int i = 0; i < MAX_PURCHASE_SCIENCE_RANK_1; i++ )
 		m_sciencePurchaseWindowsRank1[i]->winHide(TRUE);
-	for( i = 0; i < MAX_PURCHASE_SCIENCE_RANK_3; i++ )
+	for (int i = 0; i < MAX_PURCHASE_SCIENCE_RANK_3; i++ )
 		m_sciencePurchaseWindowsRank3[i]->winHide(TRUE);
-	for( i = 0; i < MAX_PURCHASE_SCIENCE_RANK_8; i++ )
+	for (int i = 0; i < MAX_PURCHASE_SCIENCE_RANK_8; i++ )
 		m_sciencePurchaseWindowsRank8[i]->winHide(TRUE);
 
 
@@ -168,7 +168,7 @@ void ControlBar::populatePurchaseScience( Player* player )
 
 	// populate the button with commands defined
 	const CommandButton *commandButton;
-	for( i = 0; i < MAX_PURCHASE_SCIENCE_RANK_1; i++ )
+	for (int i = 0; i < MAX_PURCHASE_SCIENCE_RANK_1; i++ )
 	{
 
 		// get command button
@@ -228,7 +228,7 @@ void ControlBar::populatePurchaseScience( Player* player )
 
 	}  // end for
 
-	for( i = 0; i < MAX_PURCHASE_SCIENCE_RANK_3; i++ )
+	for (int i = 0; i < MAX_PURCHASE_SCIENCE_RANK_3; i++ )
 	{
 
 		// get command button
@@ -287,7 +287,7 @@ void ControlBar::populatePurchaseScience( Player* player )
 
 	}  // end for
 
-	for( i = 0; i < MAX_PURCHASE_SCIENCE_RANK_8; i++ )
+	for (int i = 0; i < MAX_PURCHASE_SCIENCE_RANK_8; i++ )
 	{
 
 		// get command button
@@ -478,7 +478,7 @@ void CommandButton::parseCommand( INI* ini, void *instance, void *store, const v
 	const char *token = ini->getNextToken();
 	Int i;
 
-	for( i = 0; TheGuiCommandNames[ i ]; i++ )
+	for (int i = 0; TheGuiCommandNames[ i ]; i++ )
 	{
 
 		if( stricmp( TheGuiCommandNames[ i ], token ) == 0 )
@@ -791,7 +791,7 @@ ControlBar::ControlBar( void )
 	m_animateDownWindow = NULL;
 	m_animTime = 0;
 
-	for( i = 0; i < MAX_COMMANDS_PER_SET; i++)
+	for (int i = 0; i < MAX_COMMANDS_PER_SET; i++)
 	{
 		m_commonCommands[i] = 0;
 	}
@@ -806,23 +806,23 @@ ControlBar::ControlBar( void )
 //	m_controlBarResizer = NULL;
 	m_buildUpClockColor = GameMakeColor(0,0,0,100);
 	m_commandBarBorderColor = GameMakeColor(0,0,0,100);
-	for( i = 0; i < NUM_CONTEXT_PARENTS; i++ )
+	for (int i = 0; i < NUM_CONTEXT_PARENTS; i++ )
 		m_contextParent[ i ] = NULL;
-	for( i = 0; i < MAX_COMMANDS_PER_SET; i++ )
+	for (int i = 0; i < MAX_COMMANDS_PER_SET; i++ )
 	{
 		m_commandWindows[ i ] = NULL;
 	// removed from multiplayer branch
 		//m_commandMarkers[ i ] = NULL;
 	}
 
-	for( i = 0; i < MAX_PURCHASE_SCIENCE_RANK_1; i++ )
+	for (int i = 0; i < MAX_PURCHASE_SCIENCE_RANK_1; i++ )
 		m_sciencePurchaseWindowsRank1[i] = NULL;
-	for( i = 0; i < MAX_PURCHASE_SCIENCE_RANK_3; i++ )
+	for (int i = 0; i < MAX_PURCHASE_SCIENCE_RANK_3; i++ )
 		m_sciencePurchaseWindowsRank3[i] = NULL;
-	for( i = 0; i < MAX_PURCHASE_SCIENCE_RANK_8; i++ )
+	for (int i = 0; i < MAX_PURCHASE_SCIENCE_RANK_8; i++ )
 		m_sciencePurchaseWindowsRank8[i] = NULL;
 
-	for( i = 0; i < MAX_SPECIAL_POWER_SHORTCUTS; i++ )
+	for (int i = 0; i < MAX_SPECIAL_POWER_SHORTCUTS; i++ )
 	{
 		m_specialPowerShortcutButtons[i] = NULL;
 		m_specialPowerShortcutButtonParents[i] = NULL;
@@ -833,7 +833,7 @@ ControlBar::ControlBar( void )
 	m_scienceLayout = NULL;
 	m_rightHUDWindow = NULL;
 	m_rightHUDCameoWindow = NULL;
-	for( i = 0; i < MAX_RIGHT_HUD_UPGRADE_CAMEOS; i++ )
+	for (int i = 0; i < MAX_RIGHT_HUD_UPGRADE_CAMEOS; i++ )
 		m_rightHUDUpgradeCameos[i];
 	m_rightHUDUnitSelectParent = NULL;
 	m_communicatorButton = NULL;
@@ -1010,7 +1010,7 @@ void ControlBar::init( void )
 		Int i;
 		ICoord2D commandSize, commandPos;
 		AsciiString windowName;
-		for( i = 0; i < MAX_COMMANDS_PER_SET; i++ )
+		for (int i = 0; i < MAX_COMMANDS_PER_SET; i++ )
 		{
 		
 			windowName.format( "ControlBar.wnd:ButtonCommand%02d", i + 1 );
@@ -1035,7 +1035,7 @@ void ControlBar::init( void )
 		}  // end for i
 
 
-		for( i = 0; i < MAX_PURCHASE_SCIENCE_RANK_1; i++ )
+		for (int i = 0; i < MAX_PURCHASE_SCIENCE_RANK_1; i++ )
 		{
 			windowName.format( "GeneralsExpPoints.wnd:ButtonRank1Number%d", i );
 			id = TheNameKeyGenerator->nameToKey( windowName.str() );
@@ -1043,7 +1043,7 @@ void ControlBar::init( void )
 				TheWindowManager->winGetWindowFromId( m_contextParent[ CP_PURCHASE_SCIENCE ], id );
 			m_sciencePurchaseWindowsRank1[ i ]->winSetStatus( WIN_STATUS_USE_OVERLAY_STATES );
 		}  // end for i
-		for( i = 0; i < MAX_PURCHASE_SCIENCE_RANK_3; i++ )
+		for (int i = 0; i < MAX_PURCHASE_SCIENCE_RANK_3; i++ )
 		{
 			windowName.format( "GeneralsExpPoints.wnd:ButtonRank3Number%d", i );
 			id = TheNameKeyGenerator->nameToKey( windowName.str() );
@@ -1052,7 +1052,7 @@ void ControlBar::init( void )
 			m_sciencePurchaseWindowsRank3[ i ]->winSetStatus( WIN_STATUS_USE_OVERLAY_STATES );
 		}  // end for i
 		
-		for( i = 0; i < MAX_PURCHASE_SCIENCE_RANK_8; i++ )
+		for (int i = 0; i < MAX_PURCHASE_SCIENCE_RANK_8; i++ )
 		{
 			windowName.format( "GeneralsExpPoints.wnd:ButtonRank8Number%d", i );
 			id = TheNameKeyGenerator->nameToKey( windowName.str() );
@@ -1070,7 +1070,7 @@ void ControlBar::init( void )
 		
 		id = TheNameKeyGenerator->nameToKey( "ControlBar.wnd:CameoWindow" );
 		m_rightHUDCameoWindow = TheWindowManager->winGetWindowFromId( NULL, id );
-		for( i = 0; i < MAX_RIGHT_HUD_UPGRADE_CAMEOS; i++ )
+		for (int i = 0; i < MAX_RIGHT_HUD_UPGRADE_CAMEOS; i++ )
 		{
 			windowName.format( "ControlBar.wnd:UnitUpgrade%d", i+1 );
 			id = TheNameKeyGenerator->nameToKey( windowName.str() );
@@ -2757,7 +2757,7 @@ void ControlBar::updateBuildQueueDisabledImages( const Image *image )
 	{
 		AsciiString buttonName;
 
-		for( i = 0; i < MAX_BUILD_QUEUE_BUTTONS; i++ )
+		for (int i = 0; i < MAX_BUILD_QUEUE_BUTTONS; i++ )
 		{
 			
 			buttonName.format( "ControlBar.wnd:ButtonQueue%02d", i + 1 );
@@ -2770,7 +2770,7 @@ void ControlBar::updateBuildQueueDisabledImages( const Image *image )
 	}  // end if
 
 	// get window pointers to all the buttons for the build queue
-	for( i = 0; i < MAX_BUILD_QUEUE_BUTTONS; i++ )
+	for (int i = 0; i < MAX_BUILD_QUEUE_BUTTONS; i++ )
 	{
 
 		// get window commented out cause I believe we already set this.  We'll see in a few minutes
@@ -3131,7 +3131,7 @@ void ControlBar::initSpecialPowershortcutBar( Player *player)
 	parentName = layoutName;
 	parentName.concat(":ButtonParent%d");
 	m_currentlyUsedSpecialPowersButtons = MIN(pt->getSpecialPowerShortcutButtonCount(), MAX_SPECIAL_POWER_SHORTCUTS);
-	for( i = 0; i < m_currentlyUsedSpecialPowersButtons; i++ )
+	for( Int i = 0; i < m_currentlyUsedSpecialPowersButtons; i++ )
 	{
 		windowName.format( tempName, i+1 );
 		id = TheNameKeyGenerator->nameToKey( windowName.str() );
@@ -3159,7 +3159,7 @@ void ControlBar::populateSpecialPowerShortcut( Player *player)
 			|| !player->isLocalPlayer() || m_currentlyUsedSpecialPowersButtons == 0
 			|| m_specialPowerShortcutButtons == NULL || m_specialPowerShortcutButtonParents == NULL)
 		return;
-	for( i = 0; i < m_currentlyUsedSpecialPowersButtons; ++i )
+	for (int i = 0; i < m_currentlyUsedSpecialPowersButtons; ++i )
 	{
 		if (m_specialPowerShortcutButtons[i])
 			m_specialPowerShortcutButtons[i]->winHide(TRUE);
@@ -3177,7 +3177,7 @@ void ControlBar::populateSpecialPowerShortcut( Player *player)
 	// populate the button with commands defined
 	Int currentButton = 0;
 	const CommandButton *commandButton;
-	for( i = 0; i < m_currentlyUsedSpecialPowersButtons; i++ )
+	for( Int i = 0; i < m_currentlyUsedSpecialPowersButtons; i++ )
 	{
 
 		// get command button

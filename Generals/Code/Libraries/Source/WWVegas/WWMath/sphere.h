@@ -130,7 +130,7 @@ inline SphereClass::SphereClass(const Vector3 *Position,const int VertCount)
 
 	// FIRST PASS:
 	// finding the 6 minima and maxima points
-	for (i=1; i<VertCount; i++) {
+	for (int i =1; i<VertCount; i++) {
 		if (Position[i].X < xmin.X) {
 			xmin.X = Position[i].X; xmin.Y = Position[i].Y; xmin.Z = Position[i].Z;
 		}
@@ -203,7 +203,7 @@ inline SphereClass::SphereClass(const Vector3 *Position,const int VertCount)
 	
 	// SECOND PASS:
 	// Increment current sphere if any points fall outside of it.
-	for (i=0; i<VertCount; i++) {
+	for (int i =0; i<VertCount; i++) {
 
 		dx = Position[i].X - center.X;
 		dy = Position[i].Y - center.Y;

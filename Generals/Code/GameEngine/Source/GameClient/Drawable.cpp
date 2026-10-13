@@ -369,7 +369,7 @@ Drawable::Drawable( const ThingTemplate *thingTemplate, DrawableStatus statusBit
 
 	m_shroudClearFrame = 0;
 
-	for (i = 0; i < NUM_DRAWABLE_MODULE_TYPES; ++i)
+	for (int i = 0; i < NUM_DRAWABLE_MODULE_TYPES; ++i)
 		m_modules[i] = NULL;
 
 	m_stealthLook = STEALTHLOOK_NONE;
@@ -458,7 +458,7 @@ Drawable::Drawable( const ThingTemplate *thingTemplate, DrawableStatus statusBit
 	}
 
 	/// allow for inter-Module resolution
-	for (i = 0; i < NUM_DRAWABLE_MODULE_TYPES; ++i)
+	for (int i = 0; i < NUM_DRAWABLE_MODULE_TYPES; ++i)
 	{
 		for (Module** m = m_modules[i]; m && *m; ++m)
 			(*m)->onObjectCreated();
@@ -496,7 +496,7 @@ Drawable::~Drawable()
 	m_groupNumber = NULL;
 
 	// delete any modules callbacks
-	for (i = 0; i < NUM_DRAWABLE_MODULE_TYPES; ++i)
+	for (int i = 0; i < NUM_DRAWABLE_MODULE_TYPES; ++i)
 	{
 		for (Module** m = m_modules[i]; m && *m; ++m)
 		{
@@ -4162,7 +4162,7 @@ void Drawable::xferDrawableModules( Xfer *xfer )
 		// how many modules are here for this type
 		Module **m;
 		UnsignedShort moduleCount = 0;
-		for( m = m_modules[ curModuleType ]; m && *m; ++m )
+		for (m = m_modules[ curModuleType ]; m && *m; ++m )
 			moduleCount++;
 		xfer->xferUnsignedShort( &moduleCount );
 
@@ -4171,7 +4171,7 @@ void Drawable::xferDrawableModules( Xfer *xfer )
 		{
 
 			// save each module
-			for( m = m_modules[ curModuleType ]; m && *m; ++m )
+			for (m = m_modules[ curModuleType ]; m && *m; ++m )
 			{
 
 				// write module identifier
@@ -4601,7 +4601,7 @@ void Drawable::xfer( Xfer *xfer )
 		// read each data segment from the file
 		DrawableIconType iconIndex;
 		Anim2DTemplate *animTemplate;
-		for( i = 0; i < iconCount; ++i )
+		for (int i = 0; i < iconCount; ++i )
 		{
 
 			// icon index name

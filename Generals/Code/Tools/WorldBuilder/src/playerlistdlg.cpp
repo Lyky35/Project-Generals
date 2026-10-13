@@ -105,7 +105,7 @@ static AsciiString playerNameForUI(SidesList& sides, int i)
 static AsciiString UIToInternal(SidesList& sides, const AsciiString& n)
 {
 	Int i;
-	for (i = 0; i < sides.getNumSides(); i++)
+	for (int i = 0; i < sides.getNumSides(); i++)
 	{
 		if (playerNameForUI(sides, i) == n)
 			return sides.getSideInfo(i)->getDict()->getAsciiString(TheKey_playerName);
@@ -169,7 +169,7 @@ static void buildAlliesList(CListBox *alliesList, SidesList& sides,	const AsciiS
 	AsciiString name, token, oname;
 
 	alliesList->ResetContent();
-	for (i = 0; i < sides.getNumSides(); i++)
+	for (int i = 0; i < sides.getNumSides(); i++)
 	{
 		name = sides.getSideInfo(i)->getDict()->getAsciiString(TheKey_playerName);
 		if (name == omitPlayer || name.isEmpty())
@@ -387,7 +387,7 @@ void PlayerListDlg::OnRemoveplayer()
 	
 	Int i;
 	Int count = 0;
-	for (i = 0; i < m_sides.getNumTeams(); i++)
+	for (int i = 0; i < m_sides.getNumTeams(); i++)
 	{
 		Dict *tdict = m_sides.getTeamInfo(i)->getDict();
 		if (tdict->getAsciiString(TheKey_teamOwner) == pname)
@@ -409,7 +409,7 @@ void PlayerListDlg::OnRemoveplayer()
 
 	m_sides.removeSide(m_curPlayerIdx);
 try_again:
-	for (i = 0; i < m_sides.getNumTeams(); i++)
+	for (int i = 0; i < m_sides.getNumTeams(); i++)
 	{
 		Dict *tdict = m_sides.getTeamInfo(i)->getDict();
 		if (tdict->getAsciiString(TheKey_teamOwner) == pname)
@@ -524,7 +524,7 @@ void PlayerListDlg::updateTheUI(void)
 		factions->ResetContent();
 		if (ThePlayerTemplateStore)
 		{
-			for (i = 0; i < ThePlayerTemplateStore->getPlayerTemplateCount(); i++)
+			for (int i = 0; i < ThePlayerTemplateStore->getPlayerTemplateCount(); i++)
 			{
 				AsciiString nm = ThePlayerTemplateStore->getNthPlayerTemplate(i)->getName();
 				factions->AddString(nm.str());
@@ -554,7 +554,7 @@ void PlayerListDlg::updateTheUI(void)
 	regardMe->ResetContent();
 	const char* rstr;
 	AsciiString pname;
-	for (i = 0; i < m_sides.getNumSides(); i++)
+	for (int i = 0; i < m_sides.getNumSides(); i++)
 	{
 		pname = m_sides.getSideInfo(i)->getDict()->getAsciiString(TheKey_playerName);
 		if (pname.isEmpty() || pname == cur_pname)

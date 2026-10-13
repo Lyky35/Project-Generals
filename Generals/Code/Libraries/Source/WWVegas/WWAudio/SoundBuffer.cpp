@@ -42,6 +42,22 @@
 #include "ffactory.h"
 #include "win.h"
 
+#ifndef WAVE_FORMAT_IMA_ADPCM
+#define WAVE_FORMAT_IMA_ADPCM 0x0011
+#endif
+#ifndef AILSOUNDINFO
+typedef struct {
+    void *start;
+    unsigned int length;
+    unsigned int rate;
+    unsigned short bits;
+    unsigned short channels;
+    unsigned short format;
+} AILSOUNDINFO;
+#endif
+static inline int AIL_WAV_info(...) { return 0; }
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////

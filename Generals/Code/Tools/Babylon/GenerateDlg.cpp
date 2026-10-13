@@ -201,7 +201,7 @@ void CGenerateDlg::OnOK()
 	}
 
 	num_langs = 0;
-	for ( i = 0; i <count; i++ )
+	for (int i = 0; i <count; i++ )
 	{
 		LANGINFO *info;
 

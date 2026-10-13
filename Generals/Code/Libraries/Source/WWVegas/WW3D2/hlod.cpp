@@ -2113,14 +2113,14 @@ int HLodClass::Get_Num_Polys(void) const
 	int polycount = 0;
 	int i;
 	int model_count = Lod[CurLod].Count();
-	for (i = 0; i < model_count; i++) {
+	for (int i = 0; i < model_count; i++) {
 		if (Lod[CurLod][i].Model->Is_Not_Hidden_At_All()) {
 			polycount += Lod[CurLod][i].Model->Get_Num_Polys();
 		}
 	}
 
 	int additional_count = AdditionalModels.Count();
-	for (i = 0; i < additional_count; i++) {
+	for (int i = 0; i < additional_count; i++) {
 		if (AdditionalModels[i].Model->Is_Not_Hidden_At_All()) {
 			polycount += AdditionalModels[i].Model->Get_Num_Polys();
 		}
@@ -2152,18 +2152,18 @@ void HLodClass::Render(RenderInfoClass & rinfo)
 
 	Animatable3DObjClass::Render(rinfo);
 
-	for (i = 0; i < Lod[CurLod].Count(); i++) {
+	for (int i = 0; i < Lod[CurLod].Count(); i++) {
 		if (Lod[CurLod][i].Model->Class_ID() != CLASSID_OBBOX)	///We have no use for these - MW
 			Lod[CurLod][i].Model->Render(rinfo);
 	}
 
 	if (Is_Sub_Objects_Match_LOD_Enabled()) {
-		for (i = 0; i < AdditionalModels.Count(); i++) {
+		for (int i = 0; i < AdditionalModels.Count(); i++) {
 			AdditionalModels[i].Model->Set_LOD_Level(Get_LOD_Level());
 			AdditionalModels[i].Model->Render(rinfo);
 		}
 	} else {
-		for (i = 0; i < AdditionalModels.Count(); i++) {
+		for (int i = 0; i < AdditionalModels.Count(); i++) {
 			AdditionalModels[i].Model->Render(rinfo);
 		}
 	}
@@ -2196,11 +2196,11 @@ void HLodClass::Special_Render(SpecialRenderInfoClass & rinfo)
 		lod_index = LodCount-1;
 	}
 
-	for (i = 0; i < Lod[lod_index].Count(); i++) {
+	for (int i = 0; i < Lod[lod_index].Count(); i++) {
 		Lod[lod_index][i].Model->Special_Render(rinfo);
 	}
 
-	for (i = 0; i < AdditionalModels.Count(); i++) {
+	for (int i = 0; i < AdditionalModels.Count(); i++) {
 		AdditionalModels[i].Model->Special_Render(rinfo);
 	}
 }
@@ -2261,12 +2261,12 @@ void HLodClass::Notify_Added(SceneClass * scene)
 	RenderObjClass::Notify_Added(scene);
 	int i;
 	int model_count = Lod[CurLod].Count();
-	for (i = 0; i < model_count; i++) {
+	for (int i = 0; i < model_count; i++) {
 		Lod[CurLod][i].Model->Notify_Added(scene);
 	}
 
 	int additional_count = AdditionalModels.Count();
-	for (i = 0; i < additional_count; i++) {
+	for (int i = 0; i < additional_count; i++) {
 		AdditionalModels[i].Model->Notify_Added(scene);
 	}
 }
@@ -2288,12 +2288,12 @@ void HLodClass::Notify_Removed(SceneClass * scene)
 {
 	int i;
 	int model_count = Lod[CurLod].Count();
-	for (i = 0; i < model_count; i++) {
+	for (int i = 0; i < model_count; i++) {
 		Lod[CurLod][i].Model->Notify_Removed(scene);
 	}
 
 	int additional_count = AdditionalModels.Count();
-	for (i = 0; i < additional_count; i++) {
+	for (int i = 0; i < additional_count; i++) {
 		AdditionalModels[i].Model->Notify_Removed(scene);
 	}
 	RenderObjClass::Notify_Removed(scene);
@@ -2693,11 +2693,11 @@ bool HLodClass::Cast_Ray(RayCollisionTestClass & raytest)
 
 	// collide against the top LOD
 	int top = LodCount-1;
-	for (i = 0; i < Lod[top].Count(); i++) {
+	for (int i = 0; i < Lod[top].Count(); i++) {
 		res |= Lod[top][i].Model->Cast_Ray(raytest);
 	}
 
-	for (i = 0; i < AdditionalModels.Count(); i++) {
+	for (int i = 0; i < AdditionalModels.Count(); i++) {
 		res |= AdditionalModels[i].Model->Cast_Ray(raytest);
 	}
 
@@ -2728,11 +2728,11 @@ bool HLodClass::Cast_AABox(AABoxCollisionTestClass & boxtest)
 
 	// collide against the top LOD
 	int top = LodCount-1;
-	for (i = 0; i < Lod[top].Count(); i++) {
+	for (int i = 0; i < Lod[top].Count(); i++) {
 		res |= Lod[top][i].Model->Cast_AABox(boxtest);
 	}
 
-	for (i = 0; i < AdditionalModels.Count(); i++) {
+	for (int i = 0; i < AdditionalModels.Count(); i++) {
 		res |= AdditionalModels[i].Model->Cast_AABox(boxtest);
 	}
 
@@ -2763,11 +2763,11 @@ bool HLodClass::Cast_OBBox(OBBoxCollisionTestClass & boxtest)
 
 	// collide against the top LOD
 	int top = LodCount-1;
-	for (i = 0; i < Lod[top].Count(); i++) {
+	for (int i = 0; i < Lod[top].Count(); i++) {
 		res |= Lod[top][i].Model->Cast_OBBox(boxtest);
 	}
 
-	for (i = 0; i < AdditionalModels.Count(); i++) {
+	for (int i = 0; i < AdditionalModels.Count(); i++) {
 		res |= AdditionalModels[i].Model->Cast_OBBox(boxtest);
 	}
 
@@ -2798,11 +2798,11 @@ bool HLodClass::Intersect_AABox(AABoxIntersectionTestClass & boxtest)
 
 	// collide against the top LOD
 	int top = LodCount-1;
-	for (i = 0; i < Lod[top].Count(); i++) {
+	for (int i = 0; i < Lod[top].Count(); i++) {
 		res |= Lod[top][i].Model->Intersect_AABox(boxtest);
 	}
 
-	for (i = 0; i < AdditionalModels.Count(); i++) {
+	for (int i = 0; i < AdditionalModels.Count(); i++) {
 		res |= AdditionalModels[i].Model->Intersect_AABox(boxtest);
 	}
 
@@ -2833,11 +2833,11 @@ bool HLodClass::Intersect_OBBox(OBBoxIntersectionTestClass & boxtest)
 
 	// collide against the top LOD
 	int top = LodCount-1;
-	for (i = 0; i < Lod[top].Count(); i++) {
+	for (int i = 0; i < Lod[top].Count(); i++) {
 		res |= Lod[top][i].Model->Intersect_OBBox(boxtest);
 	}
 
-	for (i = 0; i < AdditionalModels.Count(); i++) {
+	for (int i = 0; i < AdditionalModels.Count(); i++) {
 		res |= AdditionalModels[i].Model->Intersect_OBBox(boxtest);
 	}
 
@@ -3472,7 +3472,7 @@ void HLodClass::Update_Obj_Space_Bounding_Volumes(void)
 
 	robj->Release_Ref();
 
-	for (i=1; i<Get_Num_Sub_Objects(); i++) {
+	for (int i =1; i<Get_Num_Sub_Objects(); i++) {
 		robj = Get_Sub_Object(i);
 		WWASSERT(robj);
 		

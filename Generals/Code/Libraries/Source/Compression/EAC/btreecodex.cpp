@@ -12,5 +12,4 @@ int BTREE_decode(void *dest, int *destLen, const void *source, int sourceLen) {
     return 0;
 }
 
-// CODEXABOUT for btree
-CODEXABOUT CODEXABOUT = { "BTree Compression", "1.0" };
+CODEXABOUT btree_about_data;

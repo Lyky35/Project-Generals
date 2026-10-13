@@ -146,7 +146,7 @@ void W3DGameWindow::blitBorderRect( Int x, Int y, Int width, Int height )
 	y2 = maxY - OffsetLower;
 	x2 = maxX - (OffsetLower + BORDER_LINE_SIZE);
 
-	for( x=(originalX + OffsetLower); x <= x2; x += BORDER_LINE_SIZE )
+	for (int x =(originalX + OffsetLower); x <= x2; x += BORDER_LINE_SIZE )
 	{
 
 		TheDisplay->drawImage( borderPieces[ BORDER_HORIZONTAL_TOP ],
@@ -194,7 +194,7 @@ void W3DGameWindow::blitBorderRect( Int x, Int y, Int width, Int height )
 	x2 = maxX - OffsetLower;
 	y2 = maxY - (OffsetLower + BORDER_LINE_SIZE);
 
-	for( y=(originalY + OffsetLower); y <= y2; y += BORDER_LINE_SIZE )
+	for (int y =(originalY + OffsetLower); y <= y2; y += BORDER_LINE_SIZE )
 	{
 
 		TheDisplay->drawImage( borderPieces[ BORDER_VERTICAL_LEFT ],
@@ -409,7 +409,7 @@ void W3DGameWindow::winDrawBorder( void )
 
 	winGetScreenPosition( &originalX, &originalY );
 
-	for( i = 0; (i < (sizeof(UnsignedInt) * 8)) && (found == FALSE); i++ )
+	for (int i = 0; (i < (sizeof(UnsignedInt) * 8)) && (found == FALSE); i++ )
 	{
 
 		bits = (1 << i);

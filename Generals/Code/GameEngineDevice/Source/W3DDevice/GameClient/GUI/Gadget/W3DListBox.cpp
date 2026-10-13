@@ -123,7 +123,7 @@ static void drawHiliteBar( const Image *left, const Image *right,
 	start.x = leftEnd.x;
 	start.y = startY + yOffset;
 	end.y = start.y + barWindowSize.y;
-	for( i = 0; i < pieces; i++ )
+	for (int i = 0; i < pieces; i++ )
 	{
 
 		end.x = start.x + center->getImageWidth();
@@ -151,7 +151,7 @@ static void drawHiliteBar( const Image *left, const Image *right,
 
 		pieces = centerWidth / smallCenter->getImageWidth() + 1;
 		end.y = start.y + barWindowSize.y;
-		for( i = 0; i < pieces; i++ )
+		for (int i = 0; i < pieces; i++ )
 		{
 
 			end.x = start.x + smallCenter->getImageWidth();
@@ -212,7 +212,7 @@ static void drawListBoxText( GameWindow *window, WinInstanceData *instData,
 
 	drawY = y - list->displayPos;
 
-	for( i = 0; ; i++ )
+	for (int i = 0; ; i++ )
 	{
 
 		if( i > 0 )

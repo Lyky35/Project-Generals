@@ -54,6 +54,19 @@ struct VkPipelineStateHash {
 	size_t operator()(const VkPipelineState &s) const;
 };
 
+struct VkFrameUniforms {
+    float ambientColor[4];
+    float fogColor[4];
+    float fogParams[4];
+    float materialDiffuse[4];
+    float miscParams[4];
+    float tfactorColor[4];
+    float lightDirs[4][4];
+    float lightColors[4][4];
+    float worldViewProj[16];
+    float world[16];
+};
+
 struct VkVertexLayoutDesc {
 	VkVertexInputBindingDescription bindings[2];
 	uint32_t bindingCount;
@@ -64,6 +77,9 @@ struct VkVertexLayoutDesc {
 class VkShaderManager
 {
 public:
+    VkPipelineLayout GetPipelineLayout() const { return m_pipelineLayout; }
+    VkDescriptorSetLayout GetTextureSetLayout() const { return m_textureSetLayout; }
+    VkDescriptorSetLayout GetFrameSetLayout() const { return m_frameSetLayout; }
 	VkShaderManager();
 	~VkShaderManager();
 
@@ -105,5 +121,4 @@ private:
 	bool CreatePipelineLayout();
 	VkVertexLayoutDesc GetVertexLayout(uint32_t fvf, uint32_t fvfSize, uint32_t normalOffset, uint32_t diffuseOffset, uint32_t uv0Offset, uint32_t uv1Offset);
 	VkVertexLayoutDesc GetVertexLayout(uint32_t fvf, uint32_t fvfSize);
-	void ClearPipelineCache();
 };

@@ -6,37 +6,55 @@
 
 class VulkanDevice;
 
+struct SamplerEntry {
+    bool filtered;
+    bool repeat;
+    VkSampler sampler;
+};
+
 class VkTexture
 {
 public:
-	VkTexture();
-	~VkTexture();
+    VkTexture();
+    ~VkTexture();
 
-	VkTexture(const VkTexture &) = delete;
-	VkTexture &operator=(const VkTexture &) = delete;
+    VkTexture(const VkTexture &) = delete;
+    VkTexture &operator=(const VkTexture &) = delete;
 
-	bool Create(VulkanDevice *device, uint32_t width, uint32_t height, VkFormat format,
-		uint32_t mipLevels, bool renderTarget = false);
-	bool CreateFromData(VulkanDevice *device, uint32_t width, uint32_t height, VkFormat format,
-		const void *data, uint32_t mipLevels = 1);
-	void Destroy();
+    VkFormat TranslateFormat(unsigned d3dFormat);
+    bool Create(VulkanDevice *device, uint32_t width, uint32_t height, VkFormat format,
+        uint32_t mipLevels, bool renderTarget = false);
+    bool CreateFromData(VulkanDevice *device, uint32_t width, uint32_t height, VkFormat format,
+        uint32_t mipLevels, const void *pixels);
+    bool CreateDepth(VulkanDevice *device, uint32_t width, uint32_t height);
+    void Destroy();
 
-	VkImage GetImage() const { return m_image; }
-	VkImageView GetView() const { return m_imageView; }
-	VkSampler GetSampler() const { return m_sampler; }
-	VkFormat GetFormat() const { return m_format; }
-	uint32_t GetWidth() const { return m_width; }
-	uint32_t GetHeight() const { return m_height; }
-	uint32_t GetMipLevels() const { return m_mipLevels; }
+    void TransitionLayout(VkCommandBuffer cmd, VkImageLayout oldLayout, VkImageLayout newLayout,
+        uint32_t baseMip, uint32_t mipCount);
+    void UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const void *pixels);
+    void GenerateMipmaps();
+
+    VkSampler FindOrCreateSampler(bool filtered, bool repeat);
+    VkSampler GetSampler(bool filtered, bool repeat);
+
+    VkImage GetImage() const { return m_image; }
+    VkImageView GetView() const { return m_view; }
+    VkSampler GetSampler() const { return m_samplerCount > 0 ? m_samplers[0].sampler : VK_NULL_HANDLE; }
+    VkFormat GetFormat() const { return m_format; }
+    uint32_t GetWidth() const { return m_width; }
+    uint32_t GetHeight() const { return m_height; }
+    uint32_t GetMipLevels() const { return m_mips; }
 
 private:
-	VulkanDevice *m_device;
-	VkImage m_image;
-	VkImageView m_imageView;
-	VkSampler m_sampler;
-	VkDeviceMemory m_memory;
-	VkFormat m_format;
-	uint32_t m_width;
-	uint32_t m_height;
-	uint32_t m_mipLevels;
+    VulkanDevice *m_device;
+    VkImage m_image;
+    VkImageView m_view;
+    VkDeviceMemory m_memory;
+    VkFormat m_format;
+    uint32_t m_width;
+    uint32_t m_height;
+    uint32_t m_mips;
+    SamplerEntry m_samplers[4];
+    int m_samplerCount;
+    VkSampler m_sampler;
 };

@@ -966,12 +966,12 @@ void ModelConditionInfo::clear()
 #endif
 	m_conditionsYesVec.clear();
 	m_modelName.clear();
-	for (i = 0; i < MAX_TURRETS; ++i)
+	for (int i = 0; i < MAX_TURRETS; ++i)
 	{
 		m_turrets[i].clear();
 	}
 	m_hideShowVec.clear();
-	for (i = 0; i < WEAPONSLOT_COUNT; ++i)
+	for (int i = 0; i < WEAPONSLOT_COUNT; ++i)
 	{
 		m_weaponFireFXBoneName[i].clear();
 		m_weaponRecoilBoneName[i].clear();
@@ -1704,7 +1704,7 @@ W3DModelDraw::W3DModelDraw(Thing *thing, const ModuleData* moduleData) : DrawMod
 	m_whichAnimInCurState = -1;
 	m_nextState = NULL;
 	m_nextStateAnimLoopDuration = NO_NEXT_DURATION;
-	for (i = 0; i < WEAPONSLOT_COUNT; ++i)
+	for (int i = 0; i < WEAPONSLOT_COUNT; ++i)
 	{
 		m_weaponRecoilInfoVec[i].clear();
 	}
@@ -3428,7 +3428,7 @@ Int W3DModelDraw::getPristineBonePositionsForConditionState(
 	
 	if (positions && transforms)
 	{
-		for (i = 0; i < posCount; ++i)
+		for (int i = 0; i < posCount; ++i)
 		{
 			Vector3 pos = transforms[i].Get_Translation();
 			positions[i].x = pos.X;
@@ -3526,7 +3526,7 @@ Int W3DModelDraw::getCurrentBonePositions(
 	
 	if (positions && transforms)
 	{
-		for (i = 0; i < posCount; ++i)
+		for (int i = 0; i < posCount; ++i)
 		{
 			Vector3 pos = transforms[i].Get_Translation();
 			positions[i].x = pos.X;
@@ -4194,7 +4194,7 @@ void W3DModelDrawModuleData::xfer( Xfer *x )
 				x->xferInt(&(info->m_turrets[i].m_turretAngleBone));
 				x->xferInt(&(info->m_turrets[i].m_turretPitchBone));
 			}
-			for (i=0; i<WEAPONSLOT_COUNT; ++i)
+			for (int i =0; i<WEAPONSLOT_COUNT; ++i)
 			{
 				for (ModelConditionInfo::WeaponBarrelInfoVec::iterator wit = info->m_weaponBarrelInfoVec[i].begin(); wit != info->m_weaponBarrelInfoVec[i].end(); ++wit)
 				{

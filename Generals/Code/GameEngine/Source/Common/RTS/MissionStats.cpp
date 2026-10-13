@@ -59,7 +59,7 @@ void MissionStats::init()
 {
 	Int i;
 
-	for (i = 0; i < MAX_PLAYER_COUNT; ++i)
+	for (int i = 0; i < MAX_PLAYER_COUNT; ++i)
 	{
 		m_unitsKilled[i] = 0;
 		m_buildingsKilled[i] = 0;

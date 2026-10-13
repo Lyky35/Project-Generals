@@ -141,13 +141,13 @@ void AICommandParmsStorage::doXfer(Xfer *xfer)
 	Int i;
 	if (xfer->getXferMode() == XFER_LOAD)
 	{
-		for (i=0; i<numCoords; i++) {
+		for (int i =0; i<numCoords; i++) {
 			Coord3D pos;
 			xfer->xferCoord3D(&pos);
 			m_coords.push_back(pos);
 		}
 	} else {
-		for (i=0; i<numCoords; i++) {
+		for (int i =0; i<numCoords; i++) {
 			Coord3D pos = m_coords[i];
 			xfer->xferCoord3D(&pos);
 		}
@@ -762,7 +762,7 @@ void AIStateMachine::xfer( Xfer *xfer )
 	Int i;
 	Int count = m_goalPath.size();
 	xfer->xferInt(&count);
-	for (i=0; i<count; i++) {
+	for (int i =0; i<count; i++) {
 		Coord3D pos;
 		if (xfer->getXferMode() != XFER_LOAD)
 		{
@@ -3649,7 +3649,7 @@ const Waypoint * AIFollowWaypointPathState::getNextWaypoint(void)
 	Int skip = -1;
 	Int i;
 	Int linkCount = m_currentWaypoint->getNumLinks();
-	for (i=0; i<linkCount; i++) {
+	for (int i =0; i<linkCount; i++) {
 		if (m_priorWaypoint == m_currentWaypoint->getLink(i)) {
 			skip = i;
 			break;

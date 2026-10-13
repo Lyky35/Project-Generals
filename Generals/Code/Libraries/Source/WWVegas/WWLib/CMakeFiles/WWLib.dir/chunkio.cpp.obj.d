@@ -1,0 +1,32 @@
+Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/WWLib.dir/chunkio.cpp.obj: \
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp \
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWLib/chunkio.h \
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWLib/always.h \
+ /usr/x86_64-w64-mingw32/include/assert.h \
+ /usr/x86_64-w64-mingw32/include/crtdefs.h \
+ /usr/x86_64-w64-mingw32/include/corecrt.h \
+ /usr/x86_64-w64-mingw32/include/_mingw.h \
+ /usr/x86_64-w64-mingw32/include/_mingw_mac.h \
+ /usr/x86_64-w64-mingw32/include/_mingw_secapi.h \
+ /usr/x86_64-w64-mingw32/include/vadefs.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/stdlib.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/cstdlib \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/x86_64-w64-mingw32/bits/c++config.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/x86_64-w64-mingw32/bits/os_defines.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/pstl/pstl_config.h \
+ /usr/x86_64-w64-mingw32/include/stdlib.h \
+ /usr/x86_64-w64-mingw32/include/corecrt_wstdlib.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/limits.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/syslimits.h \
+ /usr/x86_64-w64-mingw32/include/limits.h \
+ /usr/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+ /usr/x86_64-w64-mingw32/include/malloc.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/mm_malloc.h \
+ /usr/x86_64-w64-mingw32/include/errno.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/std_abs.h \
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWLib/bittype.h \
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWLib/wwfile.h \
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WWLib/iostruct.h \
+ /usr/x86_64-w64-mingw32/include/string.h \
+ /usr/x86_64-w64-mingw32/include/sec_api/string_s.h

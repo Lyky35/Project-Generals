@@ -455,7 +455,7 @@ void getMaterialUV(UVVert &tvert,unsigned int diffuse, unsigned int *materialCol
 
 	if (house)
 	{	//this material is a house color, place it in first row.
-		for (i=0; i<16; i++)
+		for (int i =0; i<16; i++)
 		{
 			if (materialColors[i]==diffuse)
 			{
@@ -470,7 +470,7 @@ void getMaterialUV(UVVert &tvert,unsigned int diffuse, unsigned int *materialCol
 		assert(0);	//all house colors must be from a predefined range of reds
 	}
 
-	for (i=16; i<(16+numMaterialColors); i++)
+	for (int i =16; i<(16+numMaterialColors); i++)
 	{
 		if (materialColors[i]==diffuse)
 		{
@@ -532,9 +532,9 @@ void MeshSaveClass::Build_Mesh(Mesh & mesh, Mtl *node_mtl, unsigned int *materia
 		}		
 		assert(mat_index != -1); 
 
-		for (pass=0; pass<MaterialDesc.Pass_Count(); pass++) {
+		for (int pass =0; pass<MaterialDesc.Pass_Count(); pass++) {
 			face.ShaderIndex[pass] = MaterialDesc.Get_Shader_Index(mat_index,pass);
-			for (stage=0; stage<W3dMaterialClass::MAX_STAGES; stage++) {
+			for (int stage =0; stage<W3dMaterialClass::MAX_STAGES; stage++) {
 				face.TextureIndex[pass][stage] = MaterialDesc.Get_Texture_Index(mat_index,pass,stage);
 			}
 		}
@@ -614,8 +614,8 @@ void MeshSaveClass::Build_Mesh(Mesh & mesh, Mtl *node_mtl, unsigned int *materia
 			** - ask Max for the tfaces and tverts for that map channel
 			** - copy the values into each vertex
 			*/
-			for (pass=0; pass<MaterialDesc.Pass_Count(); pass++) {
-				for (stage=0; stage<W3dMaterialClass::MAX_STAGES; stage++) {
+			for (int pass =0; pass<MaterialDesc.Pass_Count(); pass++) {
+				for (int stage =0; stage<W3dMaterialClass::MAX_STAGES; stage++) {
 
 					/*
 					** Start with a 0,0 uv coordinate
@@ -719,7 +719,7 @@ void MeshSaveClass::Build_Mesh(Mesh & mesh, Mtl *node_mtl, unsigned int *materia
 			/*
 			** Vertex materials (get's index of sub-material)
 			*/
-			for (pass = 0; pass<MaterialDesc.Pass_Count(); pass++) {
+			for (int pass = 0; pass<MaterialDesc.Pass_Count(); pass++) {
 
 				//if solid-color texture substitution, replace the vertex material with first solid one found.
 				W3dMapClass *map3d=MaterialDesc.Get_Texture(mat_index,pass,0);

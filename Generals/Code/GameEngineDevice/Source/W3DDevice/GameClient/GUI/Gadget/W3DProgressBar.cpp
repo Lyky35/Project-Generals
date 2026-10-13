@@ -212,7 +212,7 @@ void W3DGadgetProgressBarImageDrawA( GameWindow *window, WinInstanceData *instDa
 	Int drawWidth = (size.x * progress) / 100;
 	Int pieces = drawWidth / width;
 	Int x = origin.x;
-	for( i = 0; i < pieces; i ++)
+	for (int i = 0; i < pieces; i ++)
 	{
 				
 				TheWindowManager->winDrawImage( barCenter,
@@ -316,7 +316,7 @@ void W3DGadgetProgressBarImageDraw( GameWindow *window, WinInstanceData *instDat
 	start.x = leftEnd.x;
 	start.y = origin.y + yOffset;
 	end.y = start.y + size.y;
-	for( i = 0; i < pieces; i++ )
+	for (int i = 0; i < pieces; i++ )
 	{
 
 		end.x = start.x + backCenter->getImageWidth();
@@ -338,7 +338,7 @@ void W3DGadgetProgressBarImageDraw( GameWindow *window, WinInstanceData *instDat
 //	IRegion2D clipRegion;
 //	
 //	TheDisplay->setClipRegion()
-//	for( i = 0; i < pieces; i++ )
+//	for (int i = 0; i < pieces; i++ )
 //	{
 //
 //		end.x = start.x + backCenter->getImageWidth();
@@ -389,7 +389,7 @@ void W3DGadgetProgressBarImageDraw( GameWindow *window, WinInstanceData *instDat
 	start.x = origin.x +10;
 	start.y = origin.y + yOffset +5;
 	end.y = start.y + size.y - 10;
-	for( i = 0; i < pieces; i++ )
+	for (int i = 0; i < pieces; i++ )
 	{
 
 		end.x = start.x + barCenter->getImageWidth();
@@ -403,7 +403,7 @@ void W3DGadgetProgressBarImageDraw( GameWindow *window, WinInstanceData *instDat
 	//pieces = (size.x - barWindowSize.x -20) / barRight->getImageWidth();
 	//Changed By Saad for flashing grey piece
 	pieces = ((size.x - 20) / barCenter->getImageWidth()) - pieces;
-	for( i = 0; i < pieces; i++ )
+	for (int i = 0; i < pieces; i++ )
 	{
 
 		end.x = start.x + barRight->getImageWidth();

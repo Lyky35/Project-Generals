@@ -36,7 +36,7 @@
 #include "GameLogic/Module/AIUpdate.h"
 
 //-------------------------------------------------------------------------------------------------
-enum DeployStateTypes
+enum DeployStateTypes : int
 {
 	READY_TO_MOVE,							///< Mobile, can't attack.
 	DEPLOY,											///< Not mobile, can't attack, currently unpacking to attack

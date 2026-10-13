@@ -1,0 +1,1 @@
+SliderProperties.cpp

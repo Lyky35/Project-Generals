@@ -130,13 +130,13 @@ Compression/fast:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build
 .PHONY : Compression/fast
 
-CompressionManager.obj: CompressionManager.cpp.obj
-.PHONY : CompressionManager.obj
+CompressionManager.o: CompressionManager.cpp.o
+.PHONY : CompressionManager.o
 
 # target to build an object file
-CompressionManager.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.obj
-.PHONY : CompressionManager.cpp.obj
+CompressionManager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.o
+.PHONY : CompressionManager.cpp.o
 
 CompressionManager.i: CompressionManager.cpp.i
 .PHONY : CompressionManager.i
@@ -154,13 +154,13 @@ CompressionManager.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/CompressionManager.cpp.s
 .PHONY : CompressionManager.cpp.s
 
-EAC/btreeabout.obj: EAC/btreeabout.cpp.obj
-.PHONY : EAC/btreeabout.obj
+EAC/btreeabout.o: EAC/btreeabout.cpp.o
+.PHONY : EAC/btreeabout.o
 
 # target to build an object file
-EAC/btreeabout.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.obj
-.PHONY : EAC/btreeabout.cpp.obj
+EAC/btreeabout.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.o
+.PHONY : EAC/btreeabout.cpp.o
 
 EAC/btreeabout.i: EAC/btreeabout.cpp.i
 .PHONY : EAC/btreeabout.i
@@ -178,13 +178,37 @@ EAC/btreeabout.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeabout.cpp.s
 .PHONY : EAC/btreeabout.cpp.s
 
-EAC/btreedecode.obj: EAC/btreedecode.cpp.obj
-.PHONY : EAC/btreedecode.obj
+EAC/btreecodex.o: EAC/btreecodex.cpp.o
+.PHONY : EAC/btreecodex.o
 
 # target to build an object file
-EAC/btreedecode.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.obj
-.PHONY : EAC/btreedecode.cpp.obj
+EAC/btreecodex.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreecodex.cpp.o
+.PHONY : EAC/btreecodex.cpp.o
+
+EAC/btreecodex.i: EAC/btreecodex.cpp.i
+.PHONY : EAC/btreecodex.i
+
+# target to preprocess a source file
+EAC/btreecodex.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreecodex.cpp.i
+.PHONY : EAC/btreecodex.cpp.i
+
+EAC/btreecodex.s: EAC/btreecodex.cpp.s
+.PHONY : EAC/btreecodex.s
+
+# target to generate assembly for a file
+EAC/btreecodex.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreecodex.cpp.s
+.PHONY : EAC/btreecodex.cpp.s
+
+EAC/btreedecode.o: EAC/btreedecode.cpp.o
+.PHONY : EAC/btreedecode.o
+
+# target to build an object file
+EAC/btreedecode.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.o
+.PHONY : EAC/btreedecode.cpp.o
 
 EAC/btreedecode.i: EAC/btreedecode.cpp.i
 .PHONY : EAC/btreedecode.i
@@ -202,13 +226,13 @@ EAC/btreedecode.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreedecode.cpp.s
 .PHONY : EAC/btreedecode.cpp.s
 
-EAC/btreeencode.obj: EAC/btreeencode.cpp.obj
-.PHONY : EAC/btreeencode.obj
+EAC/btreeencode.o: EAC/btreeencode.cpp.o
+.PHONY : EAC/btreeencode.o
 
 # target to build an object file
-EAC/btreeencode.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.obj
-.PHONY : EAC/btreeencode.cpp.obj
+EAC/btreeencode.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.o
+.PHONY : EAC/btreeencode.cpp.o
 
 EAC/btreeencode.i: EAC/btreeencode.cpp.i
 .PHONY : EAC/btreeencode.i
@@ -226,13 +250,13 @@ EAC/btreeencode.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/btreeencode.cpp.s
 .PHONY : EAC/btreeencode.cpp.s
 
-EAC/huffabout.obj: EAC/huffabout.cpp.obj
-.PHONY : EAC/huffabout.obj
+EAC/huffabout.o: EAC/huffabout.cpp.o
+.PHONY : EAC/huffabout.o
 
 # target to build an object file
-EAC/huffabout.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.obj
-.PHONY : EAC/huffabout.cpp.obj
+EAC/huffabout.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.o
+.PHONY : EAC/huffabout.cpp.o
 
 EAC/huffabout.i: EAC/huffabout.cpp.i
 .PHONY : EAC/huffabout.i
@@ -250,13 +274,37 @@ EAC/huffabout.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffabout.cpp.s
 .PHONY : EAC/huffabout.cpp.s
 
-EAC/huffdecode.obj: EAC/huffdecode.cpp.obj
-.PHONY : EAC/huffdecode.obj
+EAC/huffcodex.o: EAC/huffcodex.cpp.o
+.PHONY : EAC/huffcodex.o
 
 # target to build an object file
-EAC/huffdecode.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.obj
-.PHONY : EAC/huffdecode.cpp.obj
+EAC/huffcodex.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffcodex.cpp.o
+.PHONY : EAC/huffcodex.cpp.o
+
+EAC/huffcodex.i: EAC/huffcodex.cpp.i
+.PHONY : EAC/huffcodex.i
+
+# target to preprocess a source file
+EAC/huffcodex.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffcodex.cpp.i
+.PHONY : EAC/huffcodex.cpp.i
+
+EAC/huffcodex.s: EAC/huffcodex.cpp.s
+.PHONY : EAC/huffcodex.s
+
+# target to generate assembly for a file
+EAC/huffcodex.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffcodex.cpp.s
+.PHONY : EAC/huffcodex.cpp.s
+
+EAC/huffdecode.o: EAC/huffdecode.cpp.o
+.PHONY : EAC/huffdecode.o
+
+# target to build an object file
+EAC/huffdecode.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.o
+.PHONY : EAC/huffdecode.cpp.o
 
 EAC/huffdecode.i: EAC/huffdecode.cpp.i
 .PHONY : EAC/huffdecode.i
@@ -274,13 +322,13 @@ EAC/huffdecode.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffdecode.cpp.s
 .PHONY : EAC/huffdecode.cpp.s
 
-EAC/huffencode.obj: EAC/huffencode.cpp.obj
-.PHONY : EAC/huffencode.obj
+EAC/huffencode.o: EAC/huffencode.cpp.o
+.PHONY : EAC/huffencode.o
 
 # target to build an object file
-EAC/huffencode.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.obj
-.PHONY : EAC/huffencode.cpp.obj
+EAC/huffencode.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.o
+.PHONY : EAC/huffencode.cpp.o
 
 EAC/huffencode.i: EAC/huffencode.cpp.i
 .PHONY : EAC/huffencode.i
@@ -298,13 +346,13 @@ EAC/huffencode.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/huffencode.cpp.s
 .PHONY : EAC/huffencode.cpp.s
 
-EAC/refabout.obj: EAC/refabout.cpp.obj
-.PHONY : EAC/refabout.obj
+EAC/refabout.o: EAC/refabout.cpp.o
+.PHONY : EAC/refabout.o
 
 # target to build an object file
-EAC/refabout.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.obj
-.PHONY : EAC/refabout.cpp.obj
+EAC/refabout.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.o
+.PHONY : EAC/refabout.cpp.o
 
 EAC/refabout.i: EAC/refabout.cpp.i
 .PHONY : EAC/refabout.i
@@ -322,13 +370,37 @@ EAC/refabout.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refabout.cpp.s
 .PHONY : EAC/refabout.cpp.s
 
-EAC/refdecode.obj: EAC/refdecode.cpp.obj
-.PHONY : EAC/refdecode.obj
+EAC/refcodex.o: EAC/refcodex.cpp.o
+.PHONY : EAC/refcodex.o
 
 # target to build an object file
-EAC/refdecode.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.obj
-.PHONY : EAC/refdecode.cpp.obj
+EAC/refcodex.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refcodex.cpp.o
+.PHONY : EAC/refcodex.cpp.o
+
+EAC/refcodex.i: EAC/refcodex.cpp.i
+.PHONY : EAC/refcodex.i
+
+# target to preprocess a source file
+EAC/refcodex.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refcodex.cpp.i
+.PHONY : EAC/refcodex.cpp.i
+
+EAC/refcodex.s: EAC/refcodex.cpp.s
+.PHONY : EAC/refcodex.s
+
+# target to generate assembly for a file
+EAC/refcodex.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refcodex.cpp.s
+.PHONY : EAC/refcodex.cpp.s
+
+EAC/refdecode.o: EAC/refdecode.cpp.o
+.PHONY : EAC/refdecode.o
+
+# target to build an object file
+EAC/refdecode.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.o
+.PHONY : EAC/refdecode.cpp.o
 
 EAC/refdecode.i: EAC/refdecode.cpp.i
 .PHONY : EAC/refdecode.i
@@ -346,13 +418,13 @@ EAC/refdecode.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refdecode.cpp.s
 .PHONY : EAC/refdecode.cpp.s
 
-EAC/refencode.obj: EAC/refencode.cpp.obj
-.PHONY : EAC/refencode.obj
+EAC/refencode.o: EAC/refencode.cpp.o
+.PHONY : EAC/refencode.o
 
 # target to build an object file
-EAC/refencode.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.obj
-.PHONY : EAC/refencode.cpp.obj
+EAC/refencode.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.o
+.PHONY : EAC/refencode.cpp.o
 
 EAC/refencode.i: EAC/refencode.cpp.i
 .PHONY : EAC/refencode.i
@@ -370,13 +442,13 @@ EAC/refencode.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/EAC/refencode.cpp.s
 .PHONY : EAC/refencode.cpp.s
 
-LZHCompress/NoxCompress.obj: LZHCompress/NoxCompress.cpp.obj
-.PHONY : LZHCompress/NoxCompress.obj
+LZHCompress/NoxCompress.o: LZHCompress/NoxCompress.cpp.o
+.PHONY : LZHCompress/NoxCompress.o
 
 # target to build an object file
-LZHCompress/NoxCompress.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.obj
-.PHONY : LZHCompress/NoxCompress.cpp.obj
+LZHCompress/NoxCompress.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.o
+.PHONY : LZHCompress/NoxCompress.cpp.o
 
 LZHCompress/NoxCompress.i: LZHCompress/NoxCompress.cpp.i
 .PHONY : LZHCompress/NoxCompress.i
@@ -394,6 +466,54 @@ LZHCompress/NoxCompress.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/NoxCompress.cpp.s
 .PHONY : LZHCompress/NoxCompress.cpp.s
 
+LZHCompress/noxcompress.o: LZHCompress/noxcompress.cpp.o
+.PHONY : LZHCompress/noxcompress.o
+
+# target to build an object file
+LZHCompress/noxcompress.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.o
+.PHONY : LZHCompress/noxcompress.cpp.o
+
+LZHCompress/noxcompress.i: LZHCompress/noxcompress.cpp.i
+.PHONY : LZHCompress/noxcompress.i
+
+# target to preprocess a source file
+LZHCompress/noxcompress.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.i
+.PHONY : LZHCompress/noxcompress.cpp.i
+
+LZHCompress/noxcompress.s: LZHCompress/noxcompress.cpp.s
+.PHONY : LZHCompress/noxcompress.s
+
+# target to generate assembly for a file
+LZHCompress/noxcompress.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/LZHCompress/noxcompress.cpp.s
+.PHONY : LZHCompress/noxcompress.cpp.s
+
+compressionmanager.o: compressionmanager.cpp.o
+.PHONY : compressionmanager.o
+
+# target to build an object file
+compressionmanager.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compressionmanager.cpp.o
+.PHONY : compressionmanager.cpp.o
+
+compressionmanager.i: compressionmanager.cpp.i
+.PHONY : compressionmanager.i
+
+# target to preprocess a source file
+compressionmanager.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compressionmanager.cpp.i
+.PHONY : compressionmanager.cpp.i
+
+compressionmanager.s: compressionmanager.cpp.s
+.PHONY : compressionmanager.s
+
+# target to generate assembly for a file
+compressionmanager.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/build.make Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/compressionmanager.cpp.s
+.PHONY : compressionmanager.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -403,39 +523,54 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Compression"
-	@echo "... CompressionManager.obj"
+	@echo "... CompressionManager.o"
 	@echo "... CompressionManager.i"
 	@echo "... CompressionManager.s"
-	@echo "... EAC/btreeabout.obj"
+	@echo "... EAC/btreeabout.o"
 	@echo "... EAC/btreeabout.i"
 	@echo "... EAC/btreeabout.s"
-	@echo "... EAC/btreedecode.obj"
+	@echo "... EAC/btreecodex.o"
+	@echo "... EAC/btreecodex.i"
+	@echo "... EAC/btreecodex.s"
+	@echo "... EAC/btreedecode.o"
 	@echo "... EAC/btreedecode.i"
 	@echo "... EAC/btreedecode.s"
-	@echo "... EAC/btreeencode.obj"
+	@echo "... EAC/btreeencode.o"
 	@echo "... EAC/btreeencode.i"
 	@echo "... EAC/btreeencode.s"
-	@echo "... EAC/huffabout.obj"
+	@echo "... EAC/huffabout.o"
 	@echo "... EAC/huffabout.i"
 	@echo "... EAC/huffabout.s"
-	@echo "... EAC/huffdecode.obj"
+	@echo "... EAC/huffcodex.o"
+	@echo "... EAC/huffcodex.i"
+	@echo "... EAC/huffcodex.s"
+	@echo "... EAC/huffdecode.o"
 	@echo "... EAC/huffdecode.i"
 	@echo "... EAC/huffdecode.s"
-	@echo "... EAC/huffencode.obj"
+	@echo "... EAC/huffencode.o"
 	@echo "... EAC/huffencode.i"
 	@echo "... EAC/huffencode.s"
-	@echo "... EAC/refabout.obj"
+	@echo "... EAC/refabout.o"
 	@echo "... EAC/refabout.i"
 	@echo "... EAC/refabout.s"
-	@echo "... EAC/refdecode.obj"
+	@echo "... EAC/refcodex.o"
+	@echo "... EAC/refcodex.i"
+	@echo "... EAC/refcodex.s"
+	@echo "... EAC/refdecode.o"
 	@echo "... EAC/refdecode.i"
 	@echo "... EAC/refdecode.s"
-	@echo "... EAC/refencode.obj"
+	@echo "... EAC/refencode.o"
 	@echo "... EAC/refencode.i"
 	@echo "... EAC/refencode.s"
-	@echo "... LZHCompress/NoxCompress.obj"
+	@echo "... LZHCompress/NoxCompress.o"
 	@echo "... LZHCompress/NoxCompress.i"
 	@echo "... LZHCompress/NoxCompress.s"
+	@echo "... LZHCompress/noxcompress.o"
+	@echo "... LZHCompress/noxcompress.i"
+	@echo "... LZHCompress/noxcompress.s"
+	@echo "... compressionmanager.o"
+	@echo "... compressionmanager.i"
+	@echo "... compressionmanager.s"
 .PHONY : help
 
 

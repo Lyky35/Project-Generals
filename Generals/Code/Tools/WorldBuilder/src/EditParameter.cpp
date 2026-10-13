@@ -487,7 +487,7 @@ void EditParameter::loadConditionParameter(Script *pScr, Parameter::ParameterTyp
 		Condition *pCondition;
 		for (pCondition = pOr->getFirstAndCondition(); pCondition; pCondition = pCondition->getNext()) {
 			Int i;
-			for (i=0; i<pCondition->getNumParameters(); i++) {
+			for (int i =0; i<pCondition->getNumParameters(); i++) {
 				if (type == pCondition->getParameter(i)->getParameterType()) {
 					if (CB_ERR == pCombo->FindStringExact(-1, pCondition->getParameter(i)->getString().str())) {
 						pCombo->AddString(pCondition->getParameter(i)->getString().str());
@@ -511,7 +511,7 @@ void EditParameter::loadActionParameter(Script *pScr, Parameter::ParameterType t
 	ScriptAction *pAction;
 	for (pAction = pScr->getAction(); pAction; pAction = pAction->getNext()) {
 		Int i;
-		for (i=0; i<pAction->getNumParameters(); i++) {
+		for (int i =0; i<pAction->getNumParameters(); i++) {
 			if (type == pAction->getParameter(i)->getParameterType()) {
 				if (CB_ERR == pCombo->FindStringExact(-1, pAction->getParameter(i)->getString().str())) {
 					pCombo->AddString(pAction->getParameter(i)->getString().str());
@@ -534,7 +534,7 @@ Bool EditParameter::loadAttackSetParameter(Script *pScr, CComboBox *pCombo, Asci
 			continue;
 		}
 		Int i;
-		for (i=0; i<pAction->getNumParameters(); i++) {
+		for (int i =0; i<pAction->getNumParameters(); i++) {
 			if (Parameter::ATTACK_PRIORITY_SET == pAction->getParameter(i)->getParameterType()) {
 				if (match==pAction->getParameter(i)->getString()) {
 					found = true;
@@ -558,7 +558,7 @@ Bool EditParameter::loadCreateUnitParameter(Script *pScr, CComboBox *pCombo, Asc
 			continue;
 		}
 		Int i;
-		for (i=0; i<pAction->getNumParameters(); i++) {
+		for (int i =0; i<pAction->getNumParameters(); i++) {
 			if (Parameter::UNIT == pAction->getParameter(i)->getParameterType()) {
 				if (match==pAction->getParameter(i)->getString()) {
 					found = true;
@@ -620,7 +620,7 @@ AsciiString EditParameter::getCreatedUnitTemplateName(AsciiString unitName)
 				}
 				Int i;
 				Bool thisOne = false;
-				for (i=0; i<pAction->getNumParameters(); i++) {
+				for (int i =0; i<pAction->getNumParameters(); i++) {
 					if (Parameter::UNIT == pAction->getParameter(i)->getParameterType()) {
 						if (unitName==pAction->getParameter(i)->getString()) {
 							thisOne = true;
@@ -628,7 +628,7 @@ AsciiString EditParameter::getCreatedUnitTemplateName(AsciiString unitName)
 					}
 				}
 				if (thisOne) {
-					for (i=0; i<pAction->getNumParameters(); i++) {
+					for (int i =0; i<pAction->getNumParameters(); i++) {
 						if (Parameter::OBJECT_TYPE == pAction->getParameter(i)->getParameterType()) {
 							return pAction->getParameter(i)->getString();
 						}
@@ -646,7 +646,7 @@ AsciiString EditParameter::getCreatedUnitTemplateName(AsciiString unitName)
 					}
 					Int i;
 					Bool thisOne = false;
-					for (i=0; i<pAction->getNumParameters(); i++) {
+					for (int i =0; i<pAction->getNumParameters(); i++) {
 						if (Parameter::UNIT == pAction->getParameter(i)->getParameterType()) {
 							if (unitName==pAction->getParameter(i)->getString()) {
 								thisOne = true;
@@ -654,7 +654,7 @@ AsciiString EditParameter::getCreatedUnitTemplateName(AsciiString unitName)
 						}
 					}
 					if (thisOne) {
-						for (i=0; i<pAction->getNumParameters(); i++) {
+						for (int i =0; i<pAction->getNumParameters(); i++) {
 							if (Parameter::OBJECT_TYPE == pAction->getParameter(i)->getParameterType()) {
 								return pAction->getParameter(i)->getString();
 							}
@@ -673,7 +673,7 @@ void EditParameter::loadCounters(CComboBox *pCombo)
 	Int i;
 	SidesList *sidesListP = m_sidesListP;
 	if (sidesListP==NULL) sidesListP = TheSidesList;
-	for (i=0; i<sidesListP->getNumSides(); i++) {
+	for (int i =0; i<sidesListP->getNumSides(); i++) {
 		ScriptList *pSL = sidesListP->getSideInfo(i)->getScriptList();
 		Script *pScr;
 		for (pScr = pSL->getScript(); pScr; pScr=pScr->getNext()) {
@@ -697,7 +697,7 @@ Bool EditParameter::loadAttackPrioritySets(CComboBox *pCombo, AsciiString match)
 	Bool found = false;
 	SidesList *sidesListP = m_sidesListP;
 	if (sidesListP==NULL) sidesListP = TheSidesList;
-	for (i=0; i<sidesListP->getNumSides(); i++) {
+	for (int i =0; i<sidesListP->getNumSides(); i++) {
 		ScriptList *pSL = sidesListP->getSideInfo(i)->getScriptList();
 		Script *pScr;
 		for (pScr = pSL->getScript(); pScr; pScr=pScr->getNext()) {
@@ -955,7 +955,7 @@ void EditParameter::loadFlags(CComboBox *pCombo)
 	Int i;
 	SidesList *sidesListP = m_sidesListP;
 	if (sidesListP==NULL) sidesListP = TheSidesList;
-	for (i=0; i<sidesListP->getNumSides(); i++) {
+	for (int i =0; i<sidesListP->getNumSides(); i++) {
 		ScriptList *pSL = sidesListP->getSideInfo(i)->getScriptList();
 		Script *pScr;
 		for (pScr = pSL->getScript(); pScr; pScr=pScr->getNext()) {
@@ -1408,7 +1408,7 @@ Bool EditParameter::loadObjectFlags(CComboBox *pCombo, AsciiString match)
 	Int i;
 	Bool didMatch = false;
 
-	for (i = 0; TheObjectFlagsNames[i]; ++i) {
+	for (int i = 0; TheObjectFlagsNames[i]; ++i) {
 		if (pCombo)
 			pCombo->AddString(TheObjectFlagsNames[i]);
 		if (match == TheObjectFlagsNames[i]) {
@@ -1426,7 +1426,7 @@ Bool EditParameter::loadScripts(CComboBox *pCombo, Bool subr, AsciiString match)
 	SidesList *sidesListP = m_sidesListP;
 	if (sidesListP==NULL) sidesListP = TheSidesList;
 	Bool didMatch = false;
-	for (i=0; i<sidesListP->getNumSides(); i++) {
+	for (int i =0; i<sidesListP->getNumSides(); i++) {
 		ScriptList *pSL = sidesListP->getSideInfo(i)->getScriptList();
 		if (pSL == NULL) continue;
 		Script *pScr;
@@ -1466,7 +1466,7 @@ Bool EditParameter::loadSides(CComboBox *pCombo, AsciiString match)
 	Int i;
 	SidesList *sidesListP = m_sidesListP;
 	if (sidesListP==NULL) sidesListP = TheSidesList;
-	for (i=0; i<sidesListP->getNumSides(); i++) {
+	for (int i =0; i<sidesListP->getNumSides(); i++) {
 		Dict *d = sidesListP->getSideInfo(i)->getDict();
 		AsciiString name = d->getAsciiString(TheKey_playerName);
 		if (name.isEmpty()) continue;
@@ -1489,7 +1489,7 @@ Bool EditParameter::loadTeams(CComboBox *pCombo, AsciiString match)
 	Int i;
 	SidesList *sidesListP = m_sidesListP;
 	if (sidesListP==NULL) sidesListP = TheSidesList;
-	for (i = 0; i < sidesListP->getNumTeams(); i++)
+	for (int i = 0; i < sidesListP->getNumTeams(); i++)
 	{
 		Dict *d = sidesListP->getTeamInfo(i)->getDict();
 		AsciiString name = d->getAsciiString(TheKey_teamName);
@@ -1514,7 +1514,7 @@ Bool EditParameter::loadTeamOrUnit(CComboBox *pCombo, AsciiString match)
 	Int i;
 	SidesList *sidesListP = m_sidesListP;
 	if (sidesListP==NULL) sidesListP = TheSidesList;
-	for (i = 0; i < sidesListP->getNumTeams(); i++)
+	for (int i = 0; i < sidesListP->getNumTeams(); i++)
 	{
 		Dict *d = sidesListP->getTeamInfo(i)->getDict();
 		AsciiString name = d->getAsciiString(TheKey_teamName);
@@ -1590,7 +1590,7 @@ Bool EditParameter::loadUnits(CComboBox *pCombo, AsciiString match)
 	{
 		sidesListP = TheSidesList;
 	}
-	for (i = 0; i < sidesListP->getNumSides(); i++)
+	for (int i = 0; i < sidesListP->getNumSides(); i++)
 	{
 		SidesInfo *pSide = sidesListP->getSideInfo(i); 
 	
@@ -1611,7 +1611,7 @@ Bool EditParameter::loadUnits(CComboBox *pCombo, AsciiString match)
 			pBI = pBI->getNext();
 		}
 	}
-	for (i=0; i<sidesListP->getNumSides(); i++) {
+	for (int i =0; i<sidesListP->getNumSides(); i++) {
 		ScriptList *pSL = sidesListP->getSideInfo(i)->getScriptList();
 		Script *pScr;
 		for (pScr = pSL->getScript(); pScr; pScr=pScr->getNext()) {
@@ -1837,7 +1837,7 @@ BOOL EditParameter::OnInitDialog()
 		case Parameter::KIND_OF_PARAM:
 			captionText = "Kind of:";
 			showList = true;
-			for (i=KINDOF_FIRST; i<KINDOF_COUNT; i++) {
+			for (int i =KINDOF_FIRST; i<KINDOF_COUNT; i++) {
 				pList->InsertString(-1, KindOfMaskType::getBitNames()[i-KINDOF_FIRST]);				
 			}
 			pList->SetCurSel(m_parameter->getInt());
@@ -1966,7 +1966,7 @@ BOOL EditParameter::OnInitDialog()
 			captionText = "Buidable:";
 			showList = true;
 
-			for (i = BSTATUS_YES; i < BSTATUS_NUM_TYPES; ++i) {
+			for (int i = BSTATUS_YES; i < BSTATUS_NUM_TYPES; ++i) {
 				pList->InsertString(-1, BuildableStatusNames[i - BSTATUS_YES]);
 			}
 			pList->SetCurSel(m_parameter->getInt());
@@ -1977,7 +1977,7 @@ BOOL EditParameter::OnInitDialog()
 			captionText = "Surfaces allowed: ";
 			showList = true;
 
-			for (i = 0; i < 3; ++i) {
+			for (int i = 0; i < 3; ++i) {
 				pList->InsertString(-1, Surfaces[i]);
 			}
 			
@@ -1994,7 +1994,7 @@ BOOL EditParameter::OnInitDialog()
 		{
 			captionText = "Shake Intensity: ";
 			showList = true;
-			for (i = 0; i < View::SHAKE_COUNT; ++i) {
+			for (int i = 0; i < View::SHAKE_COUNT; ++i) {
 				pList->InsertString(-1, ShakeIntensities[i]);
 			}
 
@@ -2006,7 +2006,7 @@ BOOL EditParameter::OnInitDialog()
 		{
 			captionText = "Object status:";
 			showList = true;
-			for (i=0; TheObjectStatusBitNames[i]; ++i) {
+			for (int i =0; TheObjectStatusBitNames[i]; ++i) {
 				pList->InsertString(-1, TheObjectStatusBitNames[i]);				
 			}
 			pList->SelectString(-1, m_parameter->getString().str());

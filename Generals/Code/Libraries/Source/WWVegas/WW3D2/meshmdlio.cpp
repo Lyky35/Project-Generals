@@ -1858,14 +1858,14 @@ void MeshModelClass::install_materials(MeshLoadContextClass * context)
 	/*
 	** transfer the refs to our textures into the MatInfo
 	*/
-	for (i=0; i<context->Texture_Count(); i++) {
+	for (int i =0; i<context->Texture_Count(); i++) {
 		MatInfo->Add_Texture(context->Peek_Texture(i));
 	}
 
 	/*
 	** transfer the refs to our vertex materials into the MatInfo
 	*/
-	for (i=0; i<context->Vertex_Material_Count(); i++) {
+	for (int i =0; i<context->Vertex_Material_Count(); i++) {
 		MatInfo->Add_Vertex_Material(context->Peek_Vertex_Material(i));
 	}
 }
@@ -1940,13 +1940,13 @@ MeshLoadContextClass::~MeshLoadContextClass(void)
 		delete TexCoords;
 		TexCoords = NULL;
 	}
-	for (i=0; i<Textures.Count(); i++) {
+	for (int i =0; i<Textures.Count(); i++) {
 		Textures[i]->Release_Ref();
 	}
-	for (i=0; i<VertexMaterials.Count(); i++) {
+	for (int i =0; i<VertexMaterials.Count(); i++) {
 		VertexMaterials[i]->Release_Ref();
 	}
-	for (i=0; i<LegacyMaterials.Count(); i++) {
+	for (int i =0; i<LegacyMaterials.Count(); i++) {
 		delete LegacyMaterials[i];
 	}
 }
@@ -2060,7 +2060,7 @@ void MeshLoadContextClass::Add_Legacy_Material(ShaderClass shader,VertexMaterial
 	LegacyMaterialClass * mat = W3DNEW LegacyMaterialClass;
 
 	// add the shader if it is unique
-	for (int si=0; si<Shaders.Count(); si++) {
+	int si; for (int si =0; si<Shaders.Count(); si++) {
 		if (Shaders[si] == shader) break;
 	}
 	if (si == Shaders.Count()) {
@@ -2074,7 +2074,7 @@ void MeshLoadContextClass::Add_Legacy_Material(ShaderClass shader,VertexMaterial
 		mat->VertexMaterialIdx = -1;
 	} else {
 		unsigned long crc = vmat->Get_CRC();	
-		for (int vi=0; vi<VertexMaterialCrcs.Count(); vi++) {
+		int vi; for (int vi =0; vi<VertexMaterialCrcs.Count(); vi++) {
 			if (VertexMaterialCrcs[vi] == crc) break;
 		}
 		if (vi == VertexMaterials.Count()) {
@@ -2090,7 +2090,7 @@ void MeshLoadContextClass::Add_Legacy_Material(ShaderClass shader,VertexMaterial
 	if (tex == NULL) {
 		mat->TextureIdx = -1;
 	} else {
-		for (int ti=0; ti<Textures.Count(); ti++) {
+		int ti; for (int ti =0; ti<Textures.Count(); ti++) {
 			if (Textures[ti] == tex) break;
 			if (stricmp(Textures[ti]->Get_Texture_Name(),tex->Get_Texture_Name()) == 0) break;
 		}

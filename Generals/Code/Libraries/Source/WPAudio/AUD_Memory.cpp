@@ -129,7 +129,7 @@ AudioMemoryPool*		MemoryPoolCreate( uint items, uint size )
 		DBG_CODE ( pool->numItems = items;)
 		DBG_SET_TYPE ( pool, AudioMemoryPool );
 
-		for ( i=0; i < items-1; i++)
+		for (int i =0; i < items-1; i++)
 		{
 			DBG_SET_TYPE ( item, MemoryItem );
 			item->next = (MemoryItem *) ( (uint) item  + (uint) (sizeof(MemoryItem) + size) );

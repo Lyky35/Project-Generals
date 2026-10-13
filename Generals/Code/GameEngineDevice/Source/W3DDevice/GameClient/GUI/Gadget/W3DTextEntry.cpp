@@ -405,7 +405,7 @@ void W3DGadgetTextEntryImageDraw( GameWindow *window, WinInstanceData *instData 
 	start.x = leftEnd.x;
 	start.y = origin.y + yOffset;
 	end.y = start.y + size.y;
-	for( i = 0; i < pieces; i++ )
+	for (int i = 0; i < pieces; i++ )
 	{
 
 		end.x = start.x + centerImage->getImageWidth();
@@ -424,7 +424,7 @@ void W3DGadgetTextEntryImageDraw( GameWindow *window, WinInstanceData *instData 
 	centerWidth = rightStart.x - start.x;
 	pieces = centerWidth / smallCenterImage->getImageWidth() + 1;
 	end.y = start.y + size.y;
-	for( i = 0; i < pieces; i++ )
+	for (int i = 0; i < pieces; i++ )
 	{
 
 		end.x = start.x + smallCenterImage->getImageWidth();

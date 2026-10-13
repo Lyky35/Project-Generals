@@ -22,14 +22,14 @@
 //////////////////////////////////////////////////////////////////////////////
 
 #include "Compression.h"
-// zlib wrapper functions
-static inline int z_compress2(void *dest, uLongf *destLen, const void *source, uLong sourceLen, int level) { return compress2((Bytef*)dest, (uLongf*)destLen, (const Bytef*)source, (uLong)sourceLen, level); }
-static inline int z_uncompress(void *dest, uLongf *destLen, const void *source, uLong sourceLen) { return uncompress((Bytef*)dest, (uLongf*)destLen, (const Bytef*)source, (uLong)sourceLen); }
-
 #include "LZHCompress/NoxCompress.h"
 extern "C" {
 #include "ZLib/zlib.h"
 }
+
+// zlib wrapper functions
+static inline int z_compress2(void *dest, uLongf *destLen, const void *source, uLong sourceLen, int level) { return compress2((Bytef*)dest, (uLongf*)destLen, (const Bytef*)source, (uLong)sourceLen, level); }
+static inline int z_uncompress(void *dest, uLongf *destLen, const void *source, uLong sourceLen) { return uncompress((Bytef*)dest, (uLongf*)destLen, (const Bytef*)source, (uLong)sourceLen); }
 #include "EAC/codex.h"
 #include "EAC/btreecodex.h"
 #include "EAC/huffcodex.h"
@@ -381,7 +381,7 @@ void DoCompressTest( void )
 
 	PerfGather *s_compressGathers[COMPRESSION_MAX+1];
 	PerfGather *s_decompressGathers[COMPRESSION_MAX+1];
-	for (i = 0; i < COMPRESSION_MAX+1; ++i)
+	for (int i = 0; i < COMPRESSION_MAX+1; ++i)
 	{
 		s_compressGathers[i] = new PerfGather(CompressionManager::getCompressionNameByType((CompressionType)i));
 		s_decompressGathers[i] = new PerfGather(CompressionManager::getDecompressionNameByType((CompressionType)i));
@@ -412,7 +412,7 @@ void DoCompressTest( void )
 			d.origSize = origSize;
 			d.compressedSize[COMPRESSION_NONE] = origSize;
 
-			for (i=COMPRESSION_MIN; i<=COMPRESSION_MAX; ++i)
+			for (int i =COMPRESSION_MIN; i<=COMPRESSION_MAX; ++i)
 			{
 				DEBUG_LOG(("=================================================\n"));
 				DEBUG_LOG(("Compression Test %d\n", i));
@@ -468,7 +468,7 @@ void DoCompressTest( void )
 		++it;
 	}
 
-	for (i=COMPRESSION_MIN; i<=COMPRESSION_MAX; ++i)
+	for (int i =COMPRESSION_MIN; i<=COMPRESSION_MAX; ++i)
 	{
 		Real maxCompression = 1000.0f;
 		Real minCompression = 0.0f;
@@ -499,7 +499,7 @@ void DoCompressTest( void )
 	PerfGather::resetAll();
 	CopyFile( "AAAPerfStats.csv", "AAACompressPerfStats.csv", FALSE );
 
-	for (i = 0; i < COMPRESSION_MAX+1; ++i) 
+	for (int i = 0; i < COMPRESSION_MAX+1; ++i) 
 	{
 		delete s_compressGathers[i];
 		s_compressGathers[i] = NULL;

@@ -47,10 +47,14 @@
 #include "matrix3d.h"
 #include "vector3i.h"
 
-#include <srVector3i.hpp>
-#include <srVector3.hpp>
-#include <srVector2.hpp>
-#include <srMatrix4x3.hpp>
+#include "srVector3i.hpp"
+#include "srVector3.hpp"
+#include "srVector2.hpp"
+#include "srMatrix4x3.hpp"
+#include "srMatrix4.hpp"
+#include "srMatrix4d.hpp"
+#include "srMatrix3.hpp"
+#include "srVector4.hpp"
 
 class srNode;
 class srMeshModel;

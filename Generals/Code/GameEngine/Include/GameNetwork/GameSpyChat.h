@@ -51,10 +51,10 @@ extern WindowLayout *WOLMapSelectLayout;			///< Map selection overlay
 
 void RoomMessageCallback(PEER peer, RoomType roomType,
 												 const char * nick, const char * message,
-												 MessageType messageType, void * param);		///< Called when a message arrives in a room.
+												 PEERMessageType messageType, void * param);		///< Called when a message arrives in a room.
 
 void PlayerMessageCallback(PEER peer, const char * nick,
-													 const char * message, MessageType messageType,
+													 const char * message, PEERMessageType messageType,
 													 void * param);														///< Called when a private message is received from another player.
 
 #endif // __GAMESPYCHAT_H__

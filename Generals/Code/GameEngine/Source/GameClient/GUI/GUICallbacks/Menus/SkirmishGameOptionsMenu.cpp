@@ -742,7 +742,7 @@ void positionStartSpots( AsciiString mapName, GameWindow *buttonMapStartPosition
 			}
 		}	
 		// hide the rest
-		for (; i < MAX_SLOTS; ++i)
+		for (Int i = 0; i < MAX_SLOTS; ++i)
 		{
 			if (buttonMapStartPositions[i] != NULL)
 			{
@@ -792,7 +792,7 @@ void updateMapStartSpots( GameInfo *myGame, GameWindow *buttonMapStartPositions[
 			buttonMapStartPositions[i]->winSetTooltip(TheGameText->fetch("TOOLTIP:StartPosition"));
 		}
 	}
-	for( i = 0; i < MAX_SLOTS; ++i)
+	for (Int i = 0; i < MAX_SLOTS; ++i)
 	{
 		GameSlot *gs =myGame->getSlot(i);
 		if(onLoadScreen)
@@ -1061,7 +1061,7 @@ void InitSkirmishGameGadgets( void )
 		DEBUG_ASSERTCRASH(buttonMapStartPosition[i], ("Could not find the ButtonMapStartPosition[%d]",i ));
 	}
    
-	for (i = 0; i < MAX_SLOTS; ++i)
+	for (Int i = 0; i < MAX_SLOTS; ++i)
 	{
 		PopulateColorComboBox(i, comboBoxColor, TheSkirmishGameInfo );
 		GadgetComboBoxSetSelectedPos(comboBoxColor[i], 0);

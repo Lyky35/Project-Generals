@@ -50,11 +50,17 @@
 #include <wpaudio/altypes.h>
 #include <wpaudio/memory.h>
 #include <wpaudio/time.h>
+#include <wpaudio/level.h>
 #include <wpaudio/source.h>
-#include <wsys/file.h>
+#include <wsys/File.h>
 
-//#include "asimp3\mss.h"
-//#include "asimp3\mp3dec.h"
+//#include "asimp3/mss.h"
+//#include "asimp3/mp3dec.h"
+
+// Missing macros
+#define W_BitsGet(value, bits, start) (((value) >> (start)) & ((1 << (bits)) - 1))
+#define MAKEID(a,b,c,d) (((int)(a)<<24)|((int)(b)<<16)|((int)(c)<<8)|(int)(d))
+#define mAUDIO_FORMAT_PCM 0x0001
 
 // 'assignment within condition expression'.
 #pragma warning(disable : 4706)

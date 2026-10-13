@@ -292,7 +292,7 @@ CollisionMath::OverlapType CollisionMath::Overlap_Test(const AABoxClass & box,co
 		}
 
 		// Calculate the 3 distances to the candidate planes
-		for (i=0; i<3; i++) {
+		for (int i =0; i<3; i++) {
 			if (quadrant[i] != BOX_SIDE_MIDDLE && line.Get_DP()[i] != 0.0f) {
 				maxt[i] = (candidateplane[i] - line.Get_P0()[i]) / line.Get_DP()[i];
 			} else {
@@ -302,7 +302,7 @@ CollisionMath::OverlapType CollisionMath::Overlap_Test(const AABoxClass & box,co
 
 		// Get the largest of the maxt's for the final choice of intersection
 		int intersection_plane = 0;
-		for (i=1; i<3; i++) {
+		for (int i =1; i<3; i++) {
 			if (maxt[i] > maxt[intersection_plane]) {
 				intersection_plane = i;
 			}
@@ -321,7 +321,7 @@ CollisionMath::OverlapType CollisionMath::Overlap_Test(const AABoxClass & box,co
 		// Check if the ray is inside the box, i.e. on the two planes which
 		// are not the intersection planes, the intersection point should
 		// be between the min and max of the box.
-		for (i=0; i<3; i++) {
+		for (int i =0; i<3; i++) {
 			
 			if (intersection_plane != i) {
 			

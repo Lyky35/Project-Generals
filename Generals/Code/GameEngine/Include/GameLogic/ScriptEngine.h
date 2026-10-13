@@ -126,10 +126,7 @@ class AttackPriorityInfo : public MemoryPoolObject, public Snapshot
 {
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(AttackPriorityInfo, "AttackPriorityInfo")		
 
-// friend bad for MPOs. (srj)
-//friend class ScriptEngine;
-
-public:
+friend class ScriptEngine;
 
 	AttackPriorityInfo();
 	//~AttackPriorityInfo();

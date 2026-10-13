@@ -47,7 +47,7 @@ RayEffectData *RayEffectSystem::findEntry( const Drawable *draw )
 	RayEffectData *effectData = NULL;
 
 	// find the matching effect data entry
-	for( i = 0; i < MAX_RAY_EFFECTS; i++ )
+	for (int i = 0; i < MAX_RAY_EFFECTS; i++ )
 	{
 
 		if( m_effectData[ i ].draw == draw )
@@ -89,7 +89,7 @@ void RayEffectSystem::init( void )
 {
 	Int i;
 
-	for( i = 0; i < MAX_RAY_EFFECTS; i++ )
+	for (int i = 0; i < MAX_RAY_EFFECTS; i++ )
 	{
 
 		m_effectData[ i ].draw = NULL;
@@ -130,7 +130,7 @@ void RayEffectSystem::addRayEffect( const Drawable *draw,
 	the demo anyway right now though */
 
 	// search for a free effect slot
-	for( i = 0; i < MAX_RAY_EFFECTS; i++ )
+	for (int i = 0; i < MAX_RAY_EFFECTS; i++ )
 	{
 
 		if( m_effectData[ i ].draw == NULL )	

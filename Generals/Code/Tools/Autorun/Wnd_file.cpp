@@ -1516,7 +1516,7 @@ int Get_Internal_File_Handle( void )
 	// initialize file handle table once!
 	//
 	if ( ! _initialized ) {
-   		for ( i = 0; i < MAX_FILES_OPEN_AT_A_TIME; i ++ ) {
+   		for (int i = 0; i < MAX_FILES_OPEN_AT_A_TIME; i ++ ) {
 			Windows_File_Handles[ i ] = NULL;      	
 		}
 		_initialized = TRUE;
@@ -1525,7 +1525,7 @@ int Get_Internal_File_Handle( void )
 	//
 	// look for free slot
 	//
-  	for ( i = 0; i < MAX_FILES_OPEN_AT_A_TIME; i ++ ) {
+  	for (int i = 0; i < MAX_FILES_OPEN_AT_A_TIME; i ++ ) {
    		if ( Windows_File_Handles[ i ] == NULL ) {
       		return( i );
 		}

@@ -186,7 +186,7 @@ void GameSpyInfo::setGameOptions( void )
 	Int i;
 	AsciiString mapName = TheGameState->realMapPathToPortableMapPath(m_localStagingRoom.getMap());
 	AsciiString newMapName;
-	for (i=0; i<mapName.getLength(); ++i)
+	for (int i =0; i<mapName.getLength(); ++i)
 	{
 		char c = mapName.getCharAt(i);
 		if (c != '\\')
@@ -204,7 +204,7 @@ void GameSpyInfo::setGameOptions( void )
 	req.gameOptions.numObservers = 0;
 	Int numOpenSlots = 0;
 	AsciiString playerInfo = "";
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		Int wins = 0, losses = 0, profileID = 0;
 		GameSpyGameSlot *slot = TheGameSpyGame->getGameSpySlot(i);
@@ -274,7 +274,7 @@ void GameSpyInfo::setGameOptions( void )
 	req.UTM.isStagingRoom = TRUE;
 	req.id = "Pings/";
 	AsciiString pings;
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		if (i!=0)
 			pings.concat(",");

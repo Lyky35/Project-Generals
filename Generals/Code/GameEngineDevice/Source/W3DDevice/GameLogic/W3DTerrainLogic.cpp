@@ -166,8 +166,8 @@ Bool W3DTerrainLogic::loadMap( AsciiString filename , Bool query )
 		minHt = terrainHeightMap->getMaxHeightValue();
 		maxHt = 0;
 
-		for (j=0; j<m_mapDY; j++) {
-			for (i=0; i<m_mapDX; i++) {
+		for (int j =0; j<m_mapDY; j++) {
+			for (int i =0; i<m_mapDX; i++) {
 				Short cur = terrainHeightMap->getHeight(i,j);
 				if (cur<minHt) minHt = cur;
 				if (maxHt<cur) maxHt = cur;
@@ -232,7 +232,7 @@ void W3DTerrainLogic::getMaximumPathfindExtent( Region3D *extent ) const
 	// Note - m_boundaries are stored in height map grids wide, so we have to
 	// multiply by the grid width.
 	Int i;
-	for (i=0; i<m_boundaries.size(); i++) {
+	for (int i =0; i<m_boundaries.size(); i++) {
 		if (extent->hi.x < m_boundaries[i].x*MAP_XY_FACTOR) {
 			extent->hi.x = m_boundaries[i].x*MAP_XY_FACTOR;
 		}

@@ -72,100 +72,175 @@ include Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.
 Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/codegen:
 .PHONY : Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/codegen
 
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/VkDescriptors.cpp
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.obj -MF CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.obj.d -o CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDescriptors.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/VkDescriptors.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.o -MF CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.o.d -o CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDescriptors.cpp
 
 Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDescriptors.cpp > CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDescriptors.cpp > CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.i
 
 Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDescriptors.cpp -o CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDescriptors.cpp -o CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.s
 
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/VkDevice.cpp
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.obj -MF CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.obj.d -o CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDevice.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/VkDevice.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.o -MF CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.o.d -o CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDevice.cpp
 
 Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDevice.cpp > CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDevice.cpp > CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.i
 
 Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDevice.cpp -o CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDevice.cpp -o CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.s
 
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/VkGpuBuffer.cpp
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.obj -MF CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.obj.d -o CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkGpuBuffer.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/VkGpuBuffer.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.o -MF CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.o.d -o CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkGpuBuffer.cpp
 
 Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkGpuBuffer.cpp > CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkGpuBuffer.cpp > CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.i
 
 Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkGpuBuffer.cpp -o CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkGpuBuffer.cpp -o CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.s
 
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/VkShader.cpp
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.obj -MF CMakeFiles/VulkanRenderer.dir/VkShader.cpp.obj.d -o CMakeFiles/VulkanRenderer.dir/VkShader.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkShader.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/VkShader.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.o -MF CMakeFiles/VulkanRenderer.dir/VkShader.cpp.o.d -o CMakeFiles/VulkanRenderer.dir/VkShader.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkShader.cpp
 
 Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/VulkanRenderer.dir/VkShader.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkShader.cpp > CMakeFiles/VulkanRenderer.dir/VkShader.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkShader.cpp > CMakeFiles/VulkanRenderer.dir/VkShader.cpp.i
 
 Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VulkanRenderer.dir/VkShader.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkShader.cpp -o CMakeFiles/VulkanRenderer.dir/VkShader.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkShader.cpp -o CMakeFiles/VulkanRenderer.dir/VkShader.cpp.s
 
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/VkTexture.cpp
-Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.obj: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.obj -MF CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.obj.d -o CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkTexture.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/VkTexture.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.o -MF CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.o.d -o CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkTexture.cpp
 
 Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkTexture.cpp > CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkTexture.cpp > CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.i
 
 Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkTexture.cpp -o CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkTexture.cpp -o CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.s
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/vkdescriptors.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.o -MF CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.o.d -o CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vkdescriptors.cpp
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vkdescriptors.cpp > CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.i
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vkdescriptors.cpp -o CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.s
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/vkdevice.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.o -MF CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.o.d -o CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vkdevice.cpp
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vkdevice.cpp > CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.i
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vkdevice.cpp -o CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.s
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/vkgpubuffer.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.o -MF CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.o.d -o CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vkgpubuffer.cpp
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vkgpubuffer.cpp > CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.i
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vkgpubuffer.cpp -o CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.s
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkshader.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkshader.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/vkshader.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkshader.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkshader.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkshader.cpp.o -MF CMakeFiles/VulkanRenderer.dir/vkshader.cpp.o.d -o CMakeFiles/VulkanRenderer.dir/vkshader.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vkshader.cpp
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkshader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/VulkanRenderer.dir/vkshader.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vkshader.cpp > CMakeFiles/VulkanRenderer.dir/vkshader.cpp.i
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkshader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VulkanRenderer.dir/vkshader.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vkshader.cpp -o CMakeFiles/VulkanRenderer.dir/vkshader.cpp.s
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vktexture.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/flags.make
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vktexture.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/vktexture.cpp
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vktexture.cpp.o: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vktexture.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vktexture.cpp.o -MF CMakeFiles/VulkanRenderer.dir/vktexture.cpp.o.d -o CMakeFiles/VulkanRenderer.dir/vktexture.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vktexture.cpp
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vktexture.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/VulkanRenderer.dir/vktexture.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vktexture.cpp > CMakeFiles/VulkanRenderer.dir/vktexture.cpp.i
+
+Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vktexture.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/VulkanRenderer.dir/vktexture.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/vktexture.cpp -o CMakeFiles/VulkanRenderer.dir/vktexture.cpp.s
 
 # Object files for target VulkanRenderer
 VulkanRenderer_OBJECTS = \
-"CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.obj" \
-"CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.obj" \
-"CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.obj" \
-"CMakeFiles/VulkanRenderer.dir/VkShader.cpp.obj" \
-"CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.obj"
+"CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.o" \
+"CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.o" \
+"CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.o" \
+"CMakeFiles/VulkanRenderer.dir/VkShader.cpp.o" \
+"CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.o" \
+"CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.o" \
+"CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.o" \
+"CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.o" \
+"CMakeFiles/VulkanRenderer.dir/vkshader.cpp.o" \
+"CMakeFiles/VulkanRenderer.dir/vktexture.cpp.o"
 
 # External object files for target VulkanRenderer
 VulkanRenderer_EXTERNAL_OBJECTS =
 
-lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.obj
-lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.obj
-lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.obj
-lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.obj
-lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.obj
+lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDescriptors.cpp.o
+lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDevice.cpp.o
+lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkGpuBuffer.cpp.o
+lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkShader.cpp.o
+lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkTexture.cpp.o
+lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdescriptors.cpp.o
+lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkdevice.cpp.o
+lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkgpubuffer.cpp.o
+lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vkshader.cpp.o
+lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/vktexture.cpp.o
 lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/build.make
 lib/libVulkanRenderer.a: Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library ../../../../../lib/libVulkanRenderer.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX static library ../../../../../lib/libVulkanRenderer.a"
 	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && $(CMAKE_COMMAND) -P CMakeFiles/VulkanRenderer.dir/cmake_clean_target.cmake
 	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/VulkanRenderer.dir/link.txt --verbose=$(VERBOSE)
 

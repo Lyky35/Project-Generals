@@ -288,7 +288,7 @@ public:
 	static void Set_DX8_Render_State(D3DRENDERSTATETYPE state, unsigned value);
 	static void Set_DX8_Clip_Plane(DWORD Index, CONST float* pPlane);
 	static void Set_DX8_Texture_Stage_State(unsigned stage, D3DTEXTURESTAGESTATETYPE state, unsigned value);
-	static void Set_Vulkan_Texture(unsigned int stage, VkTexture* texture);
+	static void Set_Vulkan_Texture(unsigned int stage, TextureClass* texture);
 	static void Set_Light_Environment(LightEnvironmentClass* light_env);
 	static void Set_Fog(bool enable, const Vector3 &color, float start, float end);
 
@@ -703,7 +703,7 @@ WWINLINE void DX8Wrapper::Set_DX8_Texture_Stage_State(unsigned stage, D3DTEXTURE
 	DX8_RECORD_TEXTURE_STAGE_STATE_CHANGE();
 }
 
-WWINLINE void DX8Wrapper::Set_Vulkan_Texture(unsigned int stage, VkTexture* texture)
+WWINLINE void DX8Wrapper::Set_Vulkan_Texture(unsigned int stage, TextureClass* texture)
 {
   	if (stage >= MAX_TEXTURE_STAGES)
   	{

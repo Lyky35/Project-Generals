@@ -130,13 +130,13 @@ WWDebug/fast:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/build
 .PHONY : WWDebug/fast
 
-wwdebug.obj: wwdebug.cpp.obj
-.PHONY : wwdebug.obj
+wwdebug.o: wwdebug.cpp.o
+.PHONY : wwdebug.o
 
 # target to build an object file
-wwdebug.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.obj
-.PHONY : wwdebug.cpp.obj
+wwdebug.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.o
+.PHONY : wwdebug.cpp.o
 
 wwdebug.i: wwdebug.cpp.i
 .PHONY : wwdebug.i
@@ -154,13 +154,13 @@ wwdebug.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwdebug.cpp.s
 .PHONY : wwdebug.cpp.s
 
-wwmemlog.obj: wwmemlog.cpp.obj
-.PHONY : wwmemlog.obj
+wwmemlog.o: wwmemlog.cpp.o
+.PHONY : wwmemlog.o
 
 # target to build an object file
-wwmemlog.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.obj
-.PHONY : wwmemlog.cpp.obj
+wwmemlog.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.o
+.PHONY : wwmemlog.cpp.o
 
 wwmemlog.i: wwmemlog.cpp.i
 .PHONY : wwmemlog.i
@@ -178,13 +178,13 @@ wwmemlog.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwmemlog.cpp.s
 .PHONY : wwmemlog.cpp.s
 
-wwprofile.obj: wwprofile.cpp.obj
-.PHONY : wwprofile.obj
+wwprofile.o: wwprofile.cpp.o
+.PHONY : wwprofile.o
 
 # target to build an object file
-wwprofile.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.obj
-.PHONY : wwprofile.cpp.obj
+wwprofile.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDebug/CMakeFiles/WWDebug.dir/wwprofile.cpp.o
+.PHONY : wwprofile.cpp.o
 
 wwprofile.i: wwprofile.cpp.i
 .PHONY : wwprofile.i
@@ -211,13 +211,13 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... WWDebug"
-	@echo "... wwdebug.obj"
+	@echo "... wwdebug.o"
 	@echo "... wwdebug.i"
 	@echo "... wwdebug.s"
-	@echo "... wwmemlog.obj"
+	@echo "... wwmemlog.o"
 	@echo "... wwmemlog.i"
 	@echo "... wwmemlog.s"
-	@echo "... wwprofile.obj"
+	@echo "... wwprofile.o"
 	@echo "... wwprofile.i"
 	@echo "... wwprofile.s"
 .PHONY : help

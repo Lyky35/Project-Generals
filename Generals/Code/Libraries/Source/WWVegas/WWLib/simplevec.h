@@ -77,13 +77,13 @@ public:
 	SimpleVecClass(int size = 0);
 	virtual ~SimpleVecClass(void);
 
-	T & operator[](int index)					{ assert(index < VectorMax); return(Vector[index]); } 
-	T const & operator[](int index) const	{ assert(index < VectorMax); return(Vector[index]); }
+	T & operator[](int index)					{ assert(index < this->VectorMax); return(this->Vector[index]); } 
+	T const & operator[](int index) const	{ assert(index < this->VectorMax); return(this->Vector[index]); }
 
-	int				Length(void) const		{ return VectorMax; }
+	int				Length(void) const		{ return this->VectorMax; }
 	virtual bool	Resize(int newsize);
 	virtual bool	Uninitialised_Grow(int newsize);
-	void				Zero_Memory(void)			{ if (Vector != NULL) { memset(Vector,0,VectorMax * sizeof(T)); } }
+	void				Zero_Memory(void)			{ if (this->Vector != NULL) { memset(this->Vector,0,this->VectorMax * sizeof(T)); } }
 
 protected:
 	
@@ -260,9 +260,9 @@ public:
 	virtual ~SimpleDynVecClass(void);
 
 	// Array-like access (does not grow)
-	int				Count(void) const						{ return(ActiveCount); }
-	T &				operator[](int index)				{ assert(index < ActiveCount); return(Vector[index]); } 
-	T const &		operator[](int index) const		{ assert(index < ActiveCount); return(Vector[index]); }
+	int				Count(void) const						{ return(this->ActiveCount); }
+	T &				operator[](int index)				{ assert(index < this->ActiveCount); return(this->Vector[index]); } 
+	T const &		operator[](int index) const		{ assert(index < this->ActiveCount); return(this->Vector[index]); }
 
 	// Change maximum size of vector
 	virtual bool	Resize(int newsize);
@@ -325,9 +325,9 @@ inline SimpleDynVecClass<T>::SimpleDynVecClass(int size) :
 template<class T>
 inline SimpleDynVecClass<T>::~SimpleDynVecClass(void)
 {
-	if (Vector != NULL) {
-		delete[] Vector;
-		Vector = NULL;
+	if (this->Vector != NULL) {
+		delete[] this->Vector;
+		this->Vector = NULL;
 	}
 }
 
@@ -348,7 +348,7 @@ template<class T>
 inline bool SimpleDynVecClass<T>::Resize(int newsize)
 {
 	if (SimpleVecClass<T>::Resize(newsize)) {
-		if (Length() < ActiveCount) ActiveCount = Length();
+		if (Length() < this->ActiveCount) ActiveCount = Length();
 		return(true);
 	}
 	return(false);
@@ -370,7 +370,7 @@ inline bool SimpleDynVecClass<T>::Resize(int newsize)
 template<class T>
 inline bool SimpleDynVecClass<T>::Add(T const & object,int new_size_hint)
 {
-	if (ActiveCount >= VectorMax) {
+	if (this->ActiveCount >= this->VectorMax) {
 		
 		/*
 		** We are out of space so tell the vector to grow
@@ -384,7 +384,7 @@ inline bool SimpleDynVecClass<T>::Add(T const & object,int new_size_hint)
 	/*
 	**	There is room for the new object now. Add it to the end of the object vector.
 	*/
-	(*this)[ActiveCount++] = object;
+	(*this)[this->ActiveCount++] = object;
 	return true;
 }
 
@@ -403,18 +403,18 @@ inline bool SimpleDynVecClass<T>::Add(T const & object,int new_size_hint)
 template<class T>
 inline T *  SimpleDynVecClass<T>::Add_Multiple( int number_to_add )
 {
-	int index = ActiveCount;
-	ActiveCount += number_to_add;
+	int index = this->ActiveCount;
+	this->ActiveCount += number_to_add;
 
-	if (ActiveCount >= VectorMax) {
+	if (this->ActiveCount >= this->VectorMax) {
 		
 		/*
 		** We are out of space so tell the vector to grow
 		*/
-		Grow( ActiveCount );
+		Grow( this->ActiveCount );
 	}
 
-	return &Vector[index];
+	return &this->Vector[index];
 }
 
 
@@ -437,17 +437,17 @@ inline T *  SimpleDynVecClass<T>::Add_Multiple( int number_to_add )
 template<class T>
 inline bool SimpleDynVecClass<T>::Delete(int index,bool allow_shrink)
 {
-	assert(index < ActiveCount);
+	assert(index < this->ActiveCount);
 
 	/*
 	**	If there are any objects past the index that was deleted, memcopy
 	** those objects to collapse the array.  NOTE: again, this template
 	** cannot be used for classes that cannot be memcopied!!
 	*/
-	if (index < ActiveCount-1) {
-		memmove(&(Vector[index]),&(Vector[index+1]),(ActiveCount - index - 1) * sizeof(T));
+	if (index < this->ActiveCount-1) {
+		memmove(&(this->Vector[index]),&(this->Vector[index+1]),(this->ActiveCount - index - 1) * sizeof(T));
 	}
-	ActiveCount--;
+	this->ActiveCount--;
 
 	/*
 	** We deleted something so we may need to shrink
@@ -506,18 +506,18 @@ template<class T>
 inline bool SimpleDynVecClass<T>::Delete_Range(int start,int count,bool allow_shrink)
 {
 	assert(start >= 0);
-	assert(start <= ActiveCount - count);
+	assert(start <= this->ActiveCount - count);
 
 	/*
 	**	If there are any objects past the index that was deleted, memcopy
 	** those objects to collapse the array.  NOTE: again, this template
 	** cannot be used for classes that cannot be memcopied!!
 	*/
-	if (start < ActiveCount - count) {
-		memmove(&(Vector[start]),&(Vector[start + count]),(ActiveCount - start - count) * sizeof(T));
+	if (start < this->ActiveCount - count) {
+		memmove(&(this->Vector[start]),&(this->Vector[start + count]),(this->ActiveCount - start - count) * sizeof(T));
 	}
 
-	ActiveCount -= count;
+	this->ActiveCount -= count;
 
 	/*
 	** We deleted something so we may need to shrink
@@ -532,7 +532,7 @@ inline bool SimpleDynVecClass<T>::Delete_Range(int start,int count,bool allow_sh
 /***********************************************************************************************
  * SimpleDynVecClass<T>::Delete_All -- delete all items from the array                         *
  *                                                                                             *
- * Internally, this just resets the ActiveCount...                                             *
+ * Internally, this just resets the this->ActiveCount...                                             *
  *                                                                                             *
  * INPUT:                                                                                      *
  *                                                                                             *
@@ -559,7 +559,7 @@ inline void SimpleDynVecClass<T>::Delete_All(bool allow_shrink)
 /***********************************************************************************************
  * SimpleDynVecClass<T>::Grow -- increase the size of the array                                *
  *                                                                                             *
- * Internally, this just resets the ActiveCount...                                             *
+ * Internally, this just resets the this->ActiveCount...                                             *
  *                                                                                             *
  * INPUT:                                                                                      *
  *                                                                                             *
@@ -574,7 +574,7 @@ template<class T>
 inline bool SimpleDynVecClass<T>::Grow(int new_size_hint)
 {
 	/*
-	** Vector should grow to 25% bigger, grow at least 4 elements,
+	** this->Vector should grow to 25% bigger, grow at least 4 elements,
 	** and grow at least up to the user's new_size_hint
 	*/
 	int new_size = MAX(Length() + Length()/4,Length() + 4);
@@ -586,7 +586,7 @@ inline bool SimpleDynVecClass<T>::Grow(int new_size_hint)
 /***********************************************************************************************
  * SimpleDynVecClass<T>::Shrink -- reduce the size of the array                                *
  *                                                                                             *
- * Internally, this just resets the ActiveCount...                                             *
+ * Internally, this just resets the this->ActiveCount...                                             *
  *                                                                                             *
  * INPUT:                                                                                      *
  *                                                                                             *
@@ -603,8 +603,8 @@ inline bool SimpleDynVecClass<T>::Shrink(void)
 	/*
 	** Shrink the array if it is wasting more than 25%
 	*/
-	if (ActiveCount < VectorMax/4) {
-		return Resize(ActiveCount);
+	if (this->ActiveCount < this->VectorMax/4) {
+		return Resize(this->ActiveCount);
 	}
 	return true;
 }

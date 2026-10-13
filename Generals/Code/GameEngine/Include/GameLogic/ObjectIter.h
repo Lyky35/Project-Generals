@@ -39,7 +39,7 @@ class Object;
 
 //-------------------------------------------------------------------------------------------
 /** */
-enum IterOrderType
+enum IterOrderType : int
 {
 	ITER_FASTEST,										///< iterate in arbitrary order
 	ITER_SORTED_NEAR_TO_FAR,				///< iterate in nearest-to-farthest order (may be slower)

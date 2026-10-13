@@ -113,7 +113,7 @@ enum
 
 // Game window messages -------------------------------------------------------
 //-----------------------------------------------------------------------------
-enum GameWindowMessage
+enum GameWindowMessage : int
 {
 
 	GWM_NONE = 0,
@@ -141,7 +141,7 @@ enum GameWindowMessage
 /** These return codes are returned when after processing events through
 	* the window system */
 //-----------------------------------------------------------------------------
-enum WinInputReturnCode
+enum WinInputReturnCode : int
 {
 	WIN_INPUT_NOT_USED = 0,
 	WIN_INPUT_USED,

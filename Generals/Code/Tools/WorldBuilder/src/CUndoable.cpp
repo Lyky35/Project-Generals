@@ -132,7 +132,7 @@ void WBDocUndoable::Do(void)
 		}
 		Int i;
 		// Update build lists.
-		for (i=0; i<TheSidesList->getNumSides(); i++) {
+		for (int i =0; i<TheSidesList->getNumSides(); i++) {
 			SidesInfo *pSide = TheSidesList->getSideInfo(i); 
 			for (BuildListInfo *pBuild = pSide->getBuildList(); pBuild; pBuild = pBuild->getNext()) {
 				// Update.
@@ -1192,7 +1192,7 @@ void MovePolygonUndoable::SetOffset(const ICoord3D &offset)
 	}
 	m_offset = offset;
 	Int i;
-	for (i=0; i<m_trigger->getNumPoints(); i++) {
+	for (int i =0; i<m_trigger->getNumPoints(); i++) {
 		ICoord3D iLoc = *m_trigger->getPoint(i);
 		iLoc.x += deltaX;
 		iLoc.y += deltaY;
@@ -1208,7 +1208,7 @@ void MovePolygonUndoable::SetOffset(const ICoord3D &offset)
 void MovePolygonUndoable::Do(void)
 {
 	Int i;
-	for (i=0; i<m_trigger->getNumPoints(); i++) {
+	for (int i =0; i<m_trigger->getNumPoints(); i++) {
 		ICoord3D iLoc = *m_trigger->getPoint(i);
 		iLoc.x += m_offset.x;
 		iLoc.y += m_offset.y;
@@ -1223,7 +1223,7 @@ void MovePolygonUndoable::Do(void)
 void MovePolygonUndoable::Undo(void)
 {
 	Int i;
-	for (i=0; i<m_trigger->getNumPoints(); i++) {
+	for (int i =0; i<m_trigger->getNumPoints(); i++) {
 		ICoord3D iLoc = *m_trigger->getPoint(i);
 		iLoc.x -= m_offset.x;
 		iLoc.y -= m_offset.y;

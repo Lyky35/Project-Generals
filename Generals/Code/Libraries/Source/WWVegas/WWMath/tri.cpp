@@ -253,7 +253,7 @@ bool TriClass::Contains_Point(const Vector3 & ipoint) const
 	int vi;
 	int axis3 = 0;
 
-	for (vi=0; vi<3; vi++) {
+	for (int vi =0; vi<3; vi++) {
 		if ((axis1 != vi) && (axis2 != vi))	axis3 = vi;
 	}
 
@@ -261,7 +261,7 @@ bool TriClass::Contains_Point(const Vector3 & ipoint) const
 	test_point[axis3] = 0.0f;
 
 	Vector3 points[3];
-	for (vi=0; vi<3; vi++) {
+	for (int vi =0; vi<3; vi++) {
 		points[vi] = *(V[vi]);
 		points[vi][axis3] = 0.0f;
 	}
@@ -271,7 +271,7 @@ bool TriClass::Contains_Point(const Vector3 & ipoint) const
 	Vector3 cross;
 	Vector3 dp;
 
-	for (vi=0; vi<3; vi++) {
+	for (int vi =0; vi<3; vi++) {
 		edge = points[(vi+1)%3] - points[vi];
 		dp = test_point - points[vi];
 	
@@ -343,7 +343,7 @@ bool TriClass::Contains_Point(const Vector3 & ipoint) const
 	Vector2 edge;
 	Vector2 dp;
 
-	for (vi=0; vi<3; vi++) {
+	for (int vi =0; vi<3; vi++) {
 		
 		int va=vi;
 		int vb=(vi+1)%3;

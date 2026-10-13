@@ -287,7 +287,7 @@ void	WW3DAssetManager::Load_Procedural_Textures()
 	}
 	
 	count=MetalManager->Metal_Map_Count();		
-	for (i=0; i<count; i++)
+	for (int i =0; i<count; i++)
 	{
 		TextureClass *tex=MetalManager->Get_Metal_Map(i);
 		TextureHash.Insert(tex->Get_Texture_Name(),tex);
@@ -301,49 +301,16 @@ static void Log_Textures(bool inited,unsigned& total_count, unsigned& total_mem)
 		TextureClass * tex=ite.Peek_Value();
 		if (tex->Is_Initialized()!=inited) continue;
 
-		D3DSURFACE_DESC desc;
-		IDirect3DTexture8* d3d_texture=tex->Peek_DX8_Texture();
+		VkTexture* d3d_texture=tex->Peek_Vulkan_Texture();
 		if (!d3d_texture) continue;
-		DX8_ErrorCode(d3d_texture->GetLevelDesc(0,&desc));
 
 		StringClass tex_format="Unknown";
-		switch (desc.Format) {
-		case D3DFMT_A8R8G8B8: tex_format="D3DFMT_A8R8G8B8"; break;
-		case D3DFMT_R8G8B8: tex_format="D3DFMT_R8G8B8"; break;
-		case D3DFMT_A4R4G4B4: tex_format="D3DFMT_A4R4G4B4"; break;
-		case D3DFMT_A1R5G5B5: tex_format="D3DFMT_A1R5G5B5"; break;
-		case D3DFMT_R5G6B5: tex_format="D3DFMT_R5G6B5"; break;
-		case D3DFMT_L8: tex_format="D3DFMT_L8"; break;
-		case D3DFMT_A8: tex_format="D3DFMT_A8"; break;
-		case D3DFMT_P8: tex_format="D3DFMT_P8"; break;
-		case D3DFMT_X8R8G8B8: tex_format="D3DFMT_X8R8G8B8"; break;
-		case D3DFMT_X1R5G5B5: tex_format="D3DFMT_X1R5G5B5"; break;
-		case D3DFMT_R3G3B2: tex_format="D3DFMT_R3G3B2"; break;
-		case D3DFMT_A8R3G3B2: tex_format="D3DFMT_A8R3G3B2"; break;
-		case D3DFMT_X4R4G4B4: tex_format="D3DFMT_X4R4G4B4"; break;
-		case D3DFMT_A8P8: tex_format="D3DFMT_A8P8"; break;
-		case D3DFMT_A8L8: tex_format="D3DFMT_A8L8"; break;
-		case D3DFMT_A4L4: tex_format="D3DFMT_A4L4"; break;
-		case D3DFMT_V8U8: tex_format="D3DFMT_V8U8"; break;
+		switch (d3d_texture->GetFormat()) {
+		case VK_FORMAT_R8G8B8A8_UNORM: tex_format="VK_FORMAT_R8G8B8A8_UNORM"; break;
+		case VK_FORMAT_B8G8R8A8_UNORM: tex_format="VK_FORMAT_B8G8R8A8_UNORM"; break;
+		case VK_FORMAT_R5G6B5_UNORM_PACK16: tex_format="VK_FORMAT_R5G6B5_UNORM_PACK16"; break;
+		case VK_FORMAT_R8_UNORM: tex_format="VK_FORMAT_R8_UNORM"; break;
 		case D3DFMT_L6V5U5: tex_format="D3DFMT_L6V5U5"; break;  
-		case D3DFMT_X8L8V8U8: tex_format="D3DFMT_X8L8V8U8"; break;
-		case D3DFMT_Q8W8V8U8: tex_format="D3DFMT_Q8W8V8U8"; break;
-		case D3DFMT_V16U16: tex_format="D3DFMT_V16U16"; break;
-		case D3DFMT_W11V11U10: tex_format="D3DFMT_W11V11U10"; break;
-		case D3DFMT_UYVY: tex_format="D3DFMT_UYVY"; break;
-		case D3DFMT_YUY2: tex_format="D3DFMT_YUY2"; break;
-		case D3DFMT_DXT1: tex_format="D3DFMT_DXT1"; break;
-		case D3DFMT_DXT2: tex_format="D3DFMT_DXT2"; break;
-		case D3DFMT_DXT3: tex_format="D3DFMT_DXT3"; break;
-		case D3DFMT_DXT4: tex_format="D3DFMT_DXT4"; break;
-		case D3DFMT_DXT5: tex_format="D3DFMT_DXT5"; break;
-		case D3DFMT_D16_LOCKABLE: tex_format="D3DFMT_D16_LOCKABLE"; break;
-		case D3DFMT_D32: tex_format="D3DFMT_D32"; break;
-		case D3DFMT_D15S1: tex_format="D3DFMT_D15S1"; break;
-		case D3DFMT_D24S8: tex_format="D3DFMT_D24S8"; break;
-		case D3DFMT_D16: tex_format="D3DFMT_D16"; break;
-		case D3DFMT_D24X8: tex_format="D3DFMT_D24X8"; break;
-		case D3DFMT_D24X4S4: tex_format="D3DFMT_D24X4S4"; break;
 		default:	break;
 		}
 
@@ -548,7 +515,7 @@ void WW3DAssetManager::Free_Assets_With_Exclusion_List(const DynamicVectorClass<
 	memset(PrototypeHashTable,0,sizeof(PrototypeClass *) * PROTOTYPE_HASH_TABLE_SIZE);	
 
 	// re-add the prototypes that we saved
-	for (i=0; i<exclude_array.Count(); i++) {
+	for (int i=0; i<exclude_array.Count(); i++) {
 		Add_Prototype(exclude_array[i]);
 	}
 

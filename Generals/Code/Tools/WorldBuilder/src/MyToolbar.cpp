@@ -22,7 +22,7 @@
 
 #include "StdAfx.h" 
 
-#include "Lib\BaseType.h"
+#include "Lib/BaseType.h"
 #include "MyToolBar.h"
 #include "resource.h"
 #include "WorldBuilderView.h"
@@ -43,7 +43,7 @@ void CellSizeToolBar::CellSizeChanged(Int cellSize)
 {
 	Int newSize = 1;
 	Int i;
-	for (i=MIN_POS; i<MAX_POS; i++) {
+	for (int i =MIN_POS; i<MAX_POS; i++) {
 		newSize *= 2;
 		if (newSize >= cellSize) break;
 	}
@@ -83,7 +83,7 @@ void CellSizeToolBar::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	// invert 
 	nPos = MAX_POS - nPos + MIN_POS;
 	int newSize = 1;
-	for (i=1; i<nPos; i++) {
+	for (int i =1; i<nPos; i++) {
 		newSize *= 2;
 	}
 	if (newSize>64) return;

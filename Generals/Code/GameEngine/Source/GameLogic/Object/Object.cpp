@@ -223,7 +223,7 @@ Object::Object( const ThingTemplate *tt, ObjectStatusBits statusBits, Team *team
 	m_formationOffset.x = m_formationOffset.y = 0.0f;
 	m_iPos.zero();
 	//
-	for( i = 0; i < DISABLED_COUNT; i++ )
+	for (int i = 0; i < DISABLED_COUNT; i++ )
 	{
 		m_disabledTillFrame[ i ] = NEVER;
 	}
@@ -2320,7 +2320,7 @@ void Object::setTriggerAreaFlagsForChangeInPosition()
 
 	// Check for exited.
 	Int i;
-	for (i=0; i<m_numTriggerAreasActive; i++) 
+	for (int i =0; i<m_numTriggerAreasActive; i++) 
 	{
 		if (!m_triggerInfo[i].pTrigger->pointInTrigger(m_iPos)) 
 		{
@@ -2341,7 +2341,7 @@ void Object::setTriggerAreaFlagsForChangeInPosition()
 	for (const PolygonTrigger *pTrig = PolygonTrigger::getFirstPolygonTrigger(); pTrig; pTrig = pTrig->getNext()) 
 	{
 		Bool skip = false;
-		for (i = 0; i < m_numTriggerAreasActive; i++) 
+		for (int i = 0; i < m_numTriggerAreasActive; i++) 
 		{
 			if (m_triggerInfo[i].pTrigger == pTrig) 
 			{
@@ -3682,7 +3682,7 @@ void Object::xfer( Xfer *xfer )
 			MAX_TRIGGER_AREA_INFOS));
 		throw SC_INVALID_DATA;
 	}	 
-	for (i=0; i<m_numTriggerAreasActive; i++) {
+	for (int i =0; i<m_numTriggerAreasActive; i++) {
 		AsciiString triggerName;
 		if (m_triggerInfo[i].pTrigger) {
 			triggerName = m_triggerInfo[i].pTrigger->getTriggerName();

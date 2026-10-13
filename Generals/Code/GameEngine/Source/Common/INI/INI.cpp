@@ -326,16 +326,16 @@ static INIFieldParseProc findFieldParse(const FieldParse* parseTable, const char
 		}
 	}
 
-	if (!parse->token && parse->parse) 
+	// Check last entry (wildcard/default entry with no token)
+	const FieldParse* last = parseTable;
+	while (last->token) ++last;
+	if (last->parse)
 	{
-		offset = parse->offset;
+		offset = last->offset;
 		userData = token;
-		return parse->parse;
+		return last->parse;
 	}
-	else
-	{
-		return NULL;
-	}
+	return NULL;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -1502,7 +1502,7 @@ void INI::initFromINIMulti( void *what, const MultiIniFieldParse& parseTableList
 				for (int ptIdx = 0; ptIdx < parseTableList.getCount(); ++ptIdx)
 				{
 					int offset = 0;
-					void* userData = 0;
+					const void* userData = 0;
 					INIFieldParseProc parse = findFieldParse(parseTableList.getNthFieldParse(ptIdx), field, offset, userData);
 					if (parse)
 					{

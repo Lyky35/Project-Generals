@@ -128,16 +128,16 @@ void VulkanDevice::Shutdown()
 		}
 		m_commandBuffers.clear();
 		for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
-			if (m_imageAvailable.size() > i && m_imageAvailable[i] != VK_NULL_HANDLE)
-				vkDestroySemaphore(m_device, m_imageAvailable[i], nullptr);
-			if (m_renderFinished.size() > i && m_renderFinished[i] != VK_NULL_HANDLE)
-				vkDestroySemaphore(m_device, m_renderFinished[i], nullptr);
-			if (m_inFlight.size() > i && m_inFlight[i] != VK_NULL_HANDLE)
-				vkDestroyFence(m_device, m_inFlight[i], nullptr);
+			if (m_imageAvailableSemaphores.size() > i && m_imageAvailableSemaphores[i] != VK_NULL_HANDLE)
+				vkDestroySemaphore(m_device, m_imageAvailableSemaphores[i], nullptr);
+			if (m_renderFinishedSemaphores.size() > i && m_renderFinishedSemaphores[i] != VK_NULL_HANDLE)
+				vkDestroySemaphore(m_device, m_renderFinishedSemaphores[i], nullptr);
+			if (m_inFlightFences.size() > i && m_inFlightFences[i] != VK_NULL_HANDLE)
+				vkDestroyFence(m_device, m_inFlightFences[i], nullptr);
 		}
-		m_imageAvailable.clear();
-		m_renderFinished.clear();
-		m_inFlight.clear();
+		m_imageAvailableSemaphores.clear();
+		m_renderFinishedSemaphores.clear();
+		m_inFlightFences.clear();
 		m_imagesInFlight.clear();
 		vkDestroyDevice(m_device, nullptr);
 		m_device = VK_NULL_HANDLE;
@@ -614,9 +614,9 @@ bool VulkanDevice::CreateCommandBuffers()
 
 bool VulkanDevice::CreateSyncObjects()
 {
-	m_imageAvailable.resize(MAX_FRAMES_IN_FLIGHT);
-	m_renderFinished.resize(MAX_FRAMES_IN_FLIGHT);
-	m_inFlight.resize(MAX_FRAMES_IN_FLIGHT);
+	m_imageAvailableSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
+	m_renderFinishedSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
+	m_inFlightFences.resize(MAX_FRAMES_IN_FLIGHT);
 
 	VkSemaphoreCreateInfo semInfo = {};
 	semInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
@@ -625,11 +625,11 @@ bool VulkanDevice::CreateSyncObjects()
 	fenceInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
 
 	for (int i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
-		if (vkCreateSemaphore(m_device, &semInfo, nullptr, &m_imageAvailable[i]) != VK_SUCCESS)
+		if (vkCreateSemaphore(m_device, &semInfo, nullptr, &m_imageAvailableSemaphores[i]) != VK_SUCCESS)
 			return false;
-		if (vkCreateSemaphore(m_device, &semInfo, nullptr, &m_renderFinished[i]) != VK_SUCCESS)
+		if (vkCreateSemaphore(m_device, &semInfo, nullptr, &m_renderFinishedSemaphores[i]) != VK_SUCCESS)
 			return false;
-		if (vkCreateFence(m_device, &fenceInfo, nullptr, &m_inFlight[i]) != VK_SUCCESS)
+		if (vkCreateFence(m_device, &fenceInfo, nullptr, &m_inFlightFences[i]) != VK_SUCCESS)
 			return false;
 	}
 	m_imagesInFlight.resize(m_swapImages.size(), VK_NULL_HANDLE);
@@ -693,10 +693,10 @@ bool VulkanDevice::RecreateSwapchain()
 
 bool VulkanDevice::BeginFrame()
 {
-	vkWaitForFences(m_device, 1, &m_inFlight[m_frameIndex], VK_TRUE, ~0ULL);
+	vkWaitForFences(m_device, 1, &m_inFlightFences[m_frameIndex], VK_TRUE, ~0ULL);
 
 	VkResult result = vkAcquireNextImageKHR(m_device, m_swapchain, ~0ULL,
-		m_imageAvailable[m_frameIndex], VK_NULL_HANDLE, &m_imageIndex);
+		m_imageAvailableSemaphores[m_frameIndex], VK_NULL_HANDLE, &m_imageIndex);
 	if (result == VK_ERROR_OUT_OF_DATE_KHR) {
 		if (!RecreateSwapchain())
 			return false;
@@ -707,9 +707,9 @@ bool VulkanDevice::BeginFrame()
 
 	if (m_imagesInFlight[m_imageIndex] != VK_NULL_HANDLE)
 		vkWaitForFences(m_device, 1, &m_imagesInFlight[m_imageIndex], VK_TRUE, UINT64_MAX);
-	m_imagesInFlight[m_imageIndex] = m_inFlight[m_frameIndex];
+	m_imagesInFlight[m_imageIndex] = m_inFlightFences[m_frameIndex];
 
-	vkResetFences(m_device, 1, &m_inFlight[m_frameIndex]);
+	vkResetFences(m_device, 1, &m_inFlightFences[m_frameIndex]);
 	vkResetCommandBuffer(m_commandBuffers[m_frameIndex], 0);
 
 	VkCommandBufferBeginInfo beginInfo = {};
@@ -724,9 +724,9 @@ void VulkanDevice::EndFrame(bool present)
 	if (vkEndCommandBuffer(m_commandBuffers[m_frameIndex]) != VK_SUCCESS)
 		return;
 
-	VkSemaphore waitSemaphores[] = { m_imageAvailable[m_frameIndex] };
+	VkSemaphore waitSemaphores[] = { m_imageAvailableSemaphores[m_frameIndex] };
 	VkPipelineStageFlags waitStages[] = { VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT };
-	VkSemaphore signalSemaphores[] = { m_renderFinished[m_frameIndex] };
+	VkSemaphore signalSemaphores[] = { m_renderFinishedSemaphores[m_frameIndex] };
 
 	VkSubmitInfo submitInfo = {};
 	submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
@@ -737,7 +737,7 @@ void VulkanDevice::EndFrame(bool present)
 	submitInfo.pCommandBuffers = &m_commandBuffers[m_frameIndex];
 	submitInfo.signalSemaphoreCount = 1;
 	submitInfo.pSignalSemaphores = signalSemaphores;
-	if (vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, m_inFlight[m_frameIndex]) != VK_SUCCESS)
+	if (vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, m_inFlightFences[m_frameIndex]) != VK_SUCCESS)
 		return;
 
 	if (!present)

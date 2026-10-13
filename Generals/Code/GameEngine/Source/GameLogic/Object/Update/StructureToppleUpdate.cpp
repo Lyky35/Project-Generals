@@ -402,8 +402,9 @@ void StructureToppleUpdate::applyCrushingDamage(Real theta)
 	 */
 	Real jcos;
 	Real jsin;
+	Real j;
 //	Coord3D target;
-	for (Real j = m_lastCrushedLocation; j < maxDistance; j += WEAPON_SPACING_PERPENDICULAR) {
+	for (int j = m_lastCrushedLocation; j < maxDistance; j += WEAPON_SPACING_PERPENDICULAR) {
 		jcos = j * Cos(toppleAngle);
 		jsin = j * Sin(toppleAngle);
 		doDamageLine(building, wt, jcos, jsin, facingWidth, toppleAngle);
@@ -555,7 +556,7 @@ void StructureToppleUpdate::doPhaseStuff(StructureTopplePhaseType stphase, const
 	{
 		count = d->m_oclCount[stphase];
 		buildNonDupRandomIndexList(listSize, count, idxList);
-		for (i = 0; i < count; ++i)
+		for (int i = 0; i < count; ++i)
 		{
 			idx = idxList[i];
 			const OCLVec& v = d->m_ocls[stphase];

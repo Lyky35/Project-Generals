@@ -342,12 +342,12 @@ Player::Player( Int playerIndex )
 	m_skillPoints = 0;
 	Int i;
 	m_upgradeList = NULL;
-	for(i = 0; i < NUM_HOTKEY_SQUADS; i++)
+	for (int i = 0; i < NUM_HOTKEY_SQUADS; i++)
 	{
 		m_squads[i] = NULL;
 	}
 	//
-	for (i = 0; i < MAX_PLAYER_COUNT; ++i) 
+	for (int i = 0; i < MAX_PLAYER_COUNT; ++i) 
 	{
 		m_attackedBy[i] = false;
 		m_visionSpiedBy[i] = 0;
@@ -822,7 +822,7 @@ void Player::initFromDict(const Dict* d)
 			Int i;
 			Bool found = false;
 			AsciiString  qualTemplatePlayerName;
-			for (i=0; i<TheSidesList->getNumSkirmishSides(); i++) {
+			for (int i =0; i<TheSidesList->getNumSkirmishSides(); i++) {
 				AsciiString templateName = TheSidesList->getSkirmishSideInfo(i)->getDict()->getAsciiString(TheKey_playerFaction);
 				pt = ThePlayerTemplateStore->findPlayerTemplate(NAMEKEY(templateName));
 				if (pt && pt->getSide() == mySide) {
@@ -894,7 +894,7 @@ void Player::initFromDict(const Dict* d)
 				slist->deleteInstance();
 			}
 			TheSidesList->getSideInfo(getPlayerIndex())->setScriptList(scripts);
-			for (i=0; i<TheSidesList->getNumTeams(); i++) {
+			for (int i =0; i<TheSidesList->getNumTeams(); i++) {
 				if (TheSidesList->getTeamInfo(i)->getDict()->getAsciiString(TheKey_teamOwner) == pname)
 				{
 					// Remove any teams in this player.
@@ -905,7 +905,7 @@ void Player::initFromDict(const Dict* d)
 			// Now add teams.
 
 			AsciiString originalPlayerName = TheSidesList->getSkirmishSideInfo(skirmishNdx)->getDict()->getAsciiString(TheKey_playerName);
-			for (i=0; i<TheSidesList->getNumSkirmishTeams(); i++) {
+			for (int i =0; i<TheSidesList->getNumSkirmishTeams(); i++) {
 				if (TheSidesList->getSkirmishTeamInfo(i)->getDict()->getAsciiString(TheKey_teamOwner) == originalPlayerName)
 				{
 					Dict teamDict(*TheSidesList->getSkirmishTeamInfo(i)->getDict());
@@ -932,7 +932,7 @@ void Player::initFromDict(const Dict* d)
 					Int j;
 					const Int numKeys = sizeof(nameKeys) / sizeof(NameKeyType);
 					AsciiString tmpStr;
-					for (j = 0; j < numKeys; ++j)
+					for (int j = 0; j < numKeys; ++j)
 					{
 						tmpStr = teamDict.getAsciiString(nameKeys[j], &exists);
 						if (exists && !tmpStr.isEmpty())
@@ -943,7 +943,7 @@ void Player::initFromDict(const Dict* d)
 					}
 
 					// Now do the TheKey_teamGenericScriptHookN (where N can be from 0 to 15.)
-					for (j = 0; j < MAX_GENERIC_SCRIPTS; ++j) {
+					for (int j = 0; j < MAX_GENERIC_SCRIPTS; ++j) {
 						AsciiString keyName;
 						keyName.format("%s%d", TheNameKeyGenerator->keyToName(TheKey_teamGenericScriptHook).str(), j);
 						tmpStr = teamDict.getAsciiString(NAMEKEY(keyName), &exists);
@@ -981,7 +981,7 @@ void Player::initFromDict(const Dict* d)
 	m_teamRelations->m_map.clear(); // For now, it has been decided to just fix this one.  Dear god me must reset.
 	
 	Int i;
-	for ( i = 0; i < MAX_PLAYER_COUNT; ++i ) // For now, it has been decided to just fix this one.  Dear god me must reset.
+	for (int i = 0; i < MAX_PLAYER_COUNT; ++i ) // For now, it has been decided to just fix this one.  Dear god me must reset.
 	{ 
 		m_attackedBy[i] = false;
 		m_visionSpiedBy[i] = 0;
@@ -1005,7 +1005,7 @@ void Player::initFromDict(const Dict* d)
 	if (exists)
 		m_money.deposit(m);
 
-	for ( i = 0; i < NUM_HOTKEY_SQUADS; ++i ) {
+	for (int i = 0; i < NUM_HOTKEY_SQUADS; ++i ) {
 		if (m_squads[i] != NULL)
 		{
 			m_squads[i]->deleteInstance();
@@ -1453,7 +1453,7 @@ void Player::countObjectsByThingTemplate(Int numTmplates, const ThingTemplate* c
 {
 	Int i;
 
-	for (i = 0; i < numTmplates; ++i)
+	for (int i = 0; i < numTmplates; ++i)
 		counts[i] = 0;
 
 	for (PlayerTeamList::const_iterator it = m_playerTeamPrototypes.begin(); 
@@ -1710,7 +1710,7 @@ void Player::killPlayer(void)
 
 	m_isPlayerDead = TRUE; // this is so OCLs don't ever again spawn useful units for us.
 
-	for (it = m_playerTeamPrototypes.begin(); it != m_playerTeamPrototypes.end(); ++it) {
+	for (PlayerTeamList::iterator it = m_playerTeamPrototypes.begin(); it != m_playerTeamPrototypes.end(); ++it) {
 		for (DLINK_ITERATOR<Team> iter = (*it)->iterate_TeamInstanceList(); !iter.done(); iter.advance()) {
 			Team *team = iter.cur();
 			if (!team) {

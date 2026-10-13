@@ -54,6 +54,10 @@
 
 /////#define bool    unsigned
 
+#elif defined(__GNUC__)
+
+// C++ has built-in bool, true, false
+
 #else
 
 enum {false=0,true=1};

@@ -6,24 +6,19 @@ Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDe
  /usr/x86_64-w64-mingw32/include/c++/16.2.0/x86_64-w64-mingw32/bits/os_defines.h \
  /usr/x86_64-w64-mingw32/include/c++/16.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
  /usr/x86_64-w64-mingw32/include/c++/16.2.0/pstl/pstl_config.h \
- /usr/include/stdint.h /usr/include/bits/libc-header-start.h \
- /usr/include/features.h /usr/include/features-time64.h \
- /usr/include/bits/wordsize.h /usr/include/bits/timesize.h \
- /usr/include/stdc-predef.h /usr/include/sys/cdefs.h \
- /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
- /usr/include/bits/types.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/wchar.h \
- /usr/include/bits/stdint-intn.h /usr/include/bits/stdint-uintn.h \
- /usr/include/bits/stdint-least.h \
- /usr/x86_64-w64-mingw32/include/windows.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/stdint.h \
+ /usr/x86_64-w64-mingw32/include/stdint.h \
+ /usr/x86_64-w64-mingw32/include/crtdefs.h \
+ /usr/x86_64-w64-mingw32/include/corecrt.h \
  /usr/x86_64-w64-mingw32/include/_mingw.h \
  /usr/x86_64-w64-mingw32/include/_mingw_mac.h \
  /usr/x86_64-w64-mingw32/include/_mingw_secapi.h \
  /usr/x86_64-w64-mingw32/include/vadefs.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/stddef.h \
+ /usr/x86_64-w64-mingw32/include/stddef.h \
+ /usr/x86_64-w64-mingw32/include/windows.h \
  /usr/x86_64-w64-mingw32/include/sdkddkver.h \
  /usr/x86_64-w64-mingw32/include/excpt.h \
- /usr/x86_64-w64-mingw32/include/crtdefs.h \
- /usr/x86_64-w64-mingw32/include/corecrt.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/stdarg.h \
  /usr/x86_64-w64-mingw32/include/stdarg.h \
  /usr/x86_64-w64-mingw32/include/_mingw_stdarg.h \
@@ -35,15 +30,15 @@ Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDe
  /usr/x86_64-w64-mingw32/include/concurrencysal.h \
  /usr/x86_64-w64-mingw32/include/driverspecs.h \
  /usr/x86_64-w64-mingw32/include/winnt.h \
- /usr/x86_64-w64-mingw32/include/_mingw_unicode.h /usr/include/ctype.h \
- /usr/include/bits/endian.h /usr/include/bits/endianness.h \
- /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
+ /usr/x86_64-w64-mingw32/include/_mingw_unicode.h \
+ /usr/x86_64-w64-mingw32/include/ctype.h \
+ /usr/x86_64-w64-mingw32/include/corecrt_wctype.h \
  /usr/x86_64-w64-mingw32/include/apiset.h \
  /usr/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h \
  /usr/x86_64-w64-mingw32/include/basetsd.h \
- /usr/x86_64-w64-mingw32/include/guiddef.h /usr/include/string.h \
- /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/stddef.h \
- /usr/x86_64-w64-mingw32/include/stddef.h /usr/include/strings.h \
+ /usr/x86_64-w64-mingw32/include/guiddef.h \
+ /usr/x86_64-w64-mingw32/include/string.h \
+ /usr/x86_64-w64-mingw32/include/sec_api/string_s.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/x86intrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/x86gprintrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/ia32intrin.h \
@@ -88,25 +83,17 @@ Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDe
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/mmintrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/xmmintrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/mm_malloc.h \
- /usr/include/stdlib.h /usr/include/bits/waitflags.h \
- /usr/include/bits/waitstatus.h /usr/include/bits/floatn.h \
- /usr/include/bits/floatn-common.h /usr/include/sys/types.h \
- /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
- /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
- /usr/include/endian.h /usr/include/bits/byteswap.h \
- /usr/include/bits/uintn-identity.h /usr/include/sys/select.h \
- /usr/include/bits/select.h /usr/include/bits/types/sigset_t.h \
- /usr/include/bits/types/__sigset_t.h \
- /usr/include/bits/types/struct_timeval.h \
- /usr/include/bits/types/struct_timespec.h \
- /usr/include/bits/pthreadtypes.h /usr/include/bits/thread-shared-types.h \
- /usr/include/bits/pthreadtypes-arch.h \
- /usr/include/bits/atomic_wide_counter.h /usr/include/bits/struct_mutex.h \
- /usr/include/bits/struct_rwlock.h /usr/include/alloca.h \
- /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
- /usr/include/errno.h /usr/include/bits/errno.h \
- /usr/include/linux/errno.h /usr/include/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/stdlib.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/cstdlib \
+ /usr/x86_64-w64-mingw32/include/stdlib.h \
+ /usr/x86_64-w64-mingw32/include/corecrt_wstdlib.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/limits.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/syslimits.h \
+ /usr/x86_64-w64-mingw32/include/limits.h \
+ /usr/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+ /usr/x86_64-w64-mingw32/include/malloc.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/std_abs.h \
+ /usr/x86_64-w64-mingw32/include/errno.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/emmintrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/pmmintrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/16.2.0/include/tmmintrin.h \
@@ -307,24 +294,26 @@ Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDe
  /usr/x86_64-w64-mingw32/include/sec_api/stralign_s.h \
  /usr/x86_64-w64-mingw32/include/winsvc.h \
  /usr/x86_64-w64-mingw32/include/mcx.h \
- /usr/x86_64-w64-mingw32/include/imm.h /usr/include/vulkan/vulkan.h \
- /usr/include/vulkan/vk_platform.h /usr/include/vulkan/vulkan_core.h \
- /usr/include/vk_video/vulkan_video_codec_h264std.h \
- /usr/include/vk_video/vulkan_video_codecs_common.h \
- /usr/include/vk_video/vulkan_video_codec_h264std_encode.h \
- /usr/include/vk_video/vulkan_video_codec_h264std.h \
- /usr/include/vk_video/vulkan_video_codec_h265std.h \
- /usr/include/vk_video/vulkan_video_codec_h265std_encode.h \
- /usr/include/vk_video/vulkan_video_codec_h265std.h \
- /usr/include/vk_video/vulkan_video_codec_h264std_decode.h \
- /usr/include/vk_video/vulkan_video_codec_h265std_decode.h \
- /usr/include/vk_video/vulkan_video_codec_av1std.h \
- /usr/include/vk_video/vulkan_video_codec_av1std_decode.h \
- /usr/include/vk_video/vulkan_video_codec_av1std.h \
- /usr/include/vk_video/vulkan_video_codec_av1std_encode.h \
- /usr/include/vk_video/vulkan_video_codec_vp9std.h \
- /usr/include/vk_video/vulkan_video_codec_vp9std_decode.h \
- /usr/include/vk_video/vulkan_video_codec_vp9std.h \
+ /usr/x86_64-w64-mingw32/include/imm.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vulkan/vulkan.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vulkan/vk_platform.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vulkan/vulkan_core.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_h264std.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codecs_common.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_h264std_encode.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_h264std.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_h265std.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_h265std_encode.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_h265std.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_h264std_decode.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_h265std_decode.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_av1std.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_av1std_decode.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_av1std.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_av1std_encode.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_vp9std.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_vp9std_decode.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vk_video/vulkan_video_codec_vp9std.h \
  /usr/x86_64-w64-mingw32/include/c++/16.2.0/vector \
  /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/requires_hosted.h \
  /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/stl_algobase.h \
@@ -378,6 +367,7 @@ Generals/Code/Libraries/Source/VulkanRenderer/CMakeFiles/VulkanRenderer.dir/VkDe
  /usr/x86_64-w64-mingw32/include/c++/16.2.0/tuple \
  /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/invoke.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkDevice.h \
- /usr/include/vulkan/vulkan_win32.h \
- /usr/x86_64-w64-mingw32/include/c++/16.2.0/cassert /usr/include/assert.h \
+ /home/cyklon/Work/Project-Generals/third_party/include/vulkan/vulkan_win32.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/cassert \
+ /usr/x86_64-w64-mingw32/include/assert.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/VulkanRenderer/VkTexture.h

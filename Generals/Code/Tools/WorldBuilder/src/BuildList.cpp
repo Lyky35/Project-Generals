@@ -21,7 +21,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "Lib\BaseType.h"
+#include "Lib/BaseType.h"
 #include "BuildList.h"
 #include "BuildListTool.h"
 #include "BaseBuildProps.h"
@@ -122,7 +122,7 @@ void BuildList::loadSides(void)
 	}
 	pCombo->ResetContent();
 	Int i;
-	for (i=0; i<TheSidesList->getNumSides(); i++) {
+	for (int i =0; i<TheSidesList->getNumSides(); i++) {
 		Dict *d = TheSidesList->getSideInfo(i)->getDict();
 		AsciiString name = d->getAsciiString(TheKey_playerName);
 		UnicodeString uni = d->getUnicodeString(TheKey_playerDisplayName);
@@ -300,7 +300,7 @@ void BuildList::setSelectedBuildList(BuildListInfo *pInfo)
 		return;
 	}
 	Int i;
- 	for (i=0; i<TheSidesList->getNumSides(); i++) {
+ 	for (int i =0; i<TheSidesList->getNumSides(); i++) {
 		SidesInfo *pSide = TheSidesList->getSideInfo(i); 
 		Int listSel = 0;
 		for (BuildListInfo *pBuild = pSide->getBuildList(); pBuild; pBuild = pBuild->getNext()) {

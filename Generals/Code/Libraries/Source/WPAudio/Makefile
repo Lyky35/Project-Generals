@@ -130,13 +130,13 @@ WPAudio/fast:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build
 .PHONY : WPAudio/fast
 
-AUD_Assert.obj: AUD_Assert.cpp.obj
-.PHONY : AUD_Assert.obj
+AUD_Assert.o: AUD_Assert.cpp.o
+.PHONY : AUD_Assert.o
 
 # target to build an object file
-AUD_Assert.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.obj
-.PHONY : AUD_Assert.cpp.obj
+AUD_Assert.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.o
+.PHONY : AUD_Assert.cpp.o
 
 AUD_Assert.i: AUD_Assert.cpp.i
 .PHONY : AUD_Assert.i
@@ -154,13 +154,13 @@ AUD_Assert.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Assert.cpp.s
 .PHONY : AUD_Assert.cpp.s
 
-AUD_Attributes.obj: AUD_Attributes.cpp.obj
-.PHONY : AUD_Attributes.obj
+AUD_Attributes.o: AUD_Attributes.cpp.o
+.PHONY : AUD_Attributes.o
 
 # target to build an object file
-AUD_Attributes.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.obj
-.PHONY : AUD_Attributes.cpp.obj
+AUD_Attributes.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.o
+.PHONY : AUD_Attributes.cpp.o
 
 AUD_Attributes.i: AUD_Attributes.cpp.i
 .PHONY : AUD_Attributes.i
@@ -178,13 +178,13 @@ AUD_Attributes.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Attributes.cpp.s
 .PHONY : AUD_Attributes.cpp.s
 
-AUD_Cache.obj: AUD_Cache.cpp.obj
-.PHONY : AUD_Cache.obj
+AUD_Cache.o: AUD_Cache.cpp.o
+.PHONY : AUD_Cache.o
 
 # target to build an object file
-AUD_Cache.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.obj
-.PHONY : AUD_Cache.cpp.obj
+AUD_Cache.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.o
+.PHONY : AUD_Cache.cpp.o
 
 AUD_Cache.i: AUD_Cache.cpp.i
 .PHONY : AUD_Cache.i
@@ -202,13 +202,13 @@ AUD_Cache.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Cache.cpp.s
 .PHONY : AUD_Cache.cpp.s
 
-AUD_Channel.obj: AUD_Channel.cpp.obj
-.PHONY : AUD_Channel.obj
+AUD_Channel.o: AUD_Channel.cpp.o
+.PHONY : AUD_Channel.o
 
 # target to build an object file
-AUD_Channel.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.obj
-.PHONY : AUD_Channel.cpp.obj
+AUD_Channel.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.o
+.PHONY : AUD_Channel.cpp.o
 
 AUD_Channel.i: AUD_Channel.cpp.i
 .PHONY : AUD_Channel.i
@@ -226,13 +226,13 @@ AUD_Channel.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Channel.cpp.s
 .PHONY : AUD_Channel.cpp.s
 
-AUD_DSoundDriver.obj: AUD_DSoundDriver.cpp.obj
-.PHONY : AUD_DSoundDriver.obj
+AUD_DSoundDriver.o: AUD_DSoundDriver.cpp.o
+.PHONY : AUD_DSoundDriver.o
 
 # target to build an object file
-AUD_DSoundDriver.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.obj
-.PHONY : AUD_DSoundDriver.cpp.obj
+AUD_DSoundDriver.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.o
+.PHONY : AUD_DSoundDriver.cpp.o
 
 AUD_DSoundDriver.i: AUD_DSoundDriver.cpp.i
 .PHONY : AUD_DSoundDriver.i
@@ -250,13 +250,13 @@ AUD_DSoundDriver.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_DSoundDriver.cpp.s
 .PHONY : AUD_DSoundDriver.cpp.s
 
-AUD_Device.obj: AUD_Device.cpp.obj
-.PHONY : AUD_Device.obj
+AUD_Device.o: AUD_Device.cpp.o
+.PHONY : AUD_Device.o
 
 # target to build an object file
-AUD_Device.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.obj
-.PHONY : AUD_Device.cpp.obj
+AUD_Device.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.o
+.PHONY : AUD_Device.cpp.o
 
 AUD_Device.i: AUD_Device.cpp.i
 .PHONY : AUD_Device.i
@@ -274,13 +274,13 @@ AUD_Device.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Device.cpp.s
 .PHONY : AUD_Device.cpp.s
 
-AUD_Events.obj: AUD_Events.cpp.obj
-.PHONY : AUD_Events.obj
+AUD_Events.o: AUD_Events.cpp.o
+.PHONY : AUD_Events.o
 
 # target to build an object file
-AUD_Events.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.obj
-.PHONY : AUD_Events.cpp.obj
+AUD_Events.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.o
+.PHONY : AUD_Events.cpp.o
 
 AUD_Events.i: AUD_Events.cpp.i
 .PHONY : AUD_Events.i
@@ -298,13 +298,13 @@ AUD_Events.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Events.cpp.s
 .PHONY : AUD_Events.cpp.s
 
-AUD_Level.obj: AUD_Level.cpp.obj
-.PHONY : AUD_Level.obj
+AUD_Level.o: AUD_Level.cpp.o
+.PHONY : AUD_Level.o
 
 # target to build an object file
-AUD_Level.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.obj
-.PHONY : AUD_Level.cpp.obj
+AUD_Level.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.o
+.PHONY : AUD_Level.cpp.o
 
 AUD_Level.i: AUD_Level.cpp.i
 .PHONY : AUD_Level.i
@@ -322,13 +322,13 @@ AUD_Level.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Level.cpp.s
 .PHONY : AUD_Level.cpp.s
 
-AUD_List.obj: AUD_List.cpp.obj
-.PHONY : AUD_List.obj
+AUD_List.o: AUD_List.cpp.o
+.PHONY : AUD_List.o
 
 # target to build an object file
-AUD_List.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.obj
-.PHONY : AUD_List.cpp.obj
+AUD_List.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.o
+.PHONY : AUD_List.cpp.o
 
 AUD_List.i: AUD_List.cpp.i
 .PHONY : AUD_List.i
@@ -346,13 +346,13 @@ AUD_List.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_List.cpp.s
 .PHONY : AUD_List.cpp.s
 
-AUD_Lock.obj: AUD_Lock.cpp.obj
-.PHONY : AUD_Lock.obj
+AUD_Lock.o: AUD_Lock.cpp.o
+.PHONY : AUD_Lock.o
 
 # target to build an object file
-AUD_Lock.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.obj
-.PHONY : AUD_Lock.cpp.obj
+AUD_Lock.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.o
+.PHONY : AUD_Lock.cpp.o
 
 AUD_Lock.i: AUD_Lock.cpp.i
 .PHONY : AUD_Lock.i
@@ -370,13 +370,13 @@ AUD_Lock.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Lock.cpp.s
 .PHONY : AUD_Lock.cpp.s
 
-AUD_Memory.obj: AUD_Memory.cpp.obj
-.PHONY : AUD_Memory.obj
+AUD_Memory.o: AUD_Memory.cpp.o
+.PHONY : AUD_Memory.o
 
 # target to build an object file
-AUD_Memory.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.obj
-.PHONY : AUD_Memory.cpp.obj
+AUD_Memory.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.o
+.PHONY : AUD_Memory.cpp.o
 
 AUD_Memory.i: AUD_Memory.cpp.i
 .PHONY : AUD_Memory.i
@@ -394,13 +394,13 @@ AUD_Memory.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Memory.cpp.s
 .PHONY : AUD_Memory.cpp.s
 
-AUD_Profiler.obj: AUD_Profiler.cpp.obj
-.PHONY : AUD_Profiler.obj
+AUD_Profiler.o: AUD_Profiler.cpp.o
+.PHONY : AUD_Profiler.o
 
 # target to build an object file
-AUD_Profiler.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.obj
-.PHONY : AUD_Profiler.cpp.obj
+AUD_Profiler.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.o
+.PHONY : AUD_Profiler.cpp.o
 
 AUD_Profiler.i: AUD_Profiler.cpp.i
 .PHONY : AUD_Profiler.i
@@ -418,13 +418,13 @@ AUD_Profiler.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Profiler.cpp.s
 .PHONY : AUD_Profiler.cpp.s
 
-AUD_Source.obj: AUD_Source.cpp.obj
-.PHONY : AUD_Source.obj
+AUD_Source.o: AUD_Source.cpp.o
+.PHONY : AUD_Source.o
 
 # target to build an object file
-AUD_Source.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.obj
-.PHONY : AUD_Source.cpp.obj
+AUD_Source.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.o
+.PHONY : AUD_Source.cpp.o
 
 AUD_Source.i: AUD_Source.cpp.i
 .PHONY : AUD_Source.i
@@ -442,13 +442,13 @@ AUD_Source.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Source.cpp.s
 .PHONY : AUD_Source.cpp.s
 
-AUD_StreamBuffering.obj: AUD_StreamBuffering.cpp.obj
-.PHONY : AUD_StreamBuffering.obj
+AUD_StreamBuffering.o: AUD_StreamBuffering.cpp.o
+.PHONY : AUD_StreamBuffering.o
 
 # target to build an object file
-AUD_StreamBuffering.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.obj
-.PHONY : AUD_StreamBuffering.cpp.obj
+AUD_StreamBuffering.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.o
+.PHONY : AUD_StreamBuffering.cpp.o
 
 AUD_StreamBuffering.i: AUD_StreamBuffering.cpp.i
 .PHONY : AUD_StreamBuffering.i
@@ -466,13 +466,13 @@ AUD_StreamBuffering.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_StreamBuffering.cpp.s
 .PHONY : AUD_StreamBuffering.cpp.s
 
-AUD_Streamer.obj: AUD_Streamer.cpp.obj
-.PHONY : AUD_Streamer.obj
+AUD_Streamer.o: AUD_Streamer.cpp.o
+.PHONY : AUD_Streamer.o
 
 # target to build an object file
-AUD_Streamer.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.obj
-.PHONY : AUD_Streamer.cpp.obj
+AUD_Streamer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.o
+.PHONY : AUD_Streamer.cpp.o
 
 AUD_Streamer.i: AUD_Streamer.cpp.i
 .PHONY : AUD_Streamer.i
@@ -490,13 +490,13 @@ AUD_Streamer.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Streamer.cpp.s
 .PHONY : AUD_Streamer.cpp.s
 
-AUD_Time.obj: AUD_Time.cpp.obj
-.PHONY : AUD_Time.obj
+AUD_Time.o: AUD_Time.cpp.o
+.PHONY : AUD_Time.o
 
 # target to build an object file
-AUD_Time.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.obj
-.PHONY : AUD_Time.cpp.obj
+AUD_Time.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.o
+.PHONY : AUD_Time.cpp.o
 
 AUD_Time.i: AUD_Time.cpp.i
 .PHONY : AUD_Time.i
@@ -514,13 +514,13 @@ AUD_Time.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Time.cpp.s
 .PHONY : AUD_Time.cpp.s
 
-AUD_Windows.obj: AUD_Windows.cpp.obj
-.PHONY : AUD_Windows.obj
+AUD_Windows.o: AUD_Windows.cpp.o
+.PHONY : AUD_Windows.o
 
 # target to build an object file
-AUD_Windows.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.obj
-.PHONY : AUD_Windows.cpp.obj
+AUD_Windows.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.o
+.PHONY : AUD_Windows.cpp.o
 
 AUD_Windows.i: AUD_Windows.cpp.i
 .PHONY : AUD_Windows.i
@@ -538,6 +538,414 @@ AUD_Windows.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/AUD_Windows.cpp.s
 .PHONY : AUD_Windows.cpp.s
 
+aud_assert.o: aud_assert.cpp.o
+.PHONY : aud_assert.o
+
+# target to build an object file
+aud_assert.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_assert.cpp.o
+.PHONY : aud_assert.cpp.o
+
+aud_assert.i: aud_assert.cpp.i
+.PHONY : aud_assert.i
+
+# target to preprocess a source file
+aud_assert.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_assert.cpp.i
+.PHONY : aud_assert.cpp.i
+
+aud_assert.s: aud_assert.cpp.s
+.PHONY : aud_assert.s
+
+# target to generate assembly for a file
+aud_assert.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_assert.cpp.s
+.PHONY : aud_assert.cpp.s
+
+aud_attributes.o: aud_attributes.cpp.o
+.PHONY : aud_attributes.o
+
+# target to build an object file
+aud_attributes.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_attributes.cpp.o
+.PHONY : aud_attributes.cpp.o
+
+aud_attributes.i: aud_attributes.cpp.i
+.PHONY : aud_attributes.i
+
+# target to preprocess a source file
+aud_attributes.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_attributes.cpp.i
+.PHONY : aud_attributes.cpp.i
+
+aud_attributes.s: aud_attributes.cpp.s
+.PHONY : aud_attributes.s
+
+# target to generate assembly for a file
+aud_attributes.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_attributes.cpp.s
+.PHONY : aud_attributes.cpp.s
+
+aud_cache.o: aud_cache.cpp.o
+.PHONY : aud_cache.o
+
+# target to build an object file
+aud_cache.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_cache.cpp.o
+.PHONY : aud_cache.cpp.o
+
+aud_cache.i: aud_cache.cpp.i
+.PHONY : aud_cache.i
+
+# target to preprocess a source file
+aud_cache.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_cache.cpp.i
+.PHONY : aud_cache.cpp.i
+
+aud_cache.s: aud_cache.cpp.s
+.PHONY : aud_cache.s
+
+# target to generate assembly for a file
+aud_cache.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_cache.cpp.s
+.PHONY : aud_cache.cpp.s
+
+aud_channel.o: aud_channel.cpp.o
+.PHONY : aud_channel.o
+
+# target to build an object file
+aud_channel.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_channel.cpp.o
+.PHONY : aud_channel.cpp.o
+
+aud_channel.i: aud_channel.cpp.i
+.PHONY : aud_channel.i
+
+# target to preprocess a source file
+aud_channel.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_channel.cpp.i
+.PHONY : aud_channel.cpp.i
+
+aud_channel.s: aud_channel.cpp.s
+.PHONY : aud_channel.s
+
+# target to generate assembly for a file
+aud_channel.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_channel.cpp.s
+.PHONY : aud_channel.cpp.s
+
+aud_device.o: aud_device.cpp.o
+.PHONY : aud_device.o
+
+# target to build an object file
+aud_device.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_device.cpp.o
+.PHONY : aud_device.cpp.o
+
+aud_device.i: aud_device.cpp.i
+.PHONY : aud_device.i
+
+# target to preprocess a source file
+aud_device.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_device.cpp.i
+.PHONY : aud_device.cpp.i
+
+aud_device.s: aud_device.cpp.s
+.PHONY : aud_device.s
+
+# target to generate assembly for a file
+aud_device.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_device.cpp.s
+.PHONY : aud_device.cpp.s
+
+aud_dsounddriver.o: aud_dsounddriver.cpp.o
+.PHONY : aud_dsounddriver.o
+
+# target to build an object file
+aud_dsounddriver.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.o
+.PHONY : aud_dsounddriver.cpp.o
+
+aud_dsounddriver.i: aud_dsounddriver.cpp.i
+.PHONY : aud_dsounddriver.i
+
+# target to preprocess a source file
+aud_dsounddriver.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.i
+.PHONY : aud_dsounddriver.cpp.i
+
+aud_dsounddriver.s: aud_dsounddriver.cpp.s
+.PHONY : aud_dsounddriver.s
+
+# target to generate assembly for a file
+aud_dsounddriver.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_dsounddriver.cpp.s
+.PHONY : aud_dsounddriver.cpp.s
+
+aud_events.o: aud_events.cpp.o
+.PHONY : aud_events.o
+
+# target to build an object file
+aud_events.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_events.cpp.o
+.PHONY : aud_events.cpp.o
+
+aud_events.i: aud_events.cpp.i
+.PHONY : aud_events.i
+
+# target to preprocess a source file
+aud_events.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_events.cpp.i
+.PHONY : aud_events.cpp.i
+
+aud_events.s: aud_events.cpp.s
+.PHONY : aud_events.s
+
+# target to generate assembly for a file
+aud_events.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_events.cpp.s
+.PHONY : aud_events.cpp.s
+
+aud_level.o: aud_level.cpp.o
+.PHONY : aud_level.o
+
+# target to build an object file
+aud_level.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_level.cpp.o
+.PHONY : aud_level.cpp.o
+
+aud_level.i: aud_level.cpp.i
+.PHONY : aud_level.i
+
+# target to preprocess a source file
+aud_level.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_level.cpp.i
+.PHONY : aud_level.cpp.i
+
+aud_level.s: aud_level.cpp.s
+.PHONY : aud_level.s
+
+# target to generate assembly for a file
+aud_level.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_level.cpp.s
+.PHONY : aud_level.cpp.s
+
+aud_list.o: aud_list.cpp.o
+.PHONY : aud_list.o
+
+# target to build an object file
+aud_list.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_list.cpp.o
+.PHONY : aud_list.cpp.o
+
+aud_list.i: aud_list.cpp.i
+.PHONY : aud_list.i
+
+# target to preprocess a source file
+aud_list.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_list.cpp.i
+.PHONY : aud_list.cpp.i
+
+aud_list.s: aud_list.cpp.s
+.PHONY : aud_list.s
+
+# target to generate assembly for a file
+aud_list.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_list.cpp.s
+.PHONY : aud_list.cpp.s
+
+aud_lock.o: aud_lock.cpp.o
+.PHONY : aud_lock.o
+
+# target to build an object file
+aud_lock.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_lock.cpp.o
+.PHONY : aud_lock.cpp.o
+
+aud_lock.i: aud_lock.cpp.i
+.PHONY : aud_lock.i
+
+# target to preprocess a source file
+aud_lock.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_lock.cpp.i
+.PHONY : aud_lock.cpp.i
+
+aud_lock.s: aud_lock.cpp.s
+.PHONY : aud_lock.s
+
+# target to generate assembly for a file
+aud_lock.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_lock.cpp.s
+.PHONY : aud_lock.cpp.s
+
+aud_memory.o: aud_memory.cpp.o
+.PHONY : aud_memory.o
+
+# target to build an object file
+aud_memory.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_memory.cpp.o
+.PHONY : aud_memory.cpp.o
+
+aud_memory.i: aud_memory.cpp.i
+.PHONY : aud_memory.i
+
+# target to preprocess a source file
+aud_memory.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_memory.cpp.i
+.PHONY : aud_memory.cpp.i
+
+aud_memory.s: aud_memory.cpp.s
+.PHONY : aud_memory.s
+
+# target to generate assembly for a file
+aud_memory.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_memory.cpp.s
+.PHONY : aud_memory.cpp.s
+
+aud_profiler.o: aud_profiler.cpp.o
+.PHONY : aud_profiler.o
+
+# target to build an object file
+aud_profiler.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_profiler.cpp.o
+.PHONY : aud_profiler.cpp.o
+
+aud_profiler.i: aud_profiler.cpp.i
+.PHONY : aud_profiler.i
+
+# target to preprocess a source file
+aud_profiler.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_profiler.cpp.i
+.PHONY : aud_profiler.cpp.i
+
+aud_profiler.s: aud_profiler.cpp.s
+.PHONY : aud_profiler.s
+
+# target to generate assembly for a file
+aud_profiler.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_profiler.cpp.s
+.PHONY : aud_profiler.cpp.s
+
+aud_source.o: aud_source.cpp.o
+.PHONY : aud_source.o
+
+# target to build an object file
+aud_source.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_source.cpp.o
+.PHONY : aud_source.cpp.o
+
+aud_source.i: aud_source.cpp.i
+.PHONY : aud_source.i
+
+# target to preprocess a source file
+aud_source.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_source.cpp.i
+.PHONY : aud_source.cpp.i
+
+aud_source.s: aud_source.cpp.s
+.PHONY : aud_source.s
+
+# target to generate assembly for a file
+aud_source.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_source.cpp.s
+.PHONY : aud_source.cpp.s
+
+aud_streambuffering.o: aud_streambuffering.cpp.o
+.PHONY : aud_streambuffering.o
+
+# target to build an object file
+aud_streambuffering.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.o
+.PHONY : aud_streambuffering.cpp.o
+
+aud_streambuffering.i: aud_streambuffering.cpp.i
+.PHONY : aud_streambuffering.i
+
+# target to preprocess a source file
+aud_streambuffering.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.i
+.PHONY : aud_streambuffering.cpp.i
+
+aud_streambuffering.s: aud_streambuffering.cpp.s
+.PHONY : aud_streambuffering.s
+
+# target to generate assembly for a file
+aud_streambuffering.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streambuffering.cpp.s
+.PHONY : aud_streambuffering.cpp.s
+
+aud_streamer.o: aud_streamer.cpp.o
+.PHONY : aud_streamer.o
+
+# target to build an object file
+aud_streamer.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streamer.cpp.o
+.PHONY : aud_streamer.cpp.o
+
+aud_streamer.i: aud_streamer.cpp.i
+.PHONY : aud_streamer.i
+
+# target to preprocess a source file
+aud_streamer.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streamer.cpp.i
+.PHONY : aud_streamer.cpp.i
+
+aud_streamer.s: aud_streamer.cpp.s
+.PHONY : aud_streamer.s
+
+# target to generate assembly for a file
+aud_streamer.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_streamer.cpp.s
+.PHONY : aud_streamer.cpp.s
+
+aud_time.o: aud_time.cpp.o
+.PHONY : aud_time.o
+
+# target to build an object file
+aud_time.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_time.cpp.o
+.PHONY : aud_time.cpp.o
+
+aud_time.i: aud_time.cpp.i
+.PHONY : aud_time.i
+
+# target to preprocess a source file
+aud_time.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_time.cpp.i
+.PHONY : aud_time.cpp.i
+
+aud_time.s: aud_time.cpp.s
+.PHONY : aud_time.s
+
+# target to generate assembly for a file
+aud_time.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_time.cpp.s
+.PHONY : aud_time.cpp.s
+
+aud_windows.o: aud_windows.cpp.o
+.PHONY : aud_windows.o
+
+# target to build an object file
+aud_windows.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_windows.cpp.o
+.PHONY : aud_windows.cpp.o
+
+aud_windows.i: aud_windows.cpp.i
+.PHONY : aud_windows.i
+
+# target to preprocess a source file
+aud_windows.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_windows.cpp.i
+.PHONY : aud_windows.cpp.i
+
+aud_windows.s: aud_windows.cpp.s
+.PHONY : aud_windows.s
+
+# target to generate assembly for a file
+aud_windows.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/build.make Generals/Code/Libraries/Source/WPAudio/CMakeFiles/WPAudio.dir/aud_windows.cpp.s
+.PHONY : aud_windows.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -547,57 +955,108 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... WPAudio"
-	@echo "... AUD_Assert.obj"
+	@echo "... AUD_Assert.o"
 	@echo "... AUD_Assert.i"
 	@echo "... AUD_Assert.s"
-	@echo "... AUD_Attributes.obj"
+	@echo "... AUD_Attributes.o"
 	@echo "... AUD_Attributes.i"
 	@echo "... AUD_Attributes.s"
-	@echo "... AUD_Cache.obj"
+	@echo "... AUD_Cache.o"
 	@echo "... AUD_Cache.i"
 	@echo "... AUD_Cache.s"
-	@echo "... AUD_Channel.obj"
+	@echo "... AUD_Channel.o"
 	@echo "... AUD_Channel.i"
 	@echo "... AUD_Channel.s"
-	@echo "... AUD_DSoundDriver.obj"
+	@echo "... AUD_DSoundDriver.o"
 	@echo "... AUD_DSoundDriver.i"
 	@echo "... AUD_DSoundDriver.s"
-	@echo "... AUD_Device.obj"
+	@echo "... AUD_Device.o"
 	@echo "... AUD_Device.i"
 	@echo "... AUD_Device.s"
-	@echo "... AUD_Events.obj"
+	@echo "... AUD_Events.o"
 	@echo "... AUD_Events.i"
 	@echo "... AUD_Events.s"
-	@echo "... AUD_Level.obj"
+	@echo "... AUD_Level.o"
 	@echo "... AUD_Level.i"
 	@echo "... AUD_Level.s"
-	@echo "... AUD_List.obj"
+	@echo "... AUD_List.o"
 	@echo "... AUD_List.i"
 	@echo "... AUD_List.s"
-	@echo "... AUD_Lock.obj"
+	@echo "... AUD_Lock.o"
 	@echo "... AUD_Lock.i"
 	@echo "... AUD_Lock.s"
-	@echo "... AUD_Memory.obj"
+	@echo "... AUD_Memory.o"
 	@echo "... AUD_Memory.i"
 	@echo "... AUD_Memory.s"
-	@echo "... AUD_Profiler.obj"
+	@echo "... AUD_Profiler.o"
 	@echo "... AUD_Profiler.i"
 	@echo "... AUD_Profiler.s"
-	@echo "... AUD_Source.obj"
+	@echo "... AUD_Source.o"
 	@echo "... AUD_Source.i"
 	@echo "... AUD_Source.s"
-	@echo "... AUD_StreamBuffering.obj"
+	@echo "... AUD_StreamBuffering.o"
 	@echo "... AUD_StreamBuffering.i"
 	@echo "... AUD_StreamBuffering.s"
-	@echo "... AUD_Streamer.obj"
+	@echo "... AUD_Streamer.o"
 	@echo "... AUD_Streamer.i"
 	@echo "... AUD_Streamer.s"
-	@echo "... AUD_Time.obj"
+	@echo "... AUD_Time.o"
 	@echo "... AUD_Time.i"
 	@echo "... AUD_Time.s"
-	@echo "... AUD_Windows.obj"
+	@echo "... AUD_Windows.o"
 	@echo "... AUD_Windows.i"
 	@echo "... AUD_Windows.s"
+	@echo "... aud_assert.o"
+	@echo "... aud_assert.i"
+	@echo "... aud_assert.s"
+	@echo "... aud_attributes.o"
+	@echo "... aud_attributes.i"
+	@echo "... aud_attributes.s"
+	@echo "... aud_cache.o"
+	@echo "... aud_cache.i"
+	@echo "... aud_cache.s"
+	@echo "... aud_channel.o"
+	@echo "... aud_channel.i"
+	@echo "... aud_channel.s"
+	@echo "... aud_device.o"
+	@echo "... aud_device.i"
+	@echo "... aud_device.s"
+	@echo "... aud_dsounddriver.o"
+	@echo "... aud_dsounddriver.i"
+	@echo "... aud_dsounddriver.s"
+	@echo "... aud_events.o"
+	@echo "... aud_events.i"
+	@echo "... aud_events.s"
+	@echo "... aud_level.o"
+	@echo "... aud_level.i"
+	@echo "... aud_level.s"
+	@echo "... aud_list.o"
+	@echo "... aud_list.i"
+	@echo "... aud_list.s"
+	@echo "... aud_lock.o"
+	@echo "... aud_lock.i"
+	@echo "... aud_lock.s"
+	@echo "... aud_memory.o"
+	@echo "... aud_memory.i"
+	@echo "... aud_memory.s"
+	@echo "... aud_profiler.o"
+	@echo "... aud_profiler.i"
+	@echo "... aud_profiler.s"
+	@echo "... aud_source.o"
+	@echo "... aud_source.i"
+	@echo "... aud_source.s"
+	@echo "... aud_streambuffering.o"
+	@echo "... aud_streambuffering.i"
+	@echo "... aud_streambuffering.s"
+	@echo "... aud_streamer.o"
+	@echo "... aud_streamer.i"
+	@echo "... aud_streamer.s"
+	@echo "... aud_time.o"
+	@echo "... aud_time.i"
+	@echo "... aud_time.s"
+	@echo "... aud_windows.o"
+	@echo "... aud_windows.i"
+	@echo "... aud_windows.s"
 .PHONY : help
 
 

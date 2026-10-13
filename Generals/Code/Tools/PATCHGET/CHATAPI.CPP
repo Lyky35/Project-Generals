@@ -963,7 +963,7 @@ void Update_If_Required(void)
   int   retval;
   int   i;
   // Create the events
-  for (i=0; i<NUM_EVENTS; i++)
+  for (int i =0; i<NUM_EVENTS; i++)
     Events[i]=CreateEvent(NULL,FALSE,FALSE,NULL);
 
 	StartPatchCheck();
@@ -999,7 +999,7 @@ void Update_If_Required(void)
   //DBGMSG("Shutting down");
 
   // close all the event objects
-  for (i=0; i<NUM_EVENTS; i++)
+  for (int i =0; i<NUM_EVENTS; i++)
     CloseHandle(Events[i]);
 
 	/*
@@ -1009,7 +1009,7 @@ void Update_If_Required(void)
 
 
   // Create the events
-  for (i=0; i<NUM_EVENTS; i++)
+  for (int i =0; i<NUM_EVENTS; i++)
     Events[i]=CreateEvent(NULL,FALSE,FALSE,NULL);
 
   /// For Testing....
@@ -1049,7 +1049,7 @@ void Update_If_Required(void)
   //DBGMSG("Shutting down");
 
   // close all the event objects
-  for (i=0; i<NUM_EVENTS; i++)
+  for (int i =0; i<NUM_EVENTS; i++)
     CloseHandle(Events[i]);
 
   Shutdown_Chat();

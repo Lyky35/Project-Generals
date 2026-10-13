@@ -71,11 +71,6 @@ IndexBufferClass::IndexBufferClass(unsigned type_, unsigned short index_count_)
 	index_count(index_count_),
 	type(type_),
 	engine_refs(0)
-	index_buffer_vk(NULL),
-	ShadowBuffer(NULL),
-	ShadowBufferSize(0),
-	LockStart(0),
-	LockSize(0)
 {
 	WWASSERT(type==BUFFER_TYPE_DX8 || type==BUFFER_TYPE_SORTING);
 	WWASSERT(index_count);
@@ -146,14 +141,14 @@ void IndexBufferClass::Copy(unsigned int* indices,unsigned first_index,unsigned 
 		DX8IndexBufferClass::AppendLockClass l(this,first_index,count);
 		unsigned short* inds=l.Get_Index_Array();
 		for (unsigned v=0;v<count;++v) {
-			*inds++=unsigned short(*indices++);
+			*inds++=(unsigned short)(*indices++);
 		}
 	}
 	else {
 		DX8IndexBufferClass::WriteLockClass l(this);
 		unsigned short* inds=l.Get_Index_Array();
 		for (unsigned v=0;v<count;++v) {
-			*inds++=unsigned short(*indices++);
+			*inds++=(unsigned short)(*indices++);
 		}
 	}
 }
@@ -192,11 +187,12 @@ IndexBufferClass::WriteLockClass::WriteLockClass(IndexBufferClass* index_buffer_
 	WWASSERT(!index_buffer->Engine_Refs());
 	index_buffer->Add_Ref();
 	switch (index_buffer->Type()) {
-	case BUFFER_TYPE_DX8:
+	case BUFFER_TYPE_DX8: {
 		DX8_Assert();
 		DX8IndexBufferClass* dxIdxLock = static_cast<DX8IndexBufferClass*>(index_buffer);
-		indices = (unsigned short*)dxIdxLock->IndexBuffer->Map();
+		indices = (unsigned short*)dxIdxLock->index_buffer->Map();
 		break;
+	}
 	case BUFFER_TYPE_SORTING:
 		indices=static_cast<SortingIndexBufferClass*>(index_buffer)->index_buffer;
 		break;
@@ -215,11 +211,12 @@ IndexBufferClass::WriteLockClass::~WriteLockClass()
 {
 	DX8_THREAD_ASSERT();
 	switch (index_buffer->Type()) {
-	case BUFFER_TYPE_DX8:
+	case BUFFER_TYPE_DX8: {
 		DX8_Assert();
 		DX8IndexBufferClass* dxIdxUnlock = static_cast<DX8IndexBufferClass*>(index_buffer);
-		dxIdxUnlock->IndexBuffer->Unmap();
+		dxIdxUnlock->Get_Vulkan_Index_Buffer()->Unmap();
 		break;
+	}
 	case BUFFER_TYPE_SORTING:
 		break;
 	default:
@@ -241,11 +238,12 @@ IndexBufferClass::AppendLockClass::AppendLockClass(IndexBufferClass* index_buffe
 	WWASSERT(!index_buffer->Engine_Refs());
 	index_buffer->Add_Ref();
 	switch (index_buffer->Type()) {
-	case BUFFER_TYPE_DX8:
+	case BUFFER_TYPE_DX8: {
 		DX8_Assert();
 		DX8IndexBufferClass* dxIdxAppend = static_cast<DX8IndexBufferClass*>(index_buffer);
-		indices = (unsigned short*)dxIdxAppend->IndexBuffer->Map() + start_index;
+		indices = (unsigned short*)dxIdxAppend->Get_Vulkan_Index_Buffer()->Map() + start_index;
 		break;
+	}
 	case BUFFER_TYPE_SORTING:
 		indices=static_cast<SortingIndexBufferClass*>(index_buffer)->index_buffer+start_index;
 		break;
@@ -261,11 +259,12 @@ IndexBufferClass::AppendLockClass::~AppendLockClass()
 {
 	DX8_THREAD_ASSERT();
 	switch (index_buffer->Type()) {
-	case BUFFER_TYPE_DX8:
+	case BUFFER_TYPE_DX8: {
 		DX8_Assert();
 		DX8IndexBufferClass* dxIdxAppendUnlock = static_cast<DX8IndexBufferClass*>(index_buffer);
-		dxIdxAppendUnlock->IndexBuffer->Unmap();
+		dxIdxAppendUnlock->Get_Vulkan_Index_Buffer()->Unmap();
 		break;
+	}
 	case BUFFER_TYPE_SORTING:
 		break;
 	default:
@@ -289,7 +288,7 @@ DX8IndexBufferClass::DX8IndexBufferClass(unsigned short index_count_,UsageType u
 	WWASSERT(index_count);
 	unsigned byteSize = sizeof(WORD)*index_count;
 
-	VkIndexBuffer* idxBuf = new VkIndexBuffer();
+	VkGpuBuffer* idxBuf = new VkGpuBuffer();
 	bool created = idxBuf->Create(&VulkanDevice::Instance(), byteSize,
 		VK_BUFFER_USAGE_INDEX_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
 		VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
@@ -306,9 +305,9 @@ DX8IndexBufferClass::DX8IndexBufferClass(unsigned short index_count_,UsageType u
 
 DX8IndexBufferClass::~DX8IndexBufferClass()
 {
-	VkIndexBuffer* idxBuf = static_cast<VkIndexBuffer*>(index_buffer);
+	VkGpuBuffer* idxBuf = static_cast<VkGpuBuffer*>(index_buffer);
 	idxBuf->Unmap();
-	idxBuf->Release();
+	delete idxBuf;
 	index_buffer = NULL;
 }
 
@@ -396,11 +395,12 @@ DynamicIBAccessClass::WriteLockClass::WriteLockClass(DynamicIBAccessClass* ib_ac
 	DX8_THREAD_ASSERT();
 	DynamicIBAccess->IndexBuffer->Add_Ref();
 	switch (DynamicIBAccess->Get_Type()) {
-	case BUFFER_TYPE_DYNAMIC_DX8:
+	case BUFFER_TYPE_DYNAMIC_DX8: {
 		DX8IndexBufferClass* dxDynIdxLock = static_cast<DX8IndexBufferClass*>(DynamicIBAccess->IndexBuffer);
-		Indices = (unsigned short*)dxDynIdxLock->IndexBuffer->Map()
+		Indices = (unsigned short*)dxDynIdxLock->Get_Vulkan_Index_Buffer()->Map()
 			+ DynamicIBAccess->IndexBufferOffset;
 		break;
+	}
 	case BUFFER_TYPE_DYNAMIC_SORTING:
 		Indices=static_cast<SortingIndexBufferClass*>(DynamicIBAccess->IndexBuffer)->index_buffer;
 		Indices+=DynamicIBAccess->IndexBufferOffset;
@@ -415,10 +415,11 @@ DynamicIBAccessClass::WriteLockClass::~WriteLockClass()
 {
 	DX8_THREAD_ASSERT();
 	switch (DynamicIBAccess->Get_Type()) {
-	case BUFFER_TYPE_DYNAMIC_DX8:
+	case BUFFER_TYPE_DYNAMIC_DX8: {
 		DX8IndexBufferClass* dxDynIdxUnlock = static_cast<DX8IndexBufferClass*>(DynamicIBAccess->IndexBuffer);
-		dxDynIdxUnlock->IndexBuffer->Unmap();
+		dxDynIdxUnlock->Get_Vulkan_Index_Buffer()->Unmap();
 		break;
+	}
 	case BUFFER_TYPE_DYNAMIC_SORTING:
 		break;
 	default:

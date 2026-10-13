@@ -80,7 +80,7 @@ OBBoxClass::OBBoxClass(const Vector3 * /*points*/, int /*n*/)
 	float xxsum = 0.0f, xysum = 0.0f, xzsum = 0.0f;
 	float yysum = 0.0f, yzsum = 0.0f, zzsum = 0.0f;
 
-	for (i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		xsum += points[i].X;
 		ysum += points[i].Y;
@@ -153,7 +153,7 @@ OBBoxClass::OBBoxClass(const Vector3 * /*points*/, int /*n*/)
 	// are unit length and orthogonal, a = Dot(U,X-C), b = Dot(V,X-C),
 	// and c = Dot(W,X-C).
 	float amax = 0.0f, bmax = 0.0f, cmax = 0.0f;
-	for (i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		float dx = pt[i].x - box.center.x;
 		float dy = pt[i].y - box.center.y;
@@ -210,7 +210,7 @@ void OBBoxClass::Init_From_Box_Points(Vector3 * points,int num)
 	** vectors from this point to each of the other points
 	*/
 	Vector3 dp[8];
-	for (i=1;i<num;i++) {
+	for (int i =1;i<num;i++) {
 		dp[i] = points[i] - points[0];
 	}
 
@@ -218,8 +218,8 @@ void OBBoxClass::Init_From_Box_Points(Vector3 * points,int num)
 	** Find the shortest two candidate axes.  Then the 
 	** third axis will be the cross product of these two.
 	*/
-	for (i=1;i<num;i++) {
-		for (j=i+1;j<num;j++) {
+	for (int i =1;i<num;i++) {
+		for (int j =i+1;j<num;j++) {
 			if (dp[j].Length2() < dp[i].Length2()) {
 				Swap(dp[j],dp[i]);
 			}
@@ -242,7 +242,7 @@ void OBBoxClass::Init_From_Box_Points(Vector3 * points,int num)
 	** Center is the average of all of the points
 	*/
 	Center.Set(0,0,0);
-	for (i=0; i<num; i++) {
+	for (int i =0; i<num; i++) {
 		Center += points[i];
 	}
 	Center.X /= num;
@@ -256,7 +256,7 @@ void OBBoxClass::Init_From_Box_Points(Vector3 * points,int num)
 	*/
 	Extent.Set(0,0,0);
 
-	for (i=0; i<num; i++) {
+	for (int i =0; i<num; i++) {
 		float dx = points[i].X - Center.X;
 		float dy = points[i].Y - Center.Y;
 		float dz = points[i].Z - Center.Z;

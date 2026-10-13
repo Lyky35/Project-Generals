@@ -1,0 +1,1 @@
+ResourceGatheringManager.cpp

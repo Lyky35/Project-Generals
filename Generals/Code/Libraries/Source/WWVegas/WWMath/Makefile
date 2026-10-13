@@ -130,13 +130,13 @@ WWMath/fast:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build
 .PHONY : WWMath/fast
 
-aabox.obj: aabox.cpp.obj
-.PHONY : aabox.obj
+aabox.o: aabox.cpp.o
+.PHONY : aabox.o
 
 # target to build an object file
-aabox.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/aabox.cpp.obj
-.PHONY : aabox.cpp.obj
+aabox.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/aabox.cpp.o
+.PHONY : aabox.cpp.o
 
 aabox.i: aabox.cpp.i
 .PHONY : aabox.i
@@ -154,13 +154,13 @@ aabox.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/aabox.cpp.s
 .PHONY : aabox.cpp.s
 
-aabtreecull.obj: aabtreecull.cpp.obj
-.PHONY : aabtreecull.obj
+aabtreecull.o: aabtreecull.cpp.o
+.PHONY : aabtreecull.o
 
 # target to build an object file
-aabtreecull.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/aabtreecull.cpp.obj
-.PHONY : aabtreecull.cpp.obj
+aabtreecull.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/aabtreecull.cpp.o
+.PHONY : aabtreecull.cpp.o
 
 aabtreecull.i: aabtreecull.cpp.i
 .PHONY : aabtreecull.i
@@ -178,13 +178,13 @@ aabtreecull.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/aabtreecull.cpp.s
 .PHONY : aabtreecull.cpp.s
 
-cardinalspline.obj: cardinalspline.cpp.obj
-.PHONY : cardinalspline.obj
+cardinalspline.o: cardinalspline.cpp.o
+.PHONY : cardinalspline.o
 
 # target to build an object file
-cardinalspline.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/cardinalspline.cpp.obj
-.PHONY : cardinalspline.cpp.obj
+cardinalspline.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/cardinalspline.cpp.o
+.PHONY : cardinalspline.cpp.o
 
 cardinalspline.i: cardinalspline.cpp.i
 .PHONY : cardinalspline.i
@@ -202,13 +202,13 @@ cardinalspline.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/cardinalspline.cpp.s
 .PHONY : cardinalspline.cpp.s
 
-catmullromspline.obj: catmullromspline.cpp.obj
-.PHONY : catmullromspline.obj
+catmullromspline.o: catmullromspline.cpp.o
+.PHONY : catmullromspline.o
 
 # target to build an object file
-catmullromspline.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/catmullromspline.cpp.obj
-.PHONY : catmullromspline.cpp.obj
+catmullromspline.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/catmullromspline.cpp.o
+.PHONY : catmullromspline.cpp.o
 
 catmullromspline.i: catmullromspline.cpp.i
 .PHONY : catmullromspline.i
@@ -226,13 +226,13 @@ catmullromspline.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/catmullromspline.cpp.s
 .PHONY : catmullromspline.cpp.s
 
-colmath.obj: colmath.cpp.obj
-.PHONY : colmath.obj
+colmath.o: colmath.cpp.o
+.PHONY : colmath.o
 
 # target to build an object file
-colmath.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmath.cpp.obj
-.PHONY : colmath.cpp.obj
+colmath.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmath.cpp.o
+.PHONY : colmath.cpp.o
 
 colmath.i: colmath.cpp.i
 .PHONY : colmath.i
@@ -250,13 +250,13 @@ colmath.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmath.cpp.s
 .PHONY : colmath.cpp.s
 
-colmathaabox.obj: colmathaabox.cpp.obj
-.PHONY : colmathaabox.obj
+colmathaabox.o: colmathaabox.cpp.o
+.PHONY : colmathaabox.o
 
 # target to build an object file
-colmathaabox.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathaabox.cpp.obj
-.PHONY : colmathaabox.cpp.obj
+colmathaabox.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathaabox.cpp.o
+.PHONY : colmathaabox.cpp.o
 
 colmathaabox.i: colmathaabox.cpp.i
 .PHONY : colmathaabox.i
@@ -274,13 +274,13 @@ colmathaabox.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathaabox.cpp.s
 .PHONY : colmathaabox.cpp.s
 
-colmathaabtri.obj: colmathaabtri.cpp.obj
-.PHONY : colmathaabtri.obj
+colmathaabtri.o: colmathaabtri.cpp.o
+.PHONY : colmathaabtri.o
 
 # target to build an object file
-colmathaabtri.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathaabtri.cpp.obj
-.PHONY : colmathaabtri.cpp.obj
+colmathaabtri.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathaabtri.cpp.o
+.PHONY : colmathaabtri.cpp.o
 
 colmathaabtri.i: colmathaabtri.cpp.i
 .PHONY : colmathaabtri.i
@@ -298,13 +298,13 @@ colmathaabtri.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathaabtri.cpp.s
 .PHONY : colmathaabtri.cpp.s
 
-colmathfrustum.obj: colmathfrustum.cpp.obj
-.PHONY : colmathfrustum.obj
+colmathfrustum.o: colmathfrustum.cpp.o
+.PHONY : colmathfrustum.o
 
 # target to build an object file
-colmathfrustum.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathfrustum.cpp.obj
-.PHONY : colmathfrustum.cpp.obj
+colmathfrustum.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathfrustum.cpp.o
+.PHONY : colmathfrustum.cpp.o
 
 colmathfrustum.i: colmathfrustum.cpp.i
 .PHONY : colmathfrustum.i
@@ -322,13 +322,13 @@ colmathfrustum.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathfrustum.cpp.s
 .PHONY : colmathfrustum.cpp.s
 
-colmathline.obj: colmathline.cpp.obj
-.PHONY : colmathline.obj
+colmathline.o: colmathline.cpp.o
+.PHONY : colmathline.o
 
 # target to build an object file
-colmathline.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathline.cpp.obj
-.PHONY : colmathline.cpp.obj
+colmathline.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathline.cpp.o
+.PHONY : colmathline.cpp.o
 
 colmathline.i: colmathline.cpp.i
 .PHONY : colmathline.i
@@ -346,13 +346,13 @@ colmathline.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathline.cpp.s
 .PHONY : colmathline.cpp.s
 
-colmathobbobb.obj: colmathobbobb.cpp.obj
-.PHONY : colmathobbobb.obj
+colmathobbobb.o: colmathobbobb.cpp.o
+.PHONY : colmathobbobb.o
 
 # target to build an object file
-colmathobbobb.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathobbobb.cpp.obj
-.PHONY : colmathobbobb.cpp.obj
+colmathobbobb.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathobbobb.cpp.o
+.PHONY : colmathobbobb.cpp.o
 
 colmathobbobb.i: colmathobbobb.cpp.i
 .PHONY : colmathobbobb.i
@@ -370,13 +370,13 @@ colmathobbobb.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathobbobb.cpp.s
 .PHONY : colmathobbobb.cpp.s
 
-colmathobbox.obj: colmathobbox.cpp.obj
-.PHONY : colmathobbox.obj
+colmathobbox.o: colmathobbox.cpp.o
+.PHONY : colmathobbox.o
 
 # target to build an object file
-colmathobbox.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathobbox.cpp.obj
-.PHONY : colmathobbox.cpp.obj
+colmathobbox.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathobbox.cpp.o
+.PHONY : colmathobbox.cpp.o
 
 colmathobbox.i: colmathobbox.cpp.i
 .PHONY : colmathobbox.i
@@ -394,13 +394,13 @@ colmathobbox.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathobbox.cpp.s
 .PHONY : colmathobbox.cpp.s
 
-colmathobbtri.obj: colmathobbtri.cpp.obj
-.PHONY : colmathobbtri.obj
+colmathobbtri.o: colmathobbtri.cpp.o
+.PHONY : colmathobbtri.o
 
 # target to build an object file
-colmathobbtri.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathobbtri.cpp.obj
-.PHONY : colmathobbtri.cpp.obj
+colmathobbtri.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathobbtri.cpp.o
+.PHONY : colmathobbtri.cpp.o
 
 colmathobbtri.i: colmathobbtri.cpp.i
 .PHONY : colmathobbtri.i
@@ -418,13 +418,13 @@ colmathobbtri.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathobbtri.cpp.s
 .PHONY : colmathobbtri.cpp.s
 
-colmathplane.obj: colmathplane.cpp.obj
-.PHONY : colmathplane.obj
+colmathplane.o: colmathplane.cpp.o
+.PHONY : colmathplane.o
 
 # target to build an object file
-colmathplane.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathplane.cpp.obj
-.PHONY : colmathplane.cpp.obj
+colmathplane.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathplane.cpp.o
+.PHONY : colmathplane.cpp.o
 
 colmathplane.i: colmathplane.cpp.i
 .PHONY : colmathplane.i
@@ -442,13 +442,13 @@ colmathplane.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathplane.cpp.s
 .PHONY : colmathplane.cpp.s
 
-colmathsphere.obj: colmathsphere.cpp.obj
-.PHONY : colmathsphere.obj
+colmathsphere.o: colmathsphere.cpp.o
+.PHONY : colmathsphere.o
 
 # target to build an object file
-colmathsphere.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathsphere.cpp.obj
-.PHONY : colmathsphere.cpp.obj
+colmathsphere.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathsphere.cpp.o
+.PHONY : colmathsphere.cpp.o
 
 colmathsphere.i: colmathsphere.cpp.i
 .PHONY : colmathsphere.i
@@ -466,13 +466,13 @@ colmathsphere.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/colmathsphere.cpp.s
 .PHONY : colmathsphere.cpp.s
 
-cullsys.obj: cullsys.cpp.obj
-.PHONY : cullsys.obj
+cullsys.o: cullsys.cpp.o
+.PHONY : cullsys.o
 
 # target to build an object file
-cullsys.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/cullsys.cpp.obj
-.PHONY : cullsys.cpp.obj
+cullsys.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/cullsys.cpp.o
+.PHONY : cullsys.cpp.o
 
 cullsys.i: cullsys.cpp.i
 .PHONY : cullsys.i
@@ -490,13 +490,13 @@ cullsys.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/cullsys.cpp.s
 .PHONY : cullsys.cpp.s
 
-curve.obj: curve.cpp.obj
-.PHONY : curve.obj
+curve.o: curve.cpp.o
+.PHONY : curve.o
 
 # target to build an object file
-curve.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/curve.cpp.obj
-.PHONY : curve.cpp.obj
+curve.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/curve.cpp.o
+.PHONY : curve.cpp.o
 
 curve.i: curve.cpp.i
 .PHONY : curve.i
@@ -514,13 +514,13 @@ curve.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/curve.cpp.s
 .PHONY : curve.cpp.s
 
-euler.obj: euler.cpp.obj
-.PHONY : euler.obj
+euler.o: euler.cpp.o
+.PHONY : euler.o
 
 # target to build an object file
-euler.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/euler.cpp.obj
-.PHONY : euler.cpp.obj
+euler.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/euler.cpp.o
+.PHONY : euler.cpp.o
 
 euler.i: euler.cpp.i
 .PHONY : euler.i
@@ -538,13 +538,13 @@ euler.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/euler.cpp.s
 .PHONY : euler.cpp.s
 
-frustum.obj: frustum.cpp.obj
-.PHONY : frustum.obj
+frustum.o: frustum.cpp.o
+.PHONY : frustum.o
 
 # target to build an object file
-frustum.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/frustum.cpp.obj
-.PHONY : frustum.cpp.obj
+frustum.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/frustum.cpp.o
+.PHONY : frustum.cpp.o
 
 frustum.i: frustum.cpp.i
 .PHONY : frustum.i
@@ -562,13 +562,13 @@ frustum.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/frustum.cpp.s
 .PHONY : frustum.cpp.s
 
-gridcull.obj: gridcull.cpp.obj
-.PHONY : gridcull.obj
+gridcull.o: gridcull.cpp.o
+.PHONY : gridcull.o
 
 # target to build an object file
-gridcull.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/gridcull.cpp.obj
-.PHONY : gridcull.cpp.obj
+gridcull.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/gridcull.cpp.o
+.PHONY : gridcull.cpp.o
 
 gridcull.i: gridcull.cpp.i
 .PHONY : gridcull.i
@@ -586,13 +586,13 @@ gridcull.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/gridcull.cpp.s
 .PHONY : gridcull.cpp.s
 
-hermitespline.obj: hermitespline.cpp.obj
-.PHONY : hermitespline.obj
+hermitespline.o: hermitespline.cpp.o
+.PHONY : hermitespline.o
 
 # target to build an object file
-hermitespline.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/hermitespline.cpp.obj
-.PHONY : hermitespline.cpp.obj
+hermitespline.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/hermitespline.cpp.o
+.PHONY : hermitespline.cpp.o
 
 hermitespline.i: hermitespline.cpp.i
 .PHONY : hermitespline.i
@@ -610,13 +610,13 @@ hermitespline.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/hermitespline.cpp.s
 .PHONY : hermitespline.cpp.s
 
-lineseg.obj: lineseg.cpp.obj
-.PHONY : lineseg.obj
+lineseg.o: lineseg.cpp.o
+.PHONY : lineseg.o
 
 # target to build an object file
-lineseg.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/lineseg.cpp.obj
-.PHONY : lineseg.cpp.obj
+lineseg.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/lineseg.cpp.o
+.PHONY : lineseg.cpp.o
 
 lineseg.i: lineseg.cpp.i
 .PHONY : lineseg.i
@@ -634,13 +634,13 @@ lineseg.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/lineseg.cpp.s
 .PHONY : lineseg.cpp.s
 
-lookuptable.obj: lookuptable.cpp.obj
-.PHONY : lookuptable.obj
+lookuptable.o: lookuptable.cpp.o
+.PHONY : lookuptable.o
 
 # target to build an object file
-lookuptable.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/lookuptable.cpp.obj
-.PHONY : lookuptable.cpp.obj
+lookuptable.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/lookuptable.cpp.o
+.PHONY : lookuptable.cpp.o
 
 lookuptable.i: lookuptable.cpp.i
 .PHONY : lookuptable.i
@@ -658,13 +658,13 @@ lookuptable.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/lookuptable.cpp.s
 .PHONY : lookuptable.cpp.s
 
-matrix3.obj: matrix3.cpp.obj
-.PHONY : matrix3.obj
+matrix3.o: matrix3.cpp.o
+.PHONY : matrix3.o
 
 # target to build an object file
-matrix3.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/matrix3.cpp.obj
-.PHONY : matrix3.cpp.obj
+matrix3.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/matrix3.cpp.o
+.PHONY : matrix3.cpp.o
 
 matrix3.i: matrix3.cpp.i
 .PHONY : matrix3.i
@@ -682,13 +682,13 @@ matrix3.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/matrix3.cpp.s
 .PHONY : matrix3.cpp.s
 
-matrix3d.obj: matrix3d.cpp.obj
-.PHONY : matrix3d.obj
+matrix3d.o: matrix3d.cpp.o
+.PHONY : matrix3d.o
 
 # target to build an object file
-matrix3d.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/matrix3d.cpp.obj
-.PHONY : matrix3d.cpp.obj
+matrix3d.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/matrix3d.cpp.o
+.PHONY : matrix3d.cpp.o
 
 matrix3d.i: matrix3d.cpp.i
 .PHONY : matrix3d.i
@@ -706,13 +706,13 @@ matrix3d.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/matrix3d.cpp.s
 .PHONY : matrix3d.cpp.s
 
-matrix4.obj: matrix4.cpp.obj
-.PHONY : matrix4.obj
+matrix4.o: matrix4.cpp.o
+.PHONY : matrix4.o
 
 # target to build an object file
-matrix4.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/matrix4.cpp.obj
-.PHONY : matrix4.cpp.obj
+matrix4.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/matrix4.cpp.o
+.PHONY : matrix4.cpp.o
 
 matrix4.i: matrix4.cpp.i
 .PHONY : matrix4.i
@@ -730,13 +730,13 @@ matrix4.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/matrix4.cpp.s
 .PHONY : matrix4.cpp.s
 
-obbox.obj: obbox.cpp.obj
-.PHONY : obbox.obj
+obbox.o: obbox.cpp.o
+.PHONY : obbox.o
 
 # target to build an object file
-obbox.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/obbox.cpp.obj
-.PHONY : obbox.cpp.obj
+obbox.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/obbox.cpp.o
+.PHONY : obbox.cpp.o
 
 obbox.i: obbox.cpp.i
 .PHONY : obbox.i
@@ -754,13 +754,13 @@ obbox.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/obbox.cpp.s
 .PHONY : obbox.cpp.s
 
-ode.obj: ode.cpp.obj
-.PHONY : ode.obj
+ode.o: ode.cpp.o
+.PHONY : ode.o
 
 # target to build an object file
-ode.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/ode.cpp.obj
-.PHONY : ode.cpp.obj
+ode.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/ode.cpp.o
+.PHONY : ode.cpp.o
 
 ode.i: ode.cpp.i
 .PHONY : ode.i
@@ -778,13 +778,13 @@ ode.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/ode.cpp.s
 .PHONY : ode.cpp.s
 
-pot.obj: pot.cpp.obj
-.PHONY : pot.obj
+pot.o: pot.cpp.o
+.PHONY : pot.o
 
 # target to build an object file
-pot.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/pot.cpp.obj
-.PHONY : pot.cpp.obj
+pot.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/pot.cpp.o
+.PHONY : pot.cpp.o
 
 pot.i: pot.cpp.i
 .PHONY : pot.i
@@ -802,13 +802,13 @@ pot.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/pot.cpp.s
 .PHONY : pot.cpp.s
 
-quat.obj: quat.cpp.obj
-.PHONY : quat.obj
+quat.o: quat.cpp.o
+.PHONY : quat.o
 
 # target to build an object file
-quat.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/quat.cpp.obj
-.PHONY : quat.cpp.obj
+quat.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/quat.cpp.o
+.PHONY : quat.cpp.o
 
 quat.i: quat.cpp.i
 .PHONY : quat.i
@@ -826,13 +826,13 @@ quat.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/quat.cpp.s
 .PHONY : quat.cpp.s
 
-tcbspline.obj: tcbspline.cpp.obj
-.PHONY : tcbspline.obj
+tcbspline.o: tcbspline.cpp.o
+.PHONY : tcbspline.o
 
 # target to build an object file
-tcbspline.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/tcbspline.cpp.obj
-.PHONY : tcbspline.cpp.obj
+tcbspline.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/tcbspline.cpp.o
+.PHONY : tcbspline.cpp.o
 
 tcbspline.i: tcbspline.cpp.i
 .PHONY : tcbspline.i
@@ -850,13 +850,13 @@ tcbspline.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/tcbspline.cpp.s
 .PHONY : tcbspline.cpp.s
 
-tri.obj: tri.cpp.obj
-.PHONY : tri.obj
+tri.o: tri.cpp.o
+.PHONY : tri.o
 
 # target to build an object file
-tri.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/tri.cpp.obj
-.PHONY : tri.cpp.obj
+tri.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/tri.cpp.o
+.PHONY : tri.cpp.o
 
 tri.i: tri.cpp.i
 .PHONY : tri.i
@@ -874,13 +874,13 @@ tri.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/tri.cpp.s
 .PHONY : tri.cpp.s
 
-v3_rnd.obj: v3_rnd.cpp.obj
-.PHONY : v3_rnd.obj
+v3_rnd.o: v3_rnd.cpp.o
+.PHONY : v3_rnd.o
 
 # target to build an object file
-v3_rnd.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/v3_rnd.cpp.obj
-.PHONY : v3_rnd.cpp.obj
+v3_rnd.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/v3_rnd.cpp.o
+.PHONY : v3_rnd.cpp.o
 
 v3_rnd.i: v3_rnd.cpp.i
 .PHONY : v3_rnd.i
@@ -898,13 +898,13 @@ v3_rnd.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/v3_rnd.cpp.s
 .PHONY : v3_rnd.cpp.s
 
-vehiclecurve.obj: vehiclecurve.cpp.obj
-.PHONY : vehiclecurve.obj
+vehiclecurve.o: vehiclecurve.cpp.o
+.PHONY : vehiclecurve.o
 
 # target to build an object file
-vehiclecurve.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/vehiclecurve.cpp.obj
-.PHONY : vehiclecurve.cpp.obj
+vehiclecurve.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/vehiclecurve.cpp.o
+.PHONY : vehiclecurve.cpp.o
 
 vehiclecurve.i: vehiclecurve.cpp.i
 .PHONY : vehiclecurve.i
@@ -922,13 +922,13 @@ vehiclecurve.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/vehiclecurve.cpp.s
 .PHONY : vehiclecurve.cpp.s
 
-vp.obj: vp.cpp.obj
-.PHONY : vp.obj
+vp.o: vp.cpp.o
+.PHONY : vp.o
 
 # target to build an object file
-vp.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/vp.cpp.obj
-.PHONY : vp.cpp.obj
+vp.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/vp.cpp.o
+.PHONY : vp.cpp.o
 
 vp.i: vp.cpp.i
 .PHONY : vp.i
@@ -946,13 +946,13 @@ vp.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/vp.cpp.s
 .PHONY : vp.cpp.s
 
-wwmath.obj: wwmath.cpp.obj
-.PHONY : wwmath.obj
+wwmath.o: wwmath.cpp.o
+.PHONY : wwmath.o
 
 # target to build an object file
-wwmath.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/wwmath.cpp.obj
-.PHONY : wwmath.cpp.obj
+wwmath.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/WWMath.dir/wwmath.cpp.o
+.PHONY : wwmath.cpp.o
 
 wwmath.i: wwmath.cpp.i
 .PHONY : wwmath.i
@@ -979,109 +979,109 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... WWMath"
-	@echo "... aabox.obj"
+	@echo "... aabox.o"
 	@echo "... aabox.i"
 	@echo "... aabox.s"
-	@echo "... aabtreecull.obj"
+	@echo "... aabtreecull.o"
 	@echo "... aabtreecull.i"
 	@echo "... aabtreecull.s"
-	@echo "... cardinalspline.obj"
+	@echo "... cardinalspline.o"
 	@echo "... cardinalspline.i"
 	@echo "... cardinalspline.s"
-	@echo "... catmullromspline.obj"
+	@echo "... catmullromspline.o"
 	@echo "... catmullromspline.i"
 	@echo "... catmullromspline.s"
-	@echo "... colmath.obj"
+	@echo "... colmath.o"
 	@echo "... colmath.i"
 	@echo "... colmath.s"
-	@echo "... colmathaabox.obj"
+	@echo "... colmathaabox.o"
 	@echo "... colmathaabox.i"
 	@echo "... colmathaabox.s"
-	@echo "... colmathaabtri.obj"
+	@echo "... colmathaabtri.o"
 	@echo "... colmathaabtri.i"
 	@echo "... colmathaabtri.s"
-	@echo "... colmathfrustum.obj"
+	@echo "... colmathfrustum.o"
 	@echo "... colmathfrustum.i"
 	@echo "... colmathfrustum.s"
-	@echo "... colmathline.obj"
+	@echo "... colmathline.o"
 	@echo "... colmathline.i"
 	@echo "... colmathline.s"
-	@echo "... colmathobbobb.obj"
+	@echo "... colmathobbobb.o"
 	@echo "... colmathobbobb.i"
 	@echo "... colmathobbobb.s"
-	@echo "... colmathobbox.obj"
+	@echo "... colmathobbox.o"
 	@echo "... colmathobbox.i"
 	@echo "... colmathobbox.s"
-	@echo "... colmathobbtri.obj"
+	@echo "... colmathobbtri.o"
 	@echo "... colmathobbtri.i"
 	@echo "... colmathobbtri.s"
-	@echo "... colmathplane.obj"
+	@echo "... colmathplane.o"
 	@echo "... colmathplane.i"
 	@echo "... colmathplane.s"
-	@echo "... colmathsphere.obj"
+	@echo "... colmathsphere.o"
 	@echo "... colmathsphere.i"
 	@echo "... colmathsphere.s"
-	@echo "... cullsys.obj"
+	@echo "... cullsys.o"
 	@echo "... cullsys.i"
 	@echo "... cullsys.s"
-	@echo "... curve.obj"
+	@echo "... curve.o"
 	@echo "... curve.i"
 	@echo "... curve.s"
-	@echo "... euler.obj"
+	@echo "... euler.o"
 	@echo "... euler.i"
 	@echo "... euler.s"
-	@echo "... frustum.obj"
+	@echo "... frustum.o"
 	@echo "... frustum.i"
 	@echo "... frustum.s"
-	@echo "... gridcull.obj"
+	@echo "... gridcull.o"
 	@echo "... gridcull.i"
 	@echo "... gridcull.s"
-	@echo "... hermitespline.obj"
+	@echo "... hermitespline.o"
 	@echo "... hermitespline.i"
 	@echo "... hermitespline.s"
-	@echo "... lineseg.obj"
+	@echo "... lineseg.o"
 	@echo "... lineseg.i"
 	@echo "... lineseg.s"
-	@echo "... lookuptable.obj"
+	@echo "... lookuptable.o"
 	@echo "... lookuptable.i"
 	@echo "... lookuptable.s"
-	@echo "... matrix3.obj"
+	@echo "... matrix3.o"
 	@echo "... matrix3.i"
 	@echo "... matrix3.s"
-	@echo "... matrix3d.obj"
+	@echo "... matrix3d.o"
 	@echo "... matrix3d.i"
 	@echo "... matrix3d.s"
-	@echo "... matrix4.obj"
+	@echo "... matrix4.o"
 	@echo "... matrix4.i"
 	@echo "... matrix4.s"
-	@echo "... obbox.obj"
+	@echo "... obbox.o"
 	@echo "... obbox.i"
 	@echo "... obbox.s"
-	@echo "... ode.obj"
+	@echo "... ode.o"
 	@echo "... ode.i"
 	@echo "... ode.s"
-	@echo "... pot.obj"
+	@echo "... pot.o"
 	@echo "... pot.i"
 	@echo "... pot.s"
-	@echo "... quat.obj"
+	@echo "... quat.o"
 	@echo "... quat.i"
 	@echo "... quat.s"
-	@echo "... tcbspline.obj"
+	@echo "... tcbspline.o"
 	@echo "... tcbspline.i"
 	@echo "... tcbspline.s"
-	@echo "... tri.obj"
+	@echo "... tri.o"
 	@echo "... tri.i"
 	@echo "... tri.s"
-	@echo "... v3_rnd.obj"
+	@echo "... v3_rnd.o"
 	@echo "... v3_rnd.i"
 	@echo "... v3_rnd.s"
-	@echo "... vehiclecurve.obj"
+	@echo "... vehiclecurve.o"
 	@echo "... vehiclecurve.i"
 	@echo "... vehiclecurve.s"
-	@echo "... vp.obj"
+	@echo "... vp.o"
 	@echo "... vp.i"
 	@echo "... vp.s"
-	@echo "... wwmath.obj"
+	@echo "... wwmath.o"
 	@echo "... wwmath.i"
 	@echo "... wwmath.s"
 .PHONY : help

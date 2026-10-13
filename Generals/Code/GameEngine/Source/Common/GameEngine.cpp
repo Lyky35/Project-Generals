@@ -100,7 +100,10 @@
 #include "GameClient/GUICallbacks.h"
 
 #include "GameNetwork/NetworkInterface.h"
-#include "GameNetwork/WOLBrowser/WebBrowser.h"
+// WebBrowser not available (ATL)
+class WebBrowser;
+typedef WebBrowser* LPWEBBROWSER;
+extern void* TheWebBrowser;
 #include "GameNetwork/LANAPI.h"
 #include "GameNetwork/GameSpy/GameResultsThread.h"
 #include "GameNetwork/GameSpy/PeerDefs.h"
@@ -171,6 +174,11 @@ void initSubsystem(SUBSYSTEM*& sysref, AsciiString name, SUBSYSTEM* sys, Xfer *p
 
 //-------------------------------------------------------------------------------------------------
 extern HINSTANCE ApplicationHInstance;  ///< our application instance
+// CComModule stub
+struct CComModule {
+    void Init(void*, void*) {}
+    void Term() {}
+};
 extern CComModule _Module;
 
 //-------------------------------------------------------------------------------------------------

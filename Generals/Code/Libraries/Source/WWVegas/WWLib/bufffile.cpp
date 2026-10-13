@@ -35,9 +35,21 @@
 
 
 #include	"always.h"
+#include <algorithm>
+using std::min;
+using std::max;
 #include	"bufffile.h"
+#include <algorithm>
+using std::min;
+using std::max;
 #include	"wwdebug.h"
+#include <algorithm>
+using std::min;
+using std::max;
 #include	<string.h>
+#include <algorithm>
+using std::min;
+using std::max;
 
 int		BufferedFileClass::_DesiredBufferSize	=	1024;	
 

@@ -245,7 +245,7 @@ Int DrawObject::initData(void)
 	DX8IndexBufferClass::WriteLockClass lockIdxBuffer(m_indexBuffer);
 	UnsignedShort *ib=lockIdxBuffer.Get_Index_Array();
 		
-	for (i=0; i<3*m_numTriangles; i+=3)
+	for (int i =0; i<3*m_numTriangles; i+=3)
 	{
 		ib[0]=i;
 		ib[1]=i+1;
@@ -335,7 +335,7 @@ void DrawObject::updateMeshVB(void)
 		-TheGlobalData->m_terrainLightPos[0].y, -TheGlobalData->m_terrainLightPos[0].z));
 #endif
 
-	for (i=0; i<numVertex; i++) {
+	for (int i =0; i<numVertex; i++) {
 		curVb->u1 = 0;
 		curVb->v1 = 0;
 		Vector3 vLoc(pVert[i]);
@@ -405,7 +405,7 @@ void DrawObject::updateMeshVB(void)
 		return;
 	}
 
-	for (i=0; i<numPoly; i++) {
+	for (int i =0; i<numPoly; i++) {
 		*curIb++ = pPoly[i].I;
 		*curIb++ = pPoly[i].J;
 		*curIb++ = pPoly[i].K;
@@ -469,7 +469,7 @@ void DrawObject::updateRampVB(void)
 	Vector3 br(coordBR.x, coordBR.y, coordBR.z);
 	Vector3 tr(coordTR.x, coordTR.y, coordTR.z);
 	
-	for (i = 0; i < numVertex; i++) {
+	for (int i = 0; i < numVertex; i++) {
 		curVb->u1 = INT_TO_REAL(i % widthVerts) / widthVerts;
 		curVb->v1 = INT_TO_REAL(i / lengthVerts) / lengthVerts;
 
@@ -494,8 +494,8 @@ void DrawObject::updateRampVB(void)
 	}
 
 	// Now do the indices
-	for (i = 0; i < lengthVerts - 1; ++i) {
-		for (j = 0; j < widthVerts - 1; ++j) {
+	for (int i = 0; i < lengthVerts - 1; ++i) {
+		for (int j = 0; j < widthVerts - 1; ++j) {
 			(*curIb++) = i * lengthVerts + j;
 			(*curIb++) = (i + 1) * lengthVerts + j;
 			(*curIb++) = (i + 1) * lengthVerts + j + 1;
@@ -564,7 +564,7 @@ void DrawObject::updateBoundaryVB(void)
 	Int numBoundaries = pDoc->getNumBoundaries();
 
 	Int i, j;
-	for (i = 0; i < numBoundaries; ++i) {
+	for (int i = 0; i < numBoundaries; ++i) {
 		ICoord2D curBoundary;
 		pDoc->getBoundary(i, &curBoundary);
 		if (curBoundary.x == 0 || curBoundary.y == 0) {
@@ -572,7 +572,7 @@ void DrawObject::updateBoundaryVB(void)
 			continue;
 		}
 
-		for (j = 0; j < 4; ++j) {
+		for (int j = 0; j < 4; ++j) {
 			Coord3D startPt, endPt;
 
 			if (j == 0) {
@@ -849,7 +849,7 @@ void DrawObject::updateWaypointVB(void)
 
  	CWorldBuilderDoc *pDoc = CWorldBuilderDoc::GetActiveDoc();
 	Int i;
-	for (i = 0; i<=pDoc->getNumWaypointLinks(); i++) {
+	for (int i = 0; i<=pDoc->getNumWaypointLinks(); i++) {
 		Bool gotLocation=false;
 		Coord3D loc1;
 		Coord3D loc2;
@@ -857,7 +857,7 @@ void DrawObject::updateWaypointVB(void)
 		Int waypointID1, waypointID2;
 
 		Int k;
-		for (k=0; k<2; k++) {
+		for (int k =0; k<2; k++) {
 			Bool ok = false;
 			pDoc->getWaypointLink(i, &waypointID1, &waypointID2);
 			if (k==0 || i==pDoc->getNumWaypointLinks()) {
@@ -1086,7 +1086,7 @@ void DrawObject::updatePolygonVB(PolygonTrigger *pTrig, Bool selected, Bool isOp
 	VertexFormatXYZDUV1 *curVb = vb;
 
 	Int i;
-	for (i=0; i<pTrig->getNumPoints(); i++) {
+	for (int i =0; i<pTrig->getNumPoints(); i++) {
 		Coord3D loc1;
 		Coord3D loc2;
 		ICoord3D iLoc = *pTrig->getPoint(i);
@@ -1216,8 +1216,8 @@ void DrawObject::updateFeedbackVB(void)
 	Int i, j;
 //	int sub = m_brushWidth/2;
 //	int add = m_brushWidth-sub;
-	for (j=minY; j<maxY; j++) {
-		for (i=minX; i<maxX; i++) {
+	for (int j =minY; j<maxY; j++) {
+		for (int i =minX; i<maxX; i++) {
 			if (m_feedbackVertexCount >= NUM_FEEDBACK_VERTEX) return;
 			if (m_squareFeedback) {
 				curVb->diffuse = diffuse;
@@ -1252,8 +1252,8 @@ void DrawObject::updateFeedbackVB(void)
 	} 
 	Int yOffset = maxX-minX;
 	Int halfWidth = yOffset/2;
-	for (j=0; j<maxY-minY-1; j++) {
-		for (i=0; i<maxX-minX-1; i++) {
+	for (int j =0; j<maxY-minY-1; j++) {
+		for (int i =0; i<maxX-minX-1; i++) {
 			if (m_feedbackIndexCount+6 > NUM_FEEDBACK_INDEX) return;
 			{
 				Bool flipForBlend = false;
@@ -1310,7 +1310,7 @@ but doesn't, really.
 				pLL2 = *pTrig->getPoint(0);
 				pLL3 = *pTrig->getPoint(1);
 				pointFlags[0] = true;
-				for (k=1; k<numPoints; k++) {
+				for (int k =1; k<numPoints; k++) {
 					pointFlags[k] = true;
 					ICoord3D pt = *pTrig->getPoint(k);
 					if (pt.y < pLL2.y || (pt.y==pLL2.y && pt.x<pLL2.x) ) {
@@ -1336,7 +1336,7 @@ but doesn't, really.
 				while (didSomething) {
 					didSomething = false;
 
-					for (k=0; k<pTrig->getNumPoints()-1; k++) {
+					for (int k =0; k<pTrig->getNumPoints()-1; k++) {
 						if (!pointFlags[k]) continue;
 						Int kPlus1;
 						for (kPlus1 = k+1; kPlus1 < pTrig->getNumPoints()-1; kPlus1++) {
@@ -1396,9 +1396,9 @@ Int DrawObject::updateVB(DX8VertexBufferClass	*pVB, Int color, Bool doArrow, Boo
 		if (doDiamond) {
 			deltaAngle = PI/2;
 		}
-		for (i=0; i<limit; i++)
+		for (int i =0; i<limit; i++)
 		{
-			for (k=0; k<3; k++) {
+			for (int k =0; k<3; k++) {
 				vb->z=  theZ;
 				if (k==0) {
 					vb->x=	0;
@@ -1441,7 +1441,7 @@ Int DrawObject::updateVB(DX8VertexBufferClass	*pVB, Int color, Bool doArrow, Boo
 			halfLineWidth /= 20;
 		}
 		/* Now do the arrow. */
-		for (k=0; k<3; k++) {
+		for (int k =0; k<3; k++) {
 			vb->x=	(k&1)?2*theRadius:0.0f;	 
 			vb->y=	-halfLineWidth + ((k&2)?2*halfLineWidth:0);
 			vb->z=  theZ;
@@ -1451,7 +1451,7 @@ Int DrawObject::updateVB(DX8VertexBufferClass	*pVB, Int color, Bool doArrow, Boo
 			vb[3*NUM_TRI] = *vb;
 			vb++;
 		}
-		for (k=0; k<3; k++) {
+		for (int k =0; k<3; k++) {
 			vb->x=	(k&1)?0.0f:2*theRadius;	 
 			vb->y=	halfLineWidth - ((k&2)?2*halfLineWidth:0);
 			vb->z=  theZ;
@@ -1460,7 +1460,7 @@ Int DrawObject::updateVB(DX8VertexBufferClass	*pVB, Int color, Bool doArrow, Boo
 			vb->v1=0;
 			vb++;
 		}
-		for (k=0; k<3; k++) {
+		for (int k =0; k<3; k++) {
 			if (k==0) { vb->x=theRadius; vb->y = 0;}
 			else if (k==1) { vb->x=2*theRadius + 2*halfLineWidth; vb->y = 0;}
 			else { vb->x=theRadius; vb->y = 2*halfLineWidth;}
@@ -1471,7 +1471,7 @@ Int DrawObject::updateVB(DX8VertexBufferClass	*pVB, Int color, Bool doArrow, Boo
 			vb[3*NUM_TRI] = *vb;
 			vb++;
 		}
-		for (k=0; k<3; k++) {
+		for (int k =0; k<3; k++) {
 			if (k==0) { vb->x=theRadius; vb->y = 0;}
 			else if (k==1) { vb->x=theRadius; vb->y = -2*halfLineWidth;}
 			else { vb->x=2*theRadius + 2*halfLineWidth; vb->y = 0;}
@@ -1495,9 +1495,9 @@ Int DrawObject::updateVB(DX8VertexBufferClass	*pVB, Int color, Bool doArrow, Boo
 		if (doDiamond) {
 			theRadius/=5.0f;
 		}
-		for (i=0; i<limit; i++)
+		for (int i =0; i<limit; i++)
 		{
-			for (k=0; k<3; k++) {
+			for (int k =0; k<3; k++) {
 				vb->z=  theZ;
 				if (k==0) {
 					vb->x=	0;
@@ -1537,7 +1537,7 @@ Int DrawObject::updateVB(DX8VertexBufferClass	*pVB, Int color, Bool doArrow, Boo
 		}
 #if 0
 		// Now do the highlight triangle.  This is in yellow.
-		for (k=0; k<3; k++) {
+		for (int k =0; k<3; k++) {
 			vb->x = k==0?theRadius:0;	 
 			vb->y = k==1?theRadius:0;	 
 			vb->z=  k==2?theZ+SELECT_PYRAMID_HEIGHT:theZ;
@@ -1547,7 +1547,7 @@ Int DrawObject::updateVB(DX8VertexBufferClass	*pVB, Int color, Bool doArrow, Boo
 			vb[3*NUM_TRI] = *vb;
 			vb++;
 		}
-		for (k=0; k<3; k++) {
+		for (int k =0; k<3; k++) {
 			vb->x = k==1?-theRadius:0;	 
 			vb->y = k==0?theRadius:0;	 
 			vb->z=  k==2?theZ+SELECT_PYRAMID_HEIGHT:theZ;
@@ -1558,7 +1558,7 @@ Int DrawObject::updateVB(DX8VertexBufferClass	*pVB, Int color, Bool doArrow, Boo
 			vb++;
 		}
 
-		for (k=0; k<3; k++) {
+		for (int k =0; k<3; k++) {
 			vb->x = k==1?theRadius:0;	 
 			vb->y = k==0?-theRadius:0;	 
 			vb->z=  k==2?theZ+SELECT_PYRAMID_HEIGHT:theZ;
@@ -1568,7 +1568,7 @@ Int DrawObject::updateVB(DX8VertexBufferClass	*pVB, Int color, Bool doArrow, Boo
 			vb[3*NUM_TRI] = *vb;
 			vb++;
 		}
-		for (k=0; k<3; k++) {
+		for (int k =0; k<3; k++) {
 			vb->x = k==0?-theRadius:0;	 
 			vb->y = k==1?-theRadius:0;	 
 			vb->z=  k==2?theZ+SELECT_PYRAMID_HEIGHT:theZ;
@@ -1728,7 +1728,7 @@ void DrawObject::Render(RenderInfoClass & rinfo)
 				Bool polySelected = PolygonTool::isSelected(pTrig);
 				if (polySelected && !selected) continue;
 				if (!polySelected && selected) continue;
-				for (i=0; i<pTrig->getNumPoints(); i++) {
+				for (int i =0; i<pTrig->getNumPoints(); i++) {
 					Bool pointSelected = (polySelected && PolygonTool::getSelectedPointNdx()==i);
 					ICoord3D iLoc = *pTrig->getPoint(i);
 					Coord3D loc;
@@ -1786,7 +1786,7 @@ void DrawObject::Render(RenderInfoClass & rinfo)
 	DX8Wrapper::Set_Vertex_Buffer(NULL);	//release reference to vertex buffer
 	DX8Wrapper::Set_Index_Buffer(NULL,0);	//release reference to vertex buffer
 
- 	if (BuildListTool::isActive()) for (i=0; i<TheSidesList->getNumSides(); i++) {
+ 	if (BuildListTool::isActive()) for (int i =0; i<TheSidesList->getNumSides(); i++) {
 		SidesInfo *pSide = TheSidesList->getSideInfo(i); 
 		for (BuildListInfo *pBuild = pSide->getBuildList(); pBuild; pBuild = pBuild->getNext()) {
 			Coord3D loc = *pBuild->getLocation();

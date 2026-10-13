@@ -158,7 +158,7 @@ W3DLaserDraw::W3DLaserDraw( Thing *thing, const ModuleData* moduleData ) :
 		//We don't care about segment positioning yet until we actually set the position
 		
 		// create all the lines we need at the right transparency level
-		for( i = data->m_numBeams - 1; i >= 0; i-- )
+		for (int i = data->m_numBeams - 1; i >= 0; i-- )
 		{
 			int index = segment * data->m_numBeams + i;
 

@@ -1341,7 +1341,7 @@ char q[]="&&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&
 
 			//oddEven = ( personalities[0] & 1 );
 
-			for (i=0; i<vnum; i++)
+			for (int i =0; i<vnum; i++)
 			{
 
 				segIdx = MIN((i/2), point_cnt);
@@ -1374,7 +1374,7 @@ char q[]="&&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&
 			DynamicIBAccessClass::WriteLockClass lock(&ib_access);
 			unsigned short* inds=lock.Get_Index_Array();
 
-			for (i=0; i<triangleIndex; i++)
+			for (int i =0; i<triangleIndex; i++)
 			{
 				*inds++=v_index_array[i].I;
 				*inds++=v_index_array[i].J;

@@ -1545,7 +1545,7 @@ int INIClass::Get_Int_Bitfield(char const * section, char const * entry, int def
 
    int lp; 
 	for (char *token = strtok(str, "|+"); token; token = strtok(NULL, "|+")) {
-		for (lp = 0; list[lp]; lp++) {
+		for (int lp = 0; list[lp]; lp++) {
 			// if this list entry matches our string token then we need
 			// to set this bit.
 			if (stricmp(token, list[lp]) == 0) {

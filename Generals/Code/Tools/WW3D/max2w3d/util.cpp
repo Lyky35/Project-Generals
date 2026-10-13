@@ -202,7 +202,7 @@ bool Append_Lod_Character (char *meshname, int lod_level, INodeListClass *origin
 	*/
 	INode *conflict = NULL, *cur_origin = NULL;
 	int i, lod;
-	for (i = 0; i < num_lods; i++)
+	for (int i = 0; i < num_lods; i++)
 	{
 		// Don't bother searching the current LOD.
 		lod = Get_Lod_Level((*origin_list)[i]);
@@ -598,7 +598,7 @@ INode *Find_Named_Node(char *nodename, INode *root)
 		return root;
 
 	// Check the children against the given name.
-	for (i = 0; i < root->NumChildren(); i++)
+	for (int i = 0; i < root->NumChildren(); i++)
 	{
 		// Is it this child?
 		child = root->GetChildNode(i);
@@ -608,7 +608,7 @@ INode *Find_Named_Node(char *nodename, INode *root)
 	}
 
 	// Wasn't any children. Check each child's descendants.
-	for (i = 0; i < root->NumChildren(); i++)
+	for (int i = 0; i < root->NumChildren(); i++)
 	{
 		child = root->GetChildNode(i);
 		INode *found = Find_Named_Node(nodename, child);

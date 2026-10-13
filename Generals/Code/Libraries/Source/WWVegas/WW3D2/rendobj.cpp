@@ -519,7 +519,7 @@ RenderObjClass * RenderObjClass::Get_Sub_Object_By_Name(const char * name, int *
 	int i;
 
 	// first try the un-altered name
-	for (i=0; i<Get_Num_Sub_Objects(); i++) {
+	for (int i =0; i<Get_Num_Sub_Objects(); i++) {
 		RenderObjClass * robj = Get_Sub_Object(i);
 		if (robj) {
 			if (stricmp(robj->Get_Name(),name) == 0) {
@@ -532,7 +532,7 @@ RenderObjClass * RenderObjClass::Get_Sub_Object_By_Name(const char * name, int *
 	}
 
 	// check the given name against the "suffix" names of each sub-object
-	for (i=0; i<Get_Num_Sub_Objects(); i++) {
+	for (int i =0; i<Get_Num_Sub_Objects(); i++) {
 		RenderObjClass * robj = Get_Sub_Object(i);
 		if (robj) {
 			const char * subobjname = strchr(robj->Get_Name(),'.');

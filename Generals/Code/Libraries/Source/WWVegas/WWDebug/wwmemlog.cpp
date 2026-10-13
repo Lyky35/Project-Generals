@@ -1,3 +1,6 @@
+#include <algorithm>
+using std::max;
+using std::min;
 /*
 **	Command & Conquer Generals(tm)
 **	Copyright 2025 Electronic Arts Inc.

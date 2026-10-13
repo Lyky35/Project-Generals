@@ -49,7 +49,7 @@
 #include <wpaudio/list.h>
 #include <wpaudio/StreamBuffering.h>
 #include <wpaudio/memory.h>
-#include <wsys/file.h>
+#include <wsys/File.h>
 
 // 'assignment within condition expression'.
 #pragma warning(disable : 4706)
@@ -151,7 +151,7 @@ static		void			STM_stream_init ( STM_STREAM * stm )
 	LockInit ( &stm->ref );
 
 	/* init access structs */
-	for ( i = 0; i < vSTM_MAX_ACCESSORS; i++)
+	for (int i = 0; i < vSTM_MAX_ACCESSORS; i++)
 	{
 		STM_access_init ( stm, &stm->access[i], i );
 	}
@@ -199,7 +199,7 @@ void			STM_stream_reset( STM_STREAM* stm )
 	{	/* reset the access interfaces */
 		int i;
 
-		for ( i = 0; i < vSTM_MAX_ACCESSORS; i++)
+		for (int i = 0; i < vSTM_MAX_ACCESSORS; i++)
 		{
 			STM_access_reset ( &stm->access[i], first );
 		}
@@ -304,7 +304,7 @@ static		void			STM_sbuffer_reset( STM_SBUFFER *sbuf )
 	DBG_ASSERT_TYPE ( sbuf, STM_SBUFFER );
 
 	/* init access structs */
-	for ( i = 0; i < vSTM_MAX_ACCESSORS; i++)
+	for (int i = 0; i < vSTM_MAX_ACCESSORS; i++)
 	{
 		sbuf->region[i].Data = sbuf->data_region.Data;
 		sbuf->region[i].Bytes = sbuf->data_region.Bytes;
@@ -356,7 +356,7 @@ void			STM_StreamDestroy( STM_STREAM* stm )
 	(
 		int i;
 
-		for ( i = 0; i < vSTM_MAX_ACCESSORS; i++)
+		for (int i = 0; i < vSTM_MAX_ACCESSORS; i++)
 		{
 			DBG_INVALIDATE_TYPE ( &stm->access[i] ); /* ensure that nobody tries to use an accessor after it is dead */
 		}

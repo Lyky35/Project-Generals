@@ -309,7 +309,7 @@ Int W3DAssetManager::replaceMeshTexture(RenderObjClass *robj, TextureClass *oldT
 	MeshModelClass * model = mesh->Get_Model();
 	MaterialInfoClass	*material = mesh->Get_Material_Info();
 
-	for (i=0; i<material->Texture_Count(); i++)
+	for (int i =0; i<material->Texture_Count(); i++)
 	{
 		if (material->Peek_Texture(i) == oldTex)
 		{	
@@ -419,7 +419,7 @@ static void remapTexture16Bit(Int dx, Int dy, Int pitch, SurfaceClass::SurfaceDe
 		Convert_Pixel((unsigned char *)&pal[y],*sd,rgb);
 	}
 
-	for (y=0; y<dy; y++)
+	for (int y =0; y<dy; y++)
 	{	for (Int x=0; x<dx; x++)
 		{	//check if this pixel is part of team color palette
 			for (Int p=0; p<TEAM_COLOR_PALETTE_SIZE; p++)
@@ -455,9 +455,9 @@ static void remapAlphaTexture16Bit(Int dx, Int dy, Int pitch, SurfaceClass::Surf
 	RGB_To_HSV(hsv_color,v_color);
 #endif
 
-	for (y=0; y<dy; y++)
+	for (int y =0; y<dy; y++)
 	{	
-		for (x=0; x<dx; x++)
+		for (int x =0; x<dx; x++)
 		{
 			pixel=data[x];
 			pixelAlpha=15-(pixel>>12);	//get alpha for house color
@@ -522,7 +522,7 @@ static void remapTexture32Bit(Int dx, Int dy, Int pitch, SurfaceClass::SurfaceDe
 		Convert_Pixel((unsigned char *)&pal[y],*sd,rgb);
 	}
 
-	for (y=0; y<dy; y++)
+	for (int y =0; y<dy; y++)
 	{	for (Int x=0; x<dx; x++)
 		{	//check if this pixel is part of team color palette
 			for (Int p=0; p<TEAM_COLOR_PALETTE_SIZE; p++)
@@ -552,8 +552,8 @@ static void remapAlphaTexture32Bit(Int dx, Int dy, Int pitch, SurfaceClass::Surf
 	RGB_To_HSV(hsv_color,v_color);
 #endif
 
-	for (y=0; y<dy; y++)
-	{	for (x=0; x<dx; x++)
+	for (int y =0; y<dy; y++)
+	{	for (int x =0; x<dx; x++)
 		{
 			pixel=data[x];
 			pixelAlpha=255-(pixel>>24);	//get alpha for house color
@@ -897,14 +897,14 @@ int W3DAssetManager::Recolor_Mesh(RenderObjClass *robj, const int color)
 	// recolor vertex material (assuming mesh is housecolor)
 	if ( (( (meshName=strchr(mesh->Get_Name(),'.') ) != 0 && *(meshName++)) || ( (meshName=mesh->Get_Name()) != NULL)) &&
 		_strnicmp(meshName,"HOUSECOLOR", 10) == 0)
-	{	for (i=0; i<material->Vertex_Material_Count(); i++)
+	{	for (int i =0; i<material->Vertex_Material_Count(); i++)
 			Recolor_Vertex_Material(material->Peek_Vertex_Material(i),color);
 		didRecolor=1;
 	}
 
 	// recolor textures
 	TextureClass *newtex,*oldtex;
-	for (i=0; i<material->Texture_Count(); i++)
+	for (int i =0; i<material->Texture_Count(); i++)
 	{
 		oldtex=material->Peek_Texture(i);
 		if (_strnicmp(oldtex->Get_Texture_Name(),"ZHC", 3) == 0)
@@ -1215,7 +1215,7 @@ void W3DAssetManager::Make_Mesh_Unique(RenderObjClass *robj, Bool geometry, Bool
 		if (colors && isVertexColor)
 		{
 			MaterialInfoClass	*material=mesh->Get_Material_Info();
-			for (i=0; i<material->Vertex_Material_Count(); i++)
+			for (int i =0; i<material->Vertex_Material_Count(); i++)
 				material->Peek_Vertex_Material(i)->Make_Unique();	
 			REF_PTR_RELEASE(material);
 		}
@@ -1358,7 +1358,7 @@ void W3DAssetManager::Make_Mesh_Unique(RenderObjClass *robj, Bool geometry, Bool
 	if (colors)	{
 		// make all vertex materials unique
 		MaterialInfoClass	*material = mesh->Get_Material_Info();
-		for (i=0; i<material->Vertex_Material_Count(); i++)
+		for (int i =0; i<material->Vertex_Material_Count(); i++)
 			material->Peek_Vertex_Material(i)->Make_Unique();	
 		REF_PTR_RELEASE(material);
 		// make all color arrays unique
@@ -1594,7 +1594,7 @@ void W3DAssetManager::Recolor_Vertices(unsigned int *color, int count, const Vec
 	int i;	
 	Vector4 rgba;	
 
-	for (i=0; i<count; i++)
+	for (int i =0; i<count; i++)
 	{
 		rgba=DX8Wrapper::Convert_Color(color[i]);
 		Recolor(reinterpret_cast<Vector3&>(rgba),hsv_shift);
@@ -1686,7 +1686,7 @@ void W3DAssetManager::Recolor_Mesh(RenderObjClass *robj, const Vector3 &hsv_shif
 	MaterialInfoClass	*material = mesh->Get_Material_Info();
 
 	// recolor vertex material
-	for (i=0; i<material->Vertex_Material_Count(); i++)
+	for (int i =0; i<material->Vertex_Material_Count(); i++)
 			Recolor_Vertex_Material(material->Peek_Vertex_Material(i),hsv_shift);	
 
 	// recolor color arrays
@@ -1699,7 +1699,7 @@ void W3DAssetManager::Recolor_Mesh(RenderObjClass *robj, const Vector3 &hsv_shif
 	// recolor textures
 
 	TextureClass *newtex,*oldtex;
-	for (i=0; i<material->Texture_Count(); i++)
+	for (int i =0; i<material->Texture_Count(); i++)
 	{
 		oldtex=material->Peek_Texture(i);
 		newtex=Recolor_Texture(oldtex,hsv_shift);
@@ -1735,7 +1735,7 @@ void W3DAssetManager::Recolor_ParticleEmitter(RenderObjClass *robj, const Vector
 	emit->Get_Color_Key_Frames(colors);
 	Recolor(colors.Start,hsv_shift);
 	Recolor(colors.Rand,hsv_shift);
-	for (i=0; i<colors.NumKeyFrames; i++)
+	for (int i =0; i<colors.NumKeyFrames; i++)
 		Recolor(colors.Values[i],hsv_shift);
 	emit->Reset_Colors(colors);
 

@@ -221,7 +221,7 @@ IOResult GameMapsClass::Save(ISave * isave)
 	isave->Write(&f,sizeof(f),&nb);			
 	isave->EndChunk();
 
-	for (i=0; i<NTEXMAPS; i++) {
+	for (int i =0; i<NTEXMAPS; i++) {
 		if (TextureSlot[i].Amount != 1.0f) {
 			isave->BeginChunk(GAMEMAPS_AMT0_CHUNK + i);
 			isave->Write(&(TextureSlot[i].Amount),sizeof(float),&nb);

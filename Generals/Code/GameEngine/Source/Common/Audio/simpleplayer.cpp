@@ -17,8 +17,21 @@
 */
 
 
-#include "Common/SimplePlayer.h"
-#include "Common/URLLaunch.h"
+#include "Common/simpleplayer.h"
+#include "Common/Debug.h"
+#include <cstdio>
+#include <wchar.h>
+
+#ifndef _T
+#define _T(x) L##x
+#endif
+#ifndef NS_E_NO_STREAM
+#define NS_E_NO_STREAM 0x88C00101
+#endif
+#ifndef DEBUG_ASSERTCRASH
+#define DEBUG_ASSERTCRASH(cond, msg) ((void)0)
+#endif
+#include "Common/urllaunch.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -324,7 +337,7 @@ HRESULT CSimplePlayer::Play( LPCWSTR pszUrl, DWORD dwSecDuration, HANDLE hComple
     WCHAR *pwszName = NULL;
     BYTE *pValue = NULL;
 
-    for ( i = 0; i < wAttrCnt ; i++ )
+    for (int i = 0; i < wAttrCnt ; i++ )
     {
         WORD wStream = 0;
         WORD cchNamelen = 0;

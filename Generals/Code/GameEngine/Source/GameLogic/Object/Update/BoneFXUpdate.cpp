@@ -52,8 +52,8 @@ const Int MAX_IDX = 32;
 BoneFXUpdateModuleData::BoneFXUpdateModuleData(void)
 {
 	Int i, j;
-	for (i = 0; i < BODYDAMAGETYPE_COUNT; ++i) {
-		for (j = 0; j < BONE_FX_MAX_BONES; ++j) {
+	for (int i = 0; i < BODYDAMAGETYPE_COUNT; ++i) {
+		for (int j = 0; j < BONE_FX_MAX_BONES; ++j) {
 			m_fxList[i][j].fx = NULL;
 			m_fxList[i][j].onlyOnce = TRUE;
 			m_OCL[i][j].ocl = NULL;
@@ -74,8 +74,8 @@ BoneFXUpdateModuleData::BoneFXUpdateModuleData(void)
 BoneFXUpdate::BoneFXUpdate( Thing *thing, const ModuleData* moduleData ) : UpdateModule( thing, moduleData )
 {
 	Int i, j;
-	for (i = 0; i < BODYDAMAGETYPE_COUNT; ++i) {
-		for (j = 0; j < BONE_FX_MAX_BONES; ++j) {
+	for (int i = 0; i < BODYDAMAGETYPE_COUNT; ++i) {
+		for (int j = 0; j < BONE_FX_MAX_BONES; ++j) {
 			m_nextFXFrame[i][j] = -1;
 			m_nextOCLFrame[i][j] = -1;
 			m_nextParticleSystemFrame[i][j] = -1;
@@ -320,7 +320,7 @@ void BoneFXUpdate::initTimes() {
 	const BoneFXUpdateModuleData *d = getBoneFXUpdateModuleData();
 	Int now = TheGameLogic->getFrame();
 
-	for (i = 0; i < BONE_FX_MAX_BONES; ++i) {
+	for (int i = 0; i < BONE_FX_MAX_BONES; ++i) {
 		if (d->m_fxList[m_curBodyState][i].locInfo.boneName.compare(AsciiString::TheEmptyString) != 0) {
 			m_nextFXFrame[m_curBodyState][i] = now + REAL_TO_INT(d->m_fxList[m_curBodyState][i].gameLogicDelay.getValue());
 		} else {
@@ -514,7 +514,7 @@ void BoneFXUpdate::resolveBoneLocations() {
 		return;
 	}
 
-	for (i = 0; i < BONE_FX_MAX_BONES; ++i) {
+	for (int i = 0; i < BONE_FX_MAX_BONES; ++i) {
 		if (d->m_fxList[m_curBodyState][i].locInfo.boneName.compare(AsciiString::TheEmptyString) != 0) 
 		{
 			const BoneFXListInfo *info = &(d->m_fxList[m_curBodyState][i]);
@@ -540,8 +540,8 @@ void BoneFXUpdate::resolveBoneLocations() {
 //-------------------------------------------------------------------------------------------------
 void BoneFXUpdate::stopAllBoneFX() {
 	int i, j;
-	for (i = 0; i < BODYDAMAGETYPE_COUNT; ++i) {
-		for (j = 0; j < BONE_FX_MAX_BONES; ++j) {
+	for (int i = 0; i < BODYDAMAGETYPE_COUNT; ++i) {
+		for (int j = 0; j < BONE_FX_MAX_BONES; ++j) {
 			m_nextFXFrame[i][j] = -1;
 			m_nextOCLFrame[i][j] = -1;
 			m_nextParticleSystemFrame[i][j] = -1;

@@ -64,7 +64,7 @@ W3DBufferManager::W3DBufferManager(void)
 
 	for (Int i=0; i<MAX_FVF; i++)
 		m_W3DVertexBuffers[i]=NULL;
-	for (i=0; i<MAX_FVF; i++)
+	for (int i =0; i<MAX_FVF; i++)
 		for (Int j=0; j<MAX_VB_SIZES; j++)
 			m_W3DVertexBufferSlots[i][j]=NULL;
 
@@ -83,9 +83,9 @@ void W3DBufferManager::freeAllSlots(void)
 {
 	Int i,j;
 
-	for (i=0; i<MAX_FVF; i++)
+	for (int i =0; i<MAX_FVF; i++)
 	{
-		for (j=0; j<MAX_VB_SIZES; j++)
+		for (int j =0; j<MAX_VB_SIZES; j++)
 		{
 			//Release all slots allocated for each size
 			W3DVertexBufferSlot *vbSlot = m_W3DVertexBufferSlots[i][j];
@@ -105,7 +105,7 @@ void W3DBufferManager::freeAllSlots(void)
 		}
 	}
 
-	for (j=0; j<MAX_IB_SIZES; j++)
+	for (int j =0; j<MAX_IB_SIZES; j++)
 	{
 		//Release all slots allocated for each size
 		W3DIndexBufferSlot *ibSlot = m_W3DIndexBufferSlots[j];
@@ -135,7 +135,7 @@ void W3DBufferManager::freeAllBuffers(void)
 	//Make sure all slots are free
 	freeAllSlots();	///<release all slots to pool.
 
-	for (i=0; i<MAX_FVF; i++)
+	for (int i =0; i<MAX_FVF; i++)
 	{
 		W3DVertexBuffer *vb = m_W3DVertexBuffers[i];
 		while (vb)

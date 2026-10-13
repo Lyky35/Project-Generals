@@ -883,7 +883,7 @@ void ParkingPlaceBehavior::xfer( Xfer *xfer )
 		// read all elements
 		std::vector< ParkingPlaceInfo >::iterator it;
 		it = m_spaces.begin();
-		for( i = 0; i < spacesCount; ++i )
+		for (int i = 0; i < spacesCount; ++i )
 		{
 
 			// read object id
@@ -930,7 +930,7 @@ void ParkingPlaceBehavior::xfer( Xfer *xfer )
 		// read all elements
 		std::vector< RunwayInfo >::iterator it;
 		it = m_runways.begin();
-		for( i = 0; i < runwaysCount; ++i )
+		for (int i = 0; i < runwaysCount; ++i )
 		{
 
 			ObjectID inUseBy;
@@ -979,7 +979,7 @@ void ParkingPlaceBehavior::xfer( Xfer *xfer )
 	{
 		// read all elements
 		m_healing.clear();
-		for( i = 0; i < healCount; ++i )
+		for (int i = 0; i < healCount; ++i )
 		{
 			HealingInfo info;
 

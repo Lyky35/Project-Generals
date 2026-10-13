@@ -340,7 +340,7 @@ void LANAPI::update( void )
 
 	// Handle any new messages
 	int i;
-	for (i=0; i<MAX_MESSAGES && !LANbuttonPushed; ++i)
+	for (int i =0; i<MAX_MESSAGES && !LANbuttonPushed; ++i)
 	{
 		if (m_transport->m_inBuffer[i].length > 0)
 		{

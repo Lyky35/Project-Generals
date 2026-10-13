@@ -51,7 +51,7 @@ typedef void (*IterateSaveFileCallback)( AsciiString filename, void *userData );
 	* save/load menu initialization you can make that menu allow loading only, or allow
 	* both saving and loading from the same menu */
 // ------------------------------------------------------------------------------------------------
-enum SaveLoadLayoutType
+enum SaveLoadLayoutType : int
 {
 	SLLT_INVALID = 0,
 	SLLT_SAVE_AND_LOAD,
@@ -82,7 +82,7 @@ struct SaveDate
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-enum SaveFileType
+enum SaveFileType : int
 {
 	SAVE_FILE_TYPE_NORMAL,		///< a regular save game at any arbitrary point in the game
 	SAVE_FILE_TYPE_MISSION,		///< a save game in between missions (a mission save)
@@ -126,7 +126,7 @@ struct AvailableGameInfo
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-enum SaveCode
+enum SaveCode : int
 {
 	SC_INVALID = -1,
 	SC_OK,

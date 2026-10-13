@@ -104,15 +104,15 @@ Bool PolygonTool::poly_pickPoly(PolygonTrigger *pTrig, Coord3D loc, Int toleranc
 	iDocPt.z = floor(loc.z+0.5f);
 	Int i, j;
 	ICoord3D ptArray[9];
-	for (i=0; i<3; i++) {
-		for (j=0; j<3; j++) {
+	for (int i =0; i<3; i++) {
+		for (int j =0; j<3; j++) {
 			ptArray[i+3*j].x = iDocPt.x + (1-i)*tolerance;
 			ptArray[i+3*j].y = iDocPt.y + (1-j)*tolerance;
 			ptArray[i+3*j].z = iDocPt.z;
 		}
 	}
 	int count = 0;
-	for (i=0; i<9; i++) {
+	for (int i =0; i<9; i++) {
 		if (pTrig->pointInTrigger(ptArray[i])) {
 			count++;
 		}
@@ -158,7 +158,7 @@ Bool PolygonTool::poly_snapToPoly(Coord3D *pLoc) {
 		Int i;
 		// Dont' snap to self.
 		if (pTrig == m_poly_curSelectedPolygon) continue;
-		for (i=0; i<pTrig->getNumPoints(); i++) {
+		for (int i =0; i<pTrig->getNumPoints(); i++) {
 			ICoord3D iLoc = *pTrig->getPoint(i);
 			Coord3D cpt = *pLoc;
 			cpt.x -= iLoc.x;
@@ -179,7 +179,7 @@ Int PolygonTool::poly_pickPoint(PolygonTrigger *pTrig, CPoint viewPt, WbView* pV
 	if (pTrig==NULL) return -1;
 	Int i;
 	const Int PICK_PIXELS = pView->getPickPixels();
-	for (i=0; i<pTrig->getNumPoints(); i++) {
+	for (int i =0; i<pTrig->getNumPoints(); i++) {
 		ICoord3D iLoc = *pTrig->getPoint(i);
 		Coord3D cpt;
 		cpt.x = iLoc.x;
@@ -205,7 +205,7 @@ Int PolygonTool::poly_getInsertIndex(PolygonTrigger *pTrig, Coord3D loc) {
 	static Int tolerance = SNAP_DISTANCE;
 
 	Int i;
-	for (i=0; i<pTrig->getNumPoints(); i++) {
+	for (int i =0; i<pTrig->getNumPoints(); i++) {
 		ICoord3D pt1 = *pTrig->getPoint(i);
 		ICoord3D pt2;
 		Int theNdx = i+1;

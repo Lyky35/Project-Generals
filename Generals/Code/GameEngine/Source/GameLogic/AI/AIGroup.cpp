@@ -92,7 +92,7 @@ AIGroup::~AIGroup()
 //	DEBUG_LOG(("***AIGROUP %x is being destructed.\n", this));
 	// disassociate each member from the group
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); /* empty */ )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); /* empty */ )
 	{
 		Object *member = *i;
 		if (member)
@@ -293,7 +293,7 @@ Bool AIGroup::getCenter( Coord3D *center )
 	center->z = 0.0f;
 
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{													 
 		if( (*i)->isDisabledByType( DISABLED_HELD) ) 
 		{
@@ -319,7 +319,7 @@ Bool AIGroup::getCenter( Coord3D *center )
 			So if you have a mix of ai's & not ai's, you want just the ais.
 			But it seems reasonable that if there are no ai's, it returns the center of the other stuff.  Cause they won't be moving anyway.
 		*/
-		for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+		for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 		{
 			if( (*i)->isDisabledByType( DISABLED_HELD) ) 
 			{
@@ -353,7 +353,7 @@ Bool AIGroup::getMinMaxAndCenter( Coord2D *min, Coord2D *max, Coord3D *center )
 
 	std::list<Object *>::iterator i;
 	FormationID id= NO_FORMATION_ID;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		if( (*i)->isDisabledByType( DISABLED_HELD) ) 
 		{
@@ -415,7 +415,7 @@ void AIGroup::recompute( void )
 	m_speed = 9999999999.9f;
 
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		// don't consider immobile things for leadership
 		if ((*i)->isKindOf(KINDOF_IMMOBILE))
@@ -548,7 +548,7 @@ Bool AIGroup::friend_computeGroundPath( const Coord3D *pos, CommandSourceType cm
 	Int numVehicles = 0; 
 	Object *centerVehicle = NULL;
 	Real distSqrCenterVeh = distSqr*10;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		Object *obj = (*i);
 		TheAI->pathfinder()->removeGoal(obj);
@@ -614,7 +614,7 @@ Bool AIGroup::friend_computeGroundPath( const Coord3D *pos, CommandSourceType cm
 		Bool isPassable = true;
 		// see if all units have an unobstructed path to the center.  
 		// If so, then they are close enough.
-		for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+		for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 		{
 			Object *obj = (*i);
 			if (!obj->isKindOf(KINDOF_INFANTRY)) {
@@ -715,7 +715,7 @@ Bool AIGroup::friend_moveInfantryToPos( const Coord3D *pos, CommandSourceType cm
 	SimpleObjectIterator *iter2 = newInstance(SimpleObjectIterator);
 	iterHolder2.hold(iter2);
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )	
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )	
 	{
 		if ((*i)->isDisabledByType( DISABLED_HELD ) ) 
 		{
@@ -838,11 +838,11 @@ Bool AIGroup::friend_moveInfantryToPos( const Coord3D *pos, CommandSourceType cm
 			Int i;
 			Int min3 = 10000;
 			Int min5 = 10000;
-			for (i=0; i<3; i++) if (column3[i]<min3) min3 = column3[i];
-			for (i=0; i<5; i++) if (column5[i]<min5) min5 = column5[i];
+			for (int i =0; i<3; i++) if (column3[i]<min3) min3 = column3[i];
+			for (int i =0; i<5; i++) if (column5[i]<min5) min5 = column5[i];
 			Int delta = 10000;
 			Int best = -1;
-			for (i=0; i<3; i++) {
+			for (int i =0; i<3; i++) {
 				if (column3[i]==min3) {
 					Int dx = (1+columnDelta)-i;
 					if (dx<0) dx = -dx;
@@ -859,7 +859,7 @@ Bool AIGroup::friend_moveInfantryToPos( const Coord3D *pos, CommandSourceType cm
 
 			delta = 10000;
 			best = -1;
-			for (i=0; i<5; i++) {
+			for (int i =0; i<5; i++) {
 				if (column5[i]==min5) {
 					Int dx = (2+fiveColumnDelta)-i;
 					if (dx<0) dx = -dx;
@@ -1047,7 +1047,7 @@ void AIGroup::friend_moveFormationToPos( const Coord3D *pos, CommandSourceType c
 	
 	// Move.
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )	
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )	
 	{
 		if ((*i)->isDisabledByType( DISABLED_HELD ) ) 
 		{
@@ -1179,7 +1179,7 @@ Bool AIGroup::friend_moveVehicleToPos( const Coord3D *pos, CommandSourceType cmd
 	SimpleObjectIterator *iter2 = newInstance(SimpleObjectIterator);
 	iterHolder2.hold(iter2);
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )	
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )	
 	{
 		if ((*i)->isDisabledByType( DISABLED_HELD ) ) 
 		{
@@ -1305,11 +1305,11 @@ Bool AIGroup::friend_moveVehicleToPos( const Coord3D *pos, CommandSourceType cmd
 			Int i;
 			Int min2 = 10000;
 			Int min3 = 10000;
-			for (i=0; i<3; i+=2) if (column2[i]<min2) min2 = column2[i];
-			for (i=0; i<3; i++) if (column3[i]<min3) min3 = column3[i];
+			for (int i =0; i<3; i+=2) if (column2[i]<min2) min2 = column2[i];
+			for (int i =0; i<3; i++) if (column3[i]<min3) min3 = column3[i];
 			Int delta = 10000;
 			Int best = -1;
-			for (i=0; i<3; i+=2) {
+			for (int i =0; i<3; i+=2) {
 				if (column2[i]==min2) {
 					Int dx = (1+columnDelta)-i;
 					if (dx<0) dx = -dx;
@@ -1326,7 +1326,7 @@ Bool AIGroup::friend_moveVehicleToPos( const Coord3D *pos, CommandSourceType cmd
 
 			delta = 10000;
 			best = -1;
-			for (i=0; i<3; i++) {
+			for (int i =0; i<3; i++) {
 				if (column3[i]==min3) {
 					Int dx = (1+threeColumnDelta)-i;
 					if (dx<0) dx = -dx;
@@ -1507,7 +1507,7 @@ void AIGroup::groupMoveToPosition( const Coord3D *pos, Bool addWaypoint, Command
 		}
 	}
 
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )	
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )	
 	{
 		if ((*i)->getAI()) {
 			if (!(*i)->getAI()->isDoingGroundMovement()) {
@@ -1541,7 +1541,7 @@ void AIGroup::groupMoveToPosition( const Coord3D *pos, Bool addWaypoint, Command
 	MemoryPoolObjectHolder iterHolder;
 	SimpleObjectIterator *iter = newInstance(SimpleObjectIterator);
 	iterHolder.hold(iter);
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )	
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )	
 	{
 		Real dx, dy;
 		if ((*i)->isDisabledByType( DISABLED_HELD ) ) 
@@ -1670,7 +1670,7 @@ void AIGroup::groupScatter( CommandSourceType cmdSource )
 	MemoryPoolObjectHolder iterHolder;
 	SimpleObjectIterator *iter = newInstance(SimpleObjectIterator);
 	iterHolder.hold(iter);
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )	
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )	
 	{
 		Real dx, dy;
 		if ((*i)->isDisabledByType( DISABLED_HELD ) ) 
@@ -1735,7 +1735,7 @@ void AIGroup::groupTightenToPosition( const Coord3D *pos, Bool addWaypoint, Comm
 	iterHolder.hold(iter);
 
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )	{
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )	{
 		Real dx, dy;
 		Coord3D unitPos = *((*i)->getPosition());
 		if ((*i)->isDisabledByType( DISABLED_HELD ) ) 
@@ -1784,7 +1784,7 @@ void AIGroup::groupTightenToPosition( const Coord3D *pos, Bool addWaypoint, Comm
 void AIGroup::groupFollowWaypointPath( const Waypoint *way, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -1800,7 +1800,7 @@ void AIGroup::groupFollowWaypointPath( const Waypoint *way, CommandSourceType cm
 void AIGroup::groupFollowWaypointPathExact( const Waypoint *way, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -1816,7 +1816,7 @@ void AIGroup::groupFollowWaypointPathExact( const Waypoint *way, CommandSourceTy
 void AIGroup::groupMoveToAndEvacuate( const Coord3D *pos, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -1833,7 +1833,7 @@ void AIGroup::groupMoveToAndEvacuate( const Coord3D *pos, CommandSourceType cmdS
 void AIGroup::groupMoveToAndEvacuateAndExit( const Coord3D *pos, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -1849,7 +1849,7 @@ void AIGroup::groupMoveToAndEvacuateAndExit( const Coord3D *pos, CommandSourceTy
 void AIGroup::groupFollowWaypointPathAsTeam( const Waypoint *way, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -1865,7 +1865,7 @@ void AIGroup::groupFollowWaypointPathAsTeam( const Waypoint *way, CommandSourceT
 void AIGroup::groupFollowWaypointPathAsTeamExact( const Waypoint *way, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -1895,7 +1895,7 @@ void makeMemberStop( Object *obj, void* userData )
 void AIGroup::groupIdle(CommandSourceType cmdSource)
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		Object *obj = *i;
 		
@@ -1975,7 +1975,7 @@ void AIGroup::groupAttackObjectPrivate( Bool forced, Object *victim, Int maxShot
 	iterHolder.hold(iter);
 
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )	{
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )	{
 		Real dx, dy;
 		Coord3D unitPos = *((*i)->getPosition());
 		if ((*i)->isDisabledByType( DISABLED_HELD ) ) 
@@ -2049,7 +2049,7 @@ void AIGroup::groupAttackTeam( const Team *team, Int maxShotsToFire, CommandSour
 		return;
 	}
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2070,7 +2070,7 @@ void AIGroup::groupAttackPosition( const Coord3D *pos, Int maxShotsToFire, Comma
 		attackPos = *pos;
 	}
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		if( !pos )
 		{
@@ -2126,7 +2126,7 @@ void AIGroup::groupAttackPosition( const Coord3D *pos, Int maxShotsToFire, Comma
 void AIGroup::groupAttackMoveToPosition( const Coord3D *pos, Int maxShotsToFire, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2145,7 +2145,7 @@ void AIGroup::groupAttackMoveToPosition( const Coord3D *pos, Int maxShotsToFire,
 void AIGroup::groupHunt( CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2162,7 +2162,7 @@ void AIGroup::groupHunt( CommandSourceType cmdSource )
 void AIGroup::groupRepair( Object *obj, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2178,7 +2178,7 @@ void AIGroup::groupRepair( Object *obj, CommandSourceType cmdSource )
 void AIGroup::groupResumeConstruction( Object *obj, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2194,7 +2194,7 @@ void AIGroup::groupResumeConstruction( Object *obj, CommandSourceType cmdSource 
 void AIGroup::groupGetHealed( Object *healDepot, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2210,7 +2210,7 @@ void AIGroup::groupGetHealed( Object *healDepot, CommandSourceType cmdSource )
 void AIGroup::groupGetRepaired( Object *repairDepot, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2226,7 +2226,7 @@ void AIGroup::groupGetRepaired( Object *repairDepot, CommandSourceType cmdSource
 void AIGroup::groupEnter( Object *obj, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2242,7 +2242,7 @@ void AIGroup::groupEnter( Object *obj, CommandSourceType cmdSource )
 void AIGroup::groupDock( Object *obj, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2258,7 +2258,7 @@ void AIGroup::groupDock( Object *obj, CommandSourceType cmdSource )
 void AIGroup::groupExit( Object *objectToExit,  CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2274,7 +2274,7 @@ void AIGroup::groupExit( Object *objectToExit,  CommandSourceType cmdSource )
 void AIGroup::groupEvacuate( CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2313,7 +2313,7 @@ void AIGroup::groupExecuteRailedTransport( CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
 
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 
@@ -2328,7 +2328,7 @@ void AIGroup::groupExecuteRailedTransport( CommandSourceType cmdSource )
 void AIGroup::groupGoProne( const DamageInfo *damageInfo, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2348,7 +2348,7 @@ void AIGroup::groupGuardPosition( const Coord3D *pos, GuardMode guardMode, Comma
 	}
 
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2368,7 +2368,7 @@ void AIGroup::groupGuardObject( Object *objToGuard, GuardMode guardMode, Command
 	}
 
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2388,7 +2388,7 @@ void AIGroup::groupGuardArea( const PolygonTrigger *areaToGuard, GuardMode guard
 	}
 
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2408,7 +2408,7 @@ void AIGroup::groupAttackArea( const PolygonTrigger *areaToGuard, CommandSourceT
 	}
 	
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2421,7 +2421,7 @@ void AIGroup::groupAttackArea( const PolygonTrigger *areaToGuard, CommandSourceT
 void AIGroup::groupHackInternet( CommandSourceType cmdSource )				///< Begin hacking the internet for free cash from the heavens.
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2443,7 +2443,7 @@ void AIGroup::groupCreateFormation( CommandSourceType cmdSource )				///< Create
 
 	Int count = 0;
 	FormationID countID = NO_FORMATION_ID;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		count++;
 		countID = (*i)->getFormationID();
@@ -2456,7 +2456,7 @@ void AIGroup::groupCreateFormation( CommandSourceType cmdSource )				///< Create
 		id = NO_FORMATION_ID;
 	}
 
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		Object *obj = (*i);
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
@@ -2481,7 +2481,7 @@ void AIGroup::groupDoSpecialPower( UnsignedInt specialPowerID, UnsignedInt comma
 {
 	//This is the no target, no position version.
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		//Special powers do a lot of different things, but the top level stuff doesn't use
 		//ai interface code. It finds the special power module and calls it directly for each object.
@@ -2519,7 +2519,7 @@ void AIGroup::groupDoSpecialPowerAtLocation( UnsignedInt specialPowerID, const C
 {
 	//This one requires a position
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		//Special powers do a lot of different things, but the top level stuff doesn't use
 		//ai interface code. It finds the special power module and calls it directly for each object.
@@ -2558,7 +2558,7 @@ void AIGroup::groupDoSpecialPowerAtObject( UnsignedInt specialPowerID, Object *t
 {
 	//This one requires a target
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		//Special powers do a lot of different things, but the top level stuff doesn't use
 		//ai interface code. It finds the special power module and calls it directly for each object.
@@ -2593,7 +2593,7 @@ void AIGroup::groupSurrender( const Object *objWeSurrenderedTo, Bool surrender, 
 {
 	//This is currently only activated via test key
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2608,7 +2608,7 @@ void AIGroup::groupCheer( CommandSourceType cmdSource )
 {
 	//This is currently only activated via test key
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		Object *object = (*i);
 		//This allows all special conditions states to reset after a specified delay. Assume
@@ -2625,7 +2625,7 @@ void AIGroup::groupSell( CommandSourceType cmdSource )
 	std::list<Object *>::iterator i, thisIterator;
 	Object *obj;
 
-	for( i = m_memberList.begin(); i != m_memberList.end(); /*empty*/ )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); /*empty*/ )
 	{
 
 		// work off of 'thisIterator' as we may change the contents of this list
@@ -2650,7 +2650,7 @@ void AIGroup::groupToggleOvercharge( CommandSourceType cmdSource )
 	std::list<Object *>::iterator i;
 	Object *obj;
 
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 
 		// get object
@@ -2679,7 +2679,7 @@ void AIGroup::groupPickUpPrisoner( Object *prisoner, enum CommandSourceType cmdS
 	std::list<Object *>::iterator i;
 	Object *obj;
 
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 
 		// get object
@@ -2703,7 +2703,7 @@ void AIGroup::groupReturnToPrison( Object *prison, enum CommandSourceType cmdSou
 	std::list<Object *>::iterator i;
 	Object *obj;
 
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 
 		// get object
@@ -2725,7 +2725,7 @@ void AIGroup::groupCombatDrop( Object *target, const Coord3D &pos, CommandSource
 	std::list<Object *>::iterator i;
 	Object *obj;
 
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 
 		// get object
@@ -2749,7 +2749,7 @@ void AIGroup::groupDoCommandButton( const CommandButton *commandButton, CommandS
 	std::list<Object *>::iterator i;
 	Object *source;
 
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 
 		// get object
@@ -2769,7 +2769,7 @@ void AIGroup::groupDoCommandButtonAtPosition( const CommandButton *commandButton
 	std::list<Object *>::iterator i;
 	Object *source;
 
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 
 		// get object
@@ -2788,7 +2788,7 @@ void AIGroup::groupDoCommandButtonAtObject( const CommandButton *commandButton, 
 	std::list<Object *>::iterator i;
 	Object *source;
 
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 
 		// get object
@@ -2805,7 +2805,7 @@ void AIGroup::groupDoCommandButtonAtObject( const CommandButton *commandButton, 
 void AIGroup::setAttitude( AttitudeType tude )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		AIUpdateInterface *ai = (*i)->getAIUpdateInterface();
 		if (ai)
@@ -2826,7 +2826,7 @@ AttitudeType AIGroup::getAttitude( void ) const
 void AIGroup::setMineClearingDetail( Bool set )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		if (set)
 			(*i)->setWeaponSetFlag(WEAPONSET_MINE_CLEARING_DETAIL);
@@ -2839,7 +2839,7 @@ Bool AIGroup::setWeaponLockForGroup( WeaponSlotType weaponSlot, WeaponLockType l
 {
 	Bool any = false;
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		if ((*i)->setWeaponLock( weaponSlot, lockType ))
 			any = true;
@@ -2850,7 +2850,7 @@ Bool AIGroup::setWeaponLockForGroup( WeaponSlotType weaponSlot, WeaponLockType l
 void AIGroup::releaseWeaponLockForGroup(WeaponLockType lockType)
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		(*i)->releaseWeaponLock(lockType);
 	}
@@ -2862,7 +2862,7 @@ void AIGroup::releaseWeaponLockForGroup(WeaponLockType lockType)
 void AIGroup::setWeaponSetFlag( WeaponSetType wst )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		Object *obj = (*i);
 		//First check to see if our object even has the specified weaponset. It's very
@@ -2884,7 +2884,7 @@ void AIGroup::queueUpgrade( const UpgradeTemplate *upgrade )
 		return;
 
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		Object *thisMember = (*i);
 		// make sure that the this object can actually build the upgrade
@@ -2924,7 +2924,7 @@ Bool AIGroup::isIdle( void ) const
 {
 	Bool isIdle = true;
 	std::list<Object *>::const_iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		Object *obj = *i;
 		if (!obj) {
@@ -2955,7 +2955,7 @@ Bool AIGroup::isBusy( void ) const
 {
 	Bool isBusy = true;
 	std::list<Object *>::const_iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		Object *obj = *i;
 		if( !obj ) 
@@ -2989,7 +2989,7 @@ Bool AIGroup::isGroupAiDead( void ) const
 {
 	Bool isDead = true;
 	std::list<Object *>::const_iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		Object *obj = *i;
 		if (!obj) {
@@ -3010,7 +3010,7 @@ Object *AIGroup::getSpecialPowerSourceObject( UnsignedInt specialPowerID )
 	const SpecialPowerTemplate *spTemplate = TheSpecialPowerStore->findSpecialPowerTemplateByID( specialPowerID );
 	if( spTemplate )
 	{
-		for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+		for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 		{
 			Object *object = (*i);
 			SpecialPowerModuleInterface *mod = object->getSpecialPowerModule( spTemplate );
@@ -3056,7 +3056,7 @@ Object *AIGroup::getCommandButtonSourceObject( GUICommandType type )
 void AIGroup::groupSetEmoticon( const AsciiString &name, Int duration )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		Object *object = (*i);
 		Drawable *draw = object->getDrawable();
@@ -3071,7 +3071,7 @@ void AIGroup::groupSetEmoticon( const AsciiString &name, Int duration )
 void AIGroup::groupOverrideSpecialPowerDestination( SpecialPowerType spType, const Coord3D *loc, CommandSourceType cmdSource )
 {
 	std::list<Object *>::iterator i;
-	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
+	for (auto i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
 		Object *object = (*i);
 		if( object )

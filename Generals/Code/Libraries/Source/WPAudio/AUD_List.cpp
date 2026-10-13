@@ -100,7 +100,7 @@
 
 void		ListInit ( ListHead *head )
 {
-	head->prev = head->next = head;
+	head->prev = head->next = (ListNode*)head;
 	head->pri = (Priority) head;		// this identifies the node as a head node
 
 }
@@ -140,7 +140,7 @@ int		ListAddNodeSortAscending( ListHead *head, ListNode *new_node )
 		index++;
 	}
 
-	ListNodeInsert ( head, new_node );
+	ListNodeInsert ( (ListNode*)head, new_node );
 	return index;
 }
 
@@ -166,7 +166,7 @@ void	ListAddNode( ListHead *head, ListNode *new_node )
 		}
 	}
 
-	ListNodeInsert ( head, new_node );
+	ListNodeInsert ( (ListNode*)head, new_node );
 }
 
 /******************************************************************/
@@ -191,7 +191,7 @@ void	ListAddNodeAfter( ListHead *head, ListNode *new_node )
 		}
 	}
 
-	ListNodeInsert ( head, new_node );
+	ListNodeInsert ( (ListNode*)head, new_node );
 }
 
 /******************************************************************/

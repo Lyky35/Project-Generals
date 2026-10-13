@@ -272,7 +272,7 @@ W3DInGameUI::W3DInGameUI()
 {
 	Int i;
 
-	for( i = 0; i < MAX_MOVE_HINTS; i++ )
+	for (int i = 0; i < MAX_MOVE_HINTS; i++ )
 	{
 
 		m_moveHintRenderObj[ i ] = NULL;
@@ -292,7 +292,7 @@ W3DInGameUI::~W3DInGameUI()
 	Int i;
 
 	// remove render objects for hints
-	for( i = 0; i < MAX_MOVE_HINTS; i++ )
+	for (int i = 0; i < MAX_MOVE_HINTS; i++ )
 	{
 
 		REF_PTR_RELEASE( m_moveHintRenderObj[ i ] );
@@ -471,7 +471,7 @@ void W3DInGameUI::drawMoveHints( View *view )
 //	Real width = 1.0f;
 //	UnsignedInt color = 0x9933FF33;  //0xAARRGGBB
 
-	for( i = 0; i < MAX_MOVE_HINTS; i++ )
+	for (int i = 0; i < MAX_MOVE_HINTS; i++ )
 	{
 		Int elapsed = TheGameClient->getFrame() - m_moveHint[i].frame;
 

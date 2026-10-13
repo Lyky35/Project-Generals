@@ -44,10 +44,10 @@ TransitionDamageFXModuleData::TransitionDamageFXModuleData( void )
 {
 	Int i, j;
 
-	for( i = 0; i < BODYDAMAGETYPE_COUNT; i++ )
+	for (int i = 0; i < BODYDAMAGETYPE_COUNT; i++ )
 	{
 
-		for( j = 0; j < DAMAGE_MODULE_MAX_FX; j++ )
+		for (int j = 0; j < DAMAGE_MODULE_MAX_FX; j++ )
 		{
 
 			m_fxList[ i ][ j ].fx = NULL;
@@ -222,8 +222,8 @@ TransitionDamageFX::TransitionDamageFX( Thing *thing, const ModuleData* moduleDa
 {
 	Int i, j;
 
-	for( i = 0; i < BODYDAMAGETYPE_COUNT; i++ )
-		for( j = 0; j < DAMAGE_MODULE_MAX_FX; j++ )
+	for (int i = 0; i < BODYDAMAGETYPE_COUNT; i++ )
+		for (int j = 0; j < DAMAGE_MODULE_MAX_FX; j++ )
 			m_particleSystemID[ i ][ j ] = INVALID_PARTICLE_SYSTEM_ID;
 
 }  // end TransitionDamageFX
@@ -318,7 +318,7 @@ void TransitionDamageFX::onBodyDamageStateChange( const DamageInfo* damageInfo,
 		damageSource = TheGameLogic->findObjectByID( damageInfo->in.m_sourceID );
 	
 	// remove any particle systems that might be emitting from our old state
-	for( i = 0; i < DAMAGE_MODULE_MAX_FX; i++ )
+	for (int i = 0; i < DAMAGE_MODULE_MAX_FX; i++ )
 	{
 
 		if( m_particleSystemID[ oldState ][ i ] != INVALID_PARTICLE_SYSTEM_ID )
@@ -343,7 +343,7 @@ void TransitionDamageFX::onBodyDamageStateChange( const DamageInfo* damageInfo,
 		// if we are restricted by the damage type executing effect, bail out of here
 		const DamageInfo *lastDamageInfo = getObject()->getBodyModule()->getLastDamageInfo();
 
-		for( i = 0; i < DAMAGE_MODULE_MAX_FX; i++ )
+		for (int i = 0; i < DAMAGE_MODULE_MAX_FX; i++ )
 		{
 
 			// play fx list for our new state

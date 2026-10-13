@@ -898,7 +898,7 @@ static inline void compute_contact_point(ObbCollisionStruct & context,CastResult
 	case AXIS_A1:
 	case AXIS_A2:
 		i = context.AxisId - AXIS_A0;
-		for (j=0; j<3; j++) {
+		for (int j =0; j<3; j++) {
 			y[j] = -eval_side(context.AB[i][j],context.Side);
 		}
 		context.Box1.Compute_Point(y,&(result->ContactPoint));
@@ -909,7 +909,7 @@ static inline void compute_contact_point(ObbCollisionStruct & context,CastResult
 	case AXIS_B1:
 	case AXIS_B2:
 		j = context.AxisId - AXIS_B0;
-		for (i=0; i<3; i++) {
+		for (int i =0; i<3; i++) {
 			x[i] = eval_side(context.AB[i][j],context.Side);
 		}
 		context.Box0.Compute_Point(x,&(result->ContactPoint));

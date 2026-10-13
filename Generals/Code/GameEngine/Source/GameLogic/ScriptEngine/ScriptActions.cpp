@@ -550,7 +550,7 @@ void ScriptActions::doCreateReinforcements(const AsciiString& team, const AsciiS
 
 	//Now create the units that make up the team.
 	Int i, j;
-	for (i=0; i<pInfo->m_numUnitsInfo; i++) 
+	for (int i =0; i<pInfo->m_numUnitsInfo; i++) 
 	{
 		// get thing template based from map object name
 		unitTemplate = TheThingFactory->findTemplate(pInfo->m_unitsInfo[i].unitThingName);
@@ -558,7 +558,7 @@ void ScriptActions::doCreateReinforcements(const AsciiString& team, const AsciiS
 		if (unitTemplate && theTeam) 
 		{
 			Object *obj = NULL;
-			for (j=0; j<pInfo->m_unitsInfo[i].maxUnits; j++) 
+			for (int j =0; j<pInfo->m_unitsInfo[i].maxUnits; j++) 
 			{
 				// create new object in the world
 				obj = TheThingFactory->newObject( unitTemplate, theTeam );
@@ -2498,7 +2498,7 @@ void ScriptActions::doDisplayCinematicText(const AsciiString& displayText, const
 	char buf[256];
 	char *c;
 	strcpy(buf, fontType.str());
-	for( c = buf; c != '\0'; *c++ )
+	for (c = buf; c != '\0'; *c++ )
 	{
 		if( *c != ' ' && *c++ != '-' ) 
 			fontName.concat(c);

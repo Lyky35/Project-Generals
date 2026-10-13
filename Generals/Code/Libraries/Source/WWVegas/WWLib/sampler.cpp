@@ -77,7 +77,7 @@ RandomSamplingClass::RandomSamplingClass(unsigned int dimensions,unsigned char d
 void RandomSamplingClass::Sample(float *target)
 {
 	unsigned int i;
-	for (i=0; i<Dimensions; i++)
+	for (int i =0; i<Dimensions; i++)
 	{
 		target[i]=Random.Get_Float();
 	}
@@ -120,7 +120,7 @@ void RegularSamplingClass::Sample(float *target)
 {
 	unsigned int i;
 
-	for (i=0; i<Dimensions; i++)
+	for (int i =0; i<Dimensions; i++)
 	{
 		// minus one because we want to get 1.0f also
 		target[i]=(float) index[i]/(Divisions-1.0f);				
@@ -131,7 +131,7 @@ void RegularSamplingClass::Sample(float *target)
 	// e.g. increase x until x reaches Divisions
 	// then and only then increase y. Now z increases
 	// only when x=Divisions and y=Divisions etc..
-	for (i=0; i<Dimensions; i++)
+	for (int i =0; i<Dimensions; i++)
 	{
 		index[i]++;
 		if (index[i]<Divisions) break;
@@ -175,7 +175,7 @@ void StratifiedSamplingClass::Sample(float *target)
 {
 	unsigned int i;
 
-	for (i=0; i<Dimensions; i++)
+	for (int i =0; i<Dimensions; i++)
 	{
 		target[i]=(index[i]+Random.Get_Float())/(float) Divisions;
 	}
@@ -185,7 +185,7 @@ void StratifiedSamplingClass::Sample(float *target)
 	// e.g. increase x until x reaches Divisions
 	// then and only then increase y. Now z increases
 	// only when x=Divisions and y=Divisions etc..
-	for (i=0; i<Dimensions; i++)
+	for (int i =0; i<Dimensions; i++)
 	{
 		index[i]++;
 		if (index[i]<Divisions) break;
@@ -255,7 +255,7 @@ QMCSamplingClass::QMCSamplingClass(unsigned int dimensions,unsigned char divisio
 void QMCSamplingClass::Sample(float *target)
 {
 	unsigned int i;
-	for (i=0; i<Dimensions; i++)
+	for (int i =0; i<Dimensions; i++)
 	{
 		target[i]=RadInv(index,primes[i]);
 	}

@@ -42,6 +42,10 @@
 #define __SOUNDOBJ_H
 
 #pragma warning (push, 3)
+#ifndef LPCTSTR
+typedef const char* LPCTSTR;
+#endif
+
 #include "mss.h"
 #pragma warning (pop)
 

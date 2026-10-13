@@ -356,7 +356,7 @@ bool TextureFileCache::Save_Texture(const char *texturename, srTextureIFace::Mul
 	TextureHandle->Write(Offsets, sizeof(OffsetTableType) * (Header.NumMipMaps + 1));
 
 	// Now write out the textures.
-	for (idx = 0, lod = mreq.largeLOD; lod <= mreq.smallLOD; idx++, lod++) {
+	for (int idx = 0, lod = mreq.largeLOD; lod <= mreq.smallLOD; idx++, lod++) {
 		srColorSurface *surface = mreq.levels[lod];
 		WWASSERT(surface->getDataPtr());
 
@@ -522,7 +522,7 @@ bool TextureFileCache::Load_Texture(const char *texturename, srTextureIFace::Mul
 	assert(lodsize != -1);
 
 	// Skip past all mipmap levels that we do not want in the file.
-	for (idx = 0; idx < Header.NumMipMaps; idx++) {
+	for (int idx = 0; idx < Header.NumMipMaps; idx++) {
 		idxsize = Texture_Size(idx);
 		if (idxsize <= lodsize)  {
 			break;
@@ -878,7 +878,7 @@ bool TextureFileCache::Validate_Texture(const char* FileName)
 
 		srTextureIFace::MultiRequest mr;
 		for (int cnt=0;cnt<srTextureIFace::MAX_LOD;++cnt) mr.levels[cnt]=0;
-		for (cnt=0;cnt<srTextureIFace::MAX_LOD;) {
+		for (int cnt =0;cnt<srTextureIFace::MAX_LOD;) {
 			mr.levels[cnt]=W3DNEW srColorSurface(pf,w,w);
 			mr.levels[cnt]->copy(*TempSurfacePtr);
 			w>>=1;
@@ -890,7 +890,7 @@ bool TextureFileCache::Validate_Texture(const char* FileName)
 		Save_Texture(FileName, mr, *TempSurfacePtr);
 		TempSurfacePtr->release();
 		TempSurfacePtr=0;
-		for (cnt=0;cnt<srTextureIFace::MAX_LOD;++cnt) {
+		for (int cnt =0;cnt<srTextureIFace::MAX_LOD;++cnt) {
 			if (mr.levels[cnt]) mr.levels[cnt]->release();
 		}
 	}

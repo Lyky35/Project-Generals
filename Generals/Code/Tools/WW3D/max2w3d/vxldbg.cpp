@@ -198,8 +198,8 @@ void VoxelDebugWindowClass::update_display(void)
 
 	Bitmap->Clear(0);
 
-	for (j=0; j < Voxel->Get_Height(); j++) {
-		for (i=0; i < Voxel->Get_Width(); i++) {
+	for (int j =0; j < Voxel->Get_Height(); j++) {
+		for (int i =0; i < Voxel->Get_Width(); i++) {
 			if (Voxel->Is_Solid(i,j,CurLayer)) {
 				Bitmap->Set_Pixel(i,j,1);
 			}

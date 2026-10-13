@@ -193,7 +193,7 @@ void PopulateColorComboBox(Int comboBox, GameWindow *comboArray[], GameInfo *myG
 	for (Int i = 0; i < numColors; i++)
 		availableColors.push_back(true);
 
-	for (i = 0; i < MAX_SLOTS; i++)
+	for (int i = 0; i < MAX_SLOTS; i++)
 	{
 		GameSlot *slot = myGame->getSlot(i);	
 		if( slot && (i != comboBox) && (slot->getColor() >= 0 )&& (slot->getColor() < numColors))
@@ -423,7 +423,7 @@ void UpdateSlotList( GameInfo *myGame, GameWindow *comboPlayer[],
 			Int max, idx;
 			if (comboColor[i] != NULL) {
 				max = GadgetComboBoxGetLength(comboColor[i]);
-				for (idx=0; idx<max; ++idx)
+				for (int idx =0; idx<max; ++idx)
 				{
 					Int color = (Int)GadgetComboBoxGetItemData(comboColor[i], idx);
 					if (color == slot->getColor())
@@ -436,7 +436,7 @@ void UpdateSlotList( GameInfo *myGame, GameWindow *comboPlayer[],
 
 			if (comboTeam[i] != NULL) {
 				max = GadgetComboBoxGetLength(comboTeam[i]);
-				for (idx=0; idx<max; ++idx)
+				for (int idx =0; idx<max; ++idx)
 				{
 					Int team = (Int)GadgetComboBoxGetItemData(comboTeam[i], idx);
 					if (team == slot->getTeamNumber())
@@ -449,7 +449,7 @@ void UpdateSlotList( GameInfo *myGame, GameWindow *comboPlayer[],
 
 			if (comboPlayerTemplate[i] != NULL) {
 				max = GadgetComboBoxGetLength(comboPlayerTemplate[i]);
-				for (idx=0; idx<max; ++idx)
+				for (int idx =0; idx<max; ++idx)
 				{
 					Int playerTemplate = (Int)GadgetComboBoxGetItemData(comboPlayerTemplate[i], idx);
 					if (playerTemplate == slot->getPlayerTemplate())

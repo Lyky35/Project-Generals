@@ -109,7 +109,7 @@ static AsciiString teamNameForUI(SidesList& sides, int i)
 static AsciiString UIToInternal(SidesList& sides, const AsciiString& n)
 {
 	Int i;
-	for (i = 0; i < sides.getNumSides(); i++)
+	for (int i = 0; i < sides.getNumSides(); i++)
 	{
 		if (playerNameForUI(sides, i) == n)
 			return sides.getSideInfo(i)->getDict()->getAsciiString(TheKey_playerName);
@@ -505,7 +505,7 @@ void CTeamsDialog::OnMoveUpTeam()
 	Bool result = pList->GetItem(pItem);
 	pList->DeleteItem(m_curTeam);
 	pList->InsertItem(pItem);
-	for (i=0; i<m_sides.getNumTeams(); i++)
+	for (int i =0; i<m_sides.getNumTeams(); i++)
 		pList->Update(i);
 	pList->SetItemState(m_curTeam, LVIS_SELECTED, LVIS_SELECTED);
 */
@@ -563,7 +563,7 @@ void CTeamsDialog::OnMoveDownTeam()
 	Bool result = pList->GetItem(pItem);
 	pList->DeleteItem(m_curTeam);
 	pList->InsertItem(pItem);
-	for (i=0; i<m_sides.getNumTeams(); i++)
+	for (int i =0; i<m_sides.getNumTeams(); i++)
 		pList->Update(i);
 	pList->SetItemState(m_curTeam, LVIS_SELECTED, LVIS_SELECTED);
 */

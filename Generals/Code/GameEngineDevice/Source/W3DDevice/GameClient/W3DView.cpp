@@ -1360,7 +1360,7 @@ void W3DView::draw( void )
 				delta.x = e.x-s.x;
 				delta.y = e.y-s.y;
 				delta.z = e.z-s.z;
-				for (k = 0; k<10; k++) {
+				for (int k = 0; k<10; k++) {
 					Real factor1 = (k)/10.0;
 					Real factor2 = (k+1)/10.0;
 					s = *node->getPosition();
@@ -2273,7 +2273,7 @@ void W3DView::cameraModFreezeAngle(void)
 	if (m_doingMoveCameraOnWaypointPath) {
 		Int i;
 //		Real curDistance = 0;
-		for (i=0; i<m_mcwpInfo.numWaypoints; i++) {
+		for (int i =0; i<m_mcwpInfo.numWaypoints; i++) {
 			m_mcwpInfo.cameraAngle[i+1] = m_mcwpInfo.cameraAngle[0];
 		}
 	}
@@ -2290,7 +2290,7 @@ void W3DView::cameraModLookToward(Coord3D *pLoc)
 	if (m_doingMoveCameraOnWaypointPath) {
 		Int i;
 //		Real curDistance = 0;
-		for (i=2; i<=m_mcwpInfo.numWaypoints; i++) {
+		for (int i =2; i<=m_mcwpInfo.numWaypoints; i++) {
 			Coord3D start, mid, end;
 			Real factor = 0.5;
 			start = m_mcwpInfo.waypoints[i-1];
@@ -2344,7 +2344,7 @@ void W3DView::cameraModFinalMoveTo(Coord3D *pLoc)
 		start = m_mcwpInfo.waypoints[m_mcwpInfo.numWaypoints];
 		delta.x = pLoc->x - start.x;
 		delta.y = pLoc->y - start.y;
-		for (i=2; i<=m_mcwpInfo.numWaypoints; i++) {
+		for (int i =2; i<=m_mcwpInfo.numWaypoints; i++) {
 			Coord3D result = m_mcwpInfo.waypoints[i];
 			result.x += delta.x;
 			result.y += delta.y;
@@ -2366,7 +2366,7 @@ void W3DView::cameraModFinalLookToward(Coord3D *pLoc)
 		Int min = m_mcwpInfo.numWaypoints-1;
 		if (min<2) min=2;
 //		Real curDistance = 0;
-		for (i=min; i<=m_mcwpInfo.numWaypoints; i++) {
+		for (int i =min; i<=m_mcwpInfo.numWaypoints; i++) {
 			Coord3D start, mid, end;
 			Real factor = 0.5;
 			start = m_mcwpInfo.waypoints[i-1];
@@ -2423,7 +2423,7 @@ void W3DView::cameraModFinalTimeMultiplier(Int finalMultiplier)
 	} else if (m_doingMoveCameraOnWaypointPath) {
 		Int i;
 		Real curDistance = 0;
-		for (i=0; i<m_mcwpInfo.numWaypoints; i++) {
+		for (int i =0; i<m_mcwpInfo.numWaypoints; i++) {
 			curDistance += m_mcwpInfo.waySegLength[i];
 			Real factor2 = curDistance / m_mcwpInfo.totalDistance;
 			Real factor1 = 1.0-factor2;
@@ -2554,7 +2554,7 @@ void W3DView::setupWaypointPath(Bool orient)
 	m_mcwpInfo.totalDistance = 0;
 	m_mcwpInfo.rollingAverageFrames = 1;
 	Int i;
-	for (i=1; i<m_mcwpInfo.numWaypoints; i++) {
+	for (int i =1; i<m_mcwpInfo.numWaypoints; i++) {
 		Vector3 dir(m_mcwpInfo.waypoints[i+1].x-m_mcwpInfo.waypoints[i].x, m_mcwpInfo.waypoints[i+1].y-m_mcwpInfo.waypoints[i].y, 0);
 		m_mcwpInfo.waySegLength[i] = dir.Length();
 		m_mcwpInfo.totalDistance += m_mcwpInfo.waySegLength[i];
@@ -2575,7 +2575,7 @@ void W3DView::setupWaypointPath(Bool orient)
 	}
 	m_mcwpInfo.cameraAngle[1] = getAngle();	
 	m_mcwpInfo.cameraAngle[m_mcwpInfo.numWaypoints] = m_mcwpInfo.cameraAngle[m_mcwpInfo.numWaypoints-1];	
-	for (i=m_mcwpInfo.numWaypoints-1; i>1; i--) {
+	for (int i =m_mcwpInfo.numWaypoints-1; i>1; i--) {
 		m_mcwpInfo.cameraAngle[i] = (m_mcwpInfo.cameraAngle[i] + m_mcwpInfo.cameraAngle[i-1]) / 2;  
 	}
 	m_mcwpInfo.waySegLength[m_mcwpInfo.numWaypoints+1] = m_mcwpInfo.waySegLength[m_mcwpInfo.numWaypoints+1];	
@@ -2586,7 +2586,7 @@ void W3DView::setupWaypointPath(Bool orient)
 	Real curDistance = 0;
 	Coord3D finalPos = m_mcwpInfo.waypoints[m_mcwpInfo.numWaypoints];
 	Real newGround = TheTerrainLogic->getGroundHeight(finalPos.x, finalPos.y);
-	for (i=0; i<=m_mcwpInfo.numWaypoints+1; i++) {
+	for (int i =0; i<=m_mcwpInfo.numWaypoints+1; i++) {
 		Real factor2 = curDistance / m_mcwpInfo.totalDistance;
 		Real factor1 = 1.0-factor2;
 		m_mcwpInfo.cameraFXPitch[i] = m_FXPitch;

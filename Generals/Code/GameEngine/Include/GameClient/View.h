@@ -44,6 +44,8 @@
 #define DEFAULT_VIEW_ORIGIN_Y 0
 
 // FORWARD DECLARATIONS ///////////////////////////////////////////////////////////////////////////
+enum FilterModes : int;
+enum FilterTypes : int;
 class Drawable;
 class ViewLocation;
 class Thing;
@@ -53,7 +55,7 @@ class LookAtTranslator;
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-enum PickType
+enum PickType : int
 {
 	PICK_TYPE_TERRAIN						= COLLISION_TYPE_0,
 	PICK_TYPE_SELECTABLE				= COLLISION_TYPE_1,
@@ -279,10 +281,10 @@ protected:
 // ------------------------------------------------------------------------------------------------
 class ViewLocation
 {
-	friend class View;
+	class View;
 	friend class LookAtTranslator;
 
-	protected:
+	public:
 		Bool m_valid;																								///< Is this location valid
 		Coord3D m_pos;																							///< Position of this view, in world coordinates
 		Real m_angle;																								///< Angle at which view has been rotated about the Z axis

@@ -132,7 +132,7 @@ static Int getListboxEntryBasedOnCoord(GameWindow *window, Int x, Int y, Int &ro
 
 	pos = -2;
 
-	for( i=0; ; i++ )
+	for (Int i =0; ; i++ )
 	{
 		if( i > 0 )
 			if( list->listData[ i - 1 ].listHeight > 
@@ -157,7 +157,7 @@ static Int getListboxEntryBasedOnCoord(GameWindow *window, Int x, Int y, Int &ro
 	{ 
 		pos = i;
 		Int total = 0;
-		for( i = 0; i < list->columns ;i++)
+		for (Int i = 0; i < list->columns ;i++)
 		{
 			total += list->columnWidth[i];
 			if(x - winx < total)
@@ -295,7 +295,7 @@ static void computeTotalHeight( GameWindow *window )
 	ListboxData *list = (ListboxData *)window->winGetUserData();
 	WinInstanceData *instData = window->winGetInstanceData();
 
-	for( i=0; i<list->endPos; i++ )
+	for (Int i =0; i<list->endPos; i++ )
 	{
 		
 		if(!list->listData[i].cell)
@@ -729,7 +729,7 @@ WindowMsgHandledType GadgetListBoxInput( GameWindow *window, UnsignedInt msg,
 								DisplayString *dString = (DisplayString *)cell->data;
 								if(!dString)
 									continue;
-								for(j = 0; j < TheKeyboard->MAX_KEY_STATES; ++j)
+								for (Int j = 0; j < TheKeyboard->MAX_KEY_STATES; ++j)
 								{								
 									if(dString->getText().getCharAt(0) == TheKeyboard->getPrintableKey(mData1, j))
 									{
@@ -803,7 +803,7 @@ WindowMsgHandledType GadgetListBoxInput( GameWindow *window, UnsignedInt msg,
 
 			list->selectPos = -2;
 
-			for( i=0; ; i++ )
+			for (Int i =0; ; i++ )
 			{
 
 				if( i > 0 )
@@ -885,7 +885,7 @@ WindowMsgHandledType GadgetListBoxInput( GameWindow *window, UnsignedInt msg,
 
 			pos = -2;
 
-			for( i=0; ; i++ )
+			for (Int i =0; ; i++ )
 			{
 				if( i > 0 )
 					if( list->listData[ i - 1 ].listHeight > 
@@ -1033,7 +1033,7 @@ WindowMsgHandledType GadgetListBoxMultiInput( GameWindow *window, UnsignedInt ms
 			if( instData->getTextLength() )
 				y += TheWindowManager->winFontHeight( instData->getFont() ) + 1;
 
-			for( i = 0; ; i++ )
+			for (Int i = 0; ; i++ )
 			{
 
 				if( i > 0 )
@@ -1099,7 +1099,7 @@ WindowMsgHandledType GadgetListBoxMultiInput( GameWindow *window, UnsignedInt ms
 			if( instData->getTextLength() )
 				y += TheWindowManager->winFontHeight( instData->getFont() ) + 1;
 
-			for( i = 0; ; i++ )
+			for (Int i = 0; ; i++ )
 			{
 				if( i > 0 )
 					if( list->listData[ i - 1 ].listHeight > 
@@ -1141,7 +1141,7 @@ WindowMsgHandledType GadgetListBoxMultiInput( GameWindow *window, UnsignedInt ms
 
 			pos = -2;
 
-			for( i=0; ; i++ )
+			for (Int i =0; ; i++ )
 			{
 				if( i > 0 )
 					if( list->listData[ i - 1 ].listHeight > 
@@ -1290,7 +1290,7 @@ WindowMsgHandledType GadgetListBoxSystem( GameWindow *window, UnsignedInt msg,
 			if(pos->x >= list->columns || pos->y >= list->listLength || 
 					list->listData[pos->y].cell[pos->x].cellType != LISTBOX_TEXT)
 			{
-				tAndC->string = UnicodeString.TheEmptyString;
+				tAndC->string = UnicodeString::TheEmptyString;
 				tAndC->color = 0;				
 			}
 			else
@@ -1404,7 +1404,7 @@ WindowMsgHandledType GadgetListBoxSystem( GameWindow *window, UnsignedInt msg,
 
 			ListEntryCell *cells = list->listData[mData1].cell;
 			if(cells)
-				for( i = 0; i <= list->columns; i ++ )
+				for (Int i = 0; i <= list->columns; i ++ )
 				{
 					if( cells[i].cellType == LISTBOX_TEXT && cells[i].data )
 						TheDisplayStringManager->freeDisplayString((DisplayString *) cells[i].data );	
@@ -1633,7 +1633,8 @@ WindowMsgHandledType GadgetListBoxSystem( GameWindow *window, UnsignedInt msg,
 			if( list->multiSelect )
 			{
 				// forced selections override the entire selection list.
-				for (Int i=0; i<selectCount && i<list->endPos; ++i)
+				Int i;
+				for (int i =0; i<selectCount && i<list->endPos; ++i)
 				{
 					// don't select off the end
 					if (list->listLength <= selectList[i])
@@ -1750,7 +1751,7 @@ WindowMsgHandledType GadgetListBoxSystem( GameWindow *window, UnsignedInt msg,
 			//
 			// remove the display or links to images after the shift
 			//
-			for(i = 0; i < (Int)mData1; i ++)
+			for (Int i = 0; i < (Int)mData1; i ++)
 			{
 				list->listData[list->endPos + i].cell = NULL;
 			}
@@ -1942,7 +1943,7 @@ WindowMsgHandledType GadgetListBoxSystem( GameWindow *window, UnsignedInt msg,
 			Int i;
 
 			// Loop through and destroy any display strings we've allocated 
-			for( i = 0; i < list->listLength; i++ )
+			for (Int i = 0; i < list->listLength; i++ )
 			{
 				//We're now onto a row of cells we are not using anymore Pull off the cells and loop through them
 				ListEntryCell *cells = list->listData[i].cell;
@@ -2522,7 +2523,7 @@ void GadgetListBoxSetListLength( GameWindow *listbox, Int newLength )
 	}
 
 	// Loop through and destroy any display strings we've allocated that aren't used
-	for( i = 0; i < listboxData->listLength; i++ )
+	for (Int i = 0; i < listboxData->listLength; i++ )
 	{
 		//We're now onto a row of cells we are not using anymore Pull off the cells and loop through them
 		ListEntryCell *cells = listboxData->listData[i].cell;

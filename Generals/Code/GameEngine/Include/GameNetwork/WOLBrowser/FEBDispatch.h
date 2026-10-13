@@ -30,9 +30,19 @@
 #ifndef _FEBDISPATCH_H__
 #define _FEBDISPATCH_H__
 
-#include <atlbase.h>
+// ATL not available in MinGW
+#ifndef __ATLBASE_STUB__
+#define __ATLBASE_STUB__
+typedef unsigned long ULONG;
+typedef long HRESULT;
+#endif
 extern CComModule _Module;
-#include <atlcom.h>
+// ATL not available in MinGW - minimal stubs
+#ifndef __ATLCOM_STUB__
+#define __ATLCOM_STUB__
+template<class T> class CComObjectRootEx { public: ULONG AddRef() { return 0; } ULONG Release() { return 0; } };
+template<class T> class CComSingleThreadModel {};
+#endif
 #include <comutil.h>    // For _bstr_t.
 
 #include "oleauto.h"

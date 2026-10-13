@@ -57,6 +57,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include <cstdint>
 #include "always.h"
 #include	<assert.h>
 #include	<stdlib.h>
@@ -168,7 +169,8 @@ VectorClass<T>::VectorClass(int size, T const * array) :
 	*/
 	if (size) {
 		if (array) {
-			Vector = new((void*)array) T[size];
+			// Placement new for arrays is non-standard
+			Vector = new T[size];
 		} else {
 			Vector = W3DNEWARRAY T[size];
 			IsAllocated = true;
@@ -316,7 +318,7 @@ template<class T>
 inline int VectorClass<T>::ID(T const * ptr)
 {
 	if (!IsValid) return(0);
-	return(((unsigned long)ptr - (unsigned long)&(*this)[0]) / sizeof(T));
+	return(((uintptr_t)ptr - (uintptr_t)&(*this)[0]) / sizeof(T));
 }
 
 
@@ -419,7 +421,8 @@ bool VectorClass<T>::Resize(int newsize, T const * array)
 		if (!array) {
 			newptr = W3DNEWARRAY T[newsize];
 		} else {
-			newptr = new((void*)array) T[newsize];
+			// Placement new for arrays is non-standard; use regular new
+			newptr = new T[newsize];
 		}
 		IsValid = true;
 		if (!newptr) {
@@ -612,7 +615,7 @@ template<class T>
 bool DynamicVectorClass<T>::Resize(int newsize, T const * array)
 {
 	if (VectorClass<T>::Resize(newsize, array)) {
-		if (Length() < ActiveCount) ActiveCount = Length();
+		if (this->Length() < this->ActiveCount) ActiveCount = this->Length();
 		return(true);
 	}
 	return(false);
@@ -667,9 +670,9 @@ int DynamicVectorClass<T>::ID(T const & object)
 template<class T>
 bool DynamicVectorClass<T>::Add(T const & object)
 {
-	if (ActiveCount >= Length()) {
-		if ((IsAllocated || !VectorMax) && GrowthStep > 0) {
-			if (!Resize(Length() + GrowthStep)) {
+	if (this->ActiveCount >= this->Length()) {
+		if ((this->IsAllocated || !this->VectorMax) && this->GrowthStep > 0) {
+			if (!this->Resize(this->Length() + this->GrowthStep)) {
 
 				/*
 				**	Failure to increase the size of the vector is an error condition.
@@ -690,7 +693,7 @@ bool DynamicVectorClass<T>::Add(T const & object)
 	/*
 	**	There is room for the new object now. Add it to the end of the object vector.
 	*/
-	(*this)[ActiveCount++] = object;
+	(*this)[this->ActiveCount++] = object;
 	return(true);
 }
 
@@ -713,9 +716,9 @@ bool DynamicVectorClass<T>::Add(T const & object)
 template<class T>
 bool DynamicVectorClass<T>::Add_Head(T const & object)
 {
-	if (ActiveCount >= Length()) {
-		if ((IsAllocated || !VectorMax) && GrowthStep > 0) {
-			if (!Resize(Length() + GrowthStep)) {
+	if (this->ActiveCount >= this->Length()) {
+		if ((this->IsAllocated || !this->VectorMax) && this->GrowthStep > 0) {
+			if (!this->Resize(this->Length() + this->GrowthStep)) {
 
 				/*
 				**	Failure to increase the size of the vector is an error condition.
@@ -736,12 +739,12 @@ bool DynamicVectorClass<T>::Add_Head(T const & object)
 	/*
 	**	There is room for the new object now. Add it to the end of the object vector.
 	*/
-	if (ActiveCount) {
-		memmove(&(*this)[1], &(*this)[0], ActiveCount * sizeof(T));
+	if (this->ActiveCount) {
+		memmove(&(*this)[1], &(*this)[0], this->ActiveCount * sizeof(T));
 	}
 	(*this)[0] = object;
-	ActiveCount++;
-//	(*this)[ActiveCount++] = object;
+	this->ActiveCount++;
+//	(*this)[this->ActiveCount++] = object;
 	return(true);
 }
 
@@ -763,11 +766,11 @@ template<class T>
 bool DynamicVectorClass<T>::Insert(int index,T const & object)
 {
 	if (index < 0) return false;
-	if (index > ActiveCount) return false;
+	if (index > this->ActiveCount) return false;
 
-	if (ActiveCount >= Length()) {
-		if ((IsAllocated || !VectorMax) && GrowthStep > 0) {
-			if (!Resize(Length() + GrowthStep)) {
+	if (this->ActiveCount >= this->Length()) {
+		if ((this->IsAllocated || !this->VectorMax) && this->GrowthStep > 0) {
+			if (!this->Resize(this->Length() + this->GrowthStep)) {
 
 				/*
 				**	Failure to increase the size of the vector is an error condition.
@@ -788,11 +791,11 @@ bool DynamicVectorClass<T>::Insert(int index,T const & object)
 	/*
 	**	There is room for the new object now. Add it at the desired position.
 	*/
-	if (index < ActiveCount) {
-		memmove(&(*this)[index+1], &(*this)[index], (ActiveCount-index) * sizeof(T));
+	if (index < this->ActiveCount) {
+		memmove(&(*this)[index+1], &(*this)[index], (this->ActiveCount-index) * sizeof(T));
 	}
 	(*this)[index] = object;
-	ActiveCount++;
+	this->ActiveCount++;
 	return(true);
 }
 
@@ -844,8 +847,8 @@ bool DynamicVectorClass<T>::Delete(T const & object)
 template<class T>
 bool DynamicVectorClass<T>::Delete(int index)
 {
-	if (index < ActiveCount) {
-		ActiveCount--;
+	if (index < this->ActiveCount) {
+		this->ActiveCount--;
 
 		/*
 		**	If there are any objects past the index that was deleted, copy those
@@ -854,7 +857,7 @@ bool DynamicVectorClass<T>::Delete(int index)
 		**	need to use the assignment operator for movement.
 		*/
 //		(&(*this)[index])->~ T ();
-		for (int i = index; i < ActiveCount; i++) {
+		for (int i = index; i < this->ActiveCount; i++) {
 			(*this)[i] = (*this)[i+1];
 		}
 		return(true);
@@ -866,7 +869,7 @@ bool DynamicVectorClass<T>::Delete(int index)
 template<class T>
 void DynamicVectorClass<T>::Delete_All(void) 
 {
-	int len = VectorMax;
+	int len = this->VectorMax;
 	Clear();		// Forces destructor call on each object.
 	Resize(len);
 }
@@ -894,9 +897,9 @@ void DynamicVectorClass<T>::Delete_All(void)
 template<class T>
 T * DynamicVectorClass<T>::Uninitialized_Add(void)
 {
-	if (ActiveCount >= Length()) {
-		if ((IsAllocated || !VectorMax) && GrowthStep > 0) {
-			if (!Resize(Length() + GrowthStep)) {
+	if (this->ActiveCount >= this->Length()) {
+		if ((this->IsAllocated || !this->VectorMax) && this->GrowthStep > 0) {
+			if (!this->Resize(this->Length() + this->GrowthStep)) {
 
 				/*
 				**	Failure to increase the size of the vector is an error condition.
@@ -918,7 +921,7 @@ T * DynamicVectorClass<T>::Uninitialized_Add(void)
 	**	There is room for the new space now. Add it to the end of the object
    ** vector. and return a pointer to it.
 	*/
-   return &((*this)[ActiveCount++]);
+   return &((*this)[this->ActiveCount++]);
 }
 
 
@@ -1053,7 +1056,7 @@ int Pointer_Vector_Add(T * ptr, VectorClass<T *> & vec)
 {
 	int id = 0;
 	bool foundspot = false;
-	for (int index = 0; index < vec.Length(); index++) {
+	for (int index = 0; index < vec.this->Length(); index++) {
 		if (vec[index] == NULL) {
 			id = index;
 			foundspot = true;
@@ -1061,9 +1064,9 @@ int Pointer_Vector_Add(T * ptr, VectorClass<T *> & vec)
 		}
 	}
 	if (!foundspot) {
-		id = vec.Length();
-		vec.Resize((vec.Length()+1) * 2);
-		for (int index = id; index < vec.Length(); index++) {
+		id = vec.this->Length();
+		vec.Resize((vec.this->Length()+1) * 2);
+		for (int index = id; index < vec.this->Length(); index++) {
 			vec[index] = NULL;
 		}
 	}

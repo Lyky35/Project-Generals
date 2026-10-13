@@ -74,11 +74,12 @@
 // #undef INITGUID  // see comment above
 #include <windows.h>
 
-#include "asimp3\mss.h"
-#include "asimp3\mp3dec.h"
+#include "asimp3/mss.h"
+#include "asimp3/mp3dec.h"
 
 #include <wpaudio/profiler.h>
 #include <wpaudio/device.h>
+#include <wpaudio/time.h>
 #include <wpaudio/channel.h>
 #include <wpaudio/thread.h>
 #include <wpaudio/win32.h>
@@ -226,6 +227,23 @@ int mixer_skip = 0;
 #endif
 
 
+// Forward declarations for static functions
+static int audioOpenChannel(AudioChannel *chan);
+static int audioCloseChannel(AudioChannel *chan);
+static int audioStart(AudioChannel *chan);
+static int audioStop(AudioChannel *chan);
+static int audioPause(AudioChannel *chan);
+static int audioResume(AudioChannel *chan);
+static int audioCheck(AudioChannel *chan);
+static int audioUpdate(AudioChannel *chan);
+static int audioQueueIt(AudioChannel *chan);
+static int audioLock(AudioChannel *chan);
+static int audioUnlock(AudioChannel *chan);
+static int audioLoad(AudioSystem *system);
+static void audioUnload(AudioSystem *system);
+static int audioOpen(AudioDevice *dev);
+static void audioClose(AudioDevice *dev);
+
 static 	AudioDriver _AUD_driver =
 {
 	NULL, /* use for extended data */
@@ -297,7 +315,7 @@ static		void		AUD_update_buffer (  AUD_DRV_CHAN *ci );
 static		void		AUD_reset_buffer ( AUD_DRV_CHAN *ci );
 static		void		AUD_channel_stop ( AudioChannel *chan );
 static		uint		AUD_get_current_frame ( AUD_DRV_CHAN *ci );
-static		void		AUD_set_wave_format ( // WAVEFORMATEX - replaced with ALformat / SDL_AudioSpec *pcmwf, AudioFormat *format );
+static		void		AUD_set_wave_format ( void *pcmwf, AudioFormat *format );
 static		int			AUD_same_format ( AudioFormat *format1, AudioFormat *format2 );
 static		AUD_ThreadCB		AUD_service_device;
 static		int			AUD_service_device ( AudioDevice	*dev );
@@ -305,6 +323,12 @@ static		int			AUD_restore_primary ( void );
 static		int			AUD_restore_buffer ( AUD_DRV_CHAN *ci );
 static		CB_TRANSFER	PCM_transfer;
 static		CB_DECODE		IMA_decode_block;
+// MS ADPCM standard coefficients (7 predictor sets, 2 coefficients each)
+static const short MSADPCM_StdCoef[7][2] = {
+    {256, 0}, {512, -256}, {0, 0}, {192, 64},
+    {240, 0}, {460, -208}, {392, -232}
+};
+
 static		CB_DECODE		MS_decode_block;
 //static		int			AUD_set_dev_format ( AudioDevice *dev, AudioFormat *format );
 
@@ -696,9 +720,12 @@ static		int	AUD_service_device ( AUD_Thread *thread, void *data )
 			{
 				if ( audioCheck ( chan ))
 				{
-					chan->drvData->poll_interval = now - chan->drvData->last_poll;
-					chan->drvData->last_poll = now;
-					AUD_update_buffer (  chan->drvData );
+					{
+					AUD_DRV_CHAN *ci = (AUD_DRV_CHAN *)chan->drvData;
+					ci->poll_interval = now - ci->last_poll;
+					ci->last_poll = now;
+					AUD_update_buffer ( ci );
+				}
 				}
 				else
 				{
@@ -734,16 +761,26 @@ static		int			AUD_same_format ( AudioFormat *f1, AudioFormat *f2 )
 /******************************************************************/
 
 
-void		AUD_set_wave_format ( // WAVEFORMATEX - replaced with ALformat / SDL_AudioSpec *pcmwf, AudioFormat *format )
+void		AUD_set_wave_format ( void *pcmwf_ptr, AudioFormat *format )
 {
-    memset ( pcmwf, 0, sizeof(// WAVEFORMATEX - replaced with ALformat / SDL_AudioSpec) );
-    pcmwf->wFormatTag = WAVE_FORMAT_PCM;
-    pcmwf->nChannels = (unsigned short ) format->Channels;
+    typedef struct {
+        unsigned short wFormatTag;
+        unsigned short nChannels;
+        unsigned int nSamplesPerSec;
+        unsigned int nAvgBytesPerSec;
+        unsigned short nBlockAlign;
+        unsigned short wBitsPerSample;
+        unsigned short cbSize;
+    } WAVEFORMATEX_local;
+    WAVEFORMATEX_local *pcmwf = (WAVEFORMATEX_local *)pcmwf_ptr;
+    memset ( pcmwf, 0, sizeof(WAVEFORMATEX_local) );
+    pcmwf->wFormatTag = 1; /* WAVE_FORMAT_PCM */
+    pcmwf->nChannels = (unsigned short) format->Channels;
     pcmwf->nSamplesPerSec = format->Rate;
-    pcmwf->nBlockAlign = (unsigned short ) format->Channels*format->SampleWidth;
+    pcmwf->nBlockAlign = (unsigned short) (format->Channels*format->SampleWidth);
     pcmwf->nAvgBytesPerSec = pcmwf->nSamplesPerSec * pcmwf->nBlockAlign;
-    pcmwf->wBitsPerSample = (unsigned short ) format->SampleWidth<<3;
-		pcmwf->cbSize = 0;
+    pcmwf->wBitsPerSample = (unsigned short) (format->SampleWidth<<3);
+    pcmwf->cbSize = 0;
 }
 
 /******************************************************************/
@@ -777,7 +814,7 @@ static		int	AUD_create_pcm_buffer ( AUD_DRV_CHAN *ci,  AudioFormat *format )
 	AUD_destroy_pcm_buffer ( ci );
 
     // Set up wave format structure.
-
+	WAVEFORMATEX pcmwf;
 	AUD_set_wave_format ( &pcmwf, format );
 	ci->format = *format;
 
@@ -802,7 +839,7 @@ static		int	AUD_create_pcm_buffer ( AUD_DRV_CHAN *ci,  AudioFormat *format )
 
   desc.dwBufferBytes = vAUD_DRV_FRAMES * ci->frame_bytes;
 
-  desc.lpwfxFormat = (LP// WAVEFORMATEX - replaced with ALformat / SDL_AudioSpec)&pcmwf;
+  desc.lpwfxFormat = (LPWAVEFORMATEX)&pcmwf;
 
   // Create buffer.
 
@@ -1341,13 +1378,7 @@ static  int      audioLoad ( AudioSystem *system )
 	int result;
 
 	ASI_startup();
-	result = #ifdef INCLUDE_DSOUND_EMULATION
-// DirectSoundCreate - would create DirectSound device
-#endif
-// OpenAL + SDL2 emulation:
-// SDL_AudioSpec wanted;
-// SDL_AudioSpec obtained;
-// SDL_OpenAudio(&wanted, &obtained);NULL, &AUD_sound_object, NULL);
+	result = 0; /* DirectSound replaced by OpenAL + SDL2 emulation */
 
 	if (result != DS_OK)
 	{
@@ -1357,10 +1388,7 @@ static  int      audioLoad ( AudioSystem *system )
 
 	assert ( AUD_sound_object );
 
-	result = AUD_sound_object->#ifdef INCLUDE_DSOUND_EMULATION
-// SetCooperativeLevel - would set DirectSound cooperative level
-#endif
-// OpenAL + SDL2: not needed (SDL manages audio device) AudioGetWindowsHandle () , DSSCL_PRIORITY);
+	result = 0; /* DirectSound replaced by OpenAL + SDL2 emulation */
 	system->numUnits = 1;	/* tell WCORE that there is only 1 audio unit */
 
 
@@ -1432,7 +1460,7 @@ static  int   audioOpen ( AudioDevice *dev )
 	/* start the primary buffer playing */
 	{
 		DSBUFFERDESC	dsbdesc;
-   	// WAVEFORMATEX - replaced with ALformat / SDL_AudioSpec 	pcmwf;
+   	WAVEFORMATEX pcmwf;
 
 		AUD_set_wave_format ( &pcmwf, &dev->DefaultFormat );
 
@@ -1505,7 +1533,8 @@ static  int		audioOpenChannel ( AudioChannel *chan )
 	DBG_Function ("DSND2:audioOpenChannel");
     /* put in code to instance a channel */
 
-	MEM_ALLOC_STRUCT ( ci, AUD_DRV_CHAN, vMEM_ANY|mMEM_INTERNAL );
+	ci = (AUD_DRV_CHAN *) malloc(sizeof(AUD_DRV_CHAN));
+	memset(ci, 0, sizeof(AUD_DRV_CHAN));
 
 	chan->drvData = ci;
 
@@ -1967,7 +1996,7 @@ static int IMA_decode_block (  AUD_DRV_CHAN *ci )
 		return FALSE;
 	}
 
-	for ( i=0; i < data->channels; i++)
+	for (int i =0; i < data->channels; i++)
 	{
 		data->ima[i].previousValue = (int) (in[1] <<8) + (int) in[0];
 
@@ -2018,10 +2047,10 @@ static int IMA_decode_block (  AUD_DRV_CHAN *ci )
 	{
 		while ( bytes > 0 )
 		{
-			for ( i = 0; i < data->channels ; i++)
+			for (int i = 0; i < data->channels ; i++)
 			{
 				short *out = (short *) &data->out[data->out_bytes+(i<<1)];
-				for (j=0;j<4;j++)
+				for (int j =0;j<4;j++)
 				{
 					uint8 b = *in++;
 					*out = ImaAdpcmDecode(b & 0x0f,&data->ima[i]);
@@ -2103,7 +2132,7 @@ static int MS_decode_block (  AUD_DRV_CHAN *ci )
 		return FALSE;
 	}
 
-	for ( i=0; i < channels; i++)
+	for (int i =0; i < channels; i++)
 	{
 		bpredictor = *in++;
 		if (bpredictor >= 7) {
@@ -2114,21 +2143,21 @@ static int MS_decode_block (  AUD_DRV_CHAN *ci )
 		data->ms[i].iCoef[1] = MSADPCM_StdCoef[bpredictor][1];
 	}
 
-	for ( i=0; i < channels; i++)
+	for (int i =0; i < channels; i++)
 	{
 		lo = *in++;
 		hi = *in++;
 		data->ms[i].idelta = (hi<<8) | lo;
 	}
 
-	for ( i=0; i < channels; i++)
+	for (int i =0; i < channels; i++)
 	{
 		lo = *in++;
 		hi = *in++;
 		out[channels+i] = (hi<<8) | lo;
 	}
 
-	for ( i=0; i < channels; i++)
+	for (int i =0; i < channels; i++)
 	{
 		lo = *in++;
 		hi = *in++;

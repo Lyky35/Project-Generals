@@ -157,7 +157,7 @@ Bool ProductionPrerequisite::isSatisfied(const Player *player) const
 		return false;
 
 	// gotta have all the prereq sciences.
-	for (i = 0; i < m_prereqSciences.size(); i++)
+	for (int i = 0; i < m_prereqSciences.size(); i++)
 	{
 		if (!player->hasScience(m_prereqSciences[i]))
 			return false;
@@ -168,7 +168,7 @@ Bool ProductionPrerequisite::isSatisfied(const Player *player) const
 	Int cnt = calcNumPrereqUnitsOwned(player, ownCount);
 
 	// fix up the "or" cases. (start at 1!)
-	for (i = 1; i < cnt; i++)
+	for (int i = 1; i < cnt; i++)
 	{
 		if (m_prereqUnits[i].flags & UNIT_OR_WITH_PREV)
 		{
@@ -177,7 +177,7 @@ Bool ProductionPrerequisite::isSatisfied(const Player *player) const
 		}
 	}
 
-	for (i = 0; i < cnt; i++)
+	for (int i = 0; i < cnt; i++)
 	{
 		if (ownCount[i] == -1)	// the magic "ignore me" flag
 			continue;	
@@ -242,13 +242,13 @@ UnicodeString ProductionPrerequisite::getRequiresList(const Player *player) cons
 	//Added for fix below in getRequiresList
 	//By Sadullah Nader
 	//Initializes the OR_WITH_PREV structures
-	for (i = 0; i < MAX_PREREQ; i++)
+	for (int i = 0; i < MAX_PREREQ; i++)
 	{
 		orRequirements[i] = FALSE;
 	}
 	//
 	// account for the "or" unit cases, start for loop at 1
-	for (i = 1; i < cnt; i++)
+	for (int i = 1; i < cnt; i++)
 	{
 		if (m_prereqUnits[i].flags & UNIT_OR_WITH_PREV)
 		{
@@ -262,7 +262,7 @@ UnicodeString ProductionPrerequisite::getRequiresList(const Player *player) cons
 	const ThingTemplate *unit;
 	UnicodeString unitName;
 	Bool firstRequirement = true;
-	for (i = 0; i < cnt; i++)
+	for (int i = 0; i < cnt; i++)
 	{
 		// we have an unfulfilled requirement
 		if (ownCount[i] == 0) {
@@ -299,7 +299,7 @@ UnicodeString ProductionPrerequisite::getRequiresList(const Player *player) cons
 
 	Bool hasSciences = TRUE;
 	// gotta have all the prereq sciences.
-	for (i = 0; i < m_prereqSciences.size(); i++)
+	for (int i = 0; i < m_prereqSciences.size(); i++)
 	{
 		if (!player->hasScience(m_prereqSciences[i]))
 			hasSciences = FALSE;

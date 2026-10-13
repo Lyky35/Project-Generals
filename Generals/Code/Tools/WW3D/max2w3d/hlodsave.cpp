@@ -119,7 +119,7 @@ HLodSaveClass::HLodSaveClass (MeshConnectionsClass **connections, int lod_count,
 		throw ErrorClass("Out Of Memory!");
 
 	int i;
-	for (i = 0; i < lod_count; i++)
+	for (int i = 0; i < lod_count; i++)
 	{
 	
 		ExportLog::printf(" Exporting LOD Array %d\n",i);
@@ -140,7 +140,7 @@ HLodSaveClass::HLodSaveClass (MeshConnectionsClass **connections, int lod_count,
 		int j;
 		W3dHLodSubObjectStruct *sub_obj = lod_array[i].sub_obj;
 		ExportLog::printf(" sub-object count: %d\n",sub_obj_count);
-		for (j = 0; j < sub_obj_count; j++)
+		for (int j = 0; j < sub_obj_count; j++)
 		{
 			char	*mesh_name;
 			int	bone_index;
@@ -166,7 +166,7 @@ HLodSaveClass::HLodSaveClass (MeshConnectionsClass **connections, int lod_count,
 	ExportLog::printf(" Exporting Aggregates:\n");
 	ExportLog::printf(" aggregate count: %d\n",agg_count);
 
-	for (i=0; i<agg_count; i++) {
+	for (int i =0; i<agg_count; i++) {
 
 		char	*mesh_name;
 		int	bone_index;
@@ -191,7 +191,7 @@ HLodSaveClass::HLodSaveClass (MeshConnectionsClass **connections, int lod_count,
 	
 	ExportLog::printf(" Exporting Proxies\n");
 	ExportLog::printf(" proxy count: %d\n",proxy_count);
-	for (i=0; i<proxy_count; i++) {
+	for (int i =0; i<proxy_count; i++) {
 	
 		char	*mesh_name;
 		int	bone_index;

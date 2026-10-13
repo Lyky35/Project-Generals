@@ -97,12 +97,17 @@
 //#define abs(x) (((x) < 0) ? -(x) : (x))
 //#endif
 
+#ifndef __cplusplus
 #ifndef min
 #define min(x,y) (((x)<(y)) ? (x) : (y))
 #endif
-
 #ifndef max
 #define max(x,y) (((x)>(y)) ? (x) : (y))
+#endif
+#else
+#include <algorithm>
+using std::min;
+using std::max;
 #endif
 
 #ifndef TRUE
@@ -135,6 +140,7 @@ typedef unsigned __int64	UnsignedInt64;	  	// 8 bytes
 typedef wchar_t WideChar;  ///< multi-byte character representations
 
 //-----------------------------------------------------------------------------
+extern "C++" {
 template <typename NUM>
 inline NUM sqr(NUM x)
 {
@@ -155,6 +161,7 @@ inline int sign(NUM x)
 	if (x > 0) return 1;
 	else if (x < 0) return -1;
 	else return 0;
+}
 }
 
 //-----------------------------------------------------------------------------

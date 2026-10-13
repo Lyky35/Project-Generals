@@ -212,8 +212,8 @@ void W3DCustomEdging::loadEdgingsInVertexAndIndexBuffers(WorldHeightMap *pMap, I
 
 
 			Int startVertex = m_curNumEdgingVertices;
-			for (j=0; j<2; j++) {
-				for (i=0; i<2; i++) {
+			for (int j =0; j<2; j++) {
+				for (int i =0; i<2; i++) {
 					if (m_curNumEdgingVertices >= MAX_EDGE_VERTEX) return;
 					cellNdx = column+i+(row+j)*pMap->getXExtent();
 

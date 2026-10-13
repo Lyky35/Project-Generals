@@ -582,7 +582,7 @@ void GameWindowManager::hideWindowsInRange( GameWindow *baseWindow,
 	Int i;
 	GameWindow *window;
 
-	for( i = first; i <= last; i++ ) 
+	for (int i = first; i <= last; i++ ) 
 	{
 
 		window = winGetWindowFromId( baseWindow, i );
@@ -603,7 +603,7 @@ void GameWindowManager::enableWindowsInRange( GameWindow *baseWindow,
 	Int i;
 	GameWindow *window;
 
-	for( i =first; i <= last; i++ ) 
+	for (int i =first; i <= last; i++ ) 
 	{
 
 		window = winGetWindowFromId( baseWindow, i );

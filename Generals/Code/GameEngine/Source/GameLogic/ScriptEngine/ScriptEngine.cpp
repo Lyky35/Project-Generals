@@ -4566,12 +4566,12 @@ void ScriptEngine::reset( void )
 	m_shownMPLocalDefeatWindow = FALSE;
 
 	Int i;
-	for (i=0; i<MAX_COUNTERS; i++) {
+	for (int i =0; i<MAX_COUNTERS; i++) {
 		m_counters[i].value = 0;
 		m_counters[i].isCountdownTimer = false;
 		m_counters[i].name.clear();
 	}
-	for (i=0; i<MAX_FLAGS; i++) {
+	for (int i =0; i<MAX_FLAGS; i++) {
 		m_flags[i].value = false;
 		m_flags[i].name.clear();
 	}
@@ -4606,7 +4606,7 @@ void ScriptEngine::reset( void )
 			Real maxTime = 0;
 			Script *maxScript = NULL;
 			/* Run through scripts & set condition team names. */
-			for (i=0; i<TheSidesList->getNumSides(); i++) {
+			for (int i =0; i<TheSidesList->getNumSides(); i++) {
 				ScriptList *pSL = TheSidesList->getSideInfo(i)->getScriptList();
 				if (!pSL) continue;
 				if (pSL == NULL) continue;
@@ -4667,7 +4667,7 @@ void ScriptEngine::reset( void )
 	m_testingSpeech.clear();
 	m_testingAudio.clear();
 	m_uiInteractions.clear();
-	for (i=0; i<MAX_PLAYER_COUNT; ++i)
+	for (int i =0; i<MAX_PLAYER_COUNT; ++i)
 	{
 		m_triggeredSpecialPowers[i].clear();
 		m_midwaySpecialPowers[i].clear();
@@ -4679,11 +4679,11 @@ void ScriptEngine::reset( void )
 	ScriptList::reset(); // Deletes scripts loaded when the map was loaded.
 
 	// reset the attack priority data
-	for( i = 0; i < MAX_ATTACK_PRIORITIES; ++i )
+	for (int i = 0; i < MAX_ATTACK_PRIORITIES; ++i )
 		m_attackPriorityInfo[ i ].reset();
 
 	// clear out all of our object counts.
-	for( i = 0; i < MAX_PLAYER_COUNT; ++i )
+	for (int i = 0; i < MAX_PLAYER_COUNT; ++i )
 		m_objectCounts[i].clear();
 
 	// clear topple directions
@@ -4698,13 +4698,13 @@ void ScriptEngine::newMap( void )
 {
 	m_numCounters = 1;
 	Int i;
-	for (i=0; i<MAX_COUNTERS; i++) {
+	for (int i =0; i<MAX_COUNTERS; i++) {
 		m_counters[i].value = 0;
 		m_counters[i].isCountdownTimer = false;
 		m_counters[i].name.clear();
 	}
 	m_numFlags = 1;
-	for (i=0; i<MAX_FLAGS; i++) {
+	for (int i =0; i<MAX_FLAGS; i++) {
 		m_flags[i].value = false;
 		m_flags[i].name.clear();
 	}
@@ -4722,7 +4722,7 @@ void ScriptEngine::newMap( void )
 	m_testingSpeech.clear();
 	m_testingAudio.clear();
 	m_uiInteractions.clear();
-	for (i=0; i<MAX_PLAYER_COUNT; ++i)
+	for (int i =0; i<MAX_PLAYER_COUNT; ++i)
 	{
 		m_triggeredSpecialPowers[i].clear();
 		m_midwaySpecialPowers[i].clear();
@@ -4732,7 +4732,7 @@ void ScriptEngine::newMap( void )
 	}
 
 	/* Run through scripts & set condition team names. */
-	for (i=0; i<TheSidesList->getNumSides(); i++) {
+	for (int i =0; i<TheSidesList->getNumSides(); i++) {
 		ScriptList *pSL = TheSidesList->getSideInfo(i)->getScriptList();
 		if (!pSL) continue;
 		if (pSL == NULL) continue;
@@ -4830,7 +4830,7 @@ void ScriptEngine::update( void )
 	// Update any countdown timers.
 	Int i;
 	// Note - counters start at 1.  0 means not assigned.
-	for (i=1; i<m_numCounters; i++) {
+	for (int i =1; i<m_numCounters; i++) {
 		if (m_counters[i].isCountdownTimer) {
 			// If counter has any time left, decrement.  Counters go to -1 and stop.
 			if (m_counters[i].value >= 0) {
@@ -4840,7 +4840,7 @@ void ScriptEngine::update( void )
 	}
 
 	// Evaluate the scripts.
-	for (i=0; i<TheSidesList->getNumSides(); i++) {
+	for (int i =0; i<TheSidesList->getNumSides(); i++) {
 		m_currentPlayer = ThePlayerList->getNthPlayer(i);
 		ScriptList *pSL = TheSidesList->getSideInfo(i)->getScriptList();
 		if (!pSL) continue;
@@ -4881,7 +4881,7 @@ void ScriptEngine::update( void )
 	}
 #ifdef _DEBUG
 	if (TheGameLogic->getFrame()==0) {
-		for (i=0; i<m_numAttackInfo; i++) {
+		for (int i =0; i<m_numAttackInfo; i++) {
 			m_attackPriorityInfo[i].dumpPriorityInfo();
 		}
 	}
@@ -4924,7 +4924,7 @@ AsciiString ScriptEngine::getStats(Real *curTimePtr, Real *script1Time, Real *sc
 			Real maxTime = 0;
 			Script *maxScript = NULL;
 			/* Run through scripts & set condition team names. */
-			for (i=0; i<TheSidesList->getNumSides(); i++) {
+			for (int i =0; i<TheSidesList->getNumSides(); i++) {
 				ScriptList *pSL = TheSidesList->getSideInfo(i)->getScriptList();
 				if (!pSL) continue;
 				if (pSL == NULL) continue;
@@ -5032,12 +5032,12 @@ Player *ScriptEngine::getCurrentPlayer(void)
 void ScriptEngine::clearFlag(const AsciiString &name)
 {
 	Int j;
-	for (j=0; j<MAX_PLAYER_COUNT; j++) {
+	for (int j =0; j<MAX_PLAYER_COUNT; j++) {
 		AsciiString modName;
 		modName.format("%s%d", name.str(), j);
 		// Note - flags start at 1.  0 means not assigned.
 		Int i;
-		for (i=1; i<m_numFlags; i++) {
+		for (int i =1; i<m_numFlags; i++) {
 			if ((modName==m_flags[i].name)) {
 				m_flags[i].value = FALSE;
 			}
@@ -5071,7 +5071,7 @@ Player *ScriptEngine::getSkirmishEnemyPlayer(void)
 		if (enemy==NULL) {
 			// get the human player.
 			Int i;
-			for (i=0; i<ThePlayerList->getPlayerCount(); i++) {
+			for (int i =0; i<ThePlayerList->getPlayerCount(); i++) {
 				enemy = ThePlayerList->getNthPlayer(i);
 				if (/*enemy->isLocalPlayer() &&*/ enemy->getPlayerType()==PLAYER_HUMAN) {
 					return enemy;
@@ -5412,7 +5412,7 @@ Int ScriptEngine::allocateCounter( const AsciiString& name)
 {
 	Int i;
 	// Note - counters start at 1.  0 means not assigned.
-	for (i=1; i<m_numCounters; i++) {
+	for (int i =1; i<m_numCounters; i++) {
 		if (name==m_counters[i].name) {
 			return i;
 		}
@@ -5433,7 +5433,7 @@ Int ScriptEngine::allocateCounter( const AsciiString& name)
 const TCounter *ScriptEngine::getCounter(const AsciiString& counterName)
 {
 	Int i;
-	for (i=1; i<m_numCounters; i++)
+	for (int i =1; i<m_numCounters; i++)
 	{
 		if (counterName == m_counters[i].name)
 		{
@@ -5550,7 +5550,7 @@ Int ScriptEngine::allocateFlag( const AsciiString& name)
 {
 	Int i;
 	// Note - flags start at 1.  0 means not assigned.
-	for (i=1; i<m_numFlags; i++) {
+	for (int i =1; i<m_numFlags; i++) {
 		if ((name==m_flags[i].name)) {
 			return i;
 		}
@@ -5571,7 +5571,7 @@ Int ScriptEngine::allocateFlag( const AsciiString& name)
 ScriptGroup  *ScriptEngine::findGroup(const AsciiString& name)
 {
 	Int i;
-	for (i=0; i<TheSidesList->getNumSides(); i++) {
+	for (int i =0; i<TheSidesList->getNumSides(); i++) {
 		ScriptList *pSL = TheSidesList->getSideInfo(i)->getScriptList();
 		if (pSL==NULL) continue;
 		ScriptGroup *pGroup;
@@ -5590,7 +5590,7 @@ ScriptGroup  *ScriptEngine::findGroup(const AsciiString& name)
 Script  *ScriptEngine::findScript(const AsciiString& name)
 {
 	Int i;
-	for (i=0; i<TheSidesList->getNumSides(); i++) {
+	for (int i =0; i<TheSidesList->getNumSides(); i++) {
 		ScriptList *pSL = TheSidesList->getSideInfo(i)->getScriptList();
 		if (pSL==NULL) continue;
 		Script *pScr;
@@ -5786,7 +5786,7 @@ AttackPriorityInfo * ScriptEngine::findAttackInfo(const AsciiString& name, Bool 
 {
 	// Note - m_attackPriorityInfo[0] is the default info, with an empty name.
 	Int i;
-	for (i=1; i<m_numAttackInfo; i++) {
+	for (int i =1; i<m_numAttackInfo; i++) {
 		if (m_attackPriorityInfo[i].getName() == name) {
 			return &m_attackPriorityInfo[i];
 		}
@@ -5816,7 +5816,7 @@ const AttackPriorityInfo *ScriptEngine::getDefaultAttackInfo(void)
 const AttackPriorityInfo *ScriptEngine::getAttackInfo(const AsciiString& name)
 {
 	Int i;
-	for (i=1; i<m_numAttackInfo; i++) {
+	for (int i =1; i<m_numAttackInfo; i++) {
 		if (m_attackPriorityInfo[i].getName() == name) {
 			return &m_attackPriorityInfo[i];
 		}
@@ -6184,7 +6184,7 @@ void ScriptEngine::checkConditionsForTeamNames(Script *pScript)
 		Condition *pCondition;
 		for (pCondition = pOr->getFirstAndCondition(); pCondition; pCondition = pCondition->getNext()) {
 			Int i;
-			for (i=0; i<pCondition->getNumParameters(); i++) {
+			for (int i =0; i<pCondition->getNumParameters(); i++) {
 				if (Parameter::TEAM == pCondition->getParameter(i)->getParameterType()) {
 					AsciiString teamName = pCondition->getParameter(i)->getString();
 					TeamPrototype *proto = TheTeamFactory->findTeamPrototype(teamName);
@@ -8178,7 +8178,7 @@ void ScriptEngine::xfer( Xfer *xfer )
 		throw SC_INVALID_DATA;
 
 	}  // end if
-	for( i = 0; i < countersSize; ++i )
+	for (int i = 0; i < countersSize; ++i )
 	{
 
 		// value
@@ -8205,7 +8205,7 @@ void ScriptEngine::xfer( Xfer *xfer )
 		throw SC_INVALID_DATA;
 
 	}  // end if
-	for( i = 0; i < flagsSize; ++i )
+	for (int i = 0; i < flagsSize; ++i )
 	{
 
 		// value
@@ -8229,7 +8229,7 @@ void ScriptEngine::xfer( Xfer *xfer )
 		throw SC_INVALID_DATA;
 
 	}  // end if
-	for( i = 0; i < attackPriorityInfoSize; ++i )
+	for (int i = 0; i < attackPriorityInfoSize; ++i )
 	{
 
 		// xfer each data
@@ -8356,7 +8356,7 @@ void ScriptEngine::xfer( Xfer *xfer )
 		throw SC_INVALID_DATA;
 
 	}  // end if
-	for( i = 0; i < triggeredSpecialPowersSize; ++i )
+	for (int i = 0; i < triggeredSpecialPowersSize; ++i )
 		xferListAsciiStringObjectID( xfer, &m_triggeredSpecialPowers[ i ] );
 
 	// midway special powers
@@ -8369,7 +8369,7 @@ void ScriptEngine::xfer( Xfer *xfer )
 		throw SC_INVALID_DATA;
 
 	}  // end if
-	for( i = 0; i < midwaySpecialPowersSize; ++i )
+	for (int i = 0; i < midwaySpecialPowersSize; ++i )
 		xferListAsciiStringObjectID( xfer, &m_midwaySpecialPowers[ i ] );
 
 	// finished special powers
@@ -8382,7 +8382,7 @@ void ScriptEngine::xfer( Xfer *xfer )
 		throw SC_INVALID_DATA;
 
 	}  // end if
-	for( i = 0; i < finishedSpecialPowersSize; ++i )
+	for (int i = 0; i < finishedSpecialPowersSize; ++i )
 		xferListAsciiStringObjectID( xfer, &m_finishedSpecialPowers[ i ] );
 
 	// completed upgrades
@@ -8395,7 +8395,7 @@ void ScriptEngine::xfer( Xfer *xfer )
 		throw SC_INVALID_DATA;
 
 	}  // end if
-	for( i = 0; i < completedUpgradesSize; ++i )
+	for (int i = 0; i < completedUpgradesSize; ++i )
 		xferListAsciiStringObjectID( xfer, &m_completedUpgrades[ i ] );
 
 	// acquired sciences
@@ -8408,7 +8408,7 @@ void ScriptEngine::xfer( Xfer *xfer )
 		throw SC_INVALID_DATA;
 
 	}  // end if
-	for( i = 0; i < acquiredSciencesSize; ++i )
+	for (int i = 0; i < acquiredSciencesSize; ++i )
 		xfer->xferScienceVec( &m_acquiredSciences[ i ] );
 
 	// topple directions

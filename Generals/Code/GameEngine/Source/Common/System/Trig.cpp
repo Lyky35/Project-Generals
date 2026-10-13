@@ -1695,7 +1695,7 @@ void initTrig( void )
 	int column = 0;
 	FILE *fp = fopen("trig.txt", "w");
 	fprintf(fp, "static Int sinLookup[TRIG_RES] = {\n");
-	for( i=0; i<TRIG_RES; i++ ) {
+	for (int i =0; i<TRIG_RES; i++ ) {
 		angle = TWOPI * i / (Real)TRIG_RES;
 		sinLookup[i] = (Int)(sin(angle) * INT_ONE);
 
@@ -1717,7 +1717,7 @@ void initTrig( void )
 
 	column = 0;
 	fprintf(fp, "static Int arcCosLookup[2 * INT_ONE] = {\n");
-	for( i=0; i<2*INT_ONE; i++ ) {
+	for (int i =0; i<2*INT_ONE; i++ ) {
 		r = (Real)i / (Real)INT_ONE - 1.0f;
 
 		arcCosLookup[i] = (Int)(acos( (double)r ) * INT_TWOPI / TWOPI );

@@ -41,7 +41,7 @@ class SpecialPowerModule;
 class ParticleSystem;
 class FXList;
 class AudioEventRTS;
-enum ParticleSystemID;
+enum ParticleSystemID : int;
 
 #define MAX_OUTER_NODES 16
 
@@ -112,7 +112,7 @@ private:
 
 };
 
-enum PUCStatus
+enum PUCStatus : int
 {
 	STATUS_IDLE,
 	STATUS_CHARGING,
@@ -125,7 +125,7 @@ enum PUCStatus
 	STATUS_PACKING,
 };
 
-enum LaserStatus
+enum LaserStatus : int
 {
 	LASERSTATUS_NONE,
 	LASERSTATUS_BORN,
@@ -133,7 +133,7 @@ enum LaserStatus
 	LASERSTATUS_DEAD,
 };
 
-enum IntensityTypes
+enum IntensityTypes : int
 {
 	IT_LIGHT,
 	IT_MEDIUM,

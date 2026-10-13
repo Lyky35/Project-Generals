@@ -138,7 +138,7 @@ void AABoxCollisionTestClass::Rotate(ROTATION_TYPE rotation)
 	pts[6].Set(max.X,max.Y,max.Z);
 	pts[7].Set(max.X,min.Y,max.Z);
 
-//	for (i=0; i<8; i++) {
+//	for (int i =0; i<8; i++) {
 //		pts[i] = tm * pts[i];
 //	}
 	tm.mulVector3Array(pts, 8);
@@ -146,7 +146,7 @@ void AABoxCollisionTestClass::Rotate(ROTATION_TYPE rotation)
 	Vector3 realmin = pts[0];
 	Vector3 realmax = pts[0];
 
-	for (i=1; i<8; i++) {
+	for (int i =1; i<8; i++) {
 		if (realmin.X >= pts[i].X) realmin.X = pts[i].X;
 		if (realmin.Y >= pts[i].Y) realmin.Y = pts[i].Y;
 		if (realmin.Z >= pts[i].Z) realmin.Z = pts[i].Z;
@@ -253,7 +253,7 @@ void AABoxCollisionTestClass::Transform(const Matrix3D & tm)
 	pts[6].Set(max.X,max.Y,max.Z);
 	pts[7].Set(max.X,min.Y,max.Z);
 
-//	for (i=0; i<8; i++) {
+//	for (int i =0; i<8; i++) {
 //		pts[i] = tm * pts[i];
 //	}
 	tm.mulVector3Array(pts, 8);
@@ -261,7 +261,7 @@ void AABoxCollisionTestClass::Transform(const Matrix3D & tm)
 	Vector3 realmin = pts[0];
 	Vector3 realmax = pts[0];
 
-	for (i=1; i<8; i++) {
+	for (int i =1; i<8; i++) {
 		if (realmin.X >= pts[i].X) realmin.X = pts[i].X;
 		if (realmin.Y >= pts[i].Y) realmin.Y = pts[i].Y;
 		if (realmin.Z >= pts[i].Z) realmin.Z = pts[i].Z;

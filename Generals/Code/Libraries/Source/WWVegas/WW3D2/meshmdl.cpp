@@ -304,7 +304,7 @@ void MeshModelClass::get_deformed_vertices(Vector3 *dst_vert, Vector3 *dst_norm,
 #endif
 	uint16 * bonelink = VertexBoneLink->Get_Array();
 
-	for (vi = 0; vi < vertex_count;) {
+	for (int vi = 0; vi < vertex_count;) {
 		const Matrix3D & tm = htree->Get_Transform(bonelink[vi]);
 
 		// Make a copy so we can set the translation to zero
@@ -312,7 +312,7 @@ void MeshModelClass::get_deformed_vertices(Vector3 *dst_vert, Vector3 *dst_norm,
 
 		int idx=bonelink[vi];
 		int cnt;
-		for (cnt = vi; cnt < vertex_count; cnt++) {
+		for (int cnt = vi; cnt < vertex_count; cnt++) {
 			if (idx!=bonelink[cnt]) {
 				break;
 			}
@@ -343,7 +343,7 @@ void MeshModelClass::compose_deformed_vertex_buffer(
 #endif
 	uint16 * bonelink = VertexBoneLink->Get_Array();
 
-	for (vi = 0; vi < vertex_count;) {
+	for (int vi = 0; vi < vertex_count;) {
 		const Matrix3D & tm = htree->Get_Transform(bonelink[vi]);
 
 		// Make a copy so we can set the translation to zero
@@ -351,7 +351,7 @@ void MeshModelClass::compose_deformed_vertex_buffer(
 
 		int idx=bonelink[vi];
 		int cnt;
-		for (cnt = vi; cnt < vertex_count; cnt++) {
+		for (int cnt = vi; cnt < vertex_count; cnt++) {
 			if (idx!=bonelink[cnt]) {
 				break;
 			}
@@ -397,7 +397,7 @@ void MeshModelClass::get_deformed_screenspace_vertices(Vector4 *dst_vert,const R
 			Matrix4 tm = prj * htree->Get_Transform(idx);
 
 			// Count equal matrices (the vertices should be pre-sorted by matrices they use)
-			for (int cnt = vi; cnt < vertex_count; cnt++) if (idx!=bonelink[cnt]) break;
+			int cnt; for (int cnt = vi; cnt < vertex_count; cnt++) if (idx!=bonelink[cnt]) break;
 
 			// Transform to screenspace (x,y,z,w)
 			VectorProcessorClass::Transform(
@@ -793,7 +793,7 @@ void MeshModelClass::Init_For_NPatch_Rendering()
 		}
 	}
 
-	for (i=0;i<polygon_count;++i) {
+	for (int i =0;i<polygon_count;++i) {
 		bool duplicates[3];
 		duplicates[0]=DuplicateLocationHash.Exists(locations[polygon_indices[i][0]]);
 		duplicates[1]=DuplicateLocationHash.Exists(locations[polygon_indices[i][1]]);

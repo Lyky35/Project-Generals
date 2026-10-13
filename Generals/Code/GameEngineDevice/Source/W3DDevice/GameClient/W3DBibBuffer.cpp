@@ -148,7 +148,7 @@ void W3DBibBuffer::loadBibsInVertexAndIndexBuffers(void)
 				break;
 			}
 
-			for (i=0; i<numVertex; i++) {
+			for (int i =0; i<numVertex; i++) {
 
 				// Update the uv values.  The W3D models each have their own texture, and 
 				// we use one texture with all images in one, so we have to change the uvs to 

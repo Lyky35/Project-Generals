@@ -181,7 +181,7 @@ BOOL GameMtlPassDlg::DialogProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 
 			Page[2] = new GameMtlTextureDlg(HwndPanel,IParams,TheMtl,PassIndex);
 
-			for (i=0; i<PAGE_COUNT; i++) {
+			for (int i =0; i<PAGE_COUNT; i++) {
 
 				HWND hwnd = Page[i]->Get_Hwnd();
 			
@@ -201,7 +201,7 @@ BOOL GameMtlPassDlg::DialogProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 			ScreenToClient(HwndPanel,(POINT *)(&rect));
 			ScreenToClient(HwndPanel, ((LPPOINT)&rect) + 1);
 
-			for (i=0; i<PAGE_COUNT; i++) {
+			for (int i =0; i<PAGE_COUNT; i++) {
 
 				HWND hwnd = Page[i]->Get_Hwnd();
 
@@ -293,14 +293,14 @@ void GameMtlPassDlg::ReloadDialog()
 	Interval v;
 	TheMtl->Update(IParams->GetTime(),v);
 	
-	for (i=0; i<PAGE_COUNT; i++) {
+	for (int i =0; i<PAGE_COUNT; i++) {
 		Page[i]->ReloadDialog();
 	}
 
 	CurPage = TheMtl->Get_Current_Page(PassIndex);
 	TabCtrl_SetCurSel(GetDlgItem(HwndPanel,IDC_GAMEMTL_TAB),CurPage);
 	Page[CurPage]->Show();
-	for (i=0; i < PAGE_COUNT; i++) {
+	for (int i =0; i < PAGE_COUNT; i++) {
 		if (i != CurPage) Page[i]->Show(false);
 	} 
 }

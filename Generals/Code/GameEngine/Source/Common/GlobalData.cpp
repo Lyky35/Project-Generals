@@ -645,7 +645,7 @@ GlobalData::GlobalData()
 
 	m_showMetrics = false;
 
-	for( i = 0; i < MAX_WATER_GRID_SETTINGS; i++ )
+	for (int i = 0; i < MAX_WATER_GRID_SETTINGS; i++ )
 	{
 
 		m_vertexWaterHeightClampLow[ i ] = 0.0f;
@@ -698,7 +698,7 @@ GlobalData::GlobalData()
 	m_ammoPipScreenOffset.x = m_ammoPipScreenOffset.y = 0;
 	m_containerPipScreenOffset.x = m_containerPipScreenOffset.y = 0;
 
-	for (i=0; i<MAX_GLOBAL_LIGHTS; i++)
+	for (int i =0; i<MAX_GLOBAL_LIGHTS; i++)
 	{
 		m_terrainAmbient[i].red = 0.0f;
 		m_terrainAmbient[i].green = 0.0f;
@@ -710,7 +710,7 @@ GlobalData::GlobalData()
 		m_terrainLightPos[i].y = 0.0f;
 		m_terrainLightPos[i].z = -1.0f;
 
-		for (j=0; j<TIME_OF_DAY_COUNT; j++)
+		for (int j =0; j<TIME_OF_DAY_COUNT; j++)
 		{	m_terrainLighting[ j ][i].ambient.red=0;
 			m_terrainLighting[ j ][i].ambient.green=0;
 			m_terrainLighting[ j ][i].ambient.blue=0;
@@ -733,7 +733,7 @@ GlobalData::GlobalData()
 		}
 	}
 
-	for (j=TIME_OF_DAY_FIRST; j<TIME_OF_DAY_COUNT; j++)
+	for (int j =TIME_OF_DAY_FIRST; j<TIME_OF_DAY_COUNT; j++)
 		m_infantryLightScale[j] = 1.5f;
 	
 	m_scriptOverrideInfantryLightScale = -1.0f;
@@ -936,12 +936,12 @@ GlobalData::GlobalData()
 	m_initialFile.clear();
 	m_pendingFile.clear();
 
-	for (i = LEVEL_FIRST; i <= LEVEL_LAST; ++i)
+	for (int i = LEVEL_FIRST; i <= LEVEL_LAST; ++i)
 		m_healthBonus[i] = 1.0f;
 
-	for (i = 0; i < PLAYERTYPE_COUNT; ++i)
+	for (int i = 0; i < PLAYERTYPE_COUNT; ++i)
 	{
-		for (j = 0; j < DIFFICULTY_COUNT; ++j)
+		for (int j = 0; j < DIFFICULTY_COUNT; ++j)
 		{
 			m_soloPlayerHealthBonusForDifficulty[i][j] = 1.0f;
 		}

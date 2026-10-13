@@ -127,7 +127,7 @@ static void loadSchemeDataToDialog( HWND hWndDialog )
 	//
 	Int i;
 	ImageAndColorInfo *info;
-	for( i = FIRST_VALID_IDENTIFIER; i < NUM_STATE_IDENTIFIERS; i++ )
+	for (int i = FIRST_VALID_IDENTIFIER; i < NUM_STATE_IDENTIFIERS; i++ )
 	{
 
 		info = theScheme->getImageAndColor( (StateIdentifier)i );
@@ -169,7 +169,7 @@ static void saveData( HWND hWndDialog )
 	//
 	Int i;
 	ImageAndColorInfo *info;
-	for( i = FIRST_VALID_IDENTIFIER; i < NUM_STATE_IDENTIFIERS; i++ )
+	for (int i = FIRST_VALID_IDENTIFIER; i < NUM_STATE_IDENTIFIERS; i++ )
 	{
 
 	info = GetStateInfo( (StateIdentifier)i );
@@ -1501,7 +1501,7 @@ LayoutScheme::~LayoutScheme( void )
 	Int i;
 
 	// free all the state name strings
-	for( i = 0; i < NUM_STATE_IDENTIFIERS; i++ )
+	for (int i = 0; i < NUM_STATE_IDENTIFIERS; i++ )
 	{
 
 		if( m_imageAndColorTable[ i ].stateName )
@@ -1525,7 +1525,7 @@ void LayoutScheme::init( void )
 	ImageAndColorInfo *info;
 
 	// just up the default state values
-	for( i = FIRST_VALID_IDENTIFIER; i < NUM_STATE_IDENTIFIERS; i++ )
+	for (int i = FIRST_VALID_IDENTIFIER; i < NUM_STATE_IDENTIFIERS; i++ )
 	{
 	
 		// get info from the static table created for property editing

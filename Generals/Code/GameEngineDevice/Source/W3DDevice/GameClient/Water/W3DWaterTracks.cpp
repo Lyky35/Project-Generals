@@ -661,7 +661,7 @@ void WaterTracksRenderSystem::ReAcquireResources(void)
 		DX8IndexBufferClass::WriteLockClass lockIdxBuffer(m_indexBuffer);
 		UnsignedShort *ib=lockIdxBuffer.Get_Index_Array();
 		
-		for (i=0,j=0,k=0; i<idxCount; j++)
+		for (int i =0,j=0,k=0; i<idxCount; j++)
 		{
 			for (;k<(m_stripSizeX*(j+1)); k++,i+=2)
 			{
@@ -731,7 +731,7 @@ void WaterTracksRenderSystem::init(void)
 	}  // end if
 
 	// allocate our modules for this system
-	for( i = 0; i < numModules; i++ )
+	for (int i = 0; i < numModules; i++ )
 	{
 
 		mod = NEW WaterTracksObj;

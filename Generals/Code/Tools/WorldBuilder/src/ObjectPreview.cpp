@@ -26,7 +26,7 @@
 #include "stdafx.h"
 #include "resource.h"
 
-#include "Lib\BaseType.h"
+#include "Lib/BaseType.h"
 
 #include "ObjectPreview.h"
 #include "WorldBuilderDoc.h"
@@ -103,9 +103,9 @@ static UnsignedByte * saveSurface(IDirect3DSurface8 *surface)
 #ifdef CAPTURE_TO_TARGA
 	char image[3*PREVIEW_WIDTH*PREVIEW_HEIGHT];
 	//bytes are mixed in targa files, not rgb order.
-	for (y=0; y<height; y++)
+	for (int y =0; y<height; y++)
 	{
-		for (x=0; x<width; x++)
+		for (int x =0; x<width; x++)
 		{
 			// index for image
 			index=3*(x+y*width);
@@ -135,9 +135,9 @@ static UnsignedByte * saveSurface(IDirect3DSurface8 *surface)
 
 	static UnsignedByte bgraImage[3*PREVIEW_WIDTH*PREVIEW_HEIGHT];
 	//bmp is same byte order
-	for (y=0; y<height; y++)
+	for (int y =0; y<height; y++)
 	{
-		for (x=0; x<width; x++)
+		for (int x =0; x<width; x++)
 		{
 			// index for image
 			index=3*(x+y*width);
@@ -155,7 +155,7 @@ static UnsignedByte * saveSurface(IDirect3DSurface8 *surface)
 	UnsignedByte *ptr,*ptr1;
 	UnsignedByte  v,v1;
 
-	for (y = 0; y < (height >> 1); y++)
+	for (int y = 0; y < (height >> 1); y++)
 	{
 		/* Compute address of lines to exchange. */
 		ptr = (bgraImage + ((width * y) * 3));
@@ -163,7 +163,7 @@ static UnsignedByte * saveSurface(IDirect3DSurface8 *surface)
 		ptr1 -= ((width * y) * 3);
 
 		/* Exchange all the pixels on this scan line. */
-		for (x = 0; x < (width * 3); x++)
+		for (int x = 0; x < (width * 3); x++)
 			{
 			v = *ptr;
 			v1 = *ptr1;

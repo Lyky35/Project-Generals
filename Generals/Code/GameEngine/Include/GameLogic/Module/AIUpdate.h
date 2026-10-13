@@ -58,8 +58,8 @@ class WorkerAIInterface;
 class HackInternetAIInterface;
 class AssaultTransportAIInterface;
 
-enum AIStateType;
-enum ObjectID;
+enum AIStateType : int;
+enum ObjectID : int;
 
 
 //-------------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ const Real FAST_AS_POSSIBLE = 999999.0f;
 // Note: these values are saved in save files, so you MUST NOT REMOVE OR CHANGE
 // existing values!
 //
-enum LocomotorSetType
+enum LocomotorSetType : int
 {
 	LOCOMOTORSET_INVALID = -1,
 
@@ -87,7 +87,7 @@ enum LocomotorSetType
 };
 
 //-------------------------------------------------------------------------------------------------
-enum GuardTargetType
+enum GuardTargetType : int
 { 
 	GUARDTARGET_LOCATION,	// Guard a coord3d
 	GUARDTARGET_OBJECT,		// Guard an object
@@ -111,7 +111,7 @@ static const char *TheLocomotorSetNames[] =
 };
 #endif 
 
-enum AutoAcquireStates
+enum AutoAcquireStates : int
 {
 	AAS_Idle											= 0x01,
 	AAS_Idle_Stealthed						= 0x02,
@@ -135,7 +135,7 @@ static const char *TheAutoAcquireEnemiesNames[] =
 
 
 //-------------------------------------------------------------------------------------------------
-enum MoodMatrixParameters
+enum MoodMatrixParameters : int
 {
 	// Controller_Player and Controller_AI are mutually exclusive
 	MM_Controller_Player		= 0x00000001,
@@ -159,7 +159,7 @@ enum MoodMatrixParameters
 };
 
 //-------------------------------------------------------------------------------------------------
-enum MoodMatrixAction
+enum MoodMatrixAction : int
 {
 	MM_Action_Idle,
 	MM_Action_Move,
@@ -168,7 +168,7 @@ enum MoodMatrixAction
 };
 
 //-------------------------------------------------------------------------------------------------
-enum MoodActionAdjustment
+enum MoodActionAdjustment : int
 {
 	MAA_Action_Ok										= 0x00000001,
 	MAA_Action_To_Idle							= 0x00000002,

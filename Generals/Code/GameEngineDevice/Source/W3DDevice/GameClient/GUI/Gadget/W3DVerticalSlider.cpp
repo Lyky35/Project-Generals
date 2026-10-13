@@ -232,7 +232,7 @@ void W3DGadgetVerticalSliderImageDraw( GameWindow *window,
 		start.y = topEnd.y;
 		end.x = start.x + centerImage->getImageWidth();
 		end.y = start.y + centerImage->getImageHeight();
-		for( i = 0; i < pieces; i++ )
+		for (int i = 0; i < pieces; i++ )
 		{
 
 			TheWindowManager->winDrawImage( centerImage,
@@ -251,7 +251,7 @@ void W3DGadgetVerticalSliderImageDraw( GameWindow *window,
 		centerHeight = bottomStart.y - start.y;
 		pieces = centerHeight / smallCenterImage->getImageHeight() + 1;
 		end.y = start.y + smallCenterImage->getImageHeight();
-		for( i = 0; i < pieces; i++ )
+		for (int i = 0; i < pieces; i++ )
 		{
 
 			TheWindowManager->winDrawImage( smallCenterImage,

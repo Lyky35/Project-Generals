@@ -647,7 +647,7 @@ long Targa::Save(const char* name, long flags, bool addextension)
 
 				#if(0)
 				/* Swap the byte ordering of the palette entries. */
-				for (i = 0; i < Header.CMapLength; i++)
+				for (int i = 0; i < Header.CMapLength; i++)
 					{
 					c = *ptr;
 					*ptr = *(ptr + (depth - 1));
@@ -781,12 +781,12 @@ void Targa::XFlip(void)
 	/* Pixel depth in bytes. */
 	depth = TGA_BytesPerPixel(Header.PixelDepth);
 
-	for (y = 0; y < Header.Height; y++)
+	for (int y = 0; y < Header.Height; y++)
 		{
 		ptr = (mImage + ((Header.Width * depth) * y));
 		ptr1 = (ptr + ((Header.Width * depth) - depth));
 
-		for (x = 0; x < (Header.Width / 2); x++)
+		for (int x = 0; x < (Header.Width / 2); x++)
 			{
 			for (d = 0; d < depth; d++)
 				{
@@ -834,7 +834,7 @@ void Targa::YFlip(void)
 	/* Pixel depth in bytes. */
 	depth = TGA_BytesPerPixel(Header.PixelDepth);
 
-	for (y = 0; y < (Header.Height >> 1); y++)
+	for (int y = 0; y < (Header.Height >> 1); y++)
 		{
 		/* Compute address of lines to exchange. */
 		ptr = (mImage + ((Header.Width * y) * depth));
@@ -842,7 +842,7 @@ void Targa::YFlip(void)
 		ptr1 -= ((Header.Width * y) * depth);
 
 		/* Exchange all the pixels on this scan line. */
-		for (x = 0; x < (Header.Width * depth); x++)
+		for (int x = 0; x < (Header.Width * depth); x++)
 			{
 			v = *ptr;
 			v1 = *ptr1;
@@ -1044,8 +1044,8 @@ long Targa::DecodeImage()
 					image += depth;
 
 					/* Repeat the pixel for the run count in the image buffer. */
-					for (c = 1; c < count; c++)
-						for (i = 0; i < depth; i++)
+					for (int c = 1; c < count; c++)
+						for (int i = 0; i < depth; i++)
 							*image++ = *(color + i);
 					}
 				else
@@ -1131,7 +1131,7 @@ long Targa::EncodeImage()
 			pixels--;
 
 			/* Compare pixels. */
-			for (i = 0; i < depth; i++)
+			for (int i = 0; i < depth; i++)
 				{
 				if (start[i] != end[i])
 					{
@@ -1164,7 +1164,7 @@ long Targa::EncodeImage()
 				packet[0] = (count | 0x80);
 
 				/* Run pixel */
-				for (i = 0; i < depth; i++)
+				for (int i = 0; i < depth; i++)
 					packet[i + 1] = start[i];
 
 				/* Write the run packet. */
@@ -1181,7 +1181,7 @@ long Targa::EncodeImage()
 				if (count == 0)
 					{
 					/* Copy the raw pixel to the packet. */
-					for (i = 0; i < depth; i++)
+					for (int i = 0; i < depth; i++)
 						packet[packet_index + i] = start[i];
 
 					/* Increment the raw packet count. */
@@ -1261,7 +1261,7 @@ void Targa::InvertImage(void)
 		{
 		while (pixel_count > 0)
 			{
-			for (i = 0; i < (depth / 2); i++)
+			for (int i = 0; i < (depth / 2); i++)
 				{
 				c = *(buffer + i);
 				*(buffer + i) = *(buffer + ((depth - 1) - i));

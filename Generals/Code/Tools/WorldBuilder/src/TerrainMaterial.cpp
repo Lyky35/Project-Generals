@@ -23,7 +23,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "Lib\BaseType.h"
+#include "Lib/BaseType.h"
 #include "terrainmaterial.h"
 #include "WHeightMapEdit.h"
 #include "WorldBuilderDoc.h"
@@ -366,7 +366,7 @@ void TerrainMaterial::updateTextures(WorldHeightMapEdit *pMap)
 		m_staticThis->m_updating = true;
 		m_staticThis->m_terrainTreeView.DeleteAllItems();
 		Int i;
-		for (i=0; i<pMap->getNumTexClasses(); i++) {
+		for (int i =0; i<pMap->getNumTexClasses(); i++) {
 			char path[_MAX_PATH];
 			AsciiString uiName = pMap->getTexClassUiName(i);
 			strncpy(path, uiName.str(), _MAX_PATH-2);

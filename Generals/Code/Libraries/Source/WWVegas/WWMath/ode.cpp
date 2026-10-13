@@ -145,7 +145,7 @@ void IntegrationSystem::Midpoint_Integrate(ODESystemClass * sys,float dt)
 	** Compute the midpoint between the Euler solution and 
 	** the input values.
 	*/
-	for (i=0; i<Y0.Count(); i++) {
+	for (int i =0; i<Y0.Count(); i++) {
 		ymid[i] = Y0[i] + dt * dydt[i] / 2.0f;
 	}
 	
@@ -157,7 +157,7 @@ void IntegrationSystem::Midpoint_Integrate(ODESystemClass * sys,float dt)
 	/*
 	** Use these derivatives to compute the solution.
 	*/
-	for (i=0; i<Y0.Count(); i++) {
+	for (int i =0; i<Y0.Count(); i++) {
 		Y1[i] = Y0[i] + dt * dydt[i];
 	}
 
@@ -209,7 +209,7 @@ void IntegrationSystem::Runge_Kutta_Integrate(ODESystemClass * sys,float dt)
 	** First Step
 	*/
 	sys->Compute_Derivatives(0.0f,NULL,&dydt);
-	for (i=0; i<Y0.Count(); i++) {
+	for (int i =0; i<Y0.Count(); i++) {
 		yt[i] = Y0[i] + dt2 * dydt[i];
 	}
 	
@@ -217,7 +217,7 @@ void IntegrationSystem::Runge_Kutta_Integrate(ODESystemClass * sys,float dt)
 	** Second Step
 	*/
 	sys->Compute_Derivatives(dt2, &yt, &dyt);
-	for (i=0; i<Y0.Count(); i++) {
+	for (int i =0; i<Y0.Count(); i++) {
 		yt[i] = Y0[i] + dt2 * dyt[i];
 	}
 	
@@ -225,7 +225,7 @@ void IntegrationSystem::Runge_Kutta_Integrate(ODESystemClass * sys,float dt)
 	** Third Step
 	*/
 	sys->Compute_Derivatives(dt2, &yt, &dym);
-	for (i=0; i<Y0.Count(); i++) {
+	for (int i =0; i<Y0.Count(); i++) {
 		yt[i] = Y0[i] + dt*dym[i];
 		dym[i] += dyt[i];
 	}
@@ -234,7 +234,7 @@ void IntegrationSystem::Runge_Kutta_Integrate(ODESystemClass * sys,float dt)
 	** Fourth Step
 	*/
 	sys->Compute_Derivatives(dt, &yt, &dyt);
-	for (i=0; i<Y0.Count(); i++) {
+	for (int i =0; i<Y0.Count(); i++) {
 		Y1[i] = Y0[i] + dt6 * (dydt[i] + dyt[i] + 2.0f*dym[i]);
 	}
 
@@ -322,43 +322,43 @@ void IntegrationSystem::Runge_Kutta5_Integrate(ODESystemClass * odesys,float dt)
 
 	// First step
 	odesys->Compute_Derivatives(0.0f,NULL,&dydt);
-	for (i=0;i<veclen;i++) {
+	for (int i =0;i<veclen;i++) {
 		ytmp[i] = Y0[i] + b21*dt*dydt[i];
 	}
 
 	// Second step
 	odesys->Compute_Derivatives(a2*dt, &ytmp, &ak2);
-	for (i=0; i<veclen; i++) {
+	for (int i =0; i<veclen; i++) {
 		ytmp[i] = Y0[i] + dt*(b31*dydt[i] + b32*ak2[i]);
 	}
 	
 	// Third step
 	odesys->Compute_Derivatives(a3*dt, &ytmp, &ak3);
-	for (i=0; i<veclen; i++) {
+	for (int i =0; i<veclen; i++) {
 		ytmp[i] = Y0[i] + dt*(b41*dydt[i] + b42*ak2[i] + b43*ak3[i]);
 	}
 	
 	// Fourth step
 	odesys->Compute_Derivatives(a4*dt, &ytmp, &ak4);
-	for (i=0; i<veclen; i++) {
+	for (int i =0; i<veclen; i++) {
 		ytmp[i] = Y0[i] + dt*(b51*dydt[i] + b52*ak2[i] + b53*ak3[i] + b54*ak4[i]);
 	}
 
 	// Fifth step
 	odesys->Compute_Derivatives(a5*dt, &ytmp, &ak5);
-	for (i=0; i<veclen; i++) {
+	for (int i =0; i<veclen; i++) {
 		ytmp[i] = Y0[i] + dt*(b61*dydt[i] + b62*ak2[i] + b63*ak3[i] + b64*ak4[i] + b65*ak5[i]);
 	}
 
 	// Sixth step
 	odesys->Compute_Derivatives(a6*dt, &ytmp, &ak6);
-	for (i=0; i<veclen; i++) {
+	for (int i =0; i<veclen; i++) {
 		Y1[i] = Y0[i] + dt*(c1*dydt[i] + c3*ak3[i] + c4*ak4[i] + c6*ak6[i]);
 	}
 
 	// Error approximation!  
 	// (maybe I should use this someday? nah not going to use this integrator anyway...)
-	for (i=0; i<veclen; i++) {
+	for (int i =0; i<veclen; i++) {
 		yerr[i] = dt*(dc1*dydt[i] + dc3*ak3[i] + dc4*ak4[i] + dc5*ak5[i] + dc6*ak6[i]);
 	}
 

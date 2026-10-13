@@ -67,6 +67,20 @@ Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/Compressio
  /usr/x86_64-w64-mingw32/include/c++/16.2.0/tr1/riemann_zeta.tcc \
  /usr/x86_64-w64-mingw32/include/string.h \
  /usr/x86_64-w64-mingw32/include/sec_api/string_s.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/algorithm \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/stl_algo.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/algorithmfwd.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/initializer_list \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/stl_heap.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/uniform_int_dist.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/stl_tempbuf.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/new \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/exception.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/new_except.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/bits/stl_construct.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/cstdlib \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/pstl/glue_algorithm_defs.h \
+ /usr/x86_64-w64-mingw32/include/c++/16.2.0/pstl/execution_defs.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/Lib/Trig.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/LZHCompress/NoxCompress.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Include/ZLib/zlib.h \
@@ -86,7 +100,7 @@ Generals/Code/Libraries/Source/Compression/CMakeFiles/Compression.dir/Compressio
  /usr/x86_64-w64-mingw32/include/pthread_unistd.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/codex.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/gimex.h \
- /usr/x86_64-w64-mingw32/include/c++/16.2.0/cstdlib \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/btreecodex.h \
+ /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/codex.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/huffcodex.h \
  /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/Compression/EAC/refcodex.h

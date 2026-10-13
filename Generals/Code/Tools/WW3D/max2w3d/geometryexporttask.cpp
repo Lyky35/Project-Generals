@@ -655,7 +655,7 @@ void GeometryExportTaskClass::Optimize_Geometry
 	/*
 	** Generate names for each of the meshes that were created
 	*/
-	for (i=0; i<simple_meshes.Count(); i++) {
+	for (int i =0; i<simple_meshes.Count(); i++) {
 //		if (simple_meshes[i]->Is_Name_Dirty()) {
 			simple_meshes[i]->Generate_Name("MESH",i,context);
 //		}
@@ -664,7 +664,7 @@ void GeometryExportTaskClass::Optimize_Geometry
 	/*
 	** Finally, transfer all of the optimized tasks into the big task array
 	*/
-	for (i=0; i<simple_meshes.Count(); i++) {
+	for (int i =0; i<simple_meshes.Count(); i++) {
 		tasks.Add(simple_meshes[i]);
 	}
 	simple_meshes.Delete_All();

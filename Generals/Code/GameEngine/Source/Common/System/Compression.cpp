@@ -70,7 +70,7 @@ void DoCompressTest( void )
 	/*
 	PerfGather *s_compressGathers[TEST_COMPRESSION_MAX+1];
 	PerfGather *s_decompressGathers[TEST_COMPRESSION_MAX+1];
-	for (i = TEST_COMPRESSION_MIN; i < TEST_COMPRESSION_MAX+1; ++i)
+	for (int i = TEST_COMPRESSION_MIN; i < TEST_COMPRESSION_MAX+1; ++i)
 	{
 		s_compressGathers[i] = new PerfGather(CompressionManager::getCompressionNameByType((CompressionType)i));
 		s_decompressGathers[i] = new PerfGather(CompressionManager::getDecompressionNameByType((CompressionType)i));
@@ -102,7 +102,7 @@ void DoCompressTest( void )
 			d.origSize = origSize;
 			d.compressedSize[COMPRESSION_NONE] = origSize;
 
-			for (i=TEST_COMPRESSION_MIN; i<=TEST_COMPRESSION_MAX; ++i)
+			for (int i =TEST_COMPRESSION_MIN; i<=TEST_COMPRESSION_MAX; ++i)
 			{
 				DEBUG_LOG(("=================================================\n"));
 				DEBUG_LOG(("Compression Test %d\n", i));
@@ -158,7 +158,7 @@ void DoCompressTest( void )
 		++it;
 	}
 
-	for (i=TEST_COMPRESSION_MIN; i<=TEST_COMPRESSION_MAX; ++i)
+	for (int i =TEST_COMPRESSION_MIN; i<=TEST_COMPRESSION_MAX; ++i)
 	{
 		Real maxCompression = 1000.0f;
 		Real minCompression = 0.0f;
@@ -189,7 +189,7 @@ void DoCompressTest( void )
 	PerfGather::resetAll();
 	CopyFile( "AAAPerfStats.csv", "AAACompressPerfStats.csv", FALSE );
 
-	for (i = TEST_COMPRESSION_MIN; i < TEST_COMPRESSION_MAX+1; ++i) 
+	for (int i = TEST_COMPRESSION_MIN; i < TEST_COMPRESSION_MAX+1; ++i) 
 	{
 		delete s_compressGathers[i];
 		s_compressGathers[i] = NULL;

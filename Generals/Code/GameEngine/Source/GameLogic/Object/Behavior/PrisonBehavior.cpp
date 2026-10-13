@@ -241,7 +241,7 @@ void PrisonBehavior::pickVisualLocation( Coord3D *pos )
 		yardRegion.lo.y = yardPositions[ 0 ].y;
 		yardRegion.hi.x = yardPositions[ 0 ].x;
 		yardRegion.hi.y = yardPositions[ 0 ].y;
-		for( i = 1; i < yardBones; i++ )
+		for (int i = 1; i < yardBones; i++ )
 		{
 
 			if( yardPositions[ i ].x < yardRegion.lo.x )
@@ -266,7 +266,7 @@ void PrisonBehavior::pickVisualLocation( Coord3D *pos )
 		// loop till we find a valid location that is inside the yard area
 		Int maxTries = 32;
 		Coord3D loc;
-		for( i = 0; i < maxTries; ++i )
+		for (int i = 0; i < maxTries; ++i )
 		{
 
 			// pick a location

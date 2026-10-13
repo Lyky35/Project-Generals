@@ -485,10 +485,10 @@ BOOL CALLBACK SelectColorDlgProc( HWND hWndDlg, UINT uMsg,
           
           // loop through each horizontal line available in the bar drawing
           // the correct color there
-          for (x = 0; x < (rect.right - rect.left) - 1;  x++)  {
+          for (int x = 0; x < (rect.right - rect.left) - 1;  x++)  {
 
             // draw a horizontal row of pixels with this color
-            for (y = 0; y < rect.bottom; y++)
+            for (int y = 0; y < rect.bottom; y++)
               SetPixel (lpdis->hDC, x, y, RGB ((BYTE) rgbColor.red,
                                                  (BYTE) rgbColor.green,
                                                  (BYTE) rgbColor.blue));
@@ -547,10 +547,10 @@ BOOL CALLBACK SelectColorDlgProc( HWND hWndDlg, UINT uMsg,
           
           // loop through each horizontal line available in the bar drawing
           // the correct color there
-          for (x = 0; x < (rect.right - rect.left) - 1;  x++)  {
+          for (int x = 0; x < (rect.right - rect.left) - 1;  x++)  {
 
             // draw a horizontal row of pixels with this color
-            for (y = 0; y < rect.bottom; y++)
+            for (int y = 0; y < rect.bottom; y++)
               SetPixel (lpdis->hDC, x, y, RGB ((BYTE) rgbColor.red,
                                                  (BYTE) rgbColor.green,
                                                  (BYTE) rgbColor.blue));
@@ -610,10 +610,10 @@ BOOL CALLBACK SelectColorDlgProc( HWND hWndDlg, UINT uMsg,
           
           // loop through each horizontal line available in the bar drawing
           // the correct color there
-          for (x = 0; x < (rect.right - rect.left) - 1;  x++)  {
+          for (int x = 0; x < (rect.right - rect.left) - 1;  x++)  {
             
             // draw a horizontal row of pixels with this color
-            for (y = 0; y < rect.bottom; y++)
+            for (int y = 0; y < rect.bottom; y++)
               SetPixel (lpdis->hDC, x, y, RGB ((BYTE) rgbColor.red,
                                                (BYTE) rgbColor.green,
                                                (BYTE) rgbColor.blue));

@@ -178,7 +178,7 @@ Int ScriptList::m_curId = 0;
 void ScriptList::updateDefaults(void) 
 {
 	Int i;
-	for (i=0; i<TheSidesList->getNumSides(); i++) 
+	for (int i =0; i<TheSidesList->getNumSides(); i++) 
 	{
 		ScriptList* pList = TheSidesList->getSideInfo(i)->getScriptList();
 		if (pList == NULL) {
@@ -195,7 +195,7 @@ void ScriptList::reset(void)
 {
 	Int i;
 	if (TheSidesList == NULL) return; /// @todo - move this code into sides list.
-	for (i=0; i<TheSidesList->getNumSides(); i++) 
+	for (int i =0; i<TheSidesList->getNumSides(); i++) 
 	{
 		ScriptList* pList = TheSidesList->getSideInfo(i)->getScriptList();
 		TheSidesList->getSideInfo(i)->setScriptList(NULL);
@@ -530,21 +530,21 @@ Bool ScriptList::ParseScriptsDataChunk(DataChunkInput &file, DataChunkInfo *info
 	Int i;
 	file.registerParser( AsciiString("ScriptList"), info->label, ScriptList::ParseScriptListDataChunk );
 	DEBUG_ASSERTCRASH(s_numInReadList==0, ("Leftover scripts floating aroung."));
-	for (i=0; i<s_numInReadList; i++) {
+	for (int i =0; i<s_numInReadList; i++) {
 		if (s_readLists[i]) {
 			s_readLists[i]->deleteInstance();
 			s_readLists[i] = NULL;
 		}
 	}
 	TScriptListReadInfo readInfo;
-	for (i=0; i<MAX_PLAYER_COUNT; i++) {
+	for (int i =0; i<MAX_PLAYER_COUNT; i++) {
 		readInfo.readLists[i] = 0;
 	}
 	readInfo.numLists = 0;
 	if (file.parse(&readInfo)) {
 		DEBUG_ASSERTCRASH(readInfo.numLists<MAX_PLAYER_COUNT, ("Read too many, overrun buffer."));
 		s_numInReadList = readInfo.numLists;
-		for (i=0; i<s_numInReadList; i++) {
+		for (int i =0; i<s_numInReadList; i++) {
 			s_readLists[i] = readInfo.readLists[i];
 		}
 		return true;
@@ -562,7 +562,7 @@ Int ScriptList::getReadScripts(ScriptList *scriptLists[MAX_PLAYER_COUNT])
 	Int i;
 	Int count = s_numInReadList;
 	s_numInReadList = 0;
-	for (i=0; i<count; i++) {
+	for (int i =0; i<count; i++) {
 		scriptLists[i] = s_readLists[i];
 		s_readLists[i] = NULL;
 	}
@@ -581,7 +581,7 @@ void ScriptList::WriteScriptsDataChunk(DataChunkOutput &chunkWriter, ScriptList 
 	/**********SCRIPTS DATA ***********************/
 	chunkWriter.openDataChunk("PlayerScriptsList", K_SCRIPTS_DATA_VERSION_1);	
 		Int i;
-		for (i=0; i<numLists; i++) {
+		for (int i =0; i<numLists; i++) {
 			chunkWriter.openDataChunk("ScriptList", K_SCRIPT_LIST_DATA_VERSION_1);
 			if (scriptLists[i]) scriptLists[i]->WriteScriptListDataChunk(chunkWriter);
 			chunkWriter.closeDataChunk();
@@ -1510,7 +1510,7 @@ m_numParms(0),
 m_nextAndCondition(NULL)
 {
 	Int i;
-	for (i = 0; i < MAX_PARMS; i++) 
+	for (int i = 0; i < MAX_PARMS; i++) 
 	{
 		m_parms[i] = NULL;
 	}
@@ -1521,7 +1521,7 @@ m_conditionType(type),
 m_numParms(0)
 {
 	Int i;
-	for (i=0; i<MAX_PARMS; i++) {
+	for (int i =0; i<MAX_PARMS; i++) {
 		m_parms[i] = NULL;
 	}
 	setConditionType(type);
@@ -1530,7 +1530,7 @@ m_numParms(0)
 void Condition::setConditionType(enum ConditionType type)
 {
 	Int i;
-	for (i=0; i<m_numParms; i++) {
+	for (int i =0; i<m_numParms; i++) {
 		if (m_parms[i]) 
 			m_parms[i]->deleteInstance();
 		m_parms[i] = NULL;
@@ -1538,7 +1538,7 @@ void Condition::setConditionType(enum ConditionType type)
 	m_conditionType = type;
 	const ConditionTemplate *pTemplate = TheScriptEngine->getConditionTemplate(m_conditionType);
 	m_numParms = pTemplate->getNumParameters();
-	for (i=0; i<m_numParms; i++) {
+	for (int i =0; i<m_numParms; i++) {
 		m_parms[i] = newInstance(Parameter)(pTemplate->getParameterType(i));	
 	}
 }
@@ -1547,7 +1547,7 @@ Condition *Condition::duplicate(void) const
 {
 	Condition *pNew = newInstance(Condition)(m_conditionType);	
 	Int i;
-	for (i=0; i<m_numParms && i<pNew->m_numParms; i++) {
+	for (int i =0; i<m_numParms && i<pNew->m_numParms; i++) {
 		*pNew->m_parms[i] = *m_parms[i];
 	}
 	Condition *pLink = m_nextAndCondition;
@@ -1555,7 +1555,7 @@ Condition *Condition::duplicate(void) const
 	while (pLink) {
 		pCur->m_nextAndCondition = newInstance(Condition)(pLink->getConditionType());
 		pCur = pCur->m_nextAndCondition;
-		for (i=0; i<pLink->m_numParms; i++) {
+		for (int i =0; i<pLink->m_numParms; i++) {
 			*pCur->m_parms[i] = *pLink->m_parms[i];
 		}
 		pLink = pLink->m_nextAndCondition;
@@ -1568,7 +1568,7 @@ Condition *Condition::duplicateAndQualify(const AsciiString& qualifier,
 {
 	Condition *pNew = newInstance(Condition)(m_conditionType);
 	Int i;
-	for (i=0; i<m_numParms && i<pNew->m_numParms; i++) {
+	for (int i =0; i<m_numParms && i<pNew->m_numParms; i++) {
 		*pNew->m_parms[i] = *m_parms[i];
 		pNew->m_parms[i]->qualify(qualifier, playerTemplateName, newPlayerName);
 	}
@@ -1577,7 +1577,7 @@ Condition *Condition::duplicateAndQualify(const AsciiString& qualifier,
 	while (pLink) {
 		pCur->m_nextAndCondition = newInstance(Condition)(pLink->getConditionType());
 		pCur = pCur->m_nextAndCondition;
-		for (i=0; i<pLink->m_numParms; i++) {
+		for (int i =0; i<pLink->m_numParms; i++) {
 			*pCur->m_parms[i] = *pLink->m_parms[i];
 			pCur->m_parms[i]->qualify(qualifier, playerTemplateName, newPlayerName);
 		}
@@ -1589,7 +1589,7 @@ Condition *Condition::duplicateAndQualify(const AsciiString& qualifier,
 Condition::~Condition(void) 
 {
 	Int i;
-	for (i=0; i<m_numParms; i++) {
+	for (int i =0; i<m_numParms; i++) {
 		m_parms[i]->deleteInstance();
 		m_parms[i] = NULL;
 	}
@@ -1624,7 +1624,7 @@ AsciiString Condition::getUiText(void)
 		uiText = "[???]";
 	}
 
-	for (i=0; i<MAX_PARMS; i++) {
+	for (int i =0; i<MAX_PARMS; i++) {
 		if (i<numStrings) {
 			uiText.concat(strings[i]);
 		}
@@ -1651,7 +1651,7 @@ void Condition::WriteConditionDataChunk(DataChunkOutput &chunkWriter, Condition	
 			chunkWriter.writeInt(pCondition->m_conditionType);
 			chunkWriter.writeInt(pCondition->m_numParms);
 			Int i;
-			for (i=0; i<pCondition->m_numParms; i++) {
+			for (int i =0; i<pCondition->m_numParms; i++) {
 				pCondition->m_parms[i]->WriteParameter(chunkWriter);
 			}
 		chunkWriter.closeDataChunk();
@@ -1672,7 +1672,7 @@ Bool Condition::ParseConditionDataChunk(DataChunkInput &file, DataChunkInfo *inf
 	pCondition->m_conditionType = (enum ConditionType)file.readInt();
 	pCondition->m_numParms =file.readInt();
 	Int i;
-	for (i=0; i<pCondition->m_numParms; i++) 
+	for (int i =0; i<pCondition->m_numParms; i++) 
 	{
 		pCondition->m_parms[i] = Parameter::ReadParameter(file);
 	}
@@ -1725,7 +1725,7 @@ m_name("(placeholder)")
 Int Template::getUiStrings(AsciiString strings[MAX_PARMS]) const
 {
 	Int i;
-	for (i=0; i<m_numUiStrings; i++) {
+	for (int i =0; i<m_numUiStrings; i++) {
 		strings[i] = m_uiStrings[i];
 	}
 	return m_numUiStrings;
@@ -2164,7 +2164,7 @@ Parameter *Parameter::ReadParameter(DataChunkInput &file)
 				{
 					//MISSILE was split into two kinds -- SMALL_MISSILE and BALLISTIC_MISSILE.
 					pParm->m_string.format( "SMALL_MISSILE" );
-					for( i = 0; kindofNames[i]; ++i )
+					for (int i = 0; kindofNames[i]; ++i )
 					{
 						if (pParm->m_string.compareNoCase("SMALL_MISSILE") == 0) 
 						{
@@ -2212,7 +2212,7 @@ m_actionType(type),
 m_numParms(0)
 {
 	Int i;
-	for (i=0; i<MAX_PARMS; i++) {
+	for (int i =0; i<MAX_PARMS; i++) {
 		m_parms[i] = NULL;
 	}
 	setActionType(type);
@@ -2221,7 +2221,7 @@ m_numParms(0)
 void ScriptAction::setActionType(enum ScriptActionType type)
 {
 	Int i;
-	for (i=0; i<m_numParms; i++) {
+	for (int i =0; i<m_numParms; i++) {
 		if (m_parms[i]) 
 			m_parms[i]->deleteInstance();
 		m_parms[i] = NULL;
@@ -2229,7 +2229,7 @@ void ScriptAction::setActionType(enum ScriptActionType type)
 	m_actionType = type;
 	const ActionTemplate *pTemplate = TheScriptEngine->getActionTemplate(m_actionType);
 	m_numParms = pTemplate->getNumParameters();
-	for (i=0; i<m_numParms; i++) {
+	for (int i =0; i<m_numParms; i++) {
 		m_parms[i] = newInstance(Parameter)(pTemplate->getParameterType(i));
 	}
 }
@@ -2238,7 +2238,7 @@ ScriptAction *ScriptAction::duplicate(void) const
 {
 	ScriptAction *pNew = newInstance(ScriptAction)(m_actionType);	
 	Int i;
-	for (i=0; i<m_numParms; i++) {
+	for (int i =0; i<m_numParms; i++) {
 		if (pNew->m_parms[i]) {
 			*pNew->m_parms[i] = *m_parms[i];
 		}
@@ -2248,7 +2248,7 @@ ScriptAction *ScriptAction::duplicate(void) const
 	while (pLink) {
 		pCur->m_nextAction = newInstance(ScriptAction)(pLink->m_actionType);
 		pCur = pCur->m_nextAction;
-		for (i=0; i<pLink->m_numParms; i++) {
+		for (int i =0; i<pLink->m_numParms; i++) {
 			if (pCur->m_parms[i] && pLink->m_parms[i]) {
 				*pCur->m_parms[i] = *pLink->m_parms[i];
 			}
@@ -2263,7 +2263,7 @@ ScriptAction *ScriptAction::duplicateAndQualify(const AsciiString& qualifier,
 {
 	ScriptAction *pNew = newInstance(ScriptAction)(m_actionType);
 	Int i;
-	for (i=0; i<m_numParms; i++) {
+	for (int i =0; i<m_numParms; i++) {
 		if (pNew->m_parms[i]) {
 			*pNew->m_parms[i] = *m_parms[i];
 			pNew->m_parms[i]->qualify(qualifier, playerTemplateName, newPlayerName);
@@ -2274,7 +2274,7 @@ ScriptAction *ScriptAction::duplicateAndQualify(const AsciiString& qualifier,
 	while (pLink) {
 		pCur->m_nextAction = newInstance(ScriptAction)(pLink->m_actionType);
 		pCur = pCur->m_nextAction;
-		for (i=0; i<pLink->m_numParms; i++) {
+		for (int i =0; i<pLink->m_numParms; i++) {
 			if (pCur->m_parms[i] && pLink->m_parms[i]) {
 				*pCur->m_parms[i] = *pLink->m_parms[i];
 				pCur->m_parms[i]->qualify(qualifier, playerTemplateName, newPlayerName);
@@ -2288,7 +2288,7 @@ ScriptAction *ScriptAction::duplicateAndQualify(const AsciiString& qualifier,
 ScriptAction::~ScriptAction(void) 
 {
 	Int i;
-	for (i=0; i<m_numParms; i++) {
+	for (int i =0; i<m_numParms; i++) {
 		m_parms[i]->deleteInstance();
 		m_parms[i] = NULL;
 	}
@@ -2323,7 +2323,7 @@ AsciiString ScriptAction::getUiText(void)
 		uiText = "[???]";
 	}
 
-	for (i=0; i<MAX_PARMS; i++) {
+	for (int i =0; i<MAX_PARMS; i++) {
 		if (i<numStrings) {
 			uiText.concat(strings[i]);
 		}
@@ -2349,7 +2349,7 @@ void ScriptAction::WriteActionDataChunk(DataChunkOutput &chunkWriter, ScriptActi
 			chunkWriter.writeInt(pScriptAction->m_actionType);
 			chunkWriter.writeInt(pScriptAction->m_numParms);
 			Int i;
-			for (i=0; i<pScriptAction->m_numParms; i++) {
+			for (int i =0; i<pScriptAction->m_numParms; i++) {
 				pScriptAction->m_parms[i]->WriteParameter(chunkWriter);
 			}
 		chunkWriter.closeDataChunk();
@@ -2381,7 +2381,7 @@ Bool ScriptAction::ParseActionDataChunk(DataChunkInput &file, DataChunkInfo *inf
 
 	pScriptAction->m_numParms =file.readInt();
 	Int i;
-	for (i=0; i<pScriptAction->m_numParms; i++) 
+	for (int i =0; i<pScriptAction->m_numParms; i++) 
 	{
 		pScriptAction->m_parms[i] = Parameter::ReadParameter(file);
 	}
@@ -2484,7 +2484,7 @@ void ScriptAction::WriteActionFalseDataChunk(DataChunkOutput &chunkWriter, Scrip
 			chunkWriter.writeInt(pScriptAction->m_actionType);
 			chunkWriter.writeInt(pScriptAction->m_numParms);
 			Int i;
-			for (i=0; i<pScriptAction->m_numParms; i++) {
+			for (int i =0; i<pScriptAction->m_numParms; i++) {
 				pScriptAction->m_parms[i]->WriteParameter(chunkWriter);
 			}
 		chunkWriter.closeDataChunk();
@@ -2508,7 +2508,7 @@ Bool ScriptAction::ParseActionFalseDataChunk(DataChunkInput &file, DataChunkInfo
 	pScriptAction->m_actionType = (enum ScriptActionType)file.readInt();
 	pScriptAction->m_numParms =file.readInt();
 	Int i;
-	for (i=0; i<pScriptAction->m_numParms; i++) {
+	for (int i =0; i<pScriptAction->m_numParms; i++) {
 		pScriptAction->m_parms[i] = Parameter::ReadParameter(file);
 	}
 	/// @todo - Verify read in parameters with current action template.  jba.

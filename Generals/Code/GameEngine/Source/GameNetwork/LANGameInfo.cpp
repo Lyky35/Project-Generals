@@ -245,7 +245,7 @@ void LANDisplayGameList( GameWindow *gameListbox, LANGameInfo *gameList )
 AsciiString GenerateGameOptionsString( void )
 {
 	if(!TheLAN->GetMyGame() || !TheLAN->GetMyGame()->amIHost())
-		return AsciiString.TheEmptyString;
+		return AsciiString::TheEmptyString;
 
 	return GameInfoToAsciiString(TheLAN->GetMyGame());
 }
@@ -265,7 +265,7 @@ Bool ParseGameOptionsString(LANGameInfo *game, AsciiString options)
 	std::map<UnicodeString, UnicodeString> oldLogins, oldMachines;
 	std::map<UnicodeString, UnicodeString>::iterator mapIt;
 	Int i;
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (int i =0; i<MAX_SLOTS; ++i)
 	{
 		LANGameSlot *slot = game->getLANSlot(i);
 		if (slot && slot->isHuman())
@@ -295,7 +295,7 @@ Bool ParseGameOptionsString(LANGameInfo *game, AsciiString options)
 		}
 		// clean up LAN users, etc.
 		UnsignedInt now = timeGetTime();
-		for (i=0; i<MAX_SLOTS; ++i)
+		for (int i =0; i<MAX_SLOTS; ++i)
 		{
 			LANGameSlot *slot = game->getLANSlot(i);
 

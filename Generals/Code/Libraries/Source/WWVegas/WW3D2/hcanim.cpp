@@ -286,7 +286,7 @@ int HCompressedAnimClass::Load_W3D(ChunkLoadClass & cload)
 	}
 
 	// Initialize Flavor
-	for (i=0; i<NumNodes; i++) {
+	for (int i =0; i<NumNodes; i++) {
 		NodeMotion[i].SetFlavor(Flavor);
 	}
 

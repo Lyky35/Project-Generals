@@ -34,6 +34,9 @@
  * Functions:                                                                                  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
+#include <algorithm>
+using std::min;
+using std::max;
 #include "render2dsentence.h"
 #include "surfaceclass.h"
 #include "texture.h"
@@ -391,7 +394,7 @@ Render2DSentenceClass::Build_Textures (void)
 		//
 		//	Copy the contents of the texture from the surface
 		//
-		DX8Wrapper::_Copy_DX8_Rects (curr_surface->Peek_D3D_Surface (), NULL, 0, texture_surface->Peek_D3D_Surface (), NULL);
+		// Vulkan backend - surface copy not yet implemented
 		REF_PTR_RELEASE (texture_surface);
 	
 		//
@@ -1720,8 +1723,8 @@ FontCharsClass::Grow_Unicode_Array (WCHAR ch)
 		return ;
 	} 
 
-	uint16 first_index	= min( FirstUnicodeChar, ch );
-	uint16 last_index		= max( LastUnicodeChar, ch );
+	uint16 first_index	= (uint16)min( (int)FirstUnicodeChar, (int)ch );
+	uint16 last_index		= (uint16)max( (int)LastUnicodeChar, (int)ch );
 	uint16 count			= (last_index - first_index) + 1;
 
 	//

@@ -72,1851 +72,1775 @@ include Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/codegen:
 .PHONY : Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/codegen
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/FramGrab.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.obj -MF CMakeFiles/WW3D2.dir/FramGrab.cpp.obj.d -o CMakeFiles/WW3D2.dir/FramGrab.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/FramGrab.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/FramGrab.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.o -MF CMakeFiles/WW3D2.dir/FramGrab.cpp.o.d -o CMakeFiles/WW3D2.dir/FramGrab.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/FramGrab.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/FramGrab.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/FramGrab.cpp > CMakeFiles/WW3D2.dir/FramGrab.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/FramGrab.cpp > CMakeFiles/WW3D2.dir/FramGrab.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/FramGrab.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/FramGrab.cpp -o CMakeFiles/WW3D2.dir/FramGrab.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/FramGrab.cpp -o CMakeFiles/WW3D2.dir/FramGrab.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.obj -MF CMakeFiles/WW3D2.dir/aabtree.cpp.obj.d -o CMakeFiles/WW3D2.dir/aabtree.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.o -MF CMakeFiles/WW3D2.dir/aabtree.cpp.o.d -o CMakeFiles/WW3D2.dir/aabtree.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/aabtree.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp > CMakeFiles/WW3D2.dir/aabtree.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp > CMakeFiles/WW3D2.dir/aabtree.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/aabtree.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp -o CMakeFiles/WW3D2.dir/aabtree.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp -o CMakeFiles/WW3D2.dir/aabtree.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.obj -MF CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.obj.d -o CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.o -MF CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.o.d -o CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp > CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp > CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp -o CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp -o CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.obj -MF CMakeFiles/WW3D2.dir/agg_def.cpp.obj.d -o CMakeFiles/WW3D2.dir/agg_def.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.o -MF CMakeFiles/WW3D2.dir/agg_def.cpp.o.d -o CMakeFiles/WW3D2.dir/agg_def.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/agg_def.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp > CMakeFiles/WW3D2.dir/agg_def.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp > CMakeFiles/WW3D2.dir/agg_def.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/agg_def.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp -o CMakeFiles/WW3D2.dir/agg_def.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp -o CMakeFiles/WW3D2.dir/agg_def.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.obj -MF CMakeFiles/WW3D2.dir/animobj.cpp.obj.d -o CMakeFiles/WW3D2.dir/animobj.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.o -MF CMakeFiles/WW3D2.dir/animobj.cpp.o.d -o CMakeFiles/WW3D2.dir/animobj.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/animobj.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp > CMakeFiles/WW3D2.dir/animobj.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp > CMakeFiles/WW3D2.dir/animobj.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/animobj.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp -o CMakeFiles/WW3D2.dir/animobj.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp -o CMakeFiles/WW3D2.dir/animobj.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.obj -MF CMakeFiles/WW3D2.dir/assetmgr.cpp.obj.d -o CMakeFiles/WW3D2.dir/assetmgr.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.o -MF CMakeFiles/WW3D2.dir/assetmgr.cpp.o.d -o CMakeFiles/WW3D2.dir/assetmgr.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/assetmgr.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp > CMakeFiles/WW3D2.dir/assetmgr.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp > CMakeFiles/WW3D2.dir/assetmgr.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/assetmgr.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp -o CMakeFiles/WW3D2.dir/assetmgr.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp -o CMakeFiles/WW3D2.dir/assetmgr.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/bitmaphandler.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.obj -MF CMakeFiles/WW3D2.dir/bitmaphandler.cpp.obj.d -o CMakeFiles/WW3D2.dir/bitmaphandler.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bitmaphandler.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/bitmaphandler.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.o -MF CMakeFiles/WW3D2.dir/bitmaphandler.cpp.o.d -o CMakeFiles/WW3D2.dir/bitmaphandler.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bitmaphandler.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/bitmaphandler.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bitmaphandler.cpp > CMakeFiles/WW3D2.dir/bitmaphandler.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bitmaphandler.cpp > CMakeFiles/WW3D2.dir/bitmaphandler.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/bitmaphandler.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bitmaphandler.cpp -o CMakeFiles/WW3D2.dir/bitmaphandler.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bitmaphandler.cpp -o CMakeFiles/WW3D2.dir/bitmaphandler.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/bmp2d.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.obj -MF CMakeFiles/WW3D2.dir/bmp2d.cpp.obj.d -o CMakeFiles/WW3D2.dir/bmp2d.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bmp2d.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/bmp2d.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.o -MF CMakeFiles/WW3D2.dir/bmp2d.cpp.o.d -o CMakeFiles/WW3D2.dir/bmp2d.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bmp2d.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/bmp2d.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bmp2d.cpp > CMakeFiles/WW3D2.dir/bmp2d.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bmp2d.cpp > CMakeFiles/WW3D2.dir/bmp2d.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/bmp2d.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bmp2d.cpp -o CMakeFiles/WW3D2.dir/bmp2d.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bmp2d.cpp -o CMakeFiles/WW3D2.dir/bmp2d.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.obj -MF CMakeFiles/WW3D2.dir/boxrobj.cpp.obj.d -o CMakeFiles/WW3D2.dir/boxrobj.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.o -MF CMakeFiles/WW3D2.dir/boxrobj.cpp.o.d -o CMakeFiles/WW3D2.dir/boxrobj.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/boxrobj.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp > CMakeFiles/WW3D2.dir/boxrobj.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp > CMakeFiles/WW3D2.dir/boxrobj.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/boxrobj.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp -o CMakeFiles/WW3D2.dir/boxrobj.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp -o CMakeFiles/WW3D2.dir/boxrobj.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/bw_render.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.obj -MF CMakeFiles/WW3D2.dir/bw_render.cpp.obj.d -o CMakeFiles/WW3D2.dir/bw_render.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bw_render.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/bw_render.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.o -MF CMakeFiles/WW3D2.dir/bw_render.cpp.o.d -o CMakeFiles/WW3D2.dir/bw_render.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bw_render.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/bw_render.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bw_render.cpp > CMakeFiles/WW3D2.dir/bw_render.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bw_render.cpp > CMakeFiles/WW3D2.dir/bw_render.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/bw_render.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bw_render.cpp -o CMakeFiles/WW3D2.dir/bw_render.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bw_render.cpp -o CMakeFiles/WW3D2.dir/bw_render.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/bwrender.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.obj -MF CMakeFiles/WW3D2.dir/bwrender.cpp.obj.d -o CMakeFiles/WW3D2.dir/bwrender.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bwrender.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/bwrender.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.o -MF CMakeFiles/WW3D2.dir/bwrender.cpp.o.d -o CMakeFiles/WW3D2.dir/bwrender.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bwrender.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/bwrender.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bwrender.cpp > CMakeFiles/WW3D2.dir/bwrender.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bwrender.cpp > CMakeFiles/WW3D2.dir/bwrender.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/bwrender.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bwrender.cpp -o CMakeFiles/WW3D2.dir/bwrender.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/bwrender.cpp -o CMakeFiles/WW3D2.dir/bwrender.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/camera.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.obj -MF CMakeFiles/WW3D2.dir/camera.cpp.obj.d -o CMakeFiles/WW3D2.dir/camera.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/camera.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/camera.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.o -MF CMakeFiles/WW3D2.dir/camera.cpp.o.d -o CMakeFiles/WW3D2.dir/camera.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/camera.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/camera.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/camera.cpp > CMakeFiles/WW3D2.dir/camera.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/camera.cpp > CMakeFiles/WW3D2.dir/camera.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/camera.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/camera.cpp -o CMakeFiles/WW3D2.dir/camera.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/camera.cpp -o CMakeFiles/WW3D2.dir/camera.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/collect.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.obj -MF CMakeFiles/WW3D2.dir/collect.cpp.obj.d -o CMakeFiles/WW3D2.dir/collect.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/collect.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/collect.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.o -MF CMakeFiles/WW3D2.dir/collect.cpp.o.d -o CMakeFiles/WW3D2.dir/collect.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/collect.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/collect.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/collect.cpp > CMakeFiles/WW3D2.dir/collect.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/collect.cpp > CMakeFiles/WW3D2.dir/collect.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/collect.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/collect.cpp -o CMakeFiles/WW3D2.dir/collect.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/collect.cpp -o CMakeFiles/WW3D2.dir/collect.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/coltest.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.obj -MF CMakeFiles/WW3D2.dir/coltest.cpp.obj.d -o CMakeFiles/WW3D2.dir/coltest.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/coltest.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/coltest.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.o -MF CMakeFiles/WW3D2.dir/coltest.cpp.o.d -o CMakeFiles/WW3D2.dir/coltest.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/coltest.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/coltest.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/coltest.cpp > CMakeFiles/WW3D2.dir/coltest.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/coltest.cpp > CMakeFiles/WW3D2.dir/coltest.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/coltest.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/coltest.cpp -o CMakeFiles/WW3D2.dir/coltest.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/coltest.cpp -o CMakeFiles/WW3D2.dir/coltest.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/composite.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.obj -MF CMakeFiles/WW3D2.dir/composite.cpp.obj.d -o CMakeFiles/WW3D2.dir/composite.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/composite.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/composite.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.o -MF CMakeFiles/WW3D2.dir/composite.cpp.o.d -o CMakeFiles/WW3D2.dir/composite.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/composite.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/composite.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/composite.cpp > CMakeFiles/WW3D2.dir/composite.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/composite.cpp > CMakeFiles/WW3D2.dir/composite.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/composite.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/composite.cpp -o CMakeFiles/WW3D2.dir/composite.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/composite.cpp -o CMakeFiles/WW3D2.dir/composite.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/dazzle.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.obj -MF CMakeFiles/WW3D2.dir/dazzle.cpp.obj.d -o CMakeFiles/WW3D2.dir/dazzle.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dazzle.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/dazzle.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.o -MF CMakeFiles/WW3D2.dir/dazzle.cpp.o.d -o CMakeFiles/WW3D2.dir/dazzle.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dazzle.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/dazzle.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dazzle.cpp > CMakeFiles/WW3D2.dir/dazzle.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dazzle.cpp > CMakeFiles/WW3D2.dir/dazzle.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/dazzle.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dazzle.cpp -o CMakeFiles/WW3D2.dir/dazzle.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dazzle.cpp -o CMakeFiles/WW3D2.dir/dazzle.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/ddsfile.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.obj -MF CMakeFiles/WW3D2.dir/ddsfile.cpp.obj.d -o CMakeFiles/WW3D2.dir/ddsfile.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ddsfile.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/ddsfile.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.o -MF CMakeFiles/WW3D2.dir/ddsfile.cpp.o.d -o CMakeFiles/WW3D2.dir/ddsfile.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ddsfile.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/ddsfile.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ddsfile.cpp > CMakeFiles/WW3D2.dir/ddsfile.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ddsfile.cpp > CMakeFiles/WW3D2.dir/ddsfile.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/ddsfile.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ddsfile.cpp -o CMakeFiles/WW3D2.dir/ddsfile.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ddsfile.cpp -o CMakeFiles/WW3D2.dir/ddsfile.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.obj -MF CMakeFiles/WW3D2.dir/decalmsh.cpp.obj.d -o CMakeFiles/WW3D2.dir/decalmsh.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.o -MF CMakeFiles/WW3D2.dir/decalmsh.cpp.o.d -o CMakeFiles/WW3D2.dir/decalmsh.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/decalmsh.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp > CMakeFiles/WW3D2.dir/decalmsh.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp > CMakeFiles/WW3D2.dir/decalmsh.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/decalmsh.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp -o CMakeFiles/WW3D2.dir/decalmsh.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp -o CMakeFiles/WW3D2.dir/decalmsh.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.obj -MF CMakeFiles/WW3D2.dir/decalsys.cpp.obj.d -o CMakeFiles/WW3D2.dir/decalsys.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.o -MF CMakeFiles/WW3D2.dir/decalsys.cpp.o.d -o CMakeFiles/WW3D2.dir/decalsys.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/decalsys.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp > CMakeFiles/WW3D2.dir/decalsys.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp > CMakeFiles/WW3D2.dir/decalsys.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/decalsys.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp -o CMakeFiles/WW3D2.dir/decalsys.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp -o CMakeFiles/WW3D2.dir/decalsys.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.obj -MF CMakeFiles/WW3D2.dir/distlod.cpp.obj.d -o CMakeFiles/WW3D2.dir/distlod.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.o -MF CMakeFiles/WW3D2.dir/distlod.cpp.o.d -o CMakeFiles/WW3D2.dir/distlod.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/distlod.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp > CMakeFiles/WW3D2.dir/distlod.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp > CMakeFiles/WW3D2.dir/distlod.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/distlod.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp -o CMakeFiles/WW3D2.dir/distlod.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp -o CMakeFiles/WW3D2.dir/distlod.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.obj -MF CMakeFiles/WW3D2.dir/dx8caps.cpp.obj.d -o CMakeFiles/WW3D2.dir/dx8caps.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.o -MF CMakeFiles/WW3D2.dir/dx8caps.cpp.o.d -o CMakeFiles/WW3D2.dir/dx8caps.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/dx8caps.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp > CMakeFiles/WW3D2.dir/dx8caps.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp > CMakeFiles/WW3D2.dir/dx8caps.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/dx8caps.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp -o CMakeFiles/WW3D2.dir/dx8caps.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp -o CMakeFiles/WW3D2.dir/dx8caps.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8fvf.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.obj -MF CMakeFiles/WW3D2.dir/dx8fvf.cpp.obj.d -o CMakeFiles/WW3D2.dir/dx8fvf.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8fvf.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8fvf.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.o -MF CMakeFiles/WW3D2.dir/dx8fvf.cpp.o.d -o CMakeFiles/WW3D2.dir/dx8fvf.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8fvf.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/dx8fvf.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8fvf.cpp > CMakeFiles/WW3D2.dir/dx8fvf.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8fvf.cpp > CMakeFiles/WW3D2.dir/dx8fvf.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/dx8fvf.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8fvf.cpp -o CMakeFiles/WW3D2.dir/dx8fvf.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8fvf.cpp -o CMakeFiles/WW3D2.dir/dx8fvf.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.obj -MF CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.obj.d -o CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.o -MF CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.o.d -o CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp > CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp > CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp -o CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp -o CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8polygonrenderer.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.obj -MF CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.obj.d -o CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8polygonrenderer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8polygonrenderer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.o -MF CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.o.d -o CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8polygonrenderer.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8polygonrenderer.cpp > CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8polygonrenderer.cpp > CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8polygonrenderer.cpp -o CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8polygonrenderer.cpp -o CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.obj -MF CMakeFiles/WW3D2.dir/dx8renderer.cpp.obj.d -o CMakeFiles/WW3D2.dir/dx8renderer.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.o -MF CMakeFiles/WW3D2.dir/dx8renderer.cpp.o.d -o CMakeFiles/WW3D2.dir/dx8renderer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/dx8renderer.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp > CMakeFiles/WW3D2.dir/dx8renderer.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp > CMakeFiles/WW3D2.dir/dx8renderer.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/dx8renderer.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp -o CMakeFiles/WW3D2.dir/dx8renderer.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp -o CMakeFiles/WW3D2.dir/dx8renderer.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8texman.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.obj -MF CMakeFiles/WW3D2.dir/dx8texman.cpp.obj.d -o CMakeFiles/WW3D2.dir/dx8texman.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8texman.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8texman.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.o -MF CMakeFiles/WW3D2.dir/dx8texman.cpp.o.d -o CMakeFiles/WW3D2.dir/dx8texman.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8texman.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/dx8texman.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8texman.cpp > CMakeFiles/WW3D2.dir/dx8texman.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8texman.cpp > CMakeFiles/WW3D2.dir/dx8texman.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/dx8texman.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8texman.cpp -o CMakeFiles/WW3D2.dir/dx8texman.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8texman.cpp -o CMakeFiles/WW3D2.dir/dx8texman.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.obj -MF CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.obj.d -o CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.o -MF CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.o.d -o CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp > CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp > CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp -o CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp -o CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8webbrowser.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.obj -MF CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.obj.d -o CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8webbrowser.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8webbrowser.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.o -MF CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.o.d -o CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8webbrowser.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8webbrowser.cpp > CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8webbrowser.cpp > CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8webbrowser.cpp -o CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8webbrowser.cpp -o CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.obj -MF CMakeFiles/WW3D2.dir/dx8wrapper.cpp.obj.d -o CMakeFiles/WW3D2.dir/dx8wrapper.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.o -MF CMakeFiles/WW3D2.dir/dx8wrapper.cpp.o.d -o CMakeFiles/WW3D2.dir/dx8wrapper.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/dx8wrapper.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp > CMakeFiles/WW3D2.dir/dx8wrapper.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp > CMakeFiles/WW3D2.dir/dx8wrapper.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/dx8wrapper.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp -o CMakeFiles/WW3D2.dir/dx8wrapper.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp -o CMakeFiles/WW3D2.dir/dx8wrapper.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/dynamesh.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.obj -MF CMakeFiles/WW3D2.dir/dynamesh.cpp.obj.d -o CMakeFiles/WW3D2.dir/dynamesh.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dynamesh.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/dynamesh.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.o -MF CMakeFiles/WW3D2.dir/dynamesh.cpp.o.d -o CMakeFiles/WW3D2.dir/dynamesh.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dynamesh.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/dynamesh.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dynamesh.cpp > CMakeFiles/WW3D2.dir/dynamesh.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dynamesh.cpp > CMakeFiles/WW3D2.dir/dynamesh.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/dynamesh.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dynamesh.cpp -o CMakeFiles/WW3D2.dir/dynamesh.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/dynamesh.cpp -o CMakeFiles/WW3D2.dir/dynamesh.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/font3d.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.obj -MF CMakeFiles/WW3D2.dir/font3d.cpp.obj.d -o CMakeFiles/WW3D2.dir/font3d.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/font3d.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/font3d.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.o -MF CMakeFiles/WW3D2.dir/font3d.cpp.o.d -o CMakeFiles/WW3D2.dir/font3d.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/font3d.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/font3d.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/font3d.cpp > CMakeFiles/WW3D2.dir/font3d.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/font3d.cpp > CMakeFiles/WW3D2.dir/font3d.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/font3d.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/font3d.cpp -o CMakeFiles/WW3D2.dir/font3d.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/font3d.cpp -o CMakeFiles/WW3D2.dir/font3d.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/formconv.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.obj -MF CMakeFiles/WW3D2.dir/formconv.cpp.obj.d -o CMakeFiles/WW3D2.dir/formconv.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/formconv.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/formconv.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.o -MF CMakeFiles/WW3D2.dir/formconv.cpp.o.d -o CMakeFiles/WW3D2.dir/formconv.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/formconv.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/formconv.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/formconv.cpp > CMakeFiles/WW3D2.dir/formconv.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/formconv.cpp > CMakeFiles/WW3D2.dir/formconv.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/formconv.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/formconv.cpp -o CMakeFiles/WW3D2.dir/formconv.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/formconv.cpp -o CMakeFiles/WW3D2.dir/formconv.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.obj -MF CMakeFiles/WW3D2.dir/hanim.cpp.obj.d -o CMakeFiles/WW3D2.dir/hanim.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/framgrab.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/framgrab.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/framgrab.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/framgrab.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/framgrab.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/framgrab.cpp.o -MF CMakeFiles/WW3D2.dir/framgrab.cpp.o.d -o CMakeFiles/WW3D2.dir/framgrab.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/framgrab.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/framgrab.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/framgrab.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/framgrab.cpp > CMakeFiles/WW3D2.dir/framgrab.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/framgrab.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/framgrab.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/framgrab.cpp -o CMakeFiles/WW3D2.dir/framgrab.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.o -MF CMakeFiles/WW3D2.dir/hanim.cpp.o.d -o CMakeFiles/WW3D2.dir/hanim.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/hanim.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp > CMakeFiles/WW3D2.dir/hanim.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp > CMakeFiles/WW3D2.dir/hanim.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/hanim.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp -o CMakeFiles/WW3D2.dir/hanim.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp -o CMakeFiles/WW3D2.dir/hanim.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.obj -MF CMakeFiles/WW3D2.dir/hanimmgr.cpp.obj.d -o CMakeFiles/WW3D2.dir/hanimmgr.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.o -MF CMakeFiles/WW3D2.dir/hanimmgr.cpp.o.d -o CMakeFiles/WW3D2.dir/hanimmgr.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/hanimmgr.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp > CMakeFiles/WW3D2.dir/hanimmgr.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp > CMakeFiles/WW3D2.dir/hanimmgr.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/hanimmgr.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp -o CMakeFiles/WW3D2.dir/hanimmgr.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp -o CMakeFiles/WW3D2.dir/hanimmgr.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.obj -MF CMakeFiles/WW3D2.dir/hcanim.cpp.obj.d -o CMakeFiles/WW3D2.dir/hcanim.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.o -MF CMakeFiles/WW3D2.dir/hcanim.cpp.o.d -o CMakeFiles/WW3D2.dir/hcanim.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/hcanim.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp > CMakeFiles/WW3D2.dir/hcanim.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp > CMakeFiles/WW3D2.dir/hcanim.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/hcanim.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp -o CMakeFiles/WW3D2.dir/hcanim.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp -o CMakeFiles/WW3D2.dir/hcanim.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.obj -MF CMakeFiles/WW3D2.dir/hlod.cpp.obj.d -o CMakeFiles/WW3D2.dir/hlod.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.o -MF CMakeFiles/WW3D2.dir/hlod.cpp.o.d -o CMakeFiles/WW3D2.dir/hlod.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/hlod.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp > CMakeFiles/WW3D2.dir/hlod.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp > CMakeFiles/WW3D2.dir/hlod.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/hlod.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp -o CMakeFiles/WW3D2.dir/hlod.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp -o CMakeFiles/WW3D2.dir/hlod.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/hmdldef.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.obj -MF CMakeFiles/WW3D2.dir/hmdldef.cpp.obj.d -o CMakeFiles/WW3D2.dir/hmdldef.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hmdldef.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/hmdldef.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.o -MF CMakeFiles/WW3D2.dir/hmdldef.cpp.o.d -o CMakeFiles/WW3D2.dir/hmdldef.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hmdldef.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/hmdldef.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hmdldef.cpp > CMakeFiles/WW3D2.dir/hmdldef.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hmdldef.cpp > CMakeFiles/WW3D2.dir/hmdldef.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/hmdldef.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hmdldef.cpp -o CMakeFiles/WW3D2.dir/hmdldef.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hmdldef.cpp -o CMakeFiles/WW3D2.dir/hmdldef.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/hmorphanim.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.obj -MF CMakeFiles/WW3D2.dir/hmorphanim.cpp.obj.d -o CMakeFiles/WW3D2.dir/hmorphanim.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hmorphanim.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/hmorphanim.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.o -MF CMakeFiles/WW3D2.dir/hmorphanim.cpp.o.d -o CMakeFiles/WW3D2.dir/hmorphanim.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hmorphanim.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/hmorphanim.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hmorphanim.cpp > CMakeFiles/WW3D2.dir/hmorphanim.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hmorphanim.cpp > CMakeFiles/WW3D2.dir/hmorphanim.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/hmorphanim.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hmorphanim.cpp -o CMakeFiles/WW3D2.dir/hmorphanim.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hmorphanim.cpp -o CMakeFiles/WW3D2.dir/hmorphanim.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.obj -MF CMakeFiles/WW3D2.dir/hrawanim.cpp.obj.d -o CMakeFiles/WW3D2.dir/hrawanim.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.o -MF CMakeFiles/WW3D2.dir/hrawanim.cpp.o.d -o CMakeFiles/WW3D2.dir/hrawanim.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/hrawanim.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp > CMakeFiles/WW3D2.dir/hrawanim.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp > CMakeFiles/WW3D2.dir/hrawanim.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/hrawanim.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp -o CMakeFiles/WW3D2.dir/hrawanim.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp -o CMakeFiles/WW3D2.dir/hrawanim.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/htree.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.obj -MF CMakeFiles/WW3D2.dir/htree.cpp.obj.d -o CMakeFiles/WW3D2.dir/htree.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/htree.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/htree.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.o -MF CMakeFiles/WW3D2.dir/htree.cpp.o.d -o CMakeFiles/WW3D2.dir/htree.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/htree.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/htree.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/htree.cpp > CMakeFiles/WW3D2.dir/htree.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/htree.cpp > CMakeFiles/WW3D2.dir/htree.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/htree.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/htree.cpp -o CMakeFiles/WW3D2.dir/htree.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/htree.cpp -o CMakeFiles/WW3D2.dir/htree.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/htreemgr.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.obj -MF CMakeFiles/WW3D2.dir/htreemgr.cpp.obj.d -o CMakeFiles/WW3D2.dir/htreemgr.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/htreemgr.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/htreemgr.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.o -MF CMakeFiles/WW3D2.dir/htreemgr.cpp.o.d -o CMakeFiles/WW3D2.dir/htreemgr.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/htreemgr.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/htreemgr.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/htreemgr.cpp > CMakeFiles/WW3D2.dir/htreemgr.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/htreemgr.cpp > CMakeFiles/WW3D2.dir/htreemgr.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/htreemgr.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/htreemgr.cpp -o CMakeFiles/WW3D2.dir/htreemgr.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/htreemgr.cpp -o CMakeFiles/WW3D2.dir/htreemgr.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/intersec.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.obj -MF CMakeFiles/WW3D2.dir/intersec.cpp.obj.d -o CMakeFiles/WW3D2.dir/intersec.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/intersec.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/intersec.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.o -MF CMakeFiles/WW3D2.dir/intersec.cpp.o.d -o CMakeFiles/WW3D2.dir/intersec.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/intersec.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/intersec.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/intersec.cpp > CMakeFiles/WW3D2.dir/intersec.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/intersec.cpp > CMakeFiles/WW3D2.dir/intersec.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/intersec.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/intersec.cpp -o CMakeFiles/WW3D2.dir/intersec.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/intersec.cpp -o CMakeFiles/WW3D2.dir/intersec.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/layer.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.obj -MF CMakeFiles/WW3D2.dir/layer.cpp.obj.d -o CMakeFiles/WW3D2.dir/layer.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/layer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/layer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.o -MF CMakeFiles/WW3D2.dir/layer.cpp.o.d -o CMakeFiles/WW3D2.dir/layer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/layer.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/layer.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/layer.cpp > CMakeFiles/WW3D2.dir/layer.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/layer.cpp > CMakeFiles/WW3D2.dir/layer.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/layer.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/layer.cpp -o CMakeFiles/WW3D2.dir/layer.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/layer.cpp -o CMakeFiles/WW3D2.dir/layer.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/light.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.obj -MF CMakeFiles/WW3D2.dir/light.cpp.obj.d -o CMakeFiles/WW3D2.dir/light.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/light.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/light.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.o -MF CMakeFiles/WW3D2.dir/light.cpp.o.d -o CMakeFiles/WW3D2.dir/light.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/light.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/light.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/light.cpp > CMakeFiles/WW3D2.dir/light.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/light.cpp > CMakeFiles/WW3D2.dir/light.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/light.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/light.cpp -o CMakeFiles/WW3D2.dir/light.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/light.cpp -o CMakeFiles/WW3D2.dir/light.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.obj -MF CMakeFiles/WW3D2.dir/lightenvironment.cpp.obj.d -o CMakeFiles/WW3D2.dir/lightenvironment.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.o -MF CMakeFiles/WW3D2.dir/lightenvironment.cpp.o.d -o CMakeFiles/WW3D2.dir/lightenvironment.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/lightenvironment.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp > CMakeFiles/WW3D2.dir/lightenvironment.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp > CMakeFiles/WW3D2.dir/lightenvironment.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/lightenvironment.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp -o CMakeFiles/WW3D2.dir/lightenvironment.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp -o CMakeFiles/WW3D2.dir/lightenvironment.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/line3d.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.obj -MF CMakeFiles/WW3D2.dir/line3d.cpp.obj.d -o CMakeFiles/WW3D2.dir/line3d.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/line3d.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/line3d.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.o -MF CMakeFiles/WW3D2.dir/line3d.cpp.o.d -o CMakeFiles/WW3D2.dir/line3d.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/line3d.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/line3d.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/line3d.cpp > CMakeFiles/WW3D2.dir/line3d.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/line3d.cpp > CMakeFiles/WW3D2.dir/line3d.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/line3d.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/line3d.cpp -o CMakeFiles/WW3D2.dir/line3d.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/line3d.cpp -o CMakeFiles/WW3D2.dir/line3d.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.obj -MF CMakeFiles/WW3D2.dir/mapper.cpp.obj.d -o CMakeFiles/WW3D2.dir/mapper.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.o -MF CMakeFiles/WW3D2.dir/mapper.cpp.o.d -o CMakeFiles/WW3D2.dir/mapper.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/mapper.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp > CMakeFiles/WW3D2.dir/mapper.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp > CMakeFiles/WW3D2.dir/mapper.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/mapper.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp -o CMakeFiles/WW3D2.dir/mapper.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp -o CMakeFiles/WW3D2.dir/mapper.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.obj -MF CMakeFiles/WW3D2.dir/matinfo.cpp.obj.d -o CMakeFiles/WW3D2.dir/matinfo.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.o -MF CMakeFiles/WW3D2.dir/matinfo.cpp.o.d -o CMakeFiles/WW3D2.dir/matinfo.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/matinfo.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp > CMakeFiles/WW3D2.dir/matinfo.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp > CMakeFiles/WW3D2.dir/matinfo.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/matinfo.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp -o CMakeFiles/WW3D2.dir/matinfo.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp -o CMakeFiles/WW3D2.dir/matinfo.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/matpass.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.obj -MF CMakeFiles/WW3D2.dir/matpass.cpp.obj.d -o CMakeFiles/WW3D2.dir/matpass.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matpass.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/matpass.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.o -MF CMakeFiles/WW3D2.dir/matpass.cpp.o.d -o CMakeFiles/WW3D2.dir/matpass.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matpass.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/matpass.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matpass.cpp > CMakeFiles/WW3D2.dir/matpass.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matpass.cpp > CMakeFiles/WW3D2.dir/matpass.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/matpass.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matpass.cpp -o CMakeFiles/WW3D2.dir/matpass.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matpass.cpp -o CMakeFiles/WW3D2.dir/matpass.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/matrixmapper.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.obj -MF CMakeFiles/WW3D2.dir/matrixmapper.cpp.obj.d -o CMakeFiles/WW3D2.dir/matrixmapper.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matrixmapper.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/matrixmapper.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.o -MF CMakeFiles/WW3D2.dir/matrixmapper.cpp.o.d -o CMakeFiles/WW3D2.dir/matrixmapper.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matrixmapper.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/matrixmapper.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matrixmapper.cpp > CMakeFiles/WW3D2.dir/matrixmapper.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matrixmapper.cpp > CMakeFiles/WW3D2.dir/matrixmapper.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/matrixmapper.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matrixmapper.cpp -o CMakeFiles/WW3D2.dir/matrixmapper.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/matrixmapper.cpp -o CMakeFiles/WW3D2.dir/matrixmapper.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.obj -MF CMakeFiles/WW3D2.dir/mesh.cpp.obj.d -o CMakeFiles/WW3D2.dir/mesh.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.o -MF CMakeFiles/WW3D2.dir/mesh.cpp.o.d -o CMakeFiles/WW3D2.dir/mesh.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/mesh.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp > CMakeFiles/WW3D2.dir/mesh.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp > CMakeFiles/WW3D2.dir/mesh.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/mesh.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp -o CMakeFiles/WW3D2.dir/mesh.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp -o CMakeFiles/WW3D2.dir/mesh.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/meshbuild.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.obj -MF CMakeFiles/WW3D2.dir/meshbuild.cpp.obj.d -o CMakeFiles/WW3D2.dir/meshbuild.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshbuild.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/meshbuild.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.o -MF CMakeFiles/WW3D2.dir/meshbuild.cpp.o.d -o CMakeFiles/WW3D2.dir/meshbuild.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshbuild.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/meshbuild.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshbuild.cpp > CMakeFiles/WW3D2.dir/meshbuild.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshbuild.cpp > CMakeFiles/WW3D2.dir/meshbuild.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/meshbuild.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshbuild.cpp -o CMakeFiles/WW3D2.dir/meshbuild.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshbuild.cpp -o CMakeFiles/WW3D2.dir/meshbuild.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/meshdam.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.obj -MF CMakeFiles/WW3D2.dir/meshdam.cpp.obj.d -o CMakeFiles/WW3D2.dir/meshdam.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshdam.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/meshdam.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.o -MF CMakeFiles/WW3D2.dir/meshdam.cpp.o.d -o CMakeFiles/WW3D2.dir/meshdam.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshdam.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/meshdam.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshdam.cpp > CMakeFiles/WW3D2.dir/meshdam.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshdam.cpp > CMakeFiles/WW3D2.dir/meshdam.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/meshdam.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshdam.cpp -o CMakeFiles/WW3D2.dir/meshdam.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshdam.cpp -o CMakeFiles/WW3D2.dir/meshdam.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.obj -MF CMakeFiles/WW3D2.dir/meshgeometry.cpp.obj.d -o CMakeFiles/WW3D2.dir/meshgeometry.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.o -MF CMakeFiles/WW3D2.dir/meshgeometry.cpp.o.d -o CMakeFiles/WW3D2.dir/meshgeometry.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/meshgeometry.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp > CMakeFiles/WW3D2.dir/meshgeometry.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp > CMakeFiles/WW3D2.dir/meshgeometry.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/meshgeometry.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp -o CMakeFiles/WW3D2.dir/meshgeometry.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp -o CMakeFiles/WW3D2.dir/meshgeometry.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.obj -MF CMakeFiles/WW3D2.dir/meshmatdesc.cpp.obj.d -o CMakeFiles/WW3D2.dir/meshmatdesc.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.o -MF CMakeFiles/WW3D2.dir/meshmatdesc.cpp.o.d -o CMakeFiles/WW3D2.dir/meshmatdesc.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/meshmatdesc.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp > CMakeFiles/WW3D2.dir/meshmatdesc.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp > CMakeFiles/WW3D2.dir/meshmatdesc.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/meshmatdesc.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp -o CMakeFiles/WW3D2.dir/meshmatdesc.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp -o CMakeFiles/WW3D2.dir/meshmatdesc.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.obj -MF CMakeFiles/WW3D2.dir/meshmdl.cpp.obj.d -o CMakeFiles/WW3D2.dir/meshmdl.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.o -MF CMakeFiles/WW3D2.dir/meshmdl.cpp.o.d -o CMakeFiles/WW3D2.dir/meshmdl.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/meshmdl.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp > CMakeFiles/WW3D2.dir/meshmdl.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp > CMakeFiles/WW3D2.dir/meshmdl.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/meshmdl.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp -o CMakeFiles/WW3D2.dir/meshmdl.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp -o CMakeFiles/WW3D2.dir/meshmdl.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.obj -MF CMakeFiles/WW3D2.dir/meshmdlio.cpp.obj.d -o CMakeFiles/WW3D2.dir/meshmdlio.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.o -MF CMakeFiles/WW3D2.dir/meshmdlio.cpp.o.d -o CMakeFiles/WW3D2.dir/meshmdlio.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/meshmdlio.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp > CMakeFiles/WW3D2.dir/meshmdlio.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp > CMakeFiles/WW3D2.dir/meshmdlio.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/meshmdlio.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp -o CMakeFiles/WW3D2.dir/meshmdlio.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp -o CMakeFiles/WW3D2.dir/meshmdlio.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/metalmap.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.obj -MF CMakeFiles/WW3D2.dir/metalmap.cpp.obj.d -o CMakeFiles/WW3D2.dir/metalmap.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/metalmap.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/metalmap.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.o -MF CMakeFiles/WW3D2.dir/metalmap.cpp.o.d -o CMakeFiles/WW3D2.dir/metalmap.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/metalmap.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/metalmap.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/metalmap.cpp > CMakeFiles/WW3D2.dir/metalmap.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/metalmap.cpp > CMakeFiles/WW3D2.dir/metalmap.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/metalmap.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/metalmap.cpp -o CMakeFiles/WW3D2.dir/metalmap.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/metalmap.cpp -o CMakeFiles/WW3D2.dir/metalmap.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/missingtexture.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.obj -MF CMakeFiles/WW3D2.dir/missingtexture.cpp.obj.d -o CMakeFiles/WW3D2.dir/missingtexture.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/missingtexture.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/missingtexture.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.o -MF CMakeFiles/WW3D2.dir/missingtexture.cpp.o.d -o CMakeFiles/WW3D2.dir/missingtexture.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/missingtexture.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/missingtexture.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/missingtexture.cpp > CMakeFiles/WW3D2.dir/missingtexture.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/missingtexture.cpp > CMakeFiles/WW3D2.dir/missingtexture.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/missingtexture.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/missingtexture.cpp -o CMakeFiles/WW3D2.dir/missingtexture.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/missingtexture.cpp -o CMakeFiles/WW3D2.dir/missingtexture.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.obj -MF CMakeFiles/WW3D2.dir/motchan.cpp.obj.d -o CMakeFiles/WW3D2.dir/motchan.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.o -MF CMakeFiles/WW3D2.dir/motchan.cpp.o.d -o CMakeFiles/WW3D2.dir/motchan.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/motchan.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp > CMakeFiles/WW3D2.dir/motchan.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp > CMakeFiles/WW3D2.dir/motchan.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/motchan.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp -o CMakeFiles/WW3D2.dir/motchan.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp -o CMakeFiles/WW3D2.dir/motchan.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/nullrobj.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.obj -MF CMakeFiles/WW3D2.dir/nullrobj.cpp.obj.d -o CMakeFiles/WW3D2.dir/nullrobj.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/nullrobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/nullrobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.o -MF CMakeFiles/WW3D2.dir/nullrobj.cpp.o.d -o CMakeFiles/WW3D2.dir/nullrobj.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/nullrobj.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/nullrobj.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/nullrobj.cpp > CMakeFiles/WW3D2.dir/nullrobj.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/nullrobj.cpp > CMakeFiles/WW3D2.dir/nullrobj.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/nullrobj.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/nullrobj.cpp -o CMakeFiles/WW3D2.dir/nullrobj.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/nullrobj.cpp -o CMakeFiles/WW3D2.dir/nullrobj.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.obj -MF CMakeFiles/WW3D2.dir/part_buf.cpp.obj.d -o CMakeFiles/WW3D2.dir/part_buf.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.o -MF CMakeFiles/WW3D2.dir/part_buf.cpp.o.d -o CMakeFiles/WW3D2.dir/part_buf.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/part_buf.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp > CMakeFiles/WW3D2.dir/part_buf.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp > CMakeFiles/WW3D2.dir/part_buf.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/part_buf.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp -o CMakeFiles/WW3D2.dir/part_buf.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp -o CMakeFiles/WW3D2.dir/part_buf.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.obj -MF CMakeFiles/WW3D2.dir/part_emt.cpp.obj.d -o CMakeFiles/WW3D2.dir/part_emt.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.o -MF CMakeFiles/WW3D2.dir/part_emt.cpp.o.d -o CMakeFiles/WW3D2.dir/part_emt.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/part_emt.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp > CMakeFiles/WW3D2.dir/part_emt.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp > CMakeFiles/WW3D2.dir/part_emt.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/part_emt.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp -o CMakeFiles/WW3D2.dir/part_emt.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp -o CMakeFiles/WW3D2.dir/part_emt.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.obj -MF CMakeFiles/WW3D2.dir/part_ldr.cpp.obj.d -o CMakeFiles/WW3D2.dir/part_ldr.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.o -MF CMakeFiles/WW3D2.dir/part_ldr.cpp.o.d -o CMakeFiles/WW3D2.dir/part_ldr.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/part_ldr.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp > CMakeFiles/WW3D2.dir/part_ldr.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp > CMakeFiles/WW3D2.dir/part_ldr.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/part_ldr.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp -o CMakeFiles/WW3D2.dir/part_ldr.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp -o CMakeFiles/WW3D2.dir/part_ldr.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.obj -MF CMakeFiles/WW3D2.dir/pivot.cpp.obj.d -o CMakeFiles/WW3D2.dir/pivot.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.o -MF CMakeFiles/WW3D2.dir/pivot.cpp.o.d -o CMakeFiles/WW3D2.dir/pivot.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/pivot.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp > CMakeFiles/WW3D2.dir/pivot.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp > CMakeFiles/WW3D2.dir/pivot.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/pivot.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp -o CMakeFiles/WW3D2.dir/pivot.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp -o CMakeFiles/WW3D2.dir/pivot.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.obj -MF CMakeFiles/WW3D2.dir/pointgr.cpp.obj.d -o CMakeFiles/WW3D2.dir/pointgr.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.o -MF CMakeFiles/WW3D2.dir/pointgr.cpp.o.d -o CMakeFiles/WW3D2.dir/pointgr.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/pointgr.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp > CMakeFiles/WW3D2.dir/pointgr.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp > CMakeFiles/WW3D2.dir/pointgr.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/pointgr.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp -o CMakeFiles/WW3D2.dir/pointgr.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp -o CMakeFiles/WW3D2.dir/pointgr.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/polyinfo.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.obj -MF CMakeFiles/WW3D2.dir/polyinfo.cpp.obj.d -o CMakeFiles/WW3D2.dir/polyinfo.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/polyinfo.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/polyinfo.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.o -MF CMakeFiles/WW3D2.dir/polyinfo.cpp.o.d -o CMakeFiles/WW3D2.dir/polyinfo.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/polyinfo.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/polyinfo.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/polyinfo.cpp > CMakeFiles/WW3D2.dir/polyinfo.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/polyinfo.cpp > CMakeFiles/WW3D2.dir/polyinfo.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/polyinfo.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/polyinfo.cpp -o CMakeFiles/WW3D2.dir/polyinfo.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/polyinfo.cpp -o CMakeFiles/WW3D2.dir/polyinfo.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/predlod.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.obj -MF CMakeFiles/WW3D2.dir/predlod.cpp.obj.d -o CMakeFiles/WW3D2.dir/predlod.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/predlod.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/predlod.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.o -MF CMakeFiles/WW3D2.dir/predlod.cpp.o.d -o CMakeFiles/WW3D2.dir/predlod.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/predlod.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/predlod.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/predlod.cpp > CMakeFiles/WW3D2.dir/predlod.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/predlod.cpp > CMakeFiles/WW3D2.dir/predlod.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/predlod.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/predlod.cpp -o CMakeFiles/WW3D2.dir/predlod.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/predlod.cpp -o CMakeFiles/WW3D2.dir/predlod.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/prim_anim.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.obj -MF CMakeFiles/WW3D2.dir/prim_anim.cpp.obj.d -o CMakeFiles/WW3D2.dir/prim_anim.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/prim_anim.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/prim_anim.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.o -MF CMakeFiles/WW3D2.dir/prim_anim.cpp.o.d -o CMakeFiles/WW3D2.dir/prim_anim.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/prim_anim.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/prim_anim.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/prim_anim.cpp > CMakeFiles/WW3D2.dir/prim_anim.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/prim_anim.cpp > CMakeFiles/WW3D2.dir/prim_anim.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/prim_anim.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/prim_anim.cpp -o CMakeFiles/WW3D2.dir/prim_anim.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/prim_anim.cpp -o CMakeFiles/WW3D2.dir/prim_anim.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/projector.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.obj -MF CMakeFiles/WW3D2.dir/projector.cpp.obj.d -o CMakeFiles/WW3D2.dir/projector.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/projector.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/projector.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.o -MF CMakeFiles/WW3D2.dir/projector.cpp.o.d -o CMakeFiles/WW3D2.dir/projector.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/projector.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/projector.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/projector.cpp > CMakeFiles/WW3D2.dir/projector.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/projector.cpp > CMakeFiles/WW3D2.dir/projector.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/projector.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/projector.cpp -o CMakeFiles/WW3D2.dir/projector.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/projector.cpp -o CMakeFiles/WW3D2.dir/projector.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/proto.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.obj -MF CMakeFiles/WW3D2.dir/proto.cpp.obj.d -o CMakeFiles/WW3D2.dir/proto.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/proto.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/proto.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.o -MF CMakeFiles/WW3D2.dir/proto.cpp.o.d -o CMakeFiles/WW3D2.dir/proto.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/proto.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/proto.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/proto.cpp > CMakeFiles/WW3D2.dir/proto.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/proto.cpp > CMakeFiles/WW3D2.dir/proto.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/proto.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/proto.cpp -o CMakeFiles/WW3D2.dir/proto.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/proto.cpp -o CMakeFiles/WW3D2.dir/proto.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/render2d.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.obj -MF CMakeFiles/WW3D2.dir/render2d.cpp.obj.d -o CMakeFiles/WW3D2.dir/render2d.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/render2d.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/render2d.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.o -MF CMakeFiles/WW3D2.dir/render2d.cpp.o.d -o CMakeFiles/WW3D2.dir/render2d.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/render2d.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/render2d.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/render2d.cpp > CMakeFiles/WW3D2.dir/render2d.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/render2d.cpp > CMakeFiles/WW3D2.dir/render2d.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/render2d.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/render2d.cpp -o CMakeFiles/WW3D2.dir/render2d.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/render2d.cpp -o CMakeFiles/WW3D2.dir/render2d.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.obj -MF CMakeFiles/WW3D2.dir/render2dsentence.cpp.obj.d -o CMakeFiles/WW3D2.dir/render2dsentence.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.o -MF CMakeFiles/WW3D2.dir/render2dsentence.cpp.o.d -o CMakeFiles/WW3D2.dir/render2dsentence.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/render2dsentence.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp > CMakeFiles/WW3D2.dir/render2dsentence.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp > CMakeFiles/WW3D2.dir/render2dsentence.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/render2dsentence.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp -o CMakeFiles/WW3D2.dir/render2dsentence.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp -o CMakeFiles/WW3D2.dir/render2dsentence.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/renderobjectrecycler.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.obj -MF CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.obj.d -o CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/renderobjectrecycler.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/renderobjectrecycler.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.o -MF CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.o.d -o CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/renderobjectrecycler.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/renderobjectrecycler.cpp > CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/renderobjectrecycler.cpp > CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/renderobjectrecycler.cpp -o CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/renderobjectrecycler.cpp -o CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.obj -MF CMakeFiles/WW3D2.dir/rendobj.cpp.obj.d -o CMakeFiles/WW3D2.dir/rendobj.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.o -MF CMakeFiles/WW3D2.dir/rendobj.cpp.o.d -o CMakeFiles/WW3D2.dir/rendobj.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/rendobj.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp > CMakeFiles/WW3D2.dir/rendobj.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp > CMakeFiles/WW3D2.dir/rendobj.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/rendobj.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp -o CMakeFiles/WW3D2.dir/rendobj.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp -o CMakeFiles/WW3D2.dir/rendobj.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/rinfo.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.obj -MF CMakeFiles/WW3D2.dir/rinfo.cpp.obj.d -o CMakeFiles/WW3D2.dir/rinfo.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/rinfo.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/rinfo.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.o -MF CMakeFiles/WW3D2.dir/rinfo.cpp.o.d -o CMakeFiles/WW3D2.dir/rinfo.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/rinfo.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/rinfo.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/rinfo.cpp > CMakeFiles/WW3D2.dir/rinfo.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/rinfo.cpp > CMakeFiles/WW3D2.dir/rinfo.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/rinfo.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/rinfo.cpp -o CMakeFiles/WW3D2.dir/rinfo.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/rinfo.cpp -o CMakeFiles/WW3D2.dir/rinfo.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.obj -MF CMakeFiles/WW3D2.dir/ringobj.cpp.obj.d -o CMakeFiles/WW3D2.dir/ringobj.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.o -MF CMakeFiles/WW3D2.dir/ringobj.cpp.o.d -o CMakeFiles/WW3D2.dir/ringobj.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/ringobj.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp > CMakeFiles/WW3D2.dir/ringobj.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp > CMakeFiles/WW3D2.dir/ringobj.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/ringobj.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp -o CMakeFiles/WW3D2.dir/ringobj.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp -o CMakeFiles/WW3D2.dir/ringobj.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/scene.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.obj -MF CMakeFiles/WW3D2.dir/scene.cpp.obj.d -o CMakeFiles/WW3D2.dir/scene.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/scene.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/scene.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.o -MF CMakeFiles/WW3D2.dir/scene.cpp.o.d -o CMakeFiles/WW3D2.dir/scene.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/scene.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/scene.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/scene.cpp > CMakeFiles/WW3D2.dir/scene.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/scene.cpp > CMakeFiles/WW3D2.dir/scene.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/scene.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/scene.cpp -o CMakeFiles/WW3D2.dir/scene.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/scene.cpp -o CMakeFiles/WW3D2.dir/scene.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/segline.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.obj -MF CMakeFiles/WW3D2.dir/segline.cpp.obj.d -o CMakeFiles/WW3D2.dir/segline.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/segline.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/segline.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.o -MF CMakeFiles/WW3D2.dir/segline.cpp.o.d -o CMakeFiles/WW3D2.dir/segline.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/segline.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/segline.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/segline.cpp > CMakeFiles/WW3D2.dir/segline.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/segline.cpp > CMakeFiles/WW3D2.dir/segline.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/segline.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/segline.cpp -o CMakeFiles/WW3D2.dir/segline.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/segline.cpp -o CMakeFiles/WW3D2.dir/segline.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.obj -MF CMakeFiles/WW3D2.dir/seglinerenderer.cpp.obj.d -o CMakeFiles/WW3D2.dir/seglinerenderer.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.o -MF CMakeFiles/WW3D2.dir/seglinerenderer.cpp.o.d -o CMakeFiles/WW3D2.dir/seglinerenderer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/seglinerenderer.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp > CMakeFiles/WW3D2.dir/seglinerenderer.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp > CMakeFiles/WW3D2.dir/seglinerenderer.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/seglinerenderer.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp -o CMakeFiles/WW3D2.dir/seglinerenderer.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp -o CMakeFiles/WW3D2.dir/seglinerenderer.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/shader.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.obj -MF CMakeFiles/WW3D2.dir/shader.cpp.obj.d -o CMakeFiles/WW3D2.dir/shader.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/shader.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/shader.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.o -MF CMakeFiles/WW3D2.dir/shader.cpp.o.d -o CMakeFiles/WW3D2.dir/shader.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/shader.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/shader.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/shader.cpp > CMakeFiles/WW3D2.dir/shader.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/shader.cpp > CMakeFiles/WW3D2.dir/shader.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/shader.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/shader.cpp -o CMakeFiles/WW3D2.dir/shader.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/shader.cpp -o CMakeFiles/WW3D2.dir/shader.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/shattersystem.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.obj -MF CMakeFiles/WW3D2.dir/shattersystem.cpp.obj.d -o CMakeFiles/WW3D2.dir/shattersystem.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/shattersystem.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/shattersystem.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.o -MF CMakeFiles/WW3D2.dir/shattersystem.cpp.o.d -o CMakeFiles/WW3D2.dir/shattersystem.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/shattersystem.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/shattersystem.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/shattersystem.cpp > CMakeFiles/WW3D2.dir/shattersystem.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/shattersystem.cpp > CMakeFiles/WW3D2.dir/shattersystem.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/shattersystem.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/shattersystem.cpp -o CMakeFiles/WW3D2.dir/shattersystem.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/shattersystem.cpp -o CMakeFiles/WW3D2.dir/shattersystem.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/snappts.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.obj -MF CMakeFiles/WW3D2.dir/snappts.cpp.obj.d -o CMakeFiles/WW3D2.dir/snappts.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/snappts.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/snappts.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.o -MF CMakeFiles/WW3D2.dir/snappts.cpp.o.d -o CMakeFiles/WW3D2.dir/snappts.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/snappts.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/snappts.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/snappts.cpp > CMakeFiles/WW3D2.dir/snappts.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/snappts.cpp > CMakeFiles/WW3D2.dir/snappts.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/snappts.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/snappts.cpp -o CMakeFiles/WW3D2.dir/snappts.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/snappts.cpp -o CMakeFiles/WW3D2.dir/snappts.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.obj -MF CMakeFiles/WW3D2.dir/sortingrenderer.cpp.obj.d -o CMakeFiles/WW3D2.dir/sortingrenderer.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.o -MF CMakeFiles/WW3D2.dir/sortingrenderer.cpp.o.d -o CMakeFiles/WW3D2.dir/sortingrenderer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/sortingrenderer.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp > CMakeFiles/WW3D2.dir/sortingrenderer.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp > CMakeFiles/WW3D2.dir/sortingrenderer.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/sortingrenderer.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp -o CMakeFiles/WW3D2.dir/sortingrenderer.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp -o CMakeFiles/WW3D2.dir/sortingrenderer.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/soundrobj.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.obj -MF CMakeFiles/WW3D2.dir/soundrobj.cpp.obj.d -o CMakeFiles/WW3D2.dir/soundrobj.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/soundrobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/soundrobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.o -MF CMakeFiles/WW3D2.dir/soundrobj.cpp.o.d -o CMakeFiles/WW3D2.dir/soundrobj.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/soundrobj.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/soundrobj.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/soundrobj.cpp > CMakeFiles/WW3D2.dir/soundrobj.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/soundrobj.cpp > CMakeFiles/WW3D2.dir/soundrobj.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/soundrobj.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/soundrobj.cpp -o CMakeFiles/WW3D2.dir/soundrobj.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/soundrobj.cpp -o CMakeFiles/WW3D2.dir/soundrobj.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.obj -MF CMakeFiles/WW3D2.dir/sphereobj.cpp.obj.d -o CMakeFiles/WW3D2.dir/sphereobj.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.o -MF CMakeFiles/WW3D2.dir/sphereobj.cpp.o.d -o CMakeFiles/WW3D2.dir/sphereobj.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/sphereobj.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp > CMakeFiles/WW3D2.dir/sphereobj.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp > CMakeFiles/WW3D2.dir/sphereobj.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/sphereobj.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp -o CMakeFiles/WW3D2.dir/sphereobj.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp -o CMakeFiles/WW3D2.dir/sphereobj.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/sr_util.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.obj -MF CMakeFiles/WW3D2.dir/sr_util.cpp.obj.d -o CMakeFiles/WW3D2.dir/sr_util.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sr_util.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/sr_util.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.o -MF CMakeFiles/WW3D2.dir/sr_util.cpp.o.d -o CMakeFiles/WW3D2.dir/sr_util.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sr_util.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/sr_util.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sr_util.cpp > CMakeFiles/WW3D2.dir/sr_util.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sr_util.cpp > CMakeFiles/WW3D2.dir/sr_util.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/sr_util.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sr_util.cpp -o CMakeFiles/WW3D2.dir/sr_util.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/sr_util.cpp -o CMakeFiles/WW3D2.dir/sr_util.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/statistics.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.obj -MF CMakeFiles/WW3D2.dir/statistics.cpp.obj.d -o CMakeFiles/WW3D2.dir/statistics.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/statistics.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/statistics.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.o -MF CMakeFiles/WW3D2.dir/statistics.cpp.o.d -o CMakeFiles/WW3D2.dir/statistics.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/statistics.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/statistics.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/statistics.cpp > CMakeFiles/WW3D2.dir/statistics.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/statistics.cpp > CMakeFiles/WW3D2.dir/statistics.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/statistics.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/statistics.cpp -o CMakeFiles/WW3D2.dir/statistics.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/statistics.cpp -o CMakeFiles/WW3D2.dir/statistics.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/streak.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.obj -MF CMakeFiles/WW3D2.dir/streak.cpp.obj.d -o CMakeFiles/WW3D2.dir/streak.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streak.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/streak.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.o -MF CMakeFiles/WW3D2.dir/streak.cpp.o.d -o CMakeFiles/WW3D2.dir/streak.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streak.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/streak.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streak.cpp > CMakeFiles/WW3D2.dir/streak.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streak.cpp > CMakeFiles/WW3D2.dir/streak.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/streak.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streak.cpp -o CMakeFiles/WW3D2.dir/streak.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streak.cpp -o CMakeFiles/WW3D2.dir/streak.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.obj -MF CMakeFiles/WW3D2.dir/streakRender.cpp.obj.d -o CMakeFiles/WW3D2.dir/streakRender.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.o -MF CMakeFiles/WW3D2.dir/streakRender.cpp.o.d -o CMakeFiles/WW3D2.dir/streakRender.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/streakRender.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp > CMakeFiles/WW3D2.dir/streakRender.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp > CMakeFiles/WW3D2.dir/streakRender.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/streakRender.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp -o CMakeFiles/WW3D2.dir/streakRender.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp -o CMakeFiles/WW3D2.dir/streakRender.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/stripoptimizer.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.obj -MF CMakeFiles/WW3D2.dir/stripoptimizer.cpp.obj.d -o CMakeFiles/WW3D2.dir/stripoptimizer.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/stripoptimizer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakrender.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakrender.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/streakrender.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakrender.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_92) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakrender.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakrender.cpp.o -MF CMakeFiles/WW3D2.dir/streakrender.cpp.o.d -o CMakeFiles/WW3D2.dir/streakrender.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streakrender.cpp
+
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakrender.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/streakrender.cpp.i"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streakrender.cpp > CMakeFiles/WW3D2.dir/streakrender.cpp.i
+
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakrender.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/streakrender.cpp.s"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/streakrender.cpp -o CMakeFiles/WW3D2.dir/streakrender.cpp.s
+
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/stripoptimizer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_93) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.o -MF CMakeFiles/WW3D2.dir/stripoptimizer.cpp.o.d -o CMakeFiles/WW3D2.dir/stripoptimizer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/stripoptimizer.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/stripoptimizer.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/stripoptimizer.cpp > CMakeFiles/WW3D2.dir/stripoptimizer.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/stripoptimizer.cpp > CMakeFiles/WW3D2.dir/stripoptimizer.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/stripoptimizer.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/stripoptimizer.cpp -o CMakeFiles/WW3D2.dir/stripoptimizer.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/stripoptimizer.cpp -o CMakeFiles/WW3D2.dir/stripoptimizer.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/surfaceclass.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_92) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.obj -MF CMakeFiles/WW3D2.dir/surfaceclass.cpp.obj.d -o CMakeFiles/WW3D2.dir/surfaceclass.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/surfaceclass.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/surfaceclass.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_94) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.o -MF CMakeFiles/WW3D2.dir/surfaceclass.cpp.o.d -o CMakeFiles/WW3D2.dir/surfaceclass.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/surfaceclass.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/surfaceclass.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/surfaceclass.cpp > CMakeFiles/WW3D2.dir/surfaceclass.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/surfaceclass.cpp > CMakeFiles/WW3D2.dir/surfaceclass.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/surfaceclass.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/surfaceclass.cpp -o CMakeFiles/WW3D2.dir/surfaceclass.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/surfaceclass.cpp -o CMakeFiles/WW3D2.dir/surfaceclass.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/texfcach.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_93) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.obj -MF CMakeFiles/WW3D2.dir/texfcach.cpp.obj.d -o CMakeFiles/WW3D2.dir/texfcach.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texfcach.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/texfcach.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.o -MF CMakeFiles/WW3D2.dir/texfcach.cpp.o.d -o CMakeFiles/WW3D2.dir/texfcach.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texfcach.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/texfcach.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texfcach.cpp > CMakeFiles/WW3D2.dir/texfcach.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texfcach.cpp > CMakeFiles/WW3D2.dir/texfcach.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/texfcach.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texfcach.cpp -o CMakeFiles/WW3D2.dir/texfcach.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texfcach.cpp -o CMakeFiles/WW3D2.dir/texfcach.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_94) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.obj -MF CMakeFiles/WW3D2.dir/texproject.cpp.obj.d -o CMakeFiles/WW3D2.dir/texproject.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_96) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.o -MF CMakeFiles/WW3D2.dir/texproject.cpp.o.d -o CMakeFiles/WW3D2.dir/texproject.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/texproject.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp > CMakeFiles/WW3D2.dir/texproject.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp > CMakeFiles/WW3D2.dir/texproject.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/texproject.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp -o CMakeFiles/WW3D2.dir/texproject.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp -o CMakeFiles/WW3D2.dir/texproject.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/textdraw.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.obj -MF CMakeFiles/WW3D2.dir/textdraw.cpp.obj.d -o CMakeFiles/WW3D2.dir/textdraw.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/textdraw.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/textdraw.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_97) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.o -MF CMakeFiles/WW3D2.dir/textdraw.cpp.o.d -o CMakeFiles/WW3D2.dir/textdraw.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/textdraw.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/textdraw.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/textdraw.cpp > CMakeFiles/WW3D2.dir/textdraw.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/textdraw.cpp > CMakeFiles/WW3D2.dir/textdraw.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/textdraw.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/textdraw.cpp -o CMakeFiles/WW3D2.dir/textdraw.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/textdraw.cpp -o CMakeFiles/WW3D2.dir/textdraw.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/texture.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_96) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.obj -MF CMakeFiles/WW3D2.dir/texture.cpp.obj.d -o CMakeFiles/WW3D2.dir/texture.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texture.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/texture.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_98) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.o -MF CMakeFiles/WW3D2.dir/texture.cpp.o.d -o CMakeFiles/WW3D2.dir/texture.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texture.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/texture.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texture.cpp > CMakeFiles/WW3D2.dir/texture.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texture.cpp > CMakeFiles/WW3D2.dir/texture.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/texture.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texture.cpp -o CMakeFiles/WW3D2.dir/texture.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texture.cpp -o CMakeFiles/WW3D2.dir/texture.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/texturefile.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_97) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.obj -MF CMakeFiles/WW3D2.dir/texturefile.cpp.obj.d -o CMakeFiles/WW3D2.dir/texturefile.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texturefile.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/texturefile.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_99) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.o -MF CMakeFiles/WW3D2.dir/texturefile.cpp.o.d -o CMakeFiles/WW3D2.dir/texturefile.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texturefile.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/texturefile.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texturefile.cpp > CMakeFiles/WW3D2.dir/texturefile.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texturefile.cpp > CMakeFiles/WW3D2.dir/texturefile.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/texturefile.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texturefile.cpp -o CMakeFiles/WW3D2.dir/texturefile.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texturefile.cpp -o CMakeFiles/WW3D2.dir/texturefile.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/textureloader.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_98) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.obj -MF CMakeFiles/WW3D2.dir/textureloader.cpp.obj.d -o CMakeFiles/WW3D2.dir/textureloader.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/textureloader.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/textureloader.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_100) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.o -MF CMakeFiles/WW3D2.dir/textureloader.cpp.o.d -o CMakeFiles/WW3D2.dir/textureloader.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/textureloader.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/textureloader.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/textureloader.cpp > CMakeFiles/WW3D2.dir/textureloader.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/textureloader.cpp > CMakeFiles/WW3D2.dir/textureloader.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/textureloader.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/textureloader.cpp -o CMakeFiles/WW3D2.dir/textureloader.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/textureloader.cpp -o CMakeFiles/WW3D2.dir/textureloader.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/texturethumbnail.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_99) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.obj -MF CMakeFiles/WW3D2.dir/texturethumbnail.cpp.obj.d -o CMakeFiles/WW3D2.dir/texturethumbnail.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texturethumbnail.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/texturethumbnail.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_101) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.o -MF CMakeFiles/WW3D2.dir/texturethumbnail.cpp.o.d -o CMakeFiles/WW3D2.dir/texturethumbnail.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texturethumbnail.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/texturethumbnail.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texturethumbnail.cpp > CMakeFiles/WW3D2.dir/texturethumbnail.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texturethumbnail.cpp > CMakeFiles/WW3D2.dir/texturethumbnail.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/texturethumbnail.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texturethumbnail.cpp -o CMakeFiles/WW3D2.dir/texturethumbnail.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/texturethumbnail.cpp -o CMakeFiles/WW3D2.dir/texturethumbnail.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/txt.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_100) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.obj -MF CMakeFiles/WW3D2.dir/txt.cpp.obj.d -o CMakeFiles/WW3D2.dir/txt.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/txt.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/txt.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_102) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.o -MF CMakeFiles/WW3D2.dir/txt.cpp.o.d -o CMakeFiles/WW3D2.dir/txt.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/txt.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/txt.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/txt.cpp > CMakeFiles/WW3D2.dir/txt.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/txt.cpp > CMakeFiles/WW3D2.dir/txt.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/txt.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/txt.cpp -o CMakeFiles/WW3D2.dir/txt.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/txt.cpp -o CMakeFiles/WW3D2.dir/txt.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/txt2d.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_101) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.obj -MF CMakeFiles/WW3D2.dir/txt2d.cpp.obj.d -o CMakeFiles/WW3D2.dir/txt2d.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/txt2d.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/txt2d.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_103) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.o -MF CMakeFiles/WW3D2.dir/txt2d.cpp.o.d -o CMakeFiles/WW3D2.dir/txt2d.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/txt2d.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/txt2d.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/txt2d.cpp > CMakeFiles/WW3D2.dir/txt2d.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/txt2d.cpp > CMakeFiles/WW3D2.dir/txt2d.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/txt2d.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/txt2d.cpp -o CMakeFiles/WW3D2.dir/txt2d.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/txt2d.cpp -o CMakeFiles/WW3D2.dir/txt2d.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_102) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.obj -MF CMakeFiles/WW3D2.dir/vertmaterial.cpp.obj.d -o CMakeFiles/WW3D2.dir/vertmaterial.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_104) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.o -MF CMakeFiles/WW3D2.dir/vertmaterial.cpp.o.d -o CMakeFiles/WW3D2.dir/vertmaterial.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/vertmaterial.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp > CMakeFiles/WW3D2.dir/vertmaterial.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp > CMakeFiles/WW3D2.dir/vertmaterial.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/vertmaterial.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp -o CMakeFiles/WW3D2.dir/vertmaterial.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp -o CMakeFiles/WW3D2.dir/vertmaterial.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/visrasterizer.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_103) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.obj -MF CMakeFiles/WW3D2.dir/visrasterizer.cpp.obj.d -o CMakeFiles/WW3D2.dir/visrasterizer.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/visrasterizer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/visrasterizer.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_105) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.o -MF CMakeFiles/WW3D2.dir/visrasterizer.cpp.o.d -o CMakeFiles/WW3D2.dir/visrasterizer.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/visrasterizer.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/visrasterizer.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/visrasterizer.cpp > CMakeFiles/WW3D2.dir/visrasterizer.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/visrasterizer.cpp > CMakeFiles/WW3D2.dir/visrasterizer.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/visrasterizer.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/visrasterizer.cpp -o CMakeFiles/WW3D2.dir/visrasterizer.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/visrasterizer.cpp -o CMakeFiles/WW3D2.dir/visrasterizer.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_dep.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_104) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.obj -MF CMakeFiles/WW3D2.dir/w3d_dep.cpp.obj.d -o CMakeFiles/WW3D2.dir/w3d_dep.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_dep.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_dep.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_106) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.o -MF CMakeFiles/WW3D2.dir/w3d_dep.cpp.o.d -o CMakeFiles/WW3D2.dir/w3d_dep.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_dep.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/w3d_dep.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_dep.cpp > CMakeFiles/WW3D2.dir/w3d_dep.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_dep.cpp > CMakeFiles/WW3D2.dir/w3d_dep.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/w3d_dep.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_dep.cpp -o CMakeFiles/WW3D2.dir/w3d_dep.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_dep.cpp -o CMakeFiles/WW3D2.dir/w3d_dep.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_105) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.obj -MF CMakeFiles/WW3D2.dir/w3d_util.cpp.obj.d -o CMakeFiles/WW3D2.dir/w3d_util.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_107) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.o -MF CMakeFiles/WW3D2.dir/w3d_util.cpp.o.d -o CMakeFiles/WW3D2.dir/w3d_util.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/w3d_util.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp > CMakeFiles/WW3D2.dir/w3d_util.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp > CMakeFiles/WW3D2.dir/w3d_util.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/w3d_util.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp -o CMakeFiles/WW3D2.dir/w3d_util.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp -o CMakeFiles/WW3D2.dir/w3d_util.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/w3dexclusionlist.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_106) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.obj -MF CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.obj.d -o CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3dexclusionlist.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/w3dexclusionlist.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_108) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.o -MF CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.o.d -o CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3dexclusionlist.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3dexclusionlist.cpp > CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3dexclusionlist.cpp > CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3dexclusionlist.cpp -o CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/w3dexclusionlist.cpp -o CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_107) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.obj -MF CMakeFiles/WW3D2.dir/ww3d.cpp.obj.d -o CMakeFiles/WW3D2.dir/ww3d.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_109) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.o -MF CMakeFiles/WW3D2.dir/ww3d.cpp.o.d -o CMakeFiles/WW3D2.dir/ww3d.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/ww3d.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp > CMakeFiles/WW3D2.dir/ww3d.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp > CMakeFiles/WW3D2.dir/ww3d.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/ww3d.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp -o CMakeFiles/WW3D2.dir/ww3d.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp -o CMakeFiles/WW3D2.dir/ww3d.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3dformat.cpp
-Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.obj: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_108) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.obj -MF CMakeFiles/WW3D2.dir/ww3dformat.cpp.obj.d -o CMakeFiles/WW3D2.dir/ww3dformat.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3dformat.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3dformat.cpp
+Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.o: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_110) "Building CXX object Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.o -MF CMakeFiles/WW3D2.dir/ww3dformat.cpp.o.d -o CMakeFiles/WW3D2.dir/ww3dformat.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3dformat.cpp
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WW3D2.dir/ww3dformat.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3dformat.cpp > CMakeFiles/WW3D2.dir/ww3dformat.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3dformat.cpp > CMakeFiles/WW3D2.dir/ww3dformat.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WW3D2.dir/ww3dformat.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3dformat.cpp -o CMakeFiles/WW3D2.dir/ww3dformat.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2/ww3dformat.cpp -o CMakeFiles/WW3D2.dir/ww3dformat.cpp.s
 
 # Object files for target WW3D2
 WW3D2_OBJECTS = \
-"CMakeFiles/WW3D2.dir/FramGrab.cpp.obj" \
-"CMakeFiles/WW3D2.dir/aabtree.cpp.obj" \
-"CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.obj" \
-"CMakeFiles/WW3D2.dir/agg_def.cpp.obj" \
-"CMakeFiles/WW3D2.dir/animobj.cpp.obj" \
-"CMakeFiles/WW3D2.dir/assetmgr.cpp.obj" \
-"CMakeFiles/WW3D2.dir/bitmaphandler.cpp.obj" \
-"CMakeFiles/WW3D2.dir/bmp2d.cpp.obj" \
-"CMakeFiles/WW3D2.dir/boxrobj.cpp.obj" \
-"CMakeFiles/WW3D2.dir/bw_render.cpp.obj" \
-"CMakeFiles/WW3D2.dir/bwrender.cpp.obj" \
-"CMakeFiles/WW3D2.dir/camera.cpp.obj" \
-"CMakeFiles/WW3D2.dir/collect.cpp.obj" \
-"CMakeFiles/WW3D2.dir/coltest.cpp.obj" \
-"CMakeFiles/WW3D2.dir/composite.cpp.obj" \
-"CMakeFiles/WW3D2.dir/dazzle.cpp.obj" \
-"CMakeFiles/WW3D2.dir/ddsfile.cpp.obj" \
-"CMakeFiles/WW3D2.dir/decalmsh.cpp.obj" \
-"CMakeFiles/WW3D2.dir/decalsys.cpp.obj" \
-"CMakeFiles/WW3D2.dir/distlod.cpp.obj" \
-"CMakeFiles/WW3D2.dir/dx8caps.cpp.obj" \
-"CMakeFiles/WW3D2.dir/dx8fvf.cpp.obj" \
-"CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.obj" \
-"CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.obj" \
-"CMakeFiles/WW3D2.dir/dx8renderer.cpp.obj" \
-"CMakeFiles/WW3D2.dir/dx8texman.cpp.obj" \
-"CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.obj" \
-"CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.obj" \
-"CMakeFiles/WW3D2.dir/dx8wrapper.cpp.obj" \
-"CMakeFiles/WW3D2.dir/dynamesh.cpp.obj" \
-"CMakeFiles/WW3D2.dir/font3d.cpp.obj" \
-"CMakeFiles/WW3D2.dir/formconv.cpp.obj" \
-"CMakeFiles/WW3D2.dir/hanim.cpp.obj" \
-"CMakeFiles/WW3D2.dir/hanimmgr.cpp.obj" \
-"CMakeFiles/WW3D2.dir/hcanim.cpp.obj" \
-"CMakeFiles/WW3D2.dir/hlod.cpp.obj" \
-"CMakeFiles/WW3D2.dir/hmdldef.cpp.obj" \
-"CMakeFiles/WW3D2.dir/hmorphanim.cpp.obj" \
-"CMakeFiles/WW3D2.dir/hrawanim.cpp.obj" \
-"CMakeFiles/WW3D2.dir/htree.cpp.obj" \
-"CMakeFiles/WW3D2.dir/htreemgr.cpp.obj" \
-"CMakeFiles/WW3D2.dir/intersec.cpp.obj" \
-"CMakeFiles/WW3D2.dir/layer.cpp.obj" \
-"CMakeFiles/WW3D2.dir/light.cpp.obj" \
-"CMakeFiles/WW3D2.dir/lightenvironment.cpp.obj" \
-"CMakeFiles/WW3D2.dir/line3d.cpp.obj" \
-"CMakeFiles/WW3D2.dir/mapper.cpp.obj" \
-"CMakeFiles/WW3D2.dir/matinfo.cpp.obj" \
-"CMakeFiles/WW3D2.dir/matpass.cpp.obj" \
-"CMakeFiles/WW3D2.dir/matrixmapper.cpp.obj" \
-"CMakeFiles/WW3D2.dir/mesh.cpp.obj" \
-"CMakeFiles/WW3D2.dir/meshbuild.cpp.obj" \
-"CMakeFiles/WW3D2.dir/meshdam.cpp.obj" \
-"CMakeFiles/WW3D2.dir/meshgeometry.cpp.obj" \
-"CMakeFiles/WW3D2.dir/meshmatdesc.cpp.obj" \
-"CMakeFiles/WW3D2.dir/meshmdl.cpp.obj" \
-"CMakeFiles/WW3D2.dir/meshmdlio.cpp.obj" \
-"CMakeFiles/WW3D2.dir/metalmap.cpp.obj" \
-"CMakeFiles/WW3D2.dir/missingtexture.cpp.obj" \
-"CMakeFiles/WW3D2.dir/motchan.cpp.obj" \
-"CMakeFiles/WW3D2.dir/nullrobj.cpp.obj" \
-"CMakeFiles/WW3D2.dir/part_buf.cpp.obj" \
-"CMakeFiles/WW3D2.dir/part_emt.cpp.obj" \
-"CMakeFiles/WW3D2.dir/part_ldr.cpp.obj" \
-"CMakeFiles/WW3D2.dir/pivot.cpp.obj" \
-"CMakeFiles/WW3D2.dir/pointgr.cpp.obj" \
-"CMakeFiles/WW3D2.dir/polyinfo.cpp.obj" \
-"CMakeFiles/WW3D2.dir/predlod.cpp.obj" \
-"CMakeFiles/WW3D2.dir/prim_anim.cpp.obj" \
-"CMakeFiles/WW3D2.dir/projector.cpp.obj" \
-"CMakeFiles/WW3D2.dir/proto.cpp.obj" \
-"CMakeFiles/WW3D2.dir/render2d.cpp.obj" \
-"CMakeFiles/WW3D2.dir/render2dsentence.cpp.obj" \
-"CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.obj" \
-"CMakeFiles/WW3D2.dir/rendobj.cpp.obj" \
-"CMakeFiles/WW3D2.dir/rinfo.cpp.obj" \
-"CMakeFiles/WW3D2.dir/ringobj.cpp.obj" \
-"CMakeFiles/WW3D2.dir/scene.cpp.obj" \
-"CMakeFiles/WW3D2.dir/segline.cpp.obj" \
-"CMakeFiles/WW3D2.dir/seglinerenderer.cpp.obj" \
-"CMakeFiles/WW3D2.dir/shader.cpp.obj" \
-"CMakeFiles/WW3D2.dir/shattersystem.cpp.obj" \
-"CMakeFiles/WW3D2.dir/snappts.cpp.obj" \
-"CMakeFiles/WW3D2.dir/sortingrenderer.cpp.obj" \
-"CMakeFiles/WW3D2.dir/soundrobj.cpp.obj" \
-"CMakeFiles/WW3D2.dir/sphereobj.cpp.obj" \
-"CMakeFiles/WW3D2.dir/sr_util.cpp.obj" \
-"CMakeFiles/WW3D2.dir/statistics.cpp.obj" \
-"CMakeFiles/WW3D2.dir/streak.cpp.obj" \
-"CMakeFiles/WW3D2.dir/streakRender.cpp.obj" \
-"CMakeFiles/WW3D2.dir/stripoptimizer.cpp.obj" \
-"CMakeFiles/WW3D2.dir/surfaceclass.cpp.obj" \
-"CMakeFiles/WW3D2.dir/texfcach.cpp.obj" \
-"CMakeFiles/WW3D2.dir/texproject.cpp.obj" \
-"CMakeFiles/WW3D2.dir/textdraw.cpp.obj" \
-"CMakeFiles/WW3D2.dir/texture.cpp.obj" \
-"CMakeFiles/WW3D2.dir/texturefile.cpp.obj" \
-"CMakeFiles/WW3D2.dir/textureloader.cpp.obj" \
-"CMakeFiles/WW3D2.dir/texturethumbnail.cpp.obj" \
-"CMakeFiles/WW3D2.dir/txt.cpp.obj" \
-"CMakeFiles/WW3D2.dir/txt2d.cpp.obj" \
-"CMakeFiles/WW3D2.dir/vertmaterial.cpp.obj" \
-"CMakeFiles/WW3D2.dir/visrasterizer.cpp.obj" \
-"CMakeFiles/WW3D2.dir/w3d_dep.cpp.obj" \
-"CMakeFiles/WW3D2.dir/w3d_util.cpp.obj" \
-"CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.obj" \
-"CMakeFiles/WW3D2.dir/ww3d.cpp.obj" \
-"CMakeFiles/WW3D2.dir/ww3dformat.cpp.obj"
+"CMakeFiles/WW3D2.dir/FramGrab.cpp.o" \
+"CMakeFiles/WW3D2.dir/aabtree.cpp.o" \
+"CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.o" \
+"CMakeFiles/WW3D2.dir/agg_def.cpp.o" \
+"CMakeFiles/WW3D2.dir/animobj.cpp.o" \
+"CMakeFiles/WW3D2.dir/assetmgr.cpp.o" \
+"CMakeFiles/WW3D2.dir/bitmaphandler.cpp.o" \
+"CMakeFiles/WW3D2.dir/bmp2d.cpp.o" \
+"CMakeFiles/WW3D2.dir/boxrobj.cpp.o" \
+"CMakeFiles/WW3D2.dir/bw_render.cpp.o" \
+"CMakeFiles/WW3D2.dir/bwrender.cpp.o" \
+"CMakeFiles/WW3D2.dir/camera.cpp.o" \
+"CMakeFiles/WW3D2.dir/collect.cpp.o" \
+"CMakeFiles/WW3D2.dir/coltest.cpp.o" \
+"CMakeFiles/WW3D2.dir/composite.cpp.o" \
+"CMakeFiles/WW3D2.dir/dazzle.cpp.o" \
+"CMakeFiles/WW3D2.dir/ddsfile.cpp.o" \
+"CMakeFiles/WW3D2.dir/decalmsh.cpp.o" \
+"CMakeFiles/WW3D2.dir/decalsys.cpp.o" \
+"CMakeFiles/WW3D2.dir/distlod.cpp.o" \
+"CMakeFiles/WW3D2.dir/dx8caps.cpp.o" \
+"CMakeFiles/WW3D2.dir/dx8fvf.cpp.o" \
+"CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.o" \
+"CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.o" \
+"CMakeFiles/WW3D2.dir/dx8renderer.cpp.o" \
+"CMakeFiles/WW3D2.dir/dx8texman.cpp.o" \
+"CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.o" \
+"CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.o" \
+"CMakeFiles/WW3D2.dir/dx8wrapper.cpp.o" \
+"CMakeFiles/WW3D2.dir/dynamesh.cpp.o" \
+"CMakeFiles/WW3D2.dir/font3d.cpp.o" \
+"CMakeFiles/WW3D2.dir/formconv.cpp.o" \
+"CMakeFiles/WW3D2.dir/framgrab.cpp.o" \
+"CMakeFiles/WW3D2.dir/hanim.cpp.o" \
+"CMakeFiles/WW3D2.dir/hanimmgr.cpp.o" \
+"CMakeFiles/WW3D2.dir/hcanim.cpp.o" \
+"CMakeFiles/WW3D2.dir/hlod.cpp.o" \
+"CMakeFiles/WW3D2.dir/hmdldef.cpp.o" \
+"CMakeFiles/WW3D2.dir/hmorphanim.cpp.o" \
+"CMakeFiles/WW3D2.dir/hrawanim.cpp.o" \
+"CMakeFiles/WW3D2.dir/htree.cpp.o" \
+"CMakeFiles/WW3D2.dir/htreemgr.cpp.o" \
+"CMakeFiles/WW3D2.dir/intersec.cpp.o" \
+"CMakeFiles/WW3D2.dir/layer.cpp.o" \
+"CMakeFiles/WW3D2.dir/light.cpp.o" \
+"CMakeFiles/WW3D2.dir/lightenvironment.cpp.o" \
+"CMakeFiles/WW3D2.dir/line3d.cpp.o" \
+"CMakeFiles/WW3D2.dir/mapper.cpp.o" \
+"CMakeFiles/WW3D2.dir/matinfo.cpp.o" \
+"CMakeFiles/WW3D2.dir/matpass.cpp.o" \
+"CMakeFiles/WW3D2.dir/matrixmapper.cpp.o" \
+"CMakeFiles/WW3D2.dir/mesh.cpp.o" \
+"CMakeFiles/WW3D2.dir/meshbuild.cpp.o" \
+"CMakeFiles/WW3D2.dir/meshdam.cpp.o" \
+"CMakeFiles/WW3D2.dir/meshgeometry.cpp.o" \
+"CMakeFiles/WW3D2.dir/meshmatdesc.cpp.o" \
+"CMakeFiles/WW3D2.dir/meshmdl.cpp.o" \
+"CMakeFiles/WW3D2.dir/meshmdlio.cpp.o" \
+"CMakeFiles/WW3D2.dir/metalmap.cpp.o" \
+"CMakeFiles/WW3D2.dir/missingtexture.cpp.o" \
+"CMakeFiles/WW3D2.dir/motchan.cpp.o" \
+"CMakeFiles/WW3D2.dir/nullrobj.cpp.o" \
+"CMakeFiles/WW3D2.dir/part_buf.cpp.o" \
+"CMakeFiles/WW3D2.dir/part_emt.cpp.o" \
+"CMakeFiles/WW3D2.dir/part_ldr.cpp.o" \
+"CMakeFiles/WW3D2.dir/pivot.cpp.o" \
+"CMakeFiles/WW3D2.dir/pointgr.cpp.o" \
+"CMakeFiles/WW3D2.dir/polyinfo.cpp.o" \
+"CMakeFiles/WW3D2.dir/predlod.cpp.o" \
+"CMakeFiles/WW3D2.dir/prim_anim.cpp.o" \
+"CMakeFiles/WW3D2.dir/projector.cpp.o" \
+"CMakeFiles/WW3D2.dir/proto.cpp.o" \
+"CMakeFiles/WW3D2.dir/render2d.cpp.o" \
+"CMakeFiles/WW3D2.dir/render2dsentence.cpp.o" \
+"CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.o" \
+"CMakeFiles/WW3D2.dir/rendobj.cpp.o" \
+"CMakeFiles/WW3D2.dir/rinfo.cpp.o" \
+"CMakeFiles/WW3D2.dir/ringobj.cpp.o" \
+"CMakeFiles/WW3D2.dir/scene.cpp.o" \
+"CMakeFiles/WW3D2.dir/segline.cpp.o" \
+"CMakeFiles/WW3D2.dir/seglinerenderer.cpp.o" \
+"CMakeFiles/WW3D2.dir/shader.cpp.o" \
+"CMakeFiles/WW3D2.dir/shattersystem.cpp.o" \
+"CMakeFiles/WW3D2.dir/snappts.cpp.o" \
+"CMakeFiles/WW3D2.dir/sortingrenderer.cpp.o" \
+"CMakeFiles/WW3D2.dir/soundrobj.cpp.o" \
+"CMakeFiles/WW3D2.dir/sphereobj.cpp.o" \
+"CMakeFiles/WW3D2.dir/sr_util.cpp.o" \
+"CMakeFiles/WW3D2.dir/statistics.cpp.o" \
+"CMakeFiles/WW3D2.dir/streak.cpp.o" \
+"CMakeFiles/WW3D2.dir/streakRender.cpp.o" \
+"CMakeFiles/WW3D2.dir/streakrender.cpp.o" \
+"CMakeFiles/WW3D2.dir/stripoptimizer.cpp.o" \
+"CMakeFiles/WW3D2.dir/surfaceclass.cpp.o" \
+"CMakeFiles/WW3D2.dir/texfcach.cpp.o" \
+"CMakeFiles/WW3D2.dir/texproject.cpp.o" \
+"CMakeFiles/WW3D2.dir/textdraw.cpp.o" \
+"CMakeFiles/WW3D2.dir/texture.cpp.o" \
+"CMakeFiles/WW3D2.dir/texturefile.cpp.o" \
+"CMakeFiles/WW3D2.dir/textureloader.cpp.o" \
+"CMakeFiles/WW3D2.dir/texturethumbnail.cpp.o" \
+"CMakeFiles/WW3D2.dir/txt.cpp.o" \
+"CMakeFiles/WW3D2.dir/txt2d.cpp.o" \
+"CMakeFiles/WW3D2.dir/vertmaterial.cpp.o" \
+"CMakeFiles/WW3D2.dir/visrasterizer.cpp.o" \
+"CMakeFiles/WW3D2.dir/w3d_dep.cpp.o" \
+"CMakeFiles/WW3D2.dir/w3d_util.cpp.o" \
+"CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.o" \
+"CMakeFiles/WW3D2.dir/ww3d.cpp.o" \
+"CMakeFiles/WW3D2.dir/ww3dformat.cpp.o"
 
 # External object files for target WW3D2
 WW3D2_EXTERNAL_OBJECTS =
 
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.obj
-lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.obj
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/FramGrab.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtree.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/aabtreebuilder.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/agg_def.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/animobj.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/assetmgr.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bitmaphandler.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bmp2d.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/boxrobj.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bw_render.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/bwrender.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/camera.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/collect.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/coltest.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/composite.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dazzle.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ddsfile.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalmsh.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/decalsys.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/distlod.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8caps.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8fvf.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8indexbuffer.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8polygonrenderer.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8renderer.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8texman.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8vertexbuffer.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8webbrowser.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dx8wrapper.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/dynamesh.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/font3d.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/formconv.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/framgrab.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanim.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hanimmgr.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hcanim.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hlod.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmdldef.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hmorphanim.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/hrawanim.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htree.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/htreemgr.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/intersec.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/layer.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/light.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/lightenvironment.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/line3d.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mapper.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matinfo.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matpass.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/matrixmapper.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/mesh.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshbuild.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshdam.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshgeometry.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmatdesc.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdl.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/meshmdlio.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/metalmap.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/missingtexture.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/motchan.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/nullrobj.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_buf.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_emt.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/part_ldr.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pivot.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/pointgr.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/polyinfo.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/predlod.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/prim_anim.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/projector.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/proto.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2d.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/render2dsentence.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/renderobjectrecycler.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rendobj.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/rinfo.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ringobj.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/scene.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/segline.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/seglinerenderer.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shader.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/shattersystem.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/snappts.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sortingrenderer.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/soundrobj.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sphereobj.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/sr_util.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/statistics.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streak.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakRender.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/streakrender.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/stripoptimizer.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/surfaceclass.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texfcach.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texproject.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textdraw.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texture.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturefile.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/textureloader.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/texturethumbnail.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/txt2d.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/vertmaterial.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/visrasterizer.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_dep.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3d_util.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/w3dexclusionlist.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3d.cpp.o
+lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/ww3dformat.cpp.o
 lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/build.make
 lib/libWW3D2.a: Generals/Code/Libraries/Source/WWVegas/WW3D2/CMakeFiles/WW3D2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_109) "Linking CXX static library ../../../../../../lib/libWW3D2.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_111) "Linking CXX static library ../../../../../../lib/libWW3D2.a"
 	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && $(CMAKE_COMMAND) -P CMakeFiles/WW3D2.dir/cmake_clean_target.cmake
 	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/WW3D2 && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/WW3D2.dir/link.txt --verbose=$(VERBOSE)
 

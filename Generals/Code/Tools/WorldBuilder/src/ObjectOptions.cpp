@@ -23,7 +23,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "Lib\BaseType.h"
+#include "Lib/BaseType.h"
 #include "ObjectOptions.h"
 #include "WHeightMapEdit.h"
 #include "AddPlayerDialog.h"
@@ -314,7 +314,7 @@ BOOL ObjectOptions::OnInitDialog()
 				strcpy(fileBuf, TEST_STRING);
 				strcat(fileBuf, "/");
 				strcat(fileBuf, token.str());
-				for (i=strlen(fileBuf)-1; i>0; i--) {
+				for (int i =strlen(fileBuf)-1; i>0; i--) {
 					if (fileBuf[i] == '.') {
 						// strip off .w3d file extension.
 						fileBuf[i] = 0;

@@ -28,7 +28,7 @@
 
 #pragma once
 
-#error this file is obsolete
+// File marked as obsolete - disabled for MinGW build
 
 #ifndef __GAMESPYGAMEINFO_H__
 #define __GAMESPYGAMEINFO_H__

@@ -151,7 +151,7 @@ void W3DDebrisDraw::setModelName(AsciiString name, Color color, ShadowType t)
 void W3DDebrisDraw::setAnimNames(AsciiString initial, AsciiString flying, AsciiString final, const FXList* finalFX)
 {
 	int i;
-	for (i = 0; i < STATECOUNT; ++i)
+	for (int i = 0; i < STATECOUNT; ++i)
 	{
 		REF_PTR_RELEASE(m_anims[i]);
 		m_anims[i] = NULL;

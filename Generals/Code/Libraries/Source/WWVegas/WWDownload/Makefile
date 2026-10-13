@@ -130,13 +130,13 @@ WWDownload/fast:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build
 .PHONY : WWDownload/fast
 
-Download.obj: Download.cpp.obj
-.PHONY : Download.obj
+Download.o: Download.cpp.o
+.PHONY : Download.o
 
 # target to build an object file
-Download.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.obj
-.PHONY : Download.cpp.obj
+Download.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.o
+.PHONY : Download.cpp.o
 
 Download.i: Download.cpp.i
 .PHONY : Download.i
@@ -154,13 +154,61 @@ Download.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/Download.cpp.s
 .PHONY : Download.cpp.s
 
-registry.obj: registry.cpp.obj
-.PHONY : registry.obj
+download.o: download.cpp.o
+.PHONY : download.o
 
 # target to build an object file
-registry.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.obj
-.PHONY : registry.cpp.obj
+download.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/download.cpp.o
+.PHONY : download.cpp.o
+
+download.i: download.cpp.i
+.PHONY : download.i
+
+# target to preprocess a source file
+download.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/download.cpp.i
+.PHONY : download.cpp.i
+
+download.s: download.cpp.s
+.PHONY : download.s
+
+# target to generate assembly for a file
+download.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/download.cpp.s
+.PHONY : download.cpp.s
+
+ftp.o: ftp.cpp.o
+.PHONY : ftp.o
+
+# target to build an object file
+ftp.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/ftp.cpp.o
+.PHONY : ftp.cpp.o
+
+ftp.i: ftp.cpp.i
+.PHONY : ftp.i
+
+# target to preprocess a source file
+ftp.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/ftp.cpp.i
+.PHONY : ftp.cpp.i
+
+ftp.s: ftp.cpp.s
+.PHONY : ftp.s
+
+# target to generate assembly for a file
+ftp.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/ftp.cpp.s
+.PHONY : ftp.cpp.s
+
+registry.o: registry.cpp.o
+.PHONY : registry.o
+
+# target to build an object file
+registry.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.o
+.PHONY : registry.cpp.o
 
 registry.i: registry.cpp.i
 .PHONY : registry.i
@@ -178,13 +226,13 @@ registry.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/registry.cpp.s
 .PHONY : registry.cpp.s
 
-urlBuilder.obj: urlBuilder.cpp.obj
-.PHONY : urlBuilder.obj
+urlBuilder.o: urlBuilder.cpp.o
+.PHONY : urlBuilder.o
 
 # target to build an object file
-urlBuilder.cpp.obj:
-	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.obj
-.PHONY : urlBuilder.cpp.obj
+urlBuilder.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.o
+.PHONY : urlBuilder.cpp.o
 
 urlBuilder.i: urlBuilder.cpp.i
 .PHONY : urlBuilder.i
@@ -202,6 +250,30 @@ urlBuilder.cpp.s:
 	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlBuilder.cpp.s
 .PHONY : urlBuilder.cpp.s
 
+urlbuilder.o: urlbuilder.cpp.o
+.PHONY : urlbuilder.o
+
+# target to build an object file
+urlbuilder.cpp.o:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlbuilder.cpp.o
+.PHONY : urlbuilder.cpp.o
+
+urlbuilder.i: urlbuilder.cpp.i
+.PHONY : urlbuilder.i
+
+# target to preprocess a source file
+urlbuilder.cpp.i:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlbuilder.cpp.i
+.PHONY : urlbuilder.cpp.i
+
+urlbuilder.s: urlbuilder.cpp.s
+.PHONY : urlbuilder.s
+
+# target to generate assembly for a file
+urlbuilder.cpp.s:
+	cd /home/cyklon/Work/Project-Generals && $(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/WWDownload.dir/urlbuilder.cpp.s
+.PHONY : urlbuilder.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -211,15 +283,24 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... WWDownload"
-	@echo "... Download.obj"
+	@echo "... Download.o"
 	@echo "... Download.i"
 	@echo "... Download.s"
-	@echo "... registry.obj"
+	@echo "... download.o"
+	@echo "... download.i"
+	@echo "... download.s"
+	@echo "... ftp.o"
+	@echo "... ftp.i"
+	@echo "... ftp.s"
+	@echo "... registry.o"
 	@echo "... registry.i"
 	@echo "... registry.s"
-	@echo "... urlBuilder.obj"
+	@echo "... urlBuilder.o"
 	@echo "... urlBuilder.i"
 	@echo "... urlBuilder.s"
+	@echo "... urlbuilder.o"
+	@echo "... urlbuilder.i"
+	@echo "... urlbuilder.s"
 .PHONY : help
 
 

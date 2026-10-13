@@ -34,7 +34,7 @@
 #include "GameSpy/Peer/Peer.h"
 #include "GameNetwork/NetworkDefs.h"
 
-enum SerialAuthResult
+enum SerialAuthResult : int
 {
 	SERIAL_NONEXISTENT,
 	SERIAL_AUTHFAILED,
@@ -175,7 +175,7 @@ public:
 
 //-------------------------------------------------------------------------
 
-enum DisconnectReason
+enum DisconnectReason : int
 {
 	DISCONNECT_NICKTAKEN = 1,
 	DISCONNECT_BADNICK,
@@ -199,7 +199,7 @@ enum DisconnectReason
 	DISCONNECT_MAX,
 };
 
-enum QMStatus
+enum QMStatus : int
 {
 	QM_IDLE,
 	QM_JOININGQMCHANNEL,

@@ -250,7 +250,7 @@ bool HermiteSpline3DClass::Load(ChunkLoadClass &cload)
 				break;
 
 			case HERMITE3D_CHUNK_TANGENTS:
-				for (i=0; i<Keys.Count(); i++) {
+				for (int i =0; i<Keys.Count(); i++) {
 					cload.Read(&(newtangent.InTangent),sizeof(newtangent.InTangent));
 					cload.Read(&(newtangent.OutTangent),sizeof(newtangent.OutTangent));
 					Tangents.Add(newtangent);
@@ -416,7 +416,7 @@ bool HermiteSpline1DClass::Load(ChunkLoadClass &cload)
 				break;
 
 			case HERMITE1D_CHUNK_TANGENTS:
-				for (i=0; i<Keys.Count(); i++) {
+				for (int i =0; i<Keys.Count(); i++) {
 					cload.Read(&(newtangent.InTangent),sizeof(newtangent.InTangent));
 					cload.Read(&(newtangent.OutTangent),sizeof(newtangent.OutTangent));
 					Tangents.Add(newtangent);

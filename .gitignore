@@ -1,0 +1,9 @@
+/build/
+/build2/
+/lib/
+/bin/
+*.obj
+*.o
+*.a
+*.exe
+*.bin

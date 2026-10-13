@@ -177,7 +177,7 @@ BOOL CALLBACK DirectorySelectProc( HWND hWndDialog, UINT message,
 
 							// remove the brackets on the text
 							Int j, len = strlen( text );
-							for( j = 0; j < len - 1; j++ )
+							for (int j = 0; j < len - 1; j++ )
 								text[ j ] = text[ j + 1 ];
 							text[ len - 2 ] = '\0';
 

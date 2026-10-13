@@ -818,7 +818,7 @@ void WbView3d::resetRenderObjects()
 	}
 
 	Int i;
-	for (i=0; i<TheSidesList->getNumSides(); i++) {
+	for (int i =0; i<TheSidesList->getNumSides(); i++) {
 		SidesInfo *pSide = TheSidesList->getSideInfo(i); 
 		BuildListInfo *pBuild = pSide->getBuildList();
 		while (pBuild) {
@@ -1083,7 +1083,7 @@ void WbView3d::invalBuildListItemInView(BuildListInfo *pBuildToInval)
 	Int i;
 	Bool found = false;
 	
-	for (i=0; i<TheSidesList->getNumSides(); i++) {
+	for (int i =0; i<TheSidesList->getNumSides(); i++) {
 		SidesInfo *pSide = TheSidesList->getSideInfo(i); 
 
 		// find which player color we should use
@@ -1264,7 +1264,7 @@ AsciiString WbView3d::getModelNameAndScale(MapObject *pMapObj, Real *scale, Body
 		/* Handle test art models here */
 		strcpy(buffer, pMapObj->getName().str());
 
-		for (i=0; buffer[i]; i++) {
+		for (int i =0; buffer[i]; i++) {
 			if (buffer[i] == '/') {
 				i++;
 				break;
@@ -1586,7 +1586,7 @@ BuildListInfo *WbView3d::pickedBuildObjectInView(CPoint viewPt)
 	Coord3D cpt;
 	Int i;
 	viewToDocCoords(viewPt, &cpt, false);
- 	for (i=0; i<TheSidesList->getNumSides(); i++) {
+ 	for (int i =0; i<TheSidesList->getNumSides(); i++) {
 		SidesInfo *pSide = TheSidesList->getSideInfo(i); 
 		for (BuildListInfo *pBuild = pSide->getBuildList(); pBuild; pBuild = pBuild->getNext()) {
 			Coord3D center = *pBuild->getLocation();
@@ -1610,7 +1610,7 @@ BuildListInfo *WbView3d::pickedBuildObjectInView(CPoint viewPt)
 		// do the intersection using W3D intersector class
 		Bool hit = m_intersector->Intersect_Screen_Point_Layer( logX, logY, *m_buildLayer );
 		if( hit ) {
- 			for (i=0; i<TheSidesList->getNumSides(); i++) {
+ 			for (int i =0; i<TheSidesList->getNumSides(); i++) {
 				SidesInfo *pSide = TheSidesList->getSideInfo(i); 
 				for (BuildListInfo *pBuild = pSide->getBuildList(); pBuild; pBuild = pBuild->getNext()) {
 					if (pBuild->getRenderObj() == m_intersector->Result.IntersectedRenderObject) {
@@ -2335,7 +2335,7 @@ void WbView3d::drawLabels(HDC hdc)
 				pos.z += m_heightMapRenderObj->getHeightMapHeight(pos.x, pos.y, NULL);
 			}
 			Int i;
-			for (i=0; i<4; i++) {
+			for (int i =0; i<4; i++) {
 				Bool exists;
 				switch(i) {
 					case 0 : break;

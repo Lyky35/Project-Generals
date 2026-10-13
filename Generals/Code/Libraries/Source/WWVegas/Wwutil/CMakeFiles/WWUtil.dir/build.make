@@ -72,46 +72,44 @@ include Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/flag
 Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/codegen:
 .PHONY : Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/codegen
 
-Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.obj: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.obj: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.obj: Generals/Code/Libraries/Source/WWVegas/Wwutil/mathutil.cpp
-Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.obj: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.obj -MF CMakeFiles/WWUtil.dir/mathutil.cpp.obj.d -o CMakeFiles/WWUtil.dir/mathutil.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil/mathutil.cpp
+Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.o: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.o: Generals/Code/Libraries/Source/WWVegas/Wwutil/mathutil.cpp
+Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.o: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.o -MF CMakeFiles/WWUtil.dir/mathutil.cpp.o.d -o CMakeFiles/WWUtil.dir/mathutil.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil/mathutil.cpp
 
 Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWUtil.dir/mathutil.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil/mathutil.cpp > CMakeFiles/WWUtil.dir/mathutil.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil/mathutil.cpp > CMakeFiles/WWUtil.dir/mathutil.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWUtil.dir/mathutil.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil/mathutil.cpp -o CMakeFiles/WWUtil.dir/mathutil.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil/mathutil.cpp -o CMakeFiles/WWUtil.dir/mathutil.cpp.s
 
-Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.obj: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/flags.make
-Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.obj: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/includes_CXX.rsp
-Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.obj: Generals/Code/Libraries/Source/WWVegas/Wwutil/miscutil.cpp
-Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.obj: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.obj"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.obj -MF CMakeFiles/WWUtil.dir/miscutil.cpp.obj.d -o CMakeFiles/WWUtil.dir/miscutil.cpp.obj -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil/miscutil.cpp
+Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.o: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/flags.make
+Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.o: Generals/Code/Libraries/Source/WWVegas/Wwutil/miscutil.cpp
+Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.o: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.o"
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.o -MF CMakeFiles/WWUtil.dir/miscutil.cpp.o.d -o CMakeFiles/WWUtil.dir/miscutil.cpp.o -c /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil/miscutil.cpp
 
 Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WWUtil.dir/miscutil.cpp.i"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil/miscutil.cpp > CMakeFiles/WWUtil.dir/miscutil.cpp.i
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil/miscutil.cpp > CMakeFiles/WWUtil.dir/miscutil.cpp.i
 
 Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WWUtil.dir/miscutil.cpp.s"
-	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil && /usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil/miscutil.cpp -o CMakeFiles/WWUtil.dir/miscutil.cpp.s
+	cd /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyklon/Work/Project-Generals/Generals/Code/Libraries/Source/WWVegas/Wwutil/miscutil.cpp -o CMakeFiles/WWUtil.dir/miscutil.cpp.s
 
 # Object files for target WWUtil
 WWUtil_OBJECTS = \
-"CMakeFiles/WWUtil.dir/mathutil.cpp.obj" \
-"CMakeFiles/WWUtil.dir/miscutil.cpp.obj"
+"CMakeFiles/WWUtil.dir/mathutil.cpp.o" \
+"CMakeFiles/WWUtil.dir/miscutil.cpp.o"
 
 # External object files for target WWUtil
 WWUtil_EXTERNAL_OBJECTS =
 
-lib/libWWUtil.a: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.obj
-lib/libWWUtil.a: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.obj
+lib/libWWUtil.a: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/mathutil.cpp.o
+lib/libWWUtil.a: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/miscutil.cpp.o
 lib/libWWUtil.a: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/build.make
 lib/libWWUtil.a: Generals/Code/Libraries/Source/WWVegas/Wwutil/CMakeFiles/WWUtil.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cyklon/Work/Project-Generals/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library ../../../../../../lib/libWWUtil.a"

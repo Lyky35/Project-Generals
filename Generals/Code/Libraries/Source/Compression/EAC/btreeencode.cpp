@@ -388,7 +388,7 @@ static void BTREE_treepack(struct BTreeEncodeContext *EC,
 
 /*** count file ***/
 
-	for (i=0; i<BTREECODES; ++i)
+	for (int i =0; i<BTREECODES; ++i)
 		count2[i] = 0;
 
 	i1 = 0;
@@ -402,12 +402,12 @@ static void BTREE_treepack(struct BTreeEncodeContext *EC,
 
 /* init clue array */
 
-	for (i=0;i<BTREECODES;++i)
+	for (int i =0;i<BTREECODES;++i)
 		EC->clueq[i] = 0;
 
 /* get a clue byte (forced) */
 
-	for(i=0; i<BTREECODES; ++i)
+	for (int i =0; i<BTREECODES; ++i)
 	{	freeq[i] = 1;
 		if (count2[i]>3)
 			tryq[i] = 1;
@@ -423,7 +423,7 @@ static void BTREE_treepack(struct BTreeEncodeContext *EC,
 
 	if (zerosuppress)
 	{
-		for (i=0; i<32; ++i)
+		for (int i =0; i<32; ++i)
 		{
 			count2[i] = BTREEBIGNUM;		/* don't use for nodes */
 			tryq[i] = 0;			/* don't try to pack */
@@ -440,14 +440,14 @@ static void BTREE_treepack(struct BTreeEncodeContext *EC,
     i1 - done flag/swap temp
 */
 
-	for (i=0;i<BTREECODES;++i)
+	for (int i =0;i<BTREECODES;++i)
 		sortptr[i] = i;
 
 	i1=1;
 	while (i1)
 	{
 		i1 = 0;
-		for (i=1; i<BTREECODES; ++i)
+		for (int i =1; i<BTREECODES; ++i)
 		{
 			if (count2[sortptr[i]]<count2[sortptr[i-1]] || ((count2[sortptr[i]]==count2[sortptr[i-1]]) && (sortptr[i]>sortptr[i-1])))
 			{
@@ -571,7 +571,7 @@ static void BTREE_treepack(struct BTreeEncodeContext *EC,
 
 				/* restore clue table */
 
-				for(i=1;i<bestsize;++i)
+				for (int i =1;i<bestsize;++i)
 				{	leftnode = (bestn[i]>>8)&255;
 					joinnode = bestjoin[i];
 					EC->clueq[leftnode] = EC->clueq[joinnode] = 0;
@@ -590,7 +590,7 @@ static void BTREE_treepack(struct BTreeEncodeContext *EC,
 	BTREE_writebits(EC,dest,(unsigned int) clue, 8);	/* clue byte */
 	BTREE_writebits(EC,dest,(unsigned int) bt_size, 8);	/* tree size */
 
-	for (i=0; i<bt_size;++i)
+	for (int i =0; i<bt_size;++i)
 	{	BTREE_writebits(EC,dest,(unsigned int) bt_node[i], 8);
 		BTREE_writebits(EC,dest,(unsigned int) bt_left[i], 8);
 		BTREE_writebits(EC,dest,(unsigned int) bt_right[i], 8);
@@ -636,7 +636,7 @@ static int BTREE_compressfile(struct BTreeEncodeContext *EC,
 	passes = 256;
 	multimax = 32;
 	EC->masks[0] = 0;
-	for (i=1;i<17;++i)
+	for (int i =1;i<17;++i)
 		EC->masks[i] = (EC->masks[i-1] << 1) + 1;
 
 /* read in a source file */

@@ -393,7 +393,7 @@ inline bool Test_Aligned_Box(BoxTestStruct * test)
 	int quadrant[3];
 	bool inside = true;
 
-	for (i=0; i<3; i++) {
+	for (int i =0; i<3; i++) {
 		if (test->P0[i] < test->Min[i]) {
 			quadrant[i] = BOX_SIDE_NEGATIVE;
 			candidateplane[i] = test->Min[i];
@@ -419,7 +419,7 @@ inline bool Test_Aligned_Box(BoxTestStruct * test)
 	/*
 	** Calculate the 3 distances to the candidate planes
 	*/
-	for (i=0; i<3; i++) {
+	for (int i =0; i<3; i++) {
 		if (quadrant[i] != BOX_SIDE_MIDDLE && test->DP[i] != 0.0f) {
 			maxt[i] = (candidateplane[i] - test->P0[i]) / test->DP[i];
 		} else {
@@ -432,7 +432,7 @@ inline bool Test_Aligned_Box(BoxTestStruct * test)
 	*/
 	int intersection_plane = 0;
 	
-	for (i=1; i<3; i++) {
+	for (int i =1; i<3; i++) {
 		if (maxt[i] > maxt[intersection_plane]) {
 			intersection_plane = i;
 		}
@@ -450,7 +450,7 @@ inline bool Test_Aligned_Box(BoxTestStruct * test)
 	** are not the intersection planes, the intersection point should
 	** be between the min and max of the box.
 	*/
-	for (i=0; i<3; i++) {
+	for (int i =0; i<3; i++) {
 		
 		if (intersection_plane != i) {
 		

@@ -275,7 +275,7 @@ StateMachine::~StateMachine()
 	std::map<StateID, State *>::iterator i;
 
 	// delete all states in the mapping
-	for( i = m_stateMap.begin(); i != m_stateMap.end(); ++i )
+	for (auto i = m_stateMap.begin(); i != m_stateMap.end(); ++i )
 	{
 		if ((*i).second)
 			(*i).second->deleteInstance();
@@ -765,7 +765,7 @@ void StateMachine::xfer( Xfer *xfer )
 		std::map<StateID, State *>::iterator i;
 		// count all states in the mapping
 		Int count = 0;
-		for( i = m_stateMap.begin(); i != m_stateMap.end(); ++i )
+		for (auto i = m_stateMap.begin(); i != m_stateMap.end(); ++i )
 			count++;
 		Int saveCount = count;
 		xfer->xferInt(&saveCount);
@@ -773,7 +773,7 @@ void StateMachine::xfer( Xfer *xfer )
 			DEBUG_CRASH(("State count mismatch - %d expected, %d read", count, saveCount));
 			throw SC_INVALID_DATA;
 		}
-		for( i = m_stateMap.begin(); i != m_stateMap.end(); ++i ) {
+		for (auto i = m_stateMap.begin(); i != m_stateMap.end(); ++i ) {
 			State *state = (*i).second;
 			StateID id = state->getID();
 			xfer->xferUnsignedInt(&id);

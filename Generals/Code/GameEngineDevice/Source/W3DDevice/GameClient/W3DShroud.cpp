@@ -389,9 +389,9 @@ void W3DShroud::fillShroudData(W3DShroudLevel level)
 
 	UnsignedShort *ptr=(UnsignedShort *)m_srcTextureData;
 	Int pitch = m_srcTexturePitch >> 1;	//2 bytes per pointer increment 
-	for (y=0; y<m_numCellsY; y++)
+	for (int y =0; y<m_numCellsY; y++)
 	{
-		for (x=0; x<m_numCellsX; x++)
+		for (int x =0; x<m_numCellsX; x++)
 			ptr[x]=pixel;
 		ptr	+= pitch;
 	}
@@ -400,9 +400,9 @@ void W3DShroud::fillShroudData(W3DShroudLevel level)
 	//Set the final shroud state.  May differe from current state because of time interpolation.
 	W3DShroudLevel *cptr=m_finalFogData;
 	pitch = m_numCellsX;
-	for (y=0; y<m_numCellsY; y++)
+	for (int y =0; y<m_numCellsY; y++)
 	{
-		for (x=0; x<m_numCellsX; x++)
+		for (int x =0; x<m_numCellsX; x++)
 			cptr[x]=level;
 		ptr	+= pitch;
 	}
@@ -448,7 +448,7 @@ void W3DShroud::fillBorderShroudData(W3DShroudLevel level, SurfaceClass* pDestSu
 	UnsignedShort *ptr=(UnsignedShort *)m_srcTextureData + m_numCellsY*(m_srcTexturePitch >> 1);
 
 	//Fill unused texels with border color
-	for (x=0; x<m_numCellsX; x++)
+	for (int x =0; x<m_numCellsX; x++)
 			ptr[x]=pixel;
 
 	//Fill destination texture with border color
@@ -467,12 +467,12 @@ void W3DShroud::fillBorderShroudData(W3DShroudLevel level, SurfaceClass* pDestSu
 	Int numFullCopies = m_dstTextureWidth/srcRect.right;
 	Int numExtraPixels = m_dstTextureWidth%srcRect.right;
 
-	for (y=0; y<m_dstTextureHeight; y++)
+	for (int y =0; y<m_dstTextureHeight; y++)
 	{
 		dstPoint.y=y;
 		dstPoint.x=0;
 
-		for (x=0; x<numFullCopies; x++)
+		for (int x =0; x<numFullCopies; x++)
 		{	
 			dstPoint.x = x * srcRect.right;	//advance to next set of pixel in row.
 

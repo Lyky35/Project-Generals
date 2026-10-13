@@ -203,8 +203,14 @@ inline VertexFormatXYZNDUV2 * DynamicVBAccessClass::WriteLockClass::Get_Formatte
 ** DX8VertexBufferClass
 ** This class wraps a DX8 vertex buffer.  Use the lock objects to modify or append to the vertex buffer.
 */
+class DynamicVBAccessClass;
+
 class DX8VertexBufferClass : public VertexBufferClass
 {
+	friend class DynamicVBAccessClass;
+	friend class VertexBufferClass::WriteLockClass;
+	friend class VertexBufferClass::AppendLockClass;
+
 	W3DMPO_GLUE(DX8VertexBufferClass)
 protected:
 	~DX8VertexBufferClass();

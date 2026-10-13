@@ -317,7 +317,7 @@ template <class KeyType, class ValueType> inline void HashTemplateClass<KeyType,
 	int cnt = 0;
 	int	i;
 
-	for (i = 0; i < (int)new_size; i++)
+	for (int i = 0; i < (int)new_size; i++)
 	{
 		new_table[i].Next	= NIL;
 		new_hash[i]			= NIL;
@@ -325,7 +325,7 @@ template <class KeyType, class ValueType> inline void HashTemplateClass<KeyType,
 
 	if (Size)											// if we have existing data, it needs to be rehashed
 	{
-		for (i = 0; i < (int)Size; i++)						// step through each old hash set
+		for (int i = 0; i < (int)Size; i++)						// step through each old hash set
 		{
 			int	h = Hash[i];
 			while (h != NIL)
@@ -343,7 +343,7 @@ template <class KeyType, class ValueType> inline void HashTemplateClass<KeyType,
 		delete[] Table;
 	}
 
-	for (i = cnt; i < (int)new_size; i++)
+	for (int i = cnt; i < (int)new_size; i++)
 		new_table[i].Next = i+1;
 	new_table[new_size-1].Next = NIL;
 

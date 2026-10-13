@@ -1,2 +1,2 @@
-x86_64-w64-mingw32-gcc-ar qc ../../../../../../lib/libWWDebug.a CMakeFiles/WWDebug.dir/wwdebug.cpp.obj CMakeFiles/WWDebug.dir/wwmemlog.cpp.obj CMakeFiles/WWDebug.dir/wwprofile.cpp.obj
-x86_64-w64-mingw32-gcc-ranlib ../../../../../../lib/libWWDebug.a
+/usr/bin/ar qc ../../../../../../lib/libWWDebug.a CMakeFiles/WWDebug.dir/wwdebug.cpp.o CMakeFiles/WWDebug.dir/wwmemlog.cpp.o CMakeFiles/WWDebug.dir/wwprofile.cpp.o
+/usr/bin/ranlib ../../../../../../lib/libWWDebug.a

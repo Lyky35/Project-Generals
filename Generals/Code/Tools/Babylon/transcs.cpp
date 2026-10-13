@@ -44,7 +44,7 @@ void CreateTranslationTable ( void )
 
 	fprintf (out, "static unsigned short Utable[0x10000] =\n{" );
 
-	for ( i = 0; i < 0x10000; i++ )
+	for (int i = 0; i < 0x10000; i++ )
 	{
 
 		if ( ( i %32 ) == 0 )
