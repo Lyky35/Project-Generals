@@ -378,7 +378,20 @@ Still imported by RTS.exe: OpenAL32, vulkan-1, libwinpthread, bcrypt + system DL
 
 Next: user runs RTS_DIAG.exe + RTS.exe; RTS_START.LOG first line tells us the phase.
 
+
+### 2026-10-13 — Field logs: static-init confirmed; DLLs OK
+
+User logs from `log/log/`:
+- **RTS_DIAG.LOG**: `WinMain` / `OpenAL32 loaded` / `vulkan-1 loaded` → those DLLs are fine.
+- **RTS_START.LOG**: **only** `static-init` → our priority-101 static ran; **WinMain never reached**.
+  Crash is in a **later C++ static constructor** (ucrtbase 0x26cbc, deterministic).
+
+Added **unhandled-exception filter** in the early static path: on crash it appends
+`CRASH code=… addr=… ip=…` to RTS_START.LOG (kernel32/`snprintf` only).
+Next user run should give the faulting IP so we can map it to a static ctor.
+
 <!-- Append new entries below. Commit after each completed step. -->
+
 
 
 

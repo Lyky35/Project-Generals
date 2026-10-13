@@ -93,22 +93,43 @@ static Bool gInitializing = false;
 static Bool gDoPaint = true;
 // Kernel32-only breadcrumb: runs during CRT static init (before WinMain).
 // If RTS_START.LOG contains "static-init" the crash is after this constructor.
-static void earlyStaticLog(void)
+static char g_logPath[MAX_PATH];
+
+static void writeLogLine(const char *msg)
 {
-	char path[MAX_PATH];
-	path[0] = 0;
-	GetModuleFileNameA(NULL, path, MAX_PATH);
-	char *slash = strrchr(path, '\\');
-	if (slash) strcpy(slash + 1, "RTS_START.LOG");
-	else strcpy(path, "RTS_START.LOG");
-	HANDLE h = CreateFileA(path, GENERIC_WRITE, FILE_SHARE_READ, NULL,
-		CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	if (!g_logPath[0]) return;
+	HANDLE h = CreateFileA(g_logPath, GENERIC_WRITE, FILE_SHARE_READ, NULL,
+		OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (h != INVALID_HANDLE_VALUE) {
-		const char *msg = "static-init\r\n";
+		SetFilePointer(h, 0, NULL, FILE_END);
 		DWORD written = 0;
 		WriteFile(h, msg, (DWORD)strlen(msg), &written, NULL);
+		WriteFile(h, "\r\n", 2, &written, NULL);
 		CloseHandle(h);
 	}
+}
+
+static LONG WINAPI earlyCrashFilter(EXCEPTION_POINTERS *info)
+{
+	char buf[256];
+	snprintf(buf, sizeof(buf),
+		"CRASH code=0x%08lx addr=%p ip=%p\r\n",
+		info && info->ExceptionRecord ? info->ExceptionRecord->ExceptionCode : 0,
+		info && info->ExceptionRecord ? info->ExceptionRecord->ExceptionAddress : NULL,
+		info && info->ContextRecord ? (void*)info->ContextRecord->Rip : NULL);
+	writeLogLine(buf);
+	return EXCEPTION_EXECUTE_HANDLER;
+}
+
+static void earlyStaticLog(void)
+{
+	g_logPath[0] = 0;
+	GetModuleFileNameA(NULL, g_logPath, MAX_PATH);
+	char *slash = strrchr(g_logPath, '\\');
+	if (slash) strcpy(slash + 1, "RTS_START.LOG");
+	else strcpy(g_logPath, "RTS_START.LOG");
+	SetUnhandledExceptionFilter(earlyCrashFilter);
+	writeLogLine("static-init");
 }
 struct EarlyStaticLog {
 	EarlyStaticLog() { earlyStaticLog(); }
