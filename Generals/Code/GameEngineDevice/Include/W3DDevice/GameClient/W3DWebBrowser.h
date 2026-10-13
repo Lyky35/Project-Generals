@@ -26,6 +26,7 @@
 // July 2002, Bryan Cleveland
 
 #pragma once
+#include "Lib/BaseType.h"
 
 #ifndef W3DWEBBROWSER_H
 #define W3DWEBBROWSER_H

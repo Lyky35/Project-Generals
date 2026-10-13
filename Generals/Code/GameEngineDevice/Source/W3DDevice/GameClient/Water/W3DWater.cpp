@@ -211,7 +211,7 @@ void WaterRenderObjClass::setupJbaWaterShader(void)
 
 	DX8Wrapper::Apply_Render_State_Changes();	//force update of view and projection matrices
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_ALPHAOP,   D3DTOP_ADD );
-	DX8Wrapper::_Get_D3D_Device8()->SetTexture(3,m_riverAlphaEdge->Peek_DX8_Texture());	
+	DX8Wrapper::_Get_D3D_Device8()->SetTexture(3,m_riverAlphaEdge->Peek_Vulkan_Texture());	
 	DX8Wrapper::Set_DX8_Texture_Stage_State(3,  D3DTSS_ADDRESSU, D3DTADDRESS_WRAP);
 	DX8Wrapper::Set_DX8_Texture_Stage_State(3,  D3DTSS_ADDRESSV, D3DTADDRESS_WRAP);
 	DX8Wrapper::Set_DX8_Texture_Stage_State(0,  D3DTSS_TEXCOORDINDEX, 0);
@@ -221,8 +221,8 @@ void WaterRenderObjClass::setupJbaWaterShader(void)
 	Bool doSparkles = true;
 
 	if (m_riverWaterPixelShader && doSparkles) {
-		DX8Wrapper::_Get_D3D_Device8()->SetTexture(1,m_waterSparklesTexture->Peek_DX8_Texture());	
-		DX8Wrapper::_Get_D3D_Device8()->SetTexture(2,m_waterNoiseTexture->Peek_DX8_Texture());	
+		DX8Wrapper::_Get_D3D_Device8()->SetTexture(1,m_waterSparklesTexture->Peek_Vulkan_Texture());	
+		DX8Wrapper::_Get_D3D_Device8()->SetTexture(2,m_waterNoiseTexture->Peek_Vulkan_Texture());	
 
 		DX8Wrapper::Set_DX8_Texture_Stage_State(1,  D3DTSS_ADDRESSU, D3DTADDRESS_WRAP);
 		DX8Wrapper::Set_DX8_Texture_Stage_State(1,  D3DTSS_ADDRESSV, D3DTADDRESS_WRAP);
@@ -1216,7 +1216,8 @@ void WaterRenderObjClass::update( void )
 			m_meshInMotion = FALSE;
 
 			// go through each mesh point and adjust the height according to the velocity
-			for (int j = 0, pData = m_meshData; j < (my + 2); j++ )
+			pData = m_meshData;
+			for (int j = 0; j < (my + 2); j++ )
 			{	
 
 				for (int i = 0; i < (mx + 2); i++ )
@@ -1462,7 +1463,7 @@ void WaterRenderObjClass::renderMirror(CameraClass *cam)
 	WW3D::End_Render(false);
 
 	// Change the rendertarget back to the main backbuffer
-	DX8Wrapper::Set_Render_Target((IDirect3DSurface8 *)NULL);
+	DX8Wrapper::Set_Render_Target((TextureClass *)NULL);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -1807,7 +1808,7 @@ void WaterRenderObjClass::drawSea(RenderInfoClass & rinfo)
 
 	m_pDev->SetTextureStageState(0, D3DTSS_ADDRESSU, D3DTADDRESS_WRAP);
 	m_pDev->SetTextureStageState(0, D3DTSS_ADDRESSV, D3DTADDRESS_WRAP);
-	m_pDev->SetRenderState( D3DRS_WRAP0, D3DWRAP_U | D3DWRAP_V);
+	// D3DRS_WRAP0 handled by Vulkan sampler wrap modes
 
 	m_pDev->SetTextureStageState(1, D3DTSS_ADDRESSU, D3DTADDRESS_CLAMP);
 	m_pDev->SetTextureStageState(1, D3DTSS_ADDRESSV, D3DTADDRESS_CLAMP);
@@ -1855,7 +1856,7 @@ void WaterRenderObjClass::drawSea(RenderInfoClass & rinfo)
 	m_pDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA );
 
 	m_pDev->SetRenderState(D3DRS_ALPHABLENDENABLE , TRUE);
-	m_pDev->SetTexture( 1, m_pReflectionTexture->Peek_DX8_Texture());
+	m_pDev->SetTexture( 1, m_pReflectionTexture->Peek_Vulkan_Texture());
 
 //	m_pDev->SetRenderState(D3DRS_FILLMODE,D3DFILL_WIREFRAME);//LORENZEN
 
@@ -2238,6 +2239,7 @@ void WaterRenderObjClass::renderWaterMesh(void)
 	static Real PhasePerFrameY=0.1f;
 
 	//update the mesh heights for this frame (update buffer is 2 samples wider/taller due to border)
+	WaterMeshData *pData;
 	for (int j =0,pData=m_meshData; j<(my+2); j++)
 	{	
 		for (int i =0; i<(mx+2); i++)
@@ -2281,7 +2283,8 @@ void WaterRenderObjClass::renderWaterMesh(void)
 	Real bumpSizeDiv2=0.3f*cellSizeY/BUMP_SIZE;
 
 	//Data has a 1 vertex padding all around it so we don't need to special-case edges.  Improves performance
-	for (int j =0,pData=m_meshData+mx+2+1; j<my; j++,pData+=2)	//skip 2 horizontal border samples after each row
+	pData = m_meshData+mx+2+1;
+	for (int j =0; j<my; j++,pData+=2)	//skip 2 horizontal border samples after each row
 	{	
 		Real y=(float)j*cellSizeY;
 		Real v1Offset=m_riverVOrigin+(float)j*vScale + uvCosScale*WWMath::Fast_Sin(sinOffset+y*PI/(8*MAP_XY_FACTOR));
@@ -2890,7 +2893,7 @@ void WaterRenderObjClass::setupFlatWaterShader(void)
 		else
 		{	//Assume no shroud, so stage 3 will be "NULL" texture but using actual white because
 			//pixel shader on GF4 generates random colors with SetTexture(3,NULL).
-			DX8Wrapper::_Get_D3D_Device8()->SetTexture(3,m_whiteTexture->Peek_DX8_Texture());	
+			DX8Wrapper::_Get_D3D_Device8()->SetTexture(3,m_whiteTexture->Peek_Vulkan_Texture());	
 		}
 	}
 
@@ -2912,8 +2915,8 @@ void WaterRenderObjClass::setupFlatWaterShader(void)
 	Bool doSparkles = true;
 
 	if (m_trapezoidWaterPixelShader && doSparkles) {
-		DX8Wrapper::_Get_D3D_Device8()->SetTexture(1,m_waterSparklesTexture->Peek_DX8_Texture());	
-		DX8Wrapper::_Get_D3D_Device8()->SetTexture(2,m_waterNoiseTexture->Peek_DX8_Texture());	
+		DX8Wrapper::_Get_D3D_Device8()->SetTexture(1,m_waterSparklesTexture->Peek_Vulkan_Texture());	
+		DX8Wrapper::_Get_D3D_Device8()->SetTexture(2,m_waterNoiseTexture->Peek_Vulkan_Texture());	
 
 		DX8Wrapper::Set_DX8_Texture_Stage_State(1,  D3DTSS_ADDRESSU, D3DTADDRESS_WRAP);
 		DX8Wrapper::Set_DX8_Texture_Stage_State(1,  D3DTSS_ADDRESSV, D3DTADDRESS_WRAP);

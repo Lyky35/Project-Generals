@@ -753,6 +753,7 @@ struct IDirect3DDevice8 {
 	HRESULT SetPixelShaderConstant(UINT, const void*, UINT) { return S_OK; }
 	HRESULT SetPixelShaderConstant(UINT, const D3DXVECTOR4&, UINT) { return S_OK; }
 	HRESULT SetVertexShaderConstant(UINT, const void*, UINT) { return S_OK; }
+	HRESULT SetVertexShaderConstant(UINT, const D3DXVECTOR4&, UINT) { return S_OK; }
 	HRESULT CreateVertexShader(const DWORD*, const DWORD*, void*, DWORD) { return E_FAIL; }
 	HRESULT CreateVertexShader(const void*, const void*, void*, DWORD) { return E_FAIL; }
 	HRESULT CreateVertexShader(const DWORD*, const DWORD*, DWORD*, DWORD) { return E_FAIL; }
@@ -873,4 +874,30 @@ inline D3DMATRIX* D3DXMatrixMultiply(D3DMATRIX* pOut, const D3DMATRIX* a, const 
 	return pOut;
 }
 
+#ifndef D3DWRAP_V
+#define D3DWRAP_V 0x00002000
+#define D3DWRAP_U 0x00001000
+#define D3DWRAPCOORD_0 1
+#define D3DWRAPCOORD_1 2
+#define D3DWRAPCOORD_2 4
+#define D3DWRAPCOORD_3 8
+#endif
+inline D3DMATRIX* D3DXMatrixTranspose(D3DMATRIX* pOut, const D3DMATRIX* pM) {
+	if (pOut && pM) { for (int i=0;i<4;i++) for (int j=0;j<4;j++) { float tmp = pM->m[i][j]; pOut->m[j][i] = tmp; } }
+	return pOut;
+}
+
+inline D3DMATRIX operator*(const D3DMATRIX& a, const D3DMATRIX& b) {
+	D3DMATRIX r;
+	for (int i=0;i<4;i++) for (int j=0;j<4;j++) {
+		r.m[i][j] = a.m[0][j]*b.m[i][0] + a.m[1][j]*b.m[i][1] + a.m[2][j]*b.m[i][2] + a.m[3][j]*b.m[i][3];
+	}
+	return r;
+}
+inline D3DMATRIX& operator*=(D3DMATRIX& a, const D3DMATRIX& b) {
+	a = a * b;
+	return a;
+}
+
 #endif // DX8COMPAT_D3D8TYPES_H
+#define D3DRS_WRAP0 142

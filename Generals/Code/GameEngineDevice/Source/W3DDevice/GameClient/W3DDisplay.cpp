@@ -2968,9 +2968,8 @@ void W3DDisplay::takeScreenShot(void)
 			}
 	}
 	CreateBMPFile(pathname, image, width, height);
-#endif
-
 	delete [] image;
+#endif // legacy D3D8 front-buffer path
 
 	UnicodeString ufileName;
 	ufileName.translate(leafname);

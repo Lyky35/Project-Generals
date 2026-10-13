@@ -172,4 +172,21 @@ Next: fix remaining ~22 GameEngineDevice errors → link RTS.exe → continue NO
 
 Next: finish TerrainTex Vulkan port → any remaining GameEngineDevice files → link RTS.exe.
 
+### 2026-10-12 — TerrainTex/Granny/Shroud/Display/ShaderManager port; ~544→~23 errors
+
+- Committed `bbdab1a`, symlink restore `d765dbe`/`927329e` (sed -i had flattened case-variant links).
+- **TerrainTex**: `SurfaceClass::Lock` shadow path, `VulkanTexture`/`Peek_Vulkan_Texture`, `Release_Ref`, restored Apply UV matrices (identity+stretch+offset).
+- **W3DGranny**: removed orphan `}`/`#endif` (INCLUDE_GRANNY_IN_BUILD), declared `MeshCount`, dropped `#pragma comment(lib,granny2)`.
+- **W3DShroud**: `m_pSrcTexture` → `SurfaceClass*`, `Release_Ref`, `_Create_DX8_Surface` → `new SurfaceClass`, rect-copy → stub.
+- **W3DDisplay**: screen-capture early-return (legacy front-buffer path `#if 0`); `const int numEntriesPerLine`; debug callback 3-arg; `WinMain.h` relative include.
+- **W3DStatusCircle**: `D3DRS_BLENDOP`/`D3DBLENDOP_*` via d3d8types.
+- **W3DShaderManager**: bulk `Peek_DX8_Texture`→`Peek_Vulkan_Texture`, `Set_DX8_Texture`→`Set_Vulkan_Texture`, `float4`→`D3DXVECTOR4`; `updateNoise1/2` take `Matrix4*`; scale/offset locals; `Create*Shader`/`SetPixelShader*` stubs; `_Get_D3D8`.
+- **d3d8types**: complete `IDirect3DSurface8`/`Texture8`/`Device8` (Release/GetDesc/SetRenderTarget/CreateTexture/Create*Shader/cursor); `D3DVSD_*`; `D3DXMatrixScaling/Translation/Multiply/Inverse`; include-guard moved to EOF.
+- **Benchmark** stub static lib + CMake for `W3DShaderManager` `RunBenchmark`.
+- Case symlinks: `WWMath.h`, `Registry.h`, `W3DVideoBuffer.h`, `BitType.h`, `Heightmap.h`.
+
+**Verified:** GameEngineDevice down to **~23 errors**, all in `W3DShaderManager.cpp` (D3DXMATRIX*↔Matrix4* at noise-update call sites; `CreatePixelShader` DWORD_PTR*; a few scale/offset locals).
+
+Next: finish W3DShaderManager matrix/handle stubs → GameEngineDevice green → link RTS.exe.
+
 <!-- Append new entries below. Commit after each completed step. -->

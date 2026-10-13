@@ -89,7 +89,7 @@
 #include "WW3D2/PredLod.h"
 #include "WW3D2/WW3D.h"
 
-#include "WinMain.h"  /** @todo Remove this, it's only here because we
+#include "../../../Main/WinMain.h"  /** @todo Remove this, it's only here because we
 													are using timeGetTime, but we can remove that
 													when we have our own timer */
 #ifdef _INTERNAL

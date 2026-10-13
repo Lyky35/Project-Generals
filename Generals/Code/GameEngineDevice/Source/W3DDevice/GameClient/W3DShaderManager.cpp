@@ -289,7 +289,7 @@ Int ScreenBWFilter::set(enum FilterModes mode)
 		hr=DX8Wrapper::_Get_D3D_Device8()->SetPixelShader(m_dwBWPixelShader);
 		DX8Wrapper::_Get_D3D_Device8()->SetPixelShaderConstant(0,   D3DXVECTOR4(0.3f, 0.59f, 0.11f, 1.0f), 1);
 
-		float4	color(1.0f,1.0f,1.0f,1.0f);	//multiply color
+		D3DXVECTOR4 color(1.0f,1.0f,1.0f,1.0f);	//multiply color
 
 		if (mode == FM_VIEW_BW_BLACK_AND_WHITE)
 		{	//back & white mode
@@ -1067,6 +1067,8 @@ Int ShroudTextureShader::init(void)
 //Setup a texture projection in the given stage that applies our shroud.
 Int ShroudTextureShader::set(Int stage)
 {
+	Matrix4 scale; scale.Make_Identity();
+	Matrix4 offset; offset.Make_Identity();
 	//force WW3D2 system to set it's states so it won't later overwrite our custom settings.
 	VertexMaterialClass *vmat=VertexMaterialClass::Get_Preset(VertexMaterialClass::PRELIT_DIFFUSE);
 	DX8Wrapper::Set_Material(vmat);
@@ -1074,7 +1076,7 @@ Int ShroudTextureShader::set(Int stage)
 	if (stage < 2)
 		DX8Wrapper::Set_Texture(stage, W3DShaderManager::getShaderTexture(0));
 	else	//stages larger than 1 are not supported by W3D so set them directly
-		DX8Wrapper::Set_Vulkan_Texture(stage, W3DShaderManager::getShaderTexture(0)->Peek_Vulkan_Texture());
+		DX8Wrapper::Set_Vulkan_Texture(stage, W3DShaderManager::getShaderTexture(0));
 
 	if (stage == 0)
 	{
@@ -1172,6 +1174,8 @@ Int MaskTextureShader::init(void)
 
 Int MaskTextureShader::set(Int pass)
 {
+	Matrix4 scale; scale.Make_Identity();
+	Matrix4 offset; offset.Make_Identity();
 	Real fadeLevel=ScreenCrossFadeFilter::getCurrentFadeValue();
 
 	//Use the current fade level to scale the mask texture
@@ -1270,8 +1274,8 @@ public:
 	virtual Int set(Int pass);		///<setup shader for the specified rendering pass.
 	virtual Int init(void);			///<perform any one time initialization and validation
 	virtual void reset(void);		///<do any custom resetting necessary to bring W3D in sync.
-	void updateNoise1 (Matrix4 *destMatrix, Matrix4 *curViewInverse, Bool doUpdate=true);	///<generate the uv coordinates for Noise1 (i.e clouds)
-	void updateNoise2 (Matrix4 *destMatrix, Matrix4 *curViewInverse, Bool doUpdate=true);	///<generate the uv coordinates for Noise2 (i.e lightmap)
+	void updateNoise1 (void *destMatrix, void *curViewInverse, Bool doUpdate=true);	///<generate the uv coordinates for Noise1 (i.e clouds)
+	void updateNoise2 (void *destMatrix, void *curViewInverse, Bool doUpdate=true);	///<generate the uv coordinates for Noise2 (i.e lightmap)
 } terrainShader2Stage;
 
 ///8 stage terrain shader which only works on certain Nvidia cards.
@@ -1346,8 +1350,10 @@ void TerrainShader2Stage::reset(void)
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 1, D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_PASSTHRU|1);
 }
 
-void TerrainShader2Stage::updateNoise1(Matrix4 *destMatrix, Matrix4 *curViewInverse, Bool doUpdate)
+void TerrainShader2Stage::updateNoise1(void *vDest, void *vInv, Bool doUpdate)
 {
+	Matrix4 *destMatrix = (Matrix4*)vDest;
+	Matrix4 *curViewInverse = (Matrix4*)vInv;
 	Matrix4 scale; scale.Make_Identity();
 	Matrix4 offset; offset.Make_Identity();
 	#define STRETCH_FACTOR ((float)(1/(63.0*MAP_XY_FACTOR/2))) /* covers 63/2 tiles */
@@ -1380,11 +1386,13 @@ void TerrainShader2Stage::updateNoise1(Matrix4 *destMatrix, Matrix4 *curViewInve
 
 	// offset via identity
 	if(0) D3DXMatrixTranslation((D3DXMATRIX*)&offset, m_xOffset, m_yOffset,0);
-	*destMatrix *= offset;
+	*destMatrix = *destMatrix * offset;
 }
 
-void TerrainShader2Stage::updateNoise2(Matrix4 *destMatrix, Matrix4 *curViewInverse, Bool doUpdate)
+void TerrainShader2Stage::updateNoise2(void *vDest, void *vInv, Bool doUpdate)
 {
+	Matrix4 *destMatrix = (Matrix4*)vDest;
+	Matrix4 *curViewInverse = (Matrix4*)vInv;
 	Matrix4 scale; scale.Make_Identity();
 	Matrix4 offset; offset.Make_Identity();
 			
@@ -2788,11 +2796,11 @@ HRESULT W3DShaderManager::LoadAndCreateD3DShader(char* strFilePath, const DWORD*
 
 		if (ShaderType == TRUE)//SHADERTYPE_VERTEX)
 		{
-			hr = DX8Wrapper::_Get_D3D_Device8()->CreateVertexShader(pDeclaration, pShader, pHandle, Usage);
+			hr = DX8Wrapper::_Get_D3D_Device8()->CreateVertexShader(pDeclaration, pShader, (void*)pHandle, Usage);
 		}
 		else if (ShaderType == FALSE)//SHADERTYPE_PIXEL)
 		{
-			hr = DX8Wrapper::_Get_D3D_Device8()->CreatePixelShader(pShader, pHandle);
+			hr = DX8Wrapper::_Get_D3D_Device8()->CreatePixelShader(pShader, (void*)pHandle);
 		}
 
 		HeapFree(GetProcessHeap(), 0, (void*)pShader);
