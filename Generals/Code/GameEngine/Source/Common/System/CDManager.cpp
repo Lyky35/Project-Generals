@@ -295,3 +295,12 @@ void CDManager::destroyAllDrives( void )
 
 
 
+
+//============================================================================
+// CDManager::createDrive
+//============================================================================
+
+CDDriveInterface* CDManager::createDrive( void )
+{
+	return new CDDrive;
+}

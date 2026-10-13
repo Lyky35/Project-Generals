@@ -70,6 +70,12 @@
 #include "Common/GameLOD.h"
 #include "Common/Registry.h"
 
+#include <stdio.h>
+#if defined(__GNUC__)
+#include <cxxabi.h>
+#include <typeinfo>
+#endif
+
 #include "GameLogic/Armor.h"
 #include "GameLogic/AI.h"
 #include "GameLogic/CaveSystem.h"
@@ -509,18 +515,38 @@ void GameEngine::init( int argc, char *argv[] )
 		{
 			RELEASE_CRASHLOCALIZED("ERROR:D3DFailurePrompt", "ERROR:D3DFailureMessage");
 		}
+		else
+		{
+			char crashMsg[128];
+			snprintf(crashMsg, sizeof(crashMsg),
+				"ErrorCode 0x%08x during initialization.", (unsigned int)ec);
+			RELEASE_CRASH((crashMsg));
+		}
 	}
 	catch (INIException e)
 	{
 		if (e.mFailureMessage)
 			RELEASE_CRASH((e.mFailureMessage));
 		else
-			RELEASE_CRASH(("Uncaught Exception during initialization."));
+			RELEASE_CRASH(("Uncaught Exception during initialization (INIException)."));
 
 	}
 	catch (...)
 	{
-		RELEASE_CRASH(("Uncaught Exception during initialization."));
+		const char *typeName = "unknown";
+#if defined(__GNUC__)
+		std::type_info *ti = __cxxabiv1::__cxa_current_exception_type();
+		if (ti != NULL)
+		{
+			int status = 0;
+			char *demangled = __cxxabiv1::__cxa_demangle(ti->name(), NULL, NULL, &status);
+			typeName = (status == 0 && demangled != NULL) ? demangled : ti->name();
+		}
+#endif
+		char crashMsg[256];
+		snprintf(crashMsg, sizeof(crashMsg),
+			"Uncaught Exception during initialization (type %s).", typeName);
+		RELEASE_CRASH((crashMsg));
 	}
 
 	if(!TheGlobalData->m_playIntro)

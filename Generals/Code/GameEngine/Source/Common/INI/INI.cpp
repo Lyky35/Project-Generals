@@ -71,6 +71,17 @@
 
 static Xfer *s_xfer = NULL;
 
+// breadcrumb for INI failures - appended to RTS_START.LOG so a failed boot
+// names the file/block that killed init (release builds have no DEBUG_CRASH).
+static void iniBootLog(const char *msg)
+{
+	FILE *lf = fopen("RTS_START.LOG", "a");
+	if (lf) {
+		fprintf(lf, "%s\n", msg);
+		fclose(lf);
+	}
+}
+
 //-------------------------------------------------------------------------------------------------
 /** This is the table of data types we can have in INI files.  To add a new data type
 	* block make a new entry in this table and add an appropriate parsing function */
@@ -212,13 +223,17 @@ void INI::loadDirectory( AsciiString dirName, Bool subdirs, INILoadType loadType
 {
 	// sanity
 	if( dirName.isEmpty() )
+	{
+		iniBootLog("INI: loadDirectory called with empty directory");
 		throw INI_INVALID_DIRECTORY;
+	}
 
 	try
 	{
 		FilenameList filenameList;
 		dirName.concat('\\');
 		TheFileSystem->getFileListInDirectory(dirName, "*.ini", filenameList, TRUE);
+
 		// Load the INI files in the dir now, in a sorted order.  This keeps things the same between machines
 		// in a network game.
 		FilenameList::const_iterator it = filenameList.begin();
@@ -263,6 +278,9 @@ void INI::prepFile( AsciiString filename, INILoadType loadType )
 	{
 
 		DEBUG_CRASH(( "INI::load, cannot open file '%s', file already open\n", filename.str() ));
+		char iniMsg[512];
+		snprintf(iniMsg, sizeof(iniMsg), "INI: file already open while loading '%s'", filename.str());
+		iniBootLog(iniMsg);
 		throw INI_FILE_ALREADY_OPEN;
 
 	}  // end if
@@ -273,6 +291,9 @@ void INI::prepFile( AsciiString filename, INILoadType loadType )
 	{
 
 		DEBUG_CRASH(( "INI::load, cannot open file '%s'\n", filename.str() ));
+		char iniMsg[512];
+		snprintf(iniMsg, sizeof(iniMsg), "INI: cannot open '%s'", filename.str());
+		iniBootLog(iniMsg);
 		throw INI_CANT_OPEN_FILE;
 
 	}  // end if
@@ -377,6 +398,7 @@ void INI::load( AsciiString filename, INILoadType loadType, Xfer *pXfer )
 						DEBUG_CRASH(("Error parsing block '%s' in INI file '%s'\n", token, m_filename.str()) );
 						char buff[1024];
 						sprintf(buff, "Error parsing INI file '%s' (Line: '%s')\n", m_filename.str(), currentLine.str());
+						iniBootLog(buff);
 
 						throw INIException(buff);
 					}
@@ -388,6 +410,10 @@ void INI::load( AsciiString filename, INILoadType loadType, Xfer *pXfer )
 				{
 					DEBUG_ASSERTCRASH( 0, ("[LINE: %d - FILE: '%s'] Unknown block '%s'\n",
 														 getLineNum(), getFilename().str(), token ) );
+					char iniMsg[512];
+					snprintf(iniMsg, sizeof(iniMsg), "INI: unknown block '%s' in '%s' line %d",
+						token, m_filename.str(), getLineNum());
+					iniBootLog(iniMsg);
 					throw INI_UNKNOWN_TOKEN;
 				}
 				

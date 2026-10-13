@@ -66,26 +66,24 @@ enum
 //-------------------------------------------------------------------------------------------------
 /** Status return codes for the INI reader */
 //-------------------------------------------------------------------------------------------------
-enum
-{
-	// we map all of these to the same "real" error code, because
-	// we generally don't care why it failed; but since the code distinguishes,
-	// I didn't want to wipe out that intelligence. if we ever need to distinguish
-	// failure modes at runtime, just put in real values for these.
-	INI_CANT_SEARCH_DIR		= ERROR_BAD_INI,
-	INI_INVALID_DIRECTORY = ERROR_BAD_INI,
-	INI_INVALID_PARAMS		= ERROR_BAD_INI,
-	INI_INVALID_NAME_LIST = ERROR_BAD_INI,
-	INI_INVALID_DATA			= ERROR_BAD_INI,
-	INI_MISSING_END_TOKEN = ERROR_BAD_INI,
-	INI_UNKNOWN_TOKEN			= ERROR_BAD_INI,
-	INI_BUFFER_TOO_SMALL  = ERROR_BAD_INI,
-	INI_FILE_NOT_OPEN			= ERROR_BAD_INI,
-	INI_FILE_ALREADY_OPEN = ERROR_BAD_INI,
-	INI_CANT_OPEN_FILE		= ERROR_BAD_INI,
-	INI_UNKNOWN_ERROR			= ERROR_BAD_INI,
-	INI_END_OF_FILE				= ERROR_BAD_INI
-};
+// We map all of these to the same "real" error code, because we generally don't
+// care why it failed; the original shipped these as an unnamed enum, whose throws
+// are a distinct (anonymous) type that never matched catch(ErrorCode) - every INI
+// failure therefore escaped as an uncaught exception ("Technical Difficulties").
+// Declaring them as ErrorCode constants makes the existing catch(ErrorCode) work.
+static const ErrorCode INI_CANT_SEARCH_DIR		= ERROR_BAD_INI;
+static const ErrorCode INI_INVALID_DIRECTORY = ERROR_BAD_INI;
+static const ErrorCode INI_INVALID_PARAMS		= ERROR_BAD_INI;
+static const ErrorCode INI_INVALID_NAME_LIST = ERROR_BAD_INI;
+static const ErrorCode INI_INVALID_DATA			= ERROR_BAD_INI;
+static const ErrorCode INI_MISSING_END_TOKEN = ERROR_BAD_INI;
+static const ErrorCode INI_UNKNOWN_TOKEN			= ERROR_BAD_INI;
+static const ErrorCode INI_BUFFER_TOO_SMALL  = ERROR_BAD_INI;
+static const ErrorCode INI_FILE_NOT_OPEN			= ERROR_BAD_INI;
+static const ErrorCode INI_FILE_ALREADY_OPEN = ERROR_BAD_INI;
+static const ErrorCode INI_CANT_OPEN_FILE		= ERROR_BAD_INI;
+static const ErrorCode INI_UNKNOWN_ERROR			= ERROR_BAD_INI;
+static const ErrorCode INI_END_OF_FILE				= ERROR_BAD_INI;
 
 //-------------------------------------------------------------------------------------------------
 /** Function typedef for parsing data block fields.

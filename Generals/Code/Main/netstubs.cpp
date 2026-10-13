@@ -34,7 +34,7 @@ void FirewallHelperClass::getManglerName(Int, Char*) {}
 UnsignedShort FirewallHelperClass::getManglerResponse(UnsignedShort, Int) { return 0; }
 Bool FirewallHelperClass::sendToManglerFromPort(UnsignedInt, UnsignedShort, UnsignedShort, Bool) { return FALSE; }
 void FirewallHelperClass::flagNeedToRefresh(Bool) {}
-FirewallHelperClass* createFirewallHelper() { return 0; }
+FirewallHelperClass* createFirewallHelper() { return new FirewallHelperClass; }
 FirewallHelperClass* TheFirewallHelper = 0;
 
 // --- DX8WebBrowser ---
@@ -91,11 +91,37 @@ PSPlayerStats::PSPlayerStats(const PSPlayerStats&) {}
 void PSPlayerStats::reset() {}
 
 // INI parsers
-void INI::parseOnlineChatColorDefinition(INI*) {}
-void INI::parseWebpageURLDefinition(INI*) {}
+// GameSpy/web-page INI blocks no longer have real parsers, but the block's
+// lines MUST still be consumed (up to the END token). An empty stub returns
+// immediately and the next indented key is misread as a new top-level block -
+// which threw during boot and produced the "Technical Difficulties" box.
+void INI::parseOnlineChatColorDefinition(INI* ini)
+{
+	while (!ini->isEOF())
+	{
+		ini->readLine();
+		const char *tok = strtok(ini->m_buffer, ini->getSeps());
+		if (tok && stricmp(tok, ini->m_blockEndToken) == 0)
+			break;
+	}
+}
+void INI::parseWebpageURLDefinition(INI* ini)
+{
+	while (!ini->isEOF())
+	{
+		ini->readLine();
+		const char *tok = strtok(ini->m_buffer, ini->getSeps());
+		if (tok && stricmp(tok, ini->m_blockEndToken) == 0)
+			break;
+	}
+}
 
 // CD manager / misc
-void* CreateCDManager() { return 0; }
+// the Win32CDManager device class isn't built (no CD/SafeDisc in this port);
+// wire the generic CDManager instead - returning NULL here crashed
+// initSubsystem(TheCDManager, ...) with this=0x8 on the first boot.
+#include "Common/CDManager.h"
+CDManagerInterface* CreateCDManager(void) { return new CDManager; }
 void CheckReOpenPlayerInfo() {}
 void ReOpenPlayerInfo() {}
 void ReloadAllTextures() {}

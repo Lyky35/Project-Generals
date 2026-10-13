@@ -178,7 +178,9 @@ class CDManager : public CDManagerInterface
 
 	protected:
 
-	LList			m_drives;					///< List of drives detected on this machine
+		virtual CDDriveInterface* createDrive( void );
+
+		LList			m_drives;					///< List of drives detected on this machine
 };
 
 //----------------------------------------------------------------------------

@@ -477,6 +477,59 @@ with Generals installed (Windows 10).
 Next: run on Windows 10 with real game data; keep the stack-walk filter (it's now the
 standard diagnostic); wine harness at /tmp/opencode/rts_test is reusable.
 
+### 2026-10-13 — "Technical Difficulties" box ROOT-CAUSED (three bugs) + fixed; boots into GUI construction
+
+User report: on Windows 10 with real game data, RTS.exe shows the infamous
+"You have encountered a serious error... Technical Difficulties" box.
+(GenPatcher lore applies to the ORIGINAL exe - SafeDisc/GameSpy are already
+gone here; ours was three separate port bugs, found by running the user's
+game install under wine at /tmp/opencode/rts_data with full .big data.)
+
+**Bug 1 - stubbed GameSpy INI parser desynced the whole INI reader:**
+- `GameSpy/Chat.cpp` is excluded from the build; `Main/netstubs.cpp` had
+  `INI::parseOnlineChatColorDefinition(INI*) {}` - an EMPTY stub. When
+  Multiplayer.ini's OnlineChatColors block hit it, the stub returned without
+  consuming the block, the next indented key ("Default") was parsed as a
+  top-level block, and INI::load threw.
+- Same for `parseWebpageURLDefinition`.
+- Deeper: the INI_* error constants were an UNNAMED ENUM in INI.h - thrown as
+  an anonymous type (`._anon_700`, confirmed via __cxa_throw + typeinfo) that
+  never matched `catch (ErrorCode)` in GameEngine::init, so every INI failure
+  escaped to catch(...) = the generic box.
+- Fixes: both stubs now consume the block up to the END token; INI.h constants
+  are now `static const ErrorCode` so catch(ErrorCode) matches; the
+  catch(ErrorCode) path RELEASE_CRASHes with the code value instead of
+  silently swallowing; INI.cpp logs failing files/blocks to RTS_START.LOG.
+
+**Bug 2 - CreateCDManager returned NULL:**
+- netstubs `void* CreateCDManager(){return 0;}` -> initSubsystem(TheCDManager)
+  dereferenced NULL (crash `this=0x8` in AsciiString::set via
+  SubsystemInterfaceList::initSubsystem).
+- Fix: CDManager (generic, compiled in GameEngine) is now concrete
+  (added the createDrive override returning new CDDrive) and
+  CreateCDManager returns `new CDManager`. createFirewallHelper likewise.
+
+**Bug 3 - rts::hash<AsciiString> hashed POINTERS, not contents:**
+- STLTypedefs.h specialized it as `std::hash<const char*>((const char*)ast.str())`
+  - old MSVC hashed string CONTENTS, libstdc++ hashes the pointer. Every
+  AsciiString-keyed hash_map (ThingFactory!) inserted under one address and
+  looked up by another: `Object GenericBridgeTower` was registered and then
+  NOT FOUND by the ObjectReskin two lines later ("ObjectReskin must come
+  after the original Object"), which threw INI_INVALID_DATA = the box.
+- Fix: FNV-1a content hash. Object loading went from 3 templates to 1128+.
+
+**Boot state now (wine + user's game data):**
+full static init -> WinMain -> window -> memory manager -> GameMain ->
+entire GameEngine::init (all subsystems, ~all INIs, 1128 object templates)
+-> GameClient::init -> IMEManager::init -> winCreateFromScript ->
+parseWindow -> GadgetStaticTextSetText -> **UnicodeString copy-ctor AV**
+(read of garbage 0xfe30dd08). Next session: window-script text data
+(_TextData/WinInstanceData) x64 issue during GUI construction.
+
+Next: diagnose the GadgetStaticText UnicodeString crash (likely another
+x64 struct/pointer issue in the .win script parser); strip remaining
+release-mode breadcrumbs if desired; then runtime smoke on Windows 10.
+
 <!-- Append new entries below. Commit after each completed step. -->
 
 

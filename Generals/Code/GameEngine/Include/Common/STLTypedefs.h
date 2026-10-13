@@ -198,8 +198,17 @@ namespace rts
 	{
 		size_t operator()(AsciiString ast) const
 		{ 
-			std::hash<const char *> tmp;
-			return tmp((const char *) ast.str());
+			// Must hash the string CONTENT: the original MSVC std::hash<const char*>
+			// hashed contents, but libstdc++ hashes the pointer - which broke every
+			// hash_map keyed by AsciiString (ThingFactory lookups failed instantly).
+			const char *s = (const char *) ast.str();
+			size_t h = 2166136261u;
+			while (*s)
+			{
+				h ^= (unsigned char)*s++;
+				h *= 16777619u;
+			}
+			return h;
 		}
 	};
 
