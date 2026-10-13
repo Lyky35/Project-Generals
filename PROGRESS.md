@@ -231,6 +231,29 @@ Next: bundle OpenAL32.dll/SDL2.dll/vulkan-1.dll on Windows; replace ignore-all/s
 
 Next: replace link stubs with real backends (OpenAL Miles, FFmpeg Bink, GameSpy), wire real Vulkan loader, runtime test on Windows 10; GeneralsMD after Generals tree renders.
 
+
+### 2026-10-13 — v1.1 first boot crash diagnosed: x64 pointer truncation in StringClass
+
+Reported: Windows 10, `0xc0000005` at fault offset `0x58d513`.
+
+- **Not an expected stub crash** — disassembly of that RVA in the shipped exe landed in
+  `StringClass::Get_String(int,bool)` at `movq $0xf8,-8(%rax)`.
+- **Root cause:** `wwstring.cpp` temp-pool math used
+  `reinterpret_cast<unsigned>(m_TempStrings)` — truncates the 64-bit `.bss` address to 32 bits
+  (`m_TempStrings` lives at `0x1408e3ce0`). First temporary `StringClass` alloc then wrote a
+  header at a bogus low address → AV during early init, before any Vulkan/GameSpy code runs.
+  Classic 32-bit-era code ported to x64 without updating pointer arithmetic.
+- **Fix:** all three casts in `Get_String`/`Free_String` → `uintptr_t` (+ `<stdint.h>`).
+  Verified in new binary: temp-pool base loaded with 64-bit `lea ..., %r8` and
+  `and $0xfffffffffffff800,%r8` — no 32-bit truncation on the header store.
+- Repo-wide scan: no other `reinterpret_cast<unsigned>(ptr)` / `(DWORD)ptr` truncations found.
+- Rebuilt `RTS.exe`, refreshed both v1.1 zips, updated release assets.
+
+Still expected to fail later (not yet fixed, by design for this milestone):
+stubbed `vk*` loader returning garbage into renderer init, `ignore-all` leftovers if any,
+GameSpy/Firewall no-ops. Those are NOTES.md next-steps, not this bug.
+
 <!-- Append new entries below. Commit after each completed step. -->
+
 
 
