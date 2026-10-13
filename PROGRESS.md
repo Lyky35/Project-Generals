@@ -100,4 +100,27 @@ Fixed remaining files in one pass:
 
 Next: GameEngineDevice + link RTS.exe.
 
+### 2026-10-12 — Committed pending WIP; GameEngineDevice baseline measured
+
+- Committed leftover working-tree changes as `c0ed877` (was uncommitted since after step 4):
+  - Vendored `third_party/include/{AL,SDL2,vulkan,vk_video}` — replaced symlinks-to-`/usr/include` with real header copies.
+  - ZLib: `zlib.h`/`zconf.h` typechange symlink → vendored real files.
+  - WW3D2 case-variant header symlinks (`AnimObj.h`→`animobj.h`, `TextureLoader.h`→`textureloader.h`, etc.) per NOTES.md arch decision.
+  - `bink.h` stub (Bink types for the FFmpeg path).
+  - `UnicodeString.h`: added `#include <wchar.h>`.
+- Pushed to `origin/main`.
+
+**GameEngineDevice build baseline** (`cmake --build build --target GameEngineDevice`):
+
+- Fails with **~544 errors**; `RTS.exe` not reached. Error breakdown by file:
+  - `Source/MilesAudioDevice/MilesAudioManager.cpp` — **~424 errors** (dominant). Miles "port" is a stub: missing `AIL_*` decls (`AIL_set_sample_volume_pan`, `AIL_register_EOS_callback`, `AIL_decompress_ADPCM`, `AIL_mem_free_lock`, …), missing `H3DSAMPLE`/`HAUDIO`/`AILSOUNDINFO`, missing `U32`, `WAVE_FORMAT_PCM`/`WAVE_FORMAT_IMA_ADPCM`, `m_mutex`/`CreateMutex`/`CloseHandle`, `struct PlayingAudio` lacks `m_3DSample`, `struct OpenAudioFile` lacks `m_soundInfo`, `ProviderInfo` lacks `id`, `m_listener`/`m_delayFilter` missing, `m_available3DSamples` non-class.
+  - `Include/MilesAudioDevice/MilesAudioManager.h` — ~30 errors (upstream of the .cpp).
+  - `Source/VideoDevice/Bink/binkvideoplayer.cpp` — 4 orphan `#endif` (lines 239/254/265/336; preprocessor corruption, same class NOTES.md #2 flagged).
+  - `Include/Common/UnicodeString.h` — `_wcsicmp` undeclared under MinGW (×14; `<wchar.h>` alone doesn't provide it here).
+  - `Include/Common/ScopedMutex.h` — 8 errors (likely Windows mutex API missing under this config).
+  - `Include/W3DDevice/GameClient/WorldHeightMap.h:36` — **fatal**: `#include "WWLib/RefCount.h"` not found (file exists as `WWLib/refcount.h` + case-variant symlinks; include-path/case issue).
+- W3DDevice and other GameEngineDevice sources not fully diagnosed yet — make stops at first fatal/failed objs; Miles dominates the log.
+
+Next: fix GameEngineDevice compile errors (Miles stub, Bink #endif, `_wcsicmp`, RefCount include), then link RTS.exe.
+
 <!-- Append new entries below. Commit after each completed step. -->
