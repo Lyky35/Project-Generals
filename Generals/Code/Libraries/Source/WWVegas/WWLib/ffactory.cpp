@@ -1,3 +1,4 @@
+#include "rts_bootlog.h"
 /*
 **	Command & Conquer Generals(tm)
 **	Copyright 2025 Electronic Arts Inc.
@@ -48,6 +49,8 @@
 ** not derive from SimpleFileFactoryClass, _TheSimpleFileFactory should be set to NULL.
 */
 SimpleFileFactoryClass		_DefaultFileFactory;
+struct BootMarkFFactory { BootMarkFFactory() { rtsBootLog("boot:after-ffactory"); } };
+__attribute__((init_priority(230))) static BootMarkFFactory boot_mark_ffactory;
 FileFactoryClass *			_TheFileFactory = &_DefaultFileFactory;
 
 RawFileFactoryClass		_DefaultWritingFileFactory;

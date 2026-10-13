@@ -401,7 +401,27 @@ Dozens of **file-scope `CriticalSectionClass` objects** each ran
   Static ctors now only zero the handle (no new, no Win32).
 - Still have early/late static markers + crash filter in WinMain for the next run.
 
+
+### 2026-10-13 — Boot bisect markers (init_priority 101–65535)
+
+New `rts_bootlog.h` + markers with distinct `init_priority` so **one run** names the
+static-init window that dies in ucrtbase:
+
+| Priority | Marker line |
+|----------|-------------|
+| 101 | `static-init` |
+| 200 | `boot:after-wwstring-mutex` |
+| 210 | `boot:after-systimer` |
+| 220 | `boot:after-cpudetect` |
+| 230 | `boot:after-ffactory` |
+| 240 | `boot:after-frame-timer` |
+| 250 | `boot:after-mss-statics` |
+| 65535 | `late-static-done` |
+
+Plus `CRASH … module=…` from the unhandled-exception filter.
+
 <!-- Append new entries below. Commit after each completed step. -->
+
 
 
 

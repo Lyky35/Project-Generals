@@ -35,8 +35,11 @@
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 #include "systimer.h"
+#include "rts_bootlog.h"
 
 SysTimeClass SystemTime;
+struct BootMarkSysTimer { BootMarkSysTimer() { rtsBootLog("boot:after-systimer"); } };
+__attribute__((init_priority(210))) static BootMarkSysTimer boot_mark_systimer;
 
 
 /***********************************************************************************************

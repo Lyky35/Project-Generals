@@ -38,6 +38,7 @@
 #include "win.h"
 #include "wwmemlog.h"
 #include "mutex.h"
+#include "rts_bootlog.h"
 #include <stdio.h>
 #include <stdint.h>
 
@@ -47,6 +48,8 @@
 ///////////////////////////////////////////////////////////////////
 
 CriticalSectionClass StringClass::m_Mutex;
+struct BootMarkWWString { BootMarkWWString() { rtsBootLog("boot:after-wwstring-mutex"); } };
+__attribute__((init_priority(200))) static BootMarkWWString boot_mark_wwstring;
 
 TCHAR		StringClass::m_NullChar					= 0;
 TCHAR *	StringClass::m_EmptyString				= &m_NullChar;

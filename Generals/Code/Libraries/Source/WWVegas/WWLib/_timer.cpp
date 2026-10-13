@@ -34,6 +34,7 @@
  * Functions:                                                                                  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
+#include "rts_bootlog.h"
 #include	"always.h"
 #include	"_timer.h"
 
@@ -42,6 +43,8 @@
 **	Game frame timer (this is synced between processes).
 */
 CDTimerClass<SystemTimerClass> FrameTimer;
+struct BootMarkTimer { BootMarkTimer() { rtsBootLog("boot:after-frame-timer"); } };
+__attribute__((init_priority(240))) static BootMarkTimer boot_mark_timer;
 
 /***************************************************************************
 ** Tick Count global timer object.

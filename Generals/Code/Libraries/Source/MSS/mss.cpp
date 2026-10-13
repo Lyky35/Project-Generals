@@ -2,6 +2,9 @@
 // Single voice pool shared by 2D samples, 3D samples, streams and quick one-shots.
 // Handles: HSAMPLE/HSTREAM/HAUDIO = 1-based pool index; H3DSAMPLE = (void*)(uintptr_t)index.
 #include "MSS/mss.h"
+#include "rts_bootlog.h"
+struct BootMarkMss { BootMarkMss() { rtsBootLog("boot:after-mss-statics"); } };
+__attribute__((init_priority(250))) static BootMarkMss boot_mark_mss;
 
 #include <AL/al.h>
 #include <AL/alc.h>

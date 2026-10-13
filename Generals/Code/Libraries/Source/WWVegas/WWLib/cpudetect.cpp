@@ -18,6 +18,7 @@
 
 #include "cpudetect.h"
 #include "wwstring.h"
+#include "rts_bootlog.h"
 #include "wwdebug.h"
 #include "thread.h"
 #include "mpu.h"
@@ -51,6 +52,8 @@ static void Get_OS_Info(
 
 
 StringClass CPUDetectClass::ProcessorLog;
+struct BootMarkCpuDetect { BootMarkCpuDetect() { rtsBootLog("boot:after-cpudetect"); } };
+__attribute__((init_priority(220))) static BootMarkCpuDetect boot_mark_cpudetect;
 StringClass CPUDetectClass::CompactLog;
 
 int CPUDetectClass::ProcessorType;
