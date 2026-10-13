@@ -62,3 +62,6 @@ target_link_libraries(RTS PRIVATE
 # VulkanRenderer: Native Vulkan rendering backend (replaces D3D8)
 # WPAudio: Ported to OpenAL emulation
 # FFmpegVideo: FFmpeg video decoding library (subdirectory)
+
+# Prefer static MinGW runtimes to avoid libstdc++/libwinpthread DLL TLS/DllMain issues
+target_link_options(RTS PRIVATE -static-libgcc -static-libstdc++)

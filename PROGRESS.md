@@ -357,7 +357,29 @@ Root causes addressed:
 
 Next: retest on Windows 10; if it still dies, the log file pinpoints the phase.
 
+
+### 2026-10-13 — ucrtbase crash with NO log: static-init / DLL-load path
+
+Same ucrtbase 0xc0000005 @ 0x26cbc and **no RTS_START.LOG** ⇒ crash is **before WinMain**
+(DLL static imports load first, then CRT static ctors).
+
+Mitigations in this build:
+- **`-static-libgcc -static-libstdc++`** — no more `libgcc_s_seh-1.dll` / `libstdc++-6.dll`.
+- **`std::mutex` in mss.cpp → Win32 `CRITICAL_SECTION`** (avoids pthread from our code).
+- **FFmpeg rebuilt `--disable-pthreads`** (was still pulling `clock_gettime64`/`libwinpthread`).
+- Time shims (`clock_gettime64`/`nanosleep64`/`clock`) in linkstubs.
+- **`RTS_START.LOG` static-init breadcrumb** via `__attribute__((init_priority(101)))`
+  (kernel32 CreateFile/WriteFile only — runs in CRT static ctor phase).
+- **`RTS_DIAG.exe`** in the zip: WinMain + `LoadLibrary` OpenAL32.dll / vulkan-1.dll + log.
+  Run it first — if a message box appears, those DLLs load OK and the crash is in our static init.
+  If RTS_DIAG.LOG says a DLL failed, that DLL's DllMain is the crash source.
+
+Still imported by RTS.exe: OpenAL32, vulkan-1, libwinpthread, bcrypt + system DLLs.
+
+Next: user runs RTS_DIAG.exe + RTS.exe; RTS_START.LOG first line tells us the phase.
+
 <!-- Append new entries below. Commit after each completed step. -->
+
 
 
 

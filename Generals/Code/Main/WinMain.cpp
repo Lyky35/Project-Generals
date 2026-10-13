@@ -91,6 +91,31 @@ extern void Reset_D3D_Device(bool active);
 
 static Bool gInitializing = false;
 static Bool gDoPaint = true;
+// Kernel32-only breadcrumb: runs during CRT static init (before WinMain).
+// If RTS_START.LOG contains "static-init" the crash is after this constructor.
+static void earlyStaticLog(void)
+{
+	char path[MAX_PATH];
+	path[0] = 0;
+	GetModuleFileNameA(NULL, path, MAX_PATH);
+	char *slash = strrchr(path, '\\');
+	if (slash) strcpy(slash + 1, "RTS_START.LOG");
+	else strcpy(path, "RTS_START.LOG");
+	HANDLE h = CreateFileA(path, GENERIC_WRITE, FILE_SHARE_READ, NULL,
+		CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	if (h != INVALID_HANDLE_VALUE) {
+		const char *msg = "static-init\r\n";
+		DWORD written = 0;
+		WriteFile(h, msg, (DWORD)strlen(msg), &written, NULL);
+		CloseHandle(h);
+	}
+}
+struct EarlyStaticLog {
+	EarlyStaticLog() { earlyStaticLog(); }
+};
+__attribute__((init_priority(101)))
+static EarlyStaticLog g_earlyStaticLog;
+
 static Bool isWinMainActive = false; 
 
 static HBITMAP gLoadScreenBitmap = NULL;

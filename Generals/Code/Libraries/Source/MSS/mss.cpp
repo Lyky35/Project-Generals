@@ -6,7 +6,7 @@
 #include <AL/al.h>
 #include <AL/alc.h>
 
-#include <mutex>
+#include <windows.h>
 #include <vector>
 #include <cstring>
 #include <cstdio>
@@ -41,7 +41,8 @@ struct Voice {
 	U16 channels = 2;
 };
 
-std::mutex g_mx;
+static CRITICAL_SECTION g_cs;
+static bool g_csInited = false;
 ALCdevice* g_dev = nullptr;
 ALCcontext* g_ctx = nullptr;
 bool g_started = false;
@@ -226,15 +227,26 @@ static void applyGain(Voice& v) {
 
 } // namespace
 
+// Minimal critical-section guard (avoid libwinpthread / std::mutex)
+struct CsLock {
+	CsLock() {
+		if (!g_csInited) { InitializeCriticalSection(&g_cs); g_csInited = true; }
+		EnterCriticalSection(&g_cs);
+	}
+	~CsLock() { LeaveCriticalSection(&g_cs); }
+	CsLock(const CsLock&) = delete;
+	CsLock& operator=(const CsLock&) = delete;
+};
+
 // --- Lifecycle -------------------------------------------------------------
 
 extern "C" int AIL_startup(void) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	return ensureDevice() ? 1 : 0;
 }
 
 extern "C" void AIL_shutdown(void) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (!g_started) return;
 	for (auto& v : g_voices) {
 		if (v.used && v.source) {
@@ -269,7 +281,7 @@ extern "C" void AIL_service(void) {
 	Fired fired[64];
 	int n = 0;
 	{
-		std::lock_guard<std::mutex> lk(g_mx);
+		CsLock lk;
 		if (!g_started) return;
 		for (size_t i = 0; i < g_voices.size() && n < 64; ++i) {
 			Voice& v = g_voices[i];
@@ -306,31 +318,31 @@ extern "C" void AIL_service(void) {
 // --- 2D samples ------------------------------------------------------------
 
 extern "C" void AIL_register_EOS_callback(HSAMPLE s, AILSAMPLECB cb) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom2D(s)) v->eos2d = cb;
 }
 
 extern "C" void AIL_set_sample_volume_pan(HSAMPLE s, float vol, float pan) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom2D(s)) { v->volume = vol; v->pan = pan; applyGain(*v); }
 }
 extern "C" void AIL_sample_volume_pan(HSAMPLE s, float* vol, float* pan) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	Voice* v = voiceFrom2D(s);
 	if (vol) *vol = v ? v->volume : 1.0f;
 	if (pan) *pan = v ? v->pan : 0.5f;
 }
 extern "C" void AIL_set_sample_playback_rate(HSAMPLE s, U32 rate) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom2D(s)) { v->rate = rate; alSourcef(v->source, AL_PITCH, 1.0f); }
 }
 extern "C" U32 AIL_sample_playback_rate(HSAMPLE s) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom2D(s)) return v->rate;
 	return 22050;
 }
 extern "C" void AIL_start_sample(HSAMPLE s) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom2D(s)) {
 		applyGain(*v);
 		alSourcei(v->source, AL_LOOPING, AL_FALSE);
@@ -340,28 +352,28 @@ extern "C" void AIL_start_sample(HSAMPLE s) {
 	}
 }
 extern "C" void AIL_stop_sample(HSAMPLE s) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom2D(s)) { alSourceStop(v->source); v->started = false; v->paused = false; }
 }
 extern "C" void AIL_resume_sample(HSAMPLE s) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom2D(s)) { if (v->buffer) { alSourcePlay(v->source); v->started = true; v->paused = false; } }
 }
 extern "C" void AIL_release_sample_handle(HSAMPLE s) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom2D(s)) { freeVoiceBuffers(*v); v->used = false; v->kind = VK_NONE; }
 }
 extern "C" HSAMPLE AIL_allocate_sample_handle(HDIGDRIVER) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	return allocVoice(VK_2D);
 }
 extern "C" int AIL_init_sample(HSAMPLE s) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom2D(s)) { freeVoiceBuffers(*v); v->kind = VK_2D; v->used = true; return 1; }
 	return 0;
 }
 extern "C" int AIL_set_sample_file(HSAMPLE s, void* file, U32 offset) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (!file) return 0;
 	Voice* v = voiceFrom2D(s);
 	if (!v) return 0;
@@ -371,12 +383,12 @@ extern "C" int AIL_set_sample_file(HSAMPLE s, void* file, U32 offset) {
 	return uploadWavToVoice(*v, (const unsigned char*)file, (size_t)-1, offset) ? 1 : 0;
 }
 extern "C" void AIL_set_sample_user_data(HSAMPLE s, U32 index, void* val) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	Voice* v = voiceFrom2D(s);
 	if (v && index < kMaxUserData) v->userData[index] = (U32)(uintptr_t)val;
 }
 extern "C" void* AIL_sample_user_data(HSAMPLE s, U32 index) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	Voice* v = voiceFrom2D(s);
 	if (v && index < kMaxUserData) return (void*)(uintptr_t)v->userData[index];
 	return nullptr;
@@ -387,11 +399,11 @@ extern "C" int AIL_set_filter_sample_preference(HSAMPLE, char const*, void*) { r
 // --- 3D samples ------------------------------------------------------------
 
 extern "C" void AIL_register_3D_EOS_callback(H3DSAMPLE s, AIL3DSAMPLECB cb) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom3D(s)) v->eos3d = cb;
 }
 extern "C" void AIL_start_3D_sample(H3DSAMPLE s) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom3D(s)) {
 		applyGain(*v);
 		alSourcePlay(v->source);
@@ -400,66 +412,66 @@ extern "C" void AIL_start_3D_sample(H3DSAMPLE s) {
 	}
 }
 extern "C" void AIL_stop_3D_sample(H3DSAMPLE s) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom3D(s)) { alSourceStop(v->source); v->started = false; v->paused = false; }
 }
 extern "C" void AIL_resume_3D_sample(H3DSAMPLE s) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom3D(s)) { if (v->buffer) { alSourcePlay(v->source); v->started = true; v->paused = false; } }
 }
 extern "C" void AIL_release_3D_sample_handle(H3DSAMPLE s) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom3D(s)) { freeVoiceBuffers(*v); v->used = false; v->kind = VK_NONE; }
 }
 extern "C" H3DSAMPLE AIL_allocate_3D_sample_handle(HPROVIDER) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	HSAMPLE h = allocVoice(VK_3D);
 	return (H3DSAMPLE)(uintptr_t)h;
 }
 extern "C" int AIL_set_3D_sample_file(H3DSAMPLE s, void* file) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (!file) return 0;
 	Voice* v = voiceFrom3D(s);
 	if (!v) return 0;
 	return uploadWavToVoice(*v, (const unsigned char*)file, (size_t)-1, 0) ? 1 : 0;
 }
 extern "C" void AIL_set_3D_sample_volume(H3DSAMPLE s, float vol) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom3D(s)) { v->volume = vol; alSourcef(v->source, AL_GAIN, vol); }
 }
 extern "C" void AIL_set_3D_position(H3DSAMPLE s, float x, float y, float z) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if ((uintptr_t)s == kListenerHandle) { alListener3f(AL_POSITION, x, y, z); return; }
 	if (Voice* v = voiceFrom3D(s)) alSource3f(v->source, AL_POSITION, x, y, z);
 }
 extern "C" void AIL_set_3D_orientation(H3DPOBJECT o, float rx, float ry, float rz, float ux, float uy, float uz) {
 	(void)o; // Miles passes either listener or unused; orientation is listener-global
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	float orient[6] = { rx, ry, rz, ux, uy, uz };
 	alListenerfv(AL_ORIENTATION, orient);
 }
 extern "C" void AIL_set_3D_sample_distances(H3DSAMPLE s, float min, float max) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom3D(s)) {
 		alSourcef(v->source, AL_REFERENCE_DISTANCE, min > 0.0f ? min : 1.0f);
 		alSourcef(v->source, AL_MAX_DISTANCE, max > min ? max : 100000.0f);
 	}
 }
 extern "C" void AIL_set_3D_user_data(H3DSAMPLE s, U32 index, void* val) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom3D(s)) if (index < kMaxUserData) v->userData[index] = (U32)(uintptr_t)val;
 }
 extern "C" U32 AIL_3D_user_data(H3DSAMPLE s, U32 index) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom3D(s)) if (index < kMaxUserData) return v->userData[index];
 	return 0;
 }
 extern "C" void AIL_set_3D_sample_playback_rate(H3DSAMPLE s, U32 rate) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom3D(s)) v->rate = rate;
 }
 extern "C" U32 AIL_3D_sample_playback_rate(H3DSAMPLE s) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFrom3D(s)) return v->rate;
 	return 22050;
 }
@@ -490,11 +502,11 @@ extern "C" int AIL_enumerate_filters(HPROENUM* next, HPROVIDER*, char**) {
 // --- Streams ---------------------------------------------------------------
 
 extern "C" void AIL_register_stream_callback(HSTREAM s, AILSTREAMCB cb) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFromStream(s)) v->eosStream = cb;
 }
 extern "C" HSTREAM AIL_open_stream(HDIGDRIVER, const char* file, U32) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (!file || !file[0]) return 0;
 	HSAMPLE h = allocVoice(VK_STREAM);
 	if (!h) return 0;
@@ -514,7 +526,7 @@ extern "C" HSTREAM AIL_open_stream(HDIGDRIVER, const char* file, U32) {
 	return h;
 }
 extern "C" void AIL_start_stream(HSTREAM s) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFromStream(s)) {
 		alSourceStop(v->source);
 		alSourcei(v->source, AL_BUFFER, (ALint)v->buffer);
@@ -526,37 +538,37 @@ extern "C" void AIL_start_stream(HSTREAM s) {
 	}
 }
 extern "C" void AIL_close_stream(HSTREAM s) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFromStream(s)) { freeVoiceBuffers(*v); v->used = false; v->kind = VK_NONE; }
 }
 extern "C" void AIL_pause_stream(HSTREAM s, S32 pause) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFromStream(s)) {
 		if (pause) { alSourcePause(v->source); v->paused = true; }
 		else { alSourcePlay(v->source); v->paused = false; v->started = true; }
 	}
 }
 extern "C" void AIL_set_stream_volume_pan(HSTREAM s, float vol, float pan) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFromStream(s)) { v->volume = vol; v->pan = pan; applyGain(*v); }
 }
 extern "C" void AIL_stream_volume_pan(HSTREAM s, float* vol, float* pan) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	Voice* v = voiceFromStream(s);
 	if (vol) *vol = v ? v->volume : 1.0f;
 	if (pan) *pan = v ? v->pan : 0.5f;
 }
 extern "C" void AIL_set_stream_loop_count(HSTREAM s, S32 count) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFromStream(s)) v->loopCount = count;
 }
 extern "C" S32 AIL_stream_loop_count(HSTREAM s) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFromStream(s)) return v->loopCount;
 	return 0;
 }
 extern "C" void AIL_stream_ms_position(HSTREAM s, S32* ms_done, S32* ms_total) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	S32 total = 0;
 	Voice* v = voiceFromStream(s);
 	if (v && v->rate > 0 && v->channels > 0 && v->bits > 0) {
@@ -577,7 +589,7 @@ extern "C" void AIL_quick_handles(HDIGDRIVER* dig, HMDIDRIVER*, HSNDBUF*) {
 	if (dig) *dig = 1; // dummy digital driver token
 }
 extern "C" HAUDIO AIL_quick_load_and_play(const char* file, U32 loop, U32) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (!file || !file[0]) return 0;
 	HSAMPLE h = allocVoice(VK_QUICK);
 	if (!h) return 0;
@@ -602,11 +614,11 @@ extern "C" HAUDIO AIL_quick_load_and_play(const char* file, U32 loop, U32) {
 	return h;
 }
 extern "C" void AIL_quick_set_volume(HAUDIO h, float left, float) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFromHandleAny((uintptr_t)h)) { v->volume = left; applyGain(*v); }
 }
 extern "C" void AIL_quick_unload(HAUDIO h) {
-	std::lock_guard<std::mutex> lk(g_mx);
+	CsLock lk;
 	if (Voice* v = voiceFromHandleAny((uintptr_t)h)) { freeVoiceBuffers(*v); v->used = false; v->kind = VK_NONE; }
 }
 

@@ -1,6 +1,8 @@
 // linkstubs.cpp - empty/weak definitions so RTS.exe links as a milestone binary.
 // Real implementations land as SDK backends are finished.
 #include <stdint.h>
+#include <windows.h>
+#include <string.h>
 #include <stddef.h>
 #include <wchar.h>
 
@@ -51,3 +53,26 @@ size_t (*__imp__tcsclen)(const wchar_t*) = tcsclen;
 int (*__imp__tcscmp)(const wchar_t*, const wchar_t*) = tcscmp;
 int (*__imp__tcsicmp)(const wchar_t*, const wchar_t*) = tcsicmp;
 }
+
+// --- Time shims for static FFmpeg avutil (avoid libwinpthread) ---
+#include <windows.h>
+#include <string.h>
+extern "C" long long clock_gettime64(void *tp) {
+	FILETIME ft;
+	GetSystemTimeAsFileTime(&ft);
+	unsigned long long t = ((unsigned long long)ft.dwHighDateTime << 32) | ft.dwLowDateTime;
+	// timespec: tv_sec at 0 (8 bytes), tv_nsec at 8 (8 bytes on LP64, 8 on LLP64 long long)
+	if (tp) {
+		unsigned char *p = (unsigned char *)tp;
+		long long sec = (long long)(t / 10000000ULL) - 11644473600ULL;
+		long long nsec = (long long)((t % 10000000ULL) * 100);
+		memcpy(p, &sec, 8);
+		memcpy(p + 8, &nsec, 8);
+	}
+	return 0;
+}
+extern "C" int nanosleep64(const void *req, void *rem) {
+	(void)req; (void)rem;
+	return 0;
+}
+extern "C" unsigned long clock(void) { return (unsigned long)GetTickCount(); }
