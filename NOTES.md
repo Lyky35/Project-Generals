@@ -1,635 +1,130 @@
 # Project Generals — Development Notes
 
 Forked from: `electronicarts/CnC_Generals_Zero_Hour`
-Target: Windows 10+ x64, Vulkan 1.3, modern toolchain
+Target: Windows 10+ x64, Vulkan 1.3, MinGW-w64 cross-compile from Linux
+Rewrite of old notes (see `NOTES.OLD` for history). Status below was verified against the tree on 2026-10-12, including a real cross-compile build.
 
 ---
 
+## Status Overview
 
-**Status:** In Progress — SDK porting and full RTS.exe build from Linux
-
-
-**Status:** In Progress — All 4 SDKs ported with emulation (Miles Audio, Bink Video, Granny Animation, DirectSound/DirectInput)
-
-
-
-## Phase 1: Buffer & Resource Porting (x64/Vulkan Backend) — Complete
-
-**Status:** Complete — Vertex/index buffer API migrated to Vulkan-backed resources
-
-### Vertex Buffer (`dx8vertexbuffer.cpp/.h`)
-
-- Converted `Create_Vertex_Buffer()` to use `VkGpuBuffer` + host-mapped `ShadowBuffer`
-- Added members: `VkGpuBuffer* VertexBuffer`, `unsigned char* ShadowBuffer`, 
-  `UsageType BufferUsage`, `unsigned LockStart`, `unsigned LockSize`
-- Destructor now deletes `ShadowBuffer` and `VertexBuffer` (VkGpuBuffer)
-- `Create_Vertex_Buffer()` creates VkGpuBuffer with staging path (dynamic: host-visible 
-  mapped memory) or device-local with ShadowBuffer copy (static)
-- All `Lock()` calls map to `VertexBuffer->Map()`/`dxvb->VertexBuffer->Map()` with optional 
-  ShadowBuffer staging. `Unlock()` uploads from ShadowBuffer back via 
-  `VertexBuffer->Unmap()` / `dxvb->VertexBuffer->Upload()`
-- All `Release()` calls changed to `delete VertexBuffer` + cleanup
-- WriteLockClass/AppendLockClass/WriteLockClass now use ShadowBuffer-backed mapping
-
-### Index Buffer (`dx8indexbuffer.cpp/.h`)
-
-- Converted `DX8IndexBufferClass` to use `VkIndexBuffer` (VkGpuBuffer subclass)
-- Added members: `unsigned short* ShadowBuffer`, `unsigned short ShadowBufferSize`, 
-  `unsigned LockStart`, `unsigned LockSize` (after existing `VkGpuBuffer* index_buffer`)
-- Constructor initializes all new members to NULL/0
-- `Lock()` calls use `IndexBuffer->Map()` with offset; `Unlock()` uses `IndexBuffer->Unmap()`
-- AppendLock/Lock maps with `start_index` offset
-- Destructor unmaps and releases
-- DynamicIBAccessClass WriteLock now maps dynamic index buffer with offset
-
-### GameEngineDevice FVF Port (Complete)
-
-- `HeightMap.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX2` with 
-  `DX8_FVF_XYZDUV2` in 6 locations (vertex buffer creation + size computation)
-- `W3DShaderManager.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1` with 
-  `DX8_FVF_XYZDUV2` in 1 location
-- `W3DVolumetricShadow.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE` with 
-  `DX8_FVF_XYZDUV2` in 1 location
-
-### Stage
-Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: CI cross-compilation validation workflow active (Linux + MinGW x86_64). Render-state translation fully complete for W3DShaderManager and TerrainTex (both trees). D3DXVECTOR4/fLOAT4X4/D3DXMATRIX commentary migration complete for both tree versions. All render-state uses DX8Wrapper APIs. Minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete. CI artifact: ci-rts-exe binary available on successful runs. 
-GeneralsMD mirror, minimal RTS.exe build.
+| Phase | Claimed before | **Verified status** |
+|-------|----------------|---------------------|
+| 1. x64 port | Complete | **Complete** — remaining `__asm` is guarded (`_M_IX86`/`__ICL`) with C++ fallbacks |
+| 2. Win10 windowing | Complete | **Complete** — DPI awareness, `RegisterClassEx`, `WM_DPICHANGED`, `-borderless` present in `WinMain.cpp` |
+| 3a–3d. Vulkan core (device/buffers/shaders/descriptors) | Complete | **Complete** — `VulkanRenderer` builds clean |
+| 3e. WW3D2 render-state translation | Complete | **Mostly done** — `dx8wrapper.cpp` heavily ported, but callers still reference removed D3D APIs (see Issues) |
+| 3e-5/6. Texture & asset system | "Complete" (heading) / "Planned" (body) | **NOT complete** — `texture.cpp`, `surfaceclass.cpp`, `textureloader.cpp` fail to compile (~86 errors) |
+| 3e-7. Shadow render-state (Generals tree) | Complete | **Complete** — code migrated to `DX8Wrapper` Vulkan calls |
+| 3e-8. GeneralsMD mirror | "Complete" (stage text) / "Not Started" (status) | **NOT started** — `GeneralsMD/.../dx8wrapper.cpp` has **zero** `Vulkan`/`VkTexture` references |
+| 4. SDK emulation (Miles/Bink/Granny/DSound) | All 4 ported | **Headers + comments only** — no real OpenAL/FFmpeg/SDL2/GLM calls; some files syntactically broken |
+| 5. Integration & testing | Pending | **Pending** |
+| Full RTS.exe | Placeholder only | **Does not build** — blocked on WW3D2 texture errors |
 
 ---
-## Phase 3e-5/3e-6: Texture & Asset System Porting (x64/Vulkan Backend) — Complete
 
-**Status:** Planned — Texture resources, DDS loading, WW3D runtime, AssetManager integration
+## What Actually Works (verified by build)
 
-### Texture (`texture.cpp/.h`, `surfaceclass.cpp/.h`)
+Cross-compile: `x86_64-w64-mingw32-g++` (GCC 16.2.0), CMake 4.4.4, `Unix Makefiles`.
 
-- Convert `TextureClass` to use `VkTexture`-backed resources
-- `SurfaceClass` wrapping `VkTexture` resources
-- `TextureLoader` DDS support (BC1-5, compressed formats, mipmapped images)
-- `WW3D` runtime integration (W3D texture format conversion)
-- GPU mipmap generation
-- Sampler cache
+Targets that **build clean**:
+`VulkanShaders`, `WWDebug`, `Compression`, `VulkanRenderer`, `WPAudio`, `WWLib`, `WWSaveLoad`, `WWMath`, `WWUtil`, `WWAudio`, `GameEngine` (11/15 library targets).
 
-### AssetManager (`assetmgr.cpp`)
+- `VulkanRenderer`: VkDevice (1.3 instance, swapchain, render pass), VkGpuBuffer, VkTexture, VkShaderManager (SPIR-V + pipeline cache), VkDescriptors. Shaders (`mesh.vert`/`mesh.frag`) compile to SPIR-V at build time.
+- `GameEngine` links. All core engine sources compile.
+- WinMain.cpp: full Win10 windowing (DPI PMv2, borderless flag, monitor-native fullscreen).
 
-- Integrate `VkTexture` resources into the asset management system
-- Handle missing texture fallbacks
-- Coordinate with `DX8Caps` API for format support queries
+---
 
-### Caps (`dx8caps.cpp/.h`)
+## Issues Found (blocking or dangerous)
 
-- `DX8Caps` API ported to query Vulkan format support
-- Map D3D8 formats to Vulkan format capabilities
-- Discrete GPU selection, validation layer checks
+### 1. WW3D2 texture subsystem does not compile — **blocks RTS.exe**
 
-### Stage
+86 errors across 6 files. The texture port was started (headers renamed) but `.cpp` callers were not updated:
 
-Buffer infrastructure is complete. Next: implement texture resource loading, 
-DDS support, WW3D integration, and AssetManager integration. These files form 
-the foundation for rendering meshes and terrain with Vulkan resources.
+- `texture.cpp` (33 errors): references `D3DTexture`, `Peek_DX8_Texture`, `IDirect3DTexture8*` ctor — all removed.
+- `textureloader.cpp` (26 errors): calls `DX8Wrapper::_Create_DX8_Texture()` (gone), returns `VkTexture*` where `IDirect3DTexture8*` expected.
+- `surfaceclass.cpp` (18 errors): references `Peek_D3D_Surface`, `D3DSurface`, incomplete `IDirect3DSurface8`.
+- `texproject.cpp`, `prim_anim.h`: `IDirect3DSurface8` not declared.
+- `textdraw.h`: `#include "../wwmath/rect.h"` — path broken.
+- `w3d_dep.cpp`: `size_t` not declared (missing `<cstddef>`).
 
-# Vertex Buffer (`dx8vertexbuffer.cpp/.h`)
+`GameEngineDevice` and `RTS` targets are blocked behind `WW3D2`.
 
-- Converted `DX8VertexBufferClass` to use `VkGpuBuffer` + host-mapped `ShadowBuffer`
-- Added members: `VkGpuBuffer* VertexBuffer`, `unsigned char* ShadowBuffer`, 
-  `UsageType BufferUsage`, `unsigned LockStart`, `unsigned LockSize`
-- Destructor now deletes `ShadowBuffer` and `VertexBuffer` (VkGpuBuffer)
-- `Create_Vertex_Buffer()` creates VkGpuBuffer with staging path (dynamic: host-visible 
-  mapped memory) or device-local with ShadowBuffer copy (static)
-- All `Lock()` calls map to `VertexBuffer->Map()` with optional ShadowBuffer staging;
-  `Unlock()` uploads from ShadowBuffer via `VertexBuffer->Unmap()` / `dxvb->VertexBuffer->Upload()`
-- All `Release()` calls changed to `delete VertexBuffer` + ShadowBuffer cleanup
-- WriteLockClass/AppendLockClass/WriteLockClass now use ShadowBuffer-backed mapping
+### 2. SDK "ports" are stubs — will not produce working audio/video/animation
 
-### Index Buffer (`dx8indexbuffer.cpp/.h`)
+- `MilesAudioManager.cpp`: includes `<AL/al.h>` but **zero** `alGen*`/`alcOpenDevice` calls. Callbacks are comments only.
+- `BinkVideoPlayer.cpp`: **syntactically broken** — 4 orphan `#endif` with no matching `#if`; `createStream()` parameter replaced by a comment (`createStream( // HBINK... )`); `BinkOpen` replaced by comment. Would not compile even if reached.
+- `W3DGranny.cpp`: still calls `granny_*` APIs (`GrannyGetFileInfo`, `granny_model`). Only the blending buffer was swapped to `glm::vec4`. `#pragma comment(lib, "granny2")` remains.
+- `AUD_DSoundDriver.cpp`: includes SDL2/OpenAL but no real `SDL_OpenAudio`/`alcOpenDevice` usage; compiles with warnings.
 
-- Converted `DX8IndexBufferClass` to use `VkIndexBuffer` (VkGpuBuffer subclass)
-- Added members: `unsigned short* ShadowBuffer`, `unsigned short ShadowBufferSize`,
-  `unsigned LockStart`, `unsigned LockSize` (after existing `VkGpuBuffer* index_buffer`)
-- Constructor initializes all new members to NULL/0
-- `Lock()` calls use `IndexBuffer->Map()` with offset; `Unlock()` uses `IndexBuffer->Unmap()`
-- AppendLock/Lock maps with `start_index` offset
-- Destructor unmaps and releases
-- DynamicIBAccessClass WriteLock now maps dynamic index buffer with offset
+The old notes' "✅ Ported" table overstated all four. Reality: headers added, function bodies are placeholders.
 
+### 3. GeneralsMD mirror is not done
 
+`GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp`: 0 matches for `Vulkan`/`VkTexture` (vs 161 in the Generals tree). No `VulkanRenderer` exists under GeneralsMD. Phase 3e-8 is genuinely not started; old "mirror complete" claims were wrong.
 
-## SDK Porting Progress (New — 2024-2025)
+### 4. CMake link line is incomplete for the real SDKs
 
-**Goal**: Compile complete RTS.exe from Linux (x86_64-w64-mingw32-g++) targeting Windows 10+
+`Main/CMakeLists.txt` links `openal` and `SDL2` by raw name but **no FFmpeg libraries** (comment mentions them; link line omits them). No `find_package(OpenAL/SDL2/FFmpeg)` at top level — relies on system MinGW libs being present.
 
-### Current Status (16 commits on main)
+### 5. CI is a stub, not a real build
 
-| Component | Status | Commit |
-|-----------|--------|--------|
-| **Core Rendering** | ✅ 100% complete | bf61f29 |
-| **Miles Audio SDK** | ✅ Ported to OpenAL (emulation) | d6656c2 |
-| **Bink Video SDK** | ✅ Ported to FFmpeg (emulation) | 29291c7 |
-| **Granny Animation** | ✅ Ported to GLM + TinyGLTF (emulation) | a3544b5 |
-| **DirectSound/DirectInput** | ✅ Ported to OpenAL + SDL2 (emulation) | f9f8f8d |
-| **SDK_PORTING.md** | ✅ 300-line documentation | 730671c |
-| **NOTES.md** | ✅ Updated with SDK status | 3c9feda |
-| **Minimal RTS.exe** | ✅ Runs on Windows 10 | 46b700b/3c9feda |
-| **Full RTS.exe from Linux** | ⚠️ Requires verification | In progress |
+`.github/workflows/ci-crosscompile.yml` compiles a standalone `WinMain.cpp` with `MessageBox` — it does not build the game. `windows-build.yml` uses Linux paths (`/home/cyklon/...`) on a Windows runner. Neither validates the actual tree.
 
-### SDK Porting Details
+### 6. Release artifacts are placeholders
 
-| SDK | Approach | Key Files | Status |
-|-----|----------|-----------|--------|
-| **Miles Audio** | OpenAL Soft replacement | `MilesAudioManager.cpp` | ✅ Critical functions emulated |
-| **Bink Video** | FFmpeg emulation | `BinkVideoPlayer.cpp` | ✅ Emulation guards in place |
-| **Granny Animation** | GLM + TinyGLTF | `W3DGranny.cpp`, `W3DScene.cpp` | ✅ GLM vec4 + TinyGLTF placeholders |
-| **DirectSound/DirectInput** | OpenAL + SDL2 | `AUD_DSoundDriver.cpp` | ✅ OpenAL+SDL2 emulation |
+`release/RTS.exe` and the zips contain a stub binary ("RTS Build Placeholder"), not a functional game.
 
-### CMake Build Configuration
+---
 
-- DirectX 8 SDK libraries removed (`d3d8.lib`, `d3dx8.lib`, `dxguid.lib`, `dinput8.lib`, `dsound.lib`, `winmm.lib`)
-- OpenAL added: `find_package(OpenAL REQUIRED)` + `OpenAL::OpenAL`
-- FFmpeg added: `find_package(FFmpeg REQUIRED)` + `FFmpeg::avcodec/avformat/avutil/swscale`
-- SDL2 added: `find_package(SDL2 REQUIRED)` + `SDL2::SDL2`
-- Target link libraries updated to use system library names
-
-### Expected Runtime DLLs (Windows 10+)
-
-| DLL | Source | Notes |
-|-----|--------|-------|
-| `KERNEL32.dll` | Windows 10+ | Always present |
-| `USER32.dll` | Windows 10+ | Always present |
-| `OpenAL32.dll` | OpenAL Soft | Required for audio emulation |
-| `SDL2.dll` | SDL2 | Required for input/emulation |
-
-### Download & Test
+## Build Commands
 
 ```bash
-# Download the release
-git clone git@github.com:Lyky35/Project-Generals.git
-cd Project-Generals
+# Configure (cross-compile from Linux)
+cmake -S . -B build \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_CXX_COMPILER=/usr/bin/x86_64-w64-mingw32-g++ \
+  -DCMAKE_C_COMPILER=/usr/bin/x86_64-w64-mingw32-gcc
 
-# The placeholder RTS.exe is available
-# https://github.com/Lyky35/Project-Generals/releases/tag/v1.0
+# Build everything (currently fails on WW3D2)
+cmake --build build --target RTS -j$(nproc) -- -k
 
-# It validates the cross-compilation pipeline
-# Shows: "RTS Build Placeholder - SDK Porting Complete"
+# Build only what works today
+cmake --build build --target GameEngine -j$(nproc)
 ```
 
-### Next Steps
-
-1. **Build and test the full RTS.exe from Linux** - Run `cmake -DCMAKE_BUILD_TYPE=Release . && make RTS`
-2. **Verify runtime DLLs** - Ensure OpenAL32.dll and SDL2.dll are available alongside KERNEL32.dll + USER32.dll
-3. **Continue SDK porting** - Replace emulation comments with actual SDK implementations
-4. **Final release validation** - Test the complete game on Windows 10
-
-### Resume Points
-
-| Commit | To Resume From |
-|--------|----------------|
-| `d6656c2` | Miles Audio OpenAL migration - continue with Bink Video |
-| `29291c7` | Bink Video FFmpeg migration - continue with Granny Animation |
-| `a3544b5` | Granny Animation GLM+TinyGLTF - continue with DirectSound |
-| `f9f8f8d` | DirectSound OpenAL+SDL2 - continue with CMake config |
-| `47c7dab` | CMake config - build and test the cross-compilation |
-| `3c9feda` | Current state - SDK porting progress documented |
-
-### Estimated Timeline
-
-- **Miles Audio → OpenAL**: Already complete (emulation)
-- **Bink Video → FFmpeg**: Already complete (emulation)
-- **Granny Animation → GLM+TinyGLTF**: Already complete (emulation)
-- **DirectSound → OpenAL+SDL2**: Already complete (emulation)
-- **Full build validation**: 2-3 days (configure + compile + test)
-- **Total remaining**: Replace emulation with actual implementations
-
-**Document version**: 2.0
-**Last updated**: {date generation would go here}
-**Repository**: `Lyky35/Project-Generals`### Build System (NOTES.md)
-
-- Existing CMake build with VulkanRenderer stub library already configured
-- Vulkan headers/libraries linked via CMakePresets.json vulkan path
-- Buffer changes compile with MinGW-w64 x64 + Vulkan 1.3
-
-### Next Steps
-- Port GameEngineDevice COM members to both Generals and GeneralsMD trees
-- Implement stencil/blend ops translation from D3D8 to Vulkan
-- Port shader manager (W3DShaderManager, W3DWebBrowser)
-- Attempt minimal RTS.exe build to validate pipeline
-
-# Steps Taken
-- Forked EA source release to `Lyky35/Project-Generals`
-- Source uses C++98, STLport 4.5.3, Visual Studio 6.0 `.dsp/.dsw` projects
-- Created CMake build system with x64 target, MSVC 2022 support
-- Created CMakePresets.json (windows-x64-msvc, windows-x64-msvc-debug, linux-x64-gcc, linux-x64-clang)
-- Created stub libraries: GameSpyStub, DX8Compat, FFmpegVideo, VulkanRenderer, XAudio2Engine
-- Audited all x86 assembly locations (~30 critical, ~20 medium)
-- Audited pointer-truncation risks (~50 locations)
-- Mapped full dependency tree (15 projects, complete dependency graph)
-
-### Audit: x86 Assembly Locations
-
-| Category | Count | Key Files | Severity |
-|----------|-------|-----------|----------|
-| RDTSC (timing) | 8 | PerfTimer.h, cpudetect.cpp, mpu.cpp, wwprofile.cpp | Critical |
-| CPUID | 4 | cpudetect.cpp | Critical |
-| x87 FPU math | 10 | wwmath.h, quat.cpp, matrix3d.cpp | Medium |
-| SSE vector ops | 5 | vp.cpp (hot path) | Critical |
-| RLE blit | 6 | rlerle.h (hot path) | Critical |
-| LCW compression | 1 | lcw.cpp (~200 lines asm) | Critical |
-| Spinlock | 3 | mutex.h, wwmemlog.cpp | Critical |
-| Commented out | 3 | keyboard.cpp, matrix3d.cpp | Low |
-
-### Audit: Pointer-Truncation Risks
-
-| Category | Count | Severity | Hot Path |
-|----------|-------|----------|----------|
-| `(DWORD)` cast on pointer | 8 | Critical | No (tools) |
-| `(int)` cast on pointer arithmetic | 8 | Medium | No |
-| `DWORD` for pointer-sized handles | ~20 | Medium | Yes (shaders) |
-| `GetWindowLong` with `GWL_USERDATA` | 12 | Critical | No (tools) |
-| `sizeof` on dereferenced pointers | ~10 | Low | — |
-
-### Dependency Graph (15 projects)
-
-```
-RTS.exe
-├── GameEngineDevice.lib
-│   ├── GameEngine.lib
-│   │   ├── Compression.lib
-│   │   └── WWLib.lib → WWDebug.lib
-│   ├── WW3D2.lib
-│   │   ├── WWLib, WWMath, WWDebug, WWSaveLoad, WWAudio
-│   │   └── VulkanRenderer, DX8Compat, GameSpyStub
-│   ├── WWLib, WWDebug, WWMath, WWSaveLoad
-│   └── XAudio2Engine, FFmpegVideo
-├── WW3D2.lib (same as above)
-└── WWDebug.lib → WWLib.lib
-```
-
-### Issues & Solutions
-
-| Issue | Impact | Solution |
-|-------|--------|----------|
-| VS6 `.dsp/.dsw` projects unusable | No modern build | CMake build system created |
-| STLport 4.5.3 requires patching | Won't compile on MSVC 2022 | MSVC STL (C++17) |
-| GameSpy SDK unavailable (50+ functions) | No multiplayer | GameSpyStub with no-op stubs |
-| BrowserEngine.DLL proprietary | Missing dependency | Removed; not needed for gameplay |
-| SafeDisc DRM | Blocks launch on modern Windows | Remove entirely |
-| Miles Sound System unavailable | No audio | XAudio2Engine stub (Phase 4) |
-| Bink Video unavailable | No cutscenes | FFmpegVideo stub (Phase 4) |
+Dependencies: `g++-mingw-w64-x86-64`, `libopenal-dev`, `libsdl2-dev`, `libavcodec-dev libavformat-dev libswscale-dev`, `libglm-dev` (for the eventual Granny path).
 
 ---
 
-## Phase 1: x64 Port
+## Next Steps (priority order)
 
-**Status:** Complete
-
-### Steps Taken
-- Removed all x86 inline assembly from game + library code (or guarded to `_M_IX86` with C++ fallbacks)
-- Replaced spinlocks with `_interlockedbittestandset` loops
-- Ported `LCW_Comp` (~200 lines asm) to portable C++; verified with 13-case round-trip test suite (all pass)
-- Fixed `DWORD` shader-handle storage → `DWORD_PTR` in renderer
-- Fixed `GetWindowLong`/`SetWindowLong` → `Ptr` variants in tools
-- Fixed `(int)` pointer-arithmetic casts → `ptrdiff_t`-safe `(int)(p - q)`
-- Ported crash-reporting (`Except.cpp`, `StackDump.cpp`, `debug_stack.cpp`) to x64 (`RtlCaptureContext`, `Rip/Rsp/Rbp`, `IMAGE_FILE_MACHINE_AMD64`, XMM dump)
-- Fixed `LCW_Uncomp` pointer truncation (`(unsigned)dest_ptr` → `(uintptr_t)dest_ptr`)
-
-### Assembly Disposition
-
-| File(s) | Action |
-|---------|--------|
-| `PerfTimer.h`, `cpudetect.cpp`, `mpu.cpp`, `wwprofile.cpp`, `timingTest.cpp` | RDTSC/CPUID → `__rdtsc()`/`__cpuid()` |
-| `wwmath.h`, `vp.cpp` | Already guarded (`_M_IX86` / `__ICL` with C++ fallbacks) — no change |
-| `quat.cpp`, `matrix3d.cpp` | Removed dead `#if 0` asm blocks |
-| `rlerle.h`, `blitblit.h` | Guard narrowed to `_M_IX86`; x64 uses generic C++ templates |
-| `lcw.cpp` (`LCW_Comp`) | Full C++ port (see below) |
-| `mutex.h`, `wwmemlog.cpp`, `profile/internal.h` | Spinlock → interlocked loop |
-| `BaseType.h`, `dx8wrapper.h` (`Convert_Color`) | Guard + C++ fallback |
-| `Except.cpp`, `StackDump.cpp`, `debug_stack.cpp` | `RtlCaptureContext` + x64 CONTEXT fields |
-| `wwdebug.h`, `Except.cpp` (`_purecall`) | `_asm int 3` → `__debugbreak()` |
-| `keyboard.cpp` | Removed commented-out asm |
-
-### LCW_Comp Port Notes
-Faithful transliteration of the x86 asm, plus hardening for pre-existing 16-bit format limitations found during testing:
-- MED/LONG absolute offsets capped to `<= 0xFFFF` (format field is 16-bit); oversized matches fall back to short-run or literals
-- RLE/match counts capped at `0xFFFF` (multi-chunk emit for huge runs)
-- Clean termination when input consumed exactly (original emitted a garbage trailing byte)
-- Empty-input early return
-- Verified: 13-case round-trip suite (single byte, RLE 64/65/1000/70000, repeats, text, mixed, 100KB random) — all pass
-
-### Pointer Fixes
-| Location | Fix |
-|----------|-----|
-| `W3DShaderManager.h/.cpp`, `W3DWater.h`, `W3DTreeBuffer.h` (MD) | `DWORD` shader handles → `DWORD_PTR` |
-| max2w3d tools (`GameMtlDlg`, `GameMtlPassDlg`, `gmtldlg`, `skin`) | `Get/SetWindowLong` → `Ptr` + `GWLP_*` + `(LONG_PTR)` casts |
-| `huffencode.cpp`, `meshmdlio.cpp`, `geometryexporttask.cpp` | `(int)p - (int)q` → `(int)(p - q)` |
-| `Properties.cpp` | `(DWORD)font` → `(LPARAM)font` |
-| `autorun.cpp` | `(DWORD)hBrush` → `(LRESULT)hBrush` |
-
-### Known Limitations (documented, not fixed)
-- Crash-report address fields truncate above 4GB (`ULONG` log buffers) — cosmetic only
-- `EDITSTREAM.dwCookie` pointer storage in Babylon tools (tools-only, not in build)
-- `m_addr[256]` signature DB in `debug_stack.cpp` stores truncated 32-bit (cosmetic)
-| SSE intrinsics in vp.cpp | May need AVX2 fallback | Use `_mm_*` intrinsics (available on x64) |
+1. **Fix WW3D2 texture subsystem compile errors** (~86 errors, 6 files). This is the single blocker for linking RTS.exe. Finish the half-done rename: update all `D3DTexture`/`Peek_DX8_Texture`/`_Create_DX8_Texture` callers to the Vulkan equivalents already present in `DX8Wrapper` (`_Create_Vulkan_Texture`, `Peek_Vulkan_Texture`, etc.). Fix the two trivial errors in `textdraw.h` and `w3d_dep.cpp` first (they take 2 minutes).
+2. **Link RTS.exe** — once WW3D2 builds, resolve any GameEngineDevice link errors and produce a real `RTS.exe` (not the placeholder).
+3. **Repair `BinkVideoPlayer.cpp`** — restore valid preprocessor structure and function signatures; then decide whether to implement real FFmpeg decode or keep a no-op stub that compiles.
+4. **Implement real SDK backends** (replace the comment-stubs):
+   - Miles Audio → OpenAL Soft (device init, buffer queueing, 3D sources)
+   - DirectSound/WPAudio → OpenAL + SDL2 (actual `alcOpenDevice`/`SDL_OpenAudio` calls)
+   - Granny → keep the `glm::vec4` buffer but wire real TinyGLTF model loading (or stub out `granny_*` calls cleanly)
+   - Bink → FFmpeg decode + Vulkan texture upload
+5. **Add FFmpeg to the link line** in `Main/CMakeLists.txt`.
+6. **Rewrite CI** to run the actual `cmake --build build --target GameEngine` (and eventually RTS) instead of the MessageBox stub.
+7. **GeneralsMD port** — mirror the Generals-tree Vulkan changes. Do this only after the Generals tree links and renders, to avoid porting an unfinished design twice.
+8. **Runtime testing on Windows 10** — bundle `OpenAL32.dll` + `SDL2.dll`, verify window creation, then audio, then first-frame render.
 
 ---
 
-## Phase 2: Windows 10+ Compatibility
+## Key Architectural Decisions (unchanged)
 
-**Status:** Win32 layer complete; display-mode work deferred to Phase 3 (lives in DX8 renderer)
-
-### Steps Taken (WinMain.cpp, both Generals + GeneralsMD)
-- `RegisterClass` → `RegisterClassEx` with `hIconSm`
-- Removed `WS_EX_TOPMOST` mixed into regular style bits (TOPMOST via `SetWindowPos` only)
-- Added `WS_CLIPCHILDREN` to all window styles
-- Fullscreen/borderless windows now sized to native monitor res (was hardcoded 800x600)
-- Windowed mode centered via DPI-correct metrics
-- `CreateWindow` args cleaned (`NULL` instead of `0L`)
-- DPI awareness: `SetProcessDpiAwarenessContext(PMv2)` via `GetProcAddress` + `SetProcessDPIAware` fallback, called before window creation
-- `WM_DPICHANGED` handler honors Windows' suggested rect
-- New `-borderless` cmdline flag → `ApplicationIsBorderless` global (renderer honors in Phase 3); declared `extern` in `WinMain.h`
-
-### Deferred to Phase 3 (renderer-owned)
-| Issue | Reason |
-|-------|--------|
-| Exclusive→borderless display modes | `DX8Wrapper` sets D3D modes; changes with Vulkan swapchain |
-| Resolution detection/scaling | Display enumeration moves with new renderer |
-| `WM_DISPLAYCHANGE` auto-reset | Risky without live testing; revisit with Vulkan |
-| 4,096-unit cap | Gameplay change, post-rendering milestone |
+- Native Vulkan 1.3 backend (no DX8 translation layer, no DXVK).
+- C++17, CMake, MinGW-w64 x86_64 cross-compile from Linux.
+- Case-insensitive symlinks (`vkdevice.cpp` → `VkDevice.cpp`, etc.) preserve original Windows filenames for the three case variants.
+- STLport replaced with MSVC STL / MinGW std.
+- GameSpy, BrowserEngine, SafeDisc removed; Miles/Bink/Granny replaced with open-source equivalents.
 
 ---
 
-## Phase 3: Vulkan Renderer
-
-**Status:** In progress (3a done)
-
-### 3a. DX8Compat types header — DONE
-`Libraries/Source/DX8Compat/d3d8types.h` replaces `d3d8.h`/`d3dx8.h`/`d3dx8math.h`
-for all plain-data usage (273 identifiers inventoried across WW3D2):
-- 15 files use COM interfaces → rewritten against Vulkan backend (3b–3e)
-- 14 files use only enums/structs → build unchanged with this header
-- D3DX *function* calls replaced at call sites (WWMath equivalents, Vulkan image ops)
-
-### 3b. Vulkan device layer — DONE
-`VulkanRenderer/VkDevice.*`: 1.3 instance + validation layers, Win32 surface,
-discrete-GPU selection, graphics/present queues, swapchain (mailbox preferred,
-FIFO fallback), depth buffer, render pass, framebuffers, 2-frame flight sync,
-`BeginFrame`/`EndFrame`/present with swapchain recreation, one-time-submit
-helper for uploads. Compile-checked with MinGW-w64 x64.
-
-### 3c. Resource management — DONE
-`VkGpuBuffer` (staging upload + host-visible mapping), `VkTexture` (D3D→Vulkan
-format table incl. DXT1-5, mipmaps, GPU mipmap gen, sampler cache),
-`VkDescriptorAllocator` (frame-reset pool, texture sets). Compile-checked.
-
-### 3d. Shader/pipeline system — DONE
-Uber-shaders (`mesh.vert`/`mesh.frag`, validated SPIR-V via glslangValidator):
-transform, 2 texture stages (disable/select/modulate/add), 4-light vertex
-lighting, linear fog, alpha test — all via 6 specialization constants.
-`VkShaderManager`: SPIR-V loading, state-hashed pipeline cache, 3 canonical
-FVF layouts (XYZ_N_UV1 / XYZ_N_D_UV2 / XYZ_D_UV1), D3D→Vulkan translators
-(cull/fill/compare/blend/topology), fan→list converter, 128B push WVP.
-CMake compiles GLSL→SPV at build time.
-
-### 3e. WW3D2 file ports — IN PROGRESS (Generals-first)
-
-Strategy: complete the Vulkan port for the Generals tree (which CMake
-builds) first; GeneralsMD's `dx8wrapper` is a substantially newer revision
-(+2800 diff lines) and gets its own port pass afterward using the proven
-pattern. Mechanical changes (include swaps, D3DX math, resource header
-retypes) are mirrored to both trees; deep `.cpp` ports land in Generals
-first.
-
-### Architecture Decision
-Native Vulkan backend (no DX8 translation layer). This avoids DXVK overhead and gives full control over the rendering pipeline.
-
-### Steps Taken
-- VulkanRenderer stub library created
-- DX8Compat interface layer defined
-
-### Issues
-| Issue | Impact | Solution |
-|-------|--------|----------|
-| D3D8 not supported on modern Windows | No rendering | Full Vulkan 1.3 renderer |
-| Fixed-function → shader translation not 1:1 | Visual differences | Write new shaders matching visual output |
-| WW3D2 API surface is enormous (144 files) | Long implementation time | Incremental: get basic rendering first |
-| Texture format differences | Corrupted textures | Use BCn compressed formats, verify with RenderDoc |
-| No hardware T&L in original | Shaders must handle transforms | New vertex shaders with proper matrix math |
-| 20+ render object types | All need Vulkan paths | Prioritize: mesh, terrain, particles, water first |
-
----
-
-## Phase 4: Audio, Input & Video
-
-**Status:** Pending
-
-### Steps Taken
-- XAudio2Engine stub library created
-- FFmpegVideo stub library created
-
-### Issues
-| Issue | Impact | Solution |
-|-------|--------|----------|
-| Miles SDK unavailable | No audio | XAudio2 (Windows-native, low latency) |
-| DirectInput deprecated | Input lag/crashes | Raw Input API + XInput for gamepad |
-| Bink SDK unavailable | No cutscenes | FFmpeg with H.264/H.265 support |
-| Audio 3D positional differences | Gameplay feel changes | Extensive playtesting and tuning |
-
----
-
-## Phase 5: Integration & Testing
-
-**Status:** Pending
-
-### Issues
-| Issue | Impact | Solution |
-|-------|--------|----------|
-| Lockstep multiplayer determinism | Cross-platform desync | Fixed-point math or platform-specific FP control |
-| Save-game compatibility | Old saves won't load | Versioned format with migration |
-| Mod compatibility | Existing mods break | Maintain INI-driven data architecture |
-| Zero Hour variant | Separate build needed | Apply all phases to `GeneralsMD/` |
-
----
-
-## Build System
-
-### Files Created
-- `CMakeLists.txt` — top-level build
-- `CMakePresets.json` — 4 build presets
-- 15 subdirectory `CMakeLists.txt` files
-- 5 stub libraries (GameSpy, DX8Compat, FFmpegVideo, VulkanRenderer, XAudio2)
-
-### Build Commands
-```powershell
-cmake --preset windows-x64-msvc
-cmake --build --preset windows-x64-msvc
-```
-
----
-
-## Reference: Community Approaches
-
-| Project | Approach | Status |
-|---------|----------|--------|
-| OpenSAGE | Clean-room C# reimplementation | 9+ years, not playable |
-| GeneralsX | Port with SDL3 + DXVK + FFmpeg | Linux/macOS working |
-| Generals-Android | iOS port on GeneralsX | Playable on iOS |
-| Generals64 | D3D8 → D3D11 shim layer | Active |
-| LibreSAGE | SDL3 + DXVK on Linux | Early stage |
-| CnCNet | Replacement multiplayer servers | Active for RA2/TS |
-
-## Key Principle
-
-Get a working x64 executable with existing D3D8 renderer on Windows 10 **before** attempting the Vulkan rewrite. This de-risks the port and provides a fallback.
-
-
-**Status:** In Progress — Vertex/index buffer API migration
-
-
-**Status:** In Progress — Vertex/index buffer API migration to Vulkan-backed resources
-
-
-
-## Phase 1: Buffer & Resource Porting (x64/Vulkan Backend) — Complete
-
-**Status:** Complete — Vertex/index buffer API migrated to Vulkan-backed resources
-
-### Vertex Buffer (`dx8vertexbuffer.cpp/.h`)
-
-- Converted `Create_Vertex_Buffer()` to use `VkGpuBuffer` + host-mapped `ShadowBuffer`
-- Added members: `VkGpuBuffer* VertexBuffer`, `unsigned char* ShadowBuffer`, 
-  `UsageType BufferUsage`, `unsigned LockStart`, `unsigned LockSize`
-- Destructor now deletes `ShadowBuffer` and `VertexBuffer` (VkGpuBuffer)
-- `Create_Vertex_Buffer()` creates VkGpuBuffer with staging path (dynamic: host-visible 
-  mapped memory) or device-local with ShadowBuffer copy (static)
-- All `Lock()` calls map to `VertexBuffer->Map()`/`dxvb->VertexBuffer->Map()` with optional 
-  ShadowBuffer staging. `Unlock()` uploads from ShadowBuffer back via 
-  `VertexBuffer->Unmap()` / `dxvb->VertexBuffer->Upload()`
-- All `Release()` calls changed to `delete VertexBuffer` + cleanup
-- WriteLockClass/AppendLockClass/WriteLockClass now use ShadowBuffer-backed mapping
-
-### Index Buffer (`dx8indexbuffer.cpp/.h`)
-
-- Converted `DX8IndexBufferClass` to use `VkIndexBuffer` (VkGpuBuffer subclass)
-- Added members: `unsigned short* ShadowBuffer`, `unsigned short ShadowBufferSize`, 
-  `unsigned LockStart`, `unsigned LockSize` (after existing `VkGpuBuffer* index_buffer`)
-- Constructor initializes all new members to NULL/0
-- `Lock()` calls use `IndexBuffer->Map()` with offset; `Unlock()` uses `IndexBuffer->Unmap()`
-- AppendLock/Lock maps with `start_index` offset
-- Destructor unmaps and releases
-- DynamicIBAccessClass WriteLock now maps dynamic index buffer with offset
-
-### GameEngineDevice FVF Port (Complete)
-
-- `HeightMap.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX2` with 
-  `DX8_FVF_XYZDUV2` in 6 locations (vertex buffer creation + size computation)
-- `W3DShaderManager.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1` with 
-  `DX8_FVF_XYZDUV2` in 1 location
-- `W3DVolumetricShadow.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE` with 
-  `DX8_FVF_XYZDUV2` in 1 location
-
-### Stage
-Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: CI cross-compilation validation workflow active (Linux + MinGW x86_64). Render-state translation fully complete for W3DShaderManager and TerrainTex (both trees). D3DXVECTOR4/fLOAT4X4/D3DXMATRIX commentary migration complete for both tree versions. All render-state uses DX8Wrapper APIs. Minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete. CI artifact: ci-rts-exe binary available on successful runs. 
-GeneralsMD mirror, minimal RTS.exe build.
-
----
-## Phase 3e-5/3e-6: Texture & Asset System Porting (x64/Vulkan Backend) — Complete
-
-**Status:** Planned — Texture resources, DDS loading, WW3D runtime, AssetManager integration
-
-### Texture (`texture.cpp/.h`, `surfaceclass.cpp/.h`)
-
-- Convert `TextureClass` to use `VkTexture`-backed resources
-- `SurfaceClass` wrapping `VkTexture` resources
-- `TextureLoader` DDS support (BC1-5, compressed formats, mipmapped images)
-- `WW3D` runtime integration (W3D texture format conversion)
-- GPU mipmap generation
-- Sampler cache
-
-### AssetManager (`assetmgr.cpp`)
-
-- Integrate `VkTexture` resources into the asset management system
-- Handle missing texture fallbacks
-- Coordinate with `DX8Caps` API for format support queries
-
-### Caps (`dx8caps.cpp/.h`)
-
-- `DX8Caps` API ported to query Vulkan format support
-- Map D3D8 formats to Vulkan format capabilities
-- Discrete GPU selection, validation layer checks
-
-### Stage
-
-Buffer infrastructure is complete. Next: implement texture resource loading, 
-DDS support, WW3D integration, and AssetManager integration. These files form 
-the foundation for rendering meshes and terrain with Vulkan resources.
-
-# Vertex Buffer (`dx8vertexbuffer.cpp/.h`)
-
-- Converted `Create_Vertex_Buffer()` to use `VkGpuBuffer` + host-mapped `ShadowBuffer`
-- Added members: `VkGpuBuffer* VertexBuffer`, `unsigned char* ShadowBuffer`, 
-  `UsageType BufferUsage`, `unsigned LockStart`, `unsigned LockSize`
-- Destructor now deletes `ShadowBuffer` and `VertexBuffer` (VkGpuBuffer)
-- `Create_Vertex_Buffer()` creates VkGpuBuffer with staging path (dynamic: host-visible 
-  mapped memory) or device-local with ShadowBuffer copy (static)
-- All `Lock()` calls map to `VertexBuffer->Map()`/`dxvb->VertexBuffer->Map()` with optional 
-  ShadowBuffer staging. `Unlock()` uploads from ShadowBuffer back via 
-  `VertexBuffer->Unmap()` / `dxvb->VertexBuffer->Upload()`
-- All `Release()` calls changed to `delete VertexBuffer` + cleanup
-- WriteLockClass/AppendLockClass/WriteLockClass now use ShadowBuffer-backed mapping
-
-### Index Buffer (`dx8indexbuffer.cpp/.h`)
-
-- Converted `DX8IndexBufferClass` to use `VkIndexBuffer` (VkGpuBuffer subclass)
-- Added members: `unsigned short* ShadowBuffer`, `unsigned short ShadowBufferSize`, 
-  `unsigned LockStart`, `unsigned LockSize` (after existing `VkGpuBuffer* index_buffer`)
-- Constructor initializes all new members to NULL/0
-- `Lock()` calls use `IndexBuffer->Map()` with offset; `Unlock()` uses `IndexBuffer->Unmap()`
-- AppendLock/Lock maps with `start_index` offset
-- Destructor unmaps and releases
-- DynamicIBAccessClass WriteLock now maps dynamic index buffer with offset
-
-### GameEngineDevice FVF Port (Partial)
-
-- `HeightMap.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX2` with 
-  `DX8_FVF_XYZDUV2` in 6 locations (vertex buffer creation + size computation)
-- `W3DShaderManager.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1` with 
-  `DX8_FVF_XYZDUV2` in 1 location
-- `W3DVolumetricShadow.cpp`: Replaced `D3DFVF_XYZRHW | D3DFVF_DIFFUSE` with 
-  `DX8_FVF_XYZDUV2` in 1 location
-
-### Stage
-Buffer APIs are now Vulkan-backed. GameEngineDevice FVF constants migrated. 
-Remaining: CI cross-compilation validation workflow active (Linux + MinGW x86_64). Render-state translation fully complete for W3DShaderManager and TerrainTex (both trees). D3DXVECTOR4/fLOAT4X4/D3DXMATRIX commentary migration complete for both tree versions. All render-state uses DX8Wrapper APIs. Minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete. CI artifact: ci-rts-exe binary available on successful runs. GeneralsMD mirror complete.
-
-# Buffer Changes
-
-- `dx8vertexbuffer.cpp` / `.h` — Converted `Create_Vertex_Buffer()` to use `VkGpuBuffer` + host-mapped `ShadowBuffer`. Members added: `VkGpuBuffer* VertexBuffer`, `unsigned char* ShadowBuffer`, `UsageType BufferUsage`, `unsigned LockStart`, `unsigned LockSize`. Destructor now deletes ShadowBuffer, VkGpuBuffer. `Create_Vertex_Buffer()` creates VkGpuBuffer with staging upload path (dynamic) or device-local with ShadowBuffer copy (static). All `Lock()` calls map to `VertexBuffer->Map()`/`dxvb->VertexBuffer->Map()` with optional ShadowBuffer staging. `Unlock()` uploads from ShadowBuffer back via `VertexBuffer->Unmap()` / `dxvb->VertexBuffer->Upload()`. All `Release()` calls changed to `delete VertexBuffer` + cleanup.
-
-- `dx8indexbuffer.cpp` / `.h` — Converted index buffer to `VkIndexBuffer`. Members: `VkGpuBuffer* index_buffer_vk`, `unsigned short* ShadowBuffer`, `unsigned short ShadowBufferSize`, `unsigned LockStart`, `unsigned LockSize`. Lock/Unlock now use `IndexBuffer->Map()`/`IndexBuffer->Unmap()`. AppendLock/Lock also map with offset. Destructor unmaps and releases.
-
-### Stage
-Buffer APIs are now Vulkan-backed. Remaining: minimal RTS.exe build validation (pre-existing Linux dependency issues). Render-state translation for W3DShaderManager and TerrainTex pending (SetRenderState/D3DRS/D3DTSS → DX8Wrapper).
-
-
-
-## Phase 3e-7: GameEngineDevice COM Members Port (Shadow Tree) — Complete
-
-**Status:** Complete — Shadow render states migrated to DX8Wrapper Vulkan-backed equivalents
-
-### Shadow Render State Migration (W3DProjectedShadow.cpp / W3DVolumetricShadow.cpp)
-
-- **Alpha test**: `D3DRS_ALPHATESTENABLE` → `DX8Wrapper::Set_AlphaEnable()`
-- **Stencil operations**: `D3DRS_STENCILENABLE/FUNC/REF/MASK/WRITEMASK/FAIL/PASS` → `DX8Wrapper::Set_StencilEnable/Func/Ref/Mask/ReadMask/FailOp/PassOp` with `VK_STENCIL_OP_*` enums
-- **Blend function**: `D3DRS_SRCBLEND/DESTBLEND` → `DX8Wrapper::Set_BlendFunc()` with `VK_BLEND_FACTOR_*` enums
-- **Lighting**: `D3DRS_LIGHTING` → `DX8Wrapper::Set_Lighting()`
-- **Depth test**: `D3DRS_ZENABLE/ZFUNC` → handled via DX8Wrapper viewport/render pass setup
-- **Shade mode**: `D3DRS_SHADEMODE` → preserved via DX8Wrapper state tracking
-
-### Stage
-
-Shadow tree GameEngineDevice COM members port Complete. Remaining: CI cross-compilation validation workflow active (Linux + MinGW x86_64). Render-state translation fully complete for W3DShaderManager and TerrainTex (both trees). D3DXVECTOR4/fLOAT4X4/D3DXMATRIX commentary migration complete for both tree versions. All render-state uses DX8Wrapper APIs. Minimal RTS.exe build validation (pre-existing Linux dependency issues). GeneralsMD mirror complete. CI artifact: ci-rts-exe binary available on successful runs.
-
----
-## Phase 3e-8: GameEngineDevice COM Members Port (GeneralsMD Tree) — Complete
-
-**Status:** Not Started — Mirror dx8wrapper and related changes to GeneralsMD tree (2800+ diff lines); deep `.cpp` implementations for MD-specific code paths; render-state getters/setters; resource creation/deletion; shadow/volumetric/shader manager code paths
-
+**Verified**: 2026-10-12 against commit `cbcf667`
+**Build state**: 11/15 library targets build; `RTS` blocked on WW3D2 texture errors
+**Repo**: `Lyky35/Project-Generals`
