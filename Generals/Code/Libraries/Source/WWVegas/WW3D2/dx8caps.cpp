@@ -68,8 +68,17 @@ enum {
 
 void DX8Caps::Init_Caps(IDirect3DDevice8* D3DDevice)
 {
-	// Vulkan backend - caps are computed differently
+	// Vulkan backend - caps are computed differently.
+	// The caps structs must still carry real limits: they were left zeroed,
+	// so TextureLoader::Validate_Texture_Size clamped MaxTextureWidth/Height
+	// to 0 and then hit an integer 0/0 divide while loading terrain textures.
 	UseTnL=true;
+	memset(&hwVPCaps, 0, sizeof(hwVPCaps));
+	memset(&swVPCaps, 0, sizeof(swVPCaps));
+	hwVPCaps.MaxTextureWidth = 16384;
+	hwVPCaps.MaxTextureHeight = 16384;
+	swVPCaps.MaxTextureWidth = 16384;
+	swVPCaps.MaxTextureHeight = 16384;
 }
 
 // ----------------------------------------------------------------------------
