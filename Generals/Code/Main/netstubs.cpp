@@ -76,7 +76,25 @@ GameSpyBuddyMessageQueueInterface* TheGameSpyBuddyMessageQueue = 0;
 GameResultsInterface* TheGameResultsQueue = 0;
 PingerInterface* ThePinger = 0;
 
-GameResultsInterface* GameResultsInterface::createNewGameResultsInterface() { return 0; }
+// was `return 0` - initSubsystem(NULL) crashed with this=0x8. GameSpy result
+// reporting is gone; a null-object implementation keeps the engine happy.
+class NullGameResultsInterface : public GameResultsInterface
+{
+public:
+	virtual void init(void) {}
+	virtual void update(void) {}
+	virtual void reset(void) {}
+	virtual void startThreads(void) {}
+	virtual void endThreads(void) {}
+	virtual Bool areThreadsRunning(void) { return FALSE; }
+	virtual void addRequest(const GameResultsRequest&) {}
+	virtual Bool getRequest(GameResultsRequest&) { return FALSE; }
+	virtual void addResponse(const GameResultsResponse&) {}
+	virtual Bool getResponse(GameResultsResponse&) { return FALSE; }
+	virtual Bool areGameResultsBeingSent(void) { return FALSE; }
+};
+
+GameResultsInterface* GameResultsInterface::createNewGameResultsInterface() { return new NullGameResultsInterface; }
 GameSpyPSMessageQueueInterface* GameSpyPSMessageQueueInterface::createNewMessageQueue() { return 0; }
 GameSpyPeerMessageQueueInterface* GameSpyPeerMessageQueueInterface::createNewMessageQueue() { return 0; }
 GameSpyBuddyMessageQueueInterface* GameSpyBuddyMessageQueueInterface::createNewMessageQueue() { return 0; }
