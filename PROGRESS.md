@@ -253,7 +253,35 @@ Still expected to fail later (not yet fixed, by design for this milestone):
 stubbed `vk*` loader returning garbage into renderer init, `ignore-all` leftovers if any,
 GameSpy/Firewall no-ops. Those are NOTES.md next-steps, not this bug.
 
+
+### 2026-10-13 — Next step: real OpenAL backend for Miles (MSS shim)
+
+Replaced the header no-op `AIL_*` stubs with a real OpenAL Soft implementation:
+
+- `Libraries/Include/MSS/mss.h` — types/constants kept; functions now extern declarations (+ new `AIL_service()`).
+- `Libraries/Source/MSS/mss.cpp` (new, built into **WWAudio**) — voice pool shared by 2D/3D/stream/quick handles;
+  WAV PCM load (`parseWav`) → `alBufferData`; EOS pump `AIL_service()` polls `AL_SOURCE_STATE`
+  and fires registered callbacks; fake 3D providers enumerated with Miles names
+  (`"Miles Fast 2D Positional Audio"`, `"Dolby Surround"`) so `selectProvider` succeeds;
+  listener handle sentinel vs voice handles; ADPCM path returns silence buffer (no decoder yet).
+- **`MilesAudioManager.cpp`**:
+  - `setSampleCompleted` / `set3DSampleCompleted` / `setStreamCompleted` now call
+    `TheAudio->notifyOfAudioCompletion(handle, PAT_*)` (were empty — no completion ever).
+  - `update()` calls `AIL_service()` before processing lists.
+  - `openDevice()` falls back to provider index 0 when preferred provider is missing/empty
+    (was early-returning on `PROVIDER_ERROR == PROVIDER_ERROR`, leaving *all* sample pools empty).
+- **Link**: vendored `third_party/openal/{OpenAL32.dll, OpenAL32.def, libOpenAL32.dll.a}`
+  (x64 OpenAL Soft, import lib via dlltool; `.gitignore` exception for `*.a`);
+  RTS links the import lib — exe now imports **`OpenAL32.dll`**.
+- `WWAudio/CMakeLists.txt`: adds `Source/MSS/mss.cpp` + `third_party/include` (AL headers).
+- Release zips refreshed with `OpenAL32.dll` + rebuilt exe; GH assets re-uploaded.
+
+Known gaps in this backend: IMA-ADPCM decode is silence; pan is relative-X only;
+distance scale untuned; streams are fully-loaded WAV only (no streaming/mp3);
+`vk*` loader still stubbed (separate next step).
+
 <!-- Append new entries below. Commit after each completed step. -->
+
 
 
 

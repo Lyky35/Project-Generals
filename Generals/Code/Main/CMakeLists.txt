@@ -46,6 +46,7 @@ target_link_libraries(RTS PRIVATE
     ws2_32
     mingw32
     GameSpyStub
+    ${CMAKE_SOURCE_DIR}/third_party/openal/libOpenAL32.dll.a
 )
 
 # Remove DirectX 8 SDK libraries (replaced by OpenAL + SDL2 + FFmpeg)

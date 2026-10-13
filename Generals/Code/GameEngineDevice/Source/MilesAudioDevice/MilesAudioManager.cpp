@@ -499,6 +499,7 @@ void MilesAudioManager::reset()
 void MilesAudioManager::update()
 {
 	AudioManager::update();
+	AIL_service();	// poll OpenAL sources, fire EOS callbacks into notifyOfAudioCompletion
 	setDeviceListenerPosition();
 	processRequestList();
 	processPlayingList();
@@ -1484,7 +1485,12 @@ void MilesAudioManager::openDevice( void )
 		setOn( false, AudioAffect_All );
 	}
 
-	selectProvider(TheAudio->getProviderIndex(m_pref3DProvider));
+	UnsignedInt prefIdx = TheAudio->getProviderIndex(m_pref3DProvider);
+	if (prefIdx == PROVIDER_ERROR) {
+		// No matching preferred provider (empty/missing audio.ini pref) — use first enumerated
+		prefIdx = 0;
+	}
+	selectProvider(prefIdx);
 
 	// Now that we're all done, update the cached variables so that everything is in sync.
 	TheAudio->refreshCachedVariables();
@@ -2981,22 +2987,25 @@ void MilesAudioManager::friend_forcePlayAudioEventRTS(const AudioEventRTS* event
 //-------------------------------------------------------------------------------------------------
 void AILCALLBACK setSampleCompleted( HSAMPLE sampleCompleted )
 {
-// OpenAL emulation: notify of audio sample completion
-// Would use alSourceUnqueueBuffers or alGetSourcei source state check
+	if (TheAudio) {
+		TheAudio->notifyOfAudioCompletion( (UnsignedInt)sampleCompleted, PAT_Sample );
+	}
 }
 
 //-------------------------------------------------------------------------------------------------
 void AILCALLBACK set3DSampleCompleted( H3DSAMPLE sample3DCompleted )
 {
-// OpenAL emulation: notify of 3D audio sample completion
-// Would use alGetSourcei to check 3D source state
+	if (TheAudio) {
+		TheAudio->notifyOfAudioCompletion( (UnsignedInt)(uintptr_t)sample3DCompleted, PAT_3DSample );
+	}
 }
 
 //-------------------------------------------------------------------------------------------------
 void AILCALLBACK setStreamCompleted( HSTREAM streamCompleted )
 {
-// OpenAL emulation: notify of stream completion
-// Would use alGetSourcei to check streaming source state
+	if (TheAudio) {
+		TheAudio->notifyOfAudioCompletion( (UnsignedInt)streamCompleted, PAT_Stream );
+	}
 }
 
 //-------------------------------------------------------------------------------------------------
