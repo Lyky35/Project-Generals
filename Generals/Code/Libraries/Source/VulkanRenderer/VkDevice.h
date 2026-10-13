@@ -108,7 +108,11 @@ public:
     VkFramebuffer GetFramebuffer() const { return m_framebuffers[0]; }
     VkExtent2D GetSwapExtent() const { return m_swapExtent; }
     VkFormat GetSwapFormat() const { return m_swapFormat; }
-    bool IsInitialized() const { return true; }
+    // Was hard-coded `return true`, which made DX8Wrapper::Create_Device skip
+    // device creation entirely - every later vk* call then used an
+    // uninitialized/null VkDevice (crashed GPU drivers silently on Windows,
+    // crashed winevulkan under wine).
+    bool IsInitialized() const { return m_device != VK_NULL_HANDLE; }
     uint32_t GetImageIndex() const { return m_imageIndex; }
     VkRenderPass GetRtRenderPass() const { return m_rtRenderPass; }
     bool HasStencil() const { return false; }

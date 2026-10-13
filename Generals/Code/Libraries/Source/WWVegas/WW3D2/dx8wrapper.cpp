@@ -457,7 +457,15 @@ bool DX8Wrapper::Create_Device(void)
 		return true;
 
 	if (!device.Init(_Hwnd))
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: device init FAILED\n"); fclose(lf); }
 		return false;
+	}
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: device created\n"); fclose(lf); }
+	}
 
 	char shaderDir[260];
 	::GetModuleFileName(NULL, shaderDir, sizeof(shaderDir));
@@ -469,7 +477,11 @@ bool DX8Wrapper::Create_Device(void)
 		char fallback[260];
 		strcpy(fallback, ".\\shaders");
 		if (!ShaderManager.Init(&device, fallback))
+		{
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: shader init FAILED (need shaders\\*.spv next to RTS.exe)\n"); fclose(lf); }
 			return false;
+		}
 	}
 	if (!DescriptorAllocator.Init(&device, 8192))
 		return false;

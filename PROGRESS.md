@@ -558,6 +558,36 @@ frames or a new logged failure (D3D-failure box or FR stack).
 Next: Windows 10 run with GPU; if Vulkan device creation fails there too,
 audit VulkanRenderer image creation; then audio/first-frame.
 
+### 2026-10-13 — Root cause of the silent GameClient death: VulkanDevice::IsInitialized() lied
+
+Field log + GC markers bracketed the silent death inside TheGameClient init
+(no exception/CRT/atexit lines = driver-level or unix-side kill). Local
+repro under wine (gdb caught unix-side SIGSEGV in ntdll's call dispatcher,
+r10=NULL dispatch table, called from winevulkan): **a vk* call with a
+NULL/garbage VkDevice**.
+
+**Root cause chain:**
+1. `VulkanDevice::IsInitialized()` was hardcoded `return true`.
+2. `DX8Wrapper::Create_Device()` guards on it -> **always returned true
+   without ever calling `device.Init(_Hwnd)`** - the Vulkan device was
+   NEVER created, yet all guards thought it existed.
+3. First real texture/buffer creation (W3DInGameUI phase) called
+   vkCreateImage on an uninitialized VkDevice -> NULL device dispatch ->
+   GPU driver / winevulkan hard-crash. Real drivers kill the process with
+   their own filter = the silent Windows death; wine dies inside ntdll.so.
+
+**Fixes:**
+- `IsInitialized()` now returns `m_device != VK_NULL_HANDLE`.
+- Create_Device logs `VK: device created` / `VK: device init FAILED` /
+  shader-init failure to RTS_START.LOG.
+- Release zips now include `shaders\mesh.vert.spv` + `mesh.frag.spv`
+  (Create_Device needs them next to RTS.exe; they were never shipped!).
+
+Local wine can't verify device init end-to-end (this machine's NVIDIA
+kernel driver is not loaded - nvidia-smi fails - so there is no working
+host Vulkan ICD). Windows 10 with working GPU drivers is the real test:
+expect `VK: device created` + first-frame rendering, or a logged failure.
+
 <!-- Append new entries below. Commit after each completed step. -->
 
 
