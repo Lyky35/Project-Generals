@@ -22,434 +22,549 @@
 //																																						//
 ////////////////////////////////////////////////////////////////////////////////
 
-//----------------------------------------------------------------------------
-//                                                                          
-//                       Westwood Studios Pacific.                          
-//                                                                          
-//                       Confidential Information                           
-//                Copyright (C) 2001 - All Rights Reserved                  
-//                                                                          
-//----------------------------------------------------------------------------
-//
-// Project:   Generals
-//
-// Module:    VideoDevice
-//
-// File name: BinkDevice.cpp
-//
-// Created:   10/22/01	TR
-//
-//----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
-//         Includes                                                      
-//----------------------------------------------------------------------------
+// FILE: BinkVideoPlayer.cpp
+// Bink playback via FFmpeg (libavformat bink demuxer + libavcodec bink decoder).
 
 #include "Lib/BaseType.h"
 #include "VideoDevice/Bink/BinkVideoPlayer.h"
-// FFmpeg decode path not yet wired for MinGW cross; using bink.h stubs
 #include "Common/AudioAffect.h"
 #include "Common/GameAudio.h"
 #include "Common/GameMemory.h"
 #include "Common/GlobalData.h"
 #include "Common/Registry.h"
 
-//----------------------------------------------------------------------------
-//         Externals                                                     
-//----------------------------------------------------------------------------
+#include <windows.h>
+#include <stdio.h>
+#include <string.h>
 
+#if HAS_FFMPEG
+extern "C" {
+#include <libavformat/avformat.h>
+#include <libavcodec/avcodec.h>
+#include <libavutil/imgutils.h>
+#include <libavutil/time.h>
+#include <libswscale/swscale.h>
+}
+#endif
 
- 
-//----------------------------------------------------------------------------
-//         Defines                                                         
-//----------------------------------------------------------------------------
 #define VIDEO_LANG_PATH_FORMAT "Data/%s/Movies/%s.%s"
 #define VIDEO_PATH	"Data\\Movies"
 #define VIDEO_EXT		"bik"
 
+// Opaque FFmpeg playback context (one per open stream)
+struct BinkFFmpegCtx
+{
+#if HAS_FFMPEG
+	AVFormatContext *fmt;
+	AVCodecContext *dec;
+	AVFrame *frame;
+	AVPacket *pkt;
+	SwsContext *sws;
+	int videoIdx;
+	int64_t frameNumber;      // next frame to present (0-based)
+	int64_t startTickMs;      // wall clock at open/first ready
+	int swsSrcW, swsSrcH;
+	enum AVPixelFormat swsSrcFmt;
+	uint8_t *rgb;             // BGRA/XRGB8888 staging buffer
+	int rgbPitch;
+#endif
+	BinkFFmpegCtx() :
+#if HAS_FFMPEG
+		fmt(NULL), dec(NULL), frame(NULL), pkt(NULL), sws(NULL),
+		videoIdx(-1), frameNumber(0), startTickMs(0),
+		swsSrcW(0), swsSrcH(0), swsSrcFmt(AV_PIX_FMT_NONE),
+		rgb(NULL), rgbPitch(0)
+#endif
+	{
+	}
+};
 
+#if HAS_FFMPEG
+static double ctxFps( BinkFFmpegCtx *ff )
+{
+	AVRational fr = ff->fmt->streams[ff->videoIdx]->avg_frame_rate;
+	if (fr.num <= 0 || fr.den <= 0)
+		fr = ff->fmt->streams[ff->videoIdx]->r_frame_rate;
+	if (fr.num <= 0 || fr.den <= 0)
+		return 30.0;
+	return av_q2d(fr);
+}
 
-//----------------------------------------------------------------------------
-//         Private Types                                                     
-//----------------------------------------------------------------------------
+static int64_t ctxFrameCount( BinkFFmpegCtx *ff )
+{
+	AVStream *st = ff->fmt->streams[ff->videoIdx];
+	if (st->nb_frames > 0)
+		return st->nb_frames;
+	// Estimate from duration
+	if (st->duration > 0 && st->time_base.num > 0 && st->time_base.den > 0) {
+		double fps = ctxFps(ff);
+		double sec = (double)st->duration * av_q2d(st->time_base);
+		int64_t n = (int64_t)(sec * fps + 0.5);
+		if (n > 0) return n;
+	}
+	return 0;
+}
 
+static void ctxSeekFrame( BinkFFmpegCtx *ff, int64_t frame )
+{
+	AVStream *st = ff->fmt->streams[ff->videoIdx];
+	double fps = ctxFps(ff);
+	int64_t ts = (int64_t)(frame / fps / av_q2d(st->time_base));
+	av_seek_frame(ff->fmt, ff->videoIdx, ts, AVSEEK_FLAG_BACKWARD);
+	avcodec_flush_buffers(ff->dec);
+	av_frame_unref(ff->frame);
+}
 
+// Decode forward until the decoded frame corresponds to ff->frameNumber.
+// Bink: one video packet ≈ one frame.
+static void ctxDecodeToFrame( BinkFFmpegCtx *ff )
+{
+	// Fast path: already holding the wanted frame
+	// We track by re-decoding from last keyframe only when frameNumber jumps backward.
+	for (;;)
+	{
+		int got = 0;
+		while (av_read_frame(ff->fmt, ff->pkt) >= 0)
+		{
+			if (ff->pkt->stream_index != ff->videoIdx)
+			{
+				av_packet_unref(ff->pkt);
+				continue;
+			}
+			int ret = avcodec_send_packet(ff->dec, ff->pkt);
+			av_packet_unref(ff->pkt);
+			if (ret < 0)
+				continue;
+			ret = avcodec_receive_frame(ff->dec, ff->frame);
+			if (ret == 0)
+			{
+				got = 1;
+				break;
+			}
+			if (ret == AVERROR(EAGAIN))
+				continue;
+			if (ret == AVERROR_EOF)
+				return;
+		}
+		if (!got)
+			return; // EOF or read error — leave last frame in place
+	}
+}
 
-//----------------------------------------------------------------------------
-//         Private Data                                                     
-//----------------------------------------------------------------------------
+static bool ctxEnsureRgb( BinkFFmpegCtx *ff )
+{
+	if (!ff->frame->data[0])
+		return false;
+	if (!ff->rgb || ff->swsSrcW != ff->frame->width || ff->swsSrcH != ff->frame->height ||
+		ff->swsSrcFmt != (enum AVPixelFormat)ff->frame->format)
+	{
+		if (ff->sws)
+		{
+			sws_freeContext(ff->sws);
+			ff->sws = NULL;
+		}
+		if (ff->rgb)
+		{
+			av_free(ff->rgb);
+			ff->rgb = NULL;
+		}
+		ff->swsSrcW = ff->frame->width;
+		ff->swsSrcH = ff->frame->height;
+		ff->swsSrcFmt = (enum AVPixelFormat)ff->frame->format;
+		ff->rgbPitch = ff->swsSrcW * 4;
+		ff->rgb = (uint8_t*)av_malloc((size_t)ff->rgbPitch * ff->swsSrcH);
+		if (!ff->rgb)
+			return false;
+		ff->sws = sws_getContext(
+			ff->swsSrcW, ff->swsSrcH, ff->swsSrcFmt,
+			ff->swsSrcW, ff->swsSrcH, AV_PIX_FMT_BGR0,
+			SWS_BILINEAR, NULL, NULL, NULL);
+		if (!ff->sws)
+			return false;
+	}
+	uint8_t *dst[4] = { ff->rgb, NULL, NULL, NULL };
+	int dstStride[4] = { ff->rgbPitch, 0, 0, 0 };
+	sws_scale(ff->sws, ff->frame->data, ff->frame->linesize, 0, ff->swsSrcH, dst, dstStride);
+	return true;
+}
 
+static BinkFFmpegCtx *ctxOpen( const char *path )
+{
+	BinkFFmpegCtx *ff = new BinkFFmpegCtx;
+	avformat_open_input(&ff->fmt, path, NULL, NULL);
+	if (!ff->fmt)
+	{
+		delete ff;
+		return NULL;
+	}
+	if (avformat_find_stream_info(ff->fmt, NULL) < 0)
+	{
+		avformat_close_input(&ff->fmt);
+		delete ff;
+		return NULL;
+	}
+	const AVCodec *codec = NULL;
+	ff->videoIdx = av_find_best_stream(ff->fmt, AVMEDIA_TYPE_VIDEO, -1, -1, &codec, 0);
+	if (ff->videoIdx < 0 || !codec)
+	{
+		avformat_close_input(&ff->fmt);
+		delete ff;
+		return NULL;
+	}
+	ff->dec = avcodec_alloc_context3(codec);
+	if (!ff->dec || avcodec_open2(ff->dec, codec, NULL) < 0)
+	{
+		if (ff->dec) avcodec_free_context(&ff->dec);
+		avformat_close_input(&ff->fmt);
+		delete ff;
+		return NULL;
+	}
+	ff->frame = av_frame_alloc();
+	ff->pkt = av_packet_alloc();
+	if (!ff->frame || !ff->pkt)
+	{
+		if (ff->frame) av_frame_free(&ff->frame);
+		if (ff->pkt) av_packet_free(&ff->pkt);
+		avcodec_free_context(&ff->dec);
+		avformat_close_input(&ff->fmt);
+		delete ff;
+		return NULL;
+	}
+	ff->frameNumber = 0;
+	ff->startTickMs = (int64_t)GetTickCount();
+	return ff;
+}
 
-
-//----------------------------------------------------------------------------
-//         Public Data                                                      
-//----------------------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------
-//         Private Prototypes                                               
-//----------------------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------
-//         Private Functions                                               
-//----------------------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------
-//         Public Functions                                                
-//----------------------------------------------------------------------------
-
+static void ctxClose( BinkFFmpegCtx *ff )
+{
+	if (!ff) return;
+	if (ff->sws) { sws_freeContext(ff->sws); ff->sws = NULL; }
+	if (ff->rgb) { av_free(ff->rgb); ff->rgb = NULL; }
+	if (ff->pkt) av_packet_free(&ff->pkt);
+	if (ff->frame) av_frame_free(&ff->frame);
+	if (ff->dec) avcodec_free_context(&ff->dec);
+	if (ff->fmt) avformat_close_input(&ff->fmt);
+	delete ff;
+}
+#endif // HAS_FFMPEG
 
 //============================================================================
-// BinkVideoPlayer::BinkVideoPlayer
+// BinkVideoStream
+//============================================================================
+
+BinkVideoStream::BinkVideoStream()
+: m_ff(NULL), m_memFile(NULL)
+{
+}
+
+BinkVideoStream::~BinkVideoStream()
+{
+	freeFF();
+}
+
+void BinkVideoStream::freeFF( void )
+{
+#if HAS_FFMPEG
+	if (m_ff)
+	{
+		ctxClose(m_ff);
+		m_ff = NULL;
+	}
+#endif
+}
+
+void BinkVideoStream::update( void )
+{
+}
+
+Bool BinkVideoStream::isFrameReady( void )
+{
+#if HAS_FFMPEG
+	if (!m_ff) return FALSE;
+	int64_t count = ctxFrameCount(m_ff);
+	// Always ready for frame 0 / unknown length; then rate-limit by wall clock.
+	if (m_ff->frameNumber <= 0 || count <= 0)
+		return TRUE;
+	double fps = ctxFps(m_ff);
+	if (fps <= 0.0) return TRUE;
+	int64_t elapsed = (int64_t)GetTickCount() - m_ff->startTickMs;
+	int64_t dueMs = (int64_t)(m_ff->frameNumber * 1000.0 / fps);
+	return elapsed >= dueMs;
+#else
+	return TRUE;
+#endif
+}
+
+void BinkVideoStream::frameDecompress( void )
+{
+#if HAS_FFMPEG
+	if (!m_ff) return;
+	// If the caller jumped (frameGoto), seek then decode one frame.
+	// Sequential playback: decode one packet per call.
+	ctxDecodeToFrame(m_ff);
+#endif
+}
+
+void BinkVideoStream::frameRender( VideoBuffer *buffer )
+{
+#if HAS_FFMPEG
+	if (!m_ff || !buffer || !m_ff->frame || !m_ff->frame->data[0])
+		return;
+	if (!ctxEnsureRgb(m_ff))
+		return;
+
+	void *mem = buffer->lock();
+	if (!mem)
+		return;
+
+	UnsignedInt bw = buffer->width();
+	UnsignedInt bh = buffer->height();
+	UnsignedInt bpt = buffer->pitch();
+	int copyW = (int)((bw < (UnsignedInt)m_ff->swsSrcW) ? bw : (UnsignedInt)m_ff->swsSrcW);
+	int copyH = (int)((bh < (UnsignedInt)m_ff->swsSrcH) ? bh : (UnsignedInt)m_ff->swsSrcH);
+
+	// VideoBuffer formats (see VideoBuffer::Type)
+	switch (buffer->format())
+	{
+		case VideoBuffer::TYPE_X8R8G8B8:
+		case VideoBuffer::TYPE_R8G8B8:
+		{
+			// BGRA (BINK_BGR0) → X8R8G8B8 / R8G8B8
+			for (int y = 0; y < copyH; ++y)
+			{
+				const uint8_t *src = m_ff->rgb + (size_t)y * m_ff->rgbPitch;
+				uint8_t *dst = (uint8_t *)mem + (size_t)y * bpt;
+				if (buffer->format() == VideoBuffer::TYPE_X8R8G8B8)
+				{
+					memcpy(dst, src, (size_t)copyW * 4);
+				}
+				else // R8G8B8: drop X
+				{
+					for (int x = 0; x < copyW; ++x)
+					{
+						dst[x * 3 + 0] = src[x * 4 + 2]; // R
+						dst[x * 3 + 1] = src[x * 4 + 1]; // G
+						dst[x * 3 + 2] = src[x * 4 + 0]; // B
+					}
+				}
+			}
+			break;
+		}
+		case VideoBuffer::TYPE_R5G6B5:
+		case VideoBuffer::TYPE_X1R5G5B5:
+		{
+			for (int y = 0; y < copyH; ++y)
+			{
+				const uint8_t *src = m_ff->rgb + (size_t)y * m_ff->rgbPitch;
+				uint16_t *dst = (uint16_t *)((uint8_t *)mem + (size_t)y * bpt);
+				for (int x = 0; x < copyW; ++x)
+				{
+					uint8_t b = src[x * 4 + 0];
+					uint8_t g = src[x * 4 + 1];
+					uint8_t r = src[x * 4 + 2];
+					dst[x] = (uint16_t)(((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3));
+				}
+			}
+			break;
+		}
+		default:
+			break;
+	}
+	buffer->unlock();
+#else
+	(void)buffer;
+#endif
+}
+
+void BinkVideoStream::frameNext( void )
+{
+#if HAS_FFMPEG
+	if (!m_ff) return;
+	int64_t count = ctxFrameCount(m_ff);
+	m_ff->frameNumber++;
+	if (count > 0 && m_ff->frameNumber >= count)
+	{
+		// Loop back (matches Bink SDK / WindowVideoManager frameIndex()==0 check)
+		m_ff->frameNumber = 0;
+		ctxSeekFrame(m_ff, 0);
+		m_ff->startTickMs = (int64_t)GetTickCount();
+	}
+#endif
+}
+
+Int BinkVideoStream::frameIndex( void )
+{
+#if HAS_FFMPEG
+	if (!m_ff) return 0;
+	return (Int)m_ff->frameNumber;
+#else
+	return 0;
+#endif
+}
+
+Int BinkVideoStream::frameCount( void )
+{
+#if HAS_FFMPEG
+	if (!m_ff) return 0;
+	return (Int)ctxFrameCount(m_ff);
+#else
+	return 0;
+#endif
+}
+
+void BinkVideoStream::frameGoto( Int index )
+{
+#if HAS_FFMPEG
+	if (!m_ff) return;
+	int64_t count = ctxFrameCount(m_ff);
+	if (index < 0) index = 0;
+	if (count > 0 && index >= count) index = (Int)(count - 1); // LoadScreen calls frameGoto(frameCount())
+	m_ff->frameNumber = index;
+	ctxSeekFrame(m_ff, index);
+	m_ff->startTickMs = (int64_t)GetTickCount() - (int64_t)(index * 1000.0 / ctxFps(m_ff));
+#endif
+}
+
+Int BinkVideoStream::height( void )
+{
+#if HAS_FFMPEG
+	if (!m_ff || !m_ff->dec) return 0;
+	return m_ff->dec->height;
+#else
+	return 0;
+#endif
+}
+
+Int BinkVideoStream::width( void )
+{
+#if HAS_FFMPEG
+	if (!m_ff || !m_ff->dec) return 0;
+	return m_ff->dec->width;
+#else
+	return 0;
+#endif
+}
+
+//============================================================================
+// BinkVideoPlayer
 //============================================================================
 
 BinkVideoPlayer::BinkVideoPlayer()
 {
-
 }
-
-//============================================================================
-// BinkVideoPlayer::~BinkVideoPlayer
-//============================================================================
 
 BinkVideoPlayer::~BinkVideoPlayer()
 {
 	deinit();
 }
 
-//============================================================================
-// BinkVideoPlayer::init
-//============================================================================
-
-void	BinkVideoPlayer::init( void )
+void BinkVideoPlayer::init( void )
 {
-	// Need to load the stuff from the ini file.
 	VideoPlayer::init();
-
-	initializeBinkWithMiles();
 }
-
-//============================================================================
-// BinkVideoPlayer::deinit
-//============================================================================
 
 void BinkVideoPlayer::deinit( void )
 {
-	TheAudio->releaseHandleForBink();
+	closeAllStreams();
 	VideoPlayer::deinit();
 }
 
-//============================================================================
-// BinkVideoPlayer::reset
-//============================================================================
-
-void	BinkVideoPlayer::reset( void )
+void BinkVideoPlayer::reset( void )
 {
 	VideoPlayer::reset();
 }
 
-//============================================================================
-// BinkVideoPlayer::update
-//============================================================================
-
-void	BinkVideoPlayer::update( void )
+void BinkVideoPlayer::update( void )
 {
 	VideoPlayer::update();
-
 }
 
-//============================================================================
-// BinkVideoPlayer::loseFocus
-//============================================================================
-
-void	BinkVideoPlayer::loseFocus( void )
+void BinkVideoPlayer::loseFocus( void )
 {
 	VideoPlayer::loseFocus();
 }
 
-//============================================================================
-// BinkVideoPlayer::regainFocus
-//============================================================================
-
-void	BinkVideoPlayer::regainFocus( void )
+void BinkVideoPlayer::regainFocus( void )
 {
 	VideoPlayer::regainFocus();
 }
 
-//============================================================================
-// BinkVideoPlayer::createStream
-//============================================================================
-
-VideoStreamInterface* BinkVideoPlayer::createStream( HBINK handle )
+VideoStreamInterface* BinkVideoPlayer::createStream( BinkFFmpegCtx *ctx )
 {
+	if (!ctx)
+		return NULL;
 
-	if ( handle == NULL )
+	BinkVideoStream *stream = NEW BinkVideoStream;
+	if (!stream)
 	{
+#if HAS_FFMPEG
+		ctxClose(ctx);
+#endif
 		return NULL;
 	}
 
-	BinkVideoStream *stream = NEW BinkVideoStream;
-
-	if ( stream )
-	{
-
-		stream->m_handle = handle;
-		stream->m_next = m_firstStream;
-		stream->m_player = this;
-		m_firstStream = stream;
-
-		// never let volume go to 0, as Bink will interpret that as "play at full volume".
-		Int mod = (Int) ((TheAudio->getVolume(AudioAffect_Speech) * 0.8f) * 100) + 1;
-		Int volume = (32768*mod)/100;
-		DEBUG_LOG(("BinkVideoPlayer::createStream() - About to set volume (%g -> %d -> %d\n",
-			TheAudio->getVolume(AudioAffect_Speech), mod, volume));
-		BinkSetVolume( stream->m_handle,0, volume);
-		DEBUG_LOG(("BinkVideoPlayer::createStream() - set volume\n"));
-	}
-
+	stream->m_ff = ctx;
+	stream->m_next = m_firstStream;
+	stream->m_player = this;
+	m_firstStream = stream;
 	return stream;
 }
 
-//============================================================================
-// BinkVideoPlayer::open
-//============================================================================
-
-VideoStreamInterface*	BinkVideoPlayer::open( AsciiString movieTitle )
+VideoStreamInterface* BinkVideoPlayer::open( AsciiString movieTitle )
 {
-	VideoStreamInterface*	stream = NULL;
+#if !HAS_FFMPEG
+	(void)movieTitle;
+	return NULL;
+#else
+	VideoStreamInterface* stream = NULL;
 
 	const Video* pVideo = getVideo(movieTitle);
-	if (pVideo) {
-		DEBUG_LOG(("BinkVideoPlayer::createStream() - About to open bink file\n"));
+	if (!pVideo)
+		return NULL;
 
-		HBINK handle = NULL;
+	char filePath[MAX_PATH];
+	filePath[0] = 0;
 
-		if (TheGlobalData->m_modDir.isNotEmpty())
-		{
-			char filePath[ _MAX_PATH ];
-			sprintf( filePath, "%s%s\\%s.%s", TheGlobalData->m_modDir.str(), VIDEO_PATH, pVideo->m_filename.str(), VIDEO_EXT );
-			handle = BinkOpen( filePath, 0 );
-			DEBUG_ASSERTLOG(!handle, ("opened bink file %s\n", filePath));
-			if (handle)
-			{
-				return createStream( handle );
-			}
-		}
-
-		char localizedFilePath[ _MAX_PATH ];
-		sprintf( localizedFilePath, VIDEO_LANG_PATH_FORMAT, GetRegistryLanguage().str(), pVideo->m_filename.str(), VIDEO_EXT );
-		handle = BinkOpen( localizedFilePath, 0 );
-		DEBUG_ASSERTLOG(!handle, ("opened localized bink file %s\n", localizedFilePath));
-		if (!handle)
-		{
-			char filePath[ _MAX_PATH ];
-			sprintf( filePath, "%s\\%s.%s", VIDEO_PATH, pVideo->m_filename.str(), VIDEO_EXT );
-			handle = BinkOpen( filePath, 0 );
-			DEBUG_ASSERTLOG(!handle, ("opened bink file %s\n", localizedFilePath));
-		}
-
-		DEBUG_LOG(("BinkVideoPlayer::createStream() - About to create stream\n"));
-		stream = createStream( handle );
+	if (TheGlobalData && TheGlobalData->m_modDir.isNotEmpty())
+	{
+		sprintf(filePath, "%s%s\\%s.%s", TheGlobalData->m_modDir.str(), VIDEO_PATH, pVideo->m_filename.str(), VIDEO_EXT);
 	}
 
-	return stream;	
+	BinkFFmpegCtx *ctx = NULL;
+	if (filePath[0])
+		ctx = ctxOpen(filePath);
+
+	if (!ctx)
+	{
+		sprintf(filePath, VIDEO_LANG_PATH_FORMAT, GetRegistryLanguage().str(), pVideo->m_filename.str(), VIDEO_EXT);
+		ctx = ctxOpen(filePath);
+	}
+
+	if (!ctx)
+	{
+		sprintf(filePath, "%s\\%s.%s", VIDEO_PATH, pVideo->m_filename.str(), VIDEO_EXT);
+		ctx = ctxOpen(filePath);
+	}
+
+	if (!ctx)
+	{
+		DEBUG_LOG(("BinkVideoPlayer::open - failed to open Bink '%s'\n", pVideo->m_filename.str()));
+		return NULL;
+	}
+
+	stream = createStream(ctx);
+	return stream;
+#endif
 }
 
-//============================================================================
-// BinkVideoPlayer::load
-//============================================================================
-
-VideoStreamInterface*	BinkVideoPlayer::load( AsciiString movieTitle )
+VideoStreamInterface* BinkVideoPlayer::load( AsciiString movieTitle )
 {
-	return open(movieTitle); // load() used to have the same body as open(), so I'm combining them.  Munkee.
+	// FFmpeg path streams from disk; load() is equivalent to open()
+	return open(movieTitle);
 }
 
-//============================================================================
-//============================================================================
 void BinkVideoPlayer::notifyVideoPlayerOfNewProvider( Bool nowHasValid )
 {
-	if (!nowHasValid) {
-		TheAudio->releaseHandleForBink();
-		BinkSetSoundTrack(0, 0);
-	} else {
-		initializeBinkWithMiles();
-	}
+	// Bink audio was previously routed through Miles/DirectSound; video-only FFmpeg path ignores this.
+	(void)nowHasValid;
 }
-
-//============================================================================
-//============================================================================
-void BinkVideoPlayer::initializeBinkWithMiles()
-{
-	Int retVal = 0;
-	void *driver = TheAudio->getHandleForBink();	
-	
-	if ( driver )
-	{
-		retVal = BinkSoundUseDirectSound(driver);
-	}
-	if( !driver || retVal == 0)
-	{
-		BinkSetSoundTrack ( 0,0 );
-	}
-}
-
-//============================================================================
-// BinkVideoStream::BinkVideoStream
-//============================================================================
-
-BinkVideoStream::BinkVideoStream()
-: m_handle(NULL)
-{
-
-}
-
-//============================================================================
-// BinkVideoStream::~BinkVideoStream
-//============================================================================
-
-BinkVideoStream::~BinkVideoStream()
-{
-	if ( m_handle != NULL )
-	{
-		BinkClose( m_handle );
-		m_handle = NULL;
-	}
-}
-
-//============================================================================
-// BinkVideoStream::update
-//============================================================================
-
-void BinkVideoStream::update( void )
-{
-	BinkWait( m_handle );
-}
-
-//============================================================================
-// BinkVideoStream::isFrameReady
-//============================================================================
-
-Bool BinkVideoStream::isFrameReady( void )
-{
-	return !BinkWait( m_handle );
-}
-
-//============================================================================
-// BinkVideoStream::frameDecompress
-//============================================================================
-
-void BinkVideoStream::frameDecompress( void )
-{
-		BinkDoFrame( m_handle );
-}
-
-//============================================================================
-// BinkVideoStream::frameRender
-//============================================================================
-
-void BinkVideoStream::frameRender( VideoBuffer *buffer )
-{
-	if ( buffer )
-	{
-		void *mem = buffer->lock();
-
-		uint32_t flags;
-
-		switch ( buffer->format())
-		{
-			case VideoBuffer::TYPE_X8R8G8B8:
-				flags = BINKSURFACE32;
-				break;
-
-			case VideoBuffer::TYPE_R8G8B8:
-				flags = BINKSURFACE24;
-				break;
-
-			case VideoBuffer::TYPE_R5G6B5:
-				flags = BINKSURFACE565;
-				break;
-
-			case VideoBuffer::TYPE_X1R5G5B5:
-				flags = BINKSURFACE555;
-				break;
-
-			default:
-				return;
-		}
-		
-		if ( mem != NULL )
-		{
-
-			BinkCopyToBuffer ( m_handle, mem, buffer->pitch(), buffer->height(),
-													buffer->xPos(), buffer->yPos(), flags );
-			buffer->unlock();
-		}
-	}
-
-}
-
-//============================================================================
-// BinkVideoStream::frameNext
-//============================================================================
-
-void BinkVideoStream::frameNext( void )
-{
-	BinkNextFrame( m_handle );
-}
-
-//============================================================================
-// BinkVideoStream::frameIndex
-//============================================================================
-
-Int BinkVideoStream::frameIndex( void )
-{
-	BINK* bink = (BINK*)m_handle;
-	return bink ? (Int)bink->FrameNum - 1 : 0;
-}
-
-//============================================================================
-// BinkVideoStream::totalFrames
-//============================================================================
-
-Int	BinkVideoStream::frameCount( void )
-{
-	BINK* bink = (BINK*)m_handle;
-	return bink ? (Int)bink->Frames : 0;
-}
-
-//============================================================================
-// BinkVideoStream::frameGoto
-//============================================================================
-
-void BinkVideoStream::frameGoto( Int index )
-{
-	BinkGoto(m_handle, index, NULL );
-}
-
-//============================================================================
-// VideoStream::height
-//============================================================================
-
-Int		BinkVideoStream::height( void )
-{
-	BINK* bink = (BINK*)m_handle;
-	return bink ? (Int)bink->Height : 0;
-}
-
-//============================================================================
-// VideoStream::width
-//============================================================================
-
-Int		BinkVideoStream::width( void )
-{
-	BINK* bink = (BINK*)m_handle;
-	return bink ? (Int)bink->Width : 0;
-}
-
-
-

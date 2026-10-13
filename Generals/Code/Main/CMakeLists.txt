@@ -44,6 +44,7 @@ target_link_libraries(RTS PRIVATE
     wininet
     advapi32
     ws2_32
+    bcrypt
     mingw32
     GameSpyStub
     ${CMAKE_SOURCE_DIR}/third_party/openal/libOpenAL32.dll.a

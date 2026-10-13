@@ -305,7 +305,34 @@ renders. No Windows runtime test yet; porting the unfinished Vulkan design twice
 Next: Windows 10 smoke test (do we get a window / first frame?), then FFmpeg Bink, then GeneralsMD
 once rendering is proven.
 
+
+### 2026-10-13 — FFmpeg Bink video backend (static MinGW build)
+
+Unblocked FFmpeg for MinGW by cross-compiling a **minimal static FFmpeg 7.1.1**
+(`--disable-everything` + bink demuxer/decoder/parser, file protocol, swscale, no x86asm):
+
+- Vendored into `third_party/ffmpeg/{include,lib/*.a}` (~4.2MB headers+libs; `.gitignore` allows `*.a` there).
+- `FFmpegVideo/CMakeLists.txt`: on MinGW links the static libs + `bcrypt` (avutil `BCryptGenRandom`);
+  host pkg-config path kept for non-cross builds.
+
+**BinkVideoPlayer rewrite** (`BinkVideoPlayer.h/.cpp`):
+- Dropped Radiant Bink SDK (`bink.h` stubs). `BinkVideoStream` now owns an opaque `BinkFFmpegCtx`
+  (`AVFormatContext`/`AVCodecContext`/`AVFrame`/`SwsContext`).
+- `open()` resolves the movie path (mod dir → language → Data\\Movies) and demuxes via
+  `avformat_open_input`; `load()` == `open()` (streamed from disk).
+- Frame pump matches engine callers (Display / LoadScreen / WindowVideoManager):
+  `isFrameReady` = wall-clock vs stream fps; `frameDecompress` reads/decodes next packet;
+  `frameRender` sws_scale → VideoBuffer (X8R8G8B8 / R8G8B8 / 16-bit); `frameNext` loops via seek;
+  `frameGoto` seeks (LoadScreen `frameGoto(frameCount())` clamps to last frame).
+- Video-only for now — Bink audio still not wired (Miles path separate).
+
+**Link:** RTS.exe grows to ~19.3MB; imports now include `bcrypt.dll` (system on Win10+).
+No new redistributable DLLs — FFmpeg is fully static.
+
+Next: Windows smoke test; audio-in-bik optional; GeneralsMD after render proof.
+
 <!-- Append new entries below. Commit after each completed step. -->
+
 
 
 
