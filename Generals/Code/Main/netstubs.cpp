@@ -11,8 +11,6 @@
 #include "GameNetwork/GameSpy/PeerThread.h"
 #include "GameClient/GUICallbacks.h"
 #include "WW3D2/dx8webbrowser.h"
-#include "WWDownload/ftp.h"
-#include "WWDownload/download.h"
 #include "Common/INI.h"
 #include <windows.h>
 #include <string>
@@ -120,7 +118,6 @@ Bool SetUnsignedIntInRegistry(std::string, std::string, unsigned) { return FALSE
 Bool FormatURLFromRegistry(std::string&, std::string&, std::string&, std::string&) { return FALSE; }
 
 // Cftp
-Cftp::Cftp() {}
 
 // MOTD
 WindowMsgHandledType MOTDSystem(GameWindow*, UnsignedInt, WindowMsgData, WindowMsgData) { return MSG_HANDLED; }
@@ -133,13 +130,6 @@ Int GameSpyInfo::addText(UnicodeString, Color, GameWindow*) { return 0; }
 void GameSpyInfo::addChat(PlayerInfo, UnicodeString, Bool, Bool, GameWindow*) {}
 void GameSpyInfo::addChat(AsciiString, Int, UnicodeString, Bool, Bool, GameWindow*) {}
 Bool GameSpyInfo::sendChat(UnicodeString, Bool, GameWindow*) { return FALSE; }
-
-// --- Cftp / CDownload vtables ---
-Cftp::~Cftp() {}
-HRESULT CDownload::PumpMessages() { return 0; }
-HRESULT CDownload::Abort() { return 0; }
-HRESULT CDownload::DownloadFile(LPCSTR, LPCSTR, LPCSTR, LPCSTR, LPCSTR, LPCSTR, bool) { return 0; }
-HRESULT CDownload::GetLastLocalFile(char*, int) { return 0; }
 
 // --- _set_se_translator (MSVC SEH; no-op on MinGW) ---
 extern "C" void _set_se_translator(void(*)(unsigned, void*)) {}

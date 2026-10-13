@@ -48,8 +48,6 @@
 /*
 ** Declare the pools
 */
-DEFINE_AUTO_POOL(AABTreeLinkClass,256);
-DEFINE_AUTO_POOL(AABTreeNodeClass,256);
 
 
 /*

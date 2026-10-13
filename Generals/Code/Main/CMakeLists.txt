@@ -14,8 +14,6 @@ target_include_directories(RTS PRIVATE
 
 # First link milestone: ignore unresolved (GameSpy/Firewall/Vulkan-loader/etc stubs)
 # Remaining symbols get real impls as SDK backends land.
-target_link_options(RTS PRIVATE -Wl,--unresolved-symbols=ignore-all)
-
 target_link_libraries(RTS PRIVATE
     GameEngineDevice
     GameEngine
@@ -29,6 +27,7 @@ target_link_libraries(RTS PRIVATE
     XAudio2Engine
     FFmpegVideo
     WWAudio
+    WWDownload
     WPAudio
     DX8Compat
     winmm

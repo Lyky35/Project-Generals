@@ -43,6 +43,7 @@ target_include_directories(GameEngine PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/Source/WWVegas
     ${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/Source/WWVegas/WWLib
     ${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/Source/GameSpy/Stub
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/Source/WWVegas/WWDownload
 )
 
-target_link_libraries(GameEngine PUBLIC Compression WWLib GameSpyStub)
+target_link_libraries(GameEngine PUBLIC Compression WWLib GameSpyStub WWDownload)

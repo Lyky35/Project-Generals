@@ -144,7 +144,10 @@ private:
 	static void *	operator new [] (size_t size);
 	static void		operator delete[] (void * memory);
 
-	// This must be staticly declared by user
+public:
+	// Defined via DEFINE_AUTO_POOL in the owning .cpp (public so a dedicated
+	// translation unit can provide the storage — GCC does not always emit
+	// private static-member specializations the way MSVC did).
 	static ObjectPoolClass<T,BLOCK_SIZE>	Allocator;
 
 };
@@ -155,7 +158,7 @@ private:
 ** the class.
 */
 #define DEFINE_AUTO_POOL(T,BLOCKSIZE) \
-template<> ObjectPoolClass<T,BLOCKSIZE> AutoPoolClass<T,BLOCKSIZE>::Allocator
+template<> ObjectPoolClass<T,BLOCKSIZE> AutoPoolClass<T,BLOCKSIZE>::Allocator = ObjectPoolClass<T,BLOCKSIZE>()
 
 
 

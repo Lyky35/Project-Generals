@@ -42,7 +42,9 @@
 template<> int Int<MAX_UNIT_PRECISION>::Error = 0;
 template<> bool Int<MAX_UNIT_PRECISION>::Carry = false;
 template<> bool Int<MAX_UNIT_PRECISION>::Borrow = false;
-template<> Int<MAX_UNIT_PRECISION> Int<MAX_UNIT_PRECISION>::Remainder;
+// Force a defined object with constructor (zeroed digit reg[] via XMP_Init).
+// Bare `Remainder;` was not emitting a symbol under MinGW/GCC.
+template<> Int<MAX_UNIT_PRECISION> Int<MAX_UNIT_PRECISION>::Remainder = Int<MAX_UNIT_PRECISION>();
 
 
 

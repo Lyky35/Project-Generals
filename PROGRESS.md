@@ -331,7 +331,34 @@ No new redistributable DLLs — FFmpeg is fully static.
 
 Next: Windows smoke test; audio-in-bik optional; GeneralsMD after render proof.
 
+
+### 2026-10-13 — Fix ucrtbase 0xc0000005: real AutoPool/Int objects, drop ignore-all
+
+Reported: faulting module **ucrtbase.dll**, offset `0x26cbc` (heap/allocator class of crash,
+not a null call in RTS.exe).
+
+Root causes addressed:
+1. **`DEFINE_AUTO_POOL` emitted no symbol under MinGW/GCC** when used as
+   `template<> ... Allocator;` (no initializer). `nm` showed `U` even in the defining TU.
+   Callers then resolved to our `char[4096] = {0}` link stubs (zero-filled, no ctor).
+   - `mempool.h`: macro now uses `= ObjectPoolClass<T,BLOCKSIZE>()` (emits `B` + static ctors).
+   - `Allocator` made public; dedicated `autopools.cpp` per WWLib/WW3D2/WWAudio/WWMath
+     define the pools; DEFINE lines removed from the original TUs.
+   - Verified in exe: `B AutoPoolClass<...>::Allocator` + `_GLOBAL__sub_I_...Allocator`.
+2. **`Int<64>::Remainder`** was a `char[256]` stub. int.cpp now uses
+   `Remainder = Int<MAX_UNIT_PRECISION>()` so the static runs `XMP_Init`.
+   Exe has `B Int<64>::Remainder`.
+3. **Removed `Cftp`/`CDownload` empty stubs** from netstubs (Cftp dtor `fclose`s `m_pfLocalFile`;
+   empty ctor left it uninitialized). Linked real **WWDownload** (`ftp.cpp` ZeroStuff ctor).
+4. **Removed `-Wl,--unresolved-symbols=ignore-all`** — link is now strict (0 undefined).
+5. **WinMain breadcrumbs**: writes `RTS_START.LOG` beside the exe
+   (`WinMain enter` → `after checkProtection` → `initializeAppWindows ok` →
+   `initMemoryManager done` → `entering GameMain` → `GameMain returned`).
+
+Next: retest on Windows 10; if it still dies, the log file pinpoints the phase.
+
 <!-- Append new entries below. Commit after each completed step. -->
+
 
 
 

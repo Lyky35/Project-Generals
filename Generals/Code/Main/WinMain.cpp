@@ -587,7 +587,8 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message,
 					::SetBkColor(dc, RGB(0,0,0));
 					::TextOut(dc, 30, 30, "Loading Command & Conquer Generals...", 37);
 #endif
-					if (gLoadScreenBitmap!=NULL) {
+					{ FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "initializeAppWindows ok\n"); fflush(lf); fclose(lf); } }
+		if (gLoadScreenBitmap!=NULL) {
 						Int savContext = ::SaveDC(dc);
 						HDC tmpDC = ::CreateCompatibleDC(dc);
 						HBITMAP savBitmap = (HBITMAP)::SelectObject(tmpDC, gLoadScreenBitmap);
@@ -906,9 +907,33 @@ Int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// displays are not bitmap-scaled by Windows.
 	enableDpiAwareness();
 
+	// Breadcrumb log for field debugging (write next to the exe)
+	{
+		char logPath[MAX_PATH] = {0};
+		GetModuleFileNameA(NULL, logPath, MAX_PATH);
+		char *slash = strrchr(logPath, '\\');
+		if (slash) strcpy(slash + 1, "RTS_START.LOG");
+		else strcpy(logPath, "RTS_START.LOG");
+		FILE *lf = fopen(logPath, "w");
+		if (lf) {
+			fprintf(lf, "WinMain enter\n");
+			fflush(lf);
+			fclose(lf);
+		}
+	}
+
 	checkProtection();
 
 	try {
+		{
+			char logPath[MAX_PATH] = {0};
+			GetModuleFileNameA(NULL, logPath, MAX_PATH);
+			char *slash = strrchr(logPath, '\\');
+			if (slash) strcpy(slash + 1, "RTS_START.LOG");
+			else strcpy(logPath, "RTS_START.LOG");
+			FILE *lf = fopen(logPath, "a");
+			if (lf) { fprintf(lf, "after checkProtection, in try\n"); fflush(lf); fclose(lf); }
+		}
 
 		_set_se_translator( DumpExceptionInfo ); // Hook that allows stack trace.
 		//
@@ -1000,6 +1025,7 @@ Int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		if( initializeAppWindows( hInstance, nCmdShow, ApplicationIsWindowed) == false )
 			return 0;
 
+		{ FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "initializeAppWindows ok\n"); fflush(lf); fclose(lf); } }
 		if (gLoadScreenBitmap!=NULL) {
 			::DeleteObject(gLoadScreenBitmap);
 			gLoadScreenBitmap = NULL;
@@ -1012,6 +1038,7 @@ Int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		// start the log
 		DEBUG_INIT(DEBUG_FLAGS_DEFAULT);
 		initMemoryManager();
+		{ FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "initMemoryManager done\n"); fflush(lf); fclose(lf); } }
 
  
 		// Set up version info
@@ -1075,7 +1102,9 @@ Int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		DEBUG_LOG(("CRC message is %d\n", GameMessage::MSG_LOGIC_CRC));
 
 		// run the game main loop
+		{ FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "entering GameMain\n"); fflush(lf); fclose(lf); } }
 		GameMain(argc, argv);
+		{ FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "GameMain returned\n"); fflush(lf); fclose(lf); } }
 
 #ifdef DO_COPY_PROTECTION
 		// Clean up copy protection

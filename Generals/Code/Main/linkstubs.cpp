@@ -42,18 +42,6 @@ int REF_encode(void*, const void*, int) { return 0; }
 int REF_decode(void*, void*, int) { return 0; }
 }
 
-// --- Int<64>::Remainder static ---
-extern "C" char _ZN3IntILi64EE9RemainderE[256] = {0};
-
-// --- AutoPoolClass static allocators ---
-extern "C" {
-char _ZN13AutoPoolClassI13GenericSLNodeLi256EE9AllocatorE[4096] = {0};
-char _ZN13AutoPoolClassI18MultiListNodeClassLi256EE9AllocatorE[4096] = {0};
-char _ZN13AutoPoolClassI16MatPassTaskClassLi256EE9AllocatorE[4096] = {0};
-char _ZN13AutoPoolClassI19PolyRenderTaskClassLi256EE9AllocatorE[4096] = {0};
-char _ZN13AutoPoolClassI19HAnimComboDataClassLi256EE9AllocatorE[4096] = {0};
-}
-
 // --- MinGW tchar import thunks ---
 extern "C" {
 size_t tcsclen(const wchar_t* s) { return s ? wcslen(s) : 0; }

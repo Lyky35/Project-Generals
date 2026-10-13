@@ -141,7 +141,6 @@ protected:
 
 };
 
-DEFINE_AUTO_POOL(PolyRenderTaskClass, 256);
 
 /**
 ** MatPassTaskClass
@@ -183,7 +182,6 @@ private:
 	MatPassTaskClass *	NextVisible;
 };
 
-DEFINE_AUTO_POOL(MatPassTaskClass, 256);
 
 
 // ----------------------------------------------------------------------------
