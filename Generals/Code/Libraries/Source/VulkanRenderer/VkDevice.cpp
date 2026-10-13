@@ -1,6 +1,13 @@
 #include "VkDevice.h"
 #include <cstring>
+#include <cstdio>
 #include <limits>
+
+static void vkLog(const char *what, int res)
+{
+	FILE *lf = fopen("RTS_START.LOG", "a");
+	if (lf) { fprintf(lf, "VK: %s -> %d\n", what, res); fclose(lf); }
+}
 
 #ifdef _DEBUG
 static const bool kEnableValidation = true;
@@ -68,52 +75,63 @@ VulkanDevice &VulkanDevice::Instance()
 bool VulkanDevice::Init(HWND hwnd)
 {
 	m_hwnd = hwnd;
-	if (!CreateInstance())
-		return false;
+	if (!CreateInstance()) { vkLog("Init: CreateInstance FAILED", -1); return false; }
 	if (!CreateSurface(hwnd)) {
+		vkLog("Init: CreateSurface FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!PickPhysicalDevice()) {
+		vkLog("Init: PickPhysicalDevice FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateLogicalDevice()) {
+		vkLog("Init: CreateLogicalDevice FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateSwapchain()) {
+		vkLog("Init: CreateSwapchain FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateImageViews()) {
+		vkLog("Init: CreateImageViews FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateRenderPass()) {
+		vkLog("Init: CreateRenderPass FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateDepthResources()) {
+		vkLog("Init: CreateDepthResources FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateFramebuffers()) {
+		vkLog("Init: CreateFramebuffers FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateCommandPool()) {
+		vkLog("Init: CreateCommandPool FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateCommandBuffers()) {
+		vkLog("Init: CreateCommandBuffers FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateSyncObjects()) {
+		vkLog("Init: CreateSyncObjects FAILED", -1);
 		Shutdown();
 		return false;
 	}
+	vkLog("Init: Vulkan device READY", 0);
 	return true;
 }
 
@@ -172,7 +190,11 @@ bool VulkanDevice::CreateInstance()
 
 	std::vector<const char *> extensions;
 	extensions.push_back(VK_KHR_SURFACE_EXTENSION_NAME);
-	extensions.push_back(VK_KHR_SURFACE_EXTENSION_NAME); // VK_KHR_WIN32_SURFACE_EXTENSION_NAME not available on Linux build
+#ifdef _WIN32
+	// was VK_KHR_surface twice (duplicate -> VK_ERROR_EXTENSION_NOT_PRESENT
+	// on real Windows loaders) and win32_surface was never enabled.
+	extensions.push_back(VK_KHR_WIN32_SURFACE_EXTENSION_NAME);
+#endif
 	if (kEnableValidation)
 		extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
 
@@ -186,7 +208,9 @@ bool VulkanDevice::CreateInstance()
 		createInfo.ppEnabledLayerNames = kValidationLayers;
 	}
 
-	if (vkCreateInstance(&createInfo, nullptr, &m_instance) != VK_SUCCESS)
+	VkResult instRes = vkCreateInstance(&createInfo, nullptr, &m_instance);
+	vkLog("vkCreateInstance", (int)instRes);
+	if (instRes != VK_SUCCESS)
 		return false;
 
 	if (kEnableValidation) {
@@ -210,8 +234,18 @@ bool VulkanDevice::CreateInstance()
 
 bool VulkanDevice::CreateSurface(void* hwnd)
 {
-    (void)hwnd;
-    return false;
+	if (m_instance == VK_NULL_HANDLE || hwnd == NULL)
+	{
+		vkLog("CreateSurface: bad args", -1);
+		return false;
+	}
+	VkWin32SurfaceCreateInfoKHR info = {};
+	info.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
+	info.hinstance = GetModuleHandle(NULL);
+	info.hwnd = (HWND)hwnd;
+	VkResult res = vkCreateWin32SurfaceKHR(m_instance, &info, nullptr, &m_surface);
+	vkLog("vkCreateWin32SurfaceKHR", (int)res);
+	return res == VK_SUCCESS;
 }
 
 int VulkanDevice::RatePhysicalDevice(VkPhysicalDevice device)
@@ -265,7 +299,14 @@ int VulkanDevice::RatePhysicalDevice(VkPhysicalDevice device)
 bool VulkanDevice::PickPhysicalDevice()
 {
 	uint32_t deviceCount = 0;
-	if (vkEnumeratePhysicalDevices(m_instance, &deviceCount, nullptr) != VK_SUCCESS || deviceCount == 0)
+	VkResult enumRes = vkEnumeratePhysicalDevices(m_instance, &deviceCount, nullptr);
+	vkLog("vkEnumeratePhysicalDevices(count)", (int)enumRes);
+	{
+		char buf[64];
+		snprintf(buf, sizeof(buf), "physical device count=%u", (unsigned)deviceCount);
+		vkLog(buf, -2);
+	}
+	if (enumRes != VK_SUCCESS || deviceCount == 0)
 		return false;
 	std::vector<VkPhysicalDevice> devices(deviceCount);
 	vkEnumeratePhysicalDevices(m_instance, &deviceCount, devices.data());
@@ -299,7 +340,10 @@ bool VulkanDevice::CreateLogicalDevice()
 			m_presentFamily = i;
 	}
 	if (m_graphicsFamily == UINT32_MAX || m_presentFamily == UINT32_MAX)
+	{
+		vkLog("CreateLogicalDevice: no graphics/present queue", (int)m_graphicsFamily * 1000 + (int)m_presentFamily);
 		return false;
+	}
 
 	std::vector<VkDeviceQueueCreateInfo> queueInfos;
 	std::vector<uint32_t> families;
@@ -331,7 +375,9 @@ bool VulkanDevice::CreateLogicalDevice()
 	createInfo.enabledExtensionCount = 1;
 	createInfo.ppEnabledExtensionNames = deviceExtensions;
 
-	if (vkCreateDevice(m_physicalDevice, &createInfo, nullptr, &m_device) != VK_SUCCESS)
+	VkResult devRes = vkCreateDevice(m_physicalDevice, &createInfo, nullptr, &m_device);
+	vkLog("vkCreateDevice", (int)devRes);
+	if (devRes != VK_SUCCESS)
 		return false;
 
 	vkGetDeviceQueue(m_device, m_graphicsFamily, 0, &m_graphicsQueue);
@@ -417,7 +463,9 @@ bool VulkanDevice::CreateSwapchain()
 	swapInfo.oldSwapchain = m_swapchain;
 
 	VkSwapchainKHR newSwapchain = VK_NULL_HANDLE;
-	if (vkCreateSwapchainKHR(m_device, &swapInfo, nullptr, &newSwapchain) != VK_SUCCESS)
+	VkResult scRes = vkCreateSwapchainKHR(m_device, &swapInfo, nullptr, &newSwapchain);
+	vkLog("vkCreateSwapchainKHR", (int)scRes);
+	if (scRes != VK_SUCCESS)
 		return false;
 	if (m_swapchain != VK_NULL_HANDLE)
 		vkDestroySwapchainKHR(m_device, m_swapchain, nullptr);
