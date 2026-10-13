@@ -86,7 +86,7 @@ class TextureLoadTaskClass : public W3DMPO
 	static TextureLoadTaskClass* FreeTaskListHead;
 
 	TextureClass* Texture;
-	IDirect3DTexture8 *D3DTexture;
+	class VkTexture* VulkanTexture;
 	unsigned Width;
 	unsigned Height;
 	WW3DFormat Format;
@@ -132,9 +132,9 @@ public:
 	void Set_Succ(TextureLoadTaskClass* succ);
 
 	TextureClass* Peek_Texture() { return Texture; }
-	IDirect3DTexture8* Peek_D3D_Texture() { return D3DTexture; }
+	class VkTexture* Peek_Vulkan_Texture() { return VulkanTexture; }
 
-	void Set_D3D_Texture(IDirect3DTexture8* texture);
+	void Set_Vulkan_Texture(class VkTexture* texture);
 };
 
 #endif

@@ -39,7 +39,6 @@
 
 #include "d3d8types.h"
 #include <stdio.h>
-#include "d3d8types.h"
 #include "dx8wrapper.h"
 #include "targa.h"
 #include <nstrdup.h>
@@ -52,6 +51,7 @@
 #include "dx8caps.h"
 #include "dx8texman.h"
 #include "meshmatdesc.h"
+#include "VkTexture.h"
 
 /*
 ** Definitions of static members:
@@ -67,15 +67,17 @@ unsigned _MipMapFilters[TextureClass::FILTER_TYPE_COUNT];
 
 static int Calculate_Texture_Memory_Usage(const TextureClass* texture,int red_factor=0)
 {
-	// Set performance statistics
-
+	// Rough 32bpp-per-texel estimate from Vulkan texture dimensions
+	VkTexture* vk_tex=const_cast<TextureClass*>(texture)->Peek_Vulkan_Texture();
+	if (!vk_tex) return 0;
 	int size=0;
-	IDirect3DTexture8* d3d_texture=const_cast<TextureClass*>(texture)->Peek_DX8_Texture();
-	if (!d3d_texture) return 0;
-	for (unsigned i=red_factor;i<d3d_texture->GetLevelCount();++i) {
-		D3DSURFACE_DESC desc;
-		DX8_ErrorCode(d3d_texture->GetLevelDesc(i,&desc));
-		size+=desc.Size;
+	unsigned mip_count=vk_tex->GetMipLevels();
+	unsigned w=vk_tex->GetWidth();
+	unsigned h=vk_tex->GetHeight();
+	for (unsigned i=red_factor;i<mip_count;++i) {
+		size+=w*h*4;
+		if (w>1) w/=2;
+		if (h>1) h/=2;
 	}
 	return size;
 }
@@ -86,7 +88,7 @@ static int Calculate_Texture_Memory_Usage(const TextureClass* texture,int red_fa
 
 TextureClass::TextureClass(unsigned width, unsigned height, WW3DFormat format, MipCountType mip_level_count, PoolType pool,bool rendertarget)
 	:
-	D3DTexture(NULL), VulkanTexture(NULL),
+	VulkanTexture(NULL),
 	texture_id(unused_texture_id++),
 	Initialized(true),
 	TextureMinFilter(FILTER_TYPE_DEFAULT),
@@ -130,7 +132,7 @@ TextureClass::TextureClass(unsigned width, unsigned height, WW3DFormat format, M
 	default:
 		WWASSERT(0);		
 	}
-	D3DTexture = DX8Wrapper::_Create_DX8_Texture(width, height, format, mip_level_count,d3dpool,rendertarget);
+	VulkanTexture = DX8Wrapper::_Create_Vulkan_Texture(width, height, format, mip_level_count,d3dpool,rendertarget);
 	if (pool==POOL_DEFAULT)
 	{
 		Dirty=true;
@@ -151,7 +153,7 @@ TextureClass::TextureClass(
 	WW3DFormat texture_format,
 	bool allow_compression)
 	:
-	D3DTexture(NULL), VulkanTexture(NULL),
+	VulkanTexture(NULL),
 	texture_id(unused_texture_id++),
 	Initialized(false),
 	TextureMinFilter(FILTER_TYPE_DEFAULT),
@@ -217,12 +219,12 @@ TextureClass::TextureClass(
 	WWASSERT(name[0]!='\0');
 	if (!WW3D::Is_Texturing_Enabled()) {
 		Initialized=true;
-		D3DTexture=0;
+		VulkanTexture=NULL;
 	}
 	else if (WW3D::Get_Texture_Thumbnail_Mode()==WW3D::TEXTURE_THUMBNAIL_MODE_OFF || mip_level_count==MIP_LEVELS_1)
 	{
 		Initialized=true;
-		D3DTexture=0;
+		VulkanTexture=NULL;
 		TextureLoader::Request_High_Priority_Loading(this,mip_level_count);
 	}
 	else {
@@ -236,7 +238,7 @@ TextureClass::TextureClass(
 
 TextureClass::TextureClass(SurfaceClass *surface, MipCountType mip_level_count)
 	:
-	D3DTexture(NULL), VulkanTexture(NULL),
+	VulkanTexture(NULL),
 	texture_id(unused_texture_id++),
 	Initialized(true),
 	TextureMinFilter(FILTER_TYPE_DEFAULT),
@@ -268,62 +270,33 @@ TextureClass::TextureClass(SurfaceClass *surface, MipCountType mip_level_count)
 		break;
 	}
 	
-	// Create VkTexture from surface
-	unsigned byteSize = surface->Peek_D3D_Surface() 
-		? surface->Peek_D3D_Surface()->GetLevelDesc(0,NULL).Width * 
-		  surface->Peek_D3D_Surface()->GetLevelDesc(0,NULL).Height * 4
-		: 64 * 64 * 4;  // fallback
-	VulkanTexture = new VkTexture();
-	bool created = VulkanTexture->Create(&VulkanDevice::Instance(), byteSize,
-		VK_IMAGE_TYPE_2D, VulkanTexture->TranslateFormat(surface->Get_Surface_Format()),
-		VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
-	if (!created) {
-		delete VulkanTexture;
-		VulkanTexture = NULL;
-	}
+	// Create VkTexture from surface dimensions
+	VulkanTexture = DX8Wrapper::_Create_Vulkan_Texture(sd.Width, sd.Height, sd.Format, mip_level_count);
 	LastAccessed=WW3D::Get_Sync_Time();
 }
 
 // ----------------------------------------------------------------------------
 
-TextureClass::TextureClass(IDirect3DTexture8* d3d_texture)
+TextureClass::TextureClass(VkTexture* vk_texture)
 	:
-	D3DTexture(d3d_texture), VulkanTexture(NULL),
+	VulkanTexture(vk_texture),
 	texture_id(unused_texture_id++),
 	Initialized(true),
 	TextureMinFilter(FILTER_TYPE_DEFAULT),
 	TextureMagFilter(FILTER_TYPE_DEFAULT),
-	MipMapFilter((d3d_texture->GetLevelCount()!=1) ? FILTER_TYPE_DEFAULT : FILTER_TYPE_NONE),
+	MipMapFilter((vk_texture && vk_texture->GetMipLevels()!=1) ? FILTER_TYPE_DEFAULT : FILTER_TYPE_NONE),
 	UAddressMode(TEXTURE_ADDRESS_REPEAT),
 	VAddressMode(TEXTURE_ADDRESS_REPEAT),
-	MipLevelCount((MipCountType)d3d_texture->GetLevelCount()),
+	MipLevelCount((MipCountType)(vk_texture ? vk_texture->GetMipLevels() : 1)),
 	Pool(POOL_MANAGED),
 	Dirty(false),
 	IsLightmap(false),
 	Name(""),
 	IsProcedural(true),
+	TextureFormat(WW3D_FORMAT_UNKNOWN),
 	IsCompressionAllowed(false),
 	TextureLoadTask(NULL)
 {
-	D3DTexture->AddRef();
-	IDirect3DSurface8* surface;
-	DX8_ErrorCode(D3DTexture->GetSurfaceLevel(0,&surface));
-	D3DSURFACE_DESC d3d_desc;
-	::ZeroMemory(&d3d_desc, sizeof(D3DSURFACE_DESC));
-	DX8_ErrorCode(surface->GetDesc(&d3d_desc));
-	TextureFormat=D3DFormat_To_WW3DFormat(d3d_desc.Format);
-	switch (TextureFormat) {
-	case WW3D_FORMAT_DXT1:
-	case WW3D_FORMAT_DXT2:
-	case WW3D_FORMAT_DXT3:
-	case WW3D_FORMAT_DXT4:
-	case WW3D_FORMAT_DXT5:
-		IsCompressionAllowed=true;
-		break;
-	default:
-		break;
-	}
-	
 	LastAccessed=WW3D::Get_Sync_Time();
 }
 
@@ -342,33 +315,6 @@ TextureClass::~TextureClass(void)
 		VulkanTexture->Destroy();
 		delete VulkanTexture;
 		VulkanTexture = NULL;
-	}
-	if (VulkanTexture) {
-		VulkanTexture->Destroy();
-		delete VulkanTexture;
-		VulkanTexture = NULL;
-	}
-	// Use VulkanTexture primary, D3DTexture kept for backward compat
-	if (VulkanTexture) {
-		VulkanTexture->Destroy();
-		delete VulkanTexture;
-		VulkanTexture = NULL;
-	}
-	// Use VulkanTexture primary, D3DTexture kept for backward compat
-	if (VulkanTexture) {
-		VulkanTexture->Destroy();
-		delete VulkanTexture;
-		VulkanTexture = NULL;
-	}
-	// Use VulkanTexture primary, D3DTexture kept for backward compat
-	if (VulkanTexture) {
-		VulkanTexture->Destroy();
-		delete VulkanTexture;
-		VulkanTexture = NULL;
-	}
-	if (D3DTexture) {
-		D3DTexture->Release();
-		D3DTexture = NULL;
 	}
 	DX8TextureManagerClass::Remove(this);
 }
@@ -392,19 +338,20 @@ void TextureClass::Invalidate()
 	// Don't invalidate missing texture
 	if (Is_Missing_Texture()) return;
 
-	if (D3DTexture) {
-		D3DTexture->Release();
-		D3DTexture = NULL;
+	if (VulkanTexture) {
+		VulkanTexture->Destroy();
+		delete VulkanTexture;
+		VulkanTexture = NULL;
 	}
 
 	if (!WW3D::Is_Texturing_Enabled()) {
 		Initialized=true;
-		D3DTexture=0;
+		VulkanTexture=NULL;
 	}
 	else if (WW3D::Get_Texture_Thumbnail_Mode()==WW3D::TEXTURE_THUMBNAIL_MODE_OFF || MipLevelCount==MIP_LEVELS_1)
 	{
 		Initialized=true;
-		D3DTexture=0;
+		VulkanTexture=NULL;
 		TextureLoader::Request_High_Priority_Loading(this,MipLevelCount);
 	}
 	else {
@@ -417,8 +364,11 @@ void TextureClass::Invalidate()
 
 void TextureClass::Load_Locked_Surface()
 {
-	if (D3DTexture) D3DTexture->Release();
-	D3DTexture=0;
+	if (VulkanTexture) {
+		VulkanTexture->Destroy();
+		delete VulkanTexture;
+	}
+	VulkanTexture=NULL;
 	TextureLoader::Request_Thumbnail(this);
 	Initialized=false;
 }
@@ -427,12 +377,7 @@ void TextureClass::Load_Locked_Surface()
 
 bool TextureClass::Is_Missing_Texture()
 {
-	bool flag = false;
-	// Check against missing Vulkan texture
-	if (VulkanTexture && MissingTexture::_Is_Missing_Vulkan()) {
-		flag = (VulkanTexture == MissingTexture::_Get_Missing_Vulkan());
-	}
-	return flag;
+	return VulkanTexture && VulkanTexture==MissingTexture::_Get_Missing_Texture();
 }
 
 // ----------------------------------------------------------------------------
@@ -446,62 +391,62 @@ void TextureClass::Set_Texture_Name(const char * name)
 
 unsigned int TextureClass::Get_Mip_Level_Count(void)
 {
-	if (!D3DTexture) {
-		WWASSERT_PRINT(0, "Get_Mip_Level_Count: D3DTexture is NULL!\n");
+	if (!VulkanTexture) {
+		WWASSERT_PRINT(0, "Get_Mip_Level_Count: VulkanTexture is NULL!\n");
 		return 0;
 	}
 
-	return D3DTexture->GetLevelCount();
+	return VulkanTexture->GetMipLevels();
 }
 
 // ----------------------------------------------------------------------------
 
 void TextureClass::Get_Level_Description(SurfaceClass::SurfaceDescription &surface_desc, unsigned int level)
 {
-	if (!D3DTexture) {
-		WWASSERT_PRINT(0, "Get_Surface_Description: D3DTexture is NULL!\n");
+	if (!VulkanTexture) {
+		WWASSERT_PRINT(0, "Get_Surface_Description: VulkanTexture is NULL!\n");
+		surface_desc.Width=0;
+		surface_desc.Height=0;
+		surface_desc.Format=WW3D_FORMAT_UNKNOWN;
+		return;
 	}
 
-	D3DSURFACE_DESC d3d_surf_desc;
-	DX8_ErrorCode(D3DTexture->GetLevelDesc(level, &d3d_surf_desc));
-	surface_desc.Format = D3DFormat_To_WW3DFormat(d3d_surf_desc.Format);
-	surface_desc.Height = d3d_surf_desc.Height; 
-	surface_desc.Width = d3d_surf_desc.Width;
+	unsigned w=VulkanTexture->GetWidth();
+	unsigned h=VulkanTexture->GetHeight();
+	for (unsigned i=0;i<level;++i) {
+		if (w>1) w/=2;
+		if (h>1) h/=2;
+	}
+	surface_desc.Width=w;
+	surface_desc.Height=h;
+	surface_desc.Format=TextureFormat;
 }
 
 // ----------------------------------------------------------------------------
 
 SurfaceClass *TextureClass::Get_Surface_Level(unsigned int level)
 {
-	IDirect3DSurface8 *d3d_surface = NULL;
-	DX8_ErrorCode(D3DTexture->GetSurfaceLevel(level, &d3d_surface));
-	SurfaceClass *surface = W3DNEW SurfaceClass(d3d_surface);
-	d3d_surface->Release();
-	return surface;
+	if (!VulkanTexture) {
+		WWASSERT_PRINT(0, "Get_Surface_Level: VulkanTexture is NULL!\n");
+		return NULL;
+	}
+	return W3DNEW SurfaceClass(VulkanTexture);
 }
 
 // ----------------------------------------------------------------------------
 
 unsigned int TextureClass::Get_Priority(void)
 {
-	if (!D3DTexture) {
-		WWASSERT_PRINT(0, "Get_Priority: D3DTexture is NULL!\n");
-		return 0;
-	}
-
-	return D3DTexture->GetPriority();
+	// Vulkan backend has no D3D-style texture priority
+	return 0;
 }
 
 // ----------------------------------------------------------------------------
 
 unsigned int TextureClass::Set_Priority(unsigned int priority)
 {
-	if (!D3DTexture) {
-		WWASSERT_PRINT(0, "Set_Priority: D3DTexture is NULL!\n");
-		return 0;
-	}
-
-	return D3DTexture->SetPriority(priority);
+	// Vulkan backend has no D3D-style texture priority
+	return 0;
 }
 
 // ----------------------------------------------------------------------------
@@ -539,9 +484,9 @@ void TextureClass::Apply(unsigned int stage)
 
 	// Set texture itself
 	if (WW3D::Is_Texturing_Enabled()) {
-		DX8Wrapper::Set_DX8_Texture(stage, D3DTexture);
+		DX8Wrapper::Set_Vulkan_Texture(stage, this);
 	} else {
-		DX8Wrapper::Set_DX8_Texture(stage, NULL);
+		DX8Wrapper::Set_Vulkan_Texture(stage, NULL);
 	}
 
 	DX8Wrapper::Set_DX8_Texture_Stage_State(stage,D3DTSS_MINFILTER,_MinTextureFilters[TextureMinFilter]);
@@ -578,31 +523,22 @@ void TextureClass::Apply(unsigned int stage)
 void TextureClass::Apply_Null(unsigned int stage)
 {
 	// This function sets the render states for a "NULL" texture
-	DX8Wrapper::Set_DX8_Texture(stage, NULL);
+	DX8Wrapper::Set_Vulkan_Texture(stage, NULL);
 }
 
 // ----------------------------------------------------------------------------
 
 void TextureClass::Apply_New_Surface(bool initialized)
 {
-	if (D3DTexture) D3DTexture->Release();
-	D3DTexture=TextureLoadTask->Peek_D3D_Texture();
-	D3DTexture->AddRef();
+	if (VulkanTexture) {
+		VulkanTexture->Destroy();
+		delete VulkanTexture;
+	}
+	VulkanTexture=TextureLoadTask->Peek_Vulkan_Texture();
+	TextureLoadTask->Set_Vulkan_Texture(NULL);	// ownership transferred to this texture
 	if (initialized) Initialized=true;
 
-	WWASSERT(D3DTexture);
-	IDirect3DSurface8* surface;
-	DX8_ErrorCode(D3DTexture->GetSurfaceLevel(0,&surface));
-	D3DSURFACE_DESC d3d_desc;
-	::ZeroMemory(&d3d_desc, sizeof(D3DSURFACE_DESC));
-	DX8_ErrorCode(surface->GetDesc(&d3d_desc));
-//	if (TextureFormat==WW3D_FORMAT_UNKNOWN) {
-		TextureFormat=D3DFormat_To_WW3DFormat(d3d_desc.Format);
-//	}
-//	else {
-//		WWASSERT(D3DFormat_To_WW3DFormat(d3d_desc.Format)==TextureFormat);
-//	}
-	surface->Release();
+	WWASSERT(VulkanTexture);
 }
 
 // ----------------------------------------------------------------------------
@@ -781,7 +717,7 @@ void TextureClass::_Init_Filters()
 	_MipMapFilters[FILTER_TYPE_FAST]=D3DTEXF_POINT;
 
 	// Jani: Disabling anisotropic filtering as it doesn't seem to work with the latest nVidia drivers.
-	if (dx8caps.TextureFilterCaps&D3DPTFILTERCAPS_MAGFAFLATCUBIC) _MagTextureFilters[FILTER_TYPE_BEST]=D3DTEXF_FLATCUBIC;
+	if (dx8caps.TextureFilterCaps&D3DPTFILTERCAPS_MAGFFLATCUBIC) _MagTextureFilters[FILTER_TYPE_BEST]=D3DTEXF_FLATCUBIC;
 	else if (dx8caps.TextureFilterCaps&D3DPTFILTERCAPS_MAGFANISOTROPIC) _MagTextureFilters[FILTER_TYPE_BEST]=D3DTEXF_ANISOTROPIC;
 	else if (dx8caps.TextureFilterCaps&D3DPTFILTERCAPS_MAGFGAUSSIANCUBIC) _MagTextureFilters[FILTER_TYPE_BEST]=D3DTEXF_GAUSSIANCUBIC;
 	else if (dx8caps.TextureFilterCaps&D3DPTFILTERCAPS_MAGFLINEAR) _MagTextureFilters[FILTER_TYPE_BEST]=D3DTEXF_LINEAR;

@@ -38,4 +38,23 @@ next-steps list. After each accomplished step: commit + push.
 - Remaining WW3D2 errors: texture.cpp, textureloader.cpp, surfaceclass.cpp, texproject.cpp, prim_anim.h, ww3d.cpp, sphereobj.cpp, ringobj.cpp.
 - Next: texture.cpp (33 errors — D3DTexture/Peek_DX8_Texture/IDirect3DTexture8 remnants).
 
+### 2026-10-12 — Step 2 done: texture.cpp ported to Vulkan
+
+- Removed `D3DTexture` member usage; all paths use `VulkanTexture` (`VkTexture*`).
+- `Calculate_Texture_Memory_Usage`: estimates from `VkTexture` dimensions (32bpp/mip).
+- Ctors: `_Create_DX8_Texture` → `_Create_Vulkan_Texture`; D3D-pool ctor arg kept (compat shim).
+- `TextureClass(IDirect3DTexture8*)` → `TextureClass(VkTexture*)` (matches header).
+- Surface ctor: builds via `_Create_Vulkan_Texture(w,h,format,mips)` from `SurfaceDescription`.
+- Dtor/`Invalidate`/`Load_Locked_Surface`: `Destroy()`+`delete` on `VulkanTexture`.
+- `Is_Missing_Texture`: compare against `MissingTexture::_Get_Missing_Texture()`.
+- `Get_Mip_Level_Count`/`Get_Level_Description`: `VkTexture::GetMipLevels/GetWidth/GetHeight`.
+- `Get_Surface_Level`: wraps `VulkanTexture` in `SurfaceClass(VkTexture*)`.
+- `Get/Set_Priority`: no-op (return 0) — Vulkan has no D3D priority.
+- `Apply`/`Apply_Null`: `DX8Wrapper::Set_Vulkan_Texture(stage, this/NULL)`.
+- `Apply_New_Surface`: takes ownership via `TextureLoadTask->Peek_Vulkan_Texture()` + `Set_Vulkan_Texture(NULL)`.
+- `_Init_Filters`: fixed typo `D3DPTFILTERCAPS_MAGFAFLATCUBIC` → `MAGFFLATCUBIC`.
+- `textureloader.h`: renamed task member `D3DTexture`→`VulkanTexture`, `Peek/Set_D3D_Texture`→`Peek/Set_Vulkan_Texture` (impl updates pending in step 4).
+- Verified: texture.cpp compiles (reorder warnings only).
+- Remaining WW3D2 errors: surfaceclass.cpp (~5), textureloader.cpp (~25), ww3d.cpp (~5).
+
 <!-- Append new entries below. Commit after each completed step. -->
