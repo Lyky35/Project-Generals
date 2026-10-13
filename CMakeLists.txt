@@ -43,7 +43,11 @@ endif()
 if(MSVC)
     add_compile_options(/W3 /permissive- /Zc:__cplusplus /Zc:externConstexpr /Zc:throwingNew)
 else()
-    add_compile_options(-Wall -Wextra -fpermissive -Wno-narrowing)
+    # -fno-delete-null-pointer-checks: this codebase relies on `if (this)`
+    # guards in MemoryPoolObject::deleteInstance (e.g. ScriptConditions::reset
+    # calls deleteInstance on a NULL list head on first init). MSVC honored
+    # them; GCC deletes the check by default and the null deref crashes.
+    add_compile_options(-Wall -Wextra -fpermissive -Wno-narrowing -fno-delete-null-pointer-checks)
     if(MINGW)
         add_compile_options(-fno-sized-deallocation)
     endif()
