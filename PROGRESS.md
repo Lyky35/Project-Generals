@@ -280,7 +280,33 @@ Known gaps in this backend: IMA-ADPCM decode is silence; pan is relative-X only;
 distance scale untuned; streams are fully-loaded WAV only (no streaming/mp3);
 `vk*` loader still stubbed (separate next step).
 
+
+### 2026-10-13 — Next steps: real Vulkan loader + real CI; GeneralsMD deferred
+
+**Vulkan loader (NOTES wire-loader):**
+- Cross-compiled Khronos **Vulkan-Loader** 1.4.365 from source with the project MinGW toolchain
+  (`/tmp/mingw-w64-x86_64.cmake` + Vulkan-Headers install prefix).
+- Vendored into `third_party/vulkan/`: `vulkan-1.dll` (863KB) + `libvulkan-1.dll.a` (dlltool-style import lib from the build).
+- Deleted `vkstubs.cpp` (empty `vk*` fns that made renderer init undefined-behavior).
+- RTS links `third_party/vulkan/libvulkan-1.dll.a` — `objdump` now shows **`vulkan-1.dll`** in the import table
+  alongside `OpenAL32.dll`. Renderer will call a real loader; still needs an ICD/GPU driver on the target machine.
+
+**CI (NOTES rewrite CI):**
+- Replaced the MessageBox-stub `ci-crosscompile.yml` with a real job: apt MinGW + CMake configure +
+  build GameEngine/GameEngineDevice/WW3D2/VulkanRenderer/WWAudio/… + link RTS + verify PE imports
+  + upload `RTS.exe`/`OpenAL32.dll`/`vulkan-1.dll` artifacts.
+- Deleted `windows-build.yml` (Linux paths on a Windows runner; never validated the tree).
+
+**Release:** both v1.1 zips rebuilt with `vulkan-1.dll` and refreshed README; GH assets re-uploaded.
+
+**GeneralsMD:** deliberately **not started** — NOTES says only after the Generals tree links *and*
+renders. No Windows runtime test yet; porting the unfinished Vulkan design twice would be wasteful.
+
+Next: Windows 10 smoke test (do we get a window / first frame?), then FFmpeg Bink, then GeneralsMD
+once rendering is proven.
+
 <!-- Append new entries below. Commit after each completed step. -->
+
 
 
 

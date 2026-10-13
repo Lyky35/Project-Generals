@@ -1,4 +1,4 @@
-name: "CnC Generals Cross-Compile Validation"
+name: "Build RTS.exe (Linux Cross-Compile)"
 
 on:
   push:
@@ -8,74 +8,64 @@ on:
 
 jobs:
   build-rts:
-    name: "Build RTS.exe (Linux Cross-Compile)"
+    name: "Full MinGW CMake build"
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
 
     steps:
-      - name: "Checkout repository"
+      - name: "Checkout"
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: "Set up MinGW-w64 cross-compiler"
+      - name: "Install MinGW-w64 + build tools"
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++-mingw-w64-x86-64 mingw-w64-tools
+          sudo apt-get install -y \
+            g++-mingw-w64-x86-64 \
+            mingw-w64-tools \
+            cmake \
+            ninja-build \
+            glslang-tools
 
       - name: "Verify compiler"
-        run: |
-          x86_64-w64-mingw32-g++ --version | head -1
+        run: x86_64-w64-mingw32-g++ --version | head -1
 
-      - name: "Create minimal WinMain build"
-        working-directory: /home/cyklon/Work/Project-Generals
+      - name: "Configure (Release / MinGW cross)"
         run: |
-          mkdir -p build/ci-test
-          cat > build/ci-test/WinMain.cpp << 'WINMAIN'
-#include <windows.h>
-int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    MessageBox(NULL, "CI Build Validated", "RTS", MB_OK);
-    return 0;
-}
-WINMAIN
-          x86_64-w64-mingw32-g++ -O2 -static-libgcc -static-libstdc++ \
-            -IGenerals/Code/Main \
-            -IGenerals/Code/Libraries/Include \
-            -IGenerals/Code/GameEngine/Include \
-            -IGenerals/Code/GameEngineDevice/Include \
-            -c build/ci-test/WinMain.cpp -o build/ci-test/WinMain.o
-          x86_64-w64-mingw32-g++ -O2 -static-libgcc -static-libstdc++ \
-            build/ci-test/WinMain.o -o build/ci-test/RTS.exe \
-            -luser32 -lkernel32 -lgdi32
-          echo "CI cross-compilation successful"
-          ls -la build/ci-test/RTS.exe
+          cmake -S . -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_C_COMPILER=/usr/bin/x86_64-w64-mingw32-gcc \
+            -DCMAKE_CXX_COMPILER=/usr/bin/x86_64-w64-mingw32-g++
 
-      - name: "Check ported source files compile"
-        working-directory: /home/cyklon/Work/Project-Generals
+      - name: "Build library targets"
         run: |
-          echo "Checking key ported files exist and have syntax..."
-          for f in \
-            Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp \
-            Generals/Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp \
-            Generals/Code/Libraries/Source/WWVegas/WW3D2/texture.cpp \
-            Generals/Code/Libraries/Source/WWVegas/WW3D2/surfaceclass.cpp \
-            Generals/Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp \
-            GeneralsMD/Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp \
-            Generals/Code/GameEngineDevice/Source/W3DDevice/GameClient/TerrainTex.cpp \
-            GeneralsMD/Code/GameEngineDevice/Source/W3DDevice/GameClient/TerrainTex.cpp; do
-            if [ -f "$f" ]; then
-              echo "OK: $f exists"
-              # Basic syntax check
-              x86_64-w64-mingw32-g++ -std=c++17 -c /dev/null -o /dev/null 2>&1 || true
-            else
-              echo "MISSING: $f"
-            fi
-          done
+          cmake --build build -j"$(nproc)" --target \
+            GameEngine \
+            GameEngineDevice \
+            WW3D2 \
+            VulkanRenderer \
+            WWAudio \
+            WPAudio \
+            Compression \
+            Benchmark
 
-      - name: "Artifact: RTS.exe binary"
-        if: always()
+      - name: "Link RTS.exe"
+        run: cmake --build build -j"$(nproc)" --target RTS
+
+      - name: "Verify PE32+ executable + imports"
+        run: |
+          file build/bin/RTS.exe
+          x86_64-w64-mingw32-objdump -p build/bin/RTS.exe | grep 'DLL Name'
+          test -f build/bin/RTS.exe
+          echo "RTS.exe linked successfully"
+
+      - name: "Upload RTS.exe artifact"
         uses: actions/upload-artifact@v4
         with:
-          name: ci-rts-exe
-          path: build/ci-test/RTS.exe
-          retention-days: 7
+          name: RTS-mingw-x64
+          path: |
+            build/bin/RTS.exe
+            third_party/openal/OpenAL32.dll
+            third_party/vulkan/vulkan-1.dll
+          if-no-files-found: error

@@ -9,3 +9,4 @@
 *.bin
 # MinGW import lib for vendored OpenAL32.dll (needed to link RTS.exe)
 !third_party/openal/*.a
+!third_party/vulkan/*.a
