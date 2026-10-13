@@ -30,4 +30,12 @@ next-steps list. After each accomplished step: commit + push.
   with `/usr/bin/x86_64-w64-mingw32-g++` / `-gcc`.
 - Created this file. Starting step 1 (trivial fixes).
 
+### 2026-10-12 — Step 1 done: trivial WW3D2 fixes
+
+- `textdraw.h`: `#include "../wwmath/rect.h"` → `"../WWMath/rect.h"` (case-sensitive FS).
+- `w3d_dep.cpp`: added `#include <cstddef>` before `STLSpecialAlloc` (uses `size_t` before any other include).
+- Verified: both `textdraw.cpp` and `w3d_dep.cpp` now compile (warnings only).
+- Remaining WW3D2 errors: texture.cpp, textureloader.cpp, surfaceclass.cpp, texproject.cpp, prim_anim.h, ww3d.cpp, sphereobj.cpp, ringobj.cpp.
+- Next: texture.cpp (33 errors — D3DTexture/Peek_DX8_Texture/IDirect3DTexture8 remnants).
+
 <!-- Append new entries below. Commit after each completed step. -->
