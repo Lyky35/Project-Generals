@@ -106,7 +106,7 @@ static void drawFramerateBar(void);
 #include "GameLogic/PartitionManager.h"
 #endif
 
-#include "WinMain.h"
+#include "../../../Main/WinMain.h"
 
 #ifdef _INTERNAL
 // for occasional debugging...
@@ -1374,7 +1374,7 @@ void W3DDisplay::gatherDebugStats( void )
 
 			unibuffer.concat( L"\nModelStates: " );
 			ModelConditionFlags mcFlags = draw->getModelConditionFlags();
-			const numEntriesPerLine = 4;
+			const int numEntriesPerLine = 4;
 			int lineCount = 0;
 
 			for( int i = 0; i < MODELCONDITION_COUNT; i++ )
@@ -1470,7 +1470,7 @@ void W3DDisplay::drawCurrentDebugDisplay( void )
 		if ( m_debugDisplay && m_debugDisplayCallback )
 		{
 			m_debugDisplay->reset();
-			m_debugDisplayCallback( m_debugDisplay, m_debugDisplayUserData );
+			m_debugDisplayCallback( m_debugDisplay, m_debugDisplayUserData, NULL );
 		}
 	}
 }  // end drawCurrentDebugDisplay
@@ -2867,8 +2867,9 @@ void W3DDisplay::takeScreenShot(void)
 			done = true;
 	}
 
-	// Lock front buffer and copy
-
+	// Vulkan path: screen capture not yet wired; bail cleanly
+	return;
+#if 0 // legacy D3D8 front-buffer path
 	IDirect3DSurface8 *fb;
 	fb=DX8Wrapper::_Get_DX8_Front_Buffer();
 	D3DSURFACE_DESC desc;
@@ -2942,6 +2943,7 @@ void W3DDisplay::takeScreenShot(void)
 	}
 
 	fb->Release();
+#endif // legacy D3D8 front-buffer path
 
 	//Flip the image
 	char *ptr,*ptr1;

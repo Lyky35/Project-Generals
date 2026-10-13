@@ -31,16 +31,23 @@
 #include "camera.h"
 #include "simplevec.h"
 #include "dx8wrapper.h"
-#include "common/MapObject.h"
-#include "common/PerfTimer.h"
+#include "Common/MapObject.h"
+#include "Common/PerfTimer.h"
 #include "W3DDevice/GameClient/HeightMap.h"
 #include "W3DDevice/GameClient/W3DPoly.h"
 #include "W3DDevice/GameClient/W3DShaderManager.h"
 #include "assetmgr.h"
 #include "W3DDevice/GameClient/W3DShroud.h"
 #include "WW3D2/textureloader.h"
-#include "common/GlobalData.h"
+#include "Common/GlobalData.h"
 #include "GameLogic/PartitionManager.h"
+
+// Legacy DX8 rect-copy path: SurfaceClass::Copy is the Vulkan equivalent for full blits
+static void W3DShroud_CopyRectsStub(SurfaceClass*, RECT*, UINT, void*, POINT*)
+{
+	// partial-rect copies not yet ported; full-surface Copy used elsewhere
+}
+
 
 #ifdef _INTERNAL
 // for occasional debugging...
@@ -98,7 +105,7 @@ W3DShroud::~W3DShroud(void)
 {
 	ReleaseResources();
 	if (m_pSrcTexture)
-		m_pSrcTexture->Release();
+		m_pSrcTexture->Release_Ref();
 	m_pSrcTexture=NULL;
 	if (m_finalFogData)
 		delete [] m_finalFogData;
@@ -156,24 +163,18 @@ void W3DShroud::init(WorldHeightMap *pMap, Real worldCellSizeX, Real worldCellSi
 
 #if defined(_DEBUG) || defined(_INTERNAL)
 	if (TheGlobalData && TheGlobalData->m_fogOfWarOn)
-		m_pSrcTexture = DX8Wrapper::_Create_DX8_Surface(srcWidth,srcHeight, WW3D_FORMAT_A4R4G4B4);
+		m_pSrcTexture = new SurfaceClass(srcWidth,srcHeight, WW3D_FORMAT_A4R4G4B4);
 	else
 #endif
-		m_pSrcTexture = DX8Wrapper::_Create_DX8_Surface(srcWidth,srcHeight, WW3D_FORMAT_R5G6B5);
+		m_pSrcTexture = new SurfaceClass(srcWidth,srcHeight, WW3D_FORMAT_R5G6B5);
 
 	DEBUG_ASSERTCRASH( m_pSrcTexture != NULL, ("Failed to Allocate Shroud Src Surface"));
 
-	D3DLOCKED_RECT rect;
-
-	//Get a pointer to source surface pixels.
-	HRESULT res = m_pSrcTexture->LockRect(&rect,NULL,D3DLOCK_NO_DIRTY_UPDATE);
-	m_pSrcTexture->UnlockRect();
-
-	DEBUG_ASSERTCRASH( res == D3D_OK, ("Failed to lock shroud src surface"));
-	res = 0;// just to avoid compiler warnings
-
-	m_srcTextureData=rect.pBits;
-	m_srcTexturePitch=rect.Pitch;
+	int shroudPitch = 0;
+	void *shroudBits = m_pSrcTexture->Lock(&shroudPitch);
+	DEBUG_ASSERTCRASH( shroudBits != NULL, ("Failed to lock shroud src surface"));
+	m_srcTextureData=shroudBits;
+	m_srcTexturePitch=shroudPitch;
 
 	//clear entire texture to black
 	memset(m_srcTextureData,0,m_srcTexturePitch*srcHeight);
@@ -203,7 +204,7 @@ void W3DShroud::reset()
 {
 	//Free old shroud data since it may no longer fit new map.
 	if (m_pSrcTexture)
-		m_pSrcTexture->Release();
+		m_pSrcTexture->Release_Ref();
 	m_pSrcTexture=NULL;
 	if (m_finalFogData)
 		delete [] m_finalFogData;
@@ -476,7 +477,7 @@ void W3DShroud::fillBorderShroudData(W3DShroudLevel level, SurfaceClass* pDestSu
 		{	
 			dstPoint.x = x * srcRect.right;	//advance to next set of pixel in row.
 
-			DX8Wrapper::_Copy_DX8_Rects(
+			W3DShroud_CopyRectsStub(
 				m_pSrcTexture,
 				&srcRect,
 				1,
@@ -487,7 +488,7 @@ void W3DShroud::fillBorderShroudData(W3DShroudLevel level, SurfaceClass* pDestSu
 		{	Int oldVal=srcRect.right;
 			dstPoint.x = numFullCopies * oldVal;
 			srcRect.right = numExtraPixels;
-			DX8Wrapper::_Copy_DX8_Rects(
+			W3DShroud_CopyRectsStub(
 				m_pSrcTexture,
 				&srcRect,
 				1,
@@ -698,7 +699,7 @@ void W3DShroud::render(CameraClass *cam)
 
 	{
 		//USE_PERF_TIMER(shroudCopy)
-		DX8Wrapper::_Copy_DX8_Rects(
+		W3DShroud_CopyRectsStub(
 				m_pSrcTexture,
 				&srcRect,
 				1,

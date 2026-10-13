@@ -2168,3 +2168,5 @@ void DX8Wrapper::Set_Lighting(bool) {}
 void DX8Wrapper::Set_BlendFunc(unsigned, unsigned) {}
 void DX8Wrapper::Set_ZEnable(bool) {}
 void DX8Wrapper::Set_ShadeMode(unsigned) {}
+
+IDirect3D8* DX8Wrapper::_Get_D3D8() { return 0; }

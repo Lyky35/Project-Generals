@@ -294,6 +294,7 @@ public:
 
 	// Legacy D3D8-era helpers used by partially-ported shadow code — no-op under Vulkan
 	static IDirect3DDevice8* _Get_D3D_Device8();
+	static IDirect3D8* _Get_D3D8();
 	static void Set_StreamSource(unsigned stream, void* vb, unsigned offset, unsigned stride);
 	static void Set_AlphaEnable(bool enable);
 	static void Set_StencilEnable(bool enable);

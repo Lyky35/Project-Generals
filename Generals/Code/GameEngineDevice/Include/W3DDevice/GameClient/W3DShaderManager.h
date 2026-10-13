@@ -37,9 +37,10 @@
 #define __W3DSHADERMANAGER_H_
 
 #include "WW3D2/Texture.h"
-enum FilterTypes;
+enum FilterTypes : int;
+enum FilterModes : int;
 enum CustomScenePassModes : int;
-enum StaticGameLODLevel;
+enum StaticGameLODLevel : int;
 enum ChipsetType : int;
 enum CpuType : int;
 

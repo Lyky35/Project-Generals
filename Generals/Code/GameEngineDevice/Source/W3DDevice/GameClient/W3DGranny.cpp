@@ -44,7 +44,7 @@
 #ifdef INCLUDE_GRANNY_IN_BUILD
 
 #include "W3DDevice/GameClient/W3DGranny.h"
-#include "common/GlobalData.h"
+#include "Common/GlobalData.h"
 #include "texture.h"
 #include "colmath.h"
 #include "coltest.h"
@@ -54,16 +54,13 @@
 #include "WW3D2/DX8Wrapper.h"
 #include "WW3D2/Scene.h"
 
-#pragma comment( lib, "granny2" )
+// granny2.lib was MSVC-only; MinGW cross uses stub headers
 
-static #ifdef INCLUDE_GRANNY_EMULATION
 // OpenGL vertex blending buffer - 4096 vertices with 4 bone influences per vertex
 // glm::vec4 format: x=position, y=normal, z=bone_id, w=weight
 // Emulation of granny_pnt332_vertex: 4 floats per vertex (pos+nrm+boneid+weight)
-glm::vec4 g_blendingBuffer[4096];
-#endif
-// GLM emulation:
-// glm::vec4 blendingBuffer[4096]; // placeholder - actual impl depends on model format	///<temporary workspace for granny (all models < 4096 verts).
+static glm::vec4 g_blendingBuffer[4096];
+// GLM emulation placeholder - actual impl depends on model format.
 
 /** Local function used to find animation matching the given model */
 static int FindTrackGroupFor(granny_animation *Animation, granny_model_instance *ModelInstance)
@@ -824,7 +821,7 @@ void GrannyRenderObjSystem::Flush(void)
 			// OpenGL emulation: get mesh count from TinyGLTF model
 // Int MeshCount = model.meshes.size();
 // For now: simulate
-MeshCount = 0;
+Int MeshCount = 0;
 			for(Int MeshIndex = 0; MeshIndex < MeshCount; ++MeshIndex)
 			{
 				// OpenGL emulation: access mesh from TinyGLTF
@@ -851,7 +848,6 @@ granny_mesh_model_binding *Binding = nullptr;
 Vertices = nullptr;
 // Would normally: copy from loaded GLTF mesh attributes to g_blendingBuffer
 }
-				}
 				else
 				{
 					GrannyDeformMesh(Binding, GrannyGetModelWorldPose(modelInstance),

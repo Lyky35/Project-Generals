@@ -692,14 +692,26 @@ inline D3DMATRIX* D3DXMatrixIdentity(D3DMATRIX* pOut) {
 
 // Opaque COM interface stubs (Vulkan backend replaces real D3D8 COM objects).
 // Incomplete structs match existing forward declarations (struct IDirect3DSurface8;).
-struct IDirect3DSurface8;
-struct IDirect3DTexture8;
-struct IDirect3DBaseTexture8;
+struct IDirect3DSurface8 {
+	void Release() {}
+	HRESULT GetDesc(D3DSURFACE_DESC* d) {
+		if (d) { d->Width = 0; d->Height = 0; d->Format = D3DFMT_UNKNOWN; d->Pool = D3DPOOL_DEFAULT; d->Usage = 0; }
+		return S_OK;
+	}
+};
+struct IDirect3DTexture8 {
+	void Release() {}
+	HRESULT GetSurfaceLevel(UINT, IDirect3DSurface8**) { return E_FAIL; }
+	void AddRef() {}
+};
+struct IDirect3DBaseTexture8 { void Release() {} void AddRef() {} };
 struct IDirect3DVolumeTexture8;
 struct IDirect3DVolume8;
 struct IDirect3DCubeTexture8;
 struct IDirect3DIndexBuffer8;
-struct IDirect3D8;
+struct IDirect3D8 {
+	HRESULT GetAdapterIdentifier(DWORD, DWORD, void*) { return E_FAIL; }
+};
 
 // Complete-enough stubs for legacy callers that Lock/Unlock/Create* on these
 struct IDirect3DVertexBuffer8 {
@@ -727,7 +739,7 @@ struct IDirect3DDevice8 {
 	HRESULT SetTextureStageState(DWORD Stage, D3DTEXTURESTAGESTATETYPE Type, DWORD Value) { (void)Stage; (void)Type; (void)Value; return S_OK; }
 	HRESULT SetTransform(D3DTRANSFORMSTATETYPE State, const D3DMATRIX* Matrix) { (void)State; (void)Matrix; return S_OK; }
 	HRESULT SetVertexShader(DWORD Handle) { (void)Handle; return S_OK; }
-	HRESULT SetTexture(DWORD Stage, IDirect3DBaseTexture8* Texture) { (void)Stage; (void)Texture; return S_OK; }
+	HRESULT SetTexture(DWORD Stage, void* Texture) { (void)Stage; (void)Texture; return S_OK; }
 	HRESULT DrawIndexedPrimitive(DWORD, INT, UINT, UINT, WORD*, UINT) { return S_OK; }
 	HRESULT DrawIndexedPrimitive(D3DPRIMITIVETYPE, INT BaseVertexIndex, UINT MinVertexIndex, UINT NumVertices, UINT StartIndex, UINT PrimitiveCount) {
 		(void)BaseVertexIndex; (void)MinVertexIndex; (void)NumVertices; (void)StartIndex; (void)PrimitiveCount; return S_OK;
@@ -736,8 +748,37 @@ struct IDirect3DDevice8 {
 	HRESULT DrawIndexedPrimitive(D3DPRIMITIVETYPE, INT, INT, INT, INT) { return S_OK; }
 	HRESULT DrawPrimitiveUP(D3DPRIMITIVETYPE, UINT, const void*, UINT) { return S_OK; }
 	HRESULT TestCooperativeLevel() { return S_OK; }
+	HRESULT SetPixelShader(DWORD) { return S_OK; }
+	HRESULT DeletePixelShader(DWORD) { return S_OK; }
+	HRESULT SetPixelShaderConstant(UINT, const void*, UINT) { return S_OK; }
+	HRESULT SetPixelShaderConstant(UINT, const D3DXVECTOR4&, UINT) { return S_OK; }
+	HRESULT SetVertexShaderConstant(UINT, const void*, UINT) { return S_OK; }
+	HRESULT CreateVertexShader(const DWORD*, const DWORD*, void*, DWORD) { return E_FAIL; }
+	HRESULT CreateVertexShader(const void*, const void*, void*, DWORD) { return E_FAIL; }
+	HRESULT CreateVertexShader(const DWORD*, const DWORD*, DWORD*, DWORD) { return E_FAIL; }
+	HRESULT DeleteVertexShader(DWORD) { return S_OK; }
+	HRESULT CreatePixelShader(const DWORD*, void*, DWORD) { return E_FAIL; }
+	HRESULT CreatePixelShader(const DWORD*, unsigned long long*, DWORD) { return E_FAIL; }
+	HRESULT CreatePixelShader(const void*, void*, DWORD) { return E_FAIL; }
+	HRESULT CreatePixelShader(const void*, void**) { return E_FAIL; }
+	HRESULT CreatePixelShader(const DWORD*, DWORD*, DWORD) { return E_FAIL; }
+	HRESULT SetRenderTarget(IDirect3DSurface8*, IDirect3DSurface8*) { return S_OK; }
+	HRESULT GetRenderTarget(IDirect3DSurface8**) { return E_FAIL; }
+	HRESULT GetDepthStencilSurface(IDirect3DSurface8**) { return E_FAIL; }
+	HRESULT CreateTexture(UINT, UINT, UINT, DWORD, D3DFORMAT, IDirect3DTexture8**) { return E_FAIL; }
+	HRESULT CreateTexture(UINT, UINT, DWORD, D3DPOOL, IDirect3DTexture8**) { return E_FAIL; }
+	HRESULT CreateTexture(UINT Width, UINT Height, UINT Levels, DWORD Usage, D3DFORMAT Format, D3DPOOL Pool, IDirect3DTexture8** pp) {
+		(void)Width; (void)Height; (void)Levels; (void)Usage; (void)Format; (void)Pool;
+		if (pp) *pp = 0; return E_FAIL;
+	}
+	HRESULT ShowCursor(BOOL) { return S_OK; }
+	HRESULT SetCursorProperties(UINT, UINT, IDirect3DSurface8*) { return S_OK; }
+	HRESULT SetCursorPosition(int, int, DWORD) { return S_OK; }
 	void Release() {}
 };
+#ifndef D3DCURSOR_IMMEDIATE_UPDATE
+#define D3DCURSOR_IMMEDIATE_UPDATE 0x00000002
+#endif
 
 typedef IDirect3DDevice8* LPDIRECT3DDEVICE8;
 
@@ -756,10 +797,80 @@ typedef IDirect3DCubeTexture8* LPDIRECT3DCUBETEXTURE8;
 typedef IDirect3DIndexBuffer8* LPDIRECT3DINDEXBUFFER8;
 typedef IDirect3D8* LPDIRECT3D8;
 
-#endif
-
 #ifndef D3DSHADE_FLAT
 #define D3DSHADE_FLAT 1
 #define D3DSHADE_GOURAUD 2
 #define D3DSHADE_PHONG 3
 #endif
+
+#ifndef D3DRS_BLENDOP
+#define D3DRS_BLENDOP 171
+#endif
+#ifndef D3DBLENDOP_ADD
+#define D3DBLENDOP_ADD 1
+#define D3DBLENDOP_SUBTRACT 2
+#define D3DBLENDOP_REVSUBTRACT 3
+#define D3DBLENDOP_MIN 4
+#define D3DBLENDOP_MAX 5
+#endif
+#ifndef D3DLOCK_NO_DIRTY_UPDATE
+#define D3DLOCK_NO_DIRTY_UPDATE 0x00002000
+#endif
+#ifndef D3DLOCK_READONLY
+#define D3DLOCK_READONLY 0x00000010
+#endif
+
+#ifndef D3DVSD_STREAM
+#define D3DVSD_END 0xFFFFFFFF
+#define D3DVSD_STREAM(src) (0x40000000 | (src))
+#define D3DVSD_REG(reg, type) (0x80000000 | ((reg) << 16) | (type))
+#define D3DVSDT_NONE 0
+#define D3DVSDT_FLOAT1 1
+#define D3DVSDT_FLOAT2 2
+#define D3DVSDT_FLOAT3 3
+#define D3DVSDT_FLOAT4 4
+#define D3DVSDT_D3DCOLOR 5
+#define D3DVSDT_UBYTE4 6
+#define D3DVSDT_SHORT2 7
+#define D3DVSDT_SHORT4 8
+#define D3DVSDT_UBYTE4N 9
+#define D3DVSDT_SHORT2N 10
+#define D3DVSDT_SHORT4N 11
+#define D3DVSDT_USHORT2N 12
+#define D3DVSDT_USHORT4N 13
+#define D3DVSDT_UDEC3 14
+#define D3DVSDT_DEC3N 15
+#define D3DVSDT_FLOAT16_2 16
+#define D3DVSDT_FLOAT16_4 17
+#define D3DVSDE_POSITION 0
+#define D3DVSDE_BLENDWEIGHT 1
+#define D3DVSDE_BLENDMATRIX 2
+#define D3DVSDE_NORMAL 3
+#define D3DVSDE_POINTSIZE 4
+#define D3DVSDE_TEXTURE5 15
+#define D3DVSDE_TEXTURE6 14
+#define D3DVSDE_TEXTURE7 13
+#define D3DVSDE_TEXTURE8 12
+#define D3DVSDE_TEXTURE9 11
+#define D3DVSDE_DIFFUSE 10
+#define D3DVSDE_SPECULAR 9
+#endif
+#ifndef D3DTSS_ADDRESSW
+#define D3DTSS_ADDRESSW 13
+#endif
+
+inline D3DMATRIX* D3DXMatrixScaling(D3DMATRIX* pOut, float sx, float sy, float sz) {
+	if (pOut) { pOut->_11=sx; pOut->_22=sy; pOut->_33=sz; pOut->_44=1; }
+	return pOut;
+}
+inline D3DMATRIX* D3DXMatrixTranslation(D3DMATRIX* pOut, float x, float y, float z) {
+	if (pOut) { pOut->_41=x; pOut->_42=y; pOut->_43=z; pOut->_44=1; }
+	return pOut;
+}
+inline D3DMATRIX* D3DXMatrixMultiply(D3DMATRIX* pOut, const D3DMATRIX* a, const D3DMATRIX* b) {
+	if (pOut) *pOut = *a;
+	(void)b;
+	return pOut;
+}
+
+#endif // DX8COMPAT_D3D8TYPES_H

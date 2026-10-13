@@ -83,22 +83,23 @@ TerrainTextureClass::TerrainTextureClass(int height, MipCountType mipLevelCount)
 //=============================================================================
 int TerrainTextureClass::update(WorldHeightMap *htMap)
 {
-	// D3DTexture is our texture;
-
-	IDirect3DSurface8 *surface_level;
-	D3DSURFACE_DESC surface_desc;
-	D3DLOCKED_RECT locked_rect;
-	DX8_ErrorCode(D3DTexture->GetSurfaceLevel(0, &surface_level));
-	DX8_ErrorCode(surface_level->GetDesc(&surface_desc));
+	// Vulkan path: lock CPU shadow of texture level 0
+	SurfaceClass *surface_level = Get_Surface_Level(0);
+	SurfaceClass::SurfaceDescription surface_desc;
+	if (!surface_level) return false;
+	surface_level->Get_Description(surface_desc);
 	if (surface_desc.Width < TEXTURE_WIDTH) {
-		surface_level->Release();
+		surface_level->Release_Ref();
 		if (surface_desc.Width == 256) {
 			return update256(htMap);
 		}
 		return false;
 	}
 
-	DX8_ErrorCode(surface_level->LockRect(&locked_rect, NULL, 0));
+	int pitch = 0;
+	void *pBits = surface_level->Lock(&pitch);
+	if (!pBits) { surface_level->Release_Ref(); return false; }
+	#define locked_rect_pBits ((UnsignedByte*)pBits)
 
 	Int tilePixelExtent = TILE_PIXEL_EXTENT;		 
 	Int tilesPerRow = surface_desc.Width/(2*TILE_PIXEL_EXTENT+TILE_OFFSET);
@@ -108,12 +109,12 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 	//DEBUG_ASSERTCRASH(tilesPerRow*numRows >= htMap->m_numBitmapTiles, ("Too many tiles."));
 	DEBUG_ASSERTCRASH((Int)surface_desc.Width >= tilePixelExtent*tilesPerRow, ("Bitmap too small."));
 #endif
-	if (surface_desc.Format == D3DFMT_A1R5G5B5) {
+	if (surface_desc.Format == WW3D_FORMAT_A1R5G5B5) {
 #if 0
 		UnsignedInt cellX, cellY;
 		for (cellX = 0; cellX < surface_desc.Width; cellX++) {
 			for (cellY = 0; cellY < surface_desc.Height; cellY++) {
-				UnsignedByte *pBGR = ((UnsignedByte *)locked_rect.pBits)+(cellY*surface_desc.Width+cellX)*2;
+				UnsignedByte *pBGR = ((UnsignedByte *)locked_rect_pBits)+(cellY*surface_desc.Width+cellX)*2;
 				*((Short*)pBGR) = (((255-2*cellY)>>3)<<10) + ((4*cellX)>>4);
 			}
 		}
@@ -131,7 +132,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 				UnsignedByte *pBGR = pTile->getRGBDataForWidth(tilePixelExtent);
 				pBGR += (tilePixelExtent-1-j)*TILE_BYTES_PER_PIXEL*tilePixelExtent; // invert to match.
 				Int row = position.y+j;
-				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect.pBits) +
+				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect_pBits) +
 							(row)*surface_desc.Width*pixelBytes;
 
 				Int column = position.x;
@@ -154,7 +155,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 			Int j;
 			for (int j =0; j<width; j++) {
 				Int row = origin.y+j;
-				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect.pBits) +
+				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect_pBits) +
 							(row)*surface_desc.Width*pixelBytes;
 
 				Int column = origin.x;
@@ -169,13 +170,13 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 			for (int j =0; j<4; j++) {
 				// copy before.
 				Int row = origin.y-j-1;
-				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect.pBits) +
+				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect_pBits) +
 							(row)*surface_desc.Width*pixelBytes;
 				UnsignedByte *target = pBGRX+(origin.x-4)*pixelBytes; 
 				memcpy(target, target+width*surface_desc.Width*pixelBytes, (width+8)*pixelBytes);
 				// copy after.
 				row = origin.y+j;
-				pBGRX = ((UnsignedByte*)locked_rect.pBits) +
+				pBGRX = ((UnsignedByte*)locked_rect_pBits) +
 							(row)*surface_desc.Width*pixelBytes;
 				target = pBGRX+(origin.x-4)*pixelBytes; 
 				memcpy(target+width*surface_desc.Width*pixelBytes, target, (width+8)*pixelBytes);
@@ -184,12 +185,12 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 		}
 
 	}
-	surface_level->UnlockRect();
-	surface_level->Release();
+	surface_level->Unlock();
+	surface_level->Release_Ref();
 	// Texture filtering handled by shader/sampler
 	
 	if (TheWritableGlobalData->m_textureReductionFactor) {
-		D3DTexture->SetLOD(TheWritableGlobalData->m_textureReductionFactor);
+		// VulkanTexture has no SetLOD; reduction factor handled at upload
 	}
 	return(surface_desc.Height);
 }
@@ -204,22 +205,23 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 //=============================================================================
 int TerrainTextureClass::update(WorldHeightMap *htMap)
 {
-	// D3DTexture is our texture;
-
-	IDirect3DSurface8 *surface_level;
-	D3DSURFACE_DESC surface_desc;
-	D3DLOCKED_RECT locked_rect;
-	DX8_ErrorCode(D3DTexture->GetSurfaceLevel(0, &surface_level));
-	DX8_ErrorCode(surface_level->GetDesc(&surface_desc));
+	// Vulkan path: lock CPU shadow of texture level 0
+	SurfaceClass *surface_level = Get_Surface_Level(0);
+	SurfaceClass::SurfaceDescription surface_desc;
+	if (!surface_level) return false;
+	surface_level->Get_Description(surface_desc);
 	if (surface_desc.Width < TEXTURE_WIDTH) {
-		surface_level->Release();
+		surface_level->Release_Ref();
 		if (surface_desc.Width == 256) {
 			return update256(htMap);
 		}
 		return false;
 	}
 
-	DX8_ErrorCode(surface_level->LockRect(&locked_rect, NULL, 0));
+	int pitch = 0;
+	void *pBits = surface_level->Lock(&pitch);
+	if (!pBits) { surface_level->Release_Ref(); return false; }
+	#define locked_rect_pBits ((UnsignedByte*)pBits)
 
 	Int tilePixelExtent = TILE_PIXEL_EXTENT;		 
 	Int tilesPerRow = surface_desc.Width/(2*TILE_PIXEL_EXTENT+TILE_OFFSET);
@@ -229,12 +231,12 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 	assert(tilesPerRow*numRows >= htMap->m_numBitmapTiles);
 	assert((Int)surface_desc.Width >= tilePixelExtent*tilesPerRow);
 #endif
-	if (surface_desc.Format == D3DFMT_A1R5G5B5) {
+	if (surface_desc.Format == WW3D_FORMAT_A1R5G5B5) {
 		Int cellX, cellY;
 #if 0
 		for (cellX = 0; cellX < surface_desc.Width; cellX++) {
 			for (cellY = 0; cellY < surface_desc.Height; cellY++) {
-				UnsignedByte *pBGR = ((UnsignedByte *)locked_rect.pBits)+(cellY*surface_desc.Width+cellX)*2;
+				UnsignedByte *pBGR = ((UnsignedByte *)locked_rect_pBits)+(cellY*surface_desc.Width+cellX)*2;
 				*((Short*)pBGR) = (((255-2*cellY)>>3)<<10) + ((4*cellX)>>4);
 			}
 		}
@@ -266,7 +268,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 						Int row = cellY*tilePixelExtent+j;
 						row += TILE_OFFSET/2; 
 						row += TILE_OFFSET*(cellY/2);
-						UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect.pBits) +
+						UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect_pBits) +
 									(row)*surface_desc.Width*pixelBytes;
 
 						Int column = cellX*tilePixelExtent;
@@ -294,7 +296,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 					Int row = cellY*tilePixelExtent+j;
 					row += TILE_OFFSET/2; 
 					row += TILE_OFFSET*(cellY/2);
-					UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect.pBits) +
+					UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect_pBits) +
 								(row)*surface_desc.Width*pixelBytes;
 
 					Int column = cellX*tilePixelExtent;
@@ -325,25 +327,25 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 			row += TILE_OFFSET/2; 
 			row += TILE_OFFSET*(cellY/2);
 			if ( (cellY&1) == 0) {
-				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect.pBits) +
+				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect_pBits) +
 							(row)*rowBytes;
 				row += 2*tilePixelExtent;
-				UnsignedByte *pBase = ((UnsignedByte*)locked_rect.pBits) +
+				UnsignedByte *pBase = ((UnsignedByte*)locked_rect_pBits) +
 							(row)*rowBytes;
 				memcpy(pBGRX-4*rowBytes, pBase-4*rowBytes, 4*rowBytes);
 			} else {
-				UnsignedByte *pBase = ((UnsignedByte*)locked_rect.pBits) +
+				UnsignedByte *pBase = ((UnsignedByte*)locked_rect_pBits) +
 							(row-tilePixelExtent)*rowBytes;
 				row += tilePixelExtent;
-				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect.pBits) +
+				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect_pBits) +
 							(row)*rowBytes;
 				memcpy(pBGRX, pBase, 4*rowBytes);
 			}
 		}
 		
 	}
-	surface_level->UnlockRect();
-	surface_level->Release();
+	surface_level->Unlock();
+	surface_level->Release_Ref();
 	// Texture filtering handled by shader/sampler
 	
 	return(surface_desc.Height);
@@ -359,19 +361,20 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 //=============================================================================
 int TerrainTextureClass::update256(WorldHeightMap *htMap)
 {
-	// D3DTexture is our texture;
-
-	IDirect3DSurface8 *surface_level;
-	D3DSURFACE_DESC surface_desc;
-	D3DLOCKED_RECT locked_rect;
-	DX8_ErrorCode(D3DTexture->GetSurfaceLevel(0, &surface_level));
-	DX8_ErrorCode(surface_level->GetDesc(&surface_desc));
+	// Vulkan path: lock CPU shadow of texture level 0
+	SurfaceClass *surface_level = Get_Surface_Level(0);
+	SurfaceClass::SurfaceDescription surface_desc;
+	if (!surface_level) return false;
+	surface_level->Get_Description(surface_desc);
 	if (surface_desc.Width != 256) {
-		surface_level->Release();
+		surface_level->Release_Ref();
 		return surface_desc.Height;
 	}
 
-	DX8_ErrorCode(surface_level->LockRect(&locked_rect, NULL, 0));
+	int pitch = 0;
+	void *pBits = surface_level->Lock(&pitch);
+	if (!pBits) { surface_level->Release_Ref(); return surface_desc.Height; }
+	#define locked_rect_pBits ((UnsignedByte*)pBits)
 
 	Int tilePixelExtent = TILE_PIXEL_EXTENT/4;  // We are going from 1024 to 256, so need to divide all the constants by 4.
 	Int tileOffset = TILE_OFFSET/4;
@@ -383,12 +386,12 @@ int TerrainTextureClass::update256(WorldHeightMap *htMap)
 	assert(tilesPerRow*numRows >= htMap->m_numBitmapTiles);
 	assert((Int)surface_desc.Width >= tilePixelExtent*tilesPerRow);
 #endif
-	if (surface_desc.Format == D3DFMT_A1R5G5B5) {
+	if (surface_desc.Format == WW3D_FORMAT_A1R5G5B5) {
 		Int cellX, cellY;
 #if 0
 		for (cellX = 0; cellX < surface_desc.Width; cellX++) {
 			for (cellY = 0; cellY < surface_desc.Height; cellY++) {
-				UnsignedByte *pBGR = ((UnsignedByte *)locked_rect.pBits)+(cellY*surface_desc.Width+cellX)*2;
+				UnsignedByte *pBGR = ((UnsignedByte *)locked_rect_pBits)+(cellY*surface_desc.Width+cellX)*2;
 				*((Short*)pBGR) = (((255-2*cellY)>>3)<<10) + ((4*cellX)>>4);
 			}
 		}
@@ -420,7 +423,7 @@ int TerrainTextureClass::update256(WorldHeightMap *htMap)
 						Int row = cellY*tilePixelExtent+j;
 						row += tileOffset/2; 
 						row += tileOffset*(cellY/2);
-						UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect.pBits) +
+						UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect_pBits) +
 									(row)*surface_desc.Width*pixelBytes;
 
 						Int column = cellX*tilePixelExtent;
@@ -447,7 +450,7 @@ int TerrainTextureClass::update256(WorldHeightMap *htMap)
 					Int row = cellY*tilePixelExtent+j;
 					row += tileOffset/2; 
 					row += tileOffset*(cellY/2);
-					UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect.pBits) +
+					UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect_pBits) +
 								(row)*surface_desc.Width*pixelBytes;
 
 					Int column = cellX*tilePixelExtent;
@@ -482,25 +485,25 @@ int TerrainTextureClass::update256(WorldHeightMap *htMap)
 			row += tileOffset/2; 
 			row += tileOffset*(cellY/2);
 			if ( (cellY&1) == 0) {
-				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect.pBits) +
+				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect_pBits) +
 							(row)*rowBytes;
 				row += 2*tilePixelExtent;
-				UnsignedByte *pBase = ((UnsignedByte*)locked_rect.pBits) +
+				UnsignedByte *pBase = ((UnsignedByte*)locked_rect_pBits) +
 							(row)*rowBytes;
 				memcpy(pBGRX-rowBytes, pBase-rowBytes, rowBytes);
 			} else {
-				UnsignedByte *pBase = ((UnsignedByte*)locked_rect.pBits) +
+				UnsignedByte *pBase = ((UnsignedByte*)locked_rect_pBits) +
 							(row-tilePixelExtent)*rowBytes;
 				row += tilePixelExtent;
-				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect.pBits) +
+				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect_pBits) +
 							(row)*rowBytes;
 				memcpy(pBGRX, pBase, rowBytes);
 			}
 		}
 
 	}
-	surface_level->UnlockRect();
-	surface_level->Release();
+	surface_level->Unlock();
+	surface_level->Release_Ref();
 	// Texture filtering handled by shader/sampler
 
 	// Note - normal width for the terrain texture is 1024.  We are at 256
@@ -568,14 +571,13 @@ AlphaTerrainTextureClass::AlphaTerrainTextureClass( TextureClass *pBaseTex ):
 	TextureClass(8, 8, 
 		WW3D_FORMAT_A1R5G5B5, MIP_LEVELS_1 )
 { 
-	if (D3DTexture) {
+	if (VulkanTexture) {
 		// Release the 8x8 texture.
-		D3DTexture->Release();
-		D3DTexture = NULL;
+		delete VulkanTexture;
+		VulkanTexture = NULL;
 	}
-	// Attach the base texture's d3d texture.
-	D3DTexture = pBaseTex->Peek_DX8_Texture();
-	D3DTexture->AddRef();
+	// Attach the base texture's Vulkan texture (shared; VkTexture is refcounted via TextureClass).
+	VulkanTexture = pBaseTex->Peek_Vulkan_Texture();
 }
 
 
@@ -648,7 +650,7 @@ void AlphaTerrainTextureClass::Apply(unsigned int stage)
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 1, D3DTSS_ALPHAARG1, D3DTA_TFACTOR | D3DTA_COMPLEMENT);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 1, D3DTSS_ALPHAARG2, D3DTA_TFACTOR);
 
-			DX8Wrapper::Set_DX8_Texture(2, NULL);
+			DX8Wrapper::Set_Vulkan_Texture(2, NULL);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 2, D3DTSS_COLOROP, D3DTOP_MODULATE);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 2, D3DTSS_TEXCOORDINDEX, 2);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 2, D3DTSS_COLORARG1, D3DTA_TEXTURE);
@@ -657,7 +659,7 @@ void AlphaTerrainTextureClass::Apply(unsigned int stage)
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 2, D3DTSS_ALPHAARG1, D3DTA_TFACTOR);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 2, D3DTSS_ALPHAARG2, D3DTA_TFACTOR);
 
-			DX8Wrapper::Set_DX8_Texture(3, NULL);
+			DX8Wrapper::Set_Vulkan_Texture(3, NULL);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 3, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 3, D3DTSS_TEXCOORDINDEX, 3);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 3, D3DTSS_COLORARG1, D3DTA_DIFFUSE | 0 | D3DTA_ALPHAREPLICATE);
@@ -666,7 +668,7 @@ void AlphaTerrainTextureClass::Apply(unsigned int stage)
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 3, D3DTSS_ALPHAARG1, D3DTA_TFACTOR);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 3, D3DTSS_ALPHAARG2, D3DTA_TFACTOR);
 
-			DX8Wrapper::Set_DX8_Texture(4, NULL);
+			DX8Wrapper::Set_Vulkan_Texture(4, NULL);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 4, D3DTSS_COLOROP, D3DTOP_MODULATE);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 4, D3DTSS_TEXCOORDINDEX, 4);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 4, D3DTSS_COLORARG1, D3DTA_CURRENT);
@@ -675,7 +677,7 @@ void AlphaTerrainTextureClass::Apply(unsigned int stage)
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 4, D3DTSS_ALPHAARG1, D3DTA_CURRENT);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 4, D3DTSS_ALPHAARG2, D3DTA_DIFFUSE);
 
-			DX8Wrapper::Set_DX8_Texture(5, NULL);
+			DX8Wrapper::Set_Vulkan_Texture(5, NULL);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 5, D3DTSS_COLOROP, D3DTOP_ADD);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 5, D3DTSS_TEXCOORDINDEX, 5);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 5, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
@@ -684,7 +686,7 @@ void AlphaTerrainTextureClass::Apply(unsigned int stage)
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 5, D3DTSS_ALPHAARG1, D3DTA_TFACTOR | D3DTA_COMPLEMENT);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 5, D3DTSS_ALPHAARG2, D3DTA_TFACTOR);
 
-			DX8Wrapper::Set_DX8_Texture(6, NULL);
+			DX8Wrapper::Set_Vulkan_Texture(6, NULL);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 6, D3DTSS_COLOROP, D3DTOP_MODULATE);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 6, D3DTSS_TEXCOORDINDEX, 6);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 6, D3DTSS_COLORARG1, D3DTA_TFACTOR);
@@ -693,7 +695,7 @@ void AlphaTerrainTextureClass::Apply(unsigned int stage)
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 6, D3DTSS_ALPHAARG1, D3DTA_TFACTOR);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 6, D3DTSS_ALPHAARG2, D3DTA_TFACTOR);
 
-			DX8Wrapper::Set_DX8_Texture(7, NULL);
+			DX8Wrapper::Set_Vulkan_Texture(7, NULL);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 7, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 7, D3DTSS_TEXCOORDINDEX, 7);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( 7, D3DTSS_COLORARG1, D3DTA_TFACTOR);
@@ -793,13 +795,15 @@ void LightMapTerrainTextureClass::Apply(unsigned int stage)
 	Matrix4 curView;
 	DX8Wrapper::_Get_DX8_Transform(D3DTS_VIEW, curView);
 
-
-// D3DXMATRIX inv;	float det;
-// D3DXMatrixInverse(&inv, &det, (D3DXMATRIX*)&curView);	D3DXMATRIX scale;
-// D3DXMatrixScaling(&scale, STRETCH_FACTOR, STRETCH_FACTOR,1);// inv *=scale;	if (stage==0) {
-		DX8Wrapper::_Set_DX8_Transform(D3DTS_TEXTURE0, *((Matrix4*)&inv));
-	}	if (stage==1) {
-		DX8Wrapper::_Set_DX8_Transform(D3DTS_TEXTURE1, *((Matrix4*)&inv));
+	// Stretch factor UV transform (ported from D3DX path)
+	Matrix4 inv;
+	inv.Make_Identity();
+	inv[0][0] = STRETCH_FACTOR;
+	inv[1][1] = STRETCH_FACTOR;
+	if (stage==0) {
+		DX8Wrapper::_Set_DX8_Transform(D3DTS_TEXTURE0, inv);
+	} else if (stage==1) {
+		DX8Wrapper::_Set_DX8_Transform(D3DTS_TEXTURE1, inv);
 	}
 		
 		
@@ -845,25 +849,27 @@ int AlphaEdgeTextureClass::update(WorldHeightMap *htMap)
 {
 	// D3DTexture is our texture;
 
-	IDirect3DSurface8 *surface_level;
-	D3DSURFACE_DESC surface_desc;
-	D3DLOCKED_RECT locked_rect;
-	DX8_ErrorCode(D3DTexture->GetSurfaceLevel(0, &surface_level));
-	DX8_ErrorCode(surface_level->LockRect(&locked_rect, NULL, 0));
-	DX8_ErrorCode(surface_level->GetDesc(&surface_desc));
+	SurfaceClass *surface_level = Get_Surface_Level(0);
+	SurfaceClass::SurfaceDescription surface_desc;
+	if (!surface_level) return 0;
+	surface_level->Get_Description(surface_desc);
+	int pitch = 0;
+	void *pBits = surface_level->Lock(&pitch);
+	if (!pBits) { surface_level->Release_Ref(); return 0; }
+	#define locked_rect_pBits ((UnsignedByte*)pBits)
 
 	Int tilePixelExtent = TILE_PIXEL_EXTENT; // blend tiles are 1/4 tiles.
 //	Int tilesPerRow = surface_desc.Width / (tilePixelExtent+8);
 
 //	Int numRows = surface_desc.Height/(tilePixelExtent+8);
 
-	if (surface_desc.Format == D3DFMT_A8R8G8B8) {
+	if (surface_desc.Format == WW3D_FORMAT_A8R8G8B8) {
 #if 1
 #if 1
 		Int cellX, cellY;
 		for (cellX = 0; (UnsignedInt)cellX < surface_desc.Width; cellX++) {
 			for (cellY = 0; cellY < surface_desc.Height; cellY++) {
-				UnsignedByte *pBGR = ((UnsignedByte *)locked_rect.pBits)+(cellY*surface_desc.Width+cellX)*4;
+				UnsignedByte *pBGR = ((UnsignedByte *)locked_rect_pBits)+(cellY*surface_desc.Width+cellX)*4;
 				pBGR[2] = 255-cellY/2;
 				pBGR[0] = cellX/2;
 				pBGR[3] = cellX/2;  // alpha.
@@ -885,7 +891,7 @@ int AlphaEdgeTextureClass::update(WorldHeightMap *htMap)
 				Int row = position.y+j;
 				UnsignedByte *pBGR = htMap->getEdgeTile(tileNdx)->getRGBDataForWidth(tilePixelExtent);
 				pBGR += (tilePixelExtent-1-j)*TILE_BYTES_PER_PIXEL*tilePixelExtent; // invert to match.
-				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect.pBits) +
+				UnsignedByte *pBGRX = ((UnsignedByte*)locked_rect_pBits) +
 							(row)*surface_desc.Width*pixelBytes;
 				pBGRX += column*pixelBytes;
 
@@ -909,8 +915,8 @@ int AlphaEdgeTextureClass::update(WorldHeightMap *htMap)
 #endif
 #endif
 	}
-	surface_level->UnlockRect();
-	surface_level->Release();
+	surface_level->Unlock();
+	surface_level->Release_Ref();
 	// Texture filtering handled by shader/sampler
 
 	return(surface_desc.Height);
@@ -1040,10 +1046,11 @@ void CloudMapTerrainTextureClass::Apply(unsigned int stage)
 	Matrix4 curView;
 	DX8Wrapper::_Get_DX8_Transform(D3DTS_VIEW, curView);
 
-
-// D3DXMATRIX inv;	float det;
-// D3DXMatrixInverse(&inv, &det, (D3DXMATRIX*)&curView);// D3DXMATRIX scale;// D3DXMatrixScaling(&scale, STRETCH_FACTOR, STRETCH_FACTOR,1);	inv *=scale;
-// // D3DXMATRIX offset;	Int delta = m_curTick;
+	Matrix4 inv;
+	inv.Make_Identity();
+	inv[0][0] = STRETCH_FACTOR;
+	inv[1][1] = STRETCH_FACTOR;
+	Int delta = m_curTick;
 	m_curTick = ::GetTickCount();
 	delta = m_curTick-delta;
 	m_xOffset += m_xSlidePerSecond*delta/1000;
@@ -1054,9 +1061,8 @@ void CloudMapTerrainTextureClass::Apply(unsigned int stage)
 	if (m_xOffset < -1) m_xOffset += 1;
 	if (m_yOffset < -1) m_yOffset += 1;
 
-
-// D3DXMatrixTranslation(&offset, m_xOffset, m_yOffset,0);
-	inv *= offset;
+	inv[3][0] += m_xOffset;
+	inv[3][1] += m_yOffset;
 
 	if (stage==0) {
 		DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );
@@ -1064,7 +1070,7 @@ void CloudMapTerrainTextureClass::Apply(unsigned int stage)
 		DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_COLOROP,   D3DTOP_SELECTARG1 );
 		DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_ALPHAOP,   D3DTOP_DISABLE );
 
-		DX8Wrapper::_Set_DX8_Transform(D3DTS_TEXTURE0, *((Matrix4*)&inv));
+		DX8Wrapper::_Set_DX8_Transform(D3DTS_TEXTURE0, inv);
 		
 		// Disable 3rd stage just in case.
 		DX8Wrapper::Set_DX8_Texture_Stage_State( 2, D3DTSS_COLOROP,   D3DTOP_DISABLE );
@@ -1083,7 +1089,7 @@ void CloudMapTerrainTextureClass::Apply(unsigned int stage)
 		DX8Wrapper::Set_DX8_Texture_Stage_State( 1, D3DTSS_ALPHAARG1, D3DTA_CURRENT );
 		DX8Wrapper::Set_DX8_Texture_Stage_State( 1, D3DTSS_ALPHAOP,   D3DTOP_SELECTARG1 );
 
-		DX8Wrapper::_Set_DX8_Transform(D3DTS_TEXTURE1, *((Matrix4*)&inv));
+		DX8Wrapper::_Set_DX8_Transform(D3DTS_TEXTURE1, inv);
 	}
 }
 
@@ -1134,7 +1140,7 @@ void CloudMapTerrainTextureClass::restore(void)
 			DX8Wrapper::Set_DX8_Texture_Stage_State( i, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
 			DX8Wrapper::Set_DX8_Texture_Stage_State( i, D3DTSS_ALPHAARG2, D3DTA_DIFFUSE);
 
-			DX8Wrapper::Set_DX8_Texture(i, NULL);
+			DX8Wrapper::Set_Vulkan_Texture(i, NULL);
 		}
 	}
 }

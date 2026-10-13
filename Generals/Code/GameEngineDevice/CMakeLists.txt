@@ -31,6 +31,7 @@ target_include_directories(GameEngineDevice PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/Source/VulkanRenderer
     ${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/Source/XAudio2
     ${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/Source/FFmpegVideo
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/Source/Benchmark
 )
 
 target_link_libraries(GameEngineDevice PUBLIC
@@ -44,4 +45,5 @@ target_link_libraries(GameEngineDevice PUBLIC
     VulkanRenderer
     XAudio2Engine
     FFmpegVideo
+    Benchmark
 )

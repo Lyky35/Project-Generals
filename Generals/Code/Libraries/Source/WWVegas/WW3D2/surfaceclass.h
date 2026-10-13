@@ -139,6 +139,8 @@ class SurfaceClass : public W3DMPO, public RefCountClass
 		bool Is_Monochrome(void);
 
 		WW3DFormat Get_Surface_Format() const { return SurfaceFormat; }
+		// Legacy: no real D3D surface under Vulkan
+		void *Peek_D3D_Surface() { return 0; }
 
 	private:
 
