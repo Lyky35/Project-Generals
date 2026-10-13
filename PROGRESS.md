@@ -588,6 +588,27 @@ kernel driver is not loaded - nvidia-smi fails - so there is no working
 host Vulkan ICD). Windows 10 with working GPU drivers is the real test:
 expect `VK: device created` + first-frame rendering, or a logged failure.
 
+### 2026-10-13 — Vulkan init fixes for real GPUs (7900 XTX / RTX 4080)
+
+User ran the IsInitialized fix on real Windows GPUs: log showed
+`VK: device init FAILED` (then the legacy "DirectX 8.1" box - just the
+game's old ERROR_INVALID_D3D message). Two more blockers found in
+VulkanDevice.cpp:
+
+1. `CreateInstance` enabled VK_KHR_surface TWICE and never enabled
+   VK_KHR_win32_surface - a duplicate extension name makes
+   vkCreateInstance fail with VK_ERROR_EXTENSION_NOT_PRESENT (-6) on real
+   Windows loaders.
+2. `CreateSurface()` was an UNIMPLEMENTED STUB (`return false`) - even a
+   successful instance could never get a surface.
+
+Fixes: proper VK_KHR_surface + VK_KHR_win32_surface list; real
+vkCreateWin32SurfaceKHR via GetModuleHandle(NULL)+hwnd; per-step VK
+result logging (`VK: vkCreateInstance -> N`, `VK: Init: Xxx FAILED`,
+`VK: Init: Vulkan device READY`) so the next field run pinpoints any
+remaining failure. Local wine still fails at instance creation (-3) -
+this machine's NVIDIA kernel driver is not loaded, so no host ICD.
+
 <!-- Append new entries below. Commit after each completed step. -->
 
 
