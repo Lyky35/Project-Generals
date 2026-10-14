@@ -787,6 +787,13 @@ WW3DErrorType WW3D::Begin_Render(bool clear,bool clearz,const Vector3 & color, f
 	WWASSERT(!IsRendering);
 	IsRendering = true;
 
+	// Begin the frame FIRST: Begin_Scene calls device.BeginFrame(), which
+	// resets + begins the per-frame command buffer. Recording the clear
+	// (vkCmdBeginRenderPass via DX8Wrapper::Clear) before that used a
+	// command buffer still in the initial state - invalid usage that crashed
+	// GPU drivers on the first frame (amdvlk read of a null internal).
+	DX8Wrapper::Begin_Scene();
+
 	// If we want to clear the screen, set up Vulkan render pass viewport
 	if (clear || clearz) {
 		int width, height, bits;
@@ -804,10 +811,6 @@ WW3DErrorType WW3D::Begin_Render(bool clear,bool clearz,const Vector3 & color, f
 		// Clear via DX8Wrapper which handles Vulkan command buffer recording
 		DX8Wrapper::Clear(clear, clearz, color, dest_alpha);
 	}
-
-	// Notify that rendering has begun
-	// Vulkan: Begin render pass via DX8Wrapper command buffer setup
-	DX8Wrapper::Begin_Scene();
 
 	return WW3D_ERROR_OK;
 }
