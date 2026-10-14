@@ -1446,6 +1446,19 @@ FontCharsClass::Store_GDI_Char (WCHAR ch)
 		}
 	}
 
+	{
+		static int glyphLog = 0;
+		if (glyphLog < 10) {
+			glyphLog++;
+			int nonzero = 0;
+			unsigned sum = 0;
+			for (int i = 0; i < char_size.cx * char_size.cy; i++) { sum += GDIBitmapBits[i*3]; if (GDIBitmapBits[i*3]) nonzero++; }
+			char gmsg[200];
+			snprintf(gmsg, sizeof(gmsg), "GDI glyph '%c' %ldx%ld nonzero=%d avg=%u", (char)(ch<128?ch:'?'), (long)char_size.cx, (long)char_size.cy, nonzero, (unsigned)(sum / (char_size.cx*char_size.cy?char_size.cx*char_size.cy:1)));
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "%s\n", gmsg); fclose(lf); }
+		}
+	}
 	//
 	//	Save information about this character in our list
 	//
