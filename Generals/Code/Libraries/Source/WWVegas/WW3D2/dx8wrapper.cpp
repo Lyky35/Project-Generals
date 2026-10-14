@@ -2161,7 +2161,8 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 	state->fillMode = DX8Wrapper::RenderStates[D3DRS_FILLMODE];
 	if (state->fillMode == 0x12345678)
 		state->fillMode = D3DFILL_SOLID;
-	state->depthTest = 1;
+	state->depthTest = (DX8Wrapper::RenderStates[D3DRS_ZENABLE] == 0x12345678)
+		? 1 : (DX8Wrapper::RenderStates[D3DRS_ZENABLE] ? 1 : 0);
 	state->depthWrite = (DX8Wrapper::RenderStates[D3DRS_ZWRITEENABLE] != 0) ? 1 : 0;
 	state->depthCompare = DX8Wrapper::RenderStates[D3DRS_ZFUNC];
 	if (state->depthCompare == 0x12345678)
@@ -2221,7 +2222,7 @@ void DX8Wrapper::Set_StencilFailOp(unsigned) {}
 void DX8Wrapper::Set_StencilPassOp(unsigned) {}
 void DX8Wrapper::Set_Lighting(bool) {}
 void DX8Wrapper::Set_BlendFunc(unsigned, unsigned) {}
-void DX8Wrapper::Set_ZEnable(bool) {}
+void DX8Wrapper::Set_ZEnable(bool enable) { RenderStates[D3DRS_ZENABLE] = enable ? 1 : 0; }
 void DX8Wrapper::Set_ShadeMode(unsigned) {}
 
 IDirect3D8* DX8Wrapper::_Get_D3D8() { return 0; }

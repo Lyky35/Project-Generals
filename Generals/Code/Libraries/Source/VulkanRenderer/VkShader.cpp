@@ -462,7 +462,10 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	rasterizer.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
 	rasterizer.polygonMode = TranslateFill(state.fillMode);
 	rasterizer.cullMode = TranslateCull(state.cullMode);
-	rasterizer.frontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE;
+	// D3D8 front faces are wound CLOCKWISE; the Vulkan default of CCW inverts
+	// the convention and back-face-culled every D3D-front primitive (the whole
+	// menu rendered as nothing). Match D3D: clockwise = front.
+	rasterizer.frontFace = VK_FRONT_FACE_CLOCKWISE;
 	rasterizer.lineWidth = 1.0f;
 
 	VkPipelineMultisampleStateCreateInfo multisample = {};
