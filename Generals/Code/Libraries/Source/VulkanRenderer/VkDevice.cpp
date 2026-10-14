@@ -851,25 +851,34 @@ void VulkanDevice::EndFrame(bool present)
 							char path[MAX_PATH] = { 0 };
 							GetModuleFileNameA(NULL, path, MAX_PATH);
 							char *sl = strrchr(path, '\\');
-							if (sl) strcpy(sl + 1, "RTS_FRAME1.TGA");
-							else strcpy(path, "RTS_FRAME1.TGA");
+							if (sl) strcpy(sl + 1, "RTS_FRAME1.BMP");
+							else strcpy(path, "RTS_FRAME1.BMP");
 							FILE *f = fopen(path, "wb");
 							if (f) {
-								unsigned char hdr[18] = { 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 0 };
-								hdr[12] = (unsigned char)(w & 0xff); hdr[13] = (unsigned char)(w >> 8);
-								hdr[14] = (unsigned char)(h & 0xff); hdr[15] = (unsigned char)(h >> 8);
-								fwrite(hdr, 1, 18, f);
+								uint32_t rowBytes = (w * 3 + 3) & ~3u;
+								uint32_t fileSize = 54 + rowBytes * h;
+								unsigned char hdr[54] = { 'B','M', 0,0,0,0, 54,0,0,0, 40,0,0,0 };
+								hdr[2] = (unsigned char)(fileSize); hdr[3] = (unsigned char)(fileSize >> 8);
+								hdr[4] = (unsigned char)(fileSize >> 16); hdr[5] = (unsigned char)(fileSize >> 24);
+								hdr[10] = 54;
+								hdr[18] = (unsigned char)(w); hdr[19] = (unsigned char)(w >> 8);
+								hdr[22] = (unsigned char)(h); hdr[23] = (unsigned char)(h >> 8);
+								hdr[26] = 1; hdr[28] = 24;
+								fwrite(hdr, 1, 54, f);
 								unsigned char *p = (unsigned char *)mapped;
+								unsigned char row[8192 * 3];
 								for (int y = (int)h - 1; y >= 0; --y) {
-									for (uint32_t x = 0; x < w; ++x) {
+									for (uint32_t x = 0; x < w && x < 8192; ++x) {
 										unsigned char *q = p + ((size_t)y * w + x) * 4;
-										unsigned char bgr[3] = { q[0], q[1], q[2] };
-										fwrite(bgr, 1, 3, f);
+										row[x * 3 + 0] = q[0];
+										row[x * 3 + 1] = q[1];
+										row[x * 3 + 2] = q[2];
 									}
+									fwrite(row, 1, rowBytes, f);
 								}
 								fclose(f);
 								FILE *lf = fopen("RTS_START.LOG", "a");
-								if (lf) { fprintf(lf, "VK: captured RTS_FRAME1.TGA %ux%u\n", (unsigned)w, (unsigned)h); fclose(lf); }
+								if (lf) { fprintf(lf, "VK: captured RTS_FRAME1.BMP %ux%u\n", (unsigned)w, (unsigned)h); fclose(lf); }
 							}
 							vkUnmapMemory(m_device, cmem);
 						}
