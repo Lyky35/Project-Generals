@@ -105,7 +105,12 @@ private:
 
 public:
     // Accessor methods
-    VkFramebuffer GetFramebuffer() const { return m_framebuffers[0]; }
+    // Must present the framebuffer of the ACQUIRED swapchain image: always
+    // returning [0] rendered even frames into image0 while presenting image1
+    // (stale) - the menu blinked at swapchain rate.
+    VkFramebuffer GetFramebuffer() const {
+        return m_framebuffers[m_imageIndex < m_framebuffers.size() ? m_imageIndex : 0];
+    }
     VkExtent2D GetSwapExtent() const { return m_swapExtent; }
     VkFormat GetSwapFormat() const { return m_swapFormat; }
     // Was hard-coded `return true`, which made DX8Wrapper::Create_Device skip

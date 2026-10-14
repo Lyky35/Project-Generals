@@ -1737,7 +1737,7 @@ AGAIN:
 		// bound the loop so the frame returns and the engine keeps running.
 		{
 			static Int freezeLoopGuard = 0;
-			if (++freezeLoopGuard >= 600) {
+			if (++freezeLoopGuard >= 30) {
 				freezeLoopGuard = 0;
 				FILE *lf = fopen("RTS_START.LOG", "a");
 				if (lf) { fprintf(lf, "W3DDisplay::draw freeze-loop guard hit (freezeTime stuck?)\n"); fclose(lf); }
