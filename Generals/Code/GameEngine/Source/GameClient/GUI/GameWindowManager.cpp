@@ -1419,8 +1419,20 @@ void GameWindowManager::winRepaint( void )
 				total++;
 				if (!BitTest(w->m_status, WIN_STATUS_HIDDEN)) visible++;
 			}
-			char m[112];
-			snprintf(m, sizeof(m), "winRepaint summary: total=%d visible=%d", (int)total, (int)visible);
+			Int minx=32767,miny=32767,maxx=-1,maxy=-1,zero=0;
+			for (GameWindow *w = m_windowTail; w; w = w->m_prev) {
+				if (BitTest(w->m_status, WIN_STATUS_HIDDEN)) continue;
+				Int x,y,ww,hh;
+				w->winGetScreenPosition(&x,&y);
+				w->winGetSize(&ww,&hh);
+				if (ww<=0||hh<=0) zero++;
+				if (x<minx) minx=x;
+				if (y<miny) miny=y;
+				if (x+ww>maxx) maxx=x+ww;
+				if (y+hh>maxy) maxy=y+hh;
+			}
+			char m[172];
+			snprintf(m, sizeof(m), "winRepaint summary: total=%d visible=%d bbox=(%d,%d)-(%d,%d) zerosize=%d", (int)total, (int)visible, (int)minx,(int)miny,(int)maxx,(int)maxy,(int)zero);
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) { fprintf(lf, "%s\n", m); fclose(lf); }
 		}
