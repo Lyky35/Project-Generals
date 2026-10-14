@@ -710,7 +710,9 @@ void GameEngine::execute( void )
 			if (hbFrame <= 300 || (hbFrame % 120) == 0)
 			{
 				char hb[96];
-				snprintf(hb, sizeof(hb), "hb frame=%u dt=%ums", (unsigned)hbFrame, (unsigned)hbDt);
+				snprintf(hb, sizeof(hb), "hb frame=%u dt=%ums loadScreen=%d",
+					(unsigned)hbFrame, (unsigned)hbDt,
+					(TheGlobalData && TheGlobalData->m_loadScreenRender) ? 1 : 0);
 				FILE *lf = fopen("RTS_START.LOG", "a");
 				if (lf) { fprintf(lf, "%s\n", hb); fclose(lf); }
 			}

@@ -639,8 +639,13 @@ extern "C" int AIL_WAV_info(void* buf, AILSOUNDINFO* info) {
 	info->rate = (float)w.rate;
 	info->bits = w.bits;
 	info->channels = w.channels;
-	info->samples = w.dataLen / (w.channels ? w.channels : 1) / (w.bits ? w.bits / 8 : 1);
-	info->block_size = (U32)(w.channels * (w.bits / 8));
+	// bits<8 (IMA-ADPCM=4) makes w.bits/8 == 0 -> integer divide-by-zero
+	{
+		unsigned bytesPerSample = (w.bits >= 8) ? (w.bits / 8) : 1;
+		unsigned ch = w.channels ? w.channels : 1;
+		info->samples = w.dataLen / ch / bytesPerSample;
+	}
+	info->block_size = (U32)(w.channels * ((w.bits >= 8) ? (w.bits / 8) : 1));
 	info->initial_ptr = info->data;
 	return 1;
 }
