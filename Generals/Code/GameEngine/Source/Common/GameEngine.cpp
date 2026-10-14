@@ -624,13 +624,33 @@ void GameEngine::update( void )
 			// VERIFY CRC needs to be in this code block.  Please to not pull TheGameLogic->update() inside this block.
 			VERIFY_CRC
 
+			{
+				static UnsignedInt ph = 0;
+				if (++ph <= 10) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=radar u=%u\n", (unsigned)ph); fclose(lf); } }
+			}
 			TheRadar->UPDATE();
 
 			/// @todo Move audio init, update, etc, into GameClient update
 			
+			{
+				static UnsignedInt ph = 0;
+				if (++ph <= 10) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=audio u=%u begin\n", (unsigned)ph); fclose(lf); } }
+			}
 			TheAudio->UPDATE();
+			{
+				static UnsignedInt ph = 0;
+				if (++ph <= 10) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=audio u=%u done\n", (unsigned)ph); fclose(lf); } }
+			}
 			TheGameClient->UPDATE();
+			{
+				static UnsignedInt ph = 0;
+				if (++ph <= 10) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=client u=%u done\n", (unsigned)ph); fclose(lf); } }
+			}
 			TheMessageStream->propagateMessages();
+			{
+				static UnsignedInt ph = 0;
+				if (++ph <= 10) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=msgs u=%u done\n", (unsigned)ph); fclose(lf); } }
+			}
 
 			if (TheNetwork != NULL)
 			{
@@ -644,6 +664,10 @@ void GameEngine::update( void )
 		if ((TheNetwork == NULL && !TheGameLogic->isGamePaused()) || (TheNetwork && TheNetwork->isFrameDataReady()))
 		{
 			TheGameLogic->UPDATE();
+			{
+				static UnsignedInt ph = 0;
+				if (++ph <= 10) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=logic u=%u done\n", (unsigned)ph); fclose(lf); } }
+			}
 		}
 
 	}	// end perfGather
