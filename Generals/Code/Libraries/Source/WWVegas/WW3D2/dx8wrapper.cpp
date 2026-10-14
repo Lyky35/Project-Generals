@@ -1031,6 +1031,19 @@ static void VulkanBeginTargetPass(VkTexture *target, const float *clearColor, fl
 	if (target == NULL) {
 		if (device.GetRenderPass() == VK_NULL_HANDLE || device.GetFramebuffer() == VK_NULL_HANDLE)
 			return;
+		{
+			static bool loggedRP = false;
+			if (!loggedRP) {
+				char buf[192];
+				snprintf(buf, sizeof(buf),
+					"VK: BeginTargetPass#1 cmd=%p rp=%p fb=%p extent=%ux%u",
+					(void*)cmd, (void*)device.GetRenderPass(), (void*)device.GetFramebuffer(),
+					(unsigned)device.GetSwapExtent().width, (unsigned)device.GetSwapExtent().height);
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
+				loggedRP = true;
+			}
+		}
 		VkClearValue clearValues[2];
 		clearValues[0].color.float32[0] = clearColor[0];
 		clearValues[0].color.float32[1] = clearColor[1];
