@@ -1454,14 +1454,14 @@ FontCharsClass::Store_GDI_Char (WCHAR ch)
 			//
 			// Modern Windows GDI renders antialiased text at low coverage
 			// (measured avg 9-45/255); the old (pixel>>4) mapping turned that
-			// into alpha 0-2/15 = invisible glyphs. Wine/FreeType renders
-			// bolder so it looked fine there. Expand coverage instead.
-			uint8 alpha_value;
+			// into alpha 0-2/15 = invisible glyphs. Scale to a full 8-bit
+			// alpha (the surface is A8R8G8B8 now - NOT a 4-bit nibble!).
+			uint32 alpha32;
 			if (pixel_value >= 64)
-				alpha_value = 0xF;
+				alpha32 = 255;
 			else
-				alpha_value = (uint8)((pixel_value * 15) / 64);
-			*curr_buffer_p++	= pixel_color | (alpha_value << 12);
+				alpha32 = ((uint32)pixel_value * 255) / 64;
+			*curr_buffer_p++	= (alpha32 << 24) | 0x00FFFFFF;
 		}
 	}
 
