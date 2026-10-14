@@ -107,7 +107,7 @@ SurfaceClass *Font3DDataClass::Minimize_Font_Image( SurfaceClass *surface )
    int new_height = new_width;
 	//  create a new 4 bit alpha image to build into
 	// We dont support non-homogeneous copies just yet
-	SurfaceClass	*new_surface = NEW_REF(SurfaceClass,(new_width, new_height,WW3D_FORMAT_A4R4G4B4));
+	SurfaceClass	*new_surface = NEW_REF(SurfaceClass,(new_width, new_height,WW3D_FORMAT_A8R8G8B8));
 	//SurfaceClass	*new_surface0 = NEW_REF(SurfaceClass,(new_width, new_height,sd.Format));
 
 	// fill with transparent black	
