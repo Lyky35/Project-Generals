@@ -47,7 +47,10 @@ else()
     # guards in MemoryPoolObject::deleteInstance (e.g. ScriptConditions::reset
     # calls deleteInstance on a NULL list head on first init). MSVC honored
     # them; GCC deletes the check by default and the null deref crashes.
-    add_compile_options(-Wall -Wextra -fpermissive -Wno-narrowing -fno-delete-null-pointer-checks)
+    # fix_bittest.h: MinGW winnt.h redefines BitTest as the _bittest intrinsic
+    # (pointer+index); restore the value-mask semantics project-wide.
+    add_compile_options(-Wall -Wextra -fpermissive -Wno-narrowing -fno-delete-null-pointer-checks
+        -include ${CMAKE_CURRENT_SOURCE_DIR}/Generals/Code/Libraries/Include/fix_bittest.h)
     if(MINGW)
         add_compile_options(-fno-sized-deallocation)
     endif()

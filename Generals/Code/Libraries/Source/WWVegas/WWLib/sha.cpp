@@ -243,6 +243,10 @@ int SHAEngine::Result(void * result) const
 #pragma warn -sig
 #endif
 
+// <stdlib.h> (now force-included early for the BitTest fix) declares
+// `unsigned int _rotl(unsigned int, int)` - the local template/overloads
+// below clash with it in C++. The CRT version serves the call sites.
+#if 0
 template<class T>
 T _rotl(T X, int n)
 {
@@ -257,6 +261,7 @@ inline unsigned long _rotl(unsigned long X, int n)
 {
 	return(unsigned long)( ( X << n ) | ( (unsigned)X >> ((sizeof(unsigned long)*8) - n) ) );
 }
+#endif
 
 //unsigned long _RTLENTRY _rotl(unsigned long X, int n)
 //{
