@@ -1090,7 +1090,7 @@ Int WaterRenderObjClass::init(Real waterLevel, Real dx, Real dy, SceneClass *par
 	m_riverTexture=WW3DAssetManager::Get_Instance()->Get_Texture("TWWater01.tga"); 
 	
 	//For some reason setting a NULL texture does not result in 0xffffffff for pixel shaders so using explicit "white" texture.
-	m_whiteTexture=MSGNEW("TextureClass") TextureClass(1,1,WW3D_FORMAT_A4R4G4B4,TextureClass::MIP_LEVELS_1);
+	m_whiteTexture=MSGNEW("TextureClass") TextureClass(1,1,WW3D_FORMAT_A8R8G8B8,TextureClass::MIP_LEVELS_1);
 	SurfaceClass *surface=m_whiteTexture->Get_Surface_Level();
 	surface->DrawPixel(0,0,0xffffffff);
 	REF_PTR_RELEASE(surface);

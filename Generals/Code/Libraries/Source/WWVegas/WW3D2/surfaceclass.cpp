@@ -221,10 +221,20 @@ SurfaceClass::SurfaceClass(unsigned width, unsigned height, WW3DFormat format):
 {
 	WWASSERT(width);
 	WWASSERT(height);
-	// Create VkTexture-backed surface
+	// Promote 16-bit packed formats: PACK16 support is spotty on modern
+	// drivers (vkCreateImage failed on AMD = no fonts + blinking), and our
+	// CPU shadow buffer is 32-bit pitched anyway.
+	if (format == WW3D_FORMAT_A4R4G4B4 || format == WW3D_FORMAT_X4R4G4B4 ||
+		 format == WW3D_FORMAT_A1R5G5B5 || format == WW3D_FORMAT_X1R5G5B5 ||
+		 format == WW3D_FORMAT_R5G6B5 || format == WW3D_FORMAT_R8G8B8) {
+		format = WW3D_FORMAT_A8R8G8B8;
+		SurfaceFormat = format;
+	}
+	// Create VkTexture-backed surface. NOTE: TranslateFormat expects D3DFMT ids,
+	// not WW3D ids - convert first or most formats map to the wrong VkFormat.
 	VulkanSurface = new VkTexture();
 	bool created = VulkanSurface->Create(&VulkanDevice::Instance(), width, height,
-		VulkanSurface->TranslateFormat(format), 1, false);
+		VulkanSurface->TranslateFormat(WW3DFormat_To_D3DFormat(format)), 1, false);
 	if (!created) {
 		char buf[128];
 		snprintf(buf, sizeof(buf), "SurfaceClass: Create FAILED %ux%u fmt=%d", (unsigned)width, (unsigned)height, (int)format);
