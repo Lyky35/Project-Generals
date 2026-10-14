@@ -1317,25 +1317,29 @@ FontCharsClass::Blit_Char (WCHAR ch, uint16 *dest_ptr, int dest_stride, int x, i
 	if ( data != NULL && data->Width != 0 ) {
 
 		//
-		//	Setup the src and destination pointers
+		//	Surfaces are now 32-bit (A8R8G8B8): expand each 16-bit (A4R4G4B4)
+		//	glyph pixel into a 32-bit pixel. dest_stride is in BYTES (from
+		//	SurfaceClass::Lock), so the uint32 row increment is stride/4.
 		//
-		int dest_inc		= (dest_stride >> 1);
+		uint32 *dest32 = (uint32 *)dest_ptr;
+		int dest_inc		= (dest_stride >> 2);
 		uint16 *src_ptr	= data->Buffer;
-		dest_ptr				+= (dest_inc * y) + x;
+		dest32				+= (dest_inc * y) + x;
 
-		//
-		//	Simply copy the data from the src buffer to the destination
-		//
 		for ( int row = 0; row < CharHeight; row ++ ) {
 			for ( int col = 0; col < data->Width; col ++ ) {
 				uint16 curData = *src_ptr;
+				uint32 pixel = (((uint32)((curData >> 12) & 0xF)) * 17) << 24		// A
+										 | (((uint32)((curData >> 8) & 0xF)) * 17) << 16		// R
+										 | (((uint32)((curData >> 4) & 0xF)) * 17) << 8			// G
+										 | (((uint32)(curData & 0xF)) * 17);									// B
 				if (col<PixelOverlap) {
-					curData |= dest_ptr[col];
+					pixel |= dest32[col];
 				} 
-				dest_ptr[col] = curData;
+				dest32[col] = pixel;
 				src_ptr++;
 			}
-			dest_ptr	+= dest_inc;
+			dest32	+= dest_inc;
 		}		
 	}
 
