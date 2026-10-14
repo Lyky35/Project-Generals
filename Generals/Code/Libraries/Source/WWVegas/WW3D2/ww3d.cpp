@@ -273,6 +273,11 @@ void WW3D::Set_Texture_Thumbnail_Mode (TextureThumbnailModeEnum mode)
  *=============================================================================================*/
 WW3DErrorType WW3D::Init(void *hwnd, char *defaultpal)
 {
+	// Idempotent: W3DGameClient::init now brings WW3D up BEFORE
+	// GameClient::init (Vulkan textures are created eagerly, unlike D3D8),
+	// so W3DDisplay::init's later call becomes a no-op.
+	if (IsInitted)
+		return WW3D_ERROR_OK;
 	assert(IsInitted == false);
 	WWDEBUG_SAY(("WW3D::Init hwnd = %p\n",hwnd));
 	_Hwnd = (HWND)hwnd;

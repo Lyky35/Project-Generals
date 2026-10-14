@@ -79,6 +79,15 @@ W3DGameClient::~W3DGameClient()
 void W3DGameClient::init( void )
 {
 
+	// The Vulkan backend creates textures eagerly (the D3D8 original created
+	// them lazily on first use). Font/GUI textures are allocated during
+	// GameClient::init, BEFORE W3DDisplay::init would normally create the
+	// device - so bring WW3D (and the Vulkan device) up first.
+	{
+		extern HWND ApplicationHWnd;
+		WW3D::Init( ApplicationHWnd );
+	}
+
 	// extending initialization routine
 	GameClient::init();
 
