@@ -861,6 +861,7 @@ void VulkanDevice::EndFrame(bool present)
 								hdr[2] = (unsigned char)(fileSize); hdr[3] = (unsigned char)(fileSize >> 8);
 								hdr[4] = (unsigned char)(fileSize >> 16); hdr[5] = (unsigned char)(fileSize >> 24);
 								hdr[10] = 54;
+								hdr[14] = 40;  // biSize - was 0 = unreadable BMP
 								hdr[18] = (unsigned char)(w); hdr[19] = (unsigned char)(w >> 8);
 								hdr[22] = (unsigned char)(h); hdr[23] = (unsigned char)(h >> 8);
 								hdr[26] = 1; hdr[28] = 24;
