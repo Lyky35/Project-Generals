@@ -1,6 +1,7 @@
 #include "VkDescriptors.h"
 #include "VkDevice.h"
 #include "VkTexture.h"
+#include <cstdio>
 
 VkDescriptorAllocator::VkDescriptorAllocator()
 	: m_device(nullptr)
