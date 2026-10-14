@@ -3,6 +3,7 @@ add_executable(RTS WIN32
     ${CMAKE_CURRENT_SOURCE_DIR}/guidstubs.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/linkstubs.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/netstubs.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/func_trace.cpp
 )
 
 target_include_directories(RTS PRIVATE

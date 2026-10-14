@@ -663,18 +663,35 @@ void GameEngine::execute( void )
 	DWORD startTime = timeGetTime() / 1000;
 #endif
 
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "execute: entering main loop\n"); fclose(lf); }
+	}
+
 	// pretty basic for now
 	while( !m_quitting )
 	{
-		// heartbeat: if the log stops mid-heartbeats, the frame loop hung
+		// Boot/loop tracing: every frame for the first 300 frames (with
+		// frame delta), then every 120th. A hang shows the exact last
+		// frame processed; the dt value shows a stall before the hang.
 		{
-			static UnsignedInt heartbeatFrames = 0;
-			if ((++heartbeatFrames % 120) == 1)
+			static UnsignedInt hbFrame = 0;
+			static DWORD hbLastTime = 0;
+			++hbFrame;
+			DWORD hbNow = timeGetTime();
+			DWORD hbDt = hbLastTime ? (hbNow - hbLastTime) : 0;
+			hbLastTime = hbNow;
+			if (hbFrame <= 300 || (hbFrame % 120) == 0)
 			{
-				char hb[64];
-				snprintf(hb, sizeof(hb), "heartbeat frame=%u", (unsigned)heartbeatFrames);
+				char hb[96];
+				snprintf(hb, sizeof(hb), "hb frame=%u dt=%ums", (unsigned)hbFrame, (unsigned)hbDt);
 				FILE *lf = fopen("RTS_START.LOG", "a");
 				if (lf) { fprintf(lf, "%s\n", hb); fclose(lf); }
+			}
+			if (hbFrame <= 5)
+			{
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "hb frame=%u phase=update-begin\n", (unsigned)hbFrame); fclose(lf); }
 			}
 		}
 
@@ -737,6 +754,15 @@ void GameEngine::execute( void )
 					RELEASE_CRASH(("Uncaught Exception in GameEngine::update"));
 				}	// catch
 			}	// perf
+			{
+				static UnsignedInt hbPhaseFrame = 0;
+				++hbPhaseFrame;
+				if (hbPhaseFrame <= 5)
+				{
+					FILE *lf = fopen("RTS_START.LOG", "a");
+					if (lf) { fprintf(lf, "hb frame=%u phase=update-done\n", (unsigned)hbPhaseFrame); fclose(lf); }
+				}
+			}
 
 			{
 

@@ -56,6 +56,17 @@ else()
     endif()
 endif()
 
+# Whole-program function-entry tracing: configure with -DRTS_FUNCTION_TRACE=ON,
+# then run RTS.exe with the environment variable RTS_FUNC_TRACE=1 - every
+# instrumented function entry is appended to RTS_FUNC.LOG as "E <hex addr>"
+# (map back to names offline with `nm -C -n RTS.exe` / addr2line).
+option(RTS_FUNCTION_TRACE "Instrument every function entry (enable at runtime with env RTS_FUNC_TRACE=1)" OFF)
+if(RTS_FUNCTION_TRACE)
+    add_compile_definitions(RTS_FUNCTION_TRACE_BUILD)
+    add_compile_options(-finstrument-functions
+        -finstrument-functions-exclude-file-list=/usr/x86_64-w64-mingw32/include,/usr/lib/gcc)
+endif()
+
 set(GAME_CODE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Generals/Code)
 set(LIB_INCLUDE_DIR ${GAME_CODE_DIR}/Libraries/Include)
 set(COMMON_DIR ${GAME_CODE_DIR}/Common)
