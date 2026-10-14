@@ -563,7 +563,8 @@ void GameClient::update( void )
 			{
 				TheWritableGlobalData->m_breakTheMovie = FALSE;
 
-				WindowLayout *legal = TheWindowManager->winCreateLayout("Menus/LegalPage.wnd");
+				#if 0 // Port note: legal-page splash redraw loop hangs; skip to reach the shell
+WindowLayout *legal = TheWindowManager->winCreateLayout("Menus/LegalPage.wnd");
 				if(legal)
 				{				
 					legal->hide(FALSE);
@@ -583,6 +584,7 @@ void GameClient::update( void )
 					legal->deleteInstance();
 
 				}
+#endif
 				TheWritableGlobalData->m_breakTheMovie = TRUE;
 
 				
@@ -591,6 +593,11 @@ void GameClient::update( void )
 			TheShell->showShellMap(TRUE);
 			TheShell->showShell();
 			TheWritableGlobalData->m_afterIntro = FALSE;
+
+	{
+		static Bool ph = TRUE;
+		if (ph) { ph = FALSE; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=afterIntro block done\n"); fclose(lf); } }
+	}
 		}
 	}
 
