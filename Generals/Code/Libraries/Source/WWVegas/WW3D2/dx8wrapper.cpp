@@ -1372,6 +1372,10 @@ bool DX8Wrapper::VulkanDrawIndexed(
 
 	VkTexture *tex0 = DX8Wrapper::BoundTextures[0] ? DX8Wrapper::BoundTextures[0]->Peek_Vulkan_Texture() : NULL;
 	VkTexture *tex1 = DX8Wrapper::BoundTextures[1] ? DX8Wrapper::BoundTextures[1]->Peek_Vulkan_Texture() : NULL;
+	// AllocateTextureSet requires BOTH stages; single-stage draws (most GUI
+	// widgets) used to be silently skipped -> invisible menu over black bg.
+	if (!tex0) tex0 = &VulkanWhiteTexture;
+	if (!tex1) tex1 = &VulkanWhiteTexture;
 	if (!tex0) tex0 = &VulkanWhiteTexture;
 	if (!tex1) tex1 = &VulkanWhiteTexture;
 	bool filt0 = true, rep0 = true, filt1 = true, rep1 = true;
