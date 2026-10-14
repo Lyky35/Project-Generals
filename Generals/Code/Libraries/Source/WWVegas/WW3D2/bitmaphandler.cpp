@@ -152,6 +152,13 @@ void BitmapHandlerClass::Copy_Image(
 	WWASSERT(dest_surface_width);
 	WWASSERT(dest_surface_height);
 
+	// Port guard: garbage dimensions (from a bad TGA/DDS header) would spin
+	// the pixel loops below for billions of iterations - an apparent hang.
+	if (dest_surface_width == 0 || dest_surface_height == 0 ||
+		dest_surface_width > 8192 || dest_surface_height > 8192) {
+		return;
+	}
+
 	// Bumpmap?
 	if (dest_surface_format==WW3D_FORMAT_U8V8 ||
 		dest_surface_format==WW3D_FORMAT_L6V5U5 ||

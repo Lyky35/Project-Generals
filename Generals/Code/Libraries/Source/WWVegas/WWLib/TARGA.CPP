@@ -242,6 +242,13 @@ long Targa::Open(const char* name, long mode)
 					}
 				}
 
+				/* Port guard: a non-TGA/garbage header yields huge dimensions;
+				   the loader would then allocate/memset gigabytes and hang. */
+				if (!error && (Header.Width == 0 || Header.Height == 0 ||
+					Header.Width > 4096 || Header.Height > 4096)) {
+					error = TGAERR_READ;
+				}
+
 			} else {
 				error = TGAERR_OPEN;
 			}

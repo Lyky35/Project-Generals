@@ -968,6 +968,11 @@ void TextureLoadTaskClass::Begin_Texture_Load()
 			IsLoading=true;
 			Width=width;
 			Height=height;
+			// CPU shadow below allocates Width*Height*4 per mip level; a
+			// misparsed header with huge dims would hang the machine in
+			// ZeroMemory. Keep levels sane.
+			if (Width > 4096) Width = 4096;
+			if (Height > 4096) Height = 4096;
 
 			if (Format==WW3D_FORMAT_UNKNOWN) {
 				Format=Get_Valid_Texture_Format(dest_format,false);
