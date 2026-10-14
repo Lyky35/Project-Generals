@@ -1025,9 +1025,22 @@ void WW3D::Flush(RenderInfoClass & rinfo)
 WW3DErrorType WW3D::End_Render(bool flip_frame)
 {
 	WWPROFILE("WW3D::End_Render");
+	{
+		static bool first = true;
+		if (first) {
+			first = false;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "hb phase=WW3D::End_Render begin\n"); fclose(lf); }
+		}
+	}
 
 	assert(IsRendering);
 	assert(IsInitted);
+
+	{
+		static bool ph = true;
+		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=End_Render sortflush\n"); fclose(lf); } }
+	}
 
 // Check Vulkan device status
 	if (false) {
@@ -1040,8 +1053,18 @@ WW3DErrorType WW3D::End_Render(bool flip_frame)
 
 	IsRendering = false;
 
+	{
+		static bool ph = true;
+		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=End_Render endscene\n"); fclose(lf); } }
+	}
+
 	// Vulkan: End scene via DX8Wrapper command buffer
 	DX8Wrapper::End_Scene(flip_frame);
+
+	{
+		static bool ph = true;
+		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=End_Render done\n"); fclose(lf); } }
+	}
 
 	FrameCount++;
 

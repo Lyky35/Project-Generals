@@ -1577,6 +1577,14 @@ Int W3DDisplay::getLastFrameDrawCalls()
 void W3DDisplay::draw( void )
 {
 	//USE_PERF_TIMER(W3DDisplay_draw)
+	{
+		static Bool first = TRUE;
+		if (first) {
+			first = FALSE;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "hb phase=W3DDisplay::draw begin\n"); fclose(lf); }
+		}
+	}
 	static UnsignedInt syncTime = 0;
 
 	extern HWND ApplicationHWnd;

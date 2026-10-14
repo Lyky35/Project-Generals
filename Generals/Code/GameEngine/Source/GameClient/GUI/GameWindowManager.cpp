@@ -1333,6 +1333,14 @@ Int GameWindowManager::drawWindow( GameWindow *window )
 void GameWindowManager::winRepaint( void )
 {
 	GameWindow *window, *next;
+	{
+		static Bool first = TRUE;
+		if (first) {
+			first = FALSE;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "hb phase=winRepaint begin\n"); fclose(lf); }
+		}
+	}
 
 	// draw below windows
 	for( window = m_windowTail; window; window = next )

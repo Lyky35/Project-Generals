@@ -769,8 +769,16 @@ bool VulkanDevice::BeginFrame()
 
 void VulkanDevice::EndFrame(bool present)
 {
+	{
+		static bool ph = true;
+		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=EndFrame begin\n"); fclose(lf); } }
+	}
 	if (vkEndCommandBuffer(m_commandBuffers[m_frameIndex]) != VK_SUCCESS)
 		return;
+	{
+		static bool ph = true;
+		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=EndFrame cmdbuffer-ended\n"); fclose(lf); } }
+	}
 
 	VkSemaphore waitSemaphores[] = { m_imageAvailableSemaphores[m_frameIndex] };
 	VkPipelineStageFlags waitStages[] = { VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT };
@@ -787,6 +795,10 @@ void VulkanDevice::EndFrame(bool present)
 	submitInfo.pSignalSemaphores = signalSemaphores;
 	if (vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, m_inFlightFences[m_frameIndex]) != VK_SUCCESS)
 		return;
+	{
+		static bool ph = true;
+		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=EndFrame submitted\n"); fclose(lf); } }
+	}
 
 	if (!present)
 		return;
@@ -799,6 +811,10 @@ void VulkanDevice::EndFrame(bool present)
 	presentInfo.pSwapchains = &m_swapchain;
 	presentInfo.pImageIndices = &m_imageIndex;
 	VkResult result = vkQueuePresentKHR(m_presentQueue, &presentInfo);
+	{
+		static bool ph = true;
+		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=EndFrame presented res=%d\n", (int)result); fclose(lf); } }
+	}
 	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || m_framebufferResized)
 		RecreateSwapchain();
 

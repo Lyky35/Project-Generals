@@ -331,6 +331,8 @@ void GameEngine::init( int argc, char *argv[] )
 		TheWritableGlobalData->m_playIntro = FALSE;
 		TheWritableGlobalData->m_afterIntro = TRUE;
 		TheWritableGlobalData->m_shellMapOn = FALSE;
+		// Port default: real windowed mode (matches ApplicationIsWindowed).
+		TheWritableGlobalData->m_windowed = TRUE;
 
 		// special-case: parse command-line parameters after loading global data
 		parseCommandLine(argc, argv);
@@ -778,10 +780,27 @@ void GameEngine::execute( void )
 					// limit the framerate
 					DWORD now = timeGetTime();
 					DWORD limit = (1000.0f/m_maxFPS)-1;
+					{
+						static bool logged = false;
+						if (!logged && (now - prevTime) < limit) {
+							logged = true;
+							char buf[128];
+							snprintf(buf, sizeof(buf), "fpslimit spin: maxFPS=%d limit=%lu now=%lu prev=%lu",
+								m_maxFPS, (unsigned long)limit, (unsigned long)now, (unsigned long)prevTime);
+							FILE *lf = fopen("RTS_START.LOG", "a");
+							if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
+						}
+					}
+					DWORD spinGuard = 0;
 					while (TheGlobalData->m_useFpsLimit && (now - prevTime) < limit) 
 					{
 						::Sleep(0);
 						now = timeGetTime();
+						if (++spinGuard >= 500000) {
+							FILE *lf = fopen("RTS_START.LOG", "a");
+							if (lf) { fprintf(lf, "fpslimit ABORT after 500k spins (now=%lu prev=%lu limit=%lu)\n", (unsigned long)now, (unsigned long)prevTime, (unsigned long)limit); fclose(lf); }
+							break;
+						}
 					}
 					//Int slept = now - prevTime;
 					//DEBUG_LOG(("delayed %d\n",slept));

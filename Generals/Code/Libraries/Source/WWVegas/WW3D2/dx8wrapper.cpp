@@ -480,15 +480,24 @@ bool DX8Wrapper::Create_Device(void)
 		{
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) { fprintf(lf, "VK: shader init FAILED (need shaders\\*.spv next to RTS.exe)\n"); fclose(lf); }
+			// leave no half-initialized device behind (IsInitialized() would
+			// otherwise report true and every onetime init would be skipped)
+			device.Shutdown();
 			return false;
 		}
 	}
 	if (!DescriptorAllocator.Init(&device, 8192))
+	{
+		device.Shutdown();
 		return false;
+	}
 
 	unsigned char white[4] = { 255, 255, 255, 255 };
 	if (!VulkanWhiteTexture.CreateFromData(&device, 1, 1, VK_FORMAT_B8G8R8A8_UNORM, 1, white))
+	{
+		device.Shutdown();
 		return false;
+	}
 
 	unsigned char dummyData[64];
 	memset(dummyData, 0, sizeof(dummyData));

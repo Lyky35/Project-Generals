@@ -73,7 +73,8 @@
 // GLOBALS ////////////////////////////////////////////////////////////////////
 HINSTANCE ApplicationHInstance = NULL;  ///< our application instance
 HWND ApplicationHWnd = NULL;  ///< our application window handle
-Bool ApplicationIsWindowed = false;
+// Port default: windowed (-win flag still works; fullscreen can return later)
+Bool ApplicationIsWindowed = true;
 Bool ApplicationIsBorderless = false;
 Win32Mouse *TheWin32Mouse= NULL;  ///< for the WndProc() only
 DWORD TheMessageTime = 0;	///< For getting the time that a message was posted from Windows.

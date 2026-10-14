@@ -129,6 +129,14 @@ void TextureLoader::Deinit()
 
 void TextureLoader::Validate_Texture_Size(unsigned& width, unsigned& height)
 {
+	// A DDS parse gone wrong can produce widths like 0xFFFFFFFF; the
+	// power-of-two loop below would shift-overflow to 0 and the aspect
+	// loop would then divide by zero. Clamp to sane limits first.
+	if (width > 16384) width = 16384;
+	if (height > 16384) height = 16384;
+	if (width == 0) width = 1;
+	if (height == 0) height = 1;
+
 	const D3DCAPS8& dx8caps=DX8Caps::Get_Default_Caps();
 
 	unsigned poweroftwowidth = 1;
@@ -155,12 +163,12 @@ void TextureLoader::Validate_Texture_Size(unsigned& width, unsigned& height)
 	}
 
 	if (poweroftwowidth>poweroftwoheight) {
-		while (poweroftwowidth/poweroftwoheight>8) {
+		while (poweroftwoheight && poweroftwowidth/poweroftwoheight>8) {
 			poweroftwoheight*=2;
 		}
 	}
 	else {
-		while (poweroftwoheight/poweroftwowidth>8) {
+		while (poweroftwowidth && poweroftwoheight/poweroftwowidth>8) {
 			poweroftwowidth*=2;
 		}
 	}

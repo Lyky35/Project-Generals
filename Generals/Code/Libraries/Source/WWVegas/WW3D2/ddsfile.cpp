@@ -66,8 +66,18 @@ DDSFileClass::DDSFileClass(const char* name,unsigned reduction_factor)
 	char magic[4];
 	unsigned read_bytes = file->Read(magic, 4) + file->Read(&raw, sizeof(raw));
 	if (read_bytes != 4 + sizeof(raw) || raw.Size != 124) {
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "DDS: bad header '%s' read=%u size=%u\n", (const char*)Name, (unsigned)read_bytes, raw.Size); fclose(lf); }
 		file->Close();
 		return;
+	}
+	{
+		static int ddsLogCount = 0;
+		if (ddsLogCount < 12 && (raw.Width == 0 || raw.Height == 0 || raw.Width > 8192 || raw.Height > 8192)) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "DDS: suspicious '%s' %ux%u mip=%u fourcc=%08x\n", (const char*)Name, (unsigned)raw.Width, (unsigned)raw.Height, (unsigned)raw.MipMapCount, (unsigned)raw.pf_FourCC); fclose(lf); }
+			ddsLogCount++;
+		}
 	}
 	memset(&SurfaceDesc, 0, sizeof(SurfaceDesc));
 	SurfaceDesc.Size = raw.Size;
