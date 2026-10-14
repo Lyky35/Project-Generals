@@ -1553,6 +1553,16 @@ FontCharsClass::Create_GDI_Font (const char *font_name)
 								FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
 								CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY,
 								VARIABLE_PITCH, font_name);
+	{
+		static int fontLogCount = 0;
+		if (fontLogCount < 12) {
+			fontLogCount++;
+			char fmsg[192];
+			snprintf(fmsg, sizeof(fmsg), "GDI font '%s' pt=%d bold=%d -> %s", font_name, PointSize, (int)IsBold, GDIFont ? "OK" : "FAILED");
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "%s\n", fmsg); fclose(lf); }
+		}
+	}
 	
 	//
 	// Set-up the fields of the BITMAPINFOHEADER
