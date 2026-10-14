@@ -325,7 +325,13 @@ void GameEngine::init( int argc, char *argv[] )
 		// If we're in Debug or Internal, load the Debug info as well.
 		ini.load( AsciiString( "Data\\INI\\GameDataDebug.ini" ), INI_LOAD_OVERWRITE, NULL );
 	#endif
-		
+
+		// Port note: skip the intro movies and shell map for now - the Bink
+		// player and shell-map load are unfinished and were hanging the boot.
+		TheWritableGlobalData->m_playIntro = FALSE;
+		TheWritableGlobalData->m_afterIntro = TRUE;
+		TheWritableGlobalData->m_shellMapOn = FALSE;
+
 		// special-case: parse command-line parameters after loading global data
 		parseCommandLine(argc, argv);
 
@@ -660,6 +666,17 @@ void GameEngine::execute( void )
 	// pretty basic for now
 	while( !m_quitting )
 	{
+		// heartbeat: if the log stops mid-heartbeats, the frame loop hung
+		{
+			static UnsignedInt heartbeatFrames = 0;
+			if ((++heartbeatFrames % 120) == 1)
+			{
+				char hb[64];
+				snprintf(hb, sizeof(hb), "heartbeat frame=%u", (unsigned)heartbeatFrames);
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "%s\n", hb); fclose(lf); }
+			}
+		}
 
 		//if (TheGlobalData->m_vTune)
 		{
