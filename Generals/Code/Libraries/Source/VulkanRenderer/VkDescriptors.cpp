@@ -35,14 +35,21 @@ bool VkDescriptorAllocator::Init(VulkanDevice *device, uint32_t maxSets)
 	return EnsurePool();
 }
 
+int VkDescriptorAllocator::FrameSlot() const
+{
+	return m_device ? (int)(VulkanDevice::Instance().GetFrameIndex() & 1) : 0;
+}
+
 void VkDescriptorAllocator::Shutdown()
 {
 	if (!m_device)
 		return;
 	VkDevice dev = m_device->GetDevice();
-	for (size_t i = 0; i < m_pools.size(); i++)
-		vkDestroyDescriptorPool(dev, m_pools[i], nullptr);
-	m_pools.clear();
+	for (int s = 0; s < 2; s++)
+		for (size_t i = 0; i < m_pools[s].size(); i++)
+			vkDestroyDescriptorPool(dev, m_pools[s][i], nullptr);
+	for (int s = 0; s < 2; s++)
+		m_pools[s].clear();
 	if (m_textureLayout != VK_NULL_HANDLE) {
 		vkDestroyDescriptorSetLayout(dev, m_textureLayout, nullptr);
 		m_textureLayout = VK_NULL_HANDLE;
@@ -52,7 +59,8 @@ void VkDescriptorAllocator::Shutdown()
 
 bool VkDescriptorAllocator::EnsurePool()
 {
-	if (!m_pools.empty())
+	const int slot = FrameSlot();
+	if (!m_pools[slot].empty())
 		return true;
 	VkDescriptorPoolSize poolSizes[2] = {};
 	poolSizes[0].type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
@@ -67,7 +75,7 @@ bool VkDescriptorAllocator::EnsurePool()
 	VkDescriptorPool pool = VK_NULL_HANDLE;
 	if (vkCreateDescriptorPool(m_device->GetDevice(), &poolInfo, nullptr, &pool) != VK_SUCCESS)
 		return false;
-	m_pools.push_back(pool);
+	m_pools[slot].push_back(pool);
 	return true;
 }
 
@@ -75,8 +83,12 @@ void VkDescriptorAllocator::ResetFrame()
 {
 	if (!m_device)
 		return;
-	for (size_t i = 0; i < m_pools.size(); i++)
-		vkResetDescriptorPool(m_device->GetDevice(), m_pools[i], 0);
+	// Only reset THIS frame slot's pools. Called after BeginFrame waited the
+	// slot's previous fence, so its sets are GPU-idle; the other in-flight
+	// slot's sets must survive (they were being freed mid-frame = blinking).
+	const int slot = FrameSlot();
+	for (size_t i = 0; i < m_pools[slot].size(); i++)
+		vkResetDescriptorPool(m_device->GetDevice(), m_pools[slot][i], 0);
 }
 
 VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout layout,
@@ -94,7 +106,7 @@ VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout 
 
 	VkDescriptorSetAllocateInfo allocInfo = {};
 	allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-	allocInfo.descriptorPool = m_pools.back();
+	allocInfo.descriptorPool = m_pools[FrameSlot()].back();
 	allocInfo.descriptorSetCount = 1;
 	allocInfo.pSetLayouts = &layout;
 	VkDescriptorSet set = VK_NULL_HANDLE;
@@ -133,7 +145,7 @@ VkDescriptorSet VkDescriptorAllocator::AllocateFrameSet(VkDescriptorSetLayout la
 
 	VkDescriptorSetAllocateInfo allocInfo = {};
 	allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-	allocInfo.descriptorPool = m_pools.back();
+	allocInfo.descriptorPool = m_pools[FrameSlot()].back();
 	allocInfo.descriptorSetCount = 1;
 	allocInfo.pSetLayouts = &layout;
 	VkDescriptorSet set = VK_NULL_HANDLE;

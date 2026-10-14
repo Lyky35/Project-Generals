@@ -32,9 +32,13 @@ public:
         uint32_t offset, uint32_t range);
 
 private:
+    // One pool chain per swapchain frame slot (MAX_FRAMES_IN_FLIGHT=2):
+    // resetting ALL pools each frame destroyed descriptor sets the previous
+    // in-flight frame was still rendering with -> menu elements blinked.
+    int FrameSlot() const;
     VulkanDevice *m_device;
     VkDescriptorPool m_pool;
-    std::vector<VkDescriptorPool> m_pools;
+    std::vector<VkDescriptorPool> m_pools[2];
     VkDescriptorSetLayout m_textureLayout;
     uint32_t m_maxSets;
 };
