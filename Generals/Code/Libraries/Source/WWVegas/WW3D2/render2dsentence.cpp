@@ -1441,7 +1441,15 @@ FontCharsClass::Store_GDI_Char (WCHAR ch)
 			//	Convert the pixel intensity from 8bit to 4bit and
 			// store it in our buffer
 			//
-			uint8 alpha_value	= ((pixel_value >> 4) & 0xF);
+			// Modern Windows GDI renders antialiased text at low coverage
+			// (measured avg 9-45/255); the old (pixel>>4) mapping turned that
+			// into alpha 0-2/15 = invisible glyphs. Wine/FreeType renders
+			// bolder so it looked fine there. Expand coverage instead.
+			uint8 alpha_value;
+			if (pixel_value >= 64)
+				alpha_value = 0xF;
+			else
+				alpha_value = (uint8)((pixel_value * 15) / 64);
 			*curr_buffer_p++	= pixel_color | (alpha_value << 12);
 		}
 	}
