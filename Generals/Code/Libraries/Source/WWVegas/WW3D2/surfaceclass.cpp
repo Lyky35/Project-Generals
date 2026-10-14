@@ -225,7 +225,12 @@ SurfaceClass::SurfaceClass(unsigned width, unsigned height, WW3DFormat format):
 	VulkanSurface = new VkTexture();
 	bool created = VulkanSurface->Create(&VulkanDevice::Instance(), width, height,
 		VulkanSurface->TranslateFormat(format), 1, false);
-	WWASSERT(created);
+	if (!created) {
+		char buf[128];
+		snprintf(buf, sizeof(buf), "SurfaceClass: Create FAILED %ux%u fmt=%d", (unsigned)width, (unsigned)height, (int)format);
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
+	}
 	ShadowPitch = width * 4;
 }
 

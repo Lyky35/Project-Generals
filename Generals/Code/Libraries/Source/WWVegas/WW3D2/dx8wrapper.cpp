@@ -1401,8 +1401,11 @@ bool DX8Wrapper::VulkanDrawIndexed(
 			DX8Wrapper::ShaderManager.GetFrameSetLayout(),
 			VulkanUboBuffers[device.GetFrameIndex()].GetBuffer(), uboOffset, sizeof(ubo));
 	}
-	if (texSet == VK_NULL_HANDLE || uboSet == VK_NULL_HANDLE)
+	if (texSet == VK_NULL_HANDLE || uboSet == VK_NULL_HANDLE) {
+		static unsigned skips = 0;
+		if (skips < 30) { skips++; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "VulkanDrawIndexed SKIP #%u texSet=%p uboSet=%p\n", (unsigned)skips, (void*)texSet, (void*)uboSet); fclose(lf); } }
 		return false;
+	}
 	VkDescriptorSet sets[] = { texSet, uboSet };
 	vkCmdBindDescriptorSets(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS,
 		DX8Wrapper::ShaderManager.GetPipelineLayout(), 0, 2, sets, 0, NULL);

@@ -82,10 +82,14 @@ VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout 
 	VkTexture *tex0, bool filtered0, bool repeat0,
 	VkTexture *tex1, bool filtered1, bool repeat1)
 {
-	if (!m_device || !tex0 || !tex1)
+	if (!m_device || !tex0 || !tex1) {
+		static bool l1=false; if(!l1){l1=true;FILE*lf=fopen("RTS_START.LOG","a");if(lf){fprintf(lf,"AllocTexSet fail: dev=%p t0=%p t1=%p\n",(void*)m_device,(void*)tex0,(void*)tex1);fclose(lf);}}
 		return VK_NULL_HANDLE;
-	if (!EnsurePool())
+	}
+	if (!EnsurePool()) {
+		static bool l2=false; if(!l2){l2=true;FILE*lf=fopen("RTS_START.LOG","a");if(lf){fprintf(lf,"AllocTexSet fail: EnsurePool\n");fclose(lf);}}
 		return VK_NULL_HANDLE;
+	}
 
 	VkDescriptorSetAllocateInfo allocInfo = {};
 	allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
@@ -93,8 +97,10 @@ VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout 
 	allocInfo.descriptorSetCount = 1;
 	allocInfo.pSetLayouts = &layout;
 	VkDescriptorSet set = VK_NULL_HANDLE;
-	if (vkAllocateDescriptorSets(m_device->GetDevice(), &allocInfo, &set) != VK_SUCCESS)
+	if (vkAllocateDescriptorSets(m_device->GetDevice(), &allocInfo, &set) != VK_SUCCESS) {
+		static bool l3=false; if(!l3){l3=true;FILE*lf=fopen("RTS_START.LOG","a");if(lf){fprintf(lf,"AllocTexSet fail: vkAllocateDescriptorSets\n");fclose(lf);}}
 		return VK_NULL_HANDLE;
+	}
 
 	VkDescriptorImageInfo imageInfos[2] = {};
 	imageInfos[0].sampler = tex0->GetSampler(filtered0, repeat0);

@@ -221,6 +221,17 @@ void VkTexture::UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const
 	// proceeding creates invalid Vulkan objects and crashes GPU drivers.
 	if (width == 0 || height == 0 || pixels == nullptr)
 		return;
+	if (m_device == nullptr) {
+		static bool logged = false;
+		if (!logged) {
+			char buf[96];
+			snprintf(buf, sizeof(buf), "VK: UploadLevel on texture %p with NULL device (w=%u h=%u)", (void*)this, (unsigned)width, (unsigned)height);
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
+			logged = true;
+		}
+		return;
+	}
 	VkDevice dev = m_device->GetDevice();
 	VkDeviceSize rowPitch = 0;
 	VkDeviceSize imageSize = 0;
