@@ -216,7 +216,8 @@ SurfaceClass::SurfaceClass(unsigned width, unsigned height, WW3DFormat format):
 	VulkanSurface(NULL),
 	SurfaceFormat(format),
 	ShadowMemory(NULL),
-	ShadowPitch(0)
+	ShadowPitch(0),
+	OwnsVulkanSurface(true)
 {
 	WWASSERT(width);
 	WWASSERT(height);
@@ -231,7 +232,8 @@ SurfaceClass::SurfaceClass(unsigned width, unsigned height, WW3DFormat format):
 SurfaceClass::SurfaceClass(const char *filename):
 	VulkanSurface(NULL),
 	ShadowMemory(NULL),
-	ShadowPitch(0)
+	ShadowPitch(0),
+	OwnsVulkanSurface(true)
 {
 	// TODO: Load VkTexture from file (DDS support)
 	// For now create blank surface
@@ -247,7 +249,8 @@ SurfaceClass::SurfaceClass(const char *filename):
 SurfaceClass::SurfaceClass(VkTexture *vk_texture):
 	VulkanSurface(vk_texture),
 	ShadowMemory(NULL),
-	ShadowPitch(0)
+	ShadowPitch(0),
+	OwnsVulkanSurface(false)	// borrowed from a TextureClass - do not delete
 {
 	SurfaceFormat = WW3D_FORMAT_UNKNOWN;
 	if (VulkanSurface) {
@@ -261,11 +264,11 @@ SurfaceClass::~SurfaceClass(void)
 		delete[] ShadowMemory;
 		ShadowMemory = NULL;
 	}
-	if (VulkanSurface) {
+	if (VulkanSurface && OwnsVulkanSurface) {
 		VulkanSurface->Destroy();
 		delete VulkanSurface;
-		VulkanSurface = NULL;
 	}
+	VulkanSurface = NULL;
 }
 
 void SurfaceClass::Get_Description(SurfaceDescription &surface_desc)
