@@ -1325,6 +1325,17 @@ FontCharsClass::Blit_Char (WCHAR ch, uint16 *dest_ptr, int dest_stride, int x, i
 		int dest_inc		= (dest_stride >> 2);
 		uint16 *src_ptr	= data->Buffer;
 		dest32				+= (dest_inc * y) + x;
+		{
+			static int blitLog = 0;
+			if (blitLog < 8) {
+				blitLog++;
+				char bmsg[160];
+				snprintf(bmsg, sizeof(bmsg), "Blit_Char '%c' x=%d y=%d w=%d stride=%d inc=%d h=%d",
+					(char)(ch<128?ch:'?'), x, y, (int)data->Width, (int)dest_stride, dest_inc, (int)CharHeight);
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "%s\n", bmsg); fclose(lf); }
+			}
+		}
 
 		for ( int row = 0; row < CharHeight; row ++ ) {
 			for ( int col = 0; col < data->Width; col ++ ) {
