@@ -156,7 +156,7 @@ class SurfaceClass : public W3DMPO, public RefCountClass
 		// True when this surface created its VkTexture and must destroy it.
 		// Wrappers around a TextureClass's VkTexture (Get_Surface_Level) must
 		// NOT delete the borrowed texture (use-after-free otherwise).
-		Bool OwnsVulkanSurface;
+		bool OwnsVulkanSurface;
 	friend class TextureClass;
 };
 
