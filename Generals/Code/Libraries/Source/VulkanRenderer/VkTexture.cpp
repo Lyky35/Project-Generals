@@ -450,6 +450,18 @@ bool VkTexture::CreateDepth(VulkanDevice *device, uint32_t width, uint32_t heigh
 
 VkSampler VkTexture::FindOrCreateSampler(bool filtered, bool repeat)
 {
+	if (m_device == nullptr) {
+		static bool logged = false;
+		if (!logged) {
+			char buf[160];
+			snprintf(buf, sizeof(buf), "VK: GetSampler on texture %p with NULL device (w=%u h=%u fmt=%d)",
+				(void*)this, (unsigned)m_width, (unsigned)m_height, (int)m_format);
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
+			logged = true;
+		}
+		return VK_NULL_HANDLE;
+	}
 	for (int i = 0; i < m_samplerCount; i++) {
 		if (m_samplers[i].filtered == filtered && m_samplers[i].repeat == repeat)
 			return m_samplers[i].sampler;
