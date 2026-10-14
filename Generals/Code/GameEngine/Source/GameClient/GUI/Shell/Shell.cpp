@@ -465,11 +465,11 @@ void Shell::showShell( Bool runInit )
 	//else
 		TheShell->push( AsciiString("Menus/MainMenu.wnd") );
 	m_isShellActive = TRUE;
-}  // {
+	{
 		FILE *lf = fopen("RTS_START.LOG", "a");
 		if (lf) { fprintf(lf, "Shell::showShell done\n"); fclose(lf); }
 	}
-	end showShell
+}  // end showShell
 
 void Shell::showShellMap(Bool useShellMap )
 {
