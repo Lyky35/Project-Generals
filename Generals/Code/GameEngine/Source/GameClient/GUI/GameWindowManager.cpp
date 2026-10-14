@@ -1286,13 +1286,37 @@ WinInputReturnCode GameWindowManager::winProcessMouseEvent( GameWindowMessage ms
 //-------------------------------------------------------------------------------------------------
 Int GameWindowManager::drawWindow( GameWindow *window )
 {
+	// Guard against a cyclic child list (infinite recursion = hang/crash).
+	static UnsignedInt s_drawDepth = 0;
+	++s_drawDepth;
+	if (s_drawDepth > 24) {
+		char m[128];
+		snprintf(m, sizeof(m), "drawWindow RECURSION depth>24 at id=%d (child cycle?)", window ? window->winGetWindowId() : -1);
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "%s\n", m); fclose(lf); }
+		--s_drawDepth;
+		return WIN_ERR_OK;
+	}
+
 	GameWindow *child;
 
 	if( window == NULL )
+	{
+		--s_drawDepth;
 		return WIN_ERR_INVALID_WINDOW;
+	}
 
 	if( BitTest( window->m_status, WIN_STATUS_HIDDEN ) == FALSE )
 	{
+		{
+			static UnsignedInt dc = 0;
+			if ((++dc % 200) == 0) {
+				char m[96];
+				snprintf(m, sizeof(m), "drawWindow: at window id=%d (count=%u)", window->winGetWindowId(), (unsigned)dc);
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "%s\n", m); fclose(lf); }
+			}
+		}
 
 		if( !BitTest( window->m_status, WIN_STATUS_SEE_THRU ) && window->m_draw )
 			window->m_draw( window, &window->m_instData );
@@ -1323,6 +1347,7 @@ Int GameWindowManager::drawWindow( GameWindow *window )
 
 	}  // end if
 
+	--s_drawDepth;
 	return WIN_ERR_OK;
 
 }  // end drawWindow
@@ -1334,40 +1359,53 @@ void GameWindowManager::winRepaint( void )
 {
 	GameWindow *window, *next;
 	{
-		static Bool first = TRUE;
-		if (first) {
-			first = FALSE;
+		static UnsignedInt rc = 0;
+		if ((++rc % 100) == 1) {
+			char m[64];
+			snprintf(m, sizeof(m), "winRepaint call #%u", (unsigned)rc);
 			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "hb phase=winRepaint begin\n"); fclose(lf); }
+			if (lf) { fprintf(lf, "%s\n", m); fclose(lf); }
 		}
 	}
 
 	// draw below windows
+	{
+		Int guard = 0;
 	for( window = m_windowTail; window; window = next )
 	{
+		if (++guard > 5000) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "winRepaint: BELOW list exceeded 5000 (cycle?)\n"); fclose(lf); } break; }
 		next = window->m_prev;
 
 		if( BitTest( window->m_status, WIN_STATUS_BELOW ) )
 			drawWindow( window );
 	}
+	}
 
 	// draw non-above and non-below windows
+	{
+		Int guard = 0;
 	for( window = m_windowTail; window; window = next )
 	{
+		if (++guard > 5000) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "winRepaint: MAIN list exceeded 5000 (cycle?)\n"); fclose(lf); } break; }
 		next = window->m_prev;
 
 		if (BitTest( window->m_status, WIN_STATUS_ABOVE | 
 																	 WIN_STATUS_BELOW ) == FALSE)
 			drawWindow( window );
 	}
+	}
 
 	// draw above windows
+	{
+		Int guard = 0;
 	for( window = m_windowTail; window; window = next )
 	{
+		if (++guard > 5000) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "winRepaint: ABOVE list exceeded 5000 (cycle?)\n"); fclose(lf); } break; }
 		next = window->m_prev;
 
 		if( BitTest( window->m_status, WIN_STATUS_ABOVE ) )
 			drawWindow( window );
+	}
 	}
 
 	if(TheTransitionHandler)

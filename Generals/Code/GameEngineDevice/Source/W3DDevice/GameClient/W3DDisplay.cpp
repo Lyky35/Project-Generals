@@ -1733,6 +1733,17 @@ AGAIN:
 
 
 	do {
+		// freezeTime can stay true forever (load screen + frozen logic);
+		// bound the loop so the frame returns and the engine keeps running.
+		{
+			static Int freezeLoopGuard = 0;
+			if (++freezeLoopGuard >= 600) {
+				freezeLoopGuard = 0;
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "W3DDisplay::draw freeze-loop guard hit (freezeTime stuck?)\n"); fclose(lf); }
+				break;
+			}
+		}
 		
 		{
 			if(TheGlobalData->m_loadScreenRender != TRUE)

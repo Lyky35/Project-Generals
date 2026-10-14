@@ -603,23 +603,27 @@ WindowLayout *legal = TheWindowManager->winCreateLayout("Menus/LegalPage.wnd");
 
 	// update animation 2d collection
 	TheAnim2DCollection->UPDATE();
+	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: anim2d done"); }
 
 	// update the keyboard
 	if( TheKeyboard )
 	{
 		TheKeyboard->UPDATE();
 		TheKeyboard->createStreamMessages();
+	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: keyboard done"); }
 
 	}  // end if
 
 	// Update the Eva stuff
 	TheEva->UPDATE();
+	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: eva done"); }
 
 	// update the mouse
 	if( TheMouse )
 	{
 		TheMouse->UPDATE();
 		TheMouse->createStreamMessages();
+	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: mouse done"); }
 
 	}  // end if
 	
@@ -638,11 +642,13 @@ WindowLayout *legal = TheWindowManager->winCreateLayout("Menus/LegalPage.wnd");
 	// update the window system itself
 	{
 		TheWindowManager->UPDATE();
+	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: winmanager done"); }
 	}
 
 	// update the video player
 	{
 		TheVideoPlayer->UPDATE();
+	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: videoplayer done"); }
 	}
 
 	Bool freezeTime = TheTacticalView->isTimeFrozen() && !TheTacticalView->isCameraMovementFinished();
@@ -655,6 +661,7 @@ WindowLayout *legal = TheWindowManager->winCreateLayout("Menus/LegalPage.wnd");
 	static UnsignedInt lastFrame = ~0;
 	freezeTime = freezeTime || (lastFrame == m_frame);
 	lastFrame = m_frame;
+	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: pre-effects done"); }
 
 	if (!freezeTime)
 	{
@@ -751,6 +758,7 @@ WindowLayout *legal = TheWindowManager->winCreateLayout("Menus/LegalPage.wnd");
 	// update display
 	{
 		TheDisplay->UPDATE();
+	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: display-update done"); }
 	}
 
 	{
@@ -760,21 +768,25 @@ WindowLayout *legal = TheWindowManager->winCreateLayout("Menus/LegalPage.wnd");
 	//if(TheGameLogic->getFrame() >= 2)
 		
 		TheDisplay->DRAW();
+	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: display-draw done"); }
 	}
 
 	{
 		// let display string factory handle its update
 		TheDisplayStringManager->update();
+	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: dstrings done"); }
 	}
 
 	{
 		// update the shell
 		TheShell->UPDATE();
+	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: shell done"); }
 	}
 
 	{
 		// update the in game UI 
 		TheInGameUI->UPDATE();
+	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: ingameui done"); }
 	}
 }  // end update
 
