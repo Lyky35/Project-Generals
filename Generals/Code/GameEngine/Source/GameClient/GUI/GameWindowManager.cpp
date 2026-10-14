@@ -1410,6 +1410,21 @@ void GameWindowManager::winRepaint( void )
 
 	if(TheTransitionHandler)
 		TheTransitionHandler->draw();
+	{
+		static UnsignedInt sc = 0;
+		if (sc < 10) {
+			sc++;
+			Int total = 0, visible = 0;
+			for (GameWindow *w = m_windowTail; w; w = w->m_prev) {
+				total++;
+				if (!BitTest(w->m_status, WIN_STATUS_HIDDEN)) visible++;
+			}
+			char m[112];
+			snprintf(m, sizeof(m), "winRepaint summary: total=%d visible=%d", (int)total, (int)visible);
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "%s\n", m); fclose(lf); }
+		}
+	}
 }  // end WinRepaint
 
 //-------------------------------------------------------------------------------------------------

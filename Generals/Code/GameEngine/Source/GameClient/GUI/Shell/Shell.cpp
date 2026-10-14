@@ -406,6 +406,11 @@ void Shell::popImmediate( void )
 //-------------------------------------------------------------------------------------------------
 void Shell::showShell( Bool runInit )
 {
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "Shell::showShell enter runInit=%d\n", (int)runInit); fclose(lf); }
+	}
+
 	DEBUG_LOG(("Shell:showShell() - %s (%s)\n", TheGlobalData->m_initialFile.str(), (top())?top()->getFilename().str():"no top screen"));
 
 	if(!TheGlobalData->m_initialFile.isEmpty())
@@ -460,7 +465,11 @@ void Shell::showShell( Bool runInit )
 	//else
 		TheShell->push( AsciiString("Menus/MainMenu.wnd") );
 	m_isShellActive = TRUE;
-}  // end showShell
+}  // {
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "Shell::showShell done\n"); fclose(lf); }
+	}
+	end showShell
 
 void Shell::showShellMap(Bool useShellMap )
 {
