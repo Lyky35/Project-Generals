@@ -17,6 +17,7 @@
 */
 
 #include "textureloader.h"
+#include <cstdlib>
 #include "mutex.h"
 #include "thread.h"
 #include "wwdebug.h"
@@ -107,8 +108,15 @@ void TextureLoader::Init()
 
 	ThumbnailClass::Init();
 
-	thread.Execute();
-	thread.Set_Priority(-3);
+	// RTS_SYNC_TEXTURES=1: never start the loader thread - all loads then run
+	// synchronously on the calling thread (see Add_Load_Task). The shell-map
+	// crash happened ON this thread (jumped into freed memory); running
+	// without it distinguishes "thread race" from "bad load work".
+	static bool syncLoads = (getenv("RTS_SYNC_TEXTURES") != NULL);
+	if (!syncLoads) {
+		thread.Execute();
+		thread.Set_Priority(-3);
+	}
 }
 
 // ----------------------------------------------------------------------------
@@ -748,7 +756,12 @@ void TextureLoader::Add_Load_Task(TextureClass* tc)
 	// If the texture is already being loaded we just exit here.
 	if (tc->TextureLoadTask) return;
 
-	TextureLoadTaskClass* task=TextureLoadTaskClass::Get_Instance(tc,false);
+	// RTS_SYNC_TEXTURES=1: load synchronously on the calling thread instead of
+	// handing the task to the loader thread. Diagnostic: the first shell-map
+	// frame crashed inside a game-created thread with a garbage stack, i.e. a
+	// race between the loader thread's texture work and the render thread.
+	static bool syncLoads = (getenv("RTS_SYNC_TEXTURES") != NULL);
+	TextureLoadTaskClass* task=TextureLoadTaskClass::Get_Instance(tc, syncLoads ? true : false);
 	task->Begin_Texture_Load();
 }
 

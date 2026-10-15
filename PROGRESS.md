@@ -903,6 +903,118 @@ not the field crash cause) at the first shell-map frame - same "first heavy
 render after mass texture uploads" signature as the field amdvlk AV. Next
 field log (with the new breadcrumbs) should name the churn source / pass.
 
+### 2026-10-15 (3) — Black background root cause: signed Int overflow in the RAM test (>=2GB machines fail "has 256MB"); mission crash breadcrumbs
+
+Field log #3 (02:41) showed `VK: shellMap check SKIPPED on=0` on the NEW build
+(GameEngine no longer forces it off) - so something else killed it: the
+GameLOD heuristic `if (!m_memPassed || isReallyLowMHz()) m_shellMapOn=false`
+inside `applyStaticLODLevel`.
+
+**Root cause (reproduced locally with raw numbers in the breadcrumb):**
+`m_numRAM` is a **signed Int** (GameLOD.h:216) but is filled from
+`GlobalMemoryStatus.dwTotalPhys` (unsigned). Any machine with >=2GB overflows:
+`numRAM(signed)=-1852006400, rawPhysMem=2442960896` -> the test
+`(Real)(m_numRAM)/(256MB) >= 0.94` evaluates NEGATIVE -> `m_memPassed` stayed
+FALSE on every modern PC. Consequences on the user's machine:
+- shell map (menu background) switched off -> black background;
+- `if (!m_memPassed)` in GameLOD forces LOW-RES textures globally;
+- `requestedTrees = m_memPassed` -> no trees.
+**Fix:** compare as `(UnsignedInt)m_numRAM >= 256MB`; the breadcrumb now
+prints the signed value so this can never hide again (`memPassed=1` verified
+locally). The `applyStaticLODLevel` kill switch itself was also removed (2003
+speed/mem heuristic): background now controlled only by the INI `ShellMapOn`
+and `RTS_NO_SHELLMAP=1` (opt-out re-verified: on=0 + stable 300 frames).
+`RTS_FORCE_SHELLMAP` is no longer needed for wine - the memPassed fix lets the
+shell map run there too.
+
+**Mission-start crash (still open):** amdvlk AV at `VulkanBeginTargetPass`
+again after the 2048x1024 upload, with **`graphics-hook64.dll` loaded inside
+RTS.exe and interleaved in the stack** - that is the OBS/Streamlabs game
+capture library; even with no streaming app intentionally running, something
+is injecting it (Task Manager -> Details for any *hook*/overlay process;
+Steam/Discord/RTSS use different DLLs). Breadcrumbs added to pin the AV:
+`BeginTargetPass` logs #1-40 AND every 100th (brackets late crashes),
+`VK: tex create init WxH fmt from=<initiator> n=` samples who creates textures
+(every 64th - names the churn source behind the descriptor-in-flight theory),
+and uploads >=1024px are always logged (the crash follows one).
+
+**Dropdowns:** log #3 had no dropdown interaction; the
+`VK: combo label fetched ...` + `VK: Accept reads resolutionIdx/detailIdx`
+lines will show what fails to stick on the next run.
+
+Status: background unblocked on three counts (RefPack decode + kill-switch
+removal + memPassed overflow); awaiting one field run of THIS build for
+(a) background animation visible, (b) dropdown label/Accept lines,
+(c) mission-crash breadcrumbs.
+
+### 2026-10-15 (5) — Wine debug round 2: crash narrowed to wine-side; latent in-flight UAFs fixed; release cut
+
+Kept re-running/debugging in wine (runs 50-67). Local shell-map crash is
+deterministic at the FIRST rendered shell-map frame (after `pipeline build #16`
+- the first pipeline variant the menu never uses): a PE-named thread's RIP
+lands in a **freed wine arena executing zeros** (corrupted stack, no RTS.exe
+frames on it). Ruled out by experiment: loader thread (not started -
+`RTS_SYNC_TEXTURES=1` gates `TextureLoader::Init` too), synchronous texture
+loads, audio (`-noaudio` AND a 4KB->256KB `AUD_service_thread` stack fix),
+lavapipe thread count (`LP_NUM_THREADS=1`), texture churn (fixed, still
+crashes), `Reset_Device` (never called - breadcrumb proves it), winedbg
+doesn't catch it either (unix signal). Shape says wine/lavapipe internals or a
+call sequence specific to that first lit pipeline - Win10/AMD did NOT die
+here (it ran to mission load), so this one is treated as wine-side and
+deferred; the field log with `BeginTargetPass#N` brackets decides if AMD has
+its own version.
+
+**Latent driver-UAF fixes made while hunting (real bugs regardless):**
+- `DX8Wrapper::Reset_Device` / `Release_Device` now `vkDeviceWaitIdle` BEFORE
+  destroying pipelines/textures/RT caches (they destroyed objects referenced
+  by up to MAX_FRAMES_IN_FLIGHT in-flight command buffers; triggered by
+  window-activate resets) + `VK: Reset_Device(reload=N)` breadcrumb.
+- `AUD_service_thread` stack 4KB -> 256KB (one page, no guard, ran during the
+  busiest load moments).
+- `RTS_SYNC_TEXTURES=1` keeps the loader thread unstarted AND forces
+  synchronous loads (escape hatch / diagnostic).
+
+**Open items found by the live wine session (menus, 800x600, RTS_NO_SHELLMAP):**
+- `VK: upload w=128 h=128 fmt=23 pitch=384` x 32771 in ~30s (~1000/sec):
+  variable-width sentence textures still thrash the per-slot texture cache
+  (widths alternate 64/128/256 -> cache slot invalidated -> create+upload
+  storm). Perf sink; next pass should key the cache by width, not slot index.
+- Game runs stable otherwise (30fps, no crash, fonts/menu fine).
+
+Release: v1.1 zips rebuilt with everything from (1)-(5).
+
+### 2026-10-15 (4) — Wine re-test: sentence-texture churn eliminated (896->0 creates); shell-map render crash narrowed (not the loader thread)
+
+Re-tested in wine+lavapipe with the memPassed fix (shell map now runs locally
+without any force flags: `shellMap check ... shellMapOn=1`, map opens).
+
+**Fixed this pass — the texture churn:** the `VK: tex create init ... from=`
+sampler named the churn source: `Render2DSentenceClass::Build_Textures()` was
+constructing a NEW procedural `TextureClass(64x64)` for every sentence build -
+**896+ GPU images created during boot alone** (and ~400/sec in-game earlier),
+each destroyed soon after: create/destroy of images that recent frames may
+still reference (2 frames in flight) = the leading suspect for both driver
+crashes. `Build_Textures` now reuses a per-slot cached texture
+(`CachedTextures`/`CachedTextureWidths` members, created on first use or size
+change, owned by the sentence object, released in the dtor). Verified:
+`procedural TextureClass` creates **0** in a full boot (was 896+).
+
+**Still crashing locally (unchanged spot):** first shell-map frame - map load
+frame takes ~21s, next frame builds `pipeline build #16 ... cull=1` (a state
+variant never used by the menu), then a SIGSEGV in a game-created thread with
+a garbage backtrace (Thread 9, address in an unmapped/JIT region - lavapipe
+shader-JIT shaped). Ruled out this pass: texture churn (fixed, still crashes)
+and the loader thread (`RTS_SYNC_TEXTURES=1` forces all loads synchronous via
+`Add_Load_Task` - crash unchanged). Next: the new pipeline's first use
+(draw/descriptor state for lit/terrain materials) - try disabling the shader
+JIT (LP_NATIVE_VECTOR_WIDTH/GALLIVM envs) to confirm, then audit the shell-map
+material/descriptor setup for that variant.
+
+**Also in this build (from the earlier passes of today):** LOD gate
+breadcrumb prints the raw signed numRAM, `RTS_SYNC_TEXTURES=1` synchronous
+texture loads, initiator/procedural texture samplers, BeginTargetPass
+#1-40+every-100, Accept/combobox-label breadcrumbs.
+
 
 
 

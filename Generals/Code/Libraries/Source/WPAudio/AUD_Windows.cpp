@@ -218,7 +218,10 @@ AUD_Thread*	AUD_ThreadCreate ( const char *name, AUD_ThreadPriority pri, AUD_Thr
 
 	AUD_ThreadSetInterval ( thread, SECONDS(1)/30 );
 
-	if ( !(thread->handle = CreateThread ( NULL, 4*1024,  AUD_service_thread, thread, 0, &thread->id )))
+	// Port fix: a 4KB stack is ONE page with no guard - the audio service
+	// thread overflowed it during the shell map's heavy load (RIP landed in a
+	// zeroed page, garbage frames - classic overflow). Use a normal 256KB.
+	if ( !(thread->handle = CreateThread ( NULL, 256*1024,  AUD_service_thread, thread, 0, &thread->id )))
 	{
 		DBGPRINTF (( "ERROR: Failed to create audio thread: '%s'\n", thread->name ));
 		return NULL;

@@ -132,6 +132,18 @@ TextureClass::TextureClass(unsigned width, unsigned height, WW3DFormat format, M
 	default:
 		WWASSERT(0);		
 	}
+	{
+		static unsigned pn = 0;
+		pn++;
+		if ((pn % 64u) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: procedural TextureClass %ux%u fmt=%d from=%p n=%u\n",
+					width, height, (int)format, __builtin_return_address(0), pn);
+				fclose(lf);
+			}
+		}
+	}
 	VulkanTexture = DX8Wrapper::_Create_Vulkan_Texture(width, height, format, mip_level_count,d3dpool,rendertarget);
 	if (pool==POOL_DEFAULT)
 	{

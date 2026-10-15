@@ -32,6 +32,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "PreRTS.h"	// This must go first in EVERY cpp file in the GameEngine
+#include "WWLib/cpudetect.h"
 
 #include "Common/GameLOD.h"
 #include "GameClient/TerrainVisual.h"
@@ -293,7 +294,11 @@ void GameLODManager::init(void)
 	//always get this data in case we need it later.
 	testMinimumRequirements(NULL,&m_cpuType,&m_cpuFreq,&m_numRAM,NULL,NULL,NULL);
 
-	if ((Real)(m_numRAM)/(Real)(256*1024*1024) >= PROFILE_ERROR_LIMIT)
+	// NOTE: m_numRAM is a signed Int fed by an unsigned GlobalMemoryStatus
+	// value - on any machine with >=2GB it goes NEGATIVE and this test failed
+	// for 20 years of modern hardware (=> forced low-res textures at line ~713,
+	// no trees, and - via applyStaticLODLevel - the shell map switched off).
+	if ((UnsignedInt)m_numRAM >= (UnsignedInt)(256*1024*1024))
 		m_memPassed=TRUE;	//check if they have at least 256 MB
 
 	if (m_idealDetailLevel == STATIC_GAME_LOD_UNKNOWN || TheGlobalData->m_forceBenchmark)
@@ -585,11 +590,25 @@ void GameLODManager::applyStaticLODLevel(StaticGameLODLevel level)
 		TheWritableGlobalData->m_useFpsLimit = lodInfo->m_useFpsLimit;
 		TheWritableGlobalData->m_useTrees = requestedTrees;
 	}
-	if (!m_memPassed || isReallyLowMHz()) {
-		// TEMP test hook: RTS_FORCE_SHELLMAP=1 keeps the menu background on
-		// even when the (wine-misdetected) memory/speed check fails.
-		if (!getenv("RTS_FORCE_SHELLMAP"))
-			TheWritableGlobalData->m_shellMapOn = false;
+	// Port note: the old "less than 256MB RAM or really-low MHz" heuristic
+	// silently switched the menu background (shell map) off - it fired on a
+	// modern Windows machine (field log: shellMapOn already 0 at the
+	// GameEngine check). Removed: background is now controlled only by
+	// ShellMapOn in the INI / RTS_NO_SHELLMAP=1.
+	{
+		static bool lodLogged = false;
+		if (!lodLogged) {
+			lodLogged = true;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: LOD gate memPassed=%d numRAM(signed)=%d rawPhysMem=%u cpuFreq=%d lowMHz=%d shellMapOn=%d\n",
+					(int)m_memPassed, (int)m_numRAM,
+					(unsigned)CPUDetectClass::Get_Total_Physical_Memory(),
+					(int)m_cpuFreq, (int)m_reallyLowMHz,
+					(int)TheGlobalData->m_shellMapOn);
+				fclose(lf);
+			}
+		}
 	}
 	if (TheTerrainVisual)
 		TheTerrainVisual->setTerrainTracksDetail();

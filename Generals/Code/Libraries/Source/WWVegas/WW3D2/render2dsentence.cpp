@@ -98,6 +98,12 @@ Render2DSentenceClass::~Render2DSentenceClass (void)
 {
 	REF_PTR_RELEASE (Font);
 	Reset ();
+	for (int ci = 0; ci < CachedTextures.Count (); ci++)
+		REF_PTR_RELEASE (CachedTextures[ci]);
+	if (CachedTextures.Count () > 0)
+		CachedTextures.Delete_All ();
+	if (CachedTextureWidths.Count () > 0)
+		CachedTextureWidths.Delete_All ();
 	return ;
 }
 
@@ -394,16 +400,42 @@ Render2DSentenceClass::Build_Textures (void)
 		curr_surface->Get_Description (desc);
 		
 		//
-		//	Create the new texture
+		//	Reuse this slot's sentence texture (create only on first use or a
+		//	size change). The old path built a NEW TextureClass for every
+		//	sentence build - hundreds of GPU image create/destroys per boot and
+		//	per second of play, while earlier frames may still reference them.
 		//
-		TextureClass *new_texture = W3DNEW TextureClass (desc.Width, desc.Width, WW3D_FORMAT_A8R8G8B8, TextureClass::MIP_LEVELS_1);
+		TextureClass *new_texture = NULL;
+		if (index < CachedTextures.Count () && CachedTextures[index] != NULL &&
+			index < CachedTextureWidths.Count () && CachedTextureWidths[index] == (int)desc.Width)
+		{
+			new_texture = CachedTextures[index];
+			new_texture->Add_Ref ();
+		}
+		else
+		{
+			new_texture = W3DNEW TextureClass (desc.Width, desc.Width, WW3D_FORMAT_A8R8G8B8, TextureClass::MIP_LEVELS_1);
+			new_texture->Set_U_Addr_Mode(TextureClass::TEXTURE_ADDRESS_CLAMP);
+			new_texture->Set_V_Addr_Mode(TextureClass::TEXTURE_ADDRESS_CLAMP);
+			new_texture->Set_Min_Filter	(TextureClass::FILTER_TYPE_NONE);
+			new_texture->Set_Mag_Filter	(TextureClass::FILTER_TYPE_NONE);
+			new_texture->Set_Mip_Mapping	(TextureClass::FILTER_TYPE_NONE);
+			if (index < CachedTextures.Count ())
+			{
+				REF_PTR_RELEASE (CachedTextures[index]);
+				CachedTextures[index] = new_texture;
+				CachedTextureWidths[index] = (int)desc.Width;
+			}
+			else
+			{
+				CachedTextures.Add (new_texture);
+				CachedTextureWidths.Add ((int)desc.Width);
+			}
+			// the cache owns the W3DNEW ref; take a working ref for this call so
+			// the REF_PTR_RELEASE at the end of the loop stays balanced.
+			new_texture->Add_Ref ();
+		}
 		SurfaceClass *texture_surface = new_texture->Get_Surface_Level ();
-
-		new_texture->Set_U_Addr_Mode(TextureClass::TEXTURE_ADDRESS_CLAMP);
-		new_texture->Set_V_Addr_Mode(TextureClass::TEXTURE_ADDRESS_CLAMP);
-		new_texture->Set_Min_Filter	(TextureClass::FILTER_TYPE_NONE);
-		new_texture->Set_Mag_Filter	(TextureClass::FILTER_TYPE_NONE);
-		new_texture->Set_Mip_Mapping	(TextureClass::FILTER_TYPE_NONE);
 
 		//
 		//	Copy the contents of the texture from the surface

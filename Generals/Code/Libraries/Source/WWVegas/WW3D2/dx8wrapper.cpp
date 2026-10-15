@@ -550,6 +550,14 @@ bool DX8Wrapper::Reset_Device(bool reload_assets)
 {
 	DX8_THREAD_ASSERT();
 	if ((IsInitted) && (VulkanDevice::Instance().IsInitialized())) {
+		{
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: Reset_Device(reload=%d) - waiting for in-flight frames\n", (int)reload_assets); fclose(lf); }
+		}
+		// Port fix: this path destroys pipelines/textures/RT caches while up to
+		// MAX_FRAMES_IN_FLIGHT command buffers may still reference them (the
+		// driver then uses freed objects -> amdvlk/lavapipe AV). Wait first.
+		vkDeviceWaitIdle(VulkanDevice::Instance().GetDevice());
 		Set_Vertex_Buffer (NULL);
 		Set_Index_Buffer (NULL, 0);
 		if (m_pCleanupHook) {
@@ -585,6 +593,7 @@ void DX8Wrapper::Release_Device(void)
 {
 	VulkanDevice &device = VulkanDevice::Instance();
 	if (device.IsInitialized()) {
+		vkDeviceWaitIdle(device.GetDevice());
 
 		for (int a=0;a<MAX_TEXTURE_STAGES;++a)
 		{
@@ -1044,8 +1053,8 @@ static void VulkanBeginTargetPass(VkTexture *target, const float *clearColor, fl
 			// Breadcrumb: first 40 pass begins - brackets where a driver AV
 			// (e.g. the mission-start amdvlk crash) happened relative to passes.
 			static int loggedRP = 0;
-			if (loggedRP < 40) {
-				loggedRP++;
+			loggedRP++;
+			if (loggedRP <= 40 || (loggedRP % 100) == 0) {
 				char buf[224];
 				snprintf(buf, sizeof(buf),
 					"VK: BeginTargetPass#%d cmd=%p rp=%p fb=%p extent=%ux%u",
@@ -1751,6 +1760,20 @@ VkTexture * DX8Wrapper::_Create_Vulkan_Texture(
 	D3DPOOL pool,
 	bool rendertarget)
 {
+	// Sampled initiator log: names WHO creates textures repeatedly (the churn
+	// that may leave in-flight descriptors pointing at destroyed images).
+	{
+		static unsigned n = 0;
+		n++;
+		if ((n % 64u) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: tex create init %ux%u fmt=%d from=%p n=%u\n",
+					width, height, (int)format, __builtin_return_address(0), n);
+				fclose(lf);
+			}
+		}
+	}
 	VulkanDevice &device = VulkanDevice::Instance();
 	VkFormat vkFormat = VulkanTranslateWW3DFormat(format);
 	unsigned mipLevels = 1;

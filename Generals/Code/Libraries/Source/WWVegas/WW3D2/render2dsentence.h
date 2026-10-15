@@ -249,6 +249,12 @@ private:
 	DynamicVectorClass<SentenceDataStruct>		SentenceData;
 	DynamicVectorClass<PendingSurfaceStruct>	PendingSurfaces;
 	DynamicVectorClass<RendererDataStruct>		Renderers;
+	// Reused sentence textures (one per pending-surface slot). Without these
+	// Build_Textures made a brand new TextureClass for every sentence build
+	// (896+ during boot) - create/destroy churn of GPU images that may still be
+	// referenced by in-flight frames (suspected cause of both driver crashes).
+	DynamicVectorClass<TextureClass *>			CachedTextures;
+	DynamicVectorClass<int>							CachedTextureWidths;
 	FontCharsClass	*						Font;
 	Vector2											BaseLocation;
 	Vector2											Location;
