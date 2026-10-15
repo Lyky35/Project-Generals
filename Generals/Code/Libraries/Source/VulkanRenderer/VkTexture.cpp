@@ -56,16 +56,19 @@ VkFormat VkTexture::TranslateFormat(unsigned d3dFormat)
 	case D3DFMT_A8R8G8B8:
 	case D3DFMT_X8R8G8B8:
 		return VK_FORMAT_B8G8R8A8_UNORM;
+	// Port fix (validation log, RX 7900 XTX): VK_FORMAT_R8G8B8_UNORM and the
+	// PACK16 formats are NOT supported with OPTIMAL tiling on modern AMD -
+	// vkCreateImage returns FORMAT_NOT_SUPPORTED, the VkTexture kept a NULL
+	// image with a live device pointer, and every upload/draw through it was
+	// invalid (black menu elements + driver AVs). All CPU-side sources are
+	// 32-bit A8R8G8B8 shadows anyway, so promote to BGRA8.
 	case D3DFMT_R8G8B8:
-		return VK_FORMAT_R8G8B8_UNORM;
 	case D3DFMT_R5G6B5:
-		return VK_FORMAT_R5G6B5_UNORM_PACK16;
 	case D3DFMT_X1R5G5B5:
 	case D3DFMT_A1R5G5B5:
-		return VK_FORMAT_A1R5G5B5_UNORM_PACK16;
 	case D3DFMT_A4R4G4B4:
 	case D3DFMT_X4R4G4B4:
-		return VK_FORMAT_A4R4G4B4_UNORM_PACK16;
+		return VK_FORMAT_B8G8R8A8_UNORM;
 	case D3DFMT_R3G3B2:
 	case D3DFMT_A8R3G3B2:
 		return VK_FORMAT_B8G8R8A8_UNORM;
@@ -141,7 +144,8 @@ bool VkTexture::Create(VulkanDevice *device, uint32_t width, uint32_t height, Vk
 	VkDevice dev = device->GetDevice();
 	if (vkCreateImage(dev, &imageInfo, nullptr, &m_image) != VK_SUCCESS) {
 		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: tex create FAILED vkCreateImage %ux%u\n", width, height); fclose(lf); }
+		if (lf) { fprintf(lf, "VK: tex create FAILED vkCreateImage %ux%u fmt=%d\n", width, height, (int)format); fclose(lf); }
+		Destroy();	// clear m_device too - a device-live texture with no image makes every upload/draw invalid
 		return false;
 	}
 	VkMemoryRequirements memReq;

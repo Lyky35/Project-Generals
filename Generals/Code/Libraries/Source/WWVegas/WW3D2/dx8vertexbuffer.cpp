@@ -39,6 +39,7 @@
 //#define VERTEX_BUFFER_LOG
 
 #include "dx8vertexbuffer.h"
+#include "VulkanRenderer/VkDevice.h"
 #include "dx8wrapper.h"
 #include <string.h>
 #include "dx8fvf.h"
@@ -777,6 +778,11 @@ void DynamicVBAccessClass::Allocate_DX8_Dynamic_Buffer()
 	// If requesting more vertices than dynamic vertex buffer can fit, delete the vb
 	// and adjust the size to the new count.
 	if (VertexCount>_DynamicDX8VertexBufferSize) {
+		// Port fix (validation VUID-vkCmdBindPipeline-commandBuffer-recording):
+		// the shared dynamic VB may still be referenced by in-flight command
+		// buffers - destroying it invalidates them (driver AV).
+		if (VulkanDevice::Instance().IsInitialized())
+			vkDeviceWaitIdle(VulkanDevice::Instance().GetDevice());
 		REF_PTR_RELEASE(_DynamicDX8VertexBuffer);
 		_DynamicDX8VertexBufferSize=VertexCount;
 		if (_DynamicDX8VertexBufferSize<DEFAULT_VB_SIZE) _DynamicDX8VertexBufferSize=DEFAULT_VB_SIZE;

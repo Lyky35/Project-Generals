@@ -1016,6 +1016,43 @@ Also: `VK: Begin_Texture_Load` name breadcrumb (storm attribution) and
 Status: mission-crash + upload-storm fixes verified locally; awaiting field
 run (mission start + background investigation log).
 
+### 2026-10-15 (7) — Validation layers found the real root cause: R8G8B8/PACK16 formats are unsupported on modern AMD; fixed
+
+User ran the game under VK_LAYER_KHRONOS_validation on the RX 7900 XTX
+(`log/log/vkrts.txt`, 57MB full trace). The errors name the bug chain that
+produced every symptom we chased (black background elements, shell-map AV,
+mission AV, `upload w=128 fmt=23` lines):
+
+- `vkCreateImage(VK_FORMAT_R8G8B8_UNORM, OPTIMAL, TRANSFER_DST|SAMPLED)`
+  -> **VK_ERROR_FORMAT_NOT_SUPPORTED** (RDNA3 dropped optimal-tiling 24-bit
+  RGB; only copy-dst features remain). Same for the PACK16 formats.
+- `VkTexture::Create` returned false but LEFT m_device set with m_image=NULL
+  -> every later UploadLevel/draw through that texture recorded commands
+  against a dead image -> `VkImageView usage-02274`, `CopyBufferToImage
+  dstImage-01997`, `commandBuffer-recording` invalidations -> amdvlk AV at a
+  fixed address (the identical 0x...8c0 IP in all three field crashes) and
+  the black menu/background elements that never drew.
+
+**Fixes:**
+- `VkTexture::TranslateFormat`: D3DFMT_R8G8B8 / R5G6B5 / X1R5G5B5 / A1R5G5B5 /
+  A4R4G4B4 / X4R4G4B4 all promote to **VK_FORMAT_B8G8R8A8_UNORM** (every
+  CPU-side source in this port is a 32-bit A8R8G8B8 shadow, so this also kills
+  the 3-byte-pitch misreads the fmt=23 uploads were doing).
+- `VkTexture::Create`: any creation failure now `Destroy()`s (m_device=NULL),
+  so the existing NULL-device guard in UploadLevel turns later uses into a
+  logged no-op instead of invalid commands.
+- Dynamic VB grow path (`DynamicVBAccessClass::Allocate_DX8_Dynamic_Buffer`)
+  now `vkDeviceWaitIdle`s before releasing the shared vertex buffer - the
+  validation trace showed `VkBuffer ... was destroyed` invalidating a
+  recording command buffer (the secondary error cluster).
+
+Local wine still dies at the same first-shell-map-draw moment (lavapipe
+accepts R8G8B8, so this is a separate wine-side issue as documented in (5));
+the AMD side is what the validation log proved and what this fixes.
+
+Status: field candidate - needs one Win10 run (menu background + mission start)
+to confirm the AVs and the black elements are gone.
+
 ### 2026-10-15 (4) — Wine re-test: sentence-texture churn eliminated (896->0 creates); shell-map render crash narrowed (not the loader thread)
 
 Re-tested in wine+lavapipe with the memPassed fix (shell map now runs locally
