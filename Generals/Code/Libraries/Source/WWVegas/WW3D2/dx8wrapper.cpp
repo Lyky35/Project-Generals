@@ -507,7 +507,7 @@ bool DX8Wrapper::Create_Device(void)
 	dummyData[14] = 255;
 	dummyData[15] = 255;
 	if (!VulkanDummyVB.Create(&device, sizeof(dummyData),
-		VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
+		VK_BUFFER_USAGE_VERTEX_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
 		VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT))
 		return false;
 	VulkanDummyVB.Upload(dummyData, sizeof(dummyData));

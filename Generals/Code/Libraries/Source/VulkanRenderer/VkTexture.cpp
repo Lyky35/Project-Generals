@@ -535,6 +535,14 @@ bool VkTexture::CreateDepth(VulkanDevice *device, uint32_t width, uint32_t heigh
 	return true;
 }
 
+// Process-wide sampler cache: samplers used to live per-texture and were
+// destroyed with it - validation caught vkDestroySampler on a sampler still
+// referenced by an in-flight command buffer (the fixed-address amdvlk AV).
+// Samplers are now shared (only 4 combos) and live for the process lifetime.
+static VulkanDevice *g_samplerDevice = nullptr;
+static SamplerEntry g_sharedSamplers[4];
+static int g_sharedSamplerCount = 0;
+
 VkSampler VkTexture::FindOrCreateSampler(bool filtered, bool repeat)
 {
 	if (m_device == nullptr) {
@@ -549,13 +557,14 @@ VkSampler VkTexture::FindOrCreateSampler(bool filtered, bool repeat)
 		}
 		return VK_NULL_HANDLE;
 	}
-	for (int i = 0; i < m_samplerCount; i++) {
-		if (m_samplers[i].filtered == filtered && m_samplers[i].repeat == repeat)
-			return m_samplers[i].sampler;
+	for (int i = 0; i < g_sharedSamplerCount; i++) {
+		if (g_sharedSamplers[i].filtered == filtered && g_sharedSamplers[i].repeat == repeat)
+			return g_sharedSamplers[i].sampler;
 	}
-	if (m_samplerCount >= 4)
-		return m_samplers[0].sampler;
+	if (g_sharedSamplerCount >= 4)
+		return g_sharedSamplers[0].sampler;
 
+	g_samplerDevice = m_device;
 	VkSamplerCreateInfo samplerInfo = {};
 	samplerInfo.sType = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO;
 	samplerInfo.magFilter = filtered ? VK_FILTER_LINEAR : VK_FILTER_NEAREST;
@@ -574,10 +583,10 @@ VkSampler VkTexture::FindOrCreateSampler(bool filtered, bool repeat)
 	VkSampler sampler = VK_NULL_HANDLE;
 	if (vkCreateSampler(m_device->GetDevice(), &samplerInfo, nullptr, &sampler) != VK_SUCCESS)
 		return VK_NULL_HANDLE;
-	m_samplers[m_samplerCount].filtered = filtered;
-	m_samplers[m_samplerCount].repeat = repeat;
-	m_samplers[m_samplerCount].sampler = sampler;
-	m_samplerCount++;
+	g_sharedSamplers[g_sharedSamplerCount].filtered = filtered;
+	g_sharedSamplers[g_sharedSamplerCount].repeat = repeat;
+	g_sharedSamplers[g_sharedSamplerCount].sampler = sampler;
+	g_sharedSamplerCount++;
 	return sampler;
 }
 
@@ -591,12 +600,8 @@ void VkTexture::Destroy()
 	if (!m_device)
 		return;
 	VkDevice dev = m_device->GetDevice();
-	for (int i = 0; i < m_samplerCount; i++) {
-		if (m_samplers[i].sampler != VK_NULL_HANDLE) {
-			vkDestroySampler(dev, m_samplers[i].sampler, nullptr);
-			m_samplers[i].sampler = VK_NULL_HANDLE;
-		}
-	}
+	// NOTE: samplers are process-wide now (g_sharedSamplers) - they must NOT be
+	// destroyed here: in-flight command buffers still reference them.
 	m_samplerCount = 0;
 	if (m_view != VK_NULL_HANDLE) {
 		vkDestroyImageView(dev, m_view, nullptr);

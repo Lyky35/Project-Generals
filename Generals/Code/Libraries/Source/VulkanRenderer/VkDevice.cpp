@@ -367,8 +367,16 @@ bool VulkanDevice::CreateLogicalDevice()
 
 	const char *deviceExtensions[] = { VK_KHR_SWAPCHAIN_EXTENSION_NAME };
 
+	// mesh.frag declares the DemoteToHelperInvocation capability (discard);
+	// without this feature the shader module is spec-invalid (validation
+	// VUID-VkShaderModuleCreateInfo-pCode-08740) = undefined behavior at draw.
+	VkPhysicalDeviceVulkan13Features features13 = {};
+	features13.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_FEATURES;
+	features13.shaderDemoteToHelperInvocation = VK_TRUE;
+
 	VkDeviceCreateInfo createInfo = {};
 	createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+	createInfo.pNext = &features13;
 	createInfo.queueCreateInfoCount = (uint32_t)queueInfos.size();
 	createInfo.pQueueCreateInfos = queueInfos.data();
 	createInfo.pEnabledFeatures = &features;

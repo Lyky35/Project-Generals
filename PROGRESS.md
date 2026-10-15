@@ -1068,6 +1068,31 @@ Also from that field run: shell-map load is slow (14.7s frame + 4s frame)
 which should improve now that textures stop failing and retrying; crash still
 "intermittent same-IP" - consistent with partially-broken texture set.
 
+### 2026-10-15 (9) — Remaining validation errors fixed: shared samplers (the in-flight destroy AV), DemoteToHelperInvocation feature, dummy-VB usage
+
+The 16:02 validation trace (with the complete format promotion in place -
+0 R8G8B8 errors) still listed three real bugs, all fixed now:
+
+1. `vkDestroySampler: sampler in use by a descriptor set in use by a command
+   buffer` - samplers were per-texture and destroyed with the texture, while
+   frames referencing them could still be in flight. This is the most likely
+   cause of the fixed-address amdvlk AV. Samplers are now a process-wide
+   shared cache (4 filtered/repeat combos, never destroyed at runtime).
+2. `VkShaderModuleCreateInfo-pCode-08740` - mesh.frag declares
+   DemoteToHelperInvocation (discard) but the feature was never enabled:
+   the shader module was spec-invalid = undefined behavior at first use (first
+   mesh draw = exactly where both platforms die). Now enabled via
+   VkPhysicalDeviceVulkan13Features in vkCreateDevice.
+3. `vkCmdCopyBuffer: dstBuffer VERTEX_BUFFER without TRANSFER_DST` -
+   VulkanDummyVB was created VERTEX_BUFFER-only and then Upload()ed through a
+   staging copy. TRANSFER_DST added.
+
+Local wine: shell map still dies at the same first-draw instant (lavapipe
+side, unchanged by these three - they are AMD/validation-driven fixes).
+Also noted: a PRE-EXISTING shutdown crash in FontCharsClass::~FontCharsClass
+(delete[] of a corrupted pointer) that only surfaces when the process exits
+cleanly; not yet investigated.
+
 ### 2026-10-15 (4) — Wine re-test: sentence-texture churn eliminated (896->0 creates); shell-map render crash narrowed (not the loader thread)
 
 Re-tested in wine+lavapipe with the memPassed fix (shell map now runs locally
