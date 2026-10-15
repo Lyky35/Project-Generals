@@ -1,6 +1,7 @@
 // linkstubs.cpp - empty/weak definitions so RTS.exe links as a milestone binary.
 // Real implementations land as SDK backends are finished.
 #include <stdint.h>
+#include <cstdio>
 #include <windows.h>
 #include <string.h>
 #include <stddef.h>
@@ -25,8 +26,6 @@ int BTREE_encode(void*, const void*, int) __asm__("_Z12BTREE_encodePvPKvi");
 int BTREE_decode(void*, void*, int) __asm__("_Z12BTREE_decodePvS_i");
 int HUFF_encode(void*, const void*, int) __asm__("_Z11HUFF_encodePvPKvi");
 int HUFF_decode(void*, void*, int) __asm__("_Z11HUFF_decodePvS_i");
-int REF_encode(void*, const void*, int) __asm__("_Z10REF_encodePvPKvi");
-int REF_decode(void*, void*, int) __asm__("_Z10REF_decodePvS_i");
 
 // Definitions immediately after asm-labeled declarations
 void* LZHLCreateCompressor() { return 0; }
@@ -40,8 +39,6 @@ int BTREE_encode(void*, const void*, int) { return 0; }
 int BTREE_decode(void*, void*, int) { return 0; }
 int HUFF_encode(void*, const void*, int) { return 0; }
 int HUFF_decode(void*, void*, int) { return 0; }
-int REF_encode(void*, const void*, int) { return 0; }
-int REF_decode(void*, void*, int) { return 0; }
 }
 
 // --- MinGW tchar import thunks ---
@@ -61,6 +58,24 @@ int tcsicmp(const char* a, const char* b) { return _stricmp(a, b); }
 size_t (*__imp__tcsclen)(const char*) = tcsclen;
 int (*__imp__tcscmp)(const char*, const char*) = tcscmp;
 int (*__imp__tcsicmp)(const char*, const char*) = tcsicmp;
+}
+
+// --- Throw tracer (RTS_DEBUG_THROWS via --wrap=__cxa_throw) ---
+// Logs every C++ throw with its (mangled) type name and caller address so a
+// field/wine log can name the thrower; resolve the address with nm.
+#include <typeinfo>
+extern "C" void __real___cxa_throw(void *thrown_exception, void *tinfo, void (*dest)(void *));
+extern "C" void __wrap___cxa_throw(void *thrown_exception, void *tinfo, void (*dest)(void *))
+{
+	const char *name = "?";
+	if (tinfo)
+		name = ((std::type_info *)tinfo)->name();
+	FILE *lf = fopen("RTS_START.LOG", "a");
+	if (lf) {
+		fprintf(lf, "VK: cxa_throw type=%s from=%p\n", name, __builtin_return_address(0));
+		fclose(lf);
+	}
+	__real___cxa_throw(thrown_exception, tinfo, dest);
 }
 
 // --- Time shims for static FFmpeg avutil (avoid libwinpthread) ---

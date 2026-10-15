@@ -64,6 +64,22 @@ Bool CachedFileInputStream::open(AsciiString path)
 		m_pos=0;
 	}
 
+	{
+		static int openLog = 0;
+		if (openLog < 12 && m_buffer && m_size >= 4) {
+			openLog++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: CachedFile open '%s' size=%d magic='%c%c%c%c' hex=%02x%02x%02x%02x\n",
+					path.str(), (int)m_size,
+					m_buffer[0] >= 32 ? m_buffer[0] : '?', m_buffer[1] >= 32 ? m_buffer[1] : '?',
+					m_buffer[2] >= 32 ? m_buffer[2] : '?', m_buffer[3] >= 32 ? m_buffer[3] : '?',
+					(unsigned char)m_buffer[0], (unsigned char)m_buffer[1],
+					(unsigned char)m_buffer[2], (unsigned char)m_buffer[3]);
+				fclose(lf);
+			}
+		}
+	}
 	if (CompressionManager::isDataCompressed(m_buffer, m_size) == 0)
 	{
 		//DEBUG_LOG(("CachedFileInputStream::open() - file %s is uncompressed at %d bytes!\n", path.str(), m_size));

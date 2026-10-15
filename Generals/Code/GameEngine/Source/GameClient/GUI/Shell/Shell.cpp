@@ -478,6 +478,10 @@ void Shell::showShellMap(Bool useShellMap )
 	// we don't want any of this to show if we're loading straight into a file
 	if(TheGlobalData->m_initialFile.isNotEmpty() || !TheGameLogic )
 		return;
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: showShellMap use=%d shellMapOn=%d pendingFile='%s'\n", (int)useShellMap, (int)TheGlobalData->m_shellMapOn, TheGlobalData->m_pendingFile.str()); fclose(lf); }
+	}
 	if(useShellMap && TheGlobalData->m_shellMapOn)
 	{
 		// we're already in a shell game, return

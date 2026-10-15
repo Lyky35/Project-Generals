@@ -579,7 +579,10 @@ void GameLODManager::applyStaticLODLevel(StaticGameLODLevel level)
 		TheWritableGlobalData->m_useTrees = requestedTrees;
 	}
 	if (!m_memPassed || isReallyLowMHz()) {
-		TheWritableGlobalData->m_shellMapOn = false;
+		// TEMP test hook: RTS_FORCE_SHELLMAP=1 keeps the menu background on
+		// even when the (wine-misdetected) memory/speed check fails.
+		if (!getenv("RTS_FORCE_SHELLMAP"))
+			TheWritableGlobalData->m_shellMapOn = false;
 	}
 	if (TheTerrainVisual)
 		TheTerrainVisual->setTerrainTracksDetail();

@@ -799,6 +799,60 @@ Status: perf/white-screen root cause fixed + verified locally; awaiting
 Windows 10 field run (expect 1080p window, stable fps, no white screen) and a
 dropdown click log.
 
+### 2026-10-15 — Background restored as far as data loading: RefPack (EAR) decode wired; shell map loads; next blocker is MeshClass::Render
+
+User: "the background was temporarily set to black, can you bring it back" (the
+shell map IS the menu background; we force-disabled it at boot). Also still
+open: dropdown selections don't register - need a field RTS_START.LOG (the
+click breadcrumbs from the previous entry are in the build; locally the whole
+chain works: synthetic clicks at 800x600 produced `selectedPos=0` +
+`editText='800 x 600'`).
+
+**Chain found while re-enabling it (all verified locally):**
+1. `GameLOD::applyLODLevel` disables the shell map when `!m_memPassed ||
+   isReallyLowMHz()` - true under wine's misdetection, false on the user's box.
+   Added `RTS_FORCE_SHELLMAP=1` override (GameLOD.cpp + GameEngine.cpp) so it
+   can be tested locally; **default stays OFF** (see step 4).
+2. With it forced on, the game threw `ErrorCode` during update. Diagnosed with
+   a new `--wrap=__cxa_throw` tracer (linkstubs + CMake link option, logs
+   `VK: cxa_throw type=... from=...`): `WorldHeightMap::WorldHeightMap(Chunk-
+   InputStream*)` -> `throw ERROR_CORRUPT_FILE_FORMAT` because
+   `DataChunkInput::parse` rejected the TOC.
+3. Root cause: `Maps\ShellMap1\ShellMap1.map` starts with `EAR\0` (EA
+   **RefPack**), `CompressionManager::decompressData` calls `REF_decode` - and
+   the only REF_decode the linker saw was the **no-op stub in
+   Main/linkstubs.cpp** (declared in EAC/refcodex.h with a signature that
+   matched neither the stub nor the real EAC implementation). The compressed
+   bytes were fed straight to the chunk parser.
+   **Fix:** refcodex.h now declares the real EAC signatures
+   (`REF_decode(void*, const void*, int*)` / 4-arg `REF_encode`), the matching
+   `REF_encode(dest+8, src, srcLen, NULL)` call, and the REF stubs are gone
+   from linkstubs. Validated host-side against the real dumped map:
+   `REF_decode` returns exactly the EAR size field (415309) and the output
+   begins with the chunk TOC (`WaypointsList`, `GlobalLighting`,
+   `PolygonTriggers` - the registered parser labels).
+4. With decode wired: map opens, decompresses, **loads** (15.6s, 32779 texture
+   uploads) - then the first 3D frame of the shell map's objects crashes:
+   `CRASH 0xc0000005 ip=MeshClass::Render fault=0x18` ->
+   `Model->PolygonRendererList.Peek_Head()->Get_Texture_Category()` is **NULL**
+   (the list is non-empty, so the head polygon renderer was built without its
+   texture category) -> deref of `category->Get_Container()`.
+   **Until that is fixed the shell map stays OFF by default** (GameEngine.cpp
+   gates it behind `RTS_FORCE_SHELLMAP=1`), so the shipped build keeps the
+   current stable black background instead of crashing at first render.
+   Next session: why a shell-map polygon renderer has no texture category
+   (DX8PolygonRenderer/TextureCategory registration path).
+
+Also in this pass: `GameEngine::execute` now has `catch (ErrorCode)` (named
+reason in ReleaseCrashInfo instead of "Uncaught Exception"), a bounded
+`VK: CachedFile open 'name' size magic` breadcrumb in DataChunk.cpp, and the
+mouse/dropdown breadcrumbs from before. Temp test hooks (combo click test,
+map dump) removed after use.
+
+Status: background unblocked at the data layer (RefPack fixed - this also
+unblocks ANY compressed map/replay for later); rendering blocker documented.
+Awaiting: dropdown field log + a pass at the MeshClass texture-category NULL.
+
 
 
 

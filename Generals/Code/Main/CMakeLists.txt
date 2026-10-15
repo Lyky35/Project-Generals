@@ -65,4 +65,4 @@ target_link_libraries(RTS PRIVATE
 # FFmpegVideo: FFmpeg video decoding library (subdirectory)
 
 # Prefer static MinGW runtimes to avoid libstdc++/libwinpthread DLL TLS/DllMain issues
-target_link_options(RTS PRIVATE -static-libgcc -static-libstdc++)
+target_link_options(RTS PRIVATE -static-libgcc -static-libstdc++ -Wl,--wrap=__cxa_throw)

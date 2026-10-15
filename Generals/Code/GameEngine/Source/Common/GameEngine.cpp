@@ -326,11 +326,16 @@ void GameEngine::init( int argc, char *argv[] )
 		ini.load( AsciiString( "Data\\INI\\GameDataDebug.ini" ), INI_LOAD_OVERWRITE, NULL );
 	#endif
 
-		// Port note: skip the intro movies and shell map for now - the Bink
-		// player and shell-map load are unfinished and were hanging the boot.
+		// Port note: skip the intro MOVIES (Bink player still unfinished).
+		// Shell map (= menu background) stays OFF by default for now: RefPack
+		// decode is wired up and ShellMap1.map decompresses/loads, but its
+		// first 3D render then crashes in MeshClass::Render (the head
+		// polygon renderer's Get_Texture_Category() is NULL - see PROGRESS).
+		// RTS_FORCE_SHELLMAP=1 turns it on for testing until that is fixed.
 		TheWritableGlobalData->m_playIntro = FALSE;
 		TheWritableGlobalData->m_afterIntro = TRUE;
-		TheWritableGlobalData->m_shellMapOn = FALSE;
+		if (!getenv("RTS_FORCE_SHELLMAP"))
+			TheWritableGlobalData->m_shellMapOn = FALSE;
 		// Port default: real windowed mode (matches ApplicationIsWindowed).
 		TheWritableGlobalData->m_windowed = TRUE;
 
@@ -517,6 +522,20 @@ void GameEngine::init( int argc, char *argv[] )
 			{
 				TheWritableGlobalData->m_shellMapOn = FALSE;
 			}
+			{
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) {
+					fprintf(lf, "VK: shellMap check name='%s' found=%d cacheSize=%u -> shellMapOn=%d\n",
+						lowerName.str(), (int)(it != TheMapCache->end()),
+						(unsigned)TheMapCache->size(), (int)TheGlobalData->m_shellMapOn);
+					fclose(lf);
+				}
+			}
+		}
+		else
+		{
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: shellMap check SKIPPED cache=%p on=%d\n", (void*)TheMapCache, (int)TheGlobalData->m_shellMapOn); fclose(lf); }
 		}
 
 		if(!TheGlobalData->m_playIntro)
@@ -767,6 +786,15 @@ void GameEngine::execute( void )
 						RELEASE_CRASH((e.mFailureMessage));
 					else
 						RELEASE_CRASH(("Uncaught Exception in GameEngine::update"));
+				}
+				catch (ErrorCode ec)
+				{
+					// Named error codes (see Errors.h) - without this they all
+					// fell into catch(...) as "Uncaught Exception" with no clue.
+					char crashMsg[160];
+					snprintf(crashMsg, sizeof(crashMsg),
+						"ErrorCode 0x%08x during GameEngine::update", (unsigned int)ec);
+					RELEASE_CRASH((crashMsg));
 				}
 				catch (...)
 				{

@@ -234,7 +234,7 @@ Int CompressionManager::compressData( CompressionType compType, void *srcVoid, I
 	{
 		memcpy(dest, "EAR\0", 4);
 		*(Int *)(dest+4) = 0;
-		Int ret = REF_encode(dest+8, src, srcLen);
+		Int ret = REF_encode(dest+8, src, srcLen, NULL);
 		if (ret)
 		{
 			*(Int *)(dest+4) = srcLen;
