@@ -427,6 +427,20 @@ WindowMsgHandledType GadgetComboBoxSystem( GameWindow *window, UnsignedInt msg,
 		{
 				if((GameWindow *) mData1 == comboData->listBox)
 				{
+				{
+					static int cbLog = 0;
+					if (cbLog < 25) {
+						cbLog++;
+						FILE *lf = fopen("RTS_START.LOG", "a");
+						if (lf) {
+							fprintf(lf, "VK: combo GLM_SELECTED sender=%p listBox=%p match=%d pos=%d dontHide=%d\n",
+								(void *)mData1, (void *)(comboData ? comboData->listBox : 0),
+								(int)(comboData && (GameWindow *)mData1 == comboData->listBox),
+								(int)mData2, (int)(comboData ? comboData->dontHide : -1));
+							fclose(lf);
+						}
+					}
+				}
 					if( comboData->dontHide == TRUE )
 					{
 						comboData->dontHide = FALSE;

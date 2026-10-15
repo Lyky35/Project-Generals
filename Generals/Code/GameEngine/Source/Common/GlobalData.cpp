@@ -599,8 +599,10 @@ GlobalData::GlobalData()
 	m_framesPerSecondLimit = 0;
 	m_chipSetType = 0;
 	m_windowed = 0;
-	m_xResolution = 800;
-	m_yResolution = 600;
+	// Port default: 1080p (retail defaulted to 800x600; gamedata.ini's
+	// XResolution/YResolution lines are commented out so this is what applies)
+	m_xResolution = 1920;
+	m_yResolution = 1080;
 	m_maxShellScreens = 0;
 	m_useCloudMap = FALSE;
 	m_use3WayTerrainBlends = 1;

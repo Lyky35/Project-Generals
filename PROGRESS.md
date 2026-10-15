@@ -727,6 +727,78 @@ Status: OPTIONS crash fixed and verified under wine; awaiting Windows 10 click
 test. Next candidates: empty-WinName transition entry (data), and the remaining
 named MISSes as they show up in field logs.
 
+### 2026-10-15 — Field: fonts OK, Options OK; ~1fps + white-screen corruption ROOT-CAUSED (tchar shims compared WIDE over char data) + 1080p default + BMP capture removed
+
+Field report after the previous two fixes: menus/fonts work, Options opens, but
+(1) dropdown selections (resolution/quality) don't seem to register, (2) only a
+few fps, (3) after a while the whole screen goes white (menus + background),
+(4) please default to 1080p, (5) remove RTS_FRAME1.BMP. Wine tests are to stay
+at 800x600 from now on (`wine RTS.exe -win -xres 800 -yres 600`).
+
+**Root cause of (2)+(3) — one bug, found by instrumenting live GPU memory:**
+`linkstubs.cpp` satisfied MinGW's `dllimport` decls of `_tcscmp/_tcsicmp/_tcsclen`
+(header: `const char*`) with **wide** implementations (`wcscmp/_wcsicmp/wcslen`).
+`StringClass::Compare()` therefore returned garbage for equal strings (verified:
+`strcmp=0` but `operator==`=false in the same log line). `StringClass` is the key
+type of the WW3D `TextureHash`, so **`Get_Texture()` never hit its cache**:
+- every draw of the menu background constructed a NEW `TextureClass` for
+  `scsmshelluserinterface512_001.tga` (new `texobj` each time) and re-decoded
+  the TGA -> ~1 fps from CPU work alone;
+- each duplicate held a `VkTexture` that was never released -> live texture
+  memory climbed ~150MB/s (`VkTexture LIVE live=6599MB count=6342` after 45s);
+- after ~2 min on the GPU: `vkAllocateMemory -> -2` (OUT_OF_DEVICE_MEMORY),
+  `SurfaceClass: Create FAILED 64x64` x246 (no more font/label surfaces) and
+  every texture fell back to white -> **the white screen**.
+
+**Fix:** linkstubs tchar shims are now char-based (`strcmp`/`_stricmp`/`strlen`),
+matching the tchar.h declarations.
+
+**Also in this pass:**
+- **1080p default**: `GlobalData` ctor 800x600 -> 1920x1080 (gamedata.ini's
+  XResolution/YResolution lines are commented out so the ctor value applies) and
+  `WinMain` `DEFAULT_X/YRESOLUTION` -> 1920x1080. New `-xres N -yres N`
+  preparse in WinMain sets the *initial window size* before window creation
+  (the CommandLine parser only updates GlobalData, after) - wine runs use
+  `-xres 800 -yres 600`.
+- **RTS_FRAME1.BMP removed**: the one-time first-present capture block (90 lines,
+  incl. its vkQueueWaitIdle) is deleted from `VkDevice::EndFrame`.
+- **VkPipelineCache created + passed to vkCreateGraphicsPipelines** (the handle
+  existed but was never initialized/used; now ctor-inited, created in `Init()`,
+  destroyed in `Shutdown()`), plus a bounded `VK: pipeline build #N ...` log.
+- **Leak detector kept**: `VkTexture`/`VkGpuBuffer` live-byte accounting that
+  logs only when live crosses 256MB steps (`VK: VkTexture LIVE live=..MB`) + every
+  512 creates a `creates live=.. count=..` summary, and OOM logs
+  (`VK: tex create OOM`, `depth create OOM`, `buffer create OOM`). Silent in a
+  healthy run, a growth curve in a dying one.
+- **Dropdown-bug breadcrumbs** (capped, for the next field click test):
+  `VK: mouse DOWN/UP pos captor lone grab` in `winProcessMouseEvent`,
+  `VK: listbox LEFT_UP mousey listY endPos selectPos oldPos ...` in
+  `GadgetListBoxInput`, `VK: combo GLM_SELECTED sender listBox match pos ...`
+  in `GadgetComboBoxSystem`. The Options menu chain itself is intact in code
+  (`GadgetComboBoxSystem:GLM_SELECTED -> GCM_SELECTED -> OptionsMenuSystem:1894`),
+  so the log will show where the click dies: routing (no listbox line),
+  hit-test (selectPos=-1), or handler (`match=0`/`pos=-1`).
+
+**Verified locally (wine + lavapipe,800x600,45s):**
+- live texture memory **flat at 24-25MB** (was 6.6GB/45s), BIG texture creates
+  **7 total** (was 5133), `Begin_Texture_Load` 40 (was 5000+), all
+  `TextureHash` verify-gets now hit (`lost=0` on all 60 boot misses);
+- **dt=32ms/frame (30fps limiter)** vs ~900-1500ms before;
+- fonts still copy 6/6 labels with nonzero glyph pixels, extent=800x600,
+  2 pipeline builds, no RTS_FRAME1.BMP, no CRASH.
+
+**Still open / observed:**
+- dropdown selection needs the field click test with the new logs;
+- texture create/destroy churn remains (~125 small creates/s, live stays flat -
+  something still rebuilds small surfaces each frame; not fatal, worth a pass);
+- `W3DDisplay::draw freeze-loop guard hit` still spams (freezeTime stuck flag);
+- exit=1 wine runs were the game quitting on real clicks on the visible window
+  (mouse breadcrumb proved clicks were landing), not a crash.
+
+Status: perf/white-screen root cause fixed + verified locally; awaiting
+Windows 10 field run (expect 1080p window, stable fps, no white screen) and a
+dropdown click log.
+
 
 
 

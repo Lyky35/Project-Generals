@@ -5,6 +5,27 @@
 #include <cstdio>
 #include <cassert>
 
+// Device-memory accounting. The field run died with
+// "VK: UploadLevel vkAllocateMemory -> -2" (OUT_OF_DEVICE_MEMORY) ~20 frames
+// after the Options menu opened, then every 64x64 surface create failed and the
+// screen went white - so track live texture bytes and log every 256MB step.
+static uint64_t g_liveTexBytes = 0;
+static uint64_t g_liveTexCount = 0;
+static uint64_t g_lastLoggedMB = 0;
+static uint64_t g_totalTexCreates = 0;
+
+static void logTexMemory(const char *why)
+{
+	FILE *lf = fopen("RTS_START.LOG", "a");
+	if (lf) {
+		fprintf(lf, "VK: VkTexture %s live=%lluMB count=%llu creates=%llu\n", why,
+			(unsigned long long)(g_liveTexBytes / (1024ull * 1024ull)),
+			(unsigned long long)g_liveTexCount,
+			(unsigned long long)g_totalTexCreates);
+		fclose(lf);
+	}
+}
+
 VkTexture::VkTexture()
 	: m_device(nullptr)
 	, m_image(VK_NULL_HANDLE)
@@ -14,6 +35,7 @@ VkTexture::VkTexture()
 	, m_width(0)
 	, m_height(0)
 	, m_mips(1)
+	, m_allocBytes(0)
 	, m_samplerCount(0)
 {
 	for (int i = 0; i < 4; i++) {
@@ -117,8 +139,11 @@ bool VkTexture::Create(VulkanDevice *device, uint32_t width, uint32_t height, Vk
 	imageInfo.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
 
 	VkDevice dev = device->GetDevice();
-	if (vkCreateImage(dev, &imageInfo, nullptr, &m_image) != VK_SUCCESS)
+	if (vkCreateImage(dev, &imageInfo, nullptr, &m_image) != VK_SUCCESS) {
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: tex create FAILED vkCreateImage %ux%u\n", width, height); fclose(lf); }
 		return false;
+	}
 	VkMemoryRequirements memReq;
 	vkGetImageMemoryRequirements(dev, m_image, &memReq);
 	VkMemoryAllocateInfo allocInfo = {};
@@ -131,10 +156,32 @@ bool VkTexture::Create(VulkanDevice *device, uint32_t width, uint32_t height, Vk
 		return false;
 	}
 	if (vkAllocateMemory(dev, &allocInfo, nullptr, &m_memory) != VK_SUCCESS) {
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) {
+			fprintf(lf, "VK: tex create OOM %ux%u bytes=%llu live=%lluMB\n", width, height,
+				(unsigned long long)memReq.size,
+				(unsigned long long)(g_liveTexBytes / (1024ull * 1024ull)));
+			fclose(lf);
+		}
 		Destroy();
 		return false;
 	}
 	vkBindImageMemory(dev, m_image, m_memory, 0);
+
+	// device-memory accounting (see g_liveTexBytes at top of file)
+	m_allocBytes = memReq.size;
+	g_liveTexBytes += m_allocBytes;
+	g_liveTexCount++;
+	g_totalTexCreates++;
+	{
+		uint64_t mb = g_liveTexBytes / (1024ull * 1024ull);
+		if (mb / 256ull != g_lastLoggedMB / 256ull) {
+			g_lastLoggedMB = g_liveTexBytes;
+			logTexMemory("LIVE");
+		}
+		if ((g_totalTexCreates % 512ull) == 0)
+			logTexMemory("creates");
+	}
 
 	VkImageViewCreateInfo viewInfo = {};
 	viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
@@ -438,10 +485,19 @@ bool VkTexture::CreateDepth(VulkanDevice *device, uint32_t width, uint32_t heigh
 		return false;
 	}
 	if (vkAllocateMemory(dev, &allocInfo, nullptr, &m_memory) != VK_SUCCESS) {
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) {
+			fprintf(lf, "VK: depth create OOM %ux%u bytes=%llu\n", width, height,
+				(unsigned long long)memReq.size);
+			fclose(lf);
+		}
 		Destroy();
 		return false;
 	}
 	vkBindImageMemory(dev, m_image, m_memory, 0);
+	m_allocBytes = memReq.size;
+	g_liveTexBytes += m_allocBytes;
+	g_liveTexCount++;
 
 	VkImageViewCreateInfo viewInfo = {};
 	viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
@@ -534,6 +590,12 @@ void VkTexture::Destroy()
 	if (m_memory != VK_NULL_HANDLE) {
 		vkFreeMemory(dev, m_memory, nullptr);
 		m_memory = VK_NULL_HANDLE;
+	}
+	if (m_allocBytes) {
+		g_liveTexBytes = (g_liveTexBytes > m_allocBytes) ? g_liveTexBytes - m_allocBytes : 0;
+		if (g_liveTexCount > 0)
+			g_liveTexCount--;
+		m_allocBytes = 0;
 	}
 	m_device = nullptr;
 }

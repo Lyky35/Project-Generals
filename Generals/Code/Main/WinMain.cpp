@@ -85,8 +85,12 @@ char *gAppPrefix = ""; /// So WB can have a different debug log file name.
 
 static HANDLE GeneralsMutex = NULL;
 #define GENERALS_GUID "685EAFF2-3216-4265-B047-251C5F4B82F3"
-#define DEFAULT_XRESOLUTION 800
-#define DEFAULT_YRESOLUTION 600
+#define DEFAULT_XRESOLUTION 1920
+#define DEFAULT_YRESOLUTION 1080
+// Initial window size; overridable with -xres/-yres (parsed before window
+// creation, same flag names the game's CommandLine parser uses).
+static Int g_initialXRes = DEFAULT_XRESOLUTION;
+static Int g_initialYRes = DEFAULT_YRESOLUTION;
 
 extern void Reset_D3D_Device(bool active);
 
@@ -832,8 +836,8 @@ static void enableDpiAwareness( void )
 static Bool initializeAppWindows( HINSTANCE hInstance, Int nCmdShow, Bool runWindowed )
 {
 	DWORD windowStyle;
-	Int startWidth = DEFAULT_XRESOLUTION,
-			startHeight = DEFAULT_YRESOLUTION;
+	Int startWidth = g_initialXRes,
+			startHeight = g_initialYRes;
 	Int posX = 0, posY = 0;
 
 	// register the window class
@@ -851,7 +855,8 @@ static Bool initializeAppWindows( HINSTANCE hInstance, Int nCmdShow, Bool runWin
 	RegisterClassEx( &wndClass );
 
 	// Create our main window. Fullscreen and borderless cover the primary
-	// monitor; windowed stays a centered 800x600 dialog frame.
+	// monitor; windowed stays a centered DEFAULT_XRESOLUTION x
+	// DEFAULT_YRESOLUTION dialog frame.
 	windowStyle = WS_POPUP | WS_VISIBLE | WS_CLIPCHILDREN;
 	if( runWindowed )
 		windowStyle |= WS_DLGFRAME | WS_CAPTION | WS_SYSMENU;
@@ -865,9 +870,10 @@ static Bool initializeAppWindows( HINSTANCE hInstance, Int nCmdShow, Bool runWin
 	}
 	else
 	{
-		// Makes the normal debug 800x600 window center in the screen.
-		startWidth = DEFAULT_XRESOLUTION;
-		startHeight = DEFAULT_YRESOLUTION;
+		// Makes the normal debug window (g_initialXRes x g_initialYRes) center
+		// in the screen.
+		startWidth = g_initialXRes;
+		startHeight = g_initialYRes;
 		posX = ( GetSystemMetrics( SM_CXSCREEN ) / 2 ) - ( startWidth / 2 );
 		posY = ( GetSystemMetrics( SM_CYSCREEN ) / 2 ) - ( startHeight / 2 );
 	}
@@ -1117,6 +1123,15 @@ Int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				ApplicationIsBorderless=true;
 			token = nextParam(NULL, "\" ");
 
+		}
+
+		// -xres/-yres set the initial window size (the CommandLine parser
+		// applies them to GlobalData later; the window is created before that)
+		for (int i = 1; i + 1 < argc; i++) {
+			if (stricmp(argv[i], "-xres") == 0)
+				g_initialXRes = atoi(argv[i + 1]);
+			else if (stricmp(argv[i], "-yres") == 0)
+				g_initialYRes = atoi(argv[i + 1]);
 		}
 
 		if (argc>2 && strcmp(argv[1],"-DX")==0) {  

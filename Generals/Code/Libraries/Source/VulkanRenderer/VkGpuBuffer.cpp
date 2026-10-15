@@ -2,11 +2,32 @@
 #include "VkDevice.h"
 #include <cstring>
 #include <cassert>
+#include <cstdio>
+
+// Device-memory accounting for buffers (pairs with VkTexture's counters) so a
+// field log shows which resource class is climbing toward OOM.
+static uint64_t g_liveBufBytes = 0;
+static uint64_t g_liveBufCount = 0;
+static uint64_t g_lastLoggedBufMB = 0;
+static uint64_t g_totalBufCreates = 0;
+
+static void logBufMemory(const char *why)
+{
+	FILE *lf = fopen("RTS_START.LOG", "a");
+	if (lf) {
+		fprintf(lf, "VK: VkGpuBuffer %s live=%lluMB count=%llu creates=%llu\n", why,
+			(unsigned long long)(g_liveBufBytes / (1024ull * 1024ull)),
+			(unsigned long long)g_liveBufCount,
+			(unsigned long long)g_totalBufCreates);
+		fclose(lf);
+	}
+}
 
 VkGpuBuffer::VkGpuBuffer()
 	: m_device(nullptr)
 	, m_handle(VK_NULL_HANDLE)
 	, m_size(0)
+	, m_allocBytes(0)
 	, m_mapped(nullptr)
 {
 }
@@ -42,12 +63,32 @@ bool VkGpuBuffer::Create(VulkanDevice *device, VkDeviceSize size, VkBufferUsageF
 		return false;
 	}
 	if (vkAllocateMemory(device->GetDevice(), &allocInfo, nullptr, &m_memory) != VK_SUCCESS) {
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) {
+			fprintf(lf, "VK: buffer create OOM bytes=%llu live=%lluMB\n",
+				(unsigned long long)memReq.size,
+				(unsigned long long)(g_liveBufBytes / (1024ull * 1024ull)));
+			fclose(lf);
+		}
 		Destroy();
 		return false;
 	}
 	if (vkBindBufferMemory(device->GetDevice(), m_handle, m_memory, 0) != VK_SUCCESS) {
 		Destroy();
 		return false;
+	}
+	m_allocBytes = memReq.size;
+	g_liveBufBytes += m_allocBytes;
+	g_liveBufCount++;
+	g_totalBufCreates++;
+	{
+		uint64_t mb = g_liveBufBytes / (1024ull * 1024ull);
+		if (mb / 256ull != g_lastLoggedBufMB / 256ull) {
+			g_lastLoggedBufMB = g_liveBufBytes;
+			logBufMemory("LIVE");
+		}
+		if ((g_totalBufCreates % 512ull) == 0)
+			logBufMemory("creates");
 	}
 	return true;
 }
@@ -64,6 +105,12 @@ void VkGpuBuffer::Destroy()
 	if (m_memory != VK_NULL_HANDLE && m_device) {
 		vkFreeMemory(m_device->GetDevice(), m_memory, nullptr);
 		m_memory = VK_NULL_HANDLE;
+	}
+	if (m_allocBytes) {
+		g_liveBufBytes = (g_liveBufBytes > m_allocBytes) ? g_liveBufBytes - m_allocBytes : 0;
+		if (g_liveBufCount > 0)
+			g_liveBufCount--;
+		m_allocBytes = 0;
 	}
 	m_device = nullptr;
 	m_size = 0;

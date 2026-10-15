@@ -54,6 +54,7 @@ private:
     uint32_t m_width;
     uint32_t m_height;
     uint32_t m_mips;
+    uint64_t m_allocBytes;
     SamplerEntry m_samplers[4];
     int m_samplerCount;
     VkSampler m_sampler;

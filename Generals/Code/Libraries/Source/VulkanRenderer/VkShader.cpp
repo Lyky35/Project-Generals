@@ -40,6 +40,7 @@ VkShaderManager::VkShaderManager()
 	, m_textureSetLayout(VK_NULL_HANDLE)
 	, m_frameSetLayout(VK_NULL_HANDLE)
 	, m_pipelineLayout(VK_NULL_HANDLE)
+	, m_pipelineCache(VK_NULL_HANDLE)
 {
 	m_shaderDir[0] = '\0';
 }
@@ -65,7 +66,18 @@ bool VkShaderManager::Init(VulkanDevice *device, const char *shaderDir)
 		return false;
 	if (!CreateDescriptorLayouts())
 		return false;
-	return CreatePipelineLayout();
+	if (!CreatePipelineLayout())
+		return false;
+
+	// Driver pipeline cache - lets the driver reuse compiled state between
+	// pipeline builds (and keeps vkCreateGraphicsPipelines cheap).
+	{
+		VkPipelineCacheCreateInfo pci = {};
+		pci.sType = VK_STRUCTURE_TYPE_PIPELINE_CACHE_CREATE_INFO;
+		if (vkCreatePipelineCache(m_device->GetDevice(), &pci, nullptr, &m_pipelineCache) != VK_SUCCESS)
+			m_pipelineCache = VK_NULL_HANDLE;
+	}
+	return true;
 }
 
 void VkShaderManager::Shutdown()
@@ -76,6 +88,10 @@ void VkShaderManager::Shutdown()
 	for (auto &entry : m_pipelines)
 		vkDestroyPipeline(dev, entry.second, nullptr);
 	m_pipelines.clear();
+	if (m_pipelineCache != VK_NULL_HANDLE) {
+		vkDestroyPipelineCache(dev, m_pipelineCache, nullptr);
+		m_pipelineCache = VK_NULL_HANDLE;
+	}
 	if (m_pipelineLayout != VK_NULL_HANDLE) {
 		vkDestroyPipelineLayout(dev, m_pipelineLayout, nullptr);
 		m_pipelineLayout = VK_NULL_HANDLE;
@@ -399,6 +415,26 @@ VkPipeline VkShaderManager::GetPipeline(const VkPipelineState &state)
 	VkPipeline pipeline = BuildPipeline(state);
 	if (pipeline != VK_NULL_HANDLE)
 		m_pipelines[state] = pipeline;
+
+	// Breadcrumb: unbounded pipeline builds = cache never hits (perf + GPU
+	// memory death). Log the first few and every 500th with the state.
+	{
+		static unsigned buildCount = 0;
+		buildCount++;
+		if (buildCount <= 25 || (buildCount % 500) == 0)
+		{
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf)
+			{
+				fprintf(lf, "VK: pipeline build #%u fvf=0x%x topo=%u tex0=%d tex1=%d blend=%d cull=%u z=%d/%d cached=%u ok=%d\n",
+					buildCount, (unsigned)state.vertexFVF, (unsigned)state.topology,
+					(int)state.tex0Op, (int)state.tex1Op, (int)state.blendEnable,
+					(unsigned)state.cullMode, (int)state.depthTest, (int)state.depthWrite,
+					(unsigned)m_pipelines.size(), pipeline != VK_NULL_HANDLE);
+				fclose(lf);
+			}
+		}
+	}
 	return pipeline;
 }
 
@@ -523,7 +559,7 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	pipelineInfo.subpass = 0;
 
 	VkPipeline pipeline = VK_NULL_HANDLE;
-	if (vkCreateGraphicsPipelines(m_device->GetDevice(), VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &pipeline) != VK_SUCCESS)
+	if (vkCreateGraphicsPipelines(m_device->GetDevice(), m_pipelineCache, 1, &pipelineInfo, nullptr, &pipeline) != VK_SUCCESS)
 		return VK_NULL_HANDLE;
 	return pipeline;
 }

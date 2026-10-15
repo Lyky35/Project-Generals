@@ -875,6 +875,26 @@ WinInputReturnCode GameWindowManager::winProcessMouseEvent( GameWindowMessage ms
 	// pack mouse coords into one entity for message passing
 	packedMouseCoords = SHORTTOLONG( mousePos->x, mousePos->y );
 
+	// Click-path breadcrumb (capped60) for combo-dropdown diagnosis: shows
+	// whether a left click is diverted by mouse capture / the lone window.
+	if( msg == GWM_LEFT_DOWN || msg == GWM_LEFT_UP )
+	{
+		static int clickLog = 0;
+		if( clickLog < 60 )
+		{
+			clickLog++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf)
+			{
+				fprintf(lf, "VK: mouse %s pos=(%d,%d) captor=%p lone=%p grab=%p\n",
+					(msg == GWM_LEFT_DOWN) ? "DOWN" : "UP",
+					mousePos->x, mousePos->y,
+					(void *)m_mouseCaptor, (void *)m_loneWindow, (void *)m_grabWindow);
+				fclose(lf);
+			}
+		}
+	}
+
 	// clear tooltip ... it will be reset if necessary
 	TheMouse->setCursorTooltip( UnicodeString::TheEmptyString );
 

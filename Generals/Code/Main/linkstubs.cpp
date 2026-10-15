@@ -45,13 +45,22 @@ int REF_decode(void*, void*, int) { return 0; }
 }
 
 // --- MinGW tchar import thunks ---
+// tchar.h declares _tcscmp/_tcsicmp/_tcsclen as dllimports taking const char*
+// (this is an ANSI/TCHAR=char build), but there is no such export in the MinGW
+// import libs, so the thunks below satisfy the linker. They MUST be char
+// routines: they used to call the WIDE ones (wcscmp/wcslen/_wcsicmp), which made
+// every StringClass comparison of equal strings return garbage. That broke the
+// WW3D texture hash cache (StringClass is its key type): the menu background
+// missed the cache every frame, a fresh VkTexture was created and leaked each
+// time (device memory exhaustion -> white screen) and the TGA was re-decoded
+// every frame (~1 fps).
 extern "C" {
-size_t tcsclen(const wchar_t* s) { return s ? wcslen(s) : 0; }
-int tcscmp(const wchar_t* a, const wchar_t* b) { return wcscmp(a, b); }
-int tcsicmp(const wchar_t* a, const wchar_t* b) { return _wcsicmp(a, b); }
-size_t (*__imp__tcsclen)(const wchar_t*) = tcsclen;
-int (*__imp__tcscmp)(const wchar_t*, const wchar_t*) = tcscmp;
-int (*__imp__tcsicmp)(const wchar_t*, const wchar_t*) = tcsicmp;
+size_t tcsclen(const char* s) { return s ? strlen(s) : 0; }
+int tcscmp(const char* a, const char* b) { return strcmp(a, b); }
+int tcsicmp(const char* a, const char* b) { return _stricmp(a, b); }
+size_t (*__imp__tcsclen)(const char*) = tcsclen;
+int (*__imp__tcscmp)(const char*, const char*) = tcscmp;
+int (*__imp__tcsicmp)(const char*, const char*) = tcsicmp;
 }
 
 // --- Time shims for static FFmpeg avutil (avoid libwinpthread) ---

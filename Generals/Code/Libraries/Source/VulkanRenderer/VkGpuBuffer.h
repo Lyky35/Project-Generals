@@ -32,5 +32,6 @@ private:
 	VkBuffer m_handle;
 	VkDeviceMemory m_memory;
 	VkDeviceSize m_size;
+	VkDeviceSize m_allocBytes;
 	void *m_mapped;
 };
