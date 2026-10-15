@@ -50,8 +50,16 @@ vec3 applyTexOp(vec3 current, float currentAlpha, vec4 texel, int op, out float 
 
 void main()
 {
-	vec3 color = inDiffuse.rgb * frame.materialDiffuse.rgb;
-	float alpha = inDiffuse.a * frame.materialDiffuse.a;
+	// Port fix: D3D8 only folds the material diffuse into the color for LIT
+	// passes; unlit/prelit meshes (terrain etc. - material diffuse often 0)
+	// use the vertex color alone. Multiplying unconditionally made the whole
+	// shell map render black.
+	vec3 color = inDiffuse.rgb;
+	float alpha = inDiffuse.a;
+	if (LIGHTING == 1) {
+		color *= frame.materialDiffuse.rgb;
+		alpha *= frame.materialDiffuse.a;
+	}
 
 	if (TEX0_OP > 0) {
 		vec4 texel = texture(texStage0, inUV0);

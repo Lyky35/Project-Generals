@@ -1152,6 +1152,21 @@ counters in RTS3DScene::Render, `VK: Mesh::Render calls/hidden/drawn`, and
 `VK: drawViews #N viewCount=` - one look at the log will show whether the
 world draws on the AMD box (polys > 0) or where it stops.
 
+### 2026-10-15 (13) - World draws on the AMD box too (144k polys/frame) - black fragments traced to the lit-shader color path
+
+Their log (new build) shows `scene Render objects=194 polys=144198` per frame
+and 241k Mesh::Render draws: the shell map IS rendered on the RX 7900 XTX -
+the draws just produce black fragments. Traced to mesh.frag: it folded the
+material diffuse/opacity into the vertex color UNCONDITIONALLY, but D3D8 only
+does that for LIT passes - unlit/prelit meshes (terrain: material diffuse is
+typically black) must use the vertex color alone, so every terrain fragment
+became 0*texture = black. Fixed: material diffuse/opacity only applied when
+LIGHTING==1. Added `VK: FillUBO #N ambient/light0/material` breadcrumb (first
+12 + every 600th) so the next field log shows the actual lighting state.
+
+Local run after the fix: scene keeps drawing (polys ~1M cumulative counter),
+ambient defaults to white (0x12345678 sentinel -> 0x00ffffff), light0 off.
+
 Background: pipelines still 16 after the updateViews() gate fix - the view
 updates now but `drawViews()` still submits no 3D draws. Next thread: what
 drawViews needs (view/world attachment for the shell-map session).

@@ -2089,6 +2089,20 @@ static int VulkanMapTexOp(unsigned colorOp, unsigned arg1)
 void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 {
 	memset(ubo, 0, sizeof(*ubo));
+	{
+		static int uboLog = 0;
+		uboLog++;
+		if (uboLog <= 12 || (uboLog % 600) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				unsigned amb = DX8Wrapper::RenderStates[D3DRS_AMBIENT];
+				fprintf(lf, "VK: FillUBO #%d ambient=0x%08x light0=%d material=%p\n",
+					uboLog, (unsigned)amb, (int)DX8Wrapper::render_state.LightEnable[0],
+					(const void *)DX8Wrapper::render_state.material);
+				fclose(lf);
+			}
+		}
+	}
 	unsigned ambient = DX8Wrapper::RenderStates[D3DRS_AMBIENT];
 	if (ambient == 0x12345678)
 		ambient = 0x00ffffff;
