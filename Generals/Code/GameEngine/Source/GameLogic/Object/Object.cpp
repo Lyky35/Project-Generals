@@ -2151,11 +2151,18 @@ Bool Object::isSalvageCrate() const
  */
 void Object::updateUpgradeModules()
 {
-	Int64 playerMask = getControllingPlayer()->getCompletedUpgradeMask();
+	// Port fix: this runs from ThingFactory::newObject during startNewGame and
+	// crashed the Training mission start with fault=0x4 - getControllingPlayer()
+	// is NULL for objects created before their player mapping exists.
+	Player *ctrlPlayer = getControllingPlayer();
+	Int64 playerMask = ctrlPlayer ? ctrlPlayer->getCompletedUpgradeMask() : 0;
 	Int64 objectMask = getObjectCompletedUpgradeMask();
 	Int64 maskToCheck = playerMask | objectMask;
 	// We need to add in all of the already owned upgrades to handle "AND" requiring upgrades.
 	// We combine all the masks in case someone has a Object AND Player combination
+
+	if (m_behaviors == NULL)
+		return;
 
 	for (BehaviorModule** module = m_behaviors; *module; ++module)
 	{

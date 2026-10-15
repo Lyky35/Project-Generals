@@ -130,6 +130,11 @@ class SurfaceClass : public W3DMPO, public RefCountClass
 		void DrawHLine(const unsigned int y,const unsigned int x1, const unsigned int x2, unsigned int color);
 
 		void DrawPixel(const unsigned int x,const unsigned int y, unsigned int color);
+		// Write a pixel WITHOUT unlocking/uploading - call Unlock() once after a
+		// whole batch (DrawPixel's per-pixel Unlock uploaded the ENTIRE surface
+		// to the GPU for every pixel: buildTerrainTexture did 16,384 full
+		// uploads per radar rebuild = the w=128 upload storm).
+		void DrawPixelFast(const unsigned int x,const unsigned int y, unsigned int color);
 
 		// get pixel function .. to be used infrequently
 		void Get_Pixel(Vector3 &rgb, int x,int y);

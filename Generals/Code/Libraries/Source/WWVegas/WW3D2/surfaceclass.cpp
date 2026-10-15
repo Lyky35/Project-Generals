@@ -341,6 +341,20 @@ void SurfaceClass::Unlock(void)
  *=============================================================================================*/
 void SurfaceClass::Clear()
 {
+	{
+		static unsigned n = 0;
+		n++;
+		if (n <= 30 || (n % 100u) == 0) {
+			SurfaceDescription sd0; Get_Description(sd0);
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: SurfaceClass::Clear #%u %ux%u fmt=%d caller=%p\n",
+					n, (unsigned)sd0.Width, (unsigned)sd0.Height, (int)sd0.Format,
+					__builtin_return_address(0));
+				fclose(lf);
+			}
+		}
+	}
 	SurfaceDescription sd;
 	Get_Description(sd);
 
@@ -864,6 +878,33 @@ void SurfaceClass::DrawPixel(const unsigned int x,const unsigned int y, unsigned
 	}
 
 	Unlock();
+}
+
+void SurfaceClass::DrawPixelFast(const unsigned int x,const unsigned int y, unsigned int color)
+{
+	SurfaceDescription sd;
+	Get_Description(sd);
+
+	unsigned int size=PixelSize(sd);
+
+	int pitch=0;
+	unsigned char *base=(unsigned char *)Lock(&pitch);
+	if (!base) return;
+	unsigned char *cptr=base+y*pitch+x*size;
+
+	switch (size)
+	{
+	case 1:
+		*cptr=(unsigned char) (color & 0xFF);
+		break;
+	case 2:
+		*(unsigned short *)cptr=(unsigned short) (color & 0xFFFF);
+		break;
+	case 4:
+		*(unsigned int *)cptr=color;
+		break;
+	}
+	// no Unlock on purpose - the caller uploads once with Unlock()
 }
 
 /***********************************************************************************************

@@ -458,7 +458,23 @@ WindowMsgHandledType GadgetComboBoxSystem( GameWindow *window, UnsignedInt msg,
 					UnicodeString tempUString;
 					Color color;
 					tempUString = GadgetListBoxGetTextAndColor( comboData->listBox, &color, mData2, 0 );
-									
+					{
+						static int cbTextLog = 0;
+						if (cbTextLog < 8) {
+							cbTextLog++;
+							char buf[64];
+							const WCHAR *ws = tempUString.str();
+							int ci = 0;
+							if (ws) { for (; ws[ci] && ci < 60; ci++) buf[ci] = (ws[ci] >= 32 && ws[ci] < 127) ? (char)ws[ci] : '?'; }
+							buf[ci] = 0;
+							FILE *lf = fopen("RTS_START.LOG", "a");
+							if (lf) {
+								fprintf(lf, "VK: combo label fetched pos=%d len=%d text='%s'\n",
+									(int)mData2, (int)(ws ? (ci) : 0), buf);
+								fclose(lf);
+							}
+						}
+					}
 					GadgetTextEntrySetTextColor(comboData->editBox, color);
 					
 					GadgetTextEntrySetText(comboData->editBox, tempUString);

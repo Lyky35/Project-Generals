@@ -730,21 +730,23 @@ void W3DRadar::renderObjectList( const RadarObject *listHead, TextureClass *text
 		
 		// draw the blip, but make sure the points are legal
 		if( legalRadarPoint( radarPoint.x, radarPoint.y ) )
-			surface->DrawPixel( radarPoint.x, radarPoint.y, c );
+			surface->DrawPixelFast( radarPoint.x, radarPoint.y, c );
 
 		radarPoint.y++;
 		if( legalRadarPoint( radarPoint.x, radarPoint.y ) )
-			surface->DrawPixel( radarPoint.x, radarPoint.y, c );
+			surface->DrawPixelFast( radarPoint.x, radarPoint.y, c );
 
 		radarPoint.x++;
 		if( legalRadarPoint( radarPoint.x, radarPoint.y ) )
-			surface->DrawPixel( radarPoint.x, radarPoint.y, c );
+			surface->DrawPixelFast( radarPoint.x, radarPoint.y, c );
 
 		radarPoint.y--;
 		if( legalRadarPoint( radarPoint.x, radarPoint.y ) )
-			surface->DrawPixel( radarPoint.x, radarPoint.y, c );
+			surface->DrawPixelFast( radarPoint.x, radarPoint.y, c );
 
 	}  // end for
+	// one upload for all blips drawn this frame (was one per pixel)
+	surface->Unlock();
 	REF_PTR_RELEASE(surface);
 
 }  // end renderObjectList
@@ -1251,7 +1253,7 @@ void W3DRadar::buildTerrainTexture( TerrainLogic *terrain )
 			// the sampling and interpolation algorithm for generating pretty looking terrain
 			// and water for the radar is just, well, expensive.
 			//
-			surface->DrawPixel( x, y, GameMakeColor( color.red * 255, 
+			surface->DrawPixelFast( x, y, GameMakeColor( color.red * 255, 
 																							 color.green * 255,
 																							 color.blue * 255,
 																							 255 ) );
@@ -1259,6 +1261,9 @@ void W3DRadar::buildTerrainTexture( TerrainLogic *terrain )
 		}  // end for x
 
 	}  // end for y
+
+	// one upload for the whole surface (DrawPixel used to upload per pixel)
+	surface->Unlock();
 
 	// all done with the surface
 	REF_PTR_RELEASE(surface);
@@ -1345,9 +1350,11 @@ void W3DRadar::setShroudLevel(Int shroudX, Int shroudY, CellShroudStatus setting
 		for( Int x = radarMinX; x <= radarMaxX; x++ )
 		{
 			if( legalRadarPoint( x, y ) )
-				surface->DrawPixel( x, y, GameMakeColor( 0, 0, 0, alpha ) );
+				surface->DrawPixelFast( x, y, GameMakeColor( 0, 0, 0, alpha ) );
 		}
 	}
+	// one upload for the whole shroud rect (was one per pixel)
+	surface->Unlock();
 	REF_PTR_RELEASE(surface);
 }
 

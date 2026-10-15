@@ -348,8 +348,9 @@ void VkTexture::UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const
 		// always log non-standard pitches (sentence/font atlases are w*4)
 		if (width >= 1024 || uploadLogCount < 8 || rowPitch != (VkDeviceSize)width * 4) {
 			char buf[128];
-			snprintf(buf, sizeof(buf), "VK: upload w=%u h=%u fmt=%d size=%llu pitch=%llu",
-				(unsigned)width, (unsigned)height, (int)m_format, (unsigned long long)imageSize, (unsigned long long)rowPitch);
+			snprintf(buf, sizeof(buf), "VK: upload w=%u h=%u fmt=%d size=%llu pitch=%llu caller=%p",
+				(unsigned)width, (unsigned)height, (int)m_format, (unsigned long long)imageSize, (unsigned long long)rowPitch,
+				__builtin_return_address(0));
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
 			uploadLogCount++;

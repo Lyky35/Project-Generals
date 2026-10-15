@@ -870,6 +870,22 @@ void TextureLoadTaskClass::Deinit()
 
 void TextureLoadTaskClass::Begin_Texture_Load()
 {
+	// Storm namer: which texture is being (re)loaded ~50x per frame in the
+	// field/wine logs (`upload w=128 h=128` x65k)?
+	{
+		static unsigned n = 0;
+		n++;
+		if (n <= 40 || (n % 50u) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: Begin_Texture_Load #%u '%s' texobj=%p initialized=%d hp=%d\n",
+					n, (Texture && Texture->Get_Texture_Name()) ? Texture->Get_Texture_Name() : "(null)",
+					(void *)Texture, Texture ? (int)Texture->Is_Initialized() : -1,
+					(int)HighPriorityRequested);
+				fclose(lf);
+			}
+		}
+	}
 	// If we're in main thread, init for loading and add to the load list
 	if (ThreadClass::_Get_Current_Thread_ID()==DX8Wrapper::_Get_Main_Thread_ID()) {
 

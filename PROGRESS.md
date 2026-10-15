@@ -983,6 +983,39 @@ its own version.
 
 Release: v1.1 zips rebuilt with everything from (1)-(5).
 
+### 2026-10-15 (6) — Field log #4: mission crash fixed (NULL controlling player), upload storm root-caused (radar DrawPixel uploaded the whole surface per pixel), background still black with proof it never draws
+
+**Training mission crash - OUR bug, fixed:** FR stack resolved to
+`GameLogic::startNewGame -> ThingFactory::newObject -> Object::initObject ->
+Object::updateUpgradeModules` with `fault=0x4` (NULL + 4): objects created
+during startNewGame can have no controlling player yet, and
+`getControllingPlayer()->getCompletedUpgradeMask()` dereferenced it. Fixed with
+NULL guards (controlling player -> mask 0; `m_behaviors` NULL -> return) in
+Object.cpp.
+
+**The w=128 upload storm - root-caused and fixed:** your log had 65,540
+`upload w=128 h=128 fmt=23` lines = EXACTLY 4 x 16,384 (=128x128 pixels).
+Source: `W3DRadar` builds its terrain texture (`buildTerrainTexture`), shroud
+rect and blips through `SurfaceClass::DrawPixel()`, which Lock->write->**Unlock
+(= full-surface GPU upload) PER PIXEL** - ~786MB of redundant uploads per radar
+rebuild (the EA comment even considered batching, meaningless in D3D8 managed
+pool, catastrophic in Vulkan). Added `SurfaceClass::DrawPixelFast()` (no
+Unlock) and a single Unlock per batch in all three radar loops. Verified
+locally: 16,387 -> 2-5 uploads per run, stable 30fps, no crash.
+
+**Black background - now proven to be a missing DRAW, not data:** their log
+shows shellMapOn=1 (memPassed fix live: rawPhysMem=4.2GB), ShellMap1.map
+opened, shell-map audio playing - but **only 16 pipelines ever build, all of
+them the menu's** (`#1..#16`, same set as a no-shell-map run): the shell-map
+3D scene never submits a single draw. Next: why W3DView/RTS3DScene render is
+skipped while the game session runs.
+
+Also: `VK: Begin_Texture_Load` name breadcrumb (storm attribution) and
+`caller=` on upload lines.
+
+Status: mission-crash + upload-storm fixes verified locally; awaiting field
+run (mission start + background investigation log).
+
 ### 2026-10-15 (4) — Wine re-test: sentence-texture churn eliminated (896->0 creates); shell-map render crash narrowed (not the loader thread)
 
 Re-tested in wine+lavapipe with the memPassed fix (shell map now runs locally
