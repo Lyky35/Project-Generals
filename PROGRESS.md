@@ -1167,6 +1167,27 @@ LIGHTING==1. Added `VK: FillUBO #N ambient/light0/material` breadcrumb (first
 Local run after the fix: scene keeps drawing (polys ~1M cumulative counter),
 ambient defaults to white (0x12345678 sentinel -> 0x00ffffff), light0 off.
 
+### 2026-10-15 (15) - THE black background: double-transposed model-view-projection clipped every vertex
+
+Matrix capture (VK: PROJ/VIEW/MVP-FULL in the draw path) proved the
+projection and view matrices are individually correct (GL-style projection
+with a valid perspective row; view with translation in column3) but the
+COMPOSED MVP's clip-w row was `[-5.39, -5.83, -6.09, 0]`, i.e.
+w = -5.39x -5.83y -6.09z for every vertex -> `|-w <= z <= w|` failed for all
+of them -> zero rasterized fragments -> black world while every draw still
+submitted (matches all field logs: polys counted, viewport correct, no
+validation errors, black screen).
+
+Cause: `mvp = mvp.Transpose()` (and the matching `world.Transpose()` for
+normals) in VulkanDrawIndexed double-transposed - WW matrices are already
+laid out so GLSL's column-major read yields the correct row-vector transform.
+After removing both transposes the captured MVP's w-column is exactly
+`[0, 0, -1, 0]` (w = -z, correct). Menus were unaffected (identity
+projection is transpose-invariant), which is why UI worked while the world was
+black.
+
+Local verify: clean run, 317 frames, no crash, MVP w-column correct.
+
 ### 2026-10-15 (14) - Draw-level breadcrumbs: viewport + fvf per 3D draw (next discriminator)
 
 The unlit-shader fix is in and the world still draws black on both platforms

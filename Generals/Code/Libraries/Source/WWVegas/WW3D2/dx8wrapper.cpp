@@ -1384,8 +1384,46 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	Matrix4 proj = DX8Wrapper::CachedProjection;
 	Matrix4 viewProj = proj * view;
 	Matrix4 mvp = viewProj * world;
-	mvp = mvp.Transpose();
-	Matrix4 worldForNormals = world.Transpose();
+	// Port fix (matrix capture in the field log): WW matrices are already
+	// laid out so GLSL's column-major read yields the correct transform
+	// (v*M row-vector == M^T*v); the extra Transpose double-transposed it,
+	// putting garbage in the w-row (-5.39x -5.83y -6.09z) so EVERY vertex
+	// failed the clip test -> world rendered black while all draws submitted.
+	// mvp = mvp.Transpose();
+	{
+		static int mvLog = 0;
+		if (fvf != 0x252 && mvLog < 12) {
+			mvLog++;
+			VkTexture *t0 = DX8Wrapper::BoundTextures[0] ? DX8Wrapper::BoundTextures[0]->Peek_Vulkan_Texture() : NULL;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf && mvLog == 1) {
+				fprintf(lf, "VK: PROJ ");
+				for (int r = 0; r < 4; r++)
+					for (int c = 0; c < 4; c++)
+						fprintf(lf, "%.4f ", proj[r][c]);
+				fprintf(lf, "\nVK: VIEW ");
+				for (int r = 0; r < 4; r++)
+					for (int c = 0; c < 4; c++)
+						fprintf(lf, "%.4f ", view[r][c]);
+				fprintf(lf, "\nVK: MVP-FULL ");
+				for (int r = 0; r < 4; r++)
+					for (int c = 0; c < 4; c++)
+						fprintf(lf, "%.4f ", mvp[r][c]);
+				fprintf(lf, "\n");
+			}
+			if (lf) {
+				fprintf(lf, "VK: Draw3D-MVP #%d mvp=[%.3f %.3f %.3f %.3f] tex0=%p img=%p %ux%u white=%p whiteImg=%p whiteView=%p\n",
+					mvLog, mvp[0][0], mvp[1][1], mvp[2][2], mvp[3][3],
+					(void *)t0, t0 ? (void *)t0->GetImage() : NULL,
+					t0 ? t0->GetWidth() : 0, t0 ? t0->GetHeight() : 0,
+					(void *)&VulkanWhiteTexture, (void *)VulkanWhiteTexture.GetImage(),
+					(void *)VulkanWhiteTexture.GetView());
+				fclose(lf);
+			}
+		}
+	}
+	// (same convention fix as mvp above - pass the raw WW matrix)
+	Matrix4 worldForNormals = world;
 	struct PushConsts {
 		float mvp[16];
 		float world[16];
