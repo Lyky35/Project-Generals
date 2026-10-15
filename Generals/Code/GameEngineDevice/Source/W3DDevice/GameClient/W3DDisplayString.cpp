@@ -47,6 +47,7 @@
 
 // SYSTEM INCLUDES ////////////////////////////////////////////////////////////
 #include <stdlib.h>
+#include <cstdio>
 
 // USER INCLUDES //////////////////////////////////////////////////////////////
 #include "GameClient/GameClient.h"
@@ -167,8 +168,39 @@ void W3DDisplayString::draw( Int x, Int y, Color color, Color dropColor, Int xDr
 
 	// sanity
 	if( getTextLength() == 0 )	
+	{
+		static int skipLog = 0;
+		if (skipLog < 6) {
+			skipLog++;
+			FILE *lf = fopen ("RTS_START.LOG", "a");
+			if (lf) { fprintf (lf, "VK: DS draw skipped (empty text) font=%p\n", (void *)m_font); fclose (lf); }
+		}
 		return;  // nothing to draw
-	
+	}
+
+	{
+		static int drawLog = 0;
+		if (drawLog < 16) {
+			drawLog++;
+			char preview[48];
+			const WCHAR *t = getText().str ();
+			int len = t ? (int)wcslen (t) : 0;
+			int i = 0;
+			if (t) {
+				for (; t[i] != 0 && i < 32; i++) {
+					preview[i] = (t[i] >= 32 && t[i] < 127) ? (char)t[i] : '?';
+				}
+			}
+			preview[i] = 0;
+			FILE *lf = fopen ("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf (lf, "VK: DS draw len=%d font=%p changed=%d '%s'\n",
+					len, (void *)m_font, (int)(m_fontChanged || m_textChanged), preview);
+				fclose (lf);
+			}
+		}
+	}
+
 	// if our font or text has changed we need to build a new sentence
 	if( m_fontChanged || m_textChanged )
 	{

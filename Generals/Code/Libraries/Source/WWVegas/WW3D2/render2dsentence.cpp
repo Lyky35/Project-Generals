@@ -35,6 +35,8 @@
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 #include <algorithm>
+#include <cstdio>
+#include <cstring>
 using std::min;
 using std::max;
 #include "render2dsentence.h"
@@ -220,6 +222,18 @@ Render2DSentenceClass::Render (void)
 	//
 	//	Build any textures that are pending
 	//
+	{
+		static int renderLog = 0;
+		if (renderLog < 12) {
+			renderLog++;
+			FILE *lf = fopen ("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf (lf, "VK: sentence Render pending=%d renderers=%d sentence=%d\n",
+					PendingSurfaces.Count (), Renderers.Count (), SentenceData.Count ());
+				fclose (lf);
+			}
+		}
+	}
 	Build_Textures ();
 
 	//
@@ -394,9 +408,48 @@ Render2DSentenceClass::Build_Textures (void)
 		//
 		//	Copy the contents of the texture from the surface
 		//
-		// Vulkan backend - surface copy not yet implemented
+		// Vulkan backend: the D3D CopyRects equivalent is a CPU-side row copy
+		// between the two shadow buffers; unlocking the texture surface flushes
+		// its shadow buffer into the VkTexture (UploadLevel).
+		//
+		if (texture_surface != NULL) {
+			int src_pitch = 0;
+			int dst_pitch = 0;
+			unsigned char *src = (unsigned char *)curr_surface->Lock (&src_pitch);
+			unsigned char *dst = (unsigned char *)texture_surface->Lock (&dst_pitch);
+
+			unsigned rows = desc.Height;
+			if (rows > (unsigned)desc.Width) rows = desc.Width;
+			unsigned row_bytes = desc.Width * 4;
+			if (src_pitch > 0 && row_bytes > (unsigned)src_pitch) row_bytes = src_pitch;
+			if (dst_pitch > 0 && row_bytes > (unsigned)dst_pitch) row_bytes = dst_pitch;
+
+			if (src != NULL && dst != NULL && row_bytes > 0) {
+				unsigned nonzero = 0;
+				unsigned words = row_bytes / 4;
+				for (unsigned row = 0; row < rows; row++) {
+					::memcpy (dst + (size_t)row * dst_pitch, src + (size_t)row * src_pitch, row_bytes);
+					const uint32 *p = (const uint32 *)(dst + (size_t)row * dst_pitch);
+					for (unsigned w = 0; w < words; w++) {
+						if (p[w] != 0) nonzero++;
+					}
+				}
+				texture_surface->Unlock ();
+				static int copyLogCount = 0;
+				if (copyLogCount < 8) {
+					copyLogCount++;
+					FILE *lf = fopen ("RTS_START.LOG", "a");
+					if (lf) {
+						fprintf (lf, "VK: sentence texture copy w=%u h=%u pitch=%d/%d nonzero=%u\n",
+							(unsigned)desc.Width, (unsigned)desc.Height, src_pitch, dst_pitch, nonzero);
+						fclose (lf);
+					}
+				}
+			}
+			if (src != NULL) curr_surface->Unlock ();
+		}
 		REF_PTR_RELEASE (texture_surface);
-	
+
 		//
 		//	Assign this texture to any renderers that need it
 		//
@@ -1178,6 +1231,25 @@ Render2DSentenceClass::Build_Sentence (const WCHAR *text, int *hkX, int *hkY)
 		return ;
 	}
 
+	{
+		static int buildLog = 0;
+		if (buildLog < 24) {
+			buildLog++;
+			char preview[64];
+			int len = (int)wcslen (text);
+			int i = 0;
+			for (; text[i] != 0 && i < 40; i++) {
+				preview[i] = (text[i] >= 32 && text[i] < 127) ? (char)text[i] : '?';
+			}
+			preview[i] = 0;
+			FILE *lf = fopen ("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf (lf, "VK: Build_Sentence len=%d font=%p '%s'\n",
+					len, (void *)Font, preview);
+				fclose (lf);
+			}
+		}
+	}
 
 	if(Centered && (WrapWidth > 0 || wcschr(text,L'\n')))
 		Build_Sentence_Centered(text, hkX, hkY);

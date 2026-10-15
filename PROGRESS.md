@@ -631,6 +631,54 @@ UploadLevel/Create now reject 0x0/NULL uploads.
 
 <!-- Append new entries below. Commit after each completed step. -->
 
+### 2026-10-14 — Invisible menu text: sentence surface -> texture copy was never implemented
+
+Root cause of "fonts don't show on menus" (NOT driver/AMD-specific):
+`Render2DSentenceClass::Build_Textures()` had the original
+`DX8Wrapper::_Copy_DX8_Rects(surface, ..., texture_surface, ...)` replaced at
+import time with `// Vulkan backend - surface copy not yet implemented`.
+Glyphs are blitted by `FontCharsClass::Blit_Char` into the sentence
+`SurfaceClass` shadow buffer, but they were never copied into the
+`TextureClass` that `Render2DClass::Render()` binds (`DX8Wrapper::Set_Texture(0,
+Texture)`), so every GUI string drew from a blank texture on any GPU.
+
+Fix (render2dsentence.cpp, Build_Textures): lock source + destination surface,
+memcpy `Width*4` bytes per row between the two shadow buffers (both are
+A8R8G8B8/32bpp), `Unlock()` the texture surface - `SurfaceClass::Unlock()`
+already does `VkTexture::UploadLevel`, so the glyphs reach the GPU. Logs
+`VK: sentence texture copy w=.. h=.. pitch=../.. nonzero=..` for the first 8
+copies (nonzero = glyph pixels actually in the buffer).
+
+Also: the black menu background is expected, not a render bug - the shell map
+is force-disabled at `GameEngine.cpp:329` (Bink/shell load was hanging the
+boot), so nothing draws behind the menu UI.
+
+**Verified (wine + lavapipe + full game data, run7):** all six main-menu labels
+build and copy - `SOLO PLAY/LOAD/MULTIPLAYER/OPTIONS/CREDITS/EXIT GAME` ->
+`VK: sentence texture copy w=64 h=64 pitch=256/256 nonzero=424/230/566/395/374/451`.
+Glyph data (non-blank) now reaches the sampled texture; before the fix the
+copy branch never executed at all (0 log lines). Capped breadcrumb logs added
+along the way: `VK: Build_Sentence len/font/text` (24), `VK: sentence Render
+pending/renderers/sentence` (12), `VK: DS draw` / `DS draw skipped (empty
+text)` (16/6) - delete when no longer needed.
+
+**New separate crash found during this test (pre-existing, unrelated to fonts):**
+activating the OPTIONS button kills the game -
+`CRASH code=0xc0000005 ip=...GadgetCheckBoxSetChecked fault=0x44`, stack
+`GadgetPushButtonInput -> MainMenuSystem (MainMenu.cpp:1448 getOptionsLayout
+-> runInit) -> OptionsMenuInit -> GadgetCheckBoxSetChecked(NULL)`.
+`OptionsMenu.wnd` IS present in Window.big, so the layout loads, but the
+name-key lookups (`winGetWindowFromId(NULL, "OptionsMenu.wnd:CheckLanguageFilter"`,
+`...:CheckBox3DShadows`, ...) at OptionsMenu.cpp:1307+ return NULL, and
+OptionsMenuInit:1608+ calls SetChecked on them unconditionally -> NULL
+`winGetInstanceData()` deref. Next: log which lookups come back NULL (are ALL
+missing = windows never entered `m_windowList`, or only specific gadget types
+missing) and guard the SetChecked calls.
+
+Status: font fix builds clean (warnings only) and is verified under
+wine+lavapipe; Windows 10/AMD field run still the final check. Options-menu
+crash open (blocks clicking OPTIONS).
+
 
 
 
