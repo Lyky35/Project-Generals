@@ -33,6 +33,8 @@
 
 // SYSTEM INCLUDES ////////////////////////////////////////////////////////////
 #include <stdlib.h>
+#include "statistics.h"
+#include <cstdio>
 
 // USER INCLUDES //////////////////////////////////////////////////////////////
 #include "Lib/BaseType.h"
@@ -903,6 +905,21 @@ void RTS3DScene::updatePlayerColorPasses(void)
 void RTS3DScene::Render(RenderInfoClass & rinfo)
 {
 	//USE_PERF_TIMER(NonTerrainRender)
+	{
+		static int scLog = 0;
+		scLog++;
+		if (scLog <= 8 || (scLog % 120) == 0) {
+			int n = 0;
+			SceneIterator *it = Create_Iterator(false);
+			if (it) {
+				for (; !it->Is_Done(); it->Next()) n++;
+				Destroy_Iterator(it);
+			}
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: scene Render #%d objects=%d polys=%d skinPolys=%d sortPolys=%d\n", scLog, n,
+				Debug_Statistics::Get_DX8_Polygons(), Debug_Statistics::Get_DX8_Skin_Polygons(), Debug_Statistics::Get_Sorting_Polygons()); fclose(lf); }
+		}
+	}
 	DX8Wrapper::Set_Fog(FogEnabled, FogColor, FogStart, FogEnd);
 
 	//Override the behind building selection if it's not available on current hardware (needs stencil).

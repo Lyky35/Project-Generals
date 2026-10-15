@@ -27,6 +27,7 @@
 // Author: Michael S. Booth, March 2001
 
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
+#include <cstdio>
 
 #include "GameClient/Display.h"
 #include "GameClient/Mouse.h"
@@ -113,6 +114,16 @@ void Display::attachView( View *view )
  */
 void Display::drawViews( void )
 {
+	{
+		static int dvLog = 0;
+		int count = 0;
+		for (View *v = m_viewList; v; v = v->getNextView()) count++;
+		if (dvLog < 8 || (dvLog % 120) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: drawViews #%d viewCount=%d\n", dvLog, count); fclose(lf); }
+		}
+		dvLog++;
+	}
 
 	for( View *v = m_viewList; v; v = v->getNextView() )
 		v->drawView();

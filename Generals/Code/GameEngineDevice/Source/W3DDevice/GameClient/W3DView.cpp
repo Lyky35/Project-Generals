@@ -34,6 +34,7 @@
 
 // SYSTEM INCLUDES ////////////////////////////////////////////////////////////////////////////////
 #include <stdlib.h>
+#include <cstdio>
 #include <windows.h>
 
 // USER INCLUDES //////////////////////////////////////////////////////////////////////////////////
@@ -1250,6 +1251,14 @@ void W3DView::drawView( void )
 void W3DView::draw( void )
 {
 	//USE_PERF_TIMER(W3DView_drawView)
+	{
+		static int wvLog = 0;
+		if (wvLog < 12) {
+			wvLog++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: W3DView::draw #%d this=%p scene=%p\n", wvLog, (void *)this, (void *)W3DDisplay::m_3DScene); fclose(lf); }
+		}
+	}
 	Bool skipRender = false;
 	Bool doExtraRender = false;
 	CustomScenePassModes customScenePassMode  = SCENE_PASS_DEFAULT;

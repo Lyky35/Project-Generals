@@ -1138,6 +1138,20 @@ read is stale) -> another x64/heap-corruption thread, needs its own session.
 Defensive fix: updateUpgradeModules stops at a null-page/garbage module
 (capped `VK: updateUpgradeModules stopped on garbage module` log).
 
+### 2026-10-15 (12) - The world renders again: scene submits ~145k polys/frame locally (the user's 16:30 test predated the updateViews fix)
+
+After the updateViews() gate fix (87be5f6) the local shell-map session now
+renders: `VK: scene Render #N objects=194 polys=145647 skinPolys=0 ...` -
+i.e. the terrain + objects are being submitted every frame (the counter is
+recorded at Draw_Triangles, so these are real draws). The user's last field
+run (16:30) was from a build BEFORE that fix, so the black background there
+proves nothing about the current build.
+
+Added for the next field run: `VK: scene Render objects/polys/skin/sort`
+counters in RTS3DScene::Render, `VK: Mesh::Render calls/hidden/drawn`, and
+`VK: drawViews #N viewCount=` - one look at the log will show whether the
+world draws on the AMD box (polys > 0) or where it stops.
+
 Background: pipelines still 16 after the updateViews() gate fix - the view
 updates now but `drawViews()` still submits no 3D draws. Next thread: what
 drawViews needs (view/world attachment for the shell-map session).

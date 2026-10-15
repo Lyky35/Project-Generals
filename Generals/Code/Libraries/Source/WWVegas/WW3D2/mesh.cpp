@@ -657,6 +657,16 @@ int MeshClass::Get_Num_Polys(void) const
  *=============================================================================================*/
 void MeshClass::Render(RenderInfoClass & rinfo)
 {
+	{
+		static unsigned meshHidden = 0, meshDrawn = 0;
+		static int meshLog = 0;
+		if (Is_Not_Hidden_At_All() == false) meshHidden++; else meshDrawn++;
+		meshLog++;
+		if (meshLog <= 6 || (meshLog % 500) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: Mesh::Render calls=%d hidden=%u drawn=%u\n", meshLog, meshHidden, meshDrawn); fclose(lf); }
+		}
+	}
 	if (Is_Not_Hidden_At_All() == false) {
 		return;
 	}
