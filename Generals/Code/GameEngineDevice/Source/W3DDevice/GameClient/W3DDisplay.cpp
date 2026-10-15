@@ -35,6 +35,7 @@ static void drawFramerateBar(void);
 
 // SYSTEM INCLUDES ////////////////////////////////////////////////////////////
 #include <stdlib.h>
+#include "VulkanRenderer/VkDevice.h"
 #include <windows.h>
 #include <io.h>
 #include <time.h>
@@ -1759,7 +1760,11 @@ AGAIN:
 		}
 
 		// update all views of the world - recomputes data which will affect drawing
-		if (DX8Wrapper::_Get_D3D_Device8() && (DX8Wrapper::_Get_D3D_Device8()->TestCooperativeLevel()) == D3D_OK)
+		// Port fix: this was gated on DX8Wrapper::_Get_D3D_Device8() which the
+		// Vulkan backend stubs to NULL - so updateViews() NEVER ran and the
+		// world view was never prepared (menu background stayed black while the
+		// shell-map game session ran fine). Gate on the Vulkan device instead.
+		if (VulkanDevice::Instance().IsInitialized())
 		{	//Checking if we have the device before updating views because the heightmap crashes otherwise while
 			//trying to refresh the visible terrain geometry.
 //			if(TheGlobalData->m_loadScreenRender != TRUE)

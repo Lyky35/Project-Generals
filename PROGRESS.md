@@ -1093,6 +1093,39 @@ Also noted: a PRE-EXISTING shutdown crash in FontCharsClass::~FontCharsClass
 (delete[] of a corrupted pointer) that only surfaces when the process exits
 cleanly; not yet investigated.
 
+### 2026-10-15 (10) - World-view update was dead since the port (the real black background gate) + dynamic-buffer retirement
+
+Round-2 validation trace (formats clean) still showed the invalidation cluster
+(`VkBuffer destroyed` -> command buffer invalidated) plus a new
+`vkDestroyImageView in use`. Fixes:
+
+1. **Dynamic VB/IB grow destroyed the old buffer MID-FRAME** - the command
+   buffer being recorded may already bind it (the shell map's first big mesh is
+   the first draw that exceeds the shared dynamic buffer and triggers a grow).
+   Grow now RETIRES the old buffer into a list; `Flush_Retired_Dynamic_Buffers`
+   (called from VulkanDevice::BeginFrame) destroys retired buffers only after
+   `vkDeviceWaitIdle`. Covers the DX8 + sorting VB and the IB.
+2. **Samplers destroyed while in flight** (vkDestroySampler-in-use): now a
+   process-wide shared sampler cache, never destroyed at runtime.
+3. **mesh.frag's DemoteToHelperInvocation capability** was never enabled ->
+   the shader module was spec-invalid (pCode-08740) = UB at first mesh draw;
+   enabled via VkPhysicalDeviceVulkan13Features.
+4. VulkanDummyVB gets TRANSFER_DST (it is Upload()ed).
+
+**And the black background's real gate:** `W3DDisplay::draw` updated the world
+views only `if (DX8Wrapper::_Get_D3D_Device8() && TestCooperativeLevel()==D3D_OK)`
+- but `_Get_D3D_Device8()` is a Vulkan-port STUB that returns NULL, so
+**updateViews() never ran in the entire port** (the shell-map session ran,
+audio played, but the view/camera/scene were never prepared). Gate replaced
+with `VulkanDevice::Instance().IsInitialized()`.
+
+**Local wine after all of the above:** the shell map now SURVIVES its first
+draw (previously died at frame 11; now runs to the timeout), but pipelines are
+still 16 (menu-only) and the background stays black - so `drawViews()` still
+ submits nothing; next: what the view list needs for the shell-map world
+(primaryW3DView attachment / view->draw path). Also logged: a pre-existing
+shutdown crash in FontCharsClass::~FontCharsClass (only on clean exit).
+
 ### 2026-10-15 (4) — Wine re-test: sentence-texture churn eliminated (896->0 creates); shell-map render crash narrowed (not the loader thread)
 
 Re-tested in wine+lavapipe with the memPassed fix (shell map now runs locally

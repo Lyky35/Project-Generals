@@ -749,6 +749,12 @@ bool VulkanDevice::RecreateSwapchain()
 
 bool VulkanDevice::BeginFrame()
 {
+	// Destroy any dynamic buffers retired by a mid-frame grow (only after the
+	// device is idle - see Retire_DX8_Buffer in dx8vertexbuffer.cpp).
+	{
+		extern void Flush_Retired_Dynamic_Buffers();
+		Flush_Retired_Dynamic_Buffers();
+	}
 	vkWaitForFences(m_device, 1, &m_inFlightFences[m_frameIndex], VK_TRUE, ~0ULL);
 
 	VkResult result = vkAcquireNextImageKHR(m_device, m_swapchain, ~0ULL,

@@ -39,6 +39,7 @@
 //#define INDEX_BUFFER_LOG
 
 #include "dx8indexbuffer.h"
+#include "dx8vertexbuffer.h"
 #include "dx8wrapper.h"
 #include "dx8caps.h"
 #include "sphere.h"
@@ -443,7 +444,10 @@ void DynamicIBAccessClass::Allocate_DX8_Dynamic_Buffer()
 	// If requesting more indices than dynamic index buffer can fit, delete the ib
 	// and adjust the size to the new count.
 	if (IndexCount>_DynamicDX8IndexBufferSize) {
-		REF_PTR_RELEASE(_DynamicDX8IndexBuffer);
+		if (_DynamicDX8IndexBuffer) {
+			Retire_DX8_Buffer(_DynamicDX8IndexBuffer);	// never destroy mid-frame (see dx8vertexbuffer.cpp)
+			_DynamicDX8IndexBuffer = NULL;
+		}
 		_DynamicDX8IndexBufferSize=IndexCount;
 		if (_DynamicDX8IndexBufferSize<DEFAULT_IB_SIZE) _DynamicDX8IndexBufferSize=DEFAULT_IB_SIZE;
 	}

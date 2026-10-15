@@ -135,6 +135,11 @@ protected:
 **
 */
 
+// Dynamic-buffer retirement (see dx8vertexbuffer.cpp): parks buffers that a
+// grow just replaced so they are destroyed only after the device is idle.
+void Retire_DX8_Buffer(RefCountClass *buf);
+void Flush_Retired_Dynamic_Buffers();
+
 class DynamicVBAccessClass
 {
 	friend DX8Wrapper;

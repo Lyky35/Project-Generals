@@ -39,6 +39,7 @@
 //#define VERTEX_BUFFER_LOG
 
 #include "dx8vertexbuffer.h"
+#include "vector.h"
 #include "VulkanRenderer/VkDevice.h"
 #include "dx8wrapper.h"
 #include <string.h>
@@ -770,6 +771,31 @@ void DynamicVBAccessClass::_Deinit()
 	_DynamicSortingVertexArrayOffset=0;
 }
 
+// Port fix (validation VUID-vkCmdBindPipeline-commandBuffer-recording): growing
+// a dynamic buffer used to DESTROY the old one mid-frame - but the command
+// buffer currently being recorded may already bind it, which invalidates the
+// whole command buffer (driver AV at the first big draw - the shell map's
+// first mesh). Retired buffers are parked here and destroyed only after the
+// device goes idle (Flush_Retired_Dynamic_Buffers, called from BeginFrame).
+static DynamicVectorClass<RefCountClass *> _RetiredDynamicBuffers;
+
+void Retire_DX8_Buffer(RefCountClass *buf)
+{
+	if (buf)
+		_RetiredDynamicBuffers.Add(buf);
+}
+
+void Flush_Retired_Dynamic_Buffers()
+{
+	if (_RetiredDynamicBuffers.Count() == 0)
+		return;
+	if (VulkanDevice::Instance().IsInitialized())
+		vkDeviceWaitIdle(VulkanDevice::Instance().GetDevice());
+	for (int i = 0; i < _RetiredDynamicBuffers.Count(); i++)
+		REF_PTR_RELEASE(_RetiredDynamicBuffers[i]);
+	_RetiredDynamicBuffers.Delete_All();
+}
+
 void DynamicVBAccessClass::Allocate_DX8_Dynamic_Buffer()
 {
 	WWASSERT(!_DynamicDX8VertexBufferInUse);
@@ -778,12 +804,10 @@ void DynamicVBAccessClass::Allocate_DX8_Dynamic_Buffer()
 	// If requesting more vertices than dynamic vertex buffer can fit, delete the vb
 	// and adjust the size to the new count.
 	if (VertexCount>_DynamicDX8VertexBufferSize) {
-		// Port fix (validation VUID-vkCmdBindPipeline-commandBuffer-recording):
-		// the shared dynamic VB may still be referenced by in-flight command
-		// buffers - destroying it invalidates them (driver AV).
-		if (VulkanDevice::Instance().IsInitialized())
-			vkDeviceWaitIdle(VulkanDevice::Instance().GetDevice());
-		REF_PTR_RELEASE(_DynamicDX8VertexBuffer);
+		if (_DynamicDX8VertexBuffer) {
+			Retire_DX8_Buffer(_DynamicDX8VertexBuffer);	// list keeps the static's ref alive
+			_DynamicDX8VertexBuffer = NULL;
+		}
 		_DynamicDX8VertexBufferSize=VertexCount;
 		if (_DynamicDX8VertexBufferSize<DEFAULT_VB_SIZE) _DynamicDX8VertexBufferSize=DEFAULT_VB_SIZE;
 	}
@@ -819,7 +843,10 @@ void DynamicVBAccessClass::Allocate_Sorting_Dynamic_Buffer()
 	unsigned new_vertex_count=_DynamicSortingVertexArrayOffset+VertexCount;
 	WWASSERT(new_vertex_count<65536);
 	if (new_vertex_count>_DynamicSortingVertexArraySize) {
-		REF_PTR_RELEASE(_DynamicSortingVertexArray);
+		if (_DynamicSortingVertexArray) {
+			Retire_DX8_Buffer(_DynamicSortingVertexArray);
+			_DynamicSortingVertexArray = NULL;
+		}
 		_DynamicSortingVertexArraySize=new_vertex_count;
 		if (_DynamicSortingVertexArraySize<DEFAULT_VB_SIZE) _DynamicSortingVertexArraySize=DEFAULT_VB_SIZE;
 	}
