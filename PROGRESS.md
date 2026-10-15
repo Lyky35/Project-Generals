@@ -1126,6 +1126,25 @@ still 16 (menu-only) and the background stays black - so `drawViews()` still
 (primaryW3DView attachment / view->draw path). Also logged: a pre-existing
 shutdown crash in FontCharsClass::~FontCharsClass (only on clean exit).
 
+### 2026-10-15 (11) - Mission crash now localised: garbage in Object::m_behaviors (heap corruption); background still not drawing
+
+Field log (16:30): the updateUpgradeModules crash persisted after the NULL
+controlling-player guard. Disassembly of the crash site: `mov (%rsi),%rcx`
+then `mov (%rcx),%rax` with **rcx=4** - the first element of `m_behaviors`
+literally contained the value 4 (the array itself is allocated correctly:
+size = behaviorCount + NUM_SLEEP_HELPERS(5) + 1, helpers fill slots 1..5,
+NULL terminator written; so the slot was CORRUPTED after init, or the object
+read is stale) -> another x64/heap-corruption thread, needs its own session.
+Defensive fix: updateUpgradeModules stops at a null-page/garbage module
+(capped `VK: updateUpgradeModules stopped on garbage module` log).
+
+Background: pipelines still 16 after the updateViews() gate fix - the view
+updates now but `drawViews()` still submits no 3D draws. Next thread: what
+drawViews needs (view/world attachment for the shell-map session).
+
+Also: `UploadLevel ... NULL device (w=128)` appears right before the crash -
+a destroyed texture still referenced; related to the same corruption family.
+
 ### 2026-10-15 (4) — Wine re-test: sentence-texture churn eliminated (896->0 creates); shell-map render crash narrowed (not the loader thread)
 
 Re-tested in wine+lavapipe with the memPassed fix (shell map now runs locally

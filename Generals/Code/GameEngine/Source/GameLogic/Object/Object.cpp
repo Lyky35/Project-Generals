@@ -2166,6 +2166,23 @@ void Object::updateUpgradeModules()
 
 	for (BehaviorModule** module = m_behaviors; *module; ++module)
 	{
+		// Port fix (field crash, fault=0x4): objects created via
+		// ThingFactory::newObject during startNewGame can have GARBAGE in the
+		// behaviors array (observed first slot = 4) - likely heap corruption
+		// elsewhere. Stop at a null-page/garbage module instead of derefing it.
+		if ((uintptr_t)(*module) < 0x10000) {
+			static int behLog = 0;
+			if (behLog < 8) {
+				behLog++;
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) {
+					fprintf(lf, "VK: updateUpgradeModules stopped on garbage module %p (slot %d) obj=%p\n",
+						(void *)*module, (int)(module - m_behaviors), (void *)this);
+					fclose(lf);
+				}
+			}
+			break;
+		}
 		UpgradeModuleInterface* upgrade = (*module)->getUpgrade();
 		if (!upgrade)
 			continue;
