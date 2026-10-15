@@ -277,6 +277,11 @@ uint32_t VkShaderManager::FanToList(const uint16_t *fanIndices, uint32_t fanCoun
 
 static VkCullModeFlags TranslateCull(uint32_t cullMode)
 {
+	// FIELD DIAGNOSTIC: if the world is black while draws submit, winding may
+	// be inverted (user suggestion: culling/reverse-up). Disable culling for
+	// this test build - if the background appears, winding is the answer and
+	// the proper fix is the front-face/Y convention.
+	return VK_CULL_MODE_NONE;
 	switch (cullMode) {
 	case 2:
 		return VK_CULL_MODE_FRONT_BIT;
