@@ -679,6 +679,54 @@ Status: font fix builds clean (warnings only) and is verified under
 wine+lavapipe; Windows 10/AMD field run still the final check. Options-menu
 crash open (blocks clicking OPTIONS).
 
+### 2026-10-14 — OPTIONS click crash: missing windows in shipped data, now guarded
+
+**Field result: fonts confirmed working on Windows 10/AMD** (user run). Moved on
+to the Options-menu crash outlined above.
+
+**Root cause (not a bad m_windowList - two windows genuinely do not exist in the
+shipped `Window.big`):** a new breadcrumb in `winGetWindowFromId` (global
+searches that find nothing, capped 40, logs `id + keyToName + caller address`)
+named them on the first run:
+
+- `OptionsMenu.wnd:CheckAlternateMouse` - looked up at OptionsMenu.cpp:1293 and
+  **unconditionally dereferenced** by `GadgetCheckBoxSetChecked` at
+  OptionsMenu.cpp:1697 (also 782 via setDefaults) = the AV at Options+0x14.
+- `OptionsMenu.wnd:TextEntryFirewallPortOverride` - missing too, but both uses
+  (OptionsMenu.cpp:1097, 1508) were already `if (handle)` guarded.
+
+(`CheckAudioHardware`/`CheckAudioSurround`/`CheckLowTextureDetail` are also
+absent from the data, but those call sites are commented out.)
+
+**Fixes:**
+- `GadgetCheckBoxSetChecked` / `GadgetCheckBoxIsChecked`: skip on NULL
+  window/instance data (capped log `VK: GadgetCheckBoxSetChecked skipped`),
+  `IsChecked` returns FALSE. Covers OptionsMenu 782/1126/1697 and any other
+  menu whose data lacks a control.
+- `winGetWindowFromId`: the MISS breadcrumb above (keep it - it turns every
+  future data/name mismatch into a named log line instead of an AV).
+- `TransitionWindow::init/update`: NULL-check `m_transition` (the
+  `getTransitionForStyle` default returns NULL for an unregistered style ->
+  instant deref) and log when the target window is missing. Found via the same
+  breadcrumb: one transition entry has an **empty WinName** (key of ""),
+  style=6 SCREENFADE - benign (ScreenFade never uses the window), but the
+  unguarded `m_transition->getFrameLength()` in `update()` was one bad style
+  away from the same AV.
+
+**Also-observed misses (all call sites already guarded, left alone):**
+`Diplomacy.wnd:ListboxSolo` (Diplomacy.cpp:172/236).
+
+**Verified (wine + lavapipe + full data):** Options menu opened headlessly via a
+temporary `RTS_TEST_OPTIONS` env hook in `Shell::showShell` (hook removed after
+the test; local repro now needs a real click or re-adding it): OptionsMenuInit
+runs to completion (`VK: ... skipped (NULL window)` instead of the AV), 45+
+frames alive, no CRASH line, fonts still copy (6/6 labels). Final smoke run
+without the hook: 130 frames, no crash, fonts OK.
+
+Status: OPTIONS crash fixed and verified under wine; awaiting Windows 10 click
+test. Next candidates: empty-WinName transition entry (data), and the remaining
+named MISSes as they show up in field logs.
+
 
 
 

@@ -47,6 +47,7 @@
 // SYSTEM INCLUDES ////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
+#include <cstdio>
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
@@ -173,18 +174,36 @@ Bool TransitionWindow::init( void )
 //	DEBUG_ASSERTCRASH( m_win, ("TransitionWindow::init Failed to find window %s", m_winName.str()));
 //	if( !m_win )
 //		return FALSE;
+	if( !m_win )
+	{
+		static int transLog = 0;
+		if( transLog < 6 )
+		{
+			transLog++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf)
+			{
+				fprintf(lf, "VK: TransitionWindow has no window name='%s' style=%d (skipping bind)\n",
+					m_winName.str() ? m_winName.str() : "", (int)m_style);
+				fclose(lf);
+			}
+		}
+	}
 	
 	if(m_transition)
 		delete m_transition;
 
 	m_transition = getTransitionForStyle( m_style );
-	m_transition->init(m_win);
+	if( m_transition )
+		m_transition->init(m_win);
 
 	return TRUE;
 }
 
 void TransitionWindow::update( Int frame )
 {
+	if(!m_transition)
+		return;
 	if(frame < m_currentFrameDelay || frame > (m_currentFrameDelay + m_transition->getFrameLength()))
 		return;
 	

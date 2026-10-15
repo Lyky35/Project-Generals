@@ -329,6 +329,21 @@ void GadgetCheckBoxSetText( GameWindow *g, UnicodeString text )
 //=============================================================================
 void GadgetCheckBoxSetChecked( GameWindow *g, Bool isChecked)
 {
+	// The window name-key lookup can legitimately miss when the shipped .wnd
+	// data has no such control (e.g. OptionsMenu.wnd:CheckAlternateMouse is
+	// absent from retail Window.big) - the original code dereferenced it and
+	// crashed on open. Skip instead of faulting.
+	if( g == NULL || g->winGetInstanceData() == NULL )
+	{
+		static int nullLog = 0;
+		if( nullLog < 8 )
+		{
+			nullLog++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: GadgetCheckBoxSetChecked skipped (NULL window)\n"); fclose(lf); }
+		}
+		return;
+	}
 	WinInstanceData *instData = g->winGetInstanceData();
 	if (isChecked)
 	{
@@ -348,6 +363,8 @@ void GadgetCheckBoxSetChecked( GameWindow *g, Bool isChecked)
 //=============================================================================
 Bool GadgetCheckBoxIsChecked( GameWindow *g )
 {
+	if( g == NULL || g->winGetInstanceData() == NULL )
+		return FALSE;
 	WinInstanceData *instData = g->winGetInstanceData();
 	return (BitTest(instData->m_state, WIN_STATE_SELECTED));
 }

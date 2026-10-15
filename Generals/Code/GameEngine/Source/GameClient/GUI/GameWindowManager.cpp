@@ -658,6 +658,8 @@ GameWindow *GameWindowManager::winGetCapture( void )
 GameWindow *GameWindowManager::winGetWindowFromId( GameWindow *window, Int id )
 {
 
+	Bool globalSearch = (window == NULL);
+
 	if( window == NULL )
 		window = m_windowList;
 
@@ -676,6 +678,32 @@ GameWindow *GameWindowManager::winGetWindowFromId( GameWindow *window, Int id )
 		}  // end else if
 
 	}  // end for
+
+	// Port breadcrumb: a global name-key lookup that found nothing means the
+	// .wnd script never created that window (missing/mismatched NAME in the
+	// shipped data) - callers that deref the result will crash, so name them.
+	if (globalSearch && id != NAMEKEY_INVALID)
+	{
+		static int missLog = 0;
+		if (missLog < 40)
+		{
+			missLog++;
+			const char *name = "";
+			if (TheNameKeyGenerator)
+			{
+				AsciiString keyName = TheNameKeyGenerator->keyToName( id );
+				name = keyName.str ();
+				if (name == NULL)
+					name = "";
+			}
+			FILE *lf = fopen ("RTS_START.LOG", "a");
+			if (lf)
+			{
+				fprintf (lf, "VK: winGetWindowFromId MISS id=%d name='%s' caller=%p\n", id, name, __builtin_return_address (0));
+				fclose (lf);
+			}
+		}
+	}
 
 	return NULL;
 
