@@ -283,6 +283,13 @@ void GameLODManager::init(void)
 
 	m_idealDetailLevel=(StaticGameLODLevel)optionPref.getIdealStaticGameDetail();
 
+	// Port default: HIGH detail for both the static level and the dynamic-LOD
+	// ideal - the stored Options.ini had "StaticGameLOD = Low" which pins
+	// texture reduction (halved textures) and drags the menu background down.
+	// The in-game Options menu can still change it for the session.
+	userSetDetail = STATIC_GAME_LOD_HIGH;
+	m_idealDetailLevel = STATIC_GAME_LOD_HIGH;
+
 	//always get this data in case we need it later.
 	testMinimumRequirements(NULL,&m_cpuType,&m_cpuFreq,&m_numRAM,NULL,NULL,NULL);
 

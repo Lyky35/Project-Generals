@@ -1041,16 +1041,18 @@ static void VulkanBeginTargetPass(VkTexture *target, const float *clearColor, fl
 		if (device.GetRenderPass() == VK_NULL_HANDLE || device.GetFramebuffer() == VK_NULL_HANDLE)
 			return;
 		{
-			static bool loggedRP = false;
-			if (!loggedRP) {
-				char buf[192];
+			// Breadcrumb: first 40 pass begins - brackets where a driver AV
+			// (e.g. the mission-start amdvlk crash) happened relative to passes.
+			static int loggedRP = 0;
+			if (loggedRP < 40) {
+				loggedRP++;
+				char buf[224];
 				snprintf(buf, sizeof(buf),
-					"VK: BeginTargetPass#1 cmd=%p rp=%p fb=%p extent=%ux%u",
-					(void*)cmd, (void*)device.GetRenderPass(), (void*)device.GetFramebuffer(),
+					"VK: BeginTargetPass#%d cmd=%p rp=%p fb=%p extent=%ux%u",
+					loggedRP, (void*)cmd, (void*)device.GetRenderPass(), (void*)device.GetFramebuffer(),
 					(unsigned)device.GetSwapExtent().width, (unsigned)device.GetSwapExtent().height);
 				FILE *lf = fopen("RTS_START.LOG", "a");
 				if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
-				loggedRP = true;
 			}
 		}
 		VkClearValue clearValues[2];

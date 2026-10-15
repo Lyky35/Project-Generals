@@ -327,14 +327,14 @@ void GameEngine::init( int argc, char *argv[] )
 	#endif
 
 		// Port note: skip the intro MOVIES (Bink player still unfinished).
-		// Shell map (= menu background) stays OFF by default for now: RefPack
-		// decode is wired up and ShellMap1.map decompresses/loads, but its
-		// first 3D render then crashes in MeshClass::Render (the head
-		// polygon renderer's Get_Texture_Category() is NULL - see PROGRESS).
-		// RTS_FORCE_SHELLMAP=1 turns it on for testing until that is fixed.
+		// Shell map (= animated menu background) is ON again for field testing
+		// of the background; MeshClass::Render now drops orphaned polygon
+		// renderers instead of crashing on them (see PROGRESS). Opt out with
+		// RTS_NO_SHELLMAP=1; RTS_FORCE_SHELLMAP=1 still overrides the
+		// GameLOD low-memory/slow-CPU disable for local wine tests.
 		TheWritableGlobalData->m_playIntro = FALSE;
 		TheWritableGlobalData->m_afterIntro = TRUE;
-		if (!getenv("RTS_FORCE_SHELLMAP"))
+		if (getenv("RTS_NO_SHELLMAP"))
 			TheWritableGlobalData->m_shellMapOn = FALSE;
 		// Port default: real windowed mode (matches ApplicationIsWindowed).
 		TheWritableGlobalData->m_windowed = TRUE;

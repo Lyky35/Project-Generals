@@ -173,6 +173,20 @@ bool VkTexture::Create(VulkanDevice *device, uint32_t width, uint32_t height, Vk
 	g_liveTexBytes += m_allocBytes;
 	g_liveTexCount++;
 	g_totalTexCreates++;
+	// Sampled caller log for SMALL creates: live bytes stay flat while creates
+	// climb (hundreds/sec) = something churns textures every frame; descriptors
+	// referencing a destroyed image while it is still in flight is the leading
+	// suspect for the driver AVs (amdvlk mission crash / lavapipe shell-map
+	// crash). Sample so the field log names the churn source.
+	if ((uint64_t)width * (uint64_t)height <= 256ull * 256ull && (g_totalTexCreates % 256ull) == 0) {
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) {
+			fprintf(lf, "VK: small tex create %ux%u fmt=%d caller=%p creates=%llu\n",
+				width, height, (int)format, __builtin_return_address(0),
+				(unsigned long long)g_totalTexCreates);
+			fclose(lf);
+		}
+	}
 	{
 		uint64_t mb = g_liveTexBytes / (1024ull * 1024ull);
 		if (mb / 256ull != g_lastLoggedMB / 256ull) {

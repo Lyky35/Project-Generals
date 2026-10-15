@@ -712,6 +712,41 @@ void MeshClass::Render(RenderInfoClass & rinfo)
 			** Look up the FVF container that this mesh is in
 			** TODO: make this a little nicer?
 			*/
+			/*
+			** Port fix: a polygon renderer whose texture category was destroyed
+			** stays in this mesh's list with a NULL category (category teardown
+			** only unlinks itself), which crashed the shell map's first render on
+			** the Get_Texture_Category()->Get_Container() deref. Drop the orphans
+			** so the rest of the mesh renders.
+			*/
+			{
+				DX8PolygonRendererClass *orphans[64];
+				int orphanCount = 0;
+				DX8PolygonRendererListIterator orphanIt(&Model->PolygonRendererList);
+				for (; !orphanIt.Is_Done(); orphanIt.Next()) {
+					DX8PolygonRendererClass *pr = orphanIt.Peek_Obj();
+					if (pr != NULL && pr->Get_Texture_Category() == NULL && orphanCount < 64)
+						orphans[orphanCount++] = pr;
+				}
+				for (int oi = 0; oi < orphanCount; oi++) {
+					Model->PolygonRendererList.Remove(orphans[oi]);
+					delete orphans[oi];
+				}
+				if (orphanCount > 0) {
+					static int orphanLog = 0;
+					if (orphanLog < 8) {
+						orphanLog++;
+						FILE *lf = fopen("RTS_START.LOG", "a");
+						if (lf) {
+							fprintf(lf, "VK: dropped %d orphan polygon renderer(s) from mesh '%s'\n",
+								orphanCount, Model->Get_Name() ? Model->Get_Name() : "?");
+							fclose(lf);
+						}
+					}
+				}
+				if (Model->PolygonRendererList.Is_Empty())
+					return;
+			}
 			DX8FVFCategoryContainer * fvf_container = Model->PolygonRendererList.Peek_Head()->Get_Texture_Category()->Get_Container();
 			if ((rinfo.Current_Override_Flags() & RenderInfoClass::RINFO_OVERRIDE_ADDITIONAL_PASSES_ONLY) == 0) {
 

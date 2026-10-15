@@ -853,6 +853,56 @@ Status: background unblocked at the data layer (RefPack fixed - this also
 unblocks ANY compressed map/replay for later); rendering blocker documented.
 Awaiting: dropdown field log + a pass at the MeshClass texture-category NULL.
 
+### 2026-10-15 (2) — Field log #2: dropdown chain fires, mission crashes in amdvlk; HIGH quality default + shell map back ON for background testing
+
+Field log analysed (`log/log/RTS_START.LOG`, 02:04 run):
+
+**Dropdowns - the machinery works, so what is left is what the user SEE:**
+- Real clicks: `VK: listbox LEFT_UP mousey=386 ... selectPos=2` and
+  `selectPos=0` with `VK: combo GLM_SELECTED ... match=1 pos=2/0` - item
+  hit-testing, selection and the combo handoff all fire; locally synthetic
+  clicks also read back `editText='800 x 600'`.
+- Several other clicks hit no window at all (`grab=0/0`).
+- Added for the next log: `VK: combo label fetched pos/N len text=...`
+  (what actually lands in the edit box) and `VK: Accept reads
+  resolutionIdx=... detailIdx=...` (what ButtonAccept picks up - resolution
+  only applies at Accept via DoResolutionDialog, which is easy to mistake for
+  "didn't register").
+
+**Mission start crash:** `Training01.map` opens and **decompresses** (RefPack
+fix works for missions too, x3 CachedFile opens) -> a 2048x1024 upload ->
+`CRASH 0xc0000005 ip=amdvlk64.dll fault=0x10`, stack: GameLogic::startNewGame
+-> SinglePlayerLoadScreen::update -> WW3D::Begin_Render ->
+VulkanBeginTargetPass -> driver. Note `graphics-hook64.dll` (OBS game
+capture) sits in the stack - worth one run without OBS. Breadcrumbs added:
+`VK: BeginTargetPass#1..40` (brackets the AV against pass begins) and a
+sampled `VK: small tex create WxH fmt caller=...` (every 256th small create)
+to name the texture churn source - live bytes stay flat while creates climb
+(hundreds/sec), and a descriptor referencing a destroyed image still in flight
+(2 frames in flight) is the leading suspect for BOTH driver crashes.
+
+**Per user request - quality + background:**
+- `GameLODManager::init` now forces `STATIC_GAME_LOD_HIGH` for BOTH the static
+  level and the dynamic-LOD ideal (their Options.ini pinned
+  `StaticGameLOD = Low`, i.e. texture reduction = halved textures). In-game
+  Options can still change it for the session.
+- Shell map (= animated menu background) is **ON by default** again
+  (`RTS_NO_SHELLMAP=1` opts out; `RTS_FORCE_SHELLMAP=1` still bypasses the
+  GameLOD low-mem/slow-CPU disable, which is what fires under wine).
+- `MeshClass::Render`: the crash the field log showed (head polygon renderer
+  with a destroyed/NULL `Texture_Category` -> deref of Get_Container()) no
+  longer kills the process - orphaned polygon renderers are unlinked and
+  deleted (capped `VK: dropped N orphan polygon renderer(s) from mesh ...`),
+  and the mesh renders whatever still has a category.
+
+**Local status:** default run stable (1200 frames, 30fps, no crash; wine's
+GameLOD still disables the shell map locally unless forced). Forced-on shell
+map run: map loads (15.6s, 32779 uploads) then dies in a lavapipe WORKER
+THREAD (unix SIGSEGV, our SEH filter silent; orphan guard did NOT fire ->
+not the field crash cause) at the first shell-map frame - same "first heavy
+render after mass texture uploads" signature as the field amdvlk AV. Next
+field log (with the new breadcrumbs) should name the churn source / pass.
+
 
 
 

@@ -1016,6 +1016,21 @@ static void saveOptions( void )
 	// Resolution
 	GadgetComboBoxGetSelectedPos( comboBoxResolution, &index );
 	Int xres, yres, bitDepth;
+	{
+		static int acceptLog = 0;
+		if (acceptLog < 4) {
+			acceptLog++;
+			Int detailIdx = -99;
+			if (comboBoxDetail)
+				GadgetComboBoxGetSelectedPos( comboBoxDetail, &detailIdx );
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: Accept reads resolutionIdx=%d (modes=%d) detailIdx=%d\n",
+					index, TheDisplay ? TheDisplay->getDisplayModeCount() : -1, detailIdx);
+				fclose(lf);
+			}
+		}
+	}
 	
 	oldDispSettings.xRes = TheDisplay->getWidth();
 	oldDispSettings.yRes = TheDisplay->getHeight();
