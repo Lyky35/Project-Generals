@@ -1053,6 +1053,21 @@ the AMD side is what the validation log proved and what this fixes.
 Status: field candidate - needs one Win10 run (menu background + mission start)
 to confirm the AVs and the black elements are gone.
 
+### 2026-10-15 (8) — The format fix missed the main path: SECOND translate table in dx8wrapper patched
+
+Field run after (7) STILL showed `vkCreateImage(VK_FORMAT_R8G8B8_UNORM) ->
+FORMAT_NOT_SUPPORTED` in the new validation trace: (7) only patched
+`VkTexture::TranslateFormat` (used by SurfaceClass), but the texture pipeline
+goes through `DX8Wrapper::_Create_Vulkan_Texture` -> **`VulkanTranslateWW3DFormat`
+(dx8wrapper.cpp) - a second, separate translation table** that still emitted
+R8G8B8/PACK16. Same promotion applied there now (R8G8B8/R5G6B5/X1R5G5B5/
+A1R5G5B5/A4R4G4B4/X4R4G4B4 -> BGRA8). Local sanity: stable 314 frames,
+0 create failures.
+
+Also from that field run: shell-map load is slow (14.7s frame + 4s frame)
+which should improve now that textures stop failing and retrying; crash still
+"intermittent same-IP" - consistent with partially-broken texture set.
+
 ### 2026-10-15 (4) — Wine re-test: sentence-texture churn eliminated (896->0 creates); shell-map render crash narrowed (not the loader thread)
 
 Re-tested in wine+lavapipe with the memPassed fix (shell map now runs locally

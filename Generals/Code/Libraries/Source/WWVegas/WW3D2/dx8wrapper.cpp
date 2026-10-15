@@ -179,19 +179,20 @@ inline DWORD F2DW(float f) { return *((unsigned*)&f); }
 static VkFormat VulkanTranslateWW3DFormat(WW3DFormat format)
 {
 	switch (format) {
+	// Port fix (validation log, RX 7900 XTX): R8G8B8 and the PACK16 formats are
+	// NOT supported with OPTIMAL tiling on modern AMD (vkCreateImage ->
+	// FORMAT_NOT_SUPPORTED). All CPU-side sources are 32-bit A8R8G8B8 shadows,
+	// so promote to BGRA8 (same as VkTexture::TranslateFormat).
 	case WW3D_FORMAT_R8G8B8:
-		return VK_FORMAT_R8G8B8_UNORM;
+	case WW3D_FORMAT_R5G6B5:
+	case WW3D_FORMAT_X1R5G5B5:
+	case WW3D_FORMAT_A1R5G5B5:
+	case WW3D_FORMAT_A4R4G4B4:
+	case WW3D_FORMAT_X4R4G4B4:
+		return VK_FORMAT_B8G8R8A8_UNORM;
 	case WW3D_FORMAT_A8R8G8B8:
 	case WW3D_FORMAT_X8R8G8B8:
 		return VK_FORMAT_B8G8R8A8_UNORM;
-	case WW3D_FORMAT_R5G6B5:
-		return VK_FORMAT_R5G6B5_UNORM_PACK16;
-	case WW3D_FORMAT_X1R5G5B5:
-	case WW3D_FORMAT_A1R5G5B5:
-		return VK_FORMAT_A1R5G5B5_UNORM_PACK16;
-	case WW3D_FORMAT_A4R4G4B4:
-	case WW3D_FORMAT_X4R4G4B4:
-		return VK_FORMAT_A4R4G4B4_UNORM_PACK16;
 	case WW3D_FORMAT_R3G3B2:
 	case WW3D_FORMAT_A8R3G3B2:
 		return VK_FORMAT_B8G8R8A8_UNORM;
