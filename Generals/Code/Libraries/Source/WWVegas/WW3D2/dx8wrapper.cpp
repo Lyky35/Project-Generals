@@ -1353,6 +1353,19 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	viewport.height = -(float)vp.Height;
 	viewport.minDepth = vp.MinZ;
 	viewport.maxDepth = vp.MaxZ;
+	{
+		static int drawLog = 0;
+		drawLog++;
+		if (drawLog <= 60 || (drawLog % 2000) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: Draw3D #%d fvf=0x%x vp=%dx%d@%d,%d idx=%u\n",
+					drawLog, (unsigned)fvf, (int)viewport.width, (int)(-viewport.height),
+					(int)viewport.x, (int)viewport.y, (unsigned)indexCount);
+				fclose(lf);
+			}
+		}
+	}
 	vkCmdSetViewport(cmd, 0, 1, &viewport);
 	VkRect2D scissor = {};
 	scissor.offset.x = (int32_t)vp.X;

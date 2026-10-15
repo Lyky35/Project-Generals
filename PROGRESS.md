@@ -1167,6 +1167,24 @@ LIGHTING==1. Added `VK: FillUBO #N ambient/light0/material` breadcrumb (first
 Local run after the fix: scene keeps drawing (polys ~1M cumulative counter),
 ambient defaults to white (0x12345678 sentinel -> 0x00ffffff), light0 off.
 
+### 2026-10-15 (14) - Draw-level breadcrumbs: viewport + fvf per 3D draw (next discriminator)
+
+The unlit-shader fix is in and the world still draws black on both platforms
+although the dummy vertex fallback supplies white diffuse for FVF-without-
+diffuse formats (terrain 0x112). Note: locally (800x600) terrain draws use
+vp=800x600 (full screen) - but that may be the MENU's leftover full-screen
+viewport rather than the tactical view's: `View::init` leaves the view at
+DEFAULT_VIEW 640x400 and NOTHING at startup resizes it to the real display
+(only Display::setDisplayMode on a runtime resolution change, and the
+ControlBar in-game). The3D camera viewport is normalised against
+TheDisplay->getWidth() (W3DView.cpp:199-217), so a 640x400 view on a 1920x1080
+window renders the world into a corner -> mostly black screen.
+
+Added `VK: Draw3D #N fvf= vp=..@x,y idx=` (first60 + every2000th) so the next
+field log shows the actual terrain viewport at 1080p. If vp != 1920x1080 ->
+fix = size TheTacticalView to the display at startup (View::init /
+GameClient init).
+
 Background: pipelines still 16 after the updateViews() gate fix - the view
 updates now but `drawViews()` still submits no 3D draws. Next thread: what
 drawViews needs (view/world attachment for the shell-map session).
