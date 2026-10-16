@@ -1386,14 +1386,15 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	Matrix4 world = DX8Wrapper::render_state.world;
 	Matrix4 view = DX8Wrapper::render_state.view;
 	Matrix4 proj = DX8Wrapper::CachedProjection;
-	Matrix4 viewProj = proj * view;
-	Matrix4 mvp = viewProj * world;
-	// Port fix (matrix capture in the field log): WW matrices are already
-	// laid out so GLSL's column-major read yields the correct transform
-	// (v*M row-vector == M^T*v); the extra Transpose double-transposed it,
-	// putting garbage in the w-row (-5.39x -5.83y -6.09z) so EVERY vertex
-	// failed the clip test -> world rendered black while all draws submitted.
-	// mvp = mvp.Transpose();
+	// Port fix (transform order): WW matrices are row-vector (v*M, translation
+	// in the last row) and GLSL reads the memory as M^T, so gl_Position =
+	// M^T*v == v*M - the raw upload is correct. But the CHAIN must follow
+	// row-vector order: v * world * view * proj. The old proj*view*world
+	// applied the projection FIRST to world-space coordinates (garbage clip:
+	// diag showed m22=-320 -> ndc_z=320 -> depth-rejected everywhere, and
+	// negative m00/m11 flipped winding). Menus (identity world/view) were
+	// unaffected because proj*view*world == world*view*proj for them.
+	Matrix4 mvp = world * view * proj;
 	{
 		static int mvLog = 0;
 		if (fvf != 0x252 && mvLog < 12) {

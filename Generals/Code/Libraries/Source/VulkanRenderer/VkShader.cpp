@@ -287,6 +287,10 @@ uint32_t VkShaderManager::FanToList(const uint16_t *fanIndices, uint32_t fanCoun
 
 static VkCullModeFlags TranslateCull(uint32_t cullMode)
 {
+	// BISECT: MVP x-scale is negative (-1.575) => screen winding is flipped =>
+	// VK_CULL_MODE_BACK likely discards the whole world while the menu (its own
+	// winding) stays visible. Disable cull to confirm; depth stays state-driven.
+	return VK_CULL_MODE_NONE;
 	switch (cullMode) {
 	case 2:
 		return VK_CULL_MODE_FRONT_BIT;
