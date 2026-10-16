@@ -1217,6 +1217,24 @@ size follows the same constant.
 **Still pending the magenta-probe field test** (pushed f850827): distinguishes
 vertex/texture DATA from framebuffer targeting as the black-screen cause.
 
+### 2026-10-15 (17) - PACKAGING BUG: shader fixes never shipped - the zips carried the original Oct-13 SPIR-V
+
+The magenta probe (and every earlier shader fix - material diffuse gating)
+"did nothing" in the field because **the release zips still contained
+`shaders/mesh.frag.spv` compiled on 2026-10-13** - my release commits only
+updated RTS.exe/PROGRESS, never the shader SPIR-V next to it (Create_Device
+loads `shaders/mesh.*.spv` from beside the exe). Verified: zip spv md5 != build
+spv md5 before the fix. Both zips now carry the rebuilt SPIR-V (mesh.frag.spv
+4172B, matches the build).
+
+Lesson recorded: **any change under Shaders/ must be re-zipped** - future
+release commits must refresh shaders/ too (the shader compiler only runs in
+the local build).
+
+Next: the user's build now actually runs the magenta+depth-off+cull-off
+probe - their answer (magenta everywhere vs world still black) decides
+data-path vs geometry-path.
+
 ### 2026-10-15 (14) - Draw-level breadcrumbs: viewport + fvf per 3D draw (next discriminator)
 
 The unlit-shader fix is in and the world still draws black on both platforms
