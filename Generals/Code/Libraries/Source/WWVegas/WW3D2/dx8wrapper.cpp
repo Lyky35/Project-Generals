@@ -1496,6 +1496,18 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	VkFrameUniforms ubo;
 	DX8Wrapper::VulkanFillFrameUniforms(&ubo);
 	ubo.drawFlags = tex0Missing ? 1u : 0u;
+	{
+		// D3D semantics the port missed: diffuse comes from the MATERIAL when
+		// COLORVERTEX is off or DIFFUSEMATERIALSOURCE==D3DMCS_MATERIAL - the
+		// shell-map terrain has BLACK vertex RGB (alpha=255, probe-verified)
+		// and is lit via the material in the original engine.
+		unsigned colorVertex = DX8Wrapper::RenderStates[D3DRS_COLORVERTEX];
+		unsigned diffuseSrc = DX8Wrapper::RenderStates[D3DRS_DIFFUSEMATERIALSOURCE];
+		if (colorVertex == 0x12345678) colorVertex = 1;		// default TRUE
+		if (diffuseSrc == 0x12345678) diffuseSrc = 1;			// default D3DMCS_COLOR1
+		if (colorVertex == 0 || diffuseSrc == 0 /*D3DMCS_MATERIAL*/)
+			ubo.drawFlags |= 2u;
+	}
 	uint32_t uboOffset = DX8Wrapper::VulkanAllocUbo(&ubo);
 	VkDescriptorSet uboSet = VK_NULL_HANDLE;
 	if (uboOffset != UINT32_MAX) {
@@ -2191,6 +2203,18 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 				Vector3 md(1,1,1);
 				if (DX8Wrapper::render_state.material)
 					((VertexMaterialClass *)DX8Wrapper::render_state.material)->Get_Diffuse(&md);
+				{
+					static unsigned stateLog = 0;
+					bool interestingNow = (md.X != 1.0f || md.Y != 1.0f || md.Z != 1.0f) || (uboLog % 2000) == 0;
+					if (interestingNow && stateLog < 16) {
+						stateLog++;
+						fprintf(lf, "VK: MatSrc #%u colorVertex=%d diffuseMatSrc=%d specularMatSrc=%d\n",
+							uboLog,
+							(int)DX8Wrapper::RenderStates[D3DRS_COLORVERTEX],
+							(int)DX8Wrapper::RenderStates[D3DRS_DIFFUSEMATERIALSOURCE],
+							(int)DX8Wrapper::RenderStates[D3DRS_SPECULARMATERIALSOURCE]);
+					}
+				}
 				bool interesting = (md.X != 1.0f || md.Y != 1.0f || md.Z != 1.0f) || (uboLog % 500) == 0;
 				static unsigned matLog = 0;
 				if (interesting && matLog < 20) {

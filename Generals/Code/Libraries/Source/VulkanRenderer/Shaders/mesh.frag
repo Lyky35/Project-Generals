@@ -51,18 +51,18 @@ vec3 applyTexOp(vec3 current, float currentAlpha, vec4 texel, int op, out float 
 
 void main()
 {
-	// PROBE: screen RED INTENSITY = inDiffuse alpha (output alpha forced to 1 so
-	// SRCALPHA blending passes the value through unchanged). Black screen =
-	// vertex alpha is 0 (with 5/6 blend => dst = black clear); bright red = 1.
-	outColor = vec4(inDiffuse.a, 0.0, 0.0, 1.0);
-	return;
 
 	// Port fix: D3D8 only folds the material diffuse into the color for LIT
 	// passes; unlit/prelit meshes (terrain etc. - material diffuse often 0)
 	// use the vertex color alone. Multiplying unconditionally made the whole
 	// shell map render black.
-	vec3 color = inDiffuse.rgb;
-	float alpha = inDiffuse.a;
+	// Port fix 2: COLORVERTEX off / DIFFUSEMATERIALSOURCE=MATERIAL => the
+	// diffuse comes from the MATERIAL, not the (black) vertex attribute.
+	vec4 base = inDiffuse;
+	if ((frame.drawFlags & 2u) != 0u)
+		base = frame.materialDiffuse;
+	vec3 color = base.rgb;
+	float alpha = base.a;
 	if (LIGHTING == 1) {
 		color *= frame.materialDiffuse.rgb;
 		alpha *= frame.materialDiffuse.a;
