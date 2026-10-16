@@ -21,6 +21,7 @@ layout(set = 1, binding = 0) uniform FrameData {
 	vec4 tfactorColor;
 	vec4 lightDirs[4];
 	vec4 lightColors[4];
+	uint drawFlags;
 } frame;
 
 layout(constant_id = 0) const int TEX0_OP = 1;
@@ -50,6 +51,13 @@ vec3 applyTexOp(vec3 current, float currentAlpha, vec4 texel, int op, out float 
 
 void main()
 {
+	// PROBE: draws whose tex0 was the WHITE-FALLBACK substitution output pure
+	// magenta WITHOUT sampling. magenta world = fragments land (then the real
+	// shader's black = the sample itself); black world = fragments do NOT land.
+	if (frame.drawFlags != 0u) {
+		outColor = vec4(1.0, 0.0, 1.0, 1.0);
+		return;
+	}
 
 	// Port fix: D3D8 only folds the material diffuse into the color for LIT
 	// passes; unlit/prelit meshes (terrain etc. - material diffuse often 0)

@@ -132,6 +132,19 @@ VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout 
 		writes[i].pImageInfo = &imageInfos[i];
 	}
 	vkUpdateDescriptorSets(m_device->GetDevice(), 2, writes, 0, nullptr);
+	{
+		static unsigned dsLog = 0;
+		if (dsLog < 16) {
+			dsLog++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: TexSet #%u sam0=%p view0=%p sam1=%p view1=%p\n",
+					dsLog, (void *)imageInfos[0].sampler, (void *)imageInfos[0].imageView,
+					(void *)imageInfos[1].sampler, (void *)imageInfos[1].imageView);
+				fclose(lf);
+			}
+		}
+	}
 	return set;
 }
 

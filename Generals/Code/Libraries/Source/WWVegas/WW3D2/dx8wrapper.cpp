@@ -1470,6 +1470,7 @@ bool DX8Wrapper::VulkanDrawIndexed(
 		VK_SHADER_STAGE_VERTEX_BIT, 0, sizeof(push), &push);
 
 	VkTexture *tex0 = DX8Wrapper::BoundTextures[0] ? DX8Wrapper::BoundTextures[0]->Peek_Vulkan_Texture() : NULL;
+	const bool tex0Missing = (tex0 == NULL);
 	VkTexture *tex1 = DX8Wrapper::BoundTextures[1] ? DX8Wrapper::BoundTextures[1]->Peek_Vulkan_Texture() : NULL;
 	// AllocateTextureSet requires BOTH stages; single-stage draws (most GUI
 	// widgets) used to be silently skipped -> invisible menu over black bg.
@@ -1493,6 +1494,7 @@ bool DX8Wrapper::VulkanDrawIndexed(
 
 	VkFrameUniforms ubo;
 	DX8Wrapper::VulkanFillFrameUniforms(&ubo);
+	ubo.drawFlags = tex0Missing ? 1u : 0u;
 	uint32_t uboOffset = DX8Wrapper::VulkanAllocUbo(&ubo);
 	VkDescriptorSet uboSet = VK_NULL_HANDLE;
 	if (uboOffset != UINT32_MAX) {

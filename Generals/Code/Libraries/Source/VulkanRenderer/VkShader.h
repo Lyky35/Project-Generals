@@ -63,6 +63,10 @@ struct VkFrameUniforms {
     float tfactorColor[4];
     float lightDirs[4][4];
     float lightColors[4][4];
+    // std140 offset 224 - matches GLSL FrameData.drawFlags right after
+    // lightColors; flags drawn per-frame by VulkanDrawIndexed.
+    uint32_t drawFlags;
+    uint32_t _pad0;
     float worldViewProj[16];
     float world[16];
 };
