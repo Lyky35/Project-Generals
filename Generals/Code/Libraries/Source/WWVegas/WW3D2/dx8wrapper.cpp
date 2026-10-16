@@ -245,6 +245,7 @@ unsigned long long VulkanFrameIndices = 0;
 // inDiffuse/white-fallback are proven white => real textures sample black).
 unsigned long long TerrainDrawsNullTex = 0;
 unsigned long long TerrainDrawsValidTex = 0;
+uint32_t VulkanLastDrawFlags = 0;
 static bool VulkanSharedResourcesReady = false;
 
 struct VulkanRtEntry {
@@ -1447,14 +1448,37 @@ bool DX8Wrapper::VulkanDrawIndexed(
 				fprintf(lf, "\n");
 			}
 			if (lf) {
-				fprintf(lf, "VK: TERRAIN-DRAW #%d mvp=[%.3f %.3f %.3f %.3f] tex0=%p %ux%u idx=%u blend=%d/%d/%d z=%d/%d nullTex=%llu validTex=%llu\n",
-					mvLog, mvp[0][0], mvp[1][1], mvp[2][2], mvp[3][3],
-					(void *)t0, t0 ? t0->GetWidth() : 0, t0 ? t0->GetHeight() : 0,
+				fprintf(lf, "VK: TERRAIN-DRAW #%d tex0=%p %ux%u idx=%u blend=%d/%d/%d z=%d/%d colVert=%d diffSrc=%d flags=%u nullTex=%llu validTex=%llu\n",
+					mvLog, (void *)t0, t0 ? t0->GetWidth() : 0, t0 ? t0->GetHeight() : 0,
 					(unsigned)indexCount,
 					(int)state.blendEnable, (int)state.srcBlend, (int)state.dstBlend,
 					(int)state.depthTest, (int)state.depthWrite,
+					(int)DX8Wrapper::RenderStates[D3DRS_COLORVERTEX],
+					(int)DX8Wrapper::RenderStates[D3DRS_DIFFUSEMATERIALSOURCE],
+					(unsigned)VulkanLastDrawFlags,
 					(unsigned long long)TerrainDrawsNullTex,
 					(unsigned long long)TerrainDrawsValidTex);
+				{
+					// Raw first two vertices as the draw would consume them.
+					DX8VertexBufferClass *dxvb = static_cast<DX8VertexBufferClass*>(DX8Wrapper::render_state.vertex_buffer);
+					unsigned fvfSize = state.vertexSize;
+					unsigned char *raw = NULL;
+					unsigned vcount = 0;
+					if (dxvb) {
+						vcount = dxvb->Get_Vertex_Count();
+						if (dxvb->Get_Shadow_Buffer()) raw = dxvb->Get_Shadow_Buffer();
+					}
+					if (raw && fvfSize > 0 && fvfSize <= 64) {
+						fprintf(lf, "VK: TERRAIN-VERT vb=%p vcount=%u fvfSize=%u bytes[0..%u]=",
+							(void *)raw, vcount, fvfSize, fvfSize * 2);
+						for (unsigned i = 0; i < fvfSize * 2 && i < 64; i++)
+							fprintf(lf, "%02x", raw[i]);
+						fprintf(lf, "\n");
+					} else {
+						fprintf(lf, "VK: TERRAIN-VERT no-shadow vb=%p vcount=%u fvfSize=%u\n",
+							(void *)raw, vcount, fvfSize);
+					}
+				}
 				fclose(lf);
 			}
 		}
@@ -1496,6 +1520,7 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	VkFrameUniforms ubo;
 	DX8Wrapper::VulkanFillFrameUniforms(&ubo);
 	ubo.drawFlags = tex0Missing ? 1u : 0u;
+	VulkanLastDrawFlags = ubo.drawFlags;
 	{
 		// D3D semantics the port missed: diffuse comes from the MATERIAL when
 		// COLORVERTEX is off or DIFFUSEMATERIALSOURCE==D3DMCS_MATERIAL - the

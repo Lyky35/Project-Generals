@@ -246,6 +246,9 @@ public:
 protected:
 	VkGpuBuffer*		VertexBuffer;
 	unsigned char*	ShadowBuffer;
+public:
+	unsigned char *Get_Shadow_Buffer() { return ShadowBuffer; }
+protected:
 	UsageType			BufferUsage;
 	unsigned			LockStart;
 	unsigned			LockSize;
