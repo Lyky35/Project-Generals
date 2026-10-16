@@ -444,12 +444,13 @@ VkPipeline VkShaderManager::GetPipeline(const VkPipelineState &state)
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf)
 			{
-				fprintf(lf, "VK: pipeline build #%u fvf=0x%x topo=%u tex0=%d tex1=%d blend=%d cull=%u z=%d/%d zfunc=%d fog=%d light=%d alphaTest=%d sten=%d/sfunc=%d cached=%u ok=%d\n",
+				fprintf(lf, "VK: pipeline build #%u fvf=0x%x topo=%u tex0=%d tex1=%d blend=%d cull=%u z=%d/%d zfunc=%d fog=%d light=%d alphaTest=%d sten=%d/sfunc=%d blend=%d/%d cached=%u ok=%d\n",
 					buildCount, (unsigned)state.vertexFVF, (unsigned)state.topology,
 					(int)state.tex0Op, (int)state.tex1Op, (int)state.blendEnable,
 					(unsigned)state.cullMode, (int)state.depthTest, (int)state.depthWrite,
 					(int)state.depthCompare, (int)state.fog, (int)state.lighting, (int)state.alphaTest,
 					(int)state.stencilEnable, (int)state.stencilCompare,
+					(int)state.srcBlend, (int)state.dstBlend,
 					(unsigned)m_pipelines.size(), pipeline != VK_NULL_HANDLE);
 				fclose(lf);
 			}
