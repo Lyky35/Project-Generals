@@ -51,6 +51,11 @@ vec3 applyTexOp(vec3 current, float currentAlpha, vec4 texel, int op, out float 
 void main()
 {
 
+	// PROBE: inDiffuse=white (v3) + light=0 terrain (no material) + fog=0 =>
+	// real shader result = white * texel => black on AMD means the TEXEL is
+	// black (white-fallback or real texture sampling). Show the raw texel.
+	outColor = vec4(texture(texStage0, inUV0).rgb, 1.0);
+	return;
 	// Port fix: D3D8 only folds the material diffuse into the color for LIT
 	// passes; unlit/prelit meshes (terrain etc. - material diffuse often 0)
 	// use the vertex color alone. Multiplying unconditionally made the whole

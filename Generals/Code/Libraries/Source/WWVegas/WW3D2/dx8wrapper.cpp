@@ -2186,11 +2186,16 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 				Vector3 md(1,1,1);
 				if (DX8Wrapper::render_state.material)
 					((VertexMaterialClass *)DX8Wrapper::render_state.material)->Get_Diffuse(&md);
-				fprintf(lf, "VK: FillUBO #%d ambient=0x%08x fogEnable=%d fogStart=0x%08x fogEnd=0x%08x fogColor=0x%08x matDiffuse=(%.2f,%.2f,%.2f)\n",
-					uboLog, (unsigned)amb, (int)DX8Wrapper::RenderStates[D3DRS_FOGENABLE],
-					(unsigned)DX8Wrapper::RenderStates[D3DRS_FOGSTART], (unsigned)DX8Wrapper::RenderStates[D3DRS_FOGEND],
-					(unsigned)DX8Wrapper::RenderStates[D3DRS_FOGCOLOR],
-					(float)md.X, (float)md.Y, (float)md.Z);
+				bool interesting = (md.X != 1.0f || md.Y != 1.0f || md.Z != 1.0f) || (uboLog % 500) == 0;
+				static unsigned matLog = 0;
+				if (interesting && matLog < 20) {
+					matLog++;
+					fprintf(lf, "VK: FillUBO #%d light0=%d fogEn=%d matDiffuse=(%.3f,%.3f,%.3f)%s\n",
+						uboLog, (int)DX8Wrapper::render_state.LightEnable[0],
+						(int)DX8Wrapper::RenderStates[D3DRS_FOGENABLE],
+						(float)md.X, (float)md.Y, (float)md.Z,
+						(md.X != 1.0f || md.Y != 1.0f || md.Z != 1.0f) ? " NONWHITE" : "");
+				}
 				fclose(lf);
 			}
 		}
