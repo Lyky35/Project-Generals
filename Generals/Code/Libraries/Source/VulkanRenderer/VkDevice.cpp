@@ -820,6 +820,105 @@ void VulkanDevice::EndFrame(bool present)
 		static bool ph = true;
 		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=EndFrame begin\n"); fclose(lf); } }
 	}
+	// COLOR/DEPTH READBACK PROBE: sample the screen-center pixel + depth every
+	// 60th frame (and the first two) so the log states what is actually on
+	// screen (black vs white vs world colors) and whether depth writes landed -
+	// settles "engine black everywhere" vs "lavapipe-only renders" without eyes.
+	bool wantReadback = false;
+	{
+		static unsigned s_rbCount = 0;
+		s_rbCount++;
+		wantReadback = (s_rbCount <= 2) || ((s_rbCount % 60) == 0);
+	}
+	if (wantReadback) {
+		if (m_readbackBuf == VK_NULL_HANDLE) {
+			VkBufferCreateInfo bi = {};
+			bi.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
+			bi.size = 32768;
+			bi.usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT;
+			bi.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+			if (vkCreateBuffer(m_device, &bi, nullptr, &m_readbackBuf) == VK_SUCCESS) {
+				VkMemoryRequirements mr;
+				vkGetBufferMemoryRequirements(m_device, m_readbackBuf, &mr);
+				VkMemoryAllocateInfo ai = {};
+				ai.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+				ai.allocationSize = mr.size;
+				ai.memoryTypeIndex = FindMemoryType(mr.memoryTypeBits,
+					VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
+				if (ai.memoryTypeIndex != UINT32_MAX &&
+					vkAllocateMemory(m_device, &ai, nullptr, &m_readbackMem) == VK_SUCCESS)
+					vkBindBufferMemory(m_device, m_readbackBuf, m_readbackMem, 0);
+				else {
+					vkDestroyBuffer(m_device, m_readbackBuf, nullptr);
+					m_readbackBuf = VK_NULL_HANDLE;
+				}
+			}
+		}
+		if (m_readbackBuf != VK_NULL_HANDLE) {
+			VkCommandBuffer cmd = m_commandBuffers[m_frameIndex];
+			VkExtent2D ex = m_swapExtent;
+			uint32_t cx = (ex.width > 64) ? (ex.width / 2 - 32) : 0;
+			uint32_t cy = (ex.height > 64) ? (ex.height / 2 - 32) : 0;
+			uint32_t rw = (ex.width > 64) ? 64 : ex.width;
+			uint32_t rh = (ex.height > 64) ? 64 : ex.height;
+
+			VkPipelineStageFlags rbSrcStage = VK_PIPELINE_STAGE_ALL_COMMANDS_BIT;
+			VkPipelineStageFlags rbDstXfer = VK_PIPELINE_STAGE_TRANSFER_BIT;
+			VkImageMemoryBarrier toTransfer = {};
+			toTransfer.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+			toTransfer.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+			toTransfer.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+			toTransfer.dstAccessMask = VK_ACCESS_TRANSFER_READ_BIT;
+
+			toTransfer.image = m_swapImages[m_imageIndex];
+			toTransfer.oldLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+			toTransfer.newLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+			toTransfer.subresourceRange = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 };
+			vkCmdPipelineBarrier(cmd, rbSrcStage, rbDstXfer, 0,
+				0, nullptr, 0, nullptr, 1, &toTransfer);
+
+			toTransfer.image = m_depthImage;
+			toTransfer.oldLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
+			toTransfer.subresourceRange = { VK_IMAGE_ASPECT_DEPTH_BIT, 0, 1, 0, 1 };
+			vkCmdPipelineBarrier(cmd, rbSrcStage, rbDstXfer, 0,
+				0, nullptr, 0, nullptr, 1, &toTransfer);
+
+			VkBufferImageCopy regions[2] = {};
+			regions[0].bufferOffset = 0;
+			regions[0].imageSubresource = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1 };
+			regions[0].imageOffset = { (int32_t)cx, (int32_t)cy, 0 };
+			regions[0].imageExtent = { rw, rh, 1 };
+			regions[1].bufferOffset = 16384;
+			regions[1].imageSubresource = { VK_IMAGE_ASPECT_DEPTH_BIT, 0, 0, 1 };
+			regions[1].imageOffset = { (int32_t)cx, (int32_t)cy, 0 };
+			regions[1].imageExtent = { rw, rh, 1 };
+			vkCmdCopyImageToBuffer(cmd, m_swapImages[m_imageIndex], VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+				m_readbackBuf, 2, regions);
+			vkCmdCopyImageToBuffer(cmd, m_depthImage, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+				m_readbackBuf, 1, &regions[1]);
+
+			VkPipelineStageFlags rbSrcXfer = VK_PIPELINE_STAGE_TRANSFER_BIT;
+			VkImageMemoryBarrier toPresent = {};
+			toPresent.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+			toPresent.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+			toPresent.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+			toPresent.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+			toPresent.image = m_swapImages[m_imageIndex];
+			toPresent.oldLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+			toPresent.newLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+			toPresent.subresourceRange = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 };
+			vkCmdPipelineBarrier(cmd, rbSrcXfer, VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, 0,
+				0, nullptr, 0, nullptr, 1, &toPresent);
+			toPresent.image = m_depthImage;
+			toPresent.oldLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+			toPresent.newLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
+			toPresent.subresourceRange = { VK_IMAGE_ASPECT_DEPTH_BIT, 0, 1, 0, 1 };
+			vkCmdPipelineBarrier(cmd, rbSrcXfer, VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT, 0,
+				0, nullptr, 0, nullptr, 1, &toPresent);
+		} else {
+			wantReadback = false;
+		}
+	}
 	if (vkEndCommandBuffer(m_commandBuffers[m_frameIndex]) != VK_SUCCESS)
 		return;
 	{
@@ -845,6 +944,27 @@ void VulkanDevice::EndFrame(bool present)
 	{
 		static bool ph = true;
 		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=EndFrame submitted\n"); fclose(lf); } }
+	}
+
+	if (wantReadback && m_readbackMem != VK_NULL_HANDLE) {
+		vkQueueWaitIdle(m_graphicsQueue);
+		void *mapped = nullptr;
+		if (vkMapMemory(m_device, m_readbackMem, 0, 32768, 0, &mapped) == VK_SUCCESS) {
+			unsigned char *b = (unsigned char *)mapped;
+			float depth = 0.0f;
+			memcpy(&depth, b + 16384, 4);
+			static unsigned s_rbLog = 0;
+			s_rbLog++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: READBACK #%u colorBGRA=(%u,%u,%u,%u) depth=%.4f depthRaw=0x%08x extent=%ux%u\n",
+					s_rbLog, (unsigned)b[2], (unsigned)b[1], (unsigned)b[0], (unsigned)b[3],
+					(double)depth, (unsigned)(b[16384] | (b[16385] << 8) | (b[16386] << 16) | (b[16387] << 24)),
+					(unsigned)m_swapExtent.width, (unsigned)m_swapExtent.height);
+				fclose(lf);
+			}
+			vkUnmapMemory(m_device, m_readbackMem);
+		}
 	}
 
 	if (!present)

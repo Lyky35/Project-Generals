@@ -96,6 +96,8 @@ private:
     uint32_t m_presentFamily;
     VkFormat m_swapFormat;
     VkImage m_depthImage;
+    VkBuffer m_readbackBuf = VK_NULL_HANDLE;
+    VkDeviceMemory m_readbackMem = VK_NULL_HANDLE;
     VkDeviceMemory m_depthMemory;
     VkImageView m_depthView;
     VkFormat m_depthFormat;
