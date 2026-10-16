@@ -21,6 +21,7 @@ public:
     static const int MAX_FRAMES_IN_FLIGHT = 2;
 
     static VulkanDevice &Instance();
+    uint64_t GetMinUboAlign() const { return m_minUboAlign ? m_minUboAlign : 16; }
     VulkanDevice();
     ~VulkanDevice();
 
@@ -71,6 +72,7 @@ private:
 
     VkInstance m_instance;
     VkPhysicalDevice m_physicalDevice;
+    uint64_t m_minUboAlign = 16;
     VkDevice m_device;
     VkQueue m_graphicsQueue;
     VkQueue m_presentQueue;

@@ -165,6 +165,11 @@ DX8_Stats	 DX8Wrapper::stats;
 #endif
 
 static const int VULKAN_UBO_RING_DRAWS = 2048;
+// Ring stride MUST be a multiple of the device's minUniformBufferOffsetAlignment
+// (it applies to descriptor bufferInfo.offset too). AMD can report > 512 while
+// lavapipe reports 16 - a fixed 512 stride then makes every non-zero ring slot
+// an invalid descriptor offset (UB -> garbage mvp -> world clipped -> black).
+static uint32_t VulkanUboStride = 512;
 // Stride MUST be >= sizeof(VkFrameUniforms) (352 bytes!) rounded up to 256.
 // It used to be a flat 256, so every UBO entry overwrote the previous entry's
 // tail (worldViewProj/world) and the last entries overran the buffer - only
@@ -520,8 +525,18 @@ bool DX8Wrapper::Create_Device(void)
 		return false;
 	VulkanDummyVB.Upload(dummyData, sizeof(dummyData));
 
+	{
+		uint32_t stride = (uint32_t)VULKAN_UBO_ALIGN;
+		uint64_t devAlign = device.GetMinUboAlign();
+		if (devAlign > stride)
+			stride = (uint32_t)((stride + devAlign - 1) / devAlign * devAlign);
+		VulkanUboStride = stride;
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: ubo ring stride=%u (base=%d devAlign=%llu)\n",
+			VulkanUboStride, VULKAN_UBO_ALIGN, (unsigned long long)devAlign); fclose(lf); }
+	}
 	for (int i = 0; i < VulkanDevice::MAX_FRAMES_IN_FLIGHT; i++) {
-		if (!VulkanUboBuffers[i].Create(&device, VULKAN_UBO_RING_DRAWS * VULKAN_UBO_ALIGN,
+		if (!VulkanUboBuffers[i].Create(&device, VULKAN_UBO_RING_DRAWS * VulkanUboStride,
 			VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT,
 			VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT))
 			return false;
@@ -2246,12 +2261,21 @@ uint32_t DX8Wrapper::VulkanAllocUbo(VkFrameUniforms *ubo)
 	uint32_t frame = device.GetFrameIndex();
 	if (VulkanUboDrawIndex >= VULKAN_UBO_RING_DRAWS)
 		return UINT32_MAX;
-	uint32_t offset = VulkanUboDrawIndex * VULKAN_UBO_ALIGN;
+	uint32_t offset = VulkanUboDrawIndex * VulkanUboStride;
 	VulkanUboDrawIndex++;
 	void *mapped = VulkanUboBuffers[frame].Map();
 	if (!mapped)
 		return UINT32_MAX;
 	memcpy((unsigned char *)mapped + offset, ubo, sizeof(*ubo));
+	{
+		static unsigned offLog = 0;
+		if (offLog < 8) {
+			offLog++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: ubo slot=%u offset=%u stride=%u\n",
+				(unsigned)(VulkanUboDrawIndex - 1), offset, VulkanUboStride); fclose(lf); }
+		}
+	}
 	return offset;
 }
 

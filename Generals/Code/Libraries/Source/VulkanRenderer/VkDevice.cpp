@@ -324,6 +324,21 @@ bool VulkanDevice::PickPhysicalDevice()
 
 bool VulkanDevice::CreateLogicalDevice()
 {
+	{
+		VkPhysicalDeviceLimits lim;
+		VkPhysicalDeviceProperties props = {};
+		vkGetPhysicalDeviceProperties(m_physicalDevice, &props);
+		lim = props.limits;
+		m_minUboAlign = (uint64_t)lim.minUniformBufferOffsetAlignment;
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) {
+			fprintf(lf, "VK: limits minUboAlign=%llu maxUboRange=%llu device=%s\n",
+				(unsigned long long)m_minUboAlign,
+				(unsigned long long)lim.maxUniformBufferRange,
+				props.deviceName);
+			fclose(lf);
+		}
+	}
 	uint32_t queueCount = 0;
 	vkGetPhysicalDeviceQueueFamilyProperties(m_physicalDevice, &queueCount, nullptr);
 	std::vector<VkQueueFamilyProperties> queues(queueCount);
