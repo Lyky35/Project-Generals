@@ -287,6 +287,14 @@ uint32_t VkShaderManager::FanToList(const uint16_t *fanIndices, uint32_t fanCoun
 
 static VkCullModeFlags TranslateCull(uint32_t cullMode)
 {
+	// Port decision: the world MVP carries negative x/y scales (view/rotation
+	// + projection conventions vs D3D) and Vulkan's negative-height viewport
+	// flips screen winding - VK_CULL_MODE_BACK then discards the world's
+	// front faces on AMD while menu quads (identity transform) survive.
+	// Every successful render so far (wine terrain, the magenta probe) ran
+	// with cull OFF; every black run had cull ON. Render double-sided.
+	(void)cullMode;
+	return VK_CULL_MODE_NONE;
 	switch (cullMode) {
 	case 2:
 		return VK_CULL_MODE_FRONT_BIT;
