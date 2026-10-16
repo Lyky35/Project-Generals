@@ -589,6 +589,10 @@ bool VulkanDevice::CreateDepthResources()
 	}
 	if (m_depthFormat == VK_FORMAT_UNDEFINED)
 		return false;
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: depth format=%d (D24S8=44, D32=126, D16=124)\n", (int)m_depthFormat); fclose(lf); }
+	}
 
 	VkImageCreateInfo imageInfo = {};
 	imageInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
