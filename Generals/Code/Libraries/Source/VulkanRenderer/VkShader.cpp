@@ -118,11 +118,21 @@ void VkShaderManager::Shutdown()
 VkShaderModule VkShaderManager::LoadModule(const char *path)
 {
 	FILE *file = fopen(path, "rb");
-	if (!file)
+	if (!file) {
+		static bool lf1 = false;
+		if (!lf1) { lf1 = true; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "VK: shader OPEN FAILED '%s'\n", path); fclose(lf); } }
 		return VK_NULL_HANDLE;
+	}
 	fseek(file, 0, SEEK_END);
 	long size = ftell(file);
 	fseek(file, 0, SEEK_SET);
+	// Breadcrumb: which SPIR-V is actually loaded (new build frag = 4172 B,
+	// original Oct-13 = 6932 B - tells us whether the zip's shaders/ were
+	// extracted over the old ones).
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: shader loaded '%s' bytes=%ld\n", path, size); fclose(lf); }
+	}
 	if (size <= 0 || (size % 4) != 0) {
 		fclose(file);
 		return VK_NULL_HANDLE;
