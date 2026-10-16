@@ -1260,6 +1260,26 @@ Probes removed, depth+cull restored to state-driven, real shader (7116B)
 shipped WITH the zips (shaders always zipped together now).
 
 
+### 2026-10-15 (20) - THE view-matrix bug: Matrix3D::Get_Inverse was a stub returning the matrix unchanged
+
+After fixing the MVP order, the field log PROJ/VIEW/MVP-FULL chain matched the
+matrices EXACTLY (MVP row3 = origin*view*proj) - and exposed that the view
+matrix yields z_view=+319 for the shell-map origin. camera.cpp:608 states
+"Forward is negative Z in our viewspace" and Get_D3D_Projection_Matrix maps
+z_view in [-far,-near] to [0,1] with w=-z_view -> an in-front origin must be
+-319. +319 => w=-319 < 0 => every vertex clipped => pitch black.
+
+Root cause: `Matrix3D::Get_Inverse` (matrix3d.cpp:511) was a PORT STUB -
+`{ /* simplified inverse */ mat4Inv = mat4; det = 1.0f; }` returned the
+matrix UNCHANGED. CameraClass::Apply therefore stored the camera WORLD
+transform as the VIEW matrix. The same stub silently broke
+mesh.cpp:1234 `world.Get_Inverse(world_to_obj)` (picking/model-space work).
+
+Fix: real affine inverse [R^-1, -R^-1*t; 0 1] via cofactors (singular ->
+falls back to Get_Orthogonal_Inverse). MVP order fix (world*view*proj) and
+this inverse fix together complete the transform chain end to end.
+
+
 ### 2026-10-15 (19) - Root cause of the black world: MVP composed in COLUMN-vector order (proj*view*world) for ROW-vector matrices
 
 Field log `VK: PROJ/VIEW/MVP-FULL` (row-major) gave the smoking gun:

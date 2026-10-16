@@ -510,30 +510,42 @@ void Matrix3D::Obj_Look_At(const Vector3 &p,const Vector3 &t,float roll)
  *=============================================================================================*/
 void Matrix3D::Get_Inverse(Matrix3D & inv) const
 {
-	// TODO: Implement the general purpose inverse function here (once we need it :-)
-	//Get_Orthogonal_Inverse(inv);
+	// Port fix (was a stub: "mat4Inv = mat4; det = 1" - returned the matrix
+	// UNCHANGED). CameraClass::Apply stored the camera WORLD transform as its
+	// view matrix, so view-space z of the shell-map origin came out +319
+	// (behind the -Z-forward camera) -> w = -z < 0 for every vertex -> all
+	// clipped -> pitch-black 3D world. Also broke mesh.cpp world_to_obj.
+	// Full affine inverse: inv = [R^-1, -R^-1*t; 0 1].
+	float a00 = Row[0][0], a01 = Row[0][1], a02 = Row[0][2], t0 = Row[0][3];
+	float a10 = Row[1][0], a11 = Row[1][1], a12 = Row[1][2], t1 = Row[1][3];
+	float a20 = Row[2][0], a21 = Row[2][1], a22 = Row[2][2], t2 = Row[2][3];
 
-	Matrix4	mat4(*this);
-	Matrix4	mat4Inv;
+	float c00 = a11 * a22 - a12 * a21;
+	float c01 = a12 * a20 - a10 * a22;
+	float c02 = a10 * a21 - a11 * a20;
+	float det = a00 * c00 + a01 * c01 + a02 * c02;
+	if (det == 0.0f) {
+		Get_Orthogonal_Inverse(inv);
+		return;
+	}
+	float idet = 1.0f / det;
 
-	float det;
-	/* D3DXMatrixInverse stub - use Matrix4 inverse */
-	{ /* simplified inverse */ mat4Inv = mat4; det = 1.0f; }
+	inv.Row[0][0] = c00 * idet;
+	inv.Row[1][0] = c01 * idet;
+	inv.Row[2][0] = c02 * idet;
+	inv.Row[0][1] = (a02 * a21 - a01 * a22) * idet;
+	inv.Row[1][1] = (a00 * a22 - a02 * a20) * idet;
+	inv.Row[2][1] = (a01 * a20 - a00 * a21) * idet;
+	inv.Row[0][2] = (a01 * a12 - a02 * a11) * idet;
+	inv.Row[1][2] = (a02 * a10 - a00 * a12) * idet;
+	inv.Row[2][2] = (a00 * a11 - a01 * a10) * idet;
 
-	inv.Row[0][0]=mat4Inv[0][0];
-	inv.Row[0][1]=mat4Inv[0][1];
-	inv.Row[0][2]=mat4Inv[0][2];
-	inv.Row[0][3]=mat4Inv[0][3];
-
-	inv.Row[1][0]=mat4Inv[1][0];
-	inv.Row[1][1]=mat4Inv[1][1];
-	inv.Row[1][2]=mat4Inv[1][2];
-	inv.Row[1][3]=mat4Inv[1][3];
-
-	inv.Row[2][0]=mat4Inv[2][0];
-	inv.Row[2][1]=mat4Inv[2][1];
-	inv.Row[2][2]=mat4Inv[2][2];
-	inv.Row[2][3]=mat4Inv[2][3];
+	float u0 = inv.Row[0][0] * t0 + inv.Row[0][1] * t1 + inv.Row[0][2] * t2;
+	float u1 = inv.Row[1][0] * t0 + inv.Row[1][1] * t1 + inv.Row[1][2] * t2;
+	float u2 = inv.Row[2][0] * t0 + inv.Row[2][1] * t1 + inv.Row[2][2] * t2;
+	inv.Row[0][3] = -u0;
+	inv.Row[1][3] = -u1;
+	inv.Row[2][3] = -u2;
 }
 
 /*********************************************************************************************** 
