@@ -51,11 +51,22 @@ vec3 applyTexOp(vec3 current, float currentAlpha, vec4 texel, int op, out float 
 void main()
 {
 
-	// PROBE: inDiffuse=white (v3) + light=0 terrain (no material) + fog=0 =>
-	// real shader result = white * texel => black on AMD means the TEXEL is
-	// black (white-fallback or real texture sampling). Show the raw texel.
-	outColor = vec4(texture(texStage0, inUV0).rgb, 1.0);
-	return;
+	// PROBE v3b: classify the UV fetch. White 1x1 fallback CANNOT sample black
+	// for any finite uv - black on AMD means the uv itself is garbage.
+	//   magenta = NaN uv,  green = |uv|>1e6 (garbage),  else = raw texel.
+	{
+		vec2 uv = inUV0;
+		if (!(uv.x == uv.x) || !(uv.y == uv.y)) {
+			outColor = vec4(1.0, 0.0, 1.0, 1.0);
+			return;
+		}
+		if (abs(uv.x) > 1e6 || abs(uv.y) > 1e6) {
+			outColor = vec4(0.0, 1.0, 0.0, 1.0);
+			return;
+		}
+		outColor = vec4(texture(texStage0, uv).rgb, 1.0);
+		return;
+	}
 	// Port fix: D3D8 only folds the material diffuse into the color for LIT
 	// passes; unlit/prelit meshes (terrain etc. - material diffuse often 0)
 	// use the vertex color alone. Multiplying unconditionally made the whole
