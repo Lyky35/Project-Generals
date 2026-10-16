@@ -231,6 +231,10 @@ static uint32_t VulkanUboDrawIndex = 0;
 
 static VkGpuBuffer VulkanDummyVB;
 static VkTexture VulkanWhiteTexture;
+// Per-frame submission counters (read/reset by the W3DScene STATS line to
+// answer "is the shell map actually submitting anything?").
+unsigned long long VulkanFrameDraws = 0;
+unsigned long long VulkanFrameIndices = 0;
 static bool VulkanSharedResourcesReady = false;
 
 struct VulkanRtEntry {
@@ -1480,6 +1484,8 @@ bool DX8Wrapper::VulkanDrawIndexed(
 
 	vkCmdDrawIndexed(cmd, indexCount, 1, firstIndex, (int32_t)vertexOffset, 0);
 	number_of_DX8_calls++;
+	VulkanFrameDraws++;
+	VulkanFrameIndices += indexCount;
 	return true;
 }
 

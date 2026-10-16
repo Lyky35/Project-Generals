@@ -9,8 +9,8 @@
 // "VK: UploadLevel vkAllocateMemory -> -2" (OUT_OF_DEVICE_MEMORY) ~20 frames
 // after the Options menu opened, then every 64x64 surface create failed and the
 // screen went white - so track live texture bytes and log every 256MB step.
-static uint64_t g_liveTexBytes = 0;
-static uint64_t g_liveTexCount = 0;
+uint64_t g_liveTexBytes = 0;
+uint64_t g_liveTexCount = 0;
 static uint64_t g_lastLoggedMB = 0;
 static uint64_t g_totalTexCreates = 0;
 
