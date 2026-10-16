@@ -1259,6 +1259,26 @@ fogColor, and the pipeline-build log includes fog/lighting/alphaTest.
 Probes removed, depth+cull restored to state-driven, real shader (7116B)
 shipped WITH the zips (shaders always zipped together now).
 
+
+### 2026-10-15 (19) - Root cause of the black world: MVP composed in COLUMN-vector order (proj*view*world) for ROW-vector matrices
+
+Field log `VK: PROJ/VIEW/MVP-FULL` (row-major) gave the smoking gun:
+- PROJ is a sane Vulkan-style matrix (m22=-1.0008, m23=-1, m32=-10.0083);
+- VIEW has translation in the LAST ROW (961.3, 727.5, 319.6) = row-vector
+  convention (v*M, GLSL reads M^T*v == v*M, raw upload correct);
+- but MVP = proj*view*world (column-vector order) -> diagonal showed
+  (-1.575, -1.704, -320.16, 0): GPU computed w=-z_WORLD (never view-
+  transformed), ndc_z=320 for every vertex -> clamped -> depth test ALWAYS
+  FAILED vs clear 1.0 -> world rejected => black; negative x/y scales also
+  flipped winding.
+- Menus rendered correctly because for identity world/view
+  proj*view*world == world*view*proj.
+
+Fix: `Matrix4 mvp = world * view * proj;` (row-vector chain). Cull left
+DISABLED this round as the bisect variable - re-enable next round to confirm
+winding. All probes removed earlier; colors verified normal by the user
+(frag spv 7064B).
+
 ### 2026-10-15 (14) - Draw-level breadcrumbs: viewport + fvf per 3D draw (next discriminator)
 
 The unlit-shader fix is in and the world still draws black on both platforms
