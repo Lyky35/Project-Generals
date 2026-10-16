@@ -444,11 +444,12 @@ VkPipeline VkShaderManager::GetPipeline(const VkPipelineState &state)
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf)
 			{
-				fprintf(lf, "VK: pipeline build #%u fvf=0x%x topo=%u tex0=%d tex1=%d blend=%d cull=%u z=%d/%d zfunc=%d fog=%d light=%d alphaTest=%d cached=%u ok=%d\n",
+				fprintf(lf, "VK: pipeline build #%u fvf=0x%x topo=%u tex0=%d tex1=%d blend=%d cull=%u z=%d/%d zfunc=%d fog=%d light=%d alphaTest=%d sten=%d/sfunc=%d cached=%u ok=%d\n",
 					buildCount, (unsigned)state.vertexFVF, (unsigned)state.topology,
 					(int)state.tex0Op, (int)state.tex1Op, (int)state.blendEnable,
 					(unsigned)state.cullMode, (int)state.depthTest, (int)state.depthWrite,
 					(int)state.depthCompare, (int)state.fog, (int)state.lighting, (int)state.alphaTest,
+					(int)state.stencilEnable, (int)state.stencilCompare,
 					(unsigned)m_pipelines.size(), pipeline != VK_NULL_HANDLE);
 				fclose(lf);
 			}
@@ -531,12 +532,17 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	depthStencil.sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
 	depthStencil.depthTestEnable = state.depthTest ? VK_TRUE : VK_FALSE;
 	depthStencil.depthWriteEnable = state.depthWrite ? VK_TRUE : VK_FALSE;
-	depthStencil.depthWriteEnable = state.depthWrite ? VK_TRUE : VK_FALSE;
-	// BISECT: depth math says LESESSEQUAL (zfunc=4) must pass vs clear<=1.0 and
-	// magenta-era renders had depth OFF entirely - force ALWAYS to isolate the
-	// depth-test/attachment as the AMD gate.
-	depthStencil.depthCompareOp = VK_COMPARE_OP_ALWAYS;
-	depthStencil.stencilTestEnable = state.stencilEnable ? VK_TRUE : VK_FALSE;
+	depthStencil.depthCompareOp = TranslateCompare(state.depthCompare);
+	// Port fix (AMD black world): W3DScene enables D3DRS_STENCILENABLE with
+	// FUNC=LESS/EQUAL around scene passes, so scene pipelines carry a stencil
+	// test - but the depth attachment format is driver-chosen: llvmpipe picked
+	// D16_UNORM_S8 (field log 129 = HAS stencil plane, engine semantics work)
+	// while the AMD card picked D32_SFLOAT (field log 126 = NO stencil plane).
+	// Testing stencil against a nonexistent plane is UB: AMD rejects the whole
+	// world (black), lavapipe renders it. The ported stencil-driven features
+	// (selection markers / behind-building selection) use engine-side
+	// Has_Stencil() fallbacks, so stencil ops are cosmetic here - never test.
+	depthStencil.stencilTestEnable = VK_FALSE;
 	depthStencil.front.failOp = TranslateStencilOp(state.stencilFailOp);
 	depthStencil.front.passOp = TranslateStencilOp(state.stencilPassOp);
 	depthStencil.front.depthFailOp = TranslateStencilOp(state.stencilDepthFailOp);
