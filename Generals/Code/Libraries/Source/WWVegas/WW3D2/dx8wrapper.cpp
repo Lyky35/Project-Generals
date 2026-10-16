@@ -165,7 +165,11 @@ DX8_Stats	 DX8Wrapper::stats;
 #endif
 
 static const int VULKAN_UBO_RING_DRAWS = 2048;
-static const int VULKAN_UBO_ALIGN = 256;
+// Stride MUST be >= sizeof(VkFrameUniforms) (352 bytes!) rounded up to 256.
+// It used to be a flat 256, so every UBO entry overwrote the previous entry's
+// tail (worldViewProj/world) and the last entries overran the buffer - only
+// survivable because the shaders happen to read the first 224 bytes.
+static const int VULKAN_UBO_ALIGN = ((int)((sizeof(VkFrameUniforms) + 255) / 256) * 256);
 
 #define	VALUE_NAME_RENDER_DEVICE_NAME					"RenderDeviceName"
 #define	VALUE_NAME_RENDER_DEVICE_WIDTH				"RenderDeviceWidth"

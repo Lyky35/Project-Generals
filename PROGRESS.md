@@ -1188,6 +1188,35 @@ black.
 
 Local verify: clean run, 317 frames, no crash, MVP w-column correct.
 
+### 2026-10-15 (16) - Full 3D/world render pipe review: UBO ring stride bug fixed, rest of the path checked
+
+Reviewed the whole draw pipeline (W3DDisplay::draw -> updateViews/drawViews ->
+W3DView -> RTS3DScene::Render/Flush -> DX8Wrapper::VulkanDrawIndexed ->
+BeginTargetPass/EndFrame/present) for logic errors:
+
+**Found + fixed - UBO ring stride smaller than the struct:**
+`VkFrameUniforms` is **352 bytes** but `VULKAN_UBO_ALIGN` (the ring stride)
+was a flat **256** -> every UBO entry overlapped the previous one's tail
+(worldViewProj/world stomped by the next draw's header) and the last entries
+of each frame overran the buffer (descriptor range past the allocation).
+Survivable only because the shaders happen to read the first 224 bytes.
+Stride is now `round-up(sizeof(VkFrameUniforms), 256)` (512); ring buffer
+size follows the same constant.
+
+**Checked and correct:**
+- depth clear = 1.0, D3D ZFUNC -> VkCompareOp table (LESS etc.), depth
+  loadOp CLEAR, per-pass clears;
+- viewport/scissor math for full-screen passes (flip + scissor offset both
+  resolve to the full extent when vp.Y=0);
+- UBO ring reset per frame + per-frame descriptor pools (2 frames in flight);
+- index binding: shared dynamic IB bound at byte0 with firstIndex in ELEMENT
+  units (matches DynamicIBAccessClass::IndexBufferOffset convention);
+- descriptor allocation failure path (logs skips; none in field runs);
+- swapchain pass layouts (UNDEFINED -> PRESENT_SRC, CLEAR ops).
+
+**Still pending the magenta-probe field test** (pushed f850827): distinguishes
+vertex/texture DATA from framebuffer targeting as the black-screen cause.
+
 ### 2026-10-15 (14) - Draw-level breadcrumbs: viewport + fvf per 3D draw (next discriminator)
 
 The unlit-shader fix is in and the world still draws black on both platforms
