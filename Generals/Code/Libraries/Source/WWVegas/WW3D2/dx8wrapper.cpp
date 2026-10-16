@@ -1084,11 +1084,13 @@ static void VulkanBeginTargetPass(VkTexture *target, const float *clearColor, fl
 			static int loggedRP = 0;
 			loggedRP++;
 			if (loggedRP <= 40 || (loggedRP % 100) == 0) {
-				char buf[224];
+				char buf[256];
 				snprintf(buf, sizeof(buf),
-					"VK: BeginTargetPass#%d cmd=%p rp=%p fb=%p extent=%ux%u",
+					"VK: BeginTargetPass#%d cmd=%p rp=%p fb=%p extent=%ux%u clearDepth=%.4f clearStencil=%u clearCol=(%.2f,%.2f,%.2f,%.2f)",
 					loggedRP, (void*)cmd, (void*)device.GetRenderPass(), (void*)device.GetFramebuffer(),
-					(unsigned)device.GetSwapExtent().width, (unsigned)device.GetSwapExtent().height);
+					(unsigned)device.GetSwapExtent().width, (unsigned)device.GetSwapExtent().height,
+					(float)clearDepth, (unsigned)clearStencil,
+					(float)clearColor[0], (float)clearColor[1], (float)clearColor[2], (float)clearColor[3]);
 				FILE *lf = fopen("RTS_START.LOG", "a");
 				if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
 			}

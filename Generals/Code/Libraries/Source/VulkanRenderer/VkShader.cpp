@@ -532,7 +532,10 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	depthStencil.depthTestEnable = state.depthTest ? VK_TRUE : VK_FALSE;
 	depthStencil.depthWriteEnable = state.depthWrite ? VK_TRUE : VK_FALSE;
 	depthStencil.depthWriteEnable = state.depthWrite ? VK_TRUE : VK_FALSE;
-	depthStencil.depthCompareOp = TranslateCompare(state.depthCompare);
+	// BISECT: depth math says LESESSEQUAL (zfunc=4) must pass vs clear<=1.0 and
+	// magenta-era renders had depth OFF entirely - force ALWAYS to isolate the
+	// depth-test/attachment as the AMD gate.
+	depthStencil.depthCompareOp = VK_COMPARE_OP_ALWAYS;
 	depthStencil.stencilTestEnable = state.stencilEnable ? VK_TRUE : VK_FALSE;
 	depthStencil.front.failOp = TranslateStencilOp(state.stencilFailOp);
 	depthStencil.front.passOp = TranslateStencilOp(state.stencilPassOp);
