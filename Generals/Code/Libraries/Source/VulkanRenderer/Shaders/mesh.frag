@@ -74,15 +74,11 @@ void main()
 	}
 
 	if (TEX0_OP > 0) {
-		// Port fix: draws without a bound texture get the white-fallback
-		// substitution on the CPU side; sampling that 1x1 white image returns
-		// BLACK on AMD (menus' real textures sample fine) -> bright diffuse
-		// becomes black terrain. Skip the sample entirely for flagged draws.
-		vec4 texel = ((frame.drawFlags & 1u) != 0u) ? vec4(1.0) : texture(texStage0, inUV0);
+		vec4 texel = texture(texStage0, inUV0);
 		color = applyTexOp(color, alpha, texel, TEX0_OP, alpha);
 	}
 	if (TEX1_OP > 0) {
-		vec4 texel = ((frame.drawFlags & 256u) != 0u) ? vec4(1.0) : texture(texStage1, inUV1);
+		vec4 texel = texture(texStage1, inUV1);
 		color = applyTexOp(color, alpha, texel, TEX1_OP, alpha);
 	}
 

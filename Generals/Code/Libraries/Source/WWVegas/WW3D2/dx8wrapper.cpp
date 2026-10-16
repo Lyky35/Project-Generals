@@ -1359,6 +1359,17 @@ bool DX8Wrapper::VulkanDrawIndexed(
 
 	VkPipelineState state;
 	DX8Wrapper::VulkanBuildPipelineState(&state, fvf, fvfInfo, topology);
+	{
+		// Port fix: draws without a bound texture must NOT contain a texture()
+		// instruction at all - sampling the white-fallback 1x1 image poisons
+		// the entire shader result (ternary/if-else both still evaluated it;
+		// the compiler folds them back to a select). Disabling the tex0 stage
+		// (spec TEX0_OP=0) strips it from the pipeline: modulate-by-white is
+		// equivalent to no stage; SELECT-by-white equals the diffuse.
+		VkTexture *boundTex0 = DX8Wrapper::BoundTextures[0] ? DX8Wrapper::BoundTextures[0]->Peek_Vulkan_Texture() : NULL;
+		if (!boundTex0)
+			state.tex0Op = 0;
+	}
 	VkPipeline pipeline = DX8Wrapper::ShaderManager.GetPipeline(state);
 	if (pipeline == VK_NULL_HANDLE)
 		return false;

@@ -981,6 +981,19 @@ void VulkanDevice::EndFrame(bool present)
 					}
 					fputc('\n', lf);
 				}
+				fprintf(lf, "  alpha:");
+				for (int gy = 0; gy < GH; gy++) {
+					for (int gx = 0; gx < GW; gx++) {
+						unsigned char *q = b + 32768 + (gy * GW + gx) * 4;
+						const char *ramp = " .:-=+*#%@";
+						int ri = q[3] * 9 / 255;
+						if (ri > 9) ri = 9;
+						fputc(ramp[ri], lf);
+					}
+					fputc('\n', lf);
+					fprintf(lf, "       ");
+				}
+				fputc('\n', lf);
 				fprintf(lf, "  depth:");
 				for (int gy = 0; gy < GH; gy++) {
 					for (int gx = 0; gx < GW; gx++) {
