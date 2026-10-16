@@ -59,6 +59,12 @@ void main()
 	if (LIGHTING == 1) {
 		color *= frame.materialDiffuse.rgb;
 		alpha *= frame.materialDiffuse.a;
+	} else {
+		// FIELD DIAGNOSTIC (magenta probe): force unlit fragments visible to
+		// bisect black screen - magenta = geometry/depth/target OK (data is the
+		// problem); still black = draws never land in the framebuffer.
+		outColor = vec4(1.0, 0.0, 1.0, 1.0);
+		return;
 	}
 
 	if (TEX0_OP > 0) {
