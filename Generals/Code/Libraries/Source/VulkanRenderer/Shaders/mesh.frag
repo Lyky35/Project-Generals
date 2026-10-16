@@ -50,11 +50,6 @@ vec3 applyTexOp(vec3 current, float currentAlpha, vec4 texel, int op, out float 
 
 void main()
 {
-	// FIELD DIAGNOSTIC v3: magenta proved geometry+state are fine - show the
-	// RAW VERTEX DIFFUSE instead. Screen black -> vertex color data is 0;
-	// white/colors -> vertex color fine (then material/texture is the black).
-	outColor = vec4(inDiffuse.rgb, 1.0);
-	return;
 
 	// Port fix: D3D8 only folds the material diffuse into the color for LIT
 	// passes; unlit/prelit meshes (terrain etc. - material diffuse often 0)

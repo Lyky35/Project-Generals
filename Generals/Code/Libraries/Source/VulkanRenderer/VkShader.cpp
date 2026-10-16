@@ -287,11 +287,6 @@ uint32_t VkShaderManager::FanToList(const uint16_t *fanIndices, uint32_t fanCoun
 
 static VkCullModeFlags TranslateCull(uint32_t cullMode)
 {
-	// FIELD DIAGNOSTIC: if the world is black while draws submit, winding may
-	// be inverted (user suggestion: culling/reverse-up). Disable culling for
-	// this test build - if the background appears, winding is the answer and
-	// the proper fix is the front-face/Y convention.
-	return VK_CULL_MODE_NONE;
 	switch (cullMode) {
 	case 2:
 		return VK_CULL_MODE_FRONT_BIT;
@@ -441,10 +436,11 @@ VkPipeline VkShaderManager::GetPipeline(const VkPipelineState &state)
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf)
 			{
-				fprintf(lf, "VK: pipeline build #%u fvf=0x%x topo=%u tex0=%d tex1=%d blend=%d cull=%u z=%d/%d cached=%u ok=%d\n",
+				fprintf(lf, "VK: pipeline build #%u fvf=0x%x topo=%u tex0=%d tex1=%d blend=%d cull=%u z=%d/%d fog=%d light=%d alphaTest=%d cached=%u ok=%d\n",
 					buildCount, (unsigned)state.vertexFVF, (unsigned)state.topology,
 					(int)state.tex0Op, (int)state.tex1Op, (int)state.blendEnable,
 					(unsigned)state.cullMode, (int)state.depthTest, (int)state.depthWrite,
+					(int)state.fog, (int)state.lighting, (int)state.alphaTest,
 					(unsigned)m_pipelines.size(), pipeline != VK_NULL_HANDLE);
 				fclose(lf);
 			}
@@ -525,10 +521,7 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 
 	VkPipelineDepthStencilStateCreateInfo depthStencil = {};
 	depthStencil.sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
-	// FIELD DIAGNOSTIC v2: depth test forced off (with magenta + cull off this
-	// isolates "does the draw land in the presented framebuffer at all").
-	depthStencil.depthTestEnable = VK_FALSE;
-	depthStencil.depthWriteEnable = VK_FALSE;
+	depthStencil.depthTestEnable = state.depthTest ? VK_TRUE : VK_FALSE;
 	depthStencil.depthWriteEnable = state.depthWrite ? VK_TRUE : VK_FALSE;
 	depthStencil.depthCompareOp = TranslateCompare(state.depthCompare);
 	depthStencil.stencilTestEnable = state.stencilEnable ? VK_TRUE : VK_FALSE;

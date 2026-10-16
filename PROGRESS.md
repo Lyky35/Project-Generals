@@ -1235,6 +1235,30 @@ Next: the user's build now actually runs the magenta+depth-off+cull-off
 probe - their answer (magenta everywhere vs world still black) decides
 data-path vs geometry-path.
 
+### 2026-10-15 (18) - Probe series concluded: geometry/material/vertex-colors all verified white; the black maker is FOG - fix shipped with the real shader
+
+Probe ladder results (each verified to actually load via `VK: shader loaded
+bytes=` breadcrumb - sizes: original6932, v2 4172, v3 4308, final 7116):
+- **cull off + depth off + forced magenta: whole screen magenta** ->
+  geometry, MVP, viewport, scissor, descriptors, blend all fine; the world
+  DOES rasterize.
+- **v3 (raw vertex diffuse): world solid white, menus colored squares** ->
+  vertex color = white everywhere (inDiffuse fine), materialDiffuse=(1,1,1)
+  (FillUBO log), white-fallback texture valid (whiteImg/view non-null),
+  ambient=white sentinel, light0 off.
+
+So every input to the real shader is WHITE - the only remaining way it turns
+black is FOG: `fogParams` come from a bit-cast of the D3D states, and when
+the game never sets them they stay the 0x12345678 sentinel -> denormal ~0 ->
+fogEnd = ~1 -> factor = clamp(viewDist/1) = 1 for EVERY fragment ->
+fogColor(black) over the whole world = the pitch-black background (and "as if
+render was snubbed"). **Fix: sentinel fog params now mean fog OFF (1e30 range)
+in VulkanFillFrameUniforms**; FillUBO now logs fogEnable/fogStart/fogEnd/
+fogColor, and the pipeline-build log includes fog/lighting/alphaTest.
+
+Probes removed, depth+cull restored to state-driven, real shader (7116B)
+shipped WITH the zips (shaders always zipped together now).
+
 ### 2026-10-15 (14) - Draw-level breadcrumbs: viewport + fvf per 3D draw (next discriminator)
 
 The unlit-shader fix is in and the world still draws black on both platforms

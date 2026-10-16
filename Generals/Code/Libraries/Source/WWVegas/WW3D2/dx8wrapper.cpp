@@ -2154,8 +2154,10 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 				Vector3 md(1,1,1);
 				if (DX8Wrapper::render_state.material)
 					((VertexMaterialClass *)DX8Wrapper::render_state.material)->Get_Diffuse(&md);
-				fprintf(lf, "VK: FillUBO #%d ambient=0x%08x light0=%d matDiffuse=(%.2f,%.2f,%.2f)\n",
-					uboLog, (unsigned)amb, (int)DX8Wrapper::render_state.LightEnable[0],
+				fprintf(lf, "VK: FillUBO #%d ambient=0x%08x fogEnable=%d fogStart=0x%08x fogEnd=0x%08x fogColor=0x%08x matDiffuse=(%.2f,%.2f,%.2f)\n",
+					uboLog, (unsigned)amb, (int)DX8Wrapper::RenderStates[D3DRS_FOGENABLE],
+					(unsigned)DX8Wrapper::RenderStates[D3DRS_FOGSTART], (unsigned)DX8Wrapper::RenderStates[D3DRS_FOGEND],
+					(unsigned)DX8Wrapper::RenderStates[D3DRS_FOGCOLOR],
 					(float)md.X, (float)md.Y, (float)md.Z);
 				fclose(lf);
 			}
@@ -2173,10 +2175,20 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 	VulkanDecodeColor(fogColor, ubo->fogColor);
 	ubo->fogColor[3] = 1.0f;
 
-	ubo->fogParams[0] = *(const float *)&DX8Wrapper::RenderStates[D3DRS_FOGSTART];
-	ubo->fogParams[1] = *(const float *)&DX8Wrapper::RenderStates[D3DRS_FOGEND];
-	if (ubo->fogParams[1] <= ubo->fogParams[0])
-		ubo->fogParams[1] = ubo->fogParams[0] + 1.0f;
+	// Port fix: when the game never set fog (states still the 0x12345678
+	// sentinel), the bit-cast float is a denormal ~0 -> fogEnd becomes ~1 ->
+	// factor=clamp((viewDist-0)/1) = 1 for EVERY fragment -> fogColor(black)
+	// over the whole world = pitch-black background. Sentinel now = fog OFF.
+	if (DX8Wrapper::RenderStates[D3DRS_FOGSTART] == 0x12345678 ||
+		DX8Wrapper::RenderStates[D3DRS_FOGEND] == 0x12345678) {
+		ubo->fogParams[0] = 1e30f;
+		ubo->fogParams[1] = 1e30f + 1.0f;
+	} else {
+		ubo->fogParams[0] = *(const float *)&DX8Wrapper::RenderStates[D3DRS_FOGSTART];
+		ubo->fogParams[1] = *(const float *)&DX8Wrapper::RenderStates[D3DRS_FOGEND];
+		if (ubo->fogParams[1] <= ubo->fogParams[0])
+			ubo->fogParams[1] = ubo->fogParams[0] + 1.0f;
+	}
 
 	const VertexMaterialClass *material = DX8Wrapper::render_state.material;
 	Vector3 diffuse(1.0f, 1.0f, 1.0f);
