@@ -2151,9 +2151,12 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) {
 				unsigned amb = DX8Wrapper::RenderStates[D3DRS_AMBIENT];
-				fprintf(lf, "VK: FillUBO #%d ambient=0x%08x light0=%d material=%p\n",
+				Vector3 md(1,1,1);
+				if (DX8Wrapper::render_state.material)
+					((VertexMaterialClass *)DX8Wrapper::render_state.material)->Get_Diffuse(&md);
+				fprintf(lf, "VK: FillUBO #%d ambient=0x%08x light0=%d matDiffuse=(%.2f,%.2f,%.2f)\n",
 					uboLog, (unsigned)amb, (int)DX8Wrapper::render_state.LightEnable[0],
-					(const void *)DX8Wrapper::render_state.material);
+					(float)md.X, (float)md.Y, (float)md.Z);
 				fclose(lf);
 			}
 		}

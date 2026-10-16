@@ -50,11 +50,10 @@ vec3 applyTexOp(vec3 current, float currentAlpha, vec4 texel, int op, out float 
 
 void main()
 {
-	// FIELD DIAGNOSTIC v2: force EVERY fragment visible (cull already off).
-	// Whole screen magenta -> fragment path fine, data was the black cause.
-	// World region still black -> its geometry never rasterizes (positions /
-	// depth already disabled here / pass-target issue).
-	outColor = vec4(1.0, 0.0, 1.0, 1.0);
+	// FIELD DIAGNOSTIC v3: magenta proved geometry+state are fine - show the
+	// RAW VERTEX DIFFUSE instead. Screen black -> vertex color data is 0;
+	// white/colors -> vertex color fine (then material/texture is the black).
+	outColor = vec4(inDiffuse.rgb, 1.0);
 	return;
 
 	// Port fix: D3D8 only folds the material diffuse into the color for LIT
