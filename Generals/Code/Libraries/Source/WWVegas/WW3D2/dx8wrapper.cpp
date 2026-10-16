@@ -240,6 +240,11 @@ static VkTexture VulkanWhiteTexture;
 // answer "is the shell map actually submitting anything?").
 unsigned long long VulkanFrameDraws = 0;
 unsigned long long VulkanFrameIndices = 0;
+// Terrain (fvf 0x242) texture-binding census: are the big world draws sampling
+// a real texture or the white fallback? (black-on-AMD with real shader while
+// inDiffuse/white-fallback are proven white => real textures sample black).
+unsigned long long TerrainDrawsNullTex = 0;
+unsigned long long TerrainDrawsValidTex = 0;
 static bool VulkanSharedResourcesReady = false;
 
 struct VulkanRtEntry {
@@ -1415,10 +1420,14 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	// unaffected because proj*view*world == world*view*proj for them.
 	Matrix4 mvp = world * view * proj;
 	{
+		VkTexture *t0 = DX8Wrapper::BoundTextures[0] ? DX8Wrapper::BoundTextures[0]->Peek_Vulkan_Texture() : NULL;
+		if (fvf == 0x242) {
+			if (t0) TerrainDrawsValidTex++;
+			else TerrainDrawsNullTex++;
+		}
 		static int mvLog = 0;
-		if (fvf != 0x252 && mvLog < 12) {
+		if (fvf == 0x242 && mvLog < 16) {
 			mvLog++;
-			VkTexture *t0 = DX8Wrapper::BoundTextures[0] ? DX8Wrapper::BoundTextures[0]->Peek_Vulkan_Texture() : NULL;
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf && mvLog == 1) {
 				fprintf(lf, "VK: PROJ ");
@@ -1436,12 +1445,13 @@ bool DX8Wrapper::VulkanDrawIndexed(
 				fprintf(lf, "\n");
 			}
 			if (lf) {
-				fprintf(lf, "VK: Draw3D-MVP #%d mvp=[%.3f %.3f %.3f %.3f] tex0=%p img=%p %ux%u white=%p whiteImg=%p whiteView=%p\n",
+				fprintf(lf, "VK: TERRAIN-DRAW #%d mvp=[%.3f %.3f %.3f %.3f] tex0=%p img=%p %ux%u idx=%u nullTex=%llu validTex=%llu\n",
 					mvLog, mvp[0][0], mvp[1][1], mvp[2][2], mvp[3][3],
 					(void *)t0, t0 ? (void *)t0->GetImage() : NULL,
 					t0 ? t0->GetWidth() : 0, t0 ? t0->GetHeight() : 0,
-					(void *)&VulkanWhiteTexture, (void *)VulkanWhiteTexture.GetImage(),
-					(void *)VulkanWhiteTexture.GetView());
+					(unsigned)indexCount,
+					(unsigned long long)TerrainDrawsNullTex,
+					(unsigned long long)TerrainDrawsValidTex);
 				fclose(lf);
 			}
 		}

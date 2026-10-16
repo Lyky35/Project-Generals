@@ -925,15 +925,18 @@ void RTS3DScene::Render(RenderInfoClass & rinfo)
 		if ((scLog % 60) == 0) {
 			extern unsigned long long g_liveTexBytes, g_liveTexCount;
 			extern unsigned long long VulkanFrameDraws, VulkanFrameIndices;
+			extern unsigned long long TerrainDrawsNullTex, TerrainDrawsValidTex;
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) {
-				fprintf(lf, "VK: STATS #%d objects=%d polys=%d skin=%d sort=%d | texLive=%lluMB texCount=%llu | draws=%llu idx=%llu\n",
+				fprintf(lf, "VK: STATS #%d objects=%d polys=%d skin=%d sort=%d | texLive=%lluMB texCount=%llu | draws=%llu idx=%llu | terrain nullTex=%llu validTex=%llu\n",
 					scLog, n,
 					Debug_Statistics::Get_DX8_Polygons(), Debug_Statistics::Get_DX8_Skin_Polygons(),
 					Debug_Statistics::Get_Sorting_Polygons(),
 					(unsigned long long)(g_liveTexBytes / (1024ull * 1024ull)),
 					(unsigned long long)g_liveTexCount,
-					VulkanFrameDraws, VulkanFrameIndices);
+					VulkanFrameDraws, VulkanFrameIndices,
+					(unsigned long long)TerrainDrawsNullTex,
+					(unsigned long long)TerrainDrawsValidTex);
 				fclose(lf);
 			}
 			VulkanFrameDraws = 0;
