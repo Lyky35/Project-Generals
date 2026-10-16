@@ -1447,11 +1447,12 @@ bool DX8Wrapper::VulkanDrawIndexed(
 				fprintf(lf, "\n");
 			}
 			if (lf) {
-				fprintf(lf, "VK: TERRAIN-DRAW #%d mvp=[%.3f %.3f %.3f %.3f] tex0=%p img=%p %ux%u idx=%u nullTex=%llu validTex=%llu\n",
+				fprintf(lf, "VK: TERRAIN-DRAW #%d mvp=[%.3f %.3f %.3f %.3f] tex0=%p %ux%u idx=%u blend=%d/%d/%d z=%d/%d nullTex=%llu validTex=%llu\n",
 					mvLog, mvp[0][0], mvp[1][1], mvp[2][2], mvp[3][3],
-					(void *)t0, t0 ? (void *)t0->GetImage() : NULL,
-					t0 ? t0->GetWidth() : 0, t0 ? t0->GetHeight() : 0,
+					(void *)t0, t0 ? t0->GetWidth() : 0, t0 ? t0->GetHeight() : 0,
 					(unsigned)indexCount,
+					(int)state.blendEnable, (int)state.srcBlend, (int)state.dstBlend,
+					(int)state.depthTest, (int)state.depthWrite,
 					(unsigned long long)TerrainDrawsNullTex,
 					(unsigned long long)TerrainDrawsValidTex);
 				fclose(lf);
