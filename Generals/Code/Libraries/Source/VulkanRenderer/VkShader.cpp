@@ -515,7 +515,10 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 
 	VkPipelineDepthStencilStateCreateInfo depthStencil = {};
 	depthStencil.sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
-	depthStencil.depthTestEnable = state.depthTest ? VK_TRUE : VK_FALSE;
+	// FIELD DIAGNOSTIC v2: depth test forced off (with magenta + cull off this
+	// isolates "does the draw land in the presented framebuffer at all").
+	depthStencil.depthTestEnable = VK_FALSE;
+	depthStencil.depthWriteEnable = VK_FALSE;
 	depthStencil.depthWriteEnable = state.depthWrite ? VK_TRUE : VK_FALSE;
 	depthStencil.depthCompareOp = TranslateCompare(state.depthCompare);
 	depthStencil.stencilTestEnable = state.stencilEnable ? VK_TRUE : VK_FALSE;
