@@ -209,7 +209,10 @@ VkVertexLayoutDesc VkShaderManager::GetVertexLayout(uint32_t fvf, uint32_t fvfSi
 	desc.bindings[0].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
 	desc.bindings[1].binding = 1;
 	desc.bindings[1].stride = 64;
-	desc.bindings[1].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+	// INSTANCE rate: draws use instanceCount=1 so every vertex reads dummy
+	// vertex 0. PER_VERTEX with stride 64 on a 64-byte buffer fetched out of
+	// bounds for vertexIndex >= 1 (undefined attributes on strict drivers).
+	desc.bindings[1].inputRate = VK_VERTEX_INPUT_RATE_INSTANCE;
 	desc.bindingCount = 2;
 	desc.attributeCount = 0;
 	(void)fvf;
@@ -363,6 +366,10 @@ static VkBlendFactor TranslateBlend(uint32_t blend)
 		return VK_BLEND_FACTOR_ONE_MINUS_DST_COLOR;
 	case 11:
 		return VK_BLEND_FACTOR_SRC_ALPHA_SATURATE;
+	case 12:
+		return VK_BLEND_FACTOR_SRC_ALPHA;			// D3DBLEND_BOTHSRCALPHA (color channel)
+	case 13:
+		return VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA;	// D3DBLEND_BOTHINVSRCALPHA
 	default:
 		break;
 	}

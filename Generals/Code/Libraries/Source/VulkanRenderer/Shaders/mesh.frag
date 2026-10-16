@@ -45,6 +45,9 @@ vec3 applyTexOp(vec3 current, float currentAlpha, vec4 texel, int op, out float 
 	} else if (op == 4) {
 		outAlpha = frame.tfactorColor.a;
 		return frame.tfactorColor.rgb;
+	} else if (op == 5) {
+		// SELECTARG2: ARG2 is the diffuse = the shader's current color
+		return current;
 	}
 	return current;
 }
@@ -63,17 +66,23 @@ void main()
 		base = frame.materialDiffuse;
 	vec3 color = base.rgb;
 	float alpha = base.a;
-	if (LIGHTING == 1) {
+	if (LIGHTING == 1 && (frame.drawFlags & 2u) == 0u) {
+		// bit2 already substituted the material as the diffuse source - folding
+		// it in again would square it
 		color *= frame.materialDiffuse.rgb;
 		alpha *= frame.materialDiffuse.a;
 	}
 
 	if (TEX0_OP > 0) {
-		vec4 texel = texture(texStage0, inUV0);
+		// Port fix: draws without a bound texture get the white-fallback
+		// substitution on the CPU side; sampling that 1x1 white image returns
+		// BLACK on AMD (menus' real textures sample fine) -> bright diffuse
+		// becomes black terrain. Skip the sample entirely for flagged draws.
+		vec4 texel = ((frame.drawFlags & 1u) != 0u) ? vec4(1.0) : texture(texStage0, inUV0);
 		color = applyTexOp(color, alpha, texel, TEX0_OP, alpha);
 	}
 	if (TEX1_OP > 0) {
-		vec4 texel = texture(texStage1, inUV1);
+		vec4 texel = ((frame.drawFlags & 256u) != 0u) ? vec4(1.0) : texture(texStage1, inUV1);
 		color = applyTexOp(color, alpha, texel, TEX1_OP, alpha);
 	}
 
@@ -96,7 +105,10 @@ void main()
 	}
 
 	if (FOG == 1) {
-		float factor = clamp((inViewDist - frame.fogParams.x) / max(frame.fogParams.y - frame.fogParams.x, 1e-5), 0.0, 1.0);
+		// D3D fog uses EYE distance; inViewDist was distance from the world
+		// ORIGIN (fogged out anything far from 0,0,0)
+		float viewDist = length(inWorldPos - frame.miscParams.yzw);
+		float factor = clamp((viewDist - frame.fogParams.x) / max(frame.fogParams.y - frame.fogParams.x, 1e-5), 0.0, 1.0);
 		color = mix(color, frame.fogColor.rgb, factor);
 	}
 

@@ -649,6 +649,10 @@ void DX8Wrapper::Release_Device(void)
 		ShaderManager.Shutdown();
 		VulkanWhiteTexture.Destroy();
 		VulkanDummyVB.Destroy();
+		{
+			extern void Vulkan_Reset_Shared_Samplers();
+			Vulkan_Reset_Shared_Samplers();
+		}
 		for (int i = 0; i < VulkanDevice::MAX_FRAMES_IN_FLIGHT; i++)
 			VulkanUboBuffers[i].Destroy();
 		VulkanSharedResourcesReady = false;
@@ -1506,14 +1510,24 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	bool filt0 = true, rep0 = true, filt1 = true, rep1 = true;
 	unsigned min0 = DX8Wrapper::TextureStageStates[0][D3DTSS_MINFILTER];
 	unsigned mag0 = DX8Wrapper::TextureStageStates[0][D3DTSS_MAGFILTER];
+	if (min0 == 0x12345678) min0 = D3DTEXF_POINT;	// D3D8 runtime defaults
+	if (mag0 == 0x12345678) mag0 = D3DTEXF_POINT;
 	if (min0 == D3DTEXF_POINT && mag0 == D3DTEXF_POINT) filt0 = false;
-	if (DX8Wrapper::TextureStageStates[0][D3DTSS_ADDRESSU] != D3DTADDRESS_WRAP &&
-		DX8Wrapper::TextureStageStates[0][D3DTSS_ADDRESSV] != D3DTADDRESS_WRAP) rep0 = false;
+	unsigned addrU0 = DX8Wrapper::TextureStageStates[0][D3DTSS_ADDRESSU];
+	unsigned addrV0 = DX8Wrapper::TextureStageStates[0][D3DTSS_ADDRESSV];
+	if (addrU0 == 0x12345678) addrU0 = D3DTADDRESS_WRAP;
+	if (addrV0 == 0x12345678) addrV0 = D3DTADDRESS_WRAP;
+	if (addrU0 != D3DTADDRESS_WRAP || addrV0 != D3DTADDRESS_WRAP) rep0 = false;
 	unsigned min1 = DX8Wrapper::TextureStageStates[1][D3DTSS_MINFILTER];
 	unsigned mag1 = DX8Wrapper::TextureStageStates[1][D3DTSS_MAGFILTER];
+	if (min1 == 0x12345678) min1 = D3DTEXF_POINT;
+	if (mag1 == 0x12345678) mag1 = D3DTEXF_POINT;
 	if (min1 == D3DTEXF_POINT && mag1 == D3DTEXF_POINT) filt1 = false;
-	if (DX8Wrapper::TextureStageStates[1][D3DTSS_ADDRESSU] != D3DTADDRESS_WRAP &&
-		DX8Wrapper::TextureStageStates[1][D3DTSS_ADDRESSV] != D3DTADDRESS_WRAP) rep1 = false;
+	unsigned addrU1 = DX8Wrapper::TextureStageStates[1][D3DTSS_ADDRESSU];
+	unsigned addrV1 = DX8Wrapper::TextureStageStates[1][D3DTSS_ADDRESSV];
+	if (addrU1 == 0x12345678) addrU1 = D3DTADDRESS_WRAP;
+	if (addrV1 == 0x12345678) addrV1 = D3DTADDRESS_WRAP;
+	if (addrU1 != D3DTADDRESS_WRAP || addrV1 != D3DTADDRESS_WRAP) rep1 = false;
 	VkDescriptorSet texSet = DX8Wrapper::DescriptorAllocator.AllocateTextureSet(
 		DX8Wrapper::ShaderManager.GetTextureSetLayout(), tex0, filt0, rep0, tex1, filt1, rep1);
 
@@ -2146,7 +2160,8 @@ void DX8Wrapper::Set_Light_Environment(LightEnvironmentClass* light_env)
 		}
 
 		D3DLIGHT8 light;
-		for (int l=0;l<light_count;++l) {
+		int l;
+		for (l=0;l<light_count;++l) {
 			::ZeroMemory(&light, sizeof(D3DLIGHT8));
 			light.Type=D3DLIGHT_DIRECTIONAL;
 			(Vector3&)light.Diffuse=light_env->Get_Light_Diffuse(l);
@@ -2171,7 +2186,7 @@ void DX8Wrapper::Set_Light_Environment(LightEnvironmentClass* light_env)
 			Set_Light(l,&light);
 		}
 
-		for (int l=0;l<4;++l) {
+		for (;l<4;++l) {
 			Set_Light(l,NULL);
 		}
 	}
@@ -2197,7 +2212,9 @@ static int VulkanMapTexOp(unsigned colorOp, unsigned arg1)
 			return 4;
 		return 0;
 	case D3DTOP_SELECTARG2:
-		return 4;
+		// ARG2 is D3DTA_DIFFUSE for the engine's untextured draws; the shader's
+		// "current" already holds the diffuse - select it (op 5).
+		return 5;
 	case D3DTOP_MODULATE:
 	case D3DTOP_MODULATE2X:
 	case D3DTOP_MODULATE4X:
@@ -2225,6 +2242,7 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) {
 				unsigned amb = DX8Wrapper::RenderStates[D3DRS_AMBIENT];
+	if (amb == 0x12345678) amb = 0;	// D3D8 default ambient is black
 				Vector3 md(1,1,1);
 				if (DX8Wrapper::render_state.material)
 					((VertexMaterialClass *)DX8Wrapper::render_state.material)->Get_Diffuse(&md);
@@ -2299,8 +2317,17 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 	if (alphaRef == 0x12345678)
 		alphaRef = 0x60;
 	ubo->miscParams[0] = (alphaRef & 0xff) / 255.0f;
+	{
+		// miscParams.yzw = camera world position (eye-distance fog).
+		const Matrix4 &V = DX8Wrapper::render_state.view;
+		float t0 = V[3][0], t1 = V[3][1], t2 = V[3][2];
+		ubo->miscParams[1] = -(t0 * V[0][0] + t1 * V[1][0] + t2 * V[2][0]);
+		ubo->miscParams[2] = -(t0 * V[0][1] + t1 * V[1][1] + t2 * V[2][1]);
+		ubo->miscParams[3] = -(t0 * V[0][2] + t1 * V[1][2] + t2 * V[2][2]);
+	}
 
 	unsigned tfactor = DX8Wrapper::RenderStates[D3DRS_TEXTUREFACTOR];
+	if (tfactor == 0x12345678) tfactor = 0xffffffffu;	// D3D default = white
 	VulkanDecodeColor(tfactor, ubo->tfactorColor);
 
 	for (int i = 0; i < 4; i++) {
@@ -2360,8 +2387,16 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 	if (stage1op == 0x12345678) { stage1op = D3DTOP_DISABLE; stage1arg1 = D3DTA_CURRENT; }
 	state->tex0Op = VulkanMapTexOp(stage0op, stage0arg1);
 	state->tex1Op = VulkanMapTexOp(stage1op, stage1arg1);
-	state->alphaTest = (DX8Wrapper::RenderStates[D3DRS_ALPHATESTENABLE] != 0) ? 1 : 0;
-	state->fog = (DX8Wrapper::RenderStates[D3DRS_FOGENABLE] != 0) ? 1 : 0;
+	{
+		unsigned at = DX8Wrapper::RenderStates[D3DRS_ALPHATESTENABLE];
+		if (at == 0x12345678) at = 0;	// D3D8 default FALSE (the sentinel used to force it ON)
+		state->alphaTest = (at != 0) ? 1 : 0;
+	}
+	{
+		unsigned fogEn = DX8Wrapper::RenderStates[D3DRS_FOGENABLE];
+		if (fogEn == 0x12345678) fogEn = 0;	// D3D8 default FALSE
+		state->fog = (fogEn != 0) ? 1 : 0;
+	}
 	state->lighting = (DX8Wrapper::RenderStates[D3DRS_LIGHTING] != 0) ? 1 : 0;
 	unsigned alphaFunc = DX8Wrapper::RenderStates[D3DRS_ALPHAFUNC];
 	state->alphaFunc = (alphaFunc == D3DCMP_LESSEQUAL) ? 1 : 0;

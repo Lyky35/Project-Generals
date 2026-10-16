@@ -267,6 +267,11 @@ void VkTexture::TransitionLayout(VkCommandBuffer cmd, VkImageLayout oldLayout, V
 		barrier.dstAccessMask = VK_ACCESS_SHADER_READ_BIT;
 		srcStage = VK_PIPELINE_STAGE_TRANSFER_BIT;
 		dstStage = VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
+	} else if (oldLayout == VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL && newLayout == VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL) {
+		barrier.srcAccessMask = VK_ACCESS_SHADER_READ_BIT;
+		barrier.dstAccessMask = VK_ACCESS_TRANSFER_READ_BIT;
+		srcStage = VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
+		dstStage = VK_PIPELINE_STAGE_TRANSFER_BIT;
 	} else if (oldLayout == VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL && newLayout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL) {
 		barrier.srcAccessMask = VK_ACCESS_SHADER_READ_BIT;
 		barrier.dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
@@ -552,6 +557,17 @@ static VulkanDevice *g_samplerDevice = nullptr;
 static SamplerEntry g_sharedSamplers[4];
 static int g_sharedSamplerCount = 0;
 
+void Vulkan_Reset_Shared_Samplers()
+{
+	for (int i = 0; i < g_sharedSamplerCount; i++) {
+		if (g_sharedSamplers[i].sampler != VK_NULL_HANDLE && g_samplerDevice)
+			vkDestroySampler(g_samplerDevice->GetDevice(), g_sharedSamplers[i].sampler, nullptr);
+		g_sharedSamplers[i].sampler = VK_NULL_HANDLE;
+	}
+	g_sharedSamplerCount = 0;
+	g_samplerDevice = nullptr;
+}
+
 VkSampler VkTexture::FindOrCreateSampler(bool filtered, bool repeat)
 {
 	if (m_device == nullptr) {
@@ -587,11 +603,17 @@ VkSampler VkTexture::FindOrCreateSampler(bool filtered, bool repeat)
 	samplerInfo.maxAnisotropy = filtered ? 8.0f : 1.0f;
 	samplerInfo.compareEnable = VK_FALSE;
 	samplerInfo.minLod = 0.0f;
-	samplerInfo.maxLod = (float)m_mips;
+	samplerInfo.maxLod = 1000.0f;	// implicit clamp to the image's real level count (a 1-mip
+	// texture was baking maxLod=1 into the SHARED sampler cache for the whole
+	// process - the first texture to touch a slot was the 1x1 white fallback)
 	samplerInfo.borderColor = VK_BORDER_COLOR_INT_OPAQUE_BLACK;
 	VkSampler sampler = VK_NULL_HANDLE;
-	if (vkCreateSampler(m_device->GetDevice(), &samplerInfo, nullptr, &sampler) != VK_SUCCESS)
-		return VK_NULL_HANDLE;
+	if (vkCreateSampler(m_device->GetDevice(), &samplerInfo, nullptr, &sampler) != VK_SUCCESS) {
+		samplerInfo.anisotropyEnable = VK_FALSE;	// e.g. maxAnisotropy > device limit
+		samplerInfo.maxAnisotropy = 1.0f;
+		if (vkCreateSampler(m_device->GetDevice(), &samplerInfo, nullptr, &sampler) != VK_SUCCESS)
+			return VK_NULL_HANDLE;
+	}
 	g_sharedSamplers[g_sharedSamplerCount].filtered = filtered;
 	g_sharedSamplers[g_sharedSamplerCount].repeat = repeat;
 	g_sharedSamplers[g_sharedSamplerCount].sampler = sampler;

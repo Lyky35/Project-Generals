@@ -834,7 +834,7 @@ void VulkanDevice::EndFrame(bool present)
 		if (m_readbackBuf == VK_NULL_HANDLE) {
 			VkBufferCreateInfo bi = {};
 			bi.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
-			bi.size = 32768;
+			bi.size = 65536;
 			bi.usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT;
 			bi.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 			if (vkCreateBuffer(m_device, &bi, nullptr, &m_readbackBuf) == VK_SUCCESS) {
@@ -883,19 +883,31 @@ void VulkanDevice::EndFrame(bool present)
 			vkCmdPipelineBarrier(cmd, rbSrcStage, rbDstXfer, 0,
 				0, nullptr, 0, nullptr, 1, &toTransfer);
 
-			VkBufferImageCopy regions[2] = {};
-			regions[0].bufferOffset = 0;
-			regions[0].imageSubresource = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1 };
-			regions[0].imageOffset = { (int32_t)cx, (int32_t)cy, 0 };
-			regions[0].imageExtent = { rw, rh, 1 };
-			regions[1].bufferOffset = 16384;
-			regions[1].imageSubresource = { VK_IMAGE_ASPECT_DEPTH_BIT, 0, 0, 1 };
-			regions[1].imageOffset = { (int32_t)cx, (int32_t)cy, 0 };
-			regions[1].imageExtent = { rw, rh, 1 };
+			// 16x9 pixel GRID across the screen (one pixel per cell) -> ASCII map.
+			static const int GW = 16, GH = 9;
+			VkBufferImageCopy gridCols[GW * GH];
+			VkBufferImageCopy gridDepths[GW * GH];
+			for (int gy = 0; gy < GH; gy++) {
+				for (int gx = 0; gx < GW; gx++) {
+					int gi = gy * GW + gx;
+					int px = (ex.width > 0) ? (int)((uint64_t)(gx * 2 + 1) * ex.width / (GW * 2)) : 0;
+					int py = (ex.height > 0) ? (int)((uint64_t)(gy * 2 + 1) * ex.height / (GH * 2)) : 0;
+					if (px >= (int)ex.width) px = (int)ex.width - 1;
+					if (py >= (int)ex.height) py = (int)ex.height - 1;
+					gridCols[gi].bufferOffset = 32768 + gi * 4;
+					gridCols[gi].imageSubresource = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1 };
+					gridCols[gi].imageOffset = { px, py, 0 };
+					gridCols[gi].imageExtent = { 1, 1, 1 };
+					gridDepths[gi].bufferOffset = 32768 + (GW * GH + gi) * 4;
+					gridDepths[gi].imageSubresource = { VK_IMAGE_ASPECT_DEPTH_BIT, 0, 0, 1 };
+					gridDepths[gi].imageOffset = { px, py, 0 };
+					gridDepths[gi].imageExtent = { 1, 1, 1 };
+				}
+			}
 			vkCmdCopyImageToBuffer(cmd, m_swapImages[m_imageIndex], VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
-				m_readbackBuf, 2, regions);
+				m_readbackBuf, GW * GH, gridCols);
 			vkCmdCopyImageToBuffer(cmd, m_depthImage, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
-				m_readbackBuf, 1, &regions[1]);
+				m_readbackBuf, GW * GH, gridDepths);
 
 			VkPipelineStageFlags rbSrcXfer = VK_PIPELINE_STAGE_TRANSFER_BIT;
 			VkImageMemoryBarrier toPresent = {};
@@ -949,18 +961,39 @@ void VulkanDevice::EndFrame(bool present)
 	if (wantReadback && m_readbackMem != VK_NULL_HANDLE) {
 		vkQueueWaitIdle(m_graphicsQueue);
 		void *mapped = nullptr;
-		if (vkMapMemory(m_device, m_readbackMem, 0, 32768, 0, &mapped) == VK_SUCCESS) {
+		if (vkMapMemory(m_device, m_readbackMem, 0, 65536, 0, &mapped) == VK_SUCCESS) {
 			unsigned char *b = (unsigned char *)mapped;
-			float depth = 0.0f;
-			memcpy(&depth, b + 16384, 4);
+			static const int GW = 16, GH = 9;
 			static unsigned s_rbLog = 0;
 			s_rbLog++;
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) {
-				fprintf(lf, "VK: READBACK #%u colorBGRA=(%u,%u,%u,%u) depth=%.4f depthRaw=0x%08x extent=%ux%u\n",
-					s_rbLog, (unsigned)b[2], (unsigned)b[1], (unsigned)b[0], (unsigned)b[3],
-					(double)depth, (unsigned)(b[16384] | (b[16385] << 8) | (b[16386] << 16) | (b[16387] << 24)),
-					(unsigned)m_swapExtent.width, (unsigned)m_swapExtent.height);
+				fprintf(lf, "VK: GRID #%u luma:\n", s_rbLog);
+				for (int gy = 0; gy < GH; gy++) {
+					fprintf(lf, "  ");
+					for (int gx = 0; gx < GW; gx++) {
+						unsigned char *q = b + 32768 + (gy * GW + gx) * 4;
+						int lum = (q[0] * 30 + q[1] * 59 + q[2] * 11) / 100;
+						const char *ramp = " .:-=+*#%@";
+						int ri = lum * 9 / 255;
+						if (ri > 9) ri = 9;
+						fputc(ramp[ri], lf);
+					}
+					fputc('\n', lf);
+				}
+				fprintf(lf, "  depth:");
+				for (int gy = 0; gy < GH; gy++) {
+					for (int gx = 0; gx < GW; gx++) {
+						unsigned char *q = b + 32768 + (GW * GH + gy * GW + gx) * 4;
+						unsigned v = q[0] | (q[1] << 8) | (q[2] << 16);
+						if (v == 0xffffff) fprintf(lf, " ~~~");
+						else if (v == 0) fprintf(lf, " 000");
+						else fprintf(lf, " %03x", v >> 12);
+					}
+					fputc('\n', lf);
+					fprintf(lf, "       ");
+				}
+				fputc('\n', lf);
 				fclose(lf);
 			}
 			vkUnmapMemory(m_device, m_readbackMem);
