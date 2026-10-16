@@ -1260,6 +1260,28 @@ Probes removed, depth+cull restored to state-driven, real shader (7116B)
 shipped WITH the zips (shaders always zipped together now).
 
 
+### 2026-10-15 (21) - AMD-only black root cause: GenerateMipmaps left mip levels in TRANSFER_DST layout
+
+Bisect ladder on Win10/AMD (vs wine/lavapipe which rendered the shell map):
+- submissions alive: 42k draws / 26M indices per 60 frames, D32 depth, world
+  fvf draws with full viewport, zero errors, layout barrier pairs all legal
+  (Create() pre-transitions every texture to SHADER_READ_ONLY first);
+- forced magenta (depth+cull off): **whole screen magenta on AMD** ->
+  rasterization + present fine; black = fragment data;
+- menu textures = single-mip (worked on AMD); world textures =
+  textureloader.cpp:219 MIP_LEVELS_ALL + GenerateMipmaps() ->
+  **GenerateMipmaps bug**: level i is blitted into TRANSFER_DST and never
+  transitioned back, while the NEXT iteration claims oldLayout=SHADER_READ
+  for it (spec lie) and only the final level got a TRANSFER_DST->SHADER_READ
+  transition -> levels 1..m-2 stuck in TRANSFER_DST -> sampling them is
+  undefined -> AMD returns BLACK, lavapipe tolerates (wine showed terrain).
+
+Fix: restore level i to SHADER_READ_ONLY at the end of every iteration
+(invariant: every level ends the loop sampled-layout) and drop the bogus
+final transition. Removed the magenta probe, restored state-driven depth+cull
+(magenta run had them forced off; wine proved real depth state renders).
+
+
 ### 2026-10-15 (20) - THE view-matrix bug: Matrix3D::Get_Inverse was a stub returning the matrix unchanged
 
 After fixing the MVP order, the field log PROJ/VIEW/MVP-FULL chain matched the

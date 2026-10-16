@@ -434,6 +434,14 @@ void VkTexture::UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const
 
 void VkTexture::GenerateMipmaps()
 {
+	// Port fix (AMD black terrain): mid-loop level i was blitted into
+	// TRANSFER_DST and NEVER transitioned back, while the next iteration
+	// claimed oldLayout=SHADER_READ_ONLY for it (spec lie) - and only the
+	// last level got a final TRANSFER_DST->SHADER_READ transition. Result:
+	// levels 1..m_mips-2 stayed in TRANSFER_DST -> sampling them is
+	// undefined -> AMD returns black (menus are single-mip -> worked),
+	// lavapipe tolerates it (wine showed terrain). Invariant now: every
+	// level ends each iteration in SHADER_READ_ONLY_OPTIMAL.
 	VkCommandBuffer cmd = m_device->BeginOneTimeCommands();
 	uint32_t w = m_width;
 	uint32_t h = m_height;
@@ -458,10 +466,11 @@ void VkTexture::GenerateMipmaps()
 		vkCmdBlitImage(cmd, m_image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
 			m_image, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &blit, VK_FILTER_LINEAR);
 		TransitionLayout(cmd, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, i - 1, 1);
+		// restore level i so the next iteration's SHADER_READ_ONLY claim is true
+		TransitionLayout(cmd, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, i, 1);
 		w = nw;
 		h = nh;
 	}
-	TransitionLayout(cmd, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, m_mips - 1, 1);
 	m_device->EndOneTimeCommands(cmd);
 }
 
