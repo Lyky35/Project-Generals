@@ -51,6 +51,13 @@ vec3 applyTexOp(vec3 current, float currentAlpha, vec4 texel, int op, out float 
 void main()
 {
 
+	// FIELD PROBE (AMD-vs-lavapipe): submissions+state verified on Win10
+	// (700 draws/frame, depth off, cull off, no errors) but black screen while
+	// wine/lavapipe renders the terrain. Whole screen magenta = rasterization
+	// + present fine on AMD -> the black is FRAGMENT DATA (texture sample);
+	// still black on AMD = geometry/clip/present path.
+	outColor = vec4(1.0, 0.0, 1.0, 1.0);
+	return;
 	// Port fix: D3D8 only folds the material diffuse into the color for LIT
 	// passes; unlit/prelit meshes (terrain etc. - material diffuse often 0)
 	// use the vertex color alone. Multiplying unconditionally made the whole
