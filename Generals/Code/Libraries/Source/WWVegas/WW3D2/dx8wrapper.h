@@ -547,6 +547,13 @@ protected:
 	static D3DADAPTER_IDENTIFIER8		CurrentAdapterIdentifier;
 
 	static VkShaderManager				ShaderManager;
+	// Legacy IDirect3DDevice8 adapter (shadow subsystem) - member so it can
+	// reach the private dynamic-buffer plumbing + VulkanDrawIndexed.
+public:
+	static void LegacyDrawIndexedAbs(const unsigned short *idx, unsigned idxCount,
+		unsigned copyStart, unsigned copyCount, unsigned hint);
+	static unsigned PeekRenderState(unsigned state) { return RenderStates[state]; }
+protected:
 	static bool VulkanDrawIndexed(
 		VkGpuBuffer *vb, uint32_t vbOffsetBytes, unsigned fvf, const FVFInfoClass &fvfInfo,
 		VkGpuBuffer *ib, uint32_t firstIndex, uint32_t indexCount, uint32_t vertexOffset,

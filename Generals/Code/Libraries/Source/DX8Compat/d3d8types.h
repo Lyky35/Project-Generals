@@ -714,39 +714,88 @@ struct IDirect3D8 {
 };
 
 // Complete-enough stubs for legacy callers that Lock/Unlock/Create* on these
+// Legacy-shadow adapter: real CPU-side buffers so the old device-API shadow
+// code can create/lock/fill them (previously Create* returned E_FAIL and Lock
+// returned null -> the whole shadow subsystem was silently disabled).
 struct IDirect3DVertexBuffer8 {
-	HRESULT Lock(UINT OffsetToLock, UINT SizeToLock, BYTE** ppbData, DWORD Flags) { (void)OffsetToLock; (void)SizeToLock; (void)Flags; if (ppbData) *ppbData = 0; return E_FAIL; }
+	BYTE *pData;
+	UINT Length;
+	IDirect3DVertexBuffer8() : pData(nullptr), Length(0) {}
+	~IDirect3DVertexBuffer8() { delete[] pData; }
+	HRESULT Lock(UINT OffsetToLock, UINT SizeToLock, BYTE** ppbData, DWORD Flags) {
+		(void)Flags;
+		if (!pData) return E_FAIL;
+		if (ppbData) *ppbData = pData + OffsetToLock;
+		return S_OK;
+	}
 	HRESULT Unlock() { return S_OK; }
-	void Release() {}
+	void Release() { delete this; }
 };
 
 struct IDirect3DDevice8;
 typedef IDirect3DVertexBuffer8* LPDIRECT3DVERTEXBUFFER8;
 
+// C-style shims (defined in dx8wrapper.cpp) so the device struct below can
+// forward state calls without including dx8wrapper.h here.
+extern "C" void DX8Wrapper_SetRenderState(unsigned state, unsigned value);
+extern "C" unsigned DX8Wrapper_GetRenderState(unsigned state);
+extern "C" void DX8Wrapper_SetTextureStageState(unsigned stage, unsigned type, unsigned value);
+
+// Adapter (defined in dx8wrapper.cpp): legacy device-API forwarding for the
+// shadow subsystem.
+namespace D3D8Adapter {
+	HRESULT CreateVertexBuffer(UINT Length, IDirect3DVertexBuffer8** ppVB);
+	HRESULT CreateIndexBuffer(UINT Length, IDirect3DIndexBuffer8** ppIB);
+	void SetIndices(IDirect3DIndexBuffer8 *ib, UINT baseVertex);
+	void SetStreamSource(IDirect3DVertexBuffer8 *vb, UINT stride);
+	void SetFVF(DWORD fvf);
+	void SetWorldTransform(const void *matrix);	// WW-convention Matrix4*
+	void DrawIndexedLegacy(D3DPRIMITIVETYPE type, INT base, INT numVerts,
+		UINT startIndex, UINT primCount);	// (type, base, numVerts, startIdx, polys)
+	void DrawIndexedD3D9(D3DPRIMITIVETYPE type, INT base, UINT minV, UINT numV,
+		UINT startIndex, UINT primCount);
+	void DrawPrimitiveUP(D3DPRIMITIVETYPE type, UINT primCount,
+		const void *data, UINT stride);
+}
+
 struct IDirect3DDevice8 {
 	HRESULT CreateVertexBuffer(UINT Length, DWORD Usage, DWORD FVF, D3DPOOL Pool, IDirect3DVertexBuffer8** ppVB) {
-		(void)Length; (void)Usage; (void)FVF; (void)Pool; if (ppVB) *ppVB = 0; return E_FAIL;
+		(void)Usage; (void)FVF; (void)Pool;
+		return D3D8Adapter::CreateVertexBuffer(Length, ppVB);
 	}
 	HRESULT CreateIndexBuffer(UINT Length, DWORD Usage, D3DFORMAT Format, D3DPOOL Pool, IDirect3DIndexBuffer8** ppIB) {
-		(void)Length; (void)Usage; (void)Format; (void)Pool; if (ppIB) *ppIB = 0; return E_FAIL;
+		(void)Usage; (void)Format; (void)Pool;
+		return D3D8Adapter::CreateIndexBuffer(Length, ppIB);
 	}
-	HRESULT SetIndices(IDirect3DIndexBuffer8* pIndexData, UINT BaseVertexIndex) { (void)pIndexData; (void)BaseVertexIndex; return S_OK; }
+	HRESULT SetIndices(IDirect3DIndexBuffer8* pIndexData, UINT BaseVertexIndex) {
+		D3D8Adapter::SetIndices(pIndexData, BaseVertexIndex); return S_OK;
+	}
 	HRESULT SetStreamSource(UINT StreamNumber, IDirect3DVertexBuffer8* pStreamData, UINT Stride) {
-		(void)StreamNumber; (void)pStreamData; (void)Stride; return S_OK;
+		(void)StreamNumber; D3D8Adapter::SetStreamSource(pStreamData, Stride); return S_OK;
 	}
-	HRESULT SetRenderState(D3DRENDERSTATETYPE State, DWORD Value) { (void)State; (void)Value; return S_OK; }
-	HRESULT GetRenderState(D3DRENDERSTATETYPE State, DWORD* pValue) { (void)State; if (pValue) *pValue = 0; return S_OK; }
-	HRESULT SetTextureStageState(DWORD Stage, D3DTEXTURESTAGESTATETYPE Type, DWORD Value) { (void)Stage; (void)Type; (void)Value; return S_OK; }
-	HRESULT SetTransform(D3DTRANSFORMSTATETYPE State, const D3DMATRIX* Matrix) { (void)State; (void)Matrix; return S_OK; }
-	HRESULT SetVertexShader(DWORD Handle) { (void)Handle; return S_OK; }
+	HRESULT SetRenderState(D3DRENDERSTATETYPE State, DWORD Value) {
+		DX8Wrapper_SetRenderState(State, Value); return S_OK;
+	}
+	HRESULT GetRenderState(D3DRENDERSTATETYPE State, DWORD* pValue) {
+		if (pValue) *pValue = DX8Wrapper_GetRenderState(State); return S_OK;
+	}
+	HRESULT SetTextureStageState(DWORD Stage, D3DTEXTURESTAGESTATETYPE Type, DWORD Value) {
+		DX8Wrapper_SetTextureStageState(Stage, Type, Value); return S_OK;
+	}
+	HRESULT SetTransform(D3DTRANSFORMSTATETYPE State, const D3DMATRIX* Matrix) {
+		D3D8Adapter::SetWorldTransform(Matrix); return S_OK;
+	}
+	HRESULT SetVertexShader(DWORD Handle) { D3D8Adapter::SetFVF(Handle); return S_OK; }
 	HRESULT SetTexture(DWORD Stage, void* Texture) { (void)Stage; (void)Texture; return S_OK; }
-	HRESULT DrawIndexedPrimitive(DWORD, INT, UINT, UINT, WORD*, UINT) { return S_OK; }
-	HRESULT DrawIndexedPrimitive(D3DPRIMITIVETYPE, INT BaseVertexIndex, UINT MinVertexIndex, UINT NumVertices, UINT StartIndex, UINT PrimitiveCount) {
-		(void)BaseVertexIndex; (void)MinVertexIndex; (void)NumVertices; (void)StartIndex; (void)PrimitiveCount; return S_OK;
+	HRESULT DrawIndexedPrimitive(D3DPRIMITIVETYPE t, INT BaseVertexIndex, UINT MinVertexIndex, UINT NumVertices, UINT StartIndex, UINT PrimitiveCount) {
+		D3D8Adapter::DrawIndexedD3D9(t, BaseVertexIndex, MinVertexIndex, NumVertices, StartIndex, PrimitiveCount); return S_OK;
 	}
 	// Legacy 5-arg form used by shadow code: (type, base, numVerts, startIndex, numPolys)
-	HRESULT DrawIndexedPrimitive(D3DPRIMITIVETYPE, INT, INT, INT, INT) { return S_OK; }
-	HRESULT DrawPrimitiveUP(D3DPRIMITIVETYPE, UINT, const void*, UINT) { return S_OK; }
+	HRESULT DrawIndexedPrimitive(D3DPRIMITIVETYPE t, INT base, INT numVerts, INT startIndex, INT primCount) {
+		D3D8Adapter::DrawIndexedLegacy(t, base, numVerts, (UINT)startIndex, (UINT)primCount); return S_OK;
+	}
+	HRESULT DrawPrimitiveUP(D3DPRIMITIVETYPE t, UINT primCount, const void* data, UINT stride) {
+		D3D8Adapter::DrawPrimitiveUP(t, primCount, data, stride); return S_OK; }
 	HRESULT TestCooperativeLevel() { return S_OK; }
 	HRESULT SetPixelShader(DWORD) { return S_OK; }
 	HRESULT DeletePixelShader(DWORD) { return S_OK; }
@@ -784,9 +833,18 @@ struct IDirect3DDevice8 {
 typedef IDirect3DDevice8* LPDIRECT3DDEVICE8;
 
 struct IDirect3DIndexBuffer8 {
-	HRESULT Lock(UINT OffsetToLock, UINT SizeToLock, BYTE** ppbData, DWORD Flags) { (void)OffsetToLock; (void)SizeToLock; (void)Flags; if (ppbData) *ppbData = 0; return E_FAIL; }
+	WORD *pData;
+	UINT Length;	// in bytes
+	IDirect3DIndexBuffer8() : pData(nullptr), Length(0) {}
+	~IDirect3DIndexBuffer8() { delete[] pData; }
+	HRESULT Lock(UINT OffsetToLock, UINT SizeToLock, BYTE** ppbData, DWORD Flags) {
+		(void)Flags;
+		if (!pData) return E_FAIL;
+		if (ppbData) *ppbData = (BYTE*)pData + OffsetToLock;
+		return S_OK;
+	}
 	HRESULT Unlock() { return S_OK; }
-	void Release() {}
+	void Release() { delete this; }
 };
 
 typedef IDirect3DSurface8* LPDIRECT3DSURFACE8;

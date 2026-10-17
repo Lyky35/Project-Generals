@@ -2326,6 +2326,198 @@ void DX8Wrapper::Set_Light_Environment(LightEnvironmentClass* light_env)
 	}
 }
 
+// ---------------------------------------------------------------------------
+// D3D8 legacy-device adapter (shadow subsystem drives the old IDirect3DDevice8
+// API; every one of these calls used to be a silent no-op stub).
+// ---------------------------------------------------------------------------
+#include "d3d8types.h"
+
+static IDirect3DVertexBuffer8 *s_StreamVB = nullptr;
+static UINT s_StreamStride = 0;
+static IDirect3DIndexBuffer8 *s_IndexBuffer = nullptr;
+static UINT s_IndexBase = 0;
+static DWORD s_FVF = 0;
+
+extern "C" void DX8Wrapper_SetRenderState(unsigned state, unsigned value)
+{
+	DX8Wrapper::Set_DX8_Render_State((D3DRENDERSTATETYPE)state, value);
+}
+extern "C" unsigned DX8Wrapper_GetRenderState(unsigned state)
+{
+	return DX8Wrapper::PeekRenderState(state);
+}
+extern "C" void DX8Wrapper_SetTextureStageState(unsigned stage, unsigned type, unsigned value)
+{
+	DX8Wrapper::Set_DX8_Texture_Stage_State(stage, (D3DTEXTURESTAGESTATETYPE)type, value);
+}
+
+namespace D3D8Adapter {
+
+HRESULT CreateVertexBuffer(UINT Length, IDirect3DVertexBuffer8 **ppVB)
+{
+	if (!ppVB) return E_FAIL;
+	IDirect3DVertexBuffer8 *vb = new (std::nothrow) IDirect3DVertexBuffer8();
+	if (!vb) { *ppVB = nullptr; return E_FAIL; }
+	vb->pData = new (std::nothrow) BYTE[Length]();
+	if (!vb->pData) { delete vb; *ppVB = nullptr; return E_FAIL; }
+	vb->Length = Length;
+	*ppVB = vb;
+	return S_OK;
+}
+
+HRESULT CreateIndexBuffer(UINT Length, IDirect3DIndexBuffer8 **ppIB)
+{
+	if (!ppIB) return E_FAIL;
+	IDirect3DIndexBuffer8 *ib = new (std::nothrow) IDirect3DIndexBuffer8();
+	if (!ib) { *ppIB = nullptr; return E_FAIL; }
+	ib->pData = new (std::nothrow) WORD[Length / 2 + 1]();
+	if (!ib->pData) { delete ib; *ppIB = nullptr; return E_FAIL; }
+	ib->Length = Length;
+	*ppIB = ib;
+	return S_OK;
+}
+
+void SetIndices(IDirect3DIndexBuffer8 *ib, UINT baseVertex)
+{
+	s_IndexBuffer = ib;
+	s_IndexBase = baseVertex;
+}
+
+void SetStreamSource(IDirect3DVertexBuffer8 *vb, UINT stride)
+{
+	s_StreamVB = vb;
+	s_StreamStride = stride;
+}
+
+void SetFVF(DWORD fvf)
+{
+	s_FVF = fvf;
+}
+
+void SetWorldTransform(const void *matrix)
+{
+	// Shadow code passes WW-convention matrices (or already-transposed DX8
+	// copies - see the .Transpose() call sites); Set_Transform applies the
+	// WW->DX8 transpose, so pass raw WW matrices and strip the explicit
+	// transposes at the call sites.
+	DX8Wrapper::Set_Transform(D3DTS_WORLD, *(const Matrix4 *)matrix);
+}
+
+// Shared draw path: copies legacy heap-buffer vertices into the port's dynamic
+// VB/IB exactly like the existing sorting/dynamic draw paths.
+void DX8Wrapper::LegacyDrawIndexedAbs(const unsigned short *idx, unsigned idxCount,
+	unsigned copyStart, unsigned copyCount, unsigned vertexOffsetHint)
+{
+	if (!s_StreamVB || !s_StreamVB->pData || !idx || !idxCount || !copyCount || !s_FVF)
+		return;
+	if (!DX8Wrapper::_Is_Triangle_Draw_Enabled())
+		return;
+	unsigned stride = s_StreamStride;
+	if (!stride) stride = 32;
+	if (copyStart + copyCount > s_StreamVB->Length / stride)
+		return;
+
+	DynamicVBAccessClass dvb(BUFFER_TYPE_DYNAMIC_DX8, s_FVF, (unsigned short)copyCount);
+	{
+		DynamicVBAccessClass::WriteLockClass lock(&dvb);
+		BYTE *dst = (BYTE *)lock.Get_Formatted_Vertex_Array();
+		if (!dst) return;
+		memcpy(dst, s_StreamVB->pData + (size_t)copyStart * stride, (size_t)copyCount * stride);
+	}
+	DynamicIBAccessClass dib(BUFFER_TYPE_DYNAMIC_DX8, (unsigned)idxCount);
+	{
+		DynamicIBAccessClass::WriteLockClass lock(&dib);
+		unsigned short *dst = lock.Get_Index_Array();
+		if (!dst) return;
+		for (unsigned i = 0; i < idxCount; i++) {
+			int rebased = (int)idx[i] - (int)vertexOffsetHint;
+			if (rebased < 0 || rebased >= (int)copyCount) rebased = 0;
+			dst[i] = (unsigned short)rebased;
+		}
+	}
+	(void)vertexOffsetHint;
+
+	VkGpuBuffer *vb = static_cast<DX8VertexBufferClass *>(dvb.VertexBuffer)->Get_Vulkan_Vertex_Buffer();
+	VkGpuBuffer *ib = static_cast<DX8IndexBufferClass *>(dib.IndexBuffer)->Get_Vulkan_Index_Buffer();
+	const FVFInfoClass &fvfInfo = dvb.FVF_Info();
+	DX8Wrapper::VulkanDrawIndexed(vb, 0, fvfInfo.Get_FVF(), fvfInfo,
+		ib, dib.IndexBufferOffset, (uint32_t)idxCount, dvb.VertexBufferOffset,
+		D3DPT_TRIANGLELIST);
+}
+
+void DrawIndexedLegacy(D3DPRIMITIVETYPE type, INT base, INT numVerts,
+	UINT startIndex, UINT primCount)
+{
+	if (type != D3DPT_TRIANGLELIST || !s_IndexBuffer || !s_IndexBuffer->pData || !numVerts)
+		return;
+	unsigned idxCount = primCount * 3;
+	if ((startIndex + idxCount) * sizeof(WORD) > s_IndexBuffer->Length)
+		return;
+	// fetch = base + index  =>  copy verts [base, base+numVerts), rebase idx by
+	// base, draw with vertexOffset = base handled inside DrawIndexedAbs via hint.
+	DX8Wrapper::LegacyDrawIndexedAbs(s_IndexBuffer->pData + startIndex, idxCount,
+		(unsigned)base, (unsigned)numVerts, (unsigned)base);
+}
+
+void DrawIndexedD3D9(D3DPRIMITIVETYPE type, INT base, UINT minV, UINT numV,
+	UINT startIndex, UINT primCount)
+{
+	if (type != D3DPT_TRIANGLELIST || !s_IndexBuffer || !s_IndexBuffer->pData || !numV)
+		return;
+	unsigned idxCount = primCount * 3;
+	if ((startIndex + idxCount) * sizeof(WORD) > s_IndexBuffer->Length)
+		return;
+	// fetch = base + index (minV = window into the source range)
+	DX8Wrapper::LegacyDrawIndexedAbs(s_IndexBuffer->pData + startIndex, idxCount,
+		(unsigned)(base + (INT)minV), numV, (unsigned)(base + (INT)minV));
+}
+
+void DrawPrimitiveUP(D3DPRIMITIVETYPE type, UINT primCount, const void *data, UINT stride)
+{
+	if (!data || !stride || !s_FVF) return;
+	unsigned vertCount = 0;
+	if (type == D3DPT_TRIANGLELIST) vertCount = primCount * 3;
+	else if (type == D3DPT_TRIANGLESTRIP || type == D3DPT_TRIANGLEFAN) vertCount = primCount + 2;
+	else return;
+	if (vertCount > 4096) return;
+
+	unsigned short tmpIdx[4096];
+	unsigned idxCount = 0;
+	if (type == D3DPT_TRIANGLELIST) {
+		for (unsigned i = 0; i < vertCount; i++) tmpIdx[idxCount++] = (unsigned short)i;
+	} else if (type == D3DPT_TRIANGLESTRIP) {
+		for (unsigned i = 0; i + 2 < vertCount; i++) {
+			if (i & 1) { tmpIdx[idxCount++] = (unsigned short)(i + 1); tmpIdx[idxCount++] = (unsigned short)i; }
+			else { tmpIdx[idxCount++] = (unsigned short)i; tmpIdx[idxCount++] = (unsigned short)(i + 1); }
+			tmpIdx[idxCount++] = (unsigned short)(i + 2);
+		}
+	} else if (type == D3DPT_TRIANGLEFAN) {
+		for (unsigned i = 1; i + 1 < vertCount; i++) {
+			tmpIdx[idxCount++] = 0;
+			tmpIdx[idxCount++] = (unsigned short)i;
+			tmpIdx[idxCount++] = (unsigned short)(i + 1);
+		}
+	} else {
+		return;
+	}
+	// upload UP vertex data through a temp heap buffer path
+	static IDirect3DVertexBuffer8 upVB;	// reuse storage
+	delete[] upVB.pData;
+	upVB.pData = new BYTE[(size_t)vertCount * stride];
+	if (!upVB.pData) return;
+	memcpy(upVB.pData, data, (size_t)vertCount * stride);
+	upVB.Length = vertCount * stride;
+	IDirect3DVertexBuffer8 *prev = s_StreamVB;
+	UINT prevStride = s_StreamStride;
+	s_StreamVB = &upVB;
+	s_StreamStride = stride;
+	DX8Wrapper::LegacyDrawIndexedAbs(tmpIdx, idxCount, 0, vertCount, 0);
+	s_StreamVB = prev;
+	s_StreamStride = prevStride;
+}
+
+} // namespace D3D8Adapter
+
 static void VulkanDecodeColor(unsigned argb, float *out)
 {
 	out[0] = ((argb >> 16) & 0xff) / 255.0f;
