@@ -67,6 +67,10 @@ struct VkFrameUniforms {
     // lightColors; flags drawn per-frame by VulkanDrawIndexed.
     uint32_t drawFlags;
     uint32_t _pad0;
+    // GLSL puts vec4 lightAtten[4] at 240 (16-aligned after the uint);
+    // CPU pads to match.
+    uint32_t _pad1[3];
+    float lightAtten[4][4];	// (att0, att1, att2, range) per light - point lights
     float worldViewProj[16];
     float world[16];
 };

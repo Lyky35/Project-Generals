@@ -565,8 +565,10 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	blendAttachment.srcColorBlendFactor = TranslateBlend(state.srcBlend);
 	blendAttachment.dstColorBlendFactor = TranslateBlend(state.dstBlend);
 	blendAttachment.colorBlendOp = VK_BLEND_OP_ADD;
-	blendAttachment.srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE;
-	blendAttachment.dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO;
+	// D3D8 has no separate-alpha-blend: alpha uses the SAME factors as color
+	// (matters for layered opacity/fade effects).
+	blendAttachment.srcAlphaBlendFactor = blendAttachment.srcColorBlendFactor;
+	blendAttachment.dstAlphaBlendFactor = blendAttachment.dstColorBlendFactor;
 	blendAttachment.alphaBlendOp = VK_BLEND_OP_ADD;
 	blendAttachment.colorWriteMask = 0;
 	if (state.colorWriteMask & 1) blendAttachment.colorWriteMask |= VK_COLOR_COMPONENT_R_BIT;

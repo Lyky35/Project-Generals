@@ -282,8 +282,36 @@ TextureClass::TextureClass(SurfaceClass *surface, MipCountType mip_level_count)
 		break;
 	}
 	
-	// Create VkTexture from surface dimensions
+	// Create VkTexture from surface dimensions AND upload the surface pixels -
+	// this ctor previously created the Vulkan texture but NEVER copied the
+	// bitmap in, so every texture made through it sampled UNDEFINED (zero)
+	// content: the black world terrain on every driver (readback: all zeros).
 	VulkanTexture = DX8Wrapper::_Create_Vulkan_Texture(sd.Width, sd.Height, sd.Format, mip_level_count);
+	if (VulkanTexture) {
+		int pitch = 0;
+		void *bits = surface->Lock(&pitch);
+		if (bits) {
+			const int bpp = 4;	// 32bpp A8R8G8B8 in this loader path
+			if (pitch == (int)(sd.Width * (unsigned)bpp)) {
+				VulkanTexture->UploadLevel(0, sd.Width, sd.Height, bits);
+			} else {
+				unsigned char *tmp = new unsigned char[(size_t)sd.Width * bpp * sd.Height];
+				for (unsigned y = 0; y < sd.Height; y++)
+					memcpy(tmp + (size_t)y * sd.Width * bpp,
+						(unsigned char *)bits + (size_t)y * pitch,
+						(size_t)sd.Width * bpp);
+				VulkanTexture->UploadLevel(0, sd.Width, sd.Height, tmp);
+				delete[] tmp;
+			}
+			surface->Unlock();
+			if (mip_level_count != TextureClass::MIP_LEVELS_1)
+				VulkanTexture->GenerateMipmaps();
+		} else {
+			VulkanTexture->Destroy();
+			delete VulkanTexture;
+			VulkanTexture = NULL;
+		}
+	}
 	LastAccessed=WW3D::Get_Sync_Time();
 }
 

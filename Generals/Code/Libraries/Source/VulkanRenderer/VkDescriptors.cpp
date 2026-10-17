@@ -57,11 +57,8 @@ void VkDescriptorAllocator::Shutdown()
 	m_device = nullptr;
 }
 
-bool VkDescriptorAllocator::EnsurePool()
+VkDescriptorPool VkDescriptorAllocator::CreatePool()
 {
-	const int slot = FrameSlot();
-	if (!m_pools[slot].empty())
-		return true;
 	VkDescriptorPoolSize poolSizes[2] = {};
 	poolSizes[0].type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
 	poolSizes[0].descriptorCount = m_maxSets * 2;
@@ -74,6 +71,17 @@ bool VkDescriptorAllocator::EnsurePool()
 	poolInfo.pPoolSizes = poolSizes;
 	VkDescriptorPool pool = VK_NULL_HANDLE;
 	if (vkCreateDescriptorPool(m_device->GetDevice(), &poolInfo, nullptr, &pool) != VK_SUCCESS)
+		return VK_NULL_HANDLE;
+	return pool;
+}
+
+bool VkDescriptorAllocator::EnsurePool()
+{
+	const int slot = FrameSlot();
+	if (!m_pools[slot].empty())
+		return true;
+	VkDescriptorPool pool = CreatePool();
+	if (pool == VK_NULL_HANDLE)
 		return false;
 	m_pools[slot].push_back(pool);
 	return true;
@@ -111,8 +119,17 @@ VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout 
 	allocInfo.pSetLayouts = &layout;
 	VkDescriptorSet set = VK_NULL_HANDLE;
 	if (vkAllocateDescriptorSets(m_device->GetDevice(), &allocInfo, &set) != VK_SUCCESS) {
-		static bool l3=false; if(!l3){l3=true;FILE*lf=fopen("RTS_START.LOG","a");if(lf){fprintf(lf,"AllocTexSet fail: vkAllocateDescriptorSets\n");fclose(lf);}}
-		return VK_NULL_HANDLE;
+		VkDescriptorPool extra = CreatePool();
+		if (extra != VK_NULL_HANDLE) {
+			m_pools[FrameSlot()].push_back(extra);
+			allocInfo.descriptorPool = extra;
+			if (vkAllocateDescriptorSets(m_device->GetDevice(), &allocInfo, &set) != VK_SUCCESS)
+				set = VK_NULL_HANDLE;
+		}
+		if (set == VK_NULL_HANDLE) {
+			static bool l3=false; if(!l3){l3=true;FILE*lf=fopen("RTS_START.LOG","a");if(lf){fprintf(lf,"AllocTexSet fail: vkAllocateDescriptorSets\n");fclose(lf);}}
+			return VK_NULL_HANDLE;
+		}
 	}
 
 	VkDescriptorImageInfo imageInfos[2] = {};
@@ -162,8 +179,17 @@ VkDescriptorSet VkDescriptorAllocator::AllocateFrameSet(VkDescriptorSetLayout la
 	allocInfo.descriptorSetCount = 1;
 	allocInfo.pSetLayouts = &layout;
 	VkDescriptorSet set = VK_NULL_HANDLE;
-	if (vkAllocateDescriptorSets(m_device->GetDevice(), &allocInfo, &set) != VK_SUCCESS)
-		return VK_NULL_HANDLE;
+	if (vkAllocateDescriptorSets(m_device->GetDevice(), &allocInfo, &set) != VK_SUCCESS) {
+		VkDescriptorPool extra = CreatePool();
+		if (extra != VK_NULL_HANDLE) {
+			m_pools[FrameSlot()].push_back(extra);
+			allocInfo.descriptorPool = extra;
+			if (vkAllocateDescriptorSets(m_device->GetDevice(), &allocInfo, &set) != VK_SUCCESS)
+				set = VK_NULL_HANDLE;
+		}
+		if (set == VK_NULL_HANDLE)
+			return VK_NULL_HANDLE;
+	}
 
 	VkDescriptorBufferInfo bufferInfo = {};
 	bufferInfo.buffer = buffer;

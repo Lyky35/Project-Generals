@@ -22,6 +22,7 @@ layout(set = 1, binding = 0) uniform FrameData {
 	vec4 lightDirs[4];
 	vec4 lightColors[4];
 	uint drawFlags;
+	vec4 lightAtten[4];
 } frame;
 
 layout(constant_id = 0) const int TEX0_OP = 1;
@@ -86,8 +87,25 @@ void main()
 		vec3 n = normalize(inNormal);
 		vec3 lit = frame.ambientColor.rgb;
 		for (int i = 0; i < 4; i++) {
-			float ndl = max(dot(n, -frame.lightDirs[i].xyz), 0.0);
-			lit += frame.lightColors[i].rgb * (ndl * frame.lightDirs[i].w);
+			if (frame.lightDirs[i].w <= 0.0)
+				continue;
+			if (frame.lightColors[i].a > 1.5) {
+				// point light: lightDirs.xyz = position, lightAtten = att/range
+				vec3 L = frame.lightDirs[i].xyz - inWorldPos;
+				float d = length(L);
+				if (d < 1e-4)
+					continue;
+				float range = frame.lightAtten[i].w;
+				if (range > 0.0 && d > range)
+					continue;
+				float att = 1.0 / max(frame.lightAtten[i].x +
+					frame.lightAtten[i].y * d + frame.lightAtten[i].z * d * d, 1e-4);
+				float ndl = max(dot(n, L / d), 0.0);
+				lit += frame.lightColors[i].rgb * (ndl * att);
+			} else {
+				float ndl = max(dot(n, -frame.lightDirs[i].xyz), 0.0);
+				lit += frame.lightColors[i].rgb * ndl;
+			}
 		}
 		color *= lit;
 	}

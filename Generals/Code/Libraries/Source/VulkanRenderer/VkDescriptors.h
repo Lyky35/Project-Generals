@@ -21,6 +21,7 @@ public:
     void Shutdown();
 
     bool EnsurePool();
+	VkDescriptorPool CreatePool();
     void ResetFrame();
 
     VkDescriptorSet Allocate(VkDescriptorSetLayout layout);

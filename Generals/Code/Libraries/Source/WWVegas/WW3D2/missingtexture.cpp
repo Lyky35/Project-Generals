@@ -38,6 +38,10 @@ void MissingTexture::_Init()
 			}
 		}
 		_MissingTexture->UploadLevel(0, missing_image_width, missing_image_height, checker);
+		{
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: MissingTexture init ptr=%p (checker uploaded)\n", (void *)_MissingTexture); fclose(lf); }
+		}
 	}
 }
 

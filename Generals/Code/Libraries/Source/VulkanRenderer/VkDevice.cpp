@@ -958,6 +958,23 @@ void VulkanDevice::EndFrame(bool present)
 		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=EndFrame submitted\n"); fclose(lf); } }
 	}
 
+	if (m_texReadbackMem != VK_NULL_HANDLE) {
+		vkQueueWaitIdle(m_graphicsQueue);
+		void *mapped = nullptr;
+		if (vkMapMemory(m_device, m_texReadbackMem, 0, 256, 0, &mapped) == VK_SUCCESS) {
+			unsigned char *b = (unsigned char *)mapped;
+			static unsigned texRbLog = 0;
+			texRbLog++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: TEXREADBACK #%u first16BGRA=", texRbLog);
+				for (int i = 0; i < 16; i++) fprintf(lf, "%02x", b[i]);
+				fprintf(lf, "\n");
+				fclose(lf);
+			}
+			vkUnmapMemory(m_device, m_texReadbackMem);
+		}
+	}
 	if (wantReadback && m_readbackMem != VK_NULL_HANDLE) {
 		vkQueueWaitIdle(m_graphicsQueue);
 		void *mapped = nullptr;

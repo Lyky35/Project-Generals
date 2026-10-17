@@ -1512,6 +1512,77 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	VkTexture *tex0 = DX8Wrapper::BoundTextures[0] ? DX8Wrapper::BoundTextures[0]->Peek_Vulkan_Texture() : NULL;
 	const bool tex0Missing = (tex0 == NULL);
 	VkTexture *tex1 = DX8Wrapper::BoundTextures[1] ? DX8Wrapper::BoundTextures[1]->Peek_Vulkan_Texture() : NULL;
+	// TEXTURE-CONTENT READBACK: copy the mip0 center of the first few bound
+	// world textures back to the log (what does the GPU actually sample?).
+	{
+		static unsigned texRb = 0;
+		if (tex0 && fvf == 0x242 && texRb < 4 && tex0->GetImage() != VK_NULL_HANDLE) {
+			VulkanDevice &dev = VulkanDevice::Instance();
+			if (dev.m_texReadbackBuf == VK_NULL_HANDLE) {
+				VkBufferCreateInfo bi = {};
+				bi.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
+				bi.size = 256;
+				bi.usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT;
+				bi.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+				if (vkCreateBuffer(dev.GetDevice(), &bi, nullptr, &dev.m_texReadbackBuf) == VK_SUCCESS) {
+					VkMemoryRequirements mr;
+					vkGetBufferMemoryRequirements(dev.GetDevice(), dev.m_texReadbackBuf, &mr);
+					VkMemoryAllocateInfo ai = {};
+					ai.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+					ai.allocationSize = mr.size;
+					ai.memoryTypeIndex = dev.FindMemoryType(mr.memoryTypeBits,
+						VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
+					if (ai.memoryTypeIndex != UINT32_MAX &&
+						vkAllocateMemory(dev.GetDevice(), &ai, nullptr, &dev.m_texReadbackMem) == VK_SUCCESS)
+						vkBindBufferMemory(dev.GetDevice(), dev.m_texReadbackBuf, dev.m_texReadbackMem, 0);
+					else {
+						vkDestroyBuffer(dev.GetDevice(), dev.m_texReadbackBuf, nullptr);
+						dev.m_texReadbackBuf = VK_NULL_HANDLE;
+					}
+				}
+			}
+			if (dev.m_texReadbackBuf != VK_NULL_HANDLE) {
+				VkCommandBuffer tcmd = dev.GetCommandBuffer();
+				VkImageMemoryBarrier b1 = {};
+				b1.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+				b1.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+				b1.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+				b1.srcAccessMask = VK_ACCESS_SHADER_READ_BIT;
+				b1.dstAccessMask = VK_ACCESS_TRANSFER_READ_BIT;
+				b1.image = tex0->GetImage();
+				b1.oldLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+				b1.newLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+				b1.subresourceRange = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 };
+				vkCmdPipelineBarrier(tcmd, VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT,
+					VK_PIPELINE_STAGE_TRANSFER_BIT, 0, 0, nullptr, 0, nullptr, 1, &b1);
+				VkBufferImageCopy rg = {};
+				rg.imageSubresource = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1 };
+				rg.imageOffset = { tex0->GetWidth() > 8 ? (int32_t)(tex0->GetWidth() / 2 - 4) : 0,
+					tex0->GetHeight() > 8 ? (int32_t)(tex0->GetHeight() / 2 - 4) : 0, 0 };
+				rg.imageExtent = { tex0->GetWidth() > 8 ? 8u : tex0->GetWidth(),
+					tex0->GetHeight() > 8 ? 8u : tex0->GetHeight(), 1 };
+				vkCmdCopyImageToBuffer(tcmd, tex0->GetImage(), VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+					dev.m_texReadbackBuf, 1, &rg);
+				b1.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+				b1.dstAccessMask = VK_ACCESS_SHADER_READ_BIT;
+				b1.oldLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+				b1.newLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+				vkCmdPipelineBarrier(tcmd, VK_PIPELINE_STAGE_TRANSFER_BIT,
+					VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, 0, 0, nullptr, 0, nullptr, 1, &b1);
+				texRb++;
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) {
+					const char *tname = "?";
+					if (DX8Wrapper::BoundTextures[0])
+						tname = DX8Wrapper::BoundTextures[0]->Get_Texture_Name();
+					fprintf(lf, "VK: TEXREADBACK scheduled #%u tex=%p %ux%u name='%s' missing=%d\n", texRb,
+						(void *)tex0, tex0->GetWidth(), tex0->GetHeight(), tname,
+						(int)(tex0 == MissingTexture::_Get_Missing_Texture()));
+					fclose(lf);
+				}
+			}
+		}
+	}
 	// AllocateTextureSet requires BOTH stages; single-stage draws (most GUI
 	// widgets) used to be silently skipped -> invisible menu over black bg.
 	if (!tex0) tex0 = &VulkanWhiteTexture;
@@ -2068,6 +2139,29 @@ void DX8Wrapper::_Copy_Vulkan_Rects(
 		return;
 	VulkanDevice &device = VulkanDevice::Instance();
 	VkCommandBuffer cmd = device.BeginOneTimeCommands();
+	{
+		// Port fix: the copy claimed TRANSFER layouts while both textures live
+		// in SHADER_READ_ONLY (RT end state) - UB on strict drivers. Barriers.
+		VkImageMemoryBarrier bars[2] = {};
+		for (int i = 0; i < 2; i++) {
+			bars[i].sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+			bars[i].srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+			bars[i].dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+			bars[i].subresourceRange = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 };
+		}
+		bars[0].image = pSourceTexture->GetImage();
+		bars[0].srcAccessMask = VK_ACCESS_SHADER_READ_BIT;
+		bars[0].dstAccessMask = VK_ACCESS_TRANSFER_READ_BIT;
+		bars[0].oldLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+		bars[0].newLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+		bars[1].image = pDestinationTexture->GetImage();
+		bars[1].srcAccessMask = 0;
+		bars[1].dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+		bars[1].oldLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+		bars[1].newLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
+		vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT,
+			VK_PIPELINE_STAGE_TRANSFER_BIT, 0, 0, nullptr, 0, nullptr, 2, bars);
+	}
 	if (cRects == 0 || !pSourceRectsArray) {
 		VkImageCopy copy = {};
 		copy.srcSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
@@ -2102,6 +2196,25 @@ void DX8Wrapper::_Copy_Vulkan_Rects(
 			vkCmdCopyImage(cmd, pSourceTexture->GetImage(), VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
 				pDestinationTexture->GetImage(), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &copy);
 		}
+	}
+	{
+		VkImageMemoryBarrier bars[2] = {};
+		for (int i = 0; i < 2; i++) {
+			bars[i].sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+			bars[i].srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+			bars[i].dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+			bars[i].srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+			bars[i].dstAccessMask = VK_ACCESS_SHADER_READ_BIT;
+			bars[i].subresourceRange = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 };
+		}
+		bars[0].image = pSourceTexture->GetImage();
+		bars[0].oldLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+		bars[0].newLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+		bars[1].image = pDestinationTexture->GetImage();
+		bars[1].oldLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
+		bars[1].newLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+		vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_TRANSFER_BIT,
+			VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, 0, 0, nullptr, 0, nullptr, 2, bars);
 	}
 	device.EndOneTimeCommands(cmd);
 }
@@ -2344,18 +2457,30 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 	for (int i = 0; i < 4; i++) {
 		if (DX8Wrapper::render_state.LightEnable[i]) {
 			const D3DLIGHT8 &light = DX8Wrapper::render_state.Lights[i];
-			float len = (float)sqrt(light.Direction.x * light.Direction.x +
-				light.Direction.y * light.Direction.y + light.Direction.z * light.Direction.z);
-			if (len > 1e-6f) {
-				ubo->lightDirs[i][0] = light.Direction.x / len;
-				ubo->lightDirs[i][1] = light.Direction.y / len;
-				ubo->lightDirs[i][2] = light.Direction.z / len;
+			if (light.Type == D3DLIGHT_POINT) {
+				ubo->lightDirs[i][0] = light.Position.x;
+				ubo->lightDirs[i][1] = light.Position.y;
+				ubo->lightDirs[i][2] = light.Position.z;
+				ubo->lightDirs[i][3] = 1.0f;
+				ubo->lightAtten[i][0] = light.Attenuation0;
+				ubo->lightAtten[i][1] = light.Attenuation1;
+				ubo->lightAtten[i][2] = light.Attenuation2;
+				ubo->lightAtten[i][3] = light.Range;
+			} else {
+				float len = (float)sqrt(light.Direction.x * light.Direction.x +
+					light.Direction.y * light.Direction.y + light.Direction.z * light.Direction.z);
+				if (len > 1e-6f) {
+					ubo->lightDirs[i][0] = light.Direction.x / len;
+					ubo->lightDirs[i][1] = light.Direction.y / len;
+					ubo->lightDirs[i][2] = light.Direction.z / len;
+				}
+				ubo->lightDirs[i][3] = 1.0f;
+				ubo->lightAtten[i][3] = 0.0f;
 			}
-			ubo->lightDirs[i][3] = 1.0f;
 			ubo->lightColors[i][0] = light.Diffuse.r;
 			ubo->lightColors[i][1] = light.Diffuse.g;
 			ubo->lightColors[i][2] = light.Diffuse.b;
-			ubo->lightColors[i][3] = 1.0f;
+			ubo->lightColors[i][3] = (light.Type == D3DLIGHT_POINT) ? 2.0f : 1.0f;
 		} else {
 			ubo->lightDirs[i][3] = 0.0f;
 		}
