@@ -385,8 +385,31 @@ void TextureLoader::Load_Mipmap_Levels(TextureLoadTaskClass* task)
 	WWASSERT(task->Peek_Vulkan_Texture());
 	WWMEMLOG(MEM_TEXTURE);
 
+	{
+		static unsigned lm = 0;
+		lm++;
+		if (lm <= 60) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: LoadMipmap #%u '%s' compress=%d vk=%p levels=%u\n",
+					lm, (task->Peek_Texture() && task->Peek_Texture()->Get_Texture_Name()) ? task->Peek_Texture()->Get_Texture_Name() : "(null)",
+					(int)(task->Peek_Texture() && task->Peek_Texture()->Is_Compression_Allowed()),
+					(void *)task->Peek_Vulkan_Texture(), task->Get_Mip_Level_Count());
+				fclose(lf);
+			}
+		}
+	}
+
 	if (task->Peek_Texture()->Is_Compression_Allowed()) {
 		DDSFileClass dds_file(task->Peek_Texture()->Get_Full_Path(),task->Get_Reduction());
+		{
+			static unsigned dd = 0;
+			dd++;
+			if (dd <= 60) {
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "VK: DDS check #%u avail=%d\n", dd, (int)dds_file.Is_Available()); fclose(lf); }
+			}
+		}
 		if (dds_file.Is_Available() && dds_file.Load()) {
 			unsigned width=task->Get_Width();
 			unsigned height=task->Get_Height();
@@ -427,6 +450,36 @@ bool TextureLoader::Load_Uncompressed_Mipmap_Levels_From_TGA(TextureLoadTaskClas
 	}
 	// DX8 uses image upside down compared to TGA
 	targa.Header.ImageDescriptor ^= TGAIDF_YORIGIN;
+
+	// Port fix (THE broken-texture bug): Targa::Open() only parses the header -
+	// mImage (the actual pixels) is filled by Targa::Load(), which was never
+	// called. GetImage() therefore returned NULL, Copy_Image no-oped, and
+	// EVERY terrain/model texture uploaded all-zero shadow data
+	// (log proof: End_Load fail=0 first=00000000 for all).
+	long loadErr = targa.Load(texture->Get_Full_Path(), TGAF_IMAGE | TGAF_PAL);
+	{
+		static unsigned lg = 0;
+		lg++;
+		if (lg <= 40) {
+			char *img = targa.GetImage();
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: TargaLoad #%u '%s' err=%ld img=%p hdr=%ux%u depth=%u first=%02x%02x%02x%02x\n",
+					lg, texture->Get_Texture_Name(), loadErr, (void *)img,
+					(unsigned)targa.Header.Width, (unsigned)targa.Header.Height,
+					(unsigned)targa.Header.PixelDepth,
+					img ? (unsigned char)img[0] : 0,
+					img ? (unsigned char)img[1] : 0,
+					img ? (unsigned char)img[2] : 0,
+					img ? (unsigned char)img[3] : 0);
+				fclose(lf);
+			}
+		}
+	}
+	if (loadErr != 0) {
+		task->Set_Fail(true);
+		return false;
+	}
 
 	WW3DFormat src_format,dest_format;
 	unsigned src_bpp=0;
@@ -1108,15 +1161,31 @@ void TextureLoadTaskClass::End_Load()
 		static unsigned el = 0;
 		el++;
 		if (el <= 60) {
+			unsigned nnz = 0;
+			unsigned total = 0;
+			unsigned center = 0;
+			if (LockedSurfacePtr[0] && Width && Height) {
+				unsigned pitch = LockedSurfacePitch[0];
+				for (unsigned y = 0; y < Height; y += 4) {
+					for (unsigned x = 0; x < pitch; x += 16) {
+						for (unsigned b = 0; b < 16 && x + b < pitch; b++) {
+							total++;
+							if (LockedSurfacePtr[0][y * pitch + x + b]) nnz++;
+						}
+					}
+				}
+				unsigned cx = (Width / 2) * 4;
+				unsigned cy = Height / 2;
+				if (cy < Height && cx + 3 < pitch) {
+					unsigned char *c = &LockedSurfacePtr[0][cy * pitch + cx];
+					center = c[0] | (c[1] << 8) | (c[2] << 16) | (c[3] << 24);
+				}
+			}
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) {
-				fprintf(lf, "VK: End_Load #%u '%s' %ux%u levels=%u fail=%d first=%02x%02x%02x%02x\n",
+				fprintf(lf, "VK: End_Load #%u '%s' %ux%u levels=%u fail=%d nnz=%u/%u center=%08x\n",
 					el, (Texture && Texture->Get_Texture_Name()) ? Texture->Get_Texture_Name() : "(null)",
-					Width, Height, MipLevelCount, (int)HasFailed,
-					LockedSurfacePtr[0] ? LockedSurfacePtr[0][0] : 0,
-					LockedSurfacePtr[0] ? LockedSurfacePtr[0][1] : 0,
-					LockedSurfacePtr[0] ? LockedSurfacePtr[0][2] : 0,
-					LockedSurfacePtr[0] ? LockedSurfacePtr[0][3] : 0);
+					Width, Height, MipLevelCount, (int)HasFailed, nnz, total, center);
 				fclose(lf);
 			}
 		}
