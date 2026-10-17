@@ -14,6 +14,8 @@ class VulkanDevice; // Forward declaration
 struct VkPipelineState {
 	int32_t tex0Op;
 	int32_t tex1Op;
+	int32_t alphaOp0;	// internal alpha-op code (0=DISABLE/color-op alpha)
+	int32_t alphaOp1;
 	int32_t alphaTest;
 	int32_t fog;
 	int32_t lighting;

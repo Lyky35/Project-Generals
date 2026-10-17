@@ -6,6 +6,7 @@
 bool VkPipelineState::operator==(const VkPipelineState &other) const
 {
 	return tex0Op == other.tex0Op && tex1Op == other.tex1Op &&
+		alphaOp0 == other.alphaOp0 && alphaOp1 == other.alphaOp1 &&
 		alphaTest == other.alphaTest && fog == other.fog &&
 		lighting == other.lighting && alphaFunc == other.alphaFunc && cullMode == other.cullMode &&
 		fillMode == other.fillMode && depthTest == other.depthTest &&
@@ -477,18 +478,19 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	vertStage.module = m_vertModule;
 	vertStage.pName = "main";
 
-	VkSpecializationMapEntry specEntries[6];
-	int32_t specValues[6] = {
+	VkSpecializationMapEntry specEntries[8];
+	int32_t specValues[8] = {
 		state.tex0Op, state.tex1Op, state.alphaTest,
-		state.fog, state.lighting, state.alphaFunc
+		state.fog, state.lighting, state.alphaFunc,
+		state.alphaOp0, state.alphaOp1
 	};
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < 8; i++) {
 		specEntries[i].constantID = (uint32_t)i;
 		specEntries[i].offset = (uint32_t)(i * sizeof(int32_t));
 		specEntries[i].size = sizeof(int32_t);
 	}
 	VkSpecializationInfo specInfo = {};
-	specInfo.mapEntryCount = 6;
+	specInfo.mapEntryCount = 8;
 	specInfo.pMapEntries = specEntries;
 	specInfo.dataSize = sizeof(specValues);
 	specInfo.pData = specValues;

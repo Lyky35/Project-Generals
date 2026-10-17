@@ -31,6 +31,8 @@ layout(constant_id = 2) const int ALPHATEST = 0;
 layout(constant_id = 3) const int FOG = 0;
 layout(constant_id = 4) const int LIGHTING = 0;
 layout(constant_id = 5) const int ALPHAFUNC = 0;
+layout(constant_id = 6) const int ALPHAOP0 = 0;
+layout(constant_id = 7) const int ALPHAOP1 = 0;
 
 vec3 applyTexOp(vec3 current, float currentAlpha, vec4 texel, int op, out float outAlpha)
 {
@@ -76,11 +78,27 @@ void main()
 
 	if (TEX0_OP > 0) {
 		vec4 texel = texture(texStage0, inUV0);
+		float aIn = alpha;
 		color = applyTexOp(color, alpha, texel, TEX0_OP, alpha);
+		// D3DTSS_ALPHAOP: alpha channel of this stage is computed INDEPENDENTLY
+		// of the color op (blend masks ride in texture alpha for terrain).
+		if (ALPHAOP0 == 1) alpha = texel.a;
+		else if (ALPHAOP0 == 2) alpha = base.a;
+		else if (ALPHAOP0 == 3) alpha = aIn;
+		else if (ALPHAOP0 == 4) alpha = frame.tfactorColor.a;
+		else if (ALPHAOP0 == 5) alpha = aIn * texel.a;
+		else if (ALPHAOP0 == 6) alpha = aIn + texel.a;
 	}
 	if (TEX1_OP > 0) {
 		vec4 texel = texture(texStage1, inUV1);
+		float aIn = alpha;
 		color = applyTexOp(color, alpha, texel, TEX1_OP, alpha);
+		if (ALPHAOP1 == 1) alpha = texel.a;
+		else if (ALPHAOP1 == 2) alpha = base.a;
+		else if (ALPHAOP1 == 3) alpha = aIn;
+		else if (ALPHAOP1 == 4) alpha = frame.tfactorColor.a;
+		else if (ALPHAOP1 == 5) alpha = aIn * texel.a;
+		else if (ALPHAOP1 == 6) alpha = aIn + texel.a;
 	}
 
 	if (LIGHTING == 1) {

@@ -2533,6 +2533,44 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 	if (stage1op == 0x12345678) { stage1op = D3DTOP_DISABLE; stage1arg1 = D3DTA_CURRENT; }
 	state->tex0Op = VulkanMapTexOp(stage0op, stage0arg1);
 	state->tex1Op = VulkanMapTexOp(stage1op, stage1arg1);
+	// D3DTSS_ALPHAOP: terrain blending carries its weights in texture alpha;
+	// the port previously derived alpha only from the COLOR op (audit #13).
+	{
+		auto mapArg = [](unsigned arg) -> int {
+			if (arg == D3DTA_TEXTURE) return 1;
+			if (arg == D3DTA_DIFFUSE) return 2;
+			if (arg == D3DTA_CURRENT) return 3;
+			if (arg == D3DTA_TFACTOR) return 4;
+			return 3;
+		};
+		auto mapAlpha = [&mapArg](unsigned aop, unsigned arg1, unsigned arg2) -> int {
+			if (aop == 0x12345678 || aop == D3DTOP_DISABLE) return 0;
+			switch (aop) {
+			case D3DTOP_SELECTARG1: return mapArg(arg1);
+			case D3DTOP_SELECTARG2: return mapArg(arg2);
+			case D3DTOP_MODULATE:
+			case D3DTOP_MODULATE2X:
+			case D3DTOP_MODULATE4X:
+				return 5;
+			case D3DTOP_ADD:
+				return 6;
+			default:
+				return 0;
+			}
+		};
+		unsigned a0op = DX8Wrapper::TextureStageStates[0][D3DTSS_ALPHAOP];
+		unsigned a0a1 = DX8Wrapper::TextureStageStates[0][D3DTSS_ALPHAARG1];
+		unsigned a0a2 = DX8Wrapper::TextureStageStates[0][D3DTSS_ALPHAARG2];
+		unsigned a1op = DX8Wrapper::TextureStageStates[1][D3DTSS_ALPHAOP];
+		unsigned a1a1 = DX8Wrapper::TextureStageStates[1][D3DTSS_ALPHAARG1];
+		unsigned a1a2 = DX8Wrapper::TextureStageStates[1][D3DTSS_ALPHAARG2];
+		if (a0a1 == 0x12345678) a0a1 = D3DTA_CURRENT;
+		if (a0a2 == 0x12345678) a0a2 = D3DTA_CURRENT;
+		if (a1a1 == 0x12345678) a1a1 = D3DTA_CURRENT;
+		if (a1a2 == 0x12345678) a1a2 = D3DTA_CURRENT;
+		state->alphaOp0 = mapAlpha(a0op, a0a1, a0a2);
+		state->alphaOp1 = mapAlpha(a1op, a1a1, a1a2);
+	}
 	{
 		unsigned at = DX8Wrapper::RenderStates[D3DRS_ALPHATESTENABLE];
 		if (at == 0x12345678) at = 0;	// D3D8 default FALSE (the sentinel used to force it ON)
