@@ -1524,7 +1524,7 @@ bool DX8Wrapper::VulkanDrawIndexed(
 			if (seenRb[si] == tex0) alreadySeen = true;
 		// Non-menu draws only (fvf != 0x252), true distinct set (the old
 		// last-pointer check let oscillating textures eat every slot).
-		if (tex0 && fvf != 0x252 && totalDrawsForRb > 2000 && texRb < 16 &&
+		if (tex0 && fvf == 0x242 && totalDrawsForRb > 2000 && texRb < 6 &&
 			!alreadySeen && tex0->GetImage() != VK_NULL_HANDLE) {
 			if (texRb < 16) seenRb[texRb] = tex0;
 			VulkanDevice &dev = VulkanDevice::Instance();

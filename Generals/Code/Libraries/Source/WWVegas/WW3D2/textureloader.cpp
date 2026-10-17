@@ -1183,9 +1183,10 @@ void TextureLoadTaskClass::End_Load()
 			}
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) {
-				fprintf(lf, "VK: End_Load #%u '%s' %ux%u levels=%u fail=%d nnz=%u/%u center=%08x\n",
+				fprintf(lf, "VK: End_Load #%u '%s' %ux%u fmt=%d levels=%u fail=%d nnz=%u/%u center=%08x\n",
 					el, (Texture && Texture->Get_Texture_Name()) ? Texture->Get_Texture_Name() : "(null)",
-					Width, Height, MipLevelCount, (int)HasFailed, nnz, total, center);
+					Width, Height, (int)(Texture ? Texture->Get_Texture_Format() : 0),
+					MipLevelCount, (int)HasFailed, nnz, total, center);
 				fclose(lf);
 			}
 		}
