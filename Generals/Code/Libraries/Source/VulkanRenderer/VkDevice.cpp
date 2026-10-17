@@ -606,12 +606,29 @@ bool VulkanDevice::CreateRenderPass()
 
 bool VulkanDevice::CreateDepthResources()
 {
-	VkFormat candidates[] = { VK_FORMAT_D24_UNORM_S8_UINT, VK_FORMAT_D32_SFLOAT, VK_FORMAT_D16_UNORM };
+	// Prefer a STENCIL-capable depth format: the shadow system
+	// (DX8Wrapper::Has_Stencil) and the scene's occlusion path need it - the
+	// RX 7900 XTX picked plain D32 earlier, silently disabling all stencil
+	// shadows on the field machine while lavapipe (D16S8) had a stencil plane.
+	VkFormat candidates[] = {
+		VK_FORMAT_D24_UNORM_S8_UINT,
+		VK_FORMAT_D16_UNORM_S8_UINT,
+		VK_FORMAT_D32_SFLOAT_S8_UINT,
+		VK_FORMAT_D32_SFLOAT,
+		VK_FORMAT_D16_UNORM
+	};
 	m_depthFormat = VK_FORMAT_UNDEFINED;
 	for (size_t i = 0; i < sizeof(candidates) / sizeof(candidates[0]); i++) {
 		VkFormatProperties props;
 		vkGetPhysicalDeviceFormatProperties(m_physicalDevice, candidates[i], &props);
-		if (props.optimalTilingFeatures & VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT) {
+		VkFormatFeatureFlags need = VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT;
+		bool ok = (props.optimalTilingFeatures & need) == need;
+		{
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: depth candidate fmt=%d features=0x%x need=0x%x ok=%d\n",
+				(int)candidates[i], (unsigned)props.optimalTilingFeatures, (unsigned)need, (int)ok); fclose(lf); }
+		}
+		if (ok) {
 			m_depthFormat = candidates[i];
 			break;
 		}
@@ -655,7 +672,9 @@ bool VulkanDevice::CreateDepthResources()
 	viewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
 	viewInfo.format = m_depthFormat;
 	viewInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_DEPTH_BIT;
-	if (m_depthFormat == VK_FORMAT_D24_UNORM_S8_UINT)
+	if (m_depthFormat == VK_FORMAT_D24_UNORM_S8_UINT ||
+		m_depthFormat == VK_FORMAT_D16_UNORM_S8_UINT ||
+		m_depthFormat == VK_FORMAT_D32_SFLOAT_S8_UINT)
 		viewInfo.subresourceRange.aspectMask |= VK_IMAGE_ASPECT_STENCIL_BIT;
 	viewInfo.subresourceRange.levelCount = 1;
 	viewInfo.subresourceRange.layerCount = 1;

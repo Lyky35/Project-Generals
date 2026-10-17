@@ -2867,7 +2867,14 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 // Legacy D3D8-era helpers — no-op stubs for partially-ported shadow code.
 // The Vulkan backend does not expose a raw IDirect3DDevice8.
 // ---------------------------------------------------------------------------
-IDirect3DDevice8* DX8Wrapper::_Get_D3D_Device8() { return 0; }
+IDirect3DDevice8* DX8Wrapper::_Get_D3D_Device8() {
+	// Return a NON-NULL dummy: the fake device's methods are inline
+	// forwarders that never read `this`, but lots of legacy code guards with
+	// `if (!m_pDev) return;` - returning null silently disabled the entire
+	// volumetric shadow renderer (and similar paths).
+	static IDirect3DDevice8 s_dummyDevice;
+	return &s_dummyDevice;
+}
 void DX8Wrapper::Set_StreamSource(unsigned, void*, unsigned, unsigned) {}
 void DX8Wrapper::Set_AlphaEnable(bool) {}
 void DX8Wrapper::Set_StencilEnable(bool) {}

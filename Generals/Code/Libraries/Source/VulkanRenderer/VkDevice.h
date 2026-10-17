@@ -126,7 +126,13 @@ public:
     bool IsInitialized() const { return m_device != VK_NULL_HANDLE; }
     uint32_t GetImageIndex() const { return m_imageIndex; }
     VkRenderPass GetRtRenderPass() const { return m_rtRenderPass; }
-    bool HasStencil() const { return false; }
+    bool HasStencil() const {
+        // Stencil shadows/occlusion depend on this - was hardcoded false,
+        // silently disabling the whole stencil feature set.
+        return m_depthFormat == VK_FORMAT_D24_UNORM_S8_UINT ||
+               m_depthFormat == VK_FORMAT_D16_UNORM_S8_UINT ||
+               m_depthFormat == VK_FORMAT_D32_SFLOAT_S8_UINT;
+    }
         std::vector<VkImage> m_swapImages;
     const std::vector<VkImage>& GetSwapImages() const { return m_swapImages; }
     std::vector<VkImageView> m_swapImageViews;

@@ -1331,6 +1331,14 @@ Int W3DProjectedShadowManager::renderShadows(RenderInfoClass & rinfo)
 	static SphereClass sphere;
 	Int projectionCount=0;
 
+	{
+		static unsigned rl = 0; rl++;
+		if (rl <= 30) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: projShadows lists shadow=%p decal=%p numProj=%d\n",
+				(void *)m_shadowList, (void *)m_decalList, (int)m_numProjectionShadows); fclose(lf); }
+		}
+	}
 	if (!m_shadowList && !m_decalList)
 		return	projectionCount;	//there are no shadows to render.
 

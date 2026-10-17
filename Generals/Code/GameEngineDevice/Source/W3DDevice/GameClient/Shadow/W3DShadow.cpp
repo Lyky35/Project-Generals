@@ -204,6 +204,13 @@ Shadow *W3DShadowManager::addShadow( RenderObjClass *robj, Shadow::ShadowTypeInf
 		case	SHADOW_PROJECTION:
 		case	SHADOW_DECAL:
 			if (TheW3DProjectedShadowManager)
+				{
+					static unsigned as = 0; as++;
+					if (as <= 30) {
+						FILE *lf = fopen("RTS_START.LOG", "a");
+						if (lf) { fprintf(lf, "VK: addShadow #%u\n", as); fclose(lf); }
+					}
+				}
 				return (Shadow *)TheW3DProjectedShadowManager->addShadow(robj, shadowInfo, draw);
 			break;
 		default:

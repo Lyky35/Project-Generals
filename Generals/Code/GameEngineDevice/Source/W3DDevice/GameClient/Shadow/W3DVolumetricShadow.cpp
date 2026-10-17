@@ -3307,6 +3307,16 @@ void W3DVolumetricShadowManager::renderShadows( Bool forceStencilFill )
 {
 	W3DVolumetricShadow *shadow;
 	Int numRenderedShadows = 0;
+	{
+		static unsigned vr = 0; vr++;
+		if (vr <= 30) {
+			unsigned n = 0;
+			for (W3DVolumetricShadow *sh = m_shadowList; sh; sh = sh->m_next) n++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: VolShadow.renderShadows #%u force=%d list=%u hasStencil=%d\n",
+				vr, (int)forceStencilFill, n, (int)DX8Wrapper::Has_Stencil()); fclose(lf); }
+		}
+	}
 
  	AABoxClass bbox;
 	SphereClass bsphere;

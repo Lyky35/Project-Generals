@@ -544,16 +544,13 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	depthStencil.depthTestEnable = state.depthTest ? VK_TRUE : VK_FALSE;
 	depthStencil.depthWriteEnable = state.depthWrite ? VK_TRUE : VK_FALSE;
 	depthStencil.depthCompareOp = TranslateCompare(state.depthCompare);
-	// Port fix (AMD black world): W3DScene enables D3DRS_STENCILENABLE with
-	// FUNC=LESS/EQUAL around scene passes, so scene pipelines carry a stencil
-	// test - but the depth attachment format is driver-chosen: llvmpipe picked
-	// D16_UNORM_S8 (field log 129 = HAS stencil plane, engine semantics work)
-	// while the AMD card picked D32_SFLOAT (field log 126 = NO stencil plane).
-	// Testing stencil against a nonexistent plane is UB: AMD rejects the whole
-	// world (black), lavapipe renders it. The ported stencil-driven features
-	// (selection markers / behind-building selection) use engine-side
-	// Has_Stencil() fallbacks, so stencil ops are cosmetic here - never test.
-	depthStencil.stencilTestEnable = VK_FALSE;
+	// Port fix: stencil tests are allowed ONLY when the depth format actually
+	// has a stencil plane (HasStencil now reflects the chosen format; D32-only
+	// devices keep the forced-off behavior that fixed the AMD black world).
+	// With a plane present the engine's stencil state (shadow volumes,
+	// selection markers) applies normally.
+	depthStencil.stencilTestEnable =
+		(state.stencilEnable && VulkanDevice::Instance().HasStencil()) ? VK_TRUE : VK_FALSE;
 	depthStencil.front.failOp = TranslateStencilOp(state.stencilFailOp);
 	depthStencil.front.passOp = TranslateStencilOp(state.stencilPassOp);
 	depthStencil.front.depthFailOp = TranslateStencilOp(state.stencilDepthFailOp);
