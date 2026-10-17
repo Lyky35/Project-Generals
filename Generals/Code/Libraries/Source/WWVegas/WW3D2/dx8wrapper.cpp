@@ -1517,7 +1517,13 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	{
 		static unsigned texRb = 0;
 		static VkTexture *lastRbTex = nullptr;
-		if (tex0 && texRb < 8 && tex0->GetImage() != VK_NULL_HANDLE && tex0 != lastRbTex) {
+		static unsigned totalDrawsForRb = 0;
+		totalDrawsForRb++;
+		// Only start sampling distinct textures deep into the frame stream so
+		// the menu phase doesn't consume all the readback slots before the
+		// shell-map terrain/model textures ever get bound.
+		if (tex0 && totalDrawsForRb > 5000 && texRb < 10 &&
+			tex0->GetImage() != VK_NULL_HANDLE && tex0 != lastRbTex) {
 			lastRbTex = tex0;
 			VulkanDevice &dev = VulkanDevice::Instance();
 			if (dev.m_texReadbackBuf == VK_NULL_HANDLE) {
