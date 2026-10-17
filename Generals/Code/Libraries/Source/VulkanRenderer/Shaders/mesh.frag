@@ -33,6 +33,8 @@ layout(constant_id = 4) const int LIGHTING = 0;
 layout(constant_id = 5) const int ALPHAFUNC = 0;
 layout(constant_id = 6) const int ALPHAOP0 = 0;
 layout(constant_id = 7) const int ALPHAOP1 = 0;
+layout(constant_id = 8) const int UVSEL0 = 0;
+layout(constant_id = 9) const int UVSEL1 = 0;
 
 vec3 applyTexOp(vec3 current, float currentAlpha, vec4 texel, int op, out float outAlpha)
 {
@@ -77,7 +79,8 @@ void main()
 	}
 
 	if (TEX0_OP > 0) {
-		vec4 texel = texture(texStage0, inUV0);
+		vec2 uv0sel = (UVSEL0 == 1) ? inUV1 : inUV0;
+		vec4 texel = texture(texStage0, uv0sel);
 		float aIn = alpha;
 		color = applyTexOp(color, alpha, texel, TEX0_OP, alpha);
 		// D3DTSS_ALPHAOP: alpha channel of this stage is computed INDEPENDENTLY
@@ -90,7 +93,8 @@ void main()
 		else if (ALPHAOP0 == 6) alpha = aIn + texel.a;
 	}
 	if (TEX1_OP > 0) {
-		vec4 texel = texture(texStage1, inUV1);
+		vec2 uv1sel = (UVSEL1 == 1) ? inUV1 : inUV0;
+		vec4 texel = texture(texStage1, uv1sel);
 		float aIn = alpha;
 		color = applyTexOp(color, alpha, texel, TEX1_OP, alpha);
 		if (ALPHAOP1 == 1) alpha = texel.a;

@@ -2570,6 +2570,15 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 		if (a1a2 == 0x12345678) a1a2 = D3DTA_CURRENT;
 		state->alphaOp0 = mapAlpha(a0op, a0a1, a0a2);
 		state->alphaOp1 = mapAlpha(a1op, a1a1, a1a2);
+		// D3DTSS_TEXCOORDINDEX: the terrain blend pass samples its mask
+		// texture with UV set 1 - the shader previously always used UV0.
+		auto mapUv = [](unsigned idx) -> int {
+			if (idx == 0x12345678) return 0;
+			idx &= 0x0000ffff;	// strip TCI_* flags (cameraspacetexcoord etc)
+			return (idx >= 1 && idx <= 1) ? (int)idx : (idx == 0 ? 0 : 0);
+		};
+		state->uvSel0 = mapUv(DX8Wrapper::TextureStageStates[0][D3DTSS_TEXCOORDINDEX]);
+		state->uvSel1 = mapUv(DX8Wrapper::TextureStageStates[1][D3DTSS_TEXCOORDINDEX]);
 	}
 	{
 		unsigned at = DX8Wrapper::RenderStates[D3DRS_ALPHATESTENABLE];
