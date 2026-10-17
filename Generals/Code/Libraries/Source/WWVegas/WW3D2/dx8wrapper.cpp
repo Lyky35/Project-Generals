@@ -2847,6 +2847,8 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 	if (state->stencilCompare == 0x12345678)
 		state->stencilCompare = D3DCMP_ALWAYS;
 	state->stencilRef = DX8Wrapper::RenderStates[D3DRS_STENCILREF] & 0xff;
+	if (DX8Wrapper::RenderStates[D3DRS_STENCILREF] == 0x12345678)
+		state->stencilRef = 0;	// D3D8 default (sentinel used to leak 0x78)
 	state->stencilReadMask = DX8Wrapper::RenderStates[D3DRS_STENCILMASK];
 	if (state->stencilReadMask == 0x12345678)
 		state->stencilReadMask = 0xff;

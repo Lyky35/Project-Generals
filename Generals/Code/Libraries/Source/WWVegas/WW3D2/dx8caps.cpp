@@ -79,6 +79,14 @@ void DX8Caps::Init_Caps(IDirect3DDevice8* D3DDevice)
 	hwVPCaps.MaxTextureHeight = 16384;
 	swVPCaps.MaxTextureWidth = 16384;
 	swVPCaps.MaxTextureHeight = 16384;
+	// The shadow passes prefer the REAL color-write-enable path (save state,
+	// disable color writes, restore). Get/Set(D3DRS_COLORWRITEENABLE) are
+	// fully implemented now; without the cap bit they fell into the fake
+	// blend branch which never set ALPHABLENDENABLE -> the stencil volume
+	// fill wrote BLACK triangles to the screen ("black vertices" in odd
+	// spots) instead of only writing stencil.
+	hwVPCaps.PrimitiveMiscCaps |= D3DPMISCCAPS_COLORWRITEENABLE;
+	swVPCaps.PrimitiveMiscCaps |= D3DPMISCCAPS_COLORWRITEENABLE;
 }
 
 // ----------------------------------------------------------------------------
