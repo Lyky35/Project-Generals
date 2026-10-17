@@ -23,6 +23,9 @@ layout(set = 1, binding = 0) uniform FrameData {
 	vec4 lightColors[4];
 	uint drawFlags;
 	vec4 lightAtten[4];
+	mat4 texMat0;
+	mat4 texMat1;
+	mat4 viewMat;
 } frame;
 
 layout(constant_id = 0) const int TEX0_OP = 1;
@@ -79,7 +82,13 @@ void main()
 	}
 
 	if (TEX0_OP > 0) {
-		vec2 uv0sel = (UVSEL0 == 1) ? inUV1 : inUV0;
+		vec2 uv0sel = inUV0;
+		if (UVSEL0 == 1) uv0sel = inUV1;
+		else if (UVSEL0 == 2) {
+			// TCI_CAMERASPACEPOSITION: uv = (texMat * view * worldPos).xy
+			vec4 vp = frame.viewMat * vec4(inWorldPos, 1.0);
+			uv0sel = (frame.texMat0 * vp).xy;
+		}
 		vec4 texel = texture(texStage0, uv0sel);
 		float aIn = alpha;
 		color = applyTexOp(color, alpha, texel, TEX0_OP, alpha);
@@ -93,7 +102,12 @@ void main()
 		else if (ALPHAOP0 == 6) alpha = aIn + texel.a;
 	}
 	if (TEX1_OP > 0) {
-		vec2 uv1sel = (UVSEL1 == 1) ? inUV1 : inUV0;
+		vec2 uv1sel = inUV1;
+		if (UVSEL1 == 0) uv1sel = inUV0;
+		else if (UVSEL1 == 2) {
+			vec4 vp = frame.viewMat * vec4(inWorldPos, 1.0);
+			uv1sel = (frame.texMat1 * vp).xy;
+		}
 		vec4 texel = texture(texStage1, uv1sel);
 		float aIn = alpha;
 		color = applyTexOp(color, alpha, texel, TEX1_OP, alpha);

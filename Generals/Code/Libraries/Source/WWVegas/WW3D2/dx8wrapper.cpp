@@ -2460,6 +2460,17 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 		ubo->miscParams[3] = -(t0 * V[0][2] + t1 * V[1][2] + t2 * V[2][2]);
 	}
 
+	{
+		// Texture-generation matrices (D3DTS_TEXTURE0/1) + view matrix for
+		// TCI_CAMERASPACEPOSITION texgen (road feather/noise passes).
+		for (int r = 0; r < 4; r++) {
+			for (int c = 0; c < 4; c++) {
+				ubo->texMat0[r][c] = DX8Wrapper::CachedTexTransform[0][r][c];
+				ubo->texMat1[r][c] = DX8Wrapper::CachedTexTransform[1][r][c];
+				ubo->viewMat[r][c] = DX8Wrapper::render_state.view[r][c];
+			}
+		}
+	}
 	unsigned tfactor = DX8Wrapper::RenderStates[D3DRS_TEXTUREFACTOR];
 	if (tfactor == 0x12345678) tfactor = 0xffffffffu;	// D3D default = white
 	VulkanDecodeColor(tfactor, ubo->tfactorColor);
@@ -2574,8 +2585,8 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 		// texture with UV set 1 - the shader previously always used UV0.
 		auto mapUv = [](unsigned idx) -> int {
 			if (idx == 0x12345678) return 0;
-			idx &= 0x0000ffff;	// strip TCI_* flags (cameraspacetexcoord etc)
-			return (idx >= 1 && idx <= 1) ? (int)idx : (idx == 0 ? 0 : 0);
+			if ((idx & 0xffff0000u) == 0x00010000u) return 2;	// TCI_CAMERASPACEPOSITION texgen
+			return (idx & 0x0000ffffu) == 1 ? 1 : 0;
 		};
 		state->uvSel0 = mapUv(DX8Wrapper::TextureStageStates[0][D3DTSS_TEXCOORDINDEX]);
 		state->uvSel1 = mapUv(DX8Wrapper::TextureStageStates[1][D3DTSS_TEXCOORDINDEX]);

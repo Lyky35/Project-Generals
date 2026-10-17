@@ -75,6 +75,11 @@ struct VkFrameUniforms {
     // CPU pads to match.
     uint32_t _pad1[3];
     float lightAtten[4][4];	// (att0, att1, att2, range) per light - point lights
+    // std140: 304/368/432 - texture-generation matrices for TCI_CAMERA-position
+    // texgen (road feather/noise passes): uv = (texMat * view * worldPos).xy
+    float texMat0[4][4];
+    float texMat1[4][4];
+    float viewMat[4][4];
     float worldViewProj[16];
     float world[16];
 };
