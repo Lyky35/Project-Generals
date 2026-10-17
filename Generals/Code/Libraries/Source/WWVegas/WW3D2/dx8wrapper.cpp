@@ -1517,7 +1517,7 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	{
 		static unsigned texRb = 0;
 		static VkTexture *lastRbTex = nullptr;
-		if (tex0 && fvf == 0x242 && texRb < 6 && tex0->GetImage() != VK_NULL_HANDLE && tex0 != lastRbTex) {
+		if (tex0 && texRb < 8 && tex0->GetImage() != VK_NULL_HANDLE && tex0 != lastRbTex) {
 			lastRbTex = tex0;
 			VulkanDevice &dev = VulkanDevice::Instance();
 			if (dev.m_texReadbackBuf == VK_NULL_HANDLE) {
