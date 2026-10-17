@@ -242,6 +242,8 @@ SurfaceClass::SurfaceClass(unsigned width, unsigned height, WW3DFormat format):
 		if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
 	}
 	ShadowPitch = width * 4;
+	ShadowW = width;
+	ShadowH = height;
 }
 
 SurfaceClass::SurfaceClass(const char *filename):
@@ -257,6 +259,7 @@ SurfaceClass::SurfaceClass(const char *filename):
 		VK_FORMAT_R8G8B8A8_UNORM, 1, false);
 	WWASSERT(created);
 	ShadowPitch = 64 * 4;
+	ShadowW = ShadowH = 64;
 	// TODO: Read surface description from file
 	SurfaceFormat = WW3D_FORMAT_UNKNOWN;
 }
@@ -270,6 +273,8 @@ SurfaceClass::SurfaceClass(VkTexture *vk_texture):
 	SurfaceFormat = WW3D_FORMAT_UNKNOWN;
 	if (VulkanSurface) {
 		ShadowPitch = VulkanSurface->GetWidth() * 4;
+		ShadowW = VulkanSurface->GetWidth();
+		ShadowH = VulkanSurface->GetHeight();
 	}
 }
 
@@ -293,21 +298,30 @@ void SurfaceClass::Get_Description(SurfaceDescription &surface_desc)
 		surface_desc.Width = VulkanSurface->GetWidth();
 		surface_desc.Height = VulkanSurface->GetHeight();
 	} else {
-		// Fallback
-		surface_desc.Format = WW3D_FORMAT_UNKNOWN;
-		surface_desc.Width = 0;
-		surface_desc.Height = 0;
+		surface_desc.Format = SurfaceFormat;
+		surface_desc.Width = ShadowW;
+		surface_desc.Height = ShadowH;
 	}
 }
 
 void * SurfaceClass::Lock(int * pitch)
 {
-	if (!VulkanSurface) {
+	// Port fix: the CPU shadow must be lockable even when the surface has no
+	// Vulkan image yet (CPU-only surfaces; TextureClass(SurfaceClass*) ctor
+	// path) - gating on VulkanSurface made Lock() fail, which nulled the
+	// world's terrain textures (validTex binds 944 -> 0).
+	unsigned w = 0, h = 0;
+	if (VulkanSurface) {
+		w = VulkanSurface->GetWidth();
+		h = VulkanSurface->GetHeight();
+	} else {
+		w = ShadowW;
+		h = ShadowH;
+	}
+	if (!w || !h) {
 		*pitch = 0;
 		return NULL;
 	}
-	unsigned w = VulkanSurface->GetWidth();
-	unsigned h = VulkanSurface->GetHeight();
 	if (!ShadowMemory) {
 		ShadowPitch = w * 4;
 		ShadowMemory = new unsigned char[ShadowPitch * h];

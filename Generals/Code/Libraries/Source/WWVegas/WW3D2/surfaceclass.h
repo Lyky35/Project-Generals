@@ -157,6 +157,8 @@ class SurfaceClass : public W3DMPO, public RefCountClass
 		// CPU shadow for Lock/Unlock (uploaded via VkTexture::UploadLevel)
 		unsigned char *ShadowMemory;
 		unsigned ShadowPitch;
+		unsigned ShadowW = 0;
+		unsigned ShadowH = 0;
 
 		// True when this surface created its VkTexture and must destroy it.
 		// Wrappers around a TextureClass's VkTexture (Get_Surface_Level) must
