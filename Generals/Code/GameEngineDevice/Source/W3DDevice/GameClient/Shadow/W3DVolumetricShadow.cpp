@@ -3245,8 +3245,9 @@ void W3DVolumetricShadowManager::renderStencilShadows( void )
 		return;	//need device to render anything.
 
 	struct _TRANSLITVERTEX {
-	    D3DXVECTOR4 p;
-		DWORD color;   // diffuse color    
+		float x, y, z;		// must match DX8_FVF_XYZDUV2 (pos = 3 floats!)
+		DWORD color;		// diffuse color - previously read the w-float
+		float u, vv;		// -> garbage multi-color tint artifacts
 	} v[4];
 
 	Int xpos, ypos, width, height;
@@ -3255,14 +3256,15 @@ void W3DVolumetricShadowManager::renderStencilShadows( void )
 	width=TheTacticalView->getWidth();
 	height=TheTacticalView->getHeight();
 
-    v[0].p = D3DXVECTOR4( xpos+width, ypos+height, 0.0f, 1.0f );
-    v[1].p = D3DXVECTOR4( xpos+width, 0, 0.0f, 1.0f );
-    v[2].p = D3DXVECTOR4(  xpos, ypos+height, 0.0f, 1.0f );
-    v[3].p = D3DXVECTOR4(  xpos,  0, 0.0f, 1.0f );
-    v[0].color = TheW3DShadowManager->getShadowColor();
-    v[1].color = TheW3DShadowManager->getShadowColor();
-    v[2].color = TheW3DShadowManager->getShadowColor();
-    v[3].color = TheW3DShadowManager->getShadowColor();
+	v[0].x = (float)(xpos + width); v[0].y = (float)(ypos + height); v[0].z = 0.0f;
+	v[1].x = (float)(xpos + width); v[1].y = 0.0f;                    v[1].z = 0.0f;
+	v[2].x = (float)xpos;           v[2].y = (float)(ypos + height); v[2].z = 0.0f;
+	v[3].x = (float)xpos;           v[3].y = 0.0f;                    v[3].z = 0.0f;
+	for (int i = 0; i < 4; i++) {
+		v[i].color = TheW3DShadowManager->getShadowColor();
+		v[i].u = 0.0f;
+		v[i].vv = 0.0f;
+	}
 
 	//draw polygons like this is very inefficient but for only 2 triangles, it's
 	//not worth bothering with index/vertex buffers.
@@ -3270,10 +3272,9 @@ void W3DVolumetricShadowManager::renderStencilShadows( void )
 
 	// Use alpha blending to draw the transparent shadow
     DX8Wrapper::Set_AlphaEnable(TRUE);
-//  m_pDev->SetRenderState( D3DRS_SRCBLEND,  D3DBLEND_SRCALPHA );
-//  m_pDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA );
-		DX8Wrapper::Set_BlendFunc(VK_BLEND_FACTOR_DST_COLOR, VK_BLEND_FACTOR_ZERO);
-		DX8Wrapper::Set_DX8_Render_State(D3DRS_DESTBLEND, D3DBLEND_ZERO);
+	// where stencil passes: dst = dst * shadowColor
+	DX8Wrapper::Set_DX8_Render_State(D3DRS_SRCBLEND, D3DBLEND_ZERO);
+	DX8Wrapper::Set_DX8_Render_State(D3DRS_DESTBLEND, D3DBLEND_SRCCOLOR);
 
 
 	// Set stencil states
@@ -3283,7 +3284,9 @@ void W3DVolumetricShadowManager::renderStencilShadows( void )
 	// Only write where stencil val >= 1 (count indicates # of shadows that
 	// overlap that pixel)
     DX8Wrapper::Set_StencilEnable(TRUE);
-    DX8Wrapper::Set_StencilFunc(VK_COMPARE_OP_LESS);	//reference value is less or equal to stencil
+    DX8Wrapper::Set_StencilFunc(VK_COMPARE_OP_LESS_OR_EQUAL);	// ref(1) <= stencil(count>=1) -> the fill
+	// INCREMENTS 0->1 so a single-volume shadow (count 1) must pass; plain
+	// LESS (1<1 fails) hid every non-overlapping shadow entirely.
     DX8Wrapper::Set_StencilPassOp(VK_STENCIL_OP_KEEP);
 	//Upper bits of stencil could be used for storing occluded models which are player colored.  So we mask out those
 	//pixels and only use the lower bits for shadow calculations.
@@ -3293,8 +3296,41 @@ void W3DVolumetricShadowManager::renderStencilShadows( void )
 
 	DX8Wrapper::Set_ShadeMode(D3DSHADE_FLAT);
 
+	// The quad is in SCREEN coordinates but the currently bound transforms are
+	// the leftover WORLD (last shadow volume) + camera VIEW/PROJECTION -
+	// projecting screen coords through the perspective camera clipped the
+	// resolve quad entirely (no visible shadows) or scattered pieces of it
+	// (colored artifacts). Bind a screen-space ortho for the quad, restore
+	// afterwards. Westwood convention both ways (Set/Get_Transform pair).
+	Matrix4 oldWorld, oldView, oldProj;
+	DX8Wrapper::Get_Transform(D3DTS_WORLD, oldWorld);
+	DX8Wrapper::Get_Transform(D3DTS_VIEW, oldView);
+	DX8Wrapper::Get_Transform(D3DTS_PROJECTION, oldProj);
+	{
+		Matrix4 id;
+		id.Make_Identity();
+		DX8Wrapper::Set_Transform(D3DTS_WORLD, id);
+		DX8Wrapper::Set_Transform(D3DTS_VIEW, id);
+		// WW convention: Set_Transform transposes into DX8 row-vector form
+		Matrix4 ortho;
+		ortho.Make_Identity();
+		if (width <= 0) width = 1;
+		if (height <= 0) height = 1;
+		// x_ndc = 2*(x - xpos)/width - 1 ; y_ndc = 1 - 2*(y - ypos)/height
+		ortho[0][0] = 2.0f / (float)width;
+		ortho[0][3] = -1.0f - 2.0f * (float)xpos / (float)width;
+		ortho[1][1] = -2.0f / (float)height;
+		ortho[1][3] = 1.0f + 2.0f * (float)ypos / (float)height;
+		ortho[2][2] = 1.0f;
+		DX8Wrapper::Set_Transform(D3DTS_PROJECTION, ortho);
+	}
+
 	if (DX8Wrapper::_Is_Triangle_Draw_Enabled())
 		m_pDev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, v, sizeof(_TRANSLITVERTEX));
+
+	DX8Wrapper::Set_Transform(D3DTS_WORLD, oldWorld);
+	DX8Wrapper::Set_Transform(D3DTS_VIEW, oldView);
+	DX8Wrapper::Set_Transform(D3DTS_PROJECTION, oldProj);
 
 	m_pDev->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_GOURAUD);
 	DX8Wrapper::Set_AlphaEnable(FALSE);
