@@ -256,6 +256,9 @@ struct VulkanRtEntry {
 static VulkanRtEntry VulkanRtCache[8];
 static int VulkanRtCacheCount = 0;
 
+static void VulkanReleaseRtCache();
+extern "C" void Vulkan_FlushRtCache() { VulkanReleaseRtCache(); }
+
 static void VulkanReleaseRtCache()
 {
 	VulkanDevice &device = VulkanDevice::Instance();

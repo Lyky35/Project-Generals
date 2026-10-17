@@ -792,10 +792,16 @@ void VulkanDevice::CleanupSwapchain()
 	}
 }
 
+extern "C" void Vulkan_FlushRtCache();
+
 bool VulkanDevice::RecreateSwapchain()
 {
 	vkDeviceWaitIdle(m_device);
 	CleanupSwapchain();
+	// The RT framebuffer cache references the DESTROYED renderpasses/depth
+	// image - stale framebuffers here crashed amdvlk on the first out-of-date
+	// recreate (use-after-free inside vkCmdBeginRenderPass of an RT pass).
+	Vulkan_FlushRtCache();
 	if (!CreateSwapchain())
 		return false;
 	if (!CreateImageViews())
