@@ -1104,6 +1104,23 @@ void TextureLoadTaskClass::Begin_Thumbnail_Load()
 
 void TextureLoadTaskClass::End_Load()
 {
+	{
+		static unsigned el = 0;
+		el++;
+		if (el <= 60) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: End_Load #%u '%s' %ux%u levels=%u fail=%d first=%02x%02x%02x%02x\n",
+					el, (Texture && Texture->Get_Texture_Name()) ? Texture->Get_Texture_Name() : "(null)",
+					Width, Height, MipLevelCount, (int)HasFailed,
+					LockedSurfacePtr[0] ? LockedSurfacePtr[0][0] : 0,
+					LockedSurfacePtr[0] ? LockedSurfacePtr[0][1] : 0,
+					LockedSurfacePtr[0] ? LockedSurfacePtr[0][2] : 0,
+					LockedSurfacePtr[0] ? LockedSurfacePtr[0][3] : 0);
+				fclose(lf);
+			}
+		}
+	}
 	for (unsigned i=0;i<MipLevelCount;++i) {
 		if (LockedSurfacePtr[i]) {
 			WWASSERT(ThreadClass::_Get_Current_Thread_ID()==DX8Wrapper::_Get_Main_Thread_ID());
