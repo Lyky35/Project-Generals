@@ -69,7 +69,11 @@ texture of the desired height and mip level. */
 //=============================================================================
 TerrainTextureClass::TerrainTextureClass(int height, MipCountType mipLevelCount) :
 	TextureClass(TEXTURE_WIDTH, height, 
-		WW3D_FORMAT_A1R5G5B5, mipLevelCount )
+		// Port fix: A1R5G5B5 is promoted to B8G8R8A8 by the Vulkan backend
+		// while update() wrote 16-bit pixels behind a format gate that read
+		// UNKNOWN on borrowed surfaces - the whole 2048x512 terrain atlas
+		// stayed black. 32-bit end to end.
+		WW3D_FORMAT_A8R8G8B8, mipLevelCount )
 {
 }
 
@@ -109,7 +113,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 	//DEBUG_ASSERTCRASH(tilesPerRow*numRows >= htMap->m_numBitmapTiles, ("Too many tiles."));
 	DEBUG_ASSERTCRASH((Int)surface_desc.Width >= tilePixelExtent*tilesPerRow, ("Bitmap too small."));
 #endif
-	if (surface_desc.Format == WW3D_FORMAT_A1R5G5B5) {
+	if (1) {	// desc.Format is UNKNOWN on borrowed surfaces - always fill
 #if 0
 		UnsignedInt cellX, cellY;
 		for (cellX = 0; cellX < surface_desc.Width; cellX++) {
@@ -120,7 +124,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 		}
 #endif
 		Int tileNdx;
-		Int pixelBytes = 2;
+		Int pixelBytes = 4;	// A8R8G8B8
 		for (tileNdx=0; tileNdx < htMap->m_numBitmapTiles; tileNdx++) {
 			TileData *pTile = htMap->getSourceTile(tileNdx);
 			if (!pTile) continue;
@@ -138,7 +142,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 				Int column = position.x;
 				pBGRX += column*pixelBytes;
 				for (int i =0; i<tilePixelExtent; i++) {
-					*((Short*)pBGRX) = 0x8000 + ((pBGR[2]>>3)<<10) + ((pBGR[1]>>3)<<5) + (pBGR[0]>>3);
+					*((UnsignedInt*)pBGRX) = 0xff000000u | ((UnsignedInt)pBGR[2]<<16) | ((UnsignedInt)pBGR[1]<<8) | (UnsignedInt)pBGR[0];
 					pBGRX +=pixelBytes;
 					pBGR +=TILE_BYTES_PER_PIXEL;
 				}
@@ -185,7 +189,27 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 		}
 
 	}
+	{
+		static unsigned up = 0;
+		up++;
+		unsigned char *b = (unsigned char *)pBits;
+		unsigned nnz = 0;
+		if (b) for (unsigned q = 0; q < 4096; q += 16) if (b[q]) nnz++;
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: TerrainAtlas update #%u %ux%u fmt=%d pitch=%d nnz=%u first=%02x%02x%02x%02x vkTex=%p this=%p\n",
+			up, (unsigned)surface_desc.Width, (unsigned)surface_desc.Height, (int)surface_desc.Format,
+			pitch, nnz, b?b[0]:0, b?b[1]:0, b?b[2]:0, b?b[3]:0,
+			(void *)surface_level->Peek_Vulkan_Texture(), (void *)this); fclose(lf); }
+	}
 	surface_level->Unlock();
+	// Port fix (camera-distance symptom: close=fine, far=broken): only mip0
+	// was uploaded - the generated mip levels were never built, so LOD
+	// sampling picked undefined/black mips at distance.
+	{
+		VkTexture *vk = surface_level->Peek_Vulkan_Texture();
+		if (vk && vk->GetMipLevels() > 1)
+			vk->GenerateMipmaps();
+	}
 	surface_level->Release_Ref();
 	// Texture filtering handled by shader/sampler
 	
@@ -231,7 +255,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 	assert(tilesPerRow*numRows >= htMap->m_numBitmapTiles);
 	assert((Int)surface_desc.Width >= tilePixelExtent*tilesPerRow);
 #endif
-	if (surface_desc.Format == WW3D_FORMAT_A1R5G5B5) {
+	if (1) {	// desc.Format is UNKNOWN on borrowed surfaces - always fill
 		Int cellX, cellY;
 #if 0
 		for (cellX = 0; cellX < surface_desc.Width; cellX++) {
@@ -241,7 +265,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 			}
 		}
 #endif
-		Int pixelBytes = 2;
+		Int pixelBytes = 4;	// A8R8G8B8
 		for (cellY = 0; cellY < numRows; cellY++) { 
 			for (cellX = 0; cellX < tilesPerRow; cellX++) {
 				Int tileNdx = cellX/2 + (tilesPerRow/2)*(cellY/2);
@@ -276,7 +300,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 						pBGRX += column*pixelBytes;
 						pBGRX += (TILE_OFFSET/2)*pixelBytes;
 						for (int i =0; i<tilePixelExtent; i++) {
-							*((Short*)pBGRX) = 0x8000 + ((pBGR[2]>>3)<<10) + ((pBGR[1]>>3)<<5) + (pBGR[0]>>3);
+							*((UnsignedInt*)pBGRX) = 0xff000000u | ((UnsignedInt)pBGR[2]<<16) | ((UnsignedInt)pBGR[1]<<8) | (UnsignedInt)pBGR[0];
 							pBGRX +=pixelBytes;
 							pBGR +=TILE_BYTES_PER_PIXEL;
 						}
@@ -345,6 +369,14 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 		
 	}
 	surface_level->Unlock();
+	// Port fix: build the mip chain after the CPU->GPU upload, otherwise LOD
+	// sampling picks undefined/black mip levels at distance (close=fine,
+	// far=broken).
+	{
+		VkTexture *vk = surface_level->Peek_Vulkan_Texture();
+		if (vk && vk->GetMipLevels() > 1)
+			vk->GenerateMipmaps();
+	}
 	surface_level->Release_Ref();
 	// Texture filtering handled by shader/sampler
 	
@@ -386,7 +418,7 @@ int TerrainTextureClass::update256(WorldHeightMap *htMap)
 	assert(tilesPerRow*numRows >= htMap->m_numBitmapTiles);
 	assert((Int)surface_desc.Width >= tilePixelExtent*tilesPerRow);
 #endif
-	if (surface_desc.Format == WW3D_FORMAT_A1R5G5B5) {
+	if (1) {	// desc.Format is UNKNOWN on borrowed surfaces - always fill
 		Int cellX, cellY;
 #if 0
 		for (cellX = 0; cellX < surface_desc.Width; cellX++) {
@@ -397,7 +429,7 @@ int TerrainTextureClass::update256(WorldHeightMap *htMap)
 		}
 		numRows = 0;
 #endif
-		Int pixelBytes = 2;
+		Int pixelBytes = 4;	// A8R8G8B8
 		for (cellY = 0; cellY < numRows; cellY++) { 
 			for (cellX = 0; cellX < tilesPerRow; cellX++) {
 				Int tileNdx = cellX/2 + (tilesPerRow/2)*(cellY/2);
@@ -431,7 +463,7 @@ int TerrainTextureClass::update256(WorldHeightMap *htMap)
 						pBGRX += column*pixelBytes;
 						pBGRX += (tileOffset/2)*pixelBytes;
 						for (int i =0; i<tilePixelExtent; i++) {
-							*((Short*)pBGRX) = 0x8000 + ((pBGR[2]>>3)<<10) + ((pBGR[1]>>3)<<5) + (pBGR[0]>>3);
+							*((UnsignedInt*)pBGRX) = 0xff000000u | ((UnsignedInt)pBGR[2]<<16) | ((UnsignedInt)pBGR[1]<<8) | (UnsignedInt)pBGR[0];
 							pBGRX +=pixelBytes;
 							pBGR +=TILE_BYTES_PER_PIXEL;
 						}
@@ -503,6 +535,14 @@ int TerrainTextureClass::update256(WorldHeightMap *htMap)
 
 	}
 	surface_level->Unlock();
+	// Port fix: build the mip chain after the CPU->GPU upload, otherwise LOD
+	// sampling picks undefined/black mip levels at distance (close=fine,
+	// far=broken).
+	{
+		VkTexture *vk = surface_level->Peek_Vulkan_Texture();
+		if (vk && vk->GetMipLevels() > 1)
+			vk->GenerateMipmaps();
+	}
 	surface_level->Release_Ref();
 	// Texture filtering handled by shader/sampler
 
@@ -916,6 +956,14 @@ int AlphaEdgeTextureClass::update(WorldHeightMap *htMap)
 #endif
 	}
 	surface_level->Unlock();
+	// Port fix: build the mip chain after the CPU->GPU upload, otherwise LOD
+	// sampling picks undefined/black mip levels at distance (close=fine,
+	// far=broken).
+	{
+		VkTexture *vk = surface_level->Peek_Vulkan_Texture();
+		if (vk && vk->GetMipLevels() > 1)
+			vk->GenerateMipmaps();
+	}
 	surface_level->Release_Ref();
 	// Texture filtering handled by shader/sampler
 
