@@ -3511,6 +3511,10 @@ void W3DVolumetricShadowManager::renderShadows( Bool forceStencilFill )
 
 		if (oldColorWriteEnable != 0x12345678)
 			DX8Wrapper::Set_DX8_Render_State(D3DRS_COLORWRITEENABLE,oldColorWriteEnable);
+		else
+			DX8Wrapper::Set_DX8_Render_State(D3DRS_COLORWRITEENABLE,
+				D3DCOLORWRITEENABLE_RED|D3DCOLORWRITEENABLE_GREEN|
+				D3DCOLORWRITEENABLE_BLUE|D3DCOLORWRITEENABLE_ALPHA);	// sentinel never set -> restore D3D default, NOT the 0 we wrote
 
 		//
 		// render the big transparent square of shadows in the stencil buffer

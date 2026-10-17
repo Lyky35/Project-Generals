@@ -1310,6 +1310,10 @@ void renderStenciledPlayerColor( UnsignedInt color, UnsignedInt stencilRef, Bool
 
 	if (oldColorWriteEnable != 0x12345678)
 		DX8Wrapper::Set_DX8_Render_State(D3DRS_COLORWRITEENABLE,oldColorWriteEnable);
+		else
+			DX8Wrapper::Set_DX8_Render_State(D3DRS_COLORWRITEENABLE,
+				D3DCOLORWRITEENABLE_RED|D3DCOLORWRITEENABLE_GREEN|
+				D3DCOLORWRITEENABLE_BLUE|D3DCOLORWRITEENABLE_ALPHA);
 
 }  // end renderStencilShadows
 

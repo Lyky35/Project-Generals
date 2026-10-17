@@ -923,6 +923,24 @@ void VulkanDevice::EndFrame(bool present)
 					gridDepths[gi].imageExtent = { 1, 1, 1 };
 				}
 			}
+			{
+				// 8 full-RGB probes (3%/10% x 50%/90% width, two rows) for
+				// odd-colored artifacts
+				for (int pr = 0; pr < 8; pr++) {
+					int gx = (pr & 1) ? ((pr < 4) ? (int)(ex.width * 9 / 10) : (int)(ex.width / 2))
+						: ((pr < 4) ? (int)(ex.width * 3 / 100) : (int)(ex.width / 10));
+					int gy = (pr < 4) ? (int)(ex.height / 4) : (int)(ex.height * 3 / 4);
+					if (gx >= (int)ex.width) gx = (int)ex.width - 1;
+					if (gy >= (int)ex.height) gy = (int)ex.height - 1;
+					VkBufferImageCopy probe = {};
+					probe.bufferOffset = 48 + pr * 4;
+					probe.imageSubresource = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1 };
+					probe.imageOffset = { gx, gy, 0 };
+					probe.imageExtent = { 1, 1, 1 };
+					vkCmdCopyImageToBuffer(cmd, m_swapImages[m_imageIndex], VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+						m_readbackBuf, 1, &probe);
+				}
+			}
 			vkCmdCopyImageToBuffer(cmd, m_swapImages[m_imageIndex], VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
 				m_readbackBuf, GW * GH, gridCols);
 			vkCmdCopyImageToBuffer(cmd, m_depthImage, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
@@ -1017,6 +1035,12 @@ void VulkanDevice::EndFrame(bool present)
 					}
 					fputc('\n', lf);
 				}
+				fprintf(lf, "  probes:");
+				for (int pr = 0; pr < 8; pr++) {
+					unsigned char *q = b + 48 + pr * 4;
+					fprintf(lf, " %u,%u,%u", q[2], q[1], q[0]);
+				}
+				fputc('\n', lf);
 				fprintf(lf, "  alpha:");
 				for (int gy = 0; gy < GH; gy++) {
 					for (int gx = 0; gx < GW; gx++) {
