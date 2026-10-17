@@ -135,7 +135,7 @@ TextureClass::TextureClass(unsigned width, unsigned height, WW3DFormat format, M
 	{
 		static unsigned pn = 0;
 		pn++;
-		if ((pn % 64u) == 0) {
+		if ((pn % 64u) == 0 || width == 64) {
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) {
 				fprintf(lf, "VK: procedural TextureClass %ux%u fmt=%d from=%p n=%u\n",

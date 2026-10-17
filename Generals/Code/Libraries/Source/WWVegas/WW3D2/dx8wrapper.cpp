@@ -1516,7 +1516,9 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	// world textures back to the log (what does the GPU actually sample?).
 	{
 		static unsigned texRb = 0;
-		if (tex0 && fvf == 0x242 && texRb < 4 && tex0->GetImage() != VK_NULL_HANDLE) {
+		static VkTexture *lastRbTex = nullptr;
+		if (tex0 && fvf == 0x242 && texRb < 6 && tex0->GetImage() != VK_NULL_HANDLE && tex0 != lastRbTex) {
+			lastRbTex = tex0;
 			VulkanDevice &dev = VulkanDevice::Instance();
 			if (dev.m_texReadbackBuf == VK_NULL_HANDLE) {
 				VkBufferCreateInfo bi = {};
@@ -1575,8 +1577,8 @@ bool DX8Wrapper::VulkanDrawIndexed(
 					const char *tname = "?";
 					if (DX8Wrapper::BoundTextures[0])
 						tname = DX8Wrapper::BoundTextures[0]->Get_Texture_Name();
-					fprintf(lf, "VK: TEXREADBACK scheduled #%u tex=%p %ux%u name='%s' missing=%d\n", texRb,
-						(void *)tex0, tex0->GetWidth(), tex0->GetHeight(), tname,
+					fprintf(lf, "VK: TEXREADBACK scheduled #%u tex=%p %ux%u fmt=%d name='%s' missing=%d\n", texRb,
+						(void *)tex0, tex0->GetWidth(), tex0->GetHeight(), (int)tex0->GetFormat(), tname,
 						(int)(tex0 == MissingTexture::_Get_Missing_Texture()));
 					fclose(lf);
 				}
@@ -1991,7 +1993,7 @@ VkTexture * DX8Wrapper::_Create_Vulkan_Texture(
 	{
 		static unsigned n = 0;
 		n++;
-		if ((n % 64u) == 0) {
+		if ((n % 64u) == 0 || width == 64) {
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) {
 				fprintf(lf, "VK: tex create init %ux%u fmt=%d from=%p n=%u\n",

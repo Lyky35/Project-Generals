@@ -320,6 +320,37 @@ void * SurfaceClass::Lock(int * pitch)
 void SurfaceClass::Unlock(void)
 {
 	if (VulkanSurface && ShadowMemory) {
+		// Port fix: 16-bit surfaces (shroud R5G6B5 etc.) were uploaded raw
+		// into the promoted 32-bit BGRA image = garbage. Repack first.
+		if (ShadowPitch == VulkanSurface->GetWidth() * 2 &&
+			VulkanSurface->GetFormat() == VK_FORMAT_B8G8R8A8_UNORM) {
+			unsigned w = VulkanSurface->GetWidth();
+			unsigned h = VulkanSurface->GetHeight();
+			unsigned char *tmp = new unsigned char[(size_t)w * h * 4];
+			const unsigned short *src16 = (const unsigned short *)ShadowMemory;
+			bool fmt565 = (SurfaceFormat == WW3D_FORMAT_R5G6B5);
+			for (size_t i = 0; i < (size_t)w * h; i++) {
+				unsigned short p = src16[i];
+				unsigned r, g, b;
+				if (fmt565) {
+					r = ((p >> 11) & 31) * 255 / 31;
+					g = ((p >> 5) & 63) * 255 / 63;
+					b = (p & 31) * 255 / 31;
+				} else {
+					// A4R4G4B4-style
+					b = ((p & 0xf) * 255) / 15;
+					g = (((p >> 4) & 0xf) * 255) / 15;
+					r = (((p >> 8) & 0xf) * 255) / 15;
+				}
+				tmp[i * 4 + 0] = (unsigned char)b;
+				tmp[i * 4 + 1] = (unsigned char)g;
+				tmp[i * 4 + 2] = (unsigned char)r;
+				tmp[i * 4 + 3] = 255;
+			}
+			VulkanSurface->UploadLevel(0, w, h, tmp);
+			delete[] tmp;
+			return;
+		}
 		VulkanSurface->UploadLevel(0, VulkanSurface->GetWidth(), VulkanSurface->GetHeight(), ShadowMemory);
 	}
 }

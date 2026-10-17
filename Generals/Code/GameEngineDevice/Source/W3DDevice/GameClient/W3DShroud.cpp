@@ -42,10 +42,26 @@
 #include "Common/GlobalData.h"
 #include "GameLogic/PartitionManager.h"
 
-// Legacy DX8 rect-copy path: SurfaceClass::Copy is the Vulkan equivalent for full blits
-static void W3DShroud_CopyRectsStub(SurfaceClass*, RECT*, UINT, void*, POINT*)
+// Port fix (THE black-world bug): this used to be a NO-OP - the shroud's
+// CPU->GPU rect copy was never ported, so the destination shroud texture
+// stayed at its initial zeros = fully shrouded = the entire world rendered
+// black on every driver. Real implementation: push the (still-locked) src
+// surface's CPU shadow into its Vulkan image, then copy the rects into the
+// dst surface's image.
+static void W3DShroud_CopyRectsStub(SurfaceClass *src, RECT *srcRects, UINT cRects, SurfaceClass *dstSurf, POINT *dstPoints)
 {
-	// partial-rect copies not yet ported; full-surface Copy used elsewhere
+	if (!src || !dstSurf)
+		return;
+	VkTexture *srcTex = src->Peek_Vulkan_Texture();
+	VkTexture *dstTex = dstSurf->Peek_Vulkan_Texture();
+	if (!srcTex || !dstTex)
+		return;
+	SurfaceClass::SurfaceDescription sd;
+	src->Get_Description(sd);
+	RECT fullRect = { 0, 0, (LONG)sd.Width, (LONG)sd.Height };
+	RECT *useRects = srcRects ? srcRects : &fullRect;
+	UINT useCount = srcRects ? cRects : 1;
+	DX8Wrapper::_Copy_Vulkan_Rects(srcTex, useRects, useCount, dstTex, dstPoints);
 }
 
 
@@ -468,6 +484,9 @@ void W3DShroud::fillBorderShroudData(W3DShroudLevel level, SurfaceClass* pDestSu
 	Int numFullCopies = m_dstTextureWidth/srcRect.right;
 	Int numExtraPixels = m_dstTextureWidth%srcRect.right;
 
+	if (m_pSrcTexture)
+		m_pSrcTexture->Unlock();	// once per frame, not per rect
+
 	for (int y =0; y<m_dstTextureHeight; y++)
 	{
 		dstPoint.y=y;
@@ -481,7 +500,7 @@ void W3DShroud::fillBorderShroudData(W3DShroudLevel level, SurfaceClass* pDestSu
 				m_pSrcTexture,
 				&srcRect,
 				1,
-				pDestSurface->Peek_D3D_Surface(),
+				pDestSurface,
 				&dstPoint);
 		}
 		if (numExtraPixels)
@@ -492,7 +511,7 @@ void W3DShroud::fillBorderShroudData(W3DShroudLevel level, SurfaceClass* pDestSu
 				m_pSrcTexture,
 				&srcRect,
 				1,
-				pDestSurface->Peek_D3D_Surface(),
+				pDestSurface,
 				&dstPoint);
 			srcRect.right = oldVal;
 		}
@@ -697,13 +716,19 @@ void W3DShroud::render(CameraClass *cam)
 		fillBorderShroudData(m_boderShroudLevel, pDestSurface);
 	}
 
+	// Port fix: the shroud keeps the src surface LOCKED forever and writes
+	// into the CPU shadow; Unlock() pushes that shadow into the surface's
+	// Vulkan image so the copy below has real data to read (once per update).
+	if (m_pSrcTexture)
+		m_pSrcTexture->Unlock();
+
 	{
 		//USE_PERF_TIMER(shroudCopy)
 		W3DShroud_CopyRectsStub(
 				m_pSrcTexture,
 				&srcRect,
 				1,
-				pDestSurface->Peek_D3D_Surface(),
+				pDestSurface,
 				&dstPoint);
 	}
 
