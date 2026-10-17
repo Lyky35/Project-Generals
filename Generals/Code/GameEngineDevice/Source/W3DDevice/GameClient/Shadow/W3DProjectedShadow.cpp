@@ -1317,6 +1317,14 @@ void W3DProjectedShadowManager::queueSimpleDecal(W3DProjectedShadow *shadow)
 
 Int W3DProjectedShadowManager::renderShadows(RenderInfoClass & rinfo)
 {
+	{
+		static unsigned rs = 0;
+		rs++;
+		if (rs <= 30) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: ProjectedShadow.renderShadows #%u\n", rs); fclose(lf); }
+		}
+	}
 	///@todo: implement this method.
 	W3DProjectedShadow *shadow;
 	static AABoxClass aaBox;

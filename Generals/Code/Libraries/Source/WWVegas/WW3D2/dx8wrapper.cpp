@@ -2355,6 +2355,13 @@ namespace D3D8Adapter {
 
 HRESULT CreateVertexBuffer(UINT Length, IDirect3DVertexBuffer8 **ppVB)
 {
+	{
+		static unsigned cb = 0; cb++;
+		if (cb <= 20) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: Adapter CreateVertexBuffer #%u len=%u\n", cb, Length); fclose(lf); }
+		}
+	}
 	if (!ppVB) return E_FAIL;
 	IDirect3DVertexBuffer8 *vb = new (std::nothrow) IDirect3DVertexBuffer8();
 	if (!vb) { *ppVB = nullptr; return E_FAIL; }
@@ -2408,6 +2415,15 @@ void SetWorldTransform(const void *matrix)
 void DX8Wrapper::LegacyDrawIndexedAbs(const unsigned short *idx, unsigned idxCount,
 	unsigned copyStart, unsigned copyCount, unsigned vertexOffsetHint)
 {
+	{
+		static unsigned la = 0;
+		la++;
+		if (la <= 40 || (la % 200u) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: LegacyDraw #%u idx=%u copy=%u+%u hint=%u fvf=0x%x\n",
+				la, idxCount, copyStart, copyCount, vertexOffsetHint, (unsigned)s_FVF); fclose(lf); }
+		}
+	}
 	if (!s_StreamVB || !s_StreamVB->pData || !idx || !idxCount || !copyCount || !s_FVF)
 		return;
 	if (!DX8Wrapper::_Is_Triangle_Draw_Enabled())

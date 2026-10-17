@@ -70,6 +70,22 @@ void DoShadows(RenderInfoClass & rinfo, Bool stencilPass)
 	//USE_PERF_TIMER(shadowsRender)
 	shadowCameraFrustum=&rinfo.Camera.Get_Frustum();
 	Int projectionCount=0;
+	{
+		static unsigned ds = 0;
+		ds++;
+		if (ds <= 30 || (ds % 120u) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: DoShadows #%u stencil=%d mgr=%p projMgr=%p volMgr=%p shadowScene=%d useVol=%d useDecal=%d\n",
+					ds, (int)stencilPass, (void *)TheW3DShadowManager,
+					(void *)TheW3DProjectedShadowManager, (void *)TheW3DVolumetricShadowManager,
+					TheW3DShadowManager ? (int)TheW3DShadowManager->isShadowScene() : -1,
+					TheGlobalData ? (int)TheGlobalData->m_useShadowVolumes : -1,
+					TheGlobalData ? (int)TheGlobalData->m_useShadowDecals : -1);
+				fclose(lf);
+			}
+		}
+	}
 
 	//Projected shadows render first because they may fill the stencil buffer
 	//which will be used by the shadow volumes
