@@ -1352,13 +1352,48 @@ bool DX8Wrapper::VulkanDrawIndexed(
 {
 	VulkanDevice &device = VulkanDevice::Instance();
 	if (!vb || !ib || indexCount == 0)
+	{
+		static unsigned er = 0;
+		er++;
+		if (er <= 20) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: DrawEARLY #%u vb=%p ib=%p idx=%u\n",
+				er, (void *)vb, (void *)ib, (unsigned)indexCount); fclose(lf); }
+		}
 		return false;
+	}
 
 	DX8Wrapper::EnsureTargetPass();
 	VkCommandBuffer cmd = device.GetCommandBuffer();
+	if (cmd == VK_NULL_HANDLE)
+	{
+		static unsigned ec = 0;
+		ec++;
+		if (ec <= 20) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: DrawNOCMD #%u\n", ec); fclose(lf); }
+		}
+		return false;
+	}
 
 	VkPipelineState state;
 	DX8Wrapper::VulkanBuildPipelineState(&state, fvf, fvfInfo, topology);
+	{
+		static unsigned sl = 0;
+		sl++;
+		// only log NON-trivial stencil states (the shadow fill passes)
+		if (state.stencilEnable && state.stencilCompare != 8) {
+			static unsigned fl = 0;
+			fl++;
+			if (fl <= 30) {
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "VK: FillDraw #%u fvf=0x%x sfunc=%d rmask=%x sref=%x sop=%d cw=%x z=%d/%d\n",
+					fl, (unsigned)state.vertexFVF, (int)state.stencilCompare,
+					(unsigned)state.stencilReadMask, (unsigned)state.stencilRef, (int)state.stencilPassOp,
+					(unsigned)state.colorWriteMask, (int)state.depthTest, (int)state.depthWrite); fclose(lf); }
+			}
+		}
+	}
 	{
 		// Port fix: draws without a bound texture must NOT contain a texture()
 		// instruction at all - sampling the white-fallback 1x1 image poisons
@@ -1371,8 +1406,16 @@ bool DX8Wrapper::VulkanDrawIndexed(
 			state.tex0Op = 0;
 	}
 	VkPipeline pipeline = DX8Wrapper::ShaderManager.GetPipeline(state);
-	if (pipeline == VK_NULL_HANDLE)
+	if (pipeline == VK_NULL_HANDLE) {
+		static unsigned pn = 0;
+		pn++;
+		if (pn <= 30) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: NULLPIPELINE #%u fvf=0x%x sten=%d sfunc=%d\n",
+				pn, (unsigned)state.vertexFVF, (int)state.stencilEnable, (int)state.stencilCompare); fclose(lf); }
+		}
 		return false;
+	}
 	vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
 
 	D3DVIEWPORT8 vp;
@@ -2408,6 +2451,41 @@ void SetWorldTransform(const void *matrix)
 	// WW->DX8 transpose, so pass raw WW matrices and strip the explicit
 	// transposes at the call sites.
 	DX8Wrapper::Set_Transform(D3DTS_WORLD, *(const Matrix4 *)matrix);
+}
+
+// Direct draw from the port's own DX8 buffer classes - used where legacy code
+// cast VkGpuBuffer* to IDirect3D* buffer types (volumetric shadow volumes):
+// the heap-buffer adapter then read garbage 'pData' and silently dropped
+// every volume fill (stencil stayed 0 -> no shadows).
+void DX8Wrapper::LegacyDrawPortBuffers(void *dx8Vb, void *dx8Ib,
+	unsigned firstIndex, unsigned indexCount, unsigned vertexOffset)
+{
+	DX8VertexBufferClass *vb = (DX8VertexBufferClass *)dx8Vb;
+	DX8IndexBufferClass *ib = (DX8IndexBufferClass *)dx8Ib;
+	if (!vb || !ib || !indexCount)
+		return;
+	const FVFInfoClass &info = vb->FVF_Info();
+	{
+		static unsigned dp = 0;
+		dp++;
+		if (dp <= 30) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: PortBufDraw #%u firstIdx=%u count=%u vOff=%u fvf=0x%x vbCount=%u",
+					dp, firstIndex, indexCount, vertexOffset, (unsigned)info.Get_FVF(), vb->Get_Vertex_Count());
+				if (ib->Get_Shadow_Buffer() && firstIndex + 3 <= ib->Get_Shadow_Size())
+					fprintf(lf, " idx0..2=%u,%u,%u",
+						(unsigned)ib->Get_Shadow_Buffer()[firstIndex],
+						(unsigned)ib->Get_Shadow_Buffer()[firstIndex + 1],
+						(unsigned)ib->Get_Shadow_Buffer()[firstIndex + 2]);
+				fprintf(lf, "\n");
+				fclose(lf);
+			}
+		}
+	}
+	VulkanDrawIndexed(vb->Get_Vulkan_Vertex_Buffer(), 0, info.Get_FVF(), info,
+		ib->Get_Vulkan_Index_Buffer(), firstIndex, indexCount, vertexOffset,
+		D3DPT_TRIANGLELIST);
 }
 
 // Shared draw path: copies legacy heap-buffer vertices into the port's dynamic

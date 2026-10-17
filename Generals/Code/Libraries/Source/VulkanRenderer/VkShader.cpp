@@ -448,17 +448,20 @@ VkPipeline VkShaderManager::GetPipeline(const VkPipelineState &state)
 	{
 		static unsigned buildCount = 0;
 		buildCount++;
-		if (buildCount <= 25 || (buildCount % 500) == 0)
+		if (buildCount <= 120 || (buildCount % 200) == 0)
 		{
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf)
 			{
-				fprintf(lf, "VK: pipeline build #%u fvf=0x%x topo=%u tex0=%d tex1=%d blend=%d cull=%u z=%d/%d zfunc=%d fog=%d light=%d alphaTest=%d sten=%d/sfunc=%d blend=%d/%d cached=%u ok=%d\n",
+				fprintf(lf, "VK: pipeline build #%u fvf=0x%x topo=%u tex0=%d tex1=%d blend=%d cull=%u z=%d/%d zfunc=%d fog=%d light=%d alphaTest=%d sten=%d/sfunc=%d smask=%02x/rmask=%02x/sref=%02x/sop=%d cw=%x blend=%d/%d cached=%u ok=%d\n",
 					buildCount, (unsigned)state.vertexFVF, (unsigned)state.topology,
 					(int)state.tex0Op, (int)state.tex1Op, (int)state.blendEnable,
 					(unsigned)state.cullMode, (int)state.depthTest, (int)state.depthWrite,
 					(int)state.depthCompare, (int)state.fog, (int)state.lighting, (int)state.alphaTest,
 					(int)state.stencilEnable, (int)state.stencilCompare,
+					(unsigned)state.stencilWriteMask, (unsigned)state.stencilReadMask,
+					(unsigned)state.stencilRef, (int)state.stencilPassOp,
+					(unsigned)state.colorWriteMask,
 					(int)state.srcBlend, (int)state.dstBlend,
 					(unsigned)m_pipelines.size(), pipeline != VK_NULL_HANDLE);
 				fclose(lf);
@@ -551,6 +554,7 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	// selection markers) applies normally.
 	depthStencil.stencilTestEnable =
 		(state.stencilEnable && VulkanDevice::Instance().HasStencil()) ? VK_TRUE : VK_FALSE;
+
 	depthStencil.front.failOp = TranslateStencilOp(state.stencilFailOp);
 	depthStencil.front.passOp = TranslateStencilOp(state.stencilPassOp);
 	depthStencil.front.depthFailOp = TranslateStencilOp(state.stencilDepthFailOp);
@@ -592,6 +596,18 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	pipelineInfo.pRasterizationState = &rasterizer;
 	pipelineInfo.pMultisampleState = &multisample;
 	pipelineInfo.pDepthStencilState = &depthStencil;
+	{
+		static unsigned bp = 0;
+		bp++;
+		if (state.stencilEnable && state.stencilCompare != 8) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: BuildFillPipe #%u stenEn=%d wmask=%x rmask=%x ref=%x passOp=%d cmp=%d\n",
+				bp, (int)depthStencil.stencilTestEnable,
+				(unsigned)depthStencil.front.writeMask, (unsigned)depthStencil.front.compareMask,
+				(unsigned)depthStencil.front.reference, (int)depthStencil.front.passOp,
+				(int)depthStencil.front.compareOp); fclose(lf); }
+		}
+	}
 	pipelineInfo.pColorBlendState = &blendState;
 	pipelineInfo.layout = m_pipelineLayout;
 	pipelineInfo.renderPass = m_device->GetRenderPass();

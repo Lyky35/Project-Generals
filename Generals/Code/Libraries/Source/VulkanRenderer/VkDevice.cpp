@@ -101,13 +101,18 @@ bool VulkanDevice::Init(HWND hwnd)
 		Shutdown();
 		return false;
 	}
-	if (!CreateRenderPass()) {
-		vkLog("Init: CreateRenderPass FAILED", -1);
+	// ORDER FIX: the depth format must be chosen BEFORE the render pass is
+	// built - previously the renderpass attachment was created with the
+	// default D32 (126) while the depth IMAGE was later created as D24S8
+	// (129): framebuffer attachment format mismatch = undefined behavior
+	// (stencil ops dead, driver-divergence source).
+	if (!CreateDepthResources()) {
+		vkLog("Init: CreateDepthResources FAILED", -1);
 		Shutdown();
 		return false;
 	}
-	if (!CreateDepthResources()) {
-		vkLog("Init: CreateDepthResources FAILED", -1);
+	if (!CreateRenderPass()) {
+		vkLog("Init: CreateRenderPass FAILED", -1);
 		Shutdown();
 		return false;
 	}
@@ -541,7 +546,9 @@ bool VulkanDevice::CreateRenderPass()
 	depthAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
 	depthAttachment.storeOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
 	depthAttachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
-	depthAttachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+	// STORE (was DONT_CARE): shadow-volume counts must survive the pass end for
+	// the readback/next-frame consumers; DONT_CARE legally discards them.
+	depthAttachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_STORE;
 	depthAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
 	depthAttachment.finalLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
 
@@ -577,6 +584,12 @@ bool VulkanDevice::CreateRenderPass()
 		VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT;
 
 	VkAttachmentDescription attachments[] = { colorAttachment, depthAttachment };
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: CreateRenderPass depthFmt=%d stencilLoad=%d stencilStore=%d depthLoad=%d\n",
+			(int)depthAttachment.format, (int)depthAttachment.stencilLoadOp,
+			(int)depthAttachment.stencilStoreOp, (int)depthAttachment.loadOp); fclose(lf); }
+	}
 	VkRenderPassCreateInfo renderPassInfo = {};
 	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
 	renderPassInfo.attachmentCount = 2;
@@ -853,7 +866,7 @@ void VulkanDevice::EndFrame(bool present)
 		if (m_readbackBuf == VK_NULL_HANDLE) {
 			VkBufferCreateInfo bi = {};
 			bi.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
-			bi.size = 65536;
+			bi.size = 2u * 1024u * 1024u;	// full stencil plane + grid
 			bi.usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT;
 			bi.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 			if (vkCreateBuffer(m_device, &bi, nullptr, &m_readbackBuf) == VK_SUCCESS) {
@@ -913,15 +926,48 @@ void VulkanDevice::EndFrame(bool present)
 					int py = (ex.height > 0) ? (int)((uint64_t)(gy * 2 + 1) * ex.height / (GH * 2)) : 0;
 					if (px >= (int)ex.width) px = (int)ex.width - 1;
 					if (py >= (int)ex.height) py = (int)ex.height - 1;
-					gridCols[gi].bufferOffset = 32768 + gi * 4;
+					gridCols[gi].bufferOffset = 2100000 + gi * 4;
 					gridCols[gi].imageSubresource = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1 };
 					gridCols[gi].imageOffset = { px, py, 0 };
 					gridCols[gi].imageExtent = { 1, 1, 1 };
-					gridDepths[gi].bufferOffset = 32768 + (GW * GH + gi) * 4;
+					gridDepths[gi].bufferOffset = 2100000 + (GW * GH + gi) * 4;
 					gridDepths[gi].imageSubresource = { VK_IMAGE_ASPECT_DEPTH_BIT, 0, 0, 1 };
 					gridDepths[gi].imageOffset = { px, py, 0 };
 					gridDepths[gi].imageExtent = { 1, 1, 1 };
 				}
+			}
+			{
+				// stencil-plane probes (after the frame's shadow fill) -
+				// are the volume counts actually written?
+				VkImageMemoryBarrier sb = {};
+				sb.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+				sb.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+				sb.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+				sb.srcAccessMask = 0;
+				sb.dstAccessMask = VK_ACCESS_TRANSFER_READ_BIT;
+				sb.image = m_depthImage;
+				sb.oldLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
+				sb.newLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+				sb.subresourceRange = { VK_IMAGE_ASPECT_STENCIL_BIT, 0, 1, 0, 1 };
+				vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_ALL_COMMANDS_BIT,
+					VK_PIPELINE_STAGE_TRANSFER_BIT, 0, 0, nullptr, 0, nullptr, 1, &sb);
+				{
+					// FULL stencil plane -> count non-zero CPU-side (volume
+					// geometry hugs objects; center crops can miss everything)
+					VkBufferImageCopy sp = {};
+					sp.bufferOffset = 1024;
+					sp.imageSubresource = { VK_IMAGE_ASPECT_STENCIL_BIT, 0, 0, 1 };
+					sp.imageOffset = { 0, 0, 0 };
+					sp.imageExtent = { ex.width, ex.height, 1 };
+					vkCmdCopyImageToBuffer(cmd, m_depthImage, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+						m_readbackBuf, 1, &sp);
+				}
+				sb.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+				sb.dstAccessMask = 0;
+				sb.oldLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+				sb.newLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
+				vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_TRANSFER_BIT,
+					VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT, 0, 0, nullptr, 0, nullptr, 1, &sb);
 			}
 			{
 				// 8 full-RGB probes (3%/10% x 50%/90% width, two rows) for
@@ -1015,7 +1061,7 @@ void VulkanDevice::EndFrame(bool present)
 	if (wantReadback && m_readbackMem != VK_NULL_HANDLE) {
 		vkQueueWaitIdle(m_graphicsQueue);
 		void *mapped = nullptr;
-		if (vkMapMemory(m_device, m_readbackMem, 0, 65536, 0, &mapped) == VK_SUCCESS) {
+		if (vkMapMemory(m_device, m_readbackMem, 0, 2u * 1024u * 1024u, 0, &mapped) == VK_SUCCESS) {
 			unsigned char *b = (unsigned char *)mapped;
 			static const int GW = 16, GH = 9;
 			static unsigned s_rbLog = 0;
@@ -1026,7 +1072,7 @@ void VulkanDevice::EndFrame(bool present)
 				for (int gy = 0; gy < GH; gy++) {
 					fprintf(lf, "  ");
 					for (int gx = 0; gx < GW; gx++) {
-						unsigned char *q = b + 32768 + (gy * GW + gx) * 4;
+						unsigned char *q = b + 2100000 + (gy * GW + gx) * 4;
 						int lum = (q[0] * 30 + q[1] * 59 + q[2] * 11) / 100;
 						const char *ramp = " .:-=+*#%@";
 						int ri = lum * 9 / 255;
@@ -1034,6 +1080,18 @@ void VulkanDevice::EndFrame(bool present)
 						fputc(ramp[ri], lf);
 					}
 					fputc('\n', lf);
+				}
+				{
+					unsigned nz = 0, hist[5] = { 0, 0, 0, 0, 0 };
+					unsigned total = (unsigned)m_swapExtent.width * (unsigned)m_swapExtent.height;
+					if (total > 1024u * 1024u) total = 1024u * 1024u;
+					for (unsigned i = 0; i < total; i++) {
+						unsigned char sv = b[1024 + i];
+						if (sv) nz++;
+						if (sv >= 4) hist[4]++; else hist[sv]++;
+					}
+					fprintf(lf, "  stencil: nz=%u/%u hist0=%u h1=%u h2=%u h3=%u h4+=%u\n",
+						nz, total, hist[0], hist[1], hist[2], hist[3], hist[4]);
 				}
 				fprintf(lf, "  probes:");
 				for (int pr = 0; pr < 8; pr++) {
@@ -1057,7 +1115,7 @@ void VulkanDevice::EndFrame(bool present)
 				fprintf(lf, "  depth:");
 				for (int gy = 0; gy < GH; gy++) {
 					for (int gx = 0; gx < GW; gx++) {
-						unsigned char *q = b + 32768 + (GW * GH + gy * GW + gx) * 4;
+						unsigned char *q = b + 2100000 + (GW * GH + gy * GW + gx) * 4;
 						unsigned v = q[0] | (q[1] << 8) | (q[2] << 16);
 						if (v == 0xffffff) fprintf(lf, " ~~~");
 						else if (v == 0) fprintf(lf, " 000");

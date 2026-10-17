@@ -552,6 +552,8 @@ protected:
 public:
 	static void LegacyDrawIndexedAbs(const unsigned short *idx, unsigned idxCount,
 		unsigned copyStart, unsigned copyCount, unsigned hint);
+	static void LegacyDrawPortBuffers(void *dx8Vb, void *dx8Ib,
+		unsigned firstIndex, unsigned indexCount, unsigned vertexOffset);
 	static unsigned PeekRenderState(unsigned state) { return RenderStates[state]; }
 protected:
 	static bool VulkanDrawIndexed(

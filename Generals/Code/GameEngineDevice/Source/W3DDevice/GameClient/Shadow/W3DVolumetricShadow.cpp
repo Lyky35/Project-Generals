@@ -1323,7 +1323,12 @@ void W3DVolumetricShadow::RenderMeshVolume(Int meshIndex, Int lightIndex, const 
 	if (DX8Wrapper::_Is_Triangle_Draw_Enabled())
 	{
 		Debug_Statistics::Record_DX8_Polys_And_Vertices(numPolys,numVerts,ShaderClass::_PresetOpaqueShader);
-		m_pDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST,0,numVerts,ibSlot->m_start,numPolys);
+		// The old path cast VkGpuBuffer* to IDirect3D* types - the adapter read
+		// garbage pData and dropped the draw (stencil never written).
+		DX8Wrapper::LegacyDrawPortBuffers(vbSlot->m_VB->m_DX8VertexBuffer,
+			ibSlot->m_IB->m_DX8IndexBuffer,
+			(unsigned)ibSlot->m_start, (unsigned)numPolys * 3,
+			(unsigned)vbSlot->m_start);
 	}
 
 }
@@ -3239,6 +3244,13 @@ void W3DVolumetricShadow::resetSilhouette( Int meshIndex )
 // ============================================================================
 void W3DVolumetricShadowManager::renderStencilShadows( void )
 {
+	{
+		static unsigned rq = 0; rq++;
+		if (rq <= 20) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: renderStencilShadows #%u\n", rq); fclose(lf); }
+		}
+	}
 	LPDIRECT3DDEVICE8 m_pDev=DX8Wrapper::_Get_D3D_Device8();
 
 	if (!m_pDev)
@@ -3325,6 +3337,12 @@ void W3DVolumetricShadowManager::renderStencilShadows( void )
 		DX8Wrapper::Set_Transform(D3DTS_PROJECTION, ortho);
 	}
 
+	{
+		static unsigned dq = 0; dq++;
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: resolveQuad draw #%u triangles=%d w=%d h=%d ox=%d oy=%d\n",
+			dq, (int)DX8Wrapper::_Is_Triangle_Draw_Enabled(), width, height, xpos, ypos); fclose(lf); }
+	}
 	if (DX8Wrapper::_Is_Triangle_Draw_Enabled())
 		m_pDev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, v, sizeof(_TRANSLITVERTEX));
 
