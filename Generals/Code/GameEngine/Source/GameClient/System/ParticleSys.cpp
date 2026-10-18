@@ -1788,7 +1788,15 @@ Particle *ParticleSystem::createParticle( const ParticleInfo *info,
 	{
 
 		if (TheGlobalData->m_useFX == FALSE)
+		{
+			static unsigned fxOff = 0;
+			if (fxOff < 3) {
+				fxOff++;
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "VK: particle CULL: m_useFX==FALSE\n"); fclose(lf); }
+			}
 			return NULL;
+		}
 
 		//
 		// Enforce particle limit.
@@ -1804,7 +1812,25 @@ Particle *ParticleSystem::createParticle( const ParticleInfo *info,
 		if( priority < TheGameLODManager->getMinDynamicParticlePriority() ||
 				(priority < TheGameLODManager->getMinDynamicParticleSkipPriority() && 
 				 TheGameLODManager->isParticleSkipped()) )
+		{
+			// PORT diagnostic: dynamic LOD silently drops exactly the death
+			// explosions / trails / dust at low FPS - count and name the culls.
+			static unsigned cullLog = 0;
+			cullLog++;
+			if (cullLog <= 40 || (cullLog % 200) == 0) {
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) {
+					fprintf(lf, "VK: particle CULL #%u prio=%d minPrio=%d skipPrio=%d skipped=%d sys='%s'\n",
+						cullLog, (int)priority,
+						(int)TheGameLODManager->getMinDynamicParticlePriority(),
+						(int)TheGameLODManager->getMinDynamicParticleSkipPriority(),
+						(int)TheGameLODManager->isParticleSkipped(),
+						m_template ? m_template->getName().str() : "?");
+					fclose(lf);
+				}
+			}
 			return NULL;
+		}
 
 		if ( getParticleCount() > 0 && priority == AREA_EFFECT && m_isGroundAligned && TheParticleSystemManager->getFieldParticleCount() > (UnsignedInt)TheGlobalData->m_maxFieldParticleCount )
 			return NULL;

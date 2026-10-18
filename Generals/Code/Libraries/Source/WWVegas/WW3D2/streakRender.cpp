@@ -1351,6 +1351,10 @@ char q[]="&&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&  &&
 				((Vector3*)(vb+fvfinfo.Get_Location_Offset()))->X	=	vertexArray[i].x;
 				((Vector3*)(vb+fvfinfo.Get_Location_Offset()))->Y	=	vertexArray[i].y;
 				((Vector3*)(vb+fvfinfo.Get_Location_Offset()))->Z	=	vertexArray[i].z;
+				// Port fix: never-written NORMAL field in dynamic_fvf_type.
+				((Vector3*)(vb+fvfinfo.Get_Normal_Offset()))->X	=	0.0f;
+				((Vector3*)(vb+fvfinfo.Get_Normal_Offset()))->Y	=	0.0f;
+				((Vector3*)(vb+fvfinfo.Get_Normal_Offset()))->Z	=	1.0f;
 				*(unsigned int*)(vb+fvfinfo.Get_Diffuse_Offset())	=	vertexArray[i].diffuse;
 
 				*(unsigned int*)(vb+fvfinfo.Get_Diffuse_Offset())	=	argb;

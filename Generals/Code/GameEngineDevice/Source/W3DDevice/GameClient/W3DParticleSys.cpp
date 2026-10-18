@@ -329,4 +329,12 @@ void W3DParticleSystemManager::doParticles(RenderInfoClass &rinfo)
 
 		/// @todo lorenzen sez: this should be debug only:
 	TheParticleSystemManager->setOnScreenParticleCount(m_onScreenParticleCount);
+	{
+		static unsigned dp = 0; dp++;
+		if ((dp % 60) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: doParticles #%u systems=%u points=%d\n", dp,
+				(unsigned)particleSysList.size(), (int)m_onScreenParticleCount); fclose(lf); }
+		}
+	}
 }
