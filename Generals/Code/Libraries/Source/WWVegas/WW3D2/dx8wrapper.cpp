@@ -257,7 +257,9 @@ static VulkanRtEntry VulkanRtCache[8];
 static int VulkanRtCacheCount = 0;
 
 static void VulkanReleaseRtCache();
+extern "C" void Vulkan_Mark_TexReadback_Fresh();
 extern "C" void Vulkan_FlushRtCache() { VulkanReleaseRtCache(); }
+extern "C" void Vulkan_Clear_Pipeline_Cache() { DX8Wrapper::_Get_Shader_Manager().ClearPipelineCache(); }
 
 static void VulkanReleaseRtCache()
 {
@@ -1626,6 +1628,7 @@ bool DX8Wrapper::VulkanDrawIndexed(
 				vkCmdPipelineBarrier(tcmd, VK_PIPELINE_STAGE_TRANSFER_BIT,
 					VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, 0, 0, nullptr, 0, nullptr, 1, &b1);
 				texRb++;
+				Vulkan_Mark_TexReadback_Fresh();
 				FILE *lf = fopen("RTS_START.LOG", "a");
 				if (lf) {
 					const char *tname = "?";

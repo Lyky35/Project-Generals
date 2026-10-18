@@ -793,6 +793,9 @@ void VulkanDevice::CleanupSwapchain()
 }
 
 extern "C" void Vulkan_FlushRtCache();
+extern "C" void Vulkan_Clear_Pipeline_Cache();
+static bool g_texRbFresh = false;	// a texture readback copy was scheduled
+extern "C" void Vulkan_Mark_TexReadback_Fresh() { g_texRbFresh = true; }
 
 bool VulkanDevice::RecreateSwapchain()
 {
@@ -808,6 +811,12 @@ bool VulkanDevice::RecreateSwapchain()
 	// image - stale framebuffers here crashed amdvlk on the first out-of-date
 	// recreate (use-after-free inside vkCmdBeginRenderPass of an RT pass).
 	Vulkan_FlushRtCache();
+	{
+		// Pipelines were created against the destroyed renderpass - they stay
+		// valid ONLY while the new pass is structurally identical; rebuild
+		// lazily for safety (first draws recreate them).
+		Vulkan_Clear_Pipeline_Cache();
+	}
 	if (!CreateSwapchain())
 		return false;
 	if (!CreateImageViews())
@@ -1059,7 +1068,8 @@ void VulkanDevice::EndFrame(bool present)
 		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=EndFrame submitted\n"); fclose(lf); } }
 	}
 
-	if (m_texReadbackMem != VK_NULL_HANDLE) {
+	if (m_texReadbackMem != VK_NULL_HANDLE && g_texRbFresh) {
+		g_texRbFresh = false;
 		vkQueueWaitIdle(m_graphicsQueue);
 		void *mapped = nullptr;
 		if (vkMapMemory(m_device, m_texReadbackMem, 0, 256, 0, &mapped) == VK_SUCCESS) {

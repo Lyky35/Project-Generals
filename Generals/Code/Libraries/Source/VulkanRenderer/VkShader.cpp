@@ -434,6 +434,8 @@ void VkShaderManager::ClearPipelineCache()
 	m_pipelines.clear();
 }
 
+
+
 VkPipeline VkShaderManager::GetPipeline(const VkPipelineState &state)
 {
 	auto it = m_pipelines.find(state);
