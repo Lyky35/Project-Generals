@@ -958,6 +958,10 @@ void PointGroupClass::Render(RenderInfoClass &rinfo)
 				/// @todo lorenzen sez: use a fast while loop
 				// Copy Locations
 				*(Vector3*)(vb+fvfinfo.Get_Location_Offset())=VertexLoc[i];
+				// Port fix: dynamic_fvf_type includes a NORMAL field this
+				// path never wrote - stale bytes become garbage normals if a
+				// lit pipeline ever touches particle draws.
+				*(Vector3*)(vb+fvfinfo.Get_Normal_Offset())=Vector3(0.0f,0.0f,1.0f);
 				if (current_diffuse) {
 					unsigned color=DX8Wrapper::Convert_Color_Clamp(VertexDiffuse[i]);
 					*(unsigned int*)(vb+fvfinfo.Get_Diffuse_Offset())=color;
@@ -1877,6 +1881,8 @@ void PointGroupClass::RenderVolumeParticle(RenderInfoClass &rinfo, unsigned int 
 					/// @todo lorenzen sez: use a fast while loop
 					// Copy Locations
 					*(Vector3*)(vb+fvfinfo.Get_Location_Offset()) = VertexLoc[i];
+					// Port fix: see above - never-written NORMAL field.
+					*(Vector3*)(vb+fvfinfo.Get_Normal_Offset()) = Vector3(0.0f,0.0f,1.0f);
 
 					if (current_diffuse) {
 						unsigned color=DX8Wrapper::Convert_Color_Clamp(VertexDiffuse[i]);

@@ -1595,7 +1595,11 @@ void W3DDisplay::draw( void )
 
 
 	updateAverageFPS();
-	if (TheGlobalData->m_enableDynamicLOD && TheGameLogic->getShowDynamicLOD())
+	// PORT: RTS_NO_LOD=1 forces the highest dynamic LOD (disables FPS-based
+	// particle/debris culling) - at wine/lavapipe framerates the Low level
+	// silently drops every death explosion / trail / dust particle.
+	static const Bool noLodEnv = (getenv("RTS_NO_LOD") != NULL);
+	if (TheGlobalData->m_enableDynamicLOD && TheGameLogic->getShowDynamicLOD() && !noLodEnv)
 	{
 		DynamicGameLODLevel lod=TheGameLODManager->findDynamicLODLevel(m_averageFPS);
 		TheGameLODManager->setDynamicLODLevel(lod);
