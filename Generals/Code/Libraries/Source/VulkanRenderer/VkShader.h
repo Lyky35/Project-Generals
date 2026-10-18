@@ -73,7 +73,7 @@ struct VkFrameUniforms {
     uint32_t _pad0;
     // GLSL puts vec4 lightAtten[4] at 240 (16-aligned after the uint);
     // CPU pads to match.
-    uint32_t _pad1[3];
+    uint32_t _pad1[2];	// must be [2]: lightAtten starts at 240 (std140); [3] overshot to 244
     float lightAtten[4][4];	// (att0, att1, att2, range) per light - point lights
     // std140: 304/368/432 - texture-generation matrices for TCI_CAMERA-position
     // texgen (road feather/noise passes): uv = (texMat * view * worldPos).xy
