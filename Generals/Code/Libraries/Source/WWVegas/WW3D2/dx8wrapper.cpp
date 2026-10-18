@@ -1520,7 +1520,7 @@ bool DX8Wrapper::VulkanDrawIndexed(
 			else TerrainDrawsNullTex++;
 		}
 		static int mvLog = 0;
-		if (fvf == 0x242 && mvLog < 16) {
+		if (fvf == 0x242 && mvLog < 40) {
 			mvLog++;
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf && mvLog == 1) {

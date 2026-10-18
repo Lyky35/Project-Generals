@@ -1248,8 +1248,10 @@ void renderStenciledPlayerColor( UnsignedInt color, UnsignedInt stencilRef, Bool
 
 	LPDIRECT3DDEVICE8 m_pDev=DX8Wrapper::_Get_D3D_Device8();
 
-	if (!m_pDev)
-		return;	//need device to render anything.
+	return;	// DISABLED: legacy raw-device player-index quad (never ported -
+	// XYZRHW screen quad + raw DrawPrimitiveUP drew artifacts once the dummy
+	// device made this path reachable)
+	// original: if (!m_pDev) return;
 
 	//draw polygons like this is very inefficient but for only 2 triangles, it's
 	//not worth bothering with index/vertex buffers.

@@ -75,6 +75,10 @@ void DoShadows(RenderInfoClass & rinfo, Bool stencilPass)
 	// Native shadow map replaced the legacy stencil-volume/decals pipeline
 	// (each legacy layer was a broken D3D8 stub chain; the Vulkan path is
 	// scene re-rendered from the light + depth compare in the shader).
+	// LEGACY SHADOWS OFF: the ported stencil-volume/decals pipeline produces
+	// visible artifacts (half-ported raw-device paths woken up by the adapter).
+	// Clean-but-no-shadows beats artifacts; revisit via the native shadow map.
+	return;
 	if (Vulkan_NativeShadow_Active() || Vulkan_NativeShadow_Enabled())
 		return;
 	//USE_PERF_TIMER(shadowsRender)
