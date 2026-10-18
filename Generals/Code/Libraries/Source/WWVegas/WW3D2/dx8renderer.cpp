@@ -1277,6 +1277,8 @@ void DX8SkinFVFCategoryContainer::Render(void)
 	MeshClass * remainingMesh = VisibleSkinHead;
 	while (renderedVertexCount < VisibleVertexCount)
 	{	mesh = remainingMesh;
+		// PORT FIX: visible count vs list disagreement would spin here forever
+		if (mesh == NULL) break;
 		{	DynamicVBAccessClass::WriteLockClass l(&vb);
 			VertexFormatXYZNDUV2 * dest_verts = l.Get_Formatted_Vertex_Array();
 			unsigned vertex_offset=0;

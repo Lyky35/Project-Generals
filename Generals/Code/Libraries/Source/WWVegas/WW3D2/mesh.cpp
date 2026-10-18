@@ -662,9 +662,14 @@ void MeshClass::Render(RenderInfoClass & rinfo)
 		static int meshLog = 0;
 		if (Is_Not_Hidden_At_All() == false) meshHidden++; else meshDrawn++;
 		meshLog++;
-		if (meshLog <= 6 || (meshLog % 500) == 0) {
+		if (meshLog <= 6 || (meshLog % 25) == 0 || meshLog > 33300) {
 			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: Mesh::Render calls=%d hidden=%u drawn=%u\n", meshLog, meshHidden, meshDrawn); fclose(lf); }
+			if (lf) {
+				const char *nm = Get_Name();
+				fprintf(lf, "VK: Mesh::Render calls=%d hidden=%u drawn=%u name='%s'\n",
+					meshLog, meshHidden, meshDrawn, nm ? nm : "?");
+				fclose(lf);
+			}
 		}
 	}
 	if (Is_Not_Hidden_At_All() == false) {
@@ -764,7 +769,18 @@ void MeshClass::Render(RenderInfoClass & rinfo)
 				** Link each polygon renderer for this mesh into the visible list
 				*/
 				DX8PolygonRendererListIterator it(&(Model->PolygonRendererList));
+				unsigned guard = 0;
 				while (!it.Is_Done()) {
+					if (++guard > 100000) {
+						static unsigned cg = 0;
+						cg++;
+						if (cg <= 10) {
+							FILE *lf = fopen("RTS_START.LOG", "a");
+							if (lf) { fprintf(lf, "VK: POLYLIST CYCLE #%u mesh='%s'\n", cg,
+								Get_Name() ? Get_Name() : "?"); fclose(lf); }
+						}
+						break;
+					}
 					DX8PolygonRendererClass* polygon_renderer=it.Peek_Obj();
 					polygon_renderer->Get_Texture_Category()->Add_Render_Task(polygon_renderer,this);
 					it.Next();

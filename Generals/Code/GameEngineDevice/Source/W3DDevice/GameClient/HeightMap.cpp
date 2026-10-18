@@ -119,8 +119,20 @@ HeightMapRenderObjClass *TheTerrainRenderObject=NULL;
     transparent objects. */
 void DoTrees(RenderInfoClass & rinfo)
 {
+	{
+		static unsigned dt = 0; dt++;
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: DoTrees enter #%u\n", dt); fclose(lf);
+		}
+	}
 	if (TheTerrainRenderObject) {
 		TheTerrainRenderObject->renderTrees(&rinfo.Camera);
+	}
+	{
+		static unsigned dtx = 0; dtx++;
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: DoTrees done #%u\n", dtx); fclose(lf);
+		}
 	}
 }
 

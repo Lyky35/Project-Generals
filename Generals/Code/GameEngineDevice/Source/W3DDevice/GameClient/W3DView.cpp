@@ -1359,6 +1359,13 @@ void W3DView::draw( void )
 		// scene render per frame (2x cost) - legacy DoShadows remains active.
 		// NativeShadow_Render(W3DDisplay::m_3DScene, m_3DCamera);
 		W3DDisplay::m_3DScene->doRender( m_3DCamera );
+		{
+			static unsigned ph = 0; ph++;
+			if (ph <= 200) {
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "VK: draw.phase post-doRender #%u\n", ph); fclose(lf); }
+			}
+		}
 		W3DDisplay::m_3DScene->Set_Extra_Pass_Polygon_Mode(SceneClass::EXTRA_PASS_DISABLE);
 		m_isWireFrameEnabled = m_nextWireFrameEnabled;
 	}
@@ -1407,8 +1414,22 @@ void W3DView::draw( void )
 		DX8Wrapper::Clear(false, true, Vector3(0.0f,0.0f,0.0f), TheWaterTransparency->m_minWaterOpacity);	// Clear z but not color
 		W3DDisplay::m_3DScene->setCustomPassMode(SCENE_PASS_DEFAULT);
 		W3DDisplay::m_3DScene->doRender( m_3DCamera );
+		{
+			static unsigned ph4 = 0; ph4++;
+			if (ph4 <= 200) {
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "VK: draw.phase post-doRender2 #%u\n", ph4); fclose(lf); }
+			}
+		}
 		Coord2D deltaScroll;
 		W3DShaderManager::filterPostRender(m_viewFilter, m_viewFilterMode, deltaScroll, doExtraRender);
+		{
+			static unsigned ph3 = 0; ph3++;
+			if (ph3 <= 200) {
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "VK: draw.phase post-filter #%u\n", ph3); fclose(lf); }
+			}
+		}
 	}
 
 	if( TheGlobalData->m_debugAI )
