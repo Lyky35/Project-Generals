@@ -3090,7 +3090,10 @@ void GameLogic::update( void )
 	{
 		static unsigned ue = 0;
 		ue++;
-		if (ue <= 20 || (ue % 100u) == 0) {
+		{
+			// EVERY update: the hang window (frames 60-74) was invisible with
+			// a capped log. The last ENTER line with no successor = hang
+			// is inside that update call.
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) { fprintf(lf, "VK: GameLogic.update ENTER #%u frame=%d\n", ue, (int)m_frame); fclose(lf); }
 		}
@@ -3312,7 +3315,7 @@ void GameLogic::update( void )
 		{
 		static unsigned lg = 0;
 		lg++;
-		if ((lg % 60u) == 0) {
+		if ((lg % 10u) == 0) {
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) { fprintf(lf, "VK: GameLogic heartbeat frame=%d sides=%d\n", (int)m_frame,
 				TheSidesList ? TheSidesList->getNumSides() : -1); fclose(lf); }
