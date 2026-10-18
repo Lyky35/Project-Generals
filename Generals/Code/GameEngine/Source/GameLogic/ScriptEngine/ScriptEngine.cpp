@@ -28,6 +28,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
+static unsigned g_scriptEvalCount = 0;
+
+
 #include "common/DataChunk.h"
 #include "Common/File.h"
 #include "Common/FileSystem.h"
@@ -4840,10 +4843,25 @@ void ScriptEngine::update( void )
 	}
 
 	// Evaluate the scripts.
+	{
+		static unsigned sh = 0;
+		sh++;
+		if ((sh % 300u) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: ScriptHeartbeat upd=%u sides=%d withScripts=%d evals=%u frame=%d\n",
+					sh, TheSidesList ? TheSidesList->getNumSides() : -1, 0,
+					g_scriptEvalCount,
+					TheGameLogic ? TheGameLogic->getFrame() : -1);
+				fclose(lf);
+			}
+		}
+	}
 	for (int i =0; i<TheSidesList->getNumSides(); i++) {
 		m_currentPlayer = ThePlayerList->getNthPlayer(i);
 		ScriptList *pSL = TheSidesList->getSideInfo(i)->getScriptList();
 		if (!pSL) continue;
+		g_scriptEvalCount++;
 		executeScripts(pSL->getScript());
 		ScriptGroup *pGroup;
 		for (pGroup = pSL->getScriptGroup(); pGroup; pGroup=pGroup->getNext()) {

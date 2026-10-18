@@ -3103,6 +3103,20 @@ void GameLogic::update( void )
 		} 
 		else 
 		{
+			// Port diagnostic: if this trips persistently, ALL logic (timers,
+			// scripts, AI) freezes while rendering continues - trucks never come.
+			static unsigned fz = 0;
+			fz++;
+			if (fz <= 12 || (fz % 300u) == 0) {
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) {
+					fprintf(lf, "VK: GameLogic FROZEN-return #%u frame=%d frozenScript=%d frozenDebug=%d\n",
+						fz, (int)m_frame,
+						(int)TheScriptEngine->isTimeFrozenScript(),
+						(int)TheScriptEngine->isTimeFrozenDebug());
+					fclose(lf);
+				}
+			}
 			/// @todo - make sure this never happens during a network game.  jba.
 			return;
 		}
@@ -3287,7 +3301,16 @@ void GameLogic::update( void )
 	// increment world time
 	if (!m_startNewGame)
 	{
-		m_frame++;
+		{
+		static unsigned lg = 0;
+		lg++;
+		if ((lg % 300u) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: GameLogic heartbeat frame=%d sides=%d\n", (int)m_frame,
+				TheSidesList ? TheSidesList->getNumSides() : -1); fclose(lf); }
+		}
+	}
+	m_frame++;
 	}
 }
 
