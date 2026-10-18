@@ -5,6 +5,8 @@ layout(location = 1) in vec3 inNormal;
 layout(location = 2) in vec4 inDiffuse;
 layout(location = 3) in vec2 inUV0;
 layout(location = 4) in vec2 inUV1;
+layout(location = 5) in vec2 inUV2;
+layout(location = 6) in vec2 inUV3;
 
 layout(push_constant) uniform PushConsts {
 	mat4 mvp;
@@ -17,6 +19,8 @@ layout(location = 2) out vec4 outDiffuse;
 layout(location = 3) out vec2 outUV0;
 layout(location = 4) out vec2 outUV1;
 layout(location = 5) out float outViewDist;
+layout(location = 6) out vec2 outUV2;
+layout(location = 7) out vec2 outUV3;
 
 void main()
 {
@@ -27,5 +31,7 @@ void main()
 	outDiffuse = inDiffuse;
 	outUV0 = inUV0;
 	outUV1 = inUV1;
+	outUV2 = inUV2;
+	outUV3 = inUV3;
 	outViewDist = length(worldPos.xyz);
 }

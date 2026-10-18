@@ -6,6 +6,8 @@ layout(location = 2) in vec4 inDiffuse;
 layout(location = 3) in vec2 inUV0;
 layout(location = 4) in vec2 inUV1;
 layout(location = 5) in float inViewDist;
+layout(location = 6) in vec2 inUV2;
+layout(location = 7) in vec2 inUV3;
 
 layout(location = 0) out vec4 outColor;
 
@@ -41,6 +43,28 @@ layout(constant_id = 6) const int ALPHAOP0 = 0;
 layout(constant_id = 7) const int ALPHAOP1 = 0;
 layout(constant_id = 8) const int UVSEL0 = 0;
 layout(constant_id = 9) const int UVSEL1 = 0;
+
+// UV selector: 0..3 = passthrough UV channels (W3D FVF tex slots);
+// 4 = TCI_CAMERASPACEPOSITION, 5 = TCI_CAMERASPACENORMAL,
+// 6 = TCI_CAMERASPACEREFLECTIONVECTOR (D3D8 texture-stage texgen).
+vec2 selectUV(int sel, mat4 texMat)
+{
+	if (sel == 1) return inUV1;
+	if (sel == 2) return inUV2;
+	if (sel == 3) return inUV3;
+	if (sel >= 4) {
+		vec4 vp = frame.viewMat * vec4(inWorldPos, 1.0);
+		if (sel == 4)
+			return (texMat * vp).xy;
+		vec3 nv = normalize((frame.viewMat * vec4(inNormal, 0.0)).xyz);
+		if (sel == 5)
+			return (texMat * vec4(nv, 1.0)).xy;
+		// sel == 6: reflection vector, eye at camera-space origin
+		vec3 r = reflect(normalize(vp.xyz), nv);
+		return (texMat * vec4(r, 1.0)).xy;
+	}
+	return inUV0;
+}
 
 vec3 applyTexOp(vec3 current, float currentAlpha, vec4 texel, int op, out float outAlpha)
 {
@@ -85,13 +109,7 @@ void main()
 	}
 
 	if (TEX0_OP > 0) {
-		vec2 uv0sel = inUV0;
-		if (UVSEL0 == 1) uv0sel = inUV1;
-		else if (UVSEL0 == 2) {
-			// TCI_CAMERASPACEPOSITION: uv = (texMat * view * worldPos).xy
-			vec4 vp = frame.viewMat * vec4(inWorldPos, 1.0);
-			uv0sel = (frame.texMat0 * vp).xy;
-		}
+		vec2 uv0sel = selectUV(UVSEL0, frame.texMat0);
 		vec4 texel = texture(texStage0, uv0sel);
 		float aIn = alpha;
 		color = applyTexOp(color, alpha, texel, TEX0_OP, alpha);
@@ -105,12 +123,7 @@ void main()
 		else if (ALPHAOP0 == 6) alpha = aIn + texel.a;
 	}
 	if (TEX1_OP > 0) {
-		vec2 uv1sel = inUV1;
-		if (UVSEL1 == 0) uv1sel = inUV0;
-		else if (UVSEL1 == 2) {
-			vec4 vp = frame.viewMat * vec4(inWorldPos, 1.0);
-			uv1sel = (frame.texMat1 * vp).xy;
-		}
+		vec2 uv1sel = selectUV(UVSEL1, frame.texMat1);
 		vec4 texel = texture(texStage1, uv1sel);
 		float aIn = alpha;
 		color = applyTexOp(color, alpha, texel, TEX1_OP, alpha);

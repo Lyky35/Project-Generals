@@ -37,6 +37,8 @@ struct VkPipelineState {
 	uint32_t diffuseOffset;
 	uint32_t uv0Offset;
 	uint32_t uv1Offset;
+	uint32_t uv2Offset;
+	uint32_t uv3Offset;
 
 	// Stencil state
 	int32_t stencilEnable;
@@ -90,7 +92,7 @@ struct VkFrameUniforms {
 struct VkVertexLayoutDesc {
 	VkVertexInputBindingDescription bindings[2];
 	uint32_t bindingCount;
-	VkVertexInputAttributeDescription attributes[5];
+	VkVertexInputAttributeDescription attributes[8];
 	uint32_t attributeCount;
 };
 
@@ -139,6 +141,6 @@ private:
 	VkShaderModule LoadModule(const char *path);
 	bool CreateDescriptorLayouts();
 	bool CreatePipelineLayout();
-	VkVertexLayoutDesc GetVertexLayout(uint32_t fvf, uint32_t fvfSize, uint32_t normalOffset, uint32_t diffuseOffset, uint32_t uv0Offset, uint32_t uv1Offset);
+	VkVertexLayoutDesc GetVertexLayout(uint32_t fvf, uint32_t fvfSize, uint32_t normalOffset, uint32_t diffuseOffset, uint32_t uv0Offset, uint32_t uv1Offset, uint32_t uv2Offset, uint32_t uv3Offset);
 	VkVertexLayoutDesc GetVertexLayout(uint32_t fvf, uint32_t fvfSize);
 };

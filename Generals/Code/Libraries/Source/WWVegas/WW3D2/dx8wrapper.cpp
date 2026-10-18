@@ -3033,10 +3033,16 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 		state->alphaOp1 = mapAlpha(a1op, a1a1, a1a2);
 		// D3DTSS_TEXCOORDINDEX: the terrain blend pass samples its mask
 		// texture with UV set 1 - the shader previously always used UV0.
+		// uvSel encoding: 0..3 = passthrough UV channels; 4 = camera-space
+		// position texgen; 5 = camera-space normal; 6 = reflection vector.
 		auto mapUv = [](unsigned idx) -> int {
 			if (idx == 0x12345678) return 0;
-			if ((idx & 0xffff0000u) == 0x00010000u) return 2;	// TCI_CAMERASPACEPOSITION texgen
-			return (idx & 0x0000ffffu) == 1 ? 1 : 0;
+			unsigned tci = idx & 0xffff0000u;
+			if (tci == 0x00010002u) return 6;	// TCI_CAMERASPACEREFLECTIONVECTOR
+			if (tci == 0x00010000u) return 5;	// TCI_CAMERASPACENORMAL
+			if (tci == 0x00010001u) return 4;	// TCI_CAMERASPACEPOSITION
+			unsigned slot = idx & 0x0000ffffu;
+			return (slot <= 3) ? (int)slot : 0;	// lightmap/metal UV slots 2-3
 		};
 		state->uvSel0 = mapUv(DX8Wrapper::TextureStageStates[0][D3DTSS_TEXCOORDINDEX]);
 		state->uvSel1 = mapUv(DX8Wrapper::TextureStageStates[1][D3DTSS_TEXCOORDINDEX]);
@@ -3105,6 +3111,8 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 	unsigned texCount = (fvf & D3DFVF_TEXCOUNT_MASK) >> D3DFVF_TEXCOUNT_SHIFT;
 	state->uv0Offset = (texCount >= 1) ? fvfInfo.Get_Tex_Offset(0) : UINT32_MAX;
 	state->uv1Offset = (texCount >= 2) ? fvfInfo.Get_Tex_Offset(1) : UINT32_MAX;
+	state->uv2Offset = (texCount >= 3) ? fvfInfo.Get_Tex_Offset(2) : UINT32_MAX;
+	state->uv3Offset = (texCount >= 4) ? fvfInfo.Get_Tex_Offset(3) : UINT32_MAX;
 }
 
 // ---------------------------------------------------------------------------

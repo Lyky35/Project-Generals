@@ -21,7 +21,8 @@ bool VkPipelineState::operator==(const VkPipelineState &other) const
 		topology == other.topology &&
 		vertexFVF == other.vertexFVF && vertexSize == other.vertexSize &&
 		normalOffset == other.normalOffset && diffuseOffset == other.diffuseOffset &&
-		uv0Offset == other.uv0Offset && uv1Offset == other.uv1Offset;
+		uv0Offset == other.uv0Offset && uv1Offset == other.uv1Offset &&
+		uv2Offset == other.uv2Offset && uv3Offset == other.uv3Offset;
 }
 
 size_t VkPipelineStateHash::operator()(const VkPipelineState &s) const
@@ -203,7 +204,8 @@ bool VkShaderManager::CreatePipelineLayout()
 
 VkVertexLayoutDesc VkShaderManager::GetVertexLayout(uint32_t fvf, uint32_t fvfSize,
 	uint32_t normalOffset, uint32_t diffuseOffset,
-	uint32_t uv0Offset, uint32_t uv1Offset)
+	uint32_t uv0Offset, uint32_t uv1Offset,
+	uint32_t uv2Offset, uint32_t uv3Offset)
 {
 	VkVertexLayoutDesc desc = {};
 	desc.bindings[0].binding = 0;
@@ -271,6 +273,30 @@ VkVertexLayoutDesc VkShaderManager::GetVertexLayout(uint32_t fvf, uint32_t fvfSi
 	} else {
 		attr->binding = 1;
 		attr->offset = 24;
+	}
+	attr++;
+	desc.attributeCount++;
+
+	attr->location = 5;
+	attr->format = VK_FORMAT_R32G32_SFLOAT;
+	if (uv2Offset != UINT32_MAX) {
+		attr->binding = 0;
+		attr->offset = uv2Offset;
+	} else {
+		attr->binding = 1;
+		attr->offset = 32;
+	}
+	attr++;
+	desc.attributeCount++;
+
+	attr->location = 6;
+	attr->format = VK_FORMAT_R32G32_SFLOAT;
+	if (uv3Offset != UINT32_MAX) {
+		attr->binding = 0;
+		attr->offset = uv3Offset;
+	} else {
+		attr->binding = 1;
+		attr->offset = 40;
 	}
 	attr++;
 	desc.attributeCount++;
@@ -476,7 +502,8 @@ VkPipeline VkShaderManager::GetPipeline(const VkPipelineState &state)
 VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 {
 	VkVertexLayoutDesc layout = GetVertexLayout(state.vertexFVF, state.vertexSize,
-		state.normalOffset, state.diffuseOffset, state.uv0Offset, state.uv1Offset);
+		state.normalOffset, state.diffuseOffset, state.uv0Offset, state.uv1Offset,
+		state.uv2Offset, state.uv3Offset);
 
 	VkPipelineShaderStageCreateInfo vertStage = {};
 	vertStage.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
