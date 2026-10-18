@@ -3087,6 +3087,14 @@ void GameLogic::update( void )
 	UnsignedInt now = TheGameLogic->getFrame();
 	TheGameClient->setFrame(now);
 
+	{
+		static unsigned ue = 0;
+		ue++;
+		if (ue <= 20 || (ue % 100u) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: GameLogic.update ENTER #%u frame=%d\n", ue, (int)m_frame); fclose(lf); }
+		}
+	}
 	// update (execute) scripts
 	{
 		TheScriptEngine->UPDATE();
@@ -3304,7 +3312,7 @@ void GameLogic::update( void )
 		{
 		static unsigned lg = 0;
 		lg++;
-		if ((lg % 300u) == 0) {
+		if ((lg % 60u) == 0) {
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) { fprintf(lf, "VK: GameLogic heartbeat frame=%d sides=%d\n", (int)m_frame,
 				TheSidesList ? TheSidesList->getNumSides() : -1); fclose(lf); }
