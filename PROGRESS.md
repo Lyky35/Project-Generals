@@ -1421,3 +1421,36 @@ texture loads, initiator/procedural texture samplers, BeginTargetPass
 
 
 
+
+### 2026-10-18 — ROOT CAUSE of the frame-74 in-game hang: shadowed 'cnt' in skin deform loops; units now render; release 1.2 cut
+
+The hang that froze every wine soak at ~frame 74 (right when the first
+skinned units spawn) was pinned by breadcrumbs -> gdb RIP sampling: the
+process spun inside `MeshModelClass::get_deformed_vertices` (calls into
+`VectorProcessorClass::Transform` with count=0, unconditional jmp, no
+counter). Disassembly traced to a latent Generals source bug in
+`meshmdl.cpp`:
+
+```cpp
+int cnt;
+for (int cnt = vi; cnt < vertex_count; cnt++) { ... }  // shadows outer cnt
+vi = cnt;  // OUTER cnt uninitialized -> UB
+```
+
+MSVC never tripped it; GCC -O3 compiles the UB to literally `cnt=0`, so
+`vi` resets to 0 every pass and the deform loop never terminates - the
+skin-flush `while (renderedVertexCount < VisibleVertexCount)` never
+returns, freezing the first frame skinned meshes (Spawn units) render.
+Fixed all 3 sites (`get_deformed_vertices`, `compose_deformed_vertex_buffer`,
+`get_deformed_screenspace_vertices`) by un-shadowing the loop variable.
+Added a cheap `mesh == NULL` break in `DX8SkinFVFCategoryContainer::Render`
+as a safety net for visible-count/list disagreement. Verified: 100s soak,
+312 frames (was 74), heartbeat reached frame 480, zero crashes.
+
+Same class of bug as the earlier `TeamsInfoRec::addTeam` shadowed-i wipe -
+worth grepping for `for (int` shadowing after any GCC-UB weirdness.
+
+**Release 1.2:** rebuilt `release/RTS.exe`, refreshed
+`Project-Generals-RTS-Full-V1.2.zip` + `Project-Generals-RTS-v1.2.zip`
+(RTS.exe + MinGW/OpenAL/Vulkan DLLs + shaders/ + README/NOTES/PROGRESS),
+tagged `v1.2` with both zips attached.
