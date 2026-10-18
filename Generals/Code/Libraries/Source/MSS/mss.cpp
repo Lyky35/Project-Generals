@@ -42,6 +42,7 @@ struct Voice {
 	U32 rate = 22050;
 	U16 bits = 16;
 	U16 channels = 2;
+	bool failed = false;	// set-file failed: complete on next AIL_service (EOS) so the slot can't leak
 };
 
 static CRITICAL_SECTION g_cs;
@@ -137,6 +138,7 @@ struct WavInfo {
 	U16 format = 0;
 	U16 channels = 0;
 	U16 bits = 0;
+	U16 blockAlign = 0;
 	U32 rate = 0;
 	const unsigned char* data = nullptr;
 	U32 dataLen = 0;
@@ -160,6 +162,7 @@ static bool parseWav(const unsigned char* buf, size_t len, WavInfo& out) {
 			out.format = rd16(buf + body);
 			out.channels = rd16(buf + body + 2);
 			out.rate = rd32(buf + body + 4);
+			out.blockAlign = rd16(buf + body + 12);
 			out.bits = rd16(buf + body + 14);
 			if (out.format == 0xFFFE && sz >= 40) {
 				// WAVE_FORMAT_EXTENSIBLE: subformat GUID first 2 bytes = format tag
@@ -289,6 +292,21 @@ extern "C" void AIL_service(void) {
 		for (size_t i = 0; i < g_voices.size() && n < 64; ++i) {
 			Voice& v = g_voices[i];
 			if (!v.used || !v.started || v.paused || !v.source) continue;
+			if (v.failed) {
+				// Port: set-file failed voice - complete immediately so the
+				// manager's EOS path releases the pool slot.
+				v.failed = false;
+				v.started = false;
+				if (n < 64) {
+					fired[n].kind = v.kind;
+					fired[n].id = i + 1;
+					fired[n].c2 = v.eos2d;
+					fired[n].c3 = v.eos3d;
+					fired[n].cs = v.eosStream;
+					++n;
+				}
+				continue;
+			}
 			ALint st = AL_STOPPED;
 			alGetSourcei(v.source, AL_SOURCE_STATE, &st);
 			if (st != AL_STOPPED) continue;
@@ -383,7 +401,15 @@ extern "C" int AIL_set_sample_file(HSAMPLE s, void* file, U32 offset) {
 	// file is a memory image of unknown length — AudioFileCache guarantees RIFF layout;
 	// parse defensively by scanning bounded window (cache stores real size but doesn't pass it).
 	// We rely on RIFF sizes inside the header.
-	return uploadWavToVoice(*v, (const unsigned char*)file, (size_t)-1, offset) ? 1 : 0;
+	{
+		bool ok = uploadWavToVoice(*v, (const unsigned char*)file, (size_t)-1, offset) != 0;
+		v->failed = !ok;
+		if (!ok) {
+			static unsigned f2 = 0; f2++;
+			if (f2 <= 30) { FILE* lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "VK: audio set_file FAILED 2D #%u\n", f2); fclose(lf); } }
+		}
+		return ok ? 1 : 0;
+	}
 }
 extern "C" void AIL_set_sample_user_data(HSAMPLE s, U32 index, void* val) {
 	CsLock lk;
@@ -408,6 +434,14 @@ extern "C" void AIL_register_3D_EOS_callback(H3DSAMPLE s, AIL3DSAMPLECB cb) {
 extern "C" void AIL_start_3D_sample(H3DSAMPLE s) {
 	CsLock lk;
 	if (Voice* v = voiceFrom3D(s)) {
+		if (v->failed || !v->buffer) {
+			// Port: no buffer (parse/decode failed) - mark started so the
+			// next AIL_service fires EOS and the manager releases the slot
+			// (previously such voices never completed = permanent pool leak).
+			v->started = true;
+			v->paused = false;
+			return;
+		}
 		applyGain(*v);
 		alSourcePlay(v->source);
 		v->started = true;
@@ -436,7 +470,13 @@ extern "C" int AIL_set_3D_sample_file(H3DSAMPLE s, void* file) {
 	if (!file) return 0;
 	Voice* v = voiceFrom3D(s);
 	if (!v) return 0;
-	return uploadWavToVoice(*v, (const unsigned char*)file, (size_t)-1, 0) ? 1 : 0;
+	bool ok = uploadWavToVoice(*v, (const unsigned char*)file, (size_t)-1, 0) != 0;
+	v->failed = !ok;
+	if (!ok) {
+		static unsigned f3 = 0; f3++;
+		if (f3 <= 30) { FILE* lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "VK: audio set_file FAILED 3D #%u\n", f3); fclose(lf); } }
+	}
+	return ok ? 1 : 0;
 }
 extern "C" void AIL_set_3D_sample_volume(H3DSAMPLE s, float vol) {
 	CsLock lk;
@@ -645,20 +685,126 @@ extern "C" int AIL_WAV_info(void* buf, AILSOUNDINFO* info) {
 		unsigned ch = w.channels ? w.channels : 1;
 		info->samples = w.dataLen / ch / bytesPerSample;
 	}
-	info->block_size = (U32)(w.channels * ((w.bits >= 8) ? (w.bits / 8) : 1));
+	if (w.format == 0x11 /*IMA ADPCM*/ && w.blockAlign) {
+		// Report the real nBlockAlign: the decompressor needs it to walk
+		// ADPCM blocks (the old byte-per-sample formula yielded 1).
+		info->block_size = w.blockAlign;
+	} else {
+		info->block_size = (U32)(w.channels * ((w.bits >= 8) ? (w.bits / 8) : 1));
+	}
 	info->initial_ptr = info->data;
 	return 1;
 }
 
+// --- IMA/DVI ADPCM (WAVE_FORMAT_IMA_ADPCM) decoder -------------------------
+// Port: explosion/missile/UI SFX in Audio.big are mostly IMA ADPCM (fmt 0x11);
+// the old stub returned a headerless silence buffer, so uploadWavToVoice's
+// parseWav failed -> no AL buffer -> silent AND the voice never reached EOS,
+// permanently leaking 3D sample-pool slots (after a few explosions every
+// world sound got channel-culled).
+static const int kImaStepTable[89] = {
+	7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 19, 21, 23, 25, 28, 31, 34, 37, 41, 45,
+	50, 55, 60, 66, 73, 80, 88, 97, 107, 118, 130, 143, 157, 173, 190, 209, 230, 253, 279, 307,
+	337, 371, 408, 449, 494, 544, 598, 658, 724, 796, 876, 963, 1060, 1166, 1282, 1411, 1552, 1707, 1878, 2066,
+	2272, 2499, 2749, 3024, 3327, 3660, 4026, 4428, 4871, 5358, 5894, 6484, 7132, 7845, 8630, 9493, 10442, 11487, 12635, 13899,
+	15289, 16818, 18500, 20350, 22385, 24623, 27086, 29794, 32767 };
+static const int kImaIndexTable[16] = { -1, -1, -1, -1, 2, 4, 6, 8, -1, -1, -1, -1, 2, 4, 6, 8 };
+
+static inline int imaClamp16(int v) { return v < -32768 ? -32768 : (v > 32767 ? 32767 : v); }
+
 extern "C" int AIL_decompress_ADPCM(AILSOUNDINFO* in, void** out, U32* out_size) {
-	// No ADPCM decoder yet: hand back a silence buffer of the same size so the
-	// file cache bookkeeping stays consistent (audio will be silent for IMA WAVs).
-	if (!in || !out || !out_size) return 0;
-	U32 n = in->data_byte_len ? in->data_byte_len : 4096;
-	if (n > 64u * 1024u * 1024u) n = 64u * 1024u * 1024u;
-	*out = calloc(1, n);
-	if (!*out) return 0;
-	*out_size = n;
+	if (!in || !out || !out_size || !in->data || !in->data_byte_len) return 0;
+	unsigned ch = in->channels ? in->channels : 1;
+	if (ch > 2) return 0;
+	U32 blockAlign = in->block_size;
+	if (blockAlign < (U32)(4 * ch) || blockAlign > 4096) return 0;
+	U32 samplesPerBlock = ((blockAlign - 4 * ch) * 8) / (4 * ch) + 1;
+	U32 blocks = in->data_byte_len / blockAlign;
+	if (blocks == 0) return 0;
+	U32 totalSamples = blocks * samplesPerBlock * ch;	// int16 frames, interleaved
+	if (totalSamples == 0 || totalSamples > 64u * 1024u * 1024u) return 0;
+
+	// Output a full RIFF PCM16 WAV - uploadWavToVoice parseWav's the result.
+	U32 dataBytes = totalSamples * 2;
+	U32 riffSize = 36 + dataBytes;
+	unsigned char* wav = (unsigned char*)malloc(44 + dataBytes);
+	if (!wav) return 0;
+	memcpy(wav, "RIFF", 4);
+	wav[4] = (unsigned char)(riffSize); wav[5] = (unsigned char)(riffSize >> 8);
+	wav[6] = (unsigned char)(riffSize >> 16); wav[7] = (unsigned char)(riffSize >> 24);
+	memcpy(wav + 8, "WAVEfmt ", 8);
+	wav[16] = 16; wav[17] = 0; wav[18] = 0; wav[19] = 0;		// fmt chunk size
+	wav[20] = 1; wav[21] = 0;									// PCM
+	wav[22] = (unsigned char)ch; wav[23] = 0;
+	U32 rate = in->rate ? in->rate : 22050;
+	wav[24] = (unsigned char)rate; wav[25] = (unsigned char)(rate >> 8);
+	wav[26] = (unsigned char)(rate >> 16); wav[27] = (unsigned char)(rate >> 24);
+	U32 byteRate = rate * ch * 2;
+	wav[28] = (unsigned char)byteRate; wav[29] = (unsigned char)(byteRate >> 8);
+	wav[30] = (unsigned char)(byteRate >> 16); wav[31] = (unsigned char)(byteRate >> 24);
+	U16 blk = (U16)(ch * 2);
+	wav[32] = (unsigned char)blk; wav[33] = 0;
+	wav[34] = 16; wav[35] = 0;
+	memcpy(wav + 36, "data", 4);
+	wav[40] = (unsigned char)(dataBytes); wav[41] = (unsigned char)(dataBytes >> 8);
+	wav[42] = (unsigned char)(dataBytes >> 16); wav[43] = (unsigned char)(dataBytes >> 24);
+	short* pcm = (short*)(wav + 44);
+
+	const unsigned char* src = (const unsigned char*)in->data;
+	int pred[2] = { 0, 0 };
+	int idx[2] = { 0, 0 };
+	for (U32 b = 0; b < blocks; ++b) {
+		const unsigned char* block = src + b * blockAlign;
+		for (unsigned c = 0; c < ch; ++c) {
+			const unsigned char* h = block + c * 4;
+			pred[c] = (short)(h[0] | (h[1] << 8));
+			idx[c] = h[2];
+			if (idx[c] > 88) idx[c] = 88;
+		}
+		// first (header) sample per channel
+		for (unsigned c = 0; c < ch; ++c)
+			*pcm++ = (short)pred[c];
+		U32 dataBytesInBlock = blockAlign - 4 * ch;
+		if (ch == 1) {
+			for (U32 i = 0; i < dataBytesInBlock; ++i) {
+				unsigned char byte = block[4 + i];
+				for (int half = 0; half < 2; ++half) {
+					int nib = (half == 0) ? (byte & 0x0f) : ((byte >> 4) & 0x0f);
+					int step = kImaStepTable[idx[0]];
+					int diff = step >> 3;
+					if (nib & 1) diff += step >> 2;
+					if (nib & 2) diff += step >> 1;
+					if (nib & 4) diff += step;
+					pred[0] = imaClamp16((nib & 8) ? (pred[0] - diff) : (pred[0] + diff));
+					idx[0] += kImaIndexTable[nib];
+					if (idx[0] < 0) idx[0] = 0; else if (idx[0] > 88) idx[0] = 88;
+					*pcm++ = (short)pred[0];
+				}
+			}
+		} else {
+			for (U32 i = 0; i < dataBytesInBlock; ++i) {
+				unsigned char byte = block[4 + ch * 0 + i];	// headers are per-channel at block start
+				// MS IMA stereo layout: after BOTH channel headers, bytes
+				// interleave nibbles: low = ch0, high = ch1.
+				int n0 = byte & 0x0f;
+				int n1 = (byte >> 4) & 0x0f;
+				for (unsigned c = 0; c < 2; ++c) {
+					int nib = (c == 0) ? n0 : n1;
+					int step = kImaStepTable[idx[c]];
+					int diff = step >> 3;
+					if (nib & 1) diff += step >> 2;
+					if (nib & 2) diff += step >> 1;
+					if (nib & 4) diff += step;
+					pred[c] = imaClamp16((nib & 8) ? (pred[c] - diff) : (pred[c] + diff));
+					idx[c] += kImaIndexTable[nib];
+					if (idx[c] < 0) idx[c] = 0; else if (idx[c] > 88) idx[c] = 88;
+					*pcm++ = (short)pred[c];
+				}
+			}
+		}
+	}
+	*out = wav;
+	*out_size = 44 + dataBytes;
 	return 1;
 }
 
