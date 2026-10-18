@@ -112,6 +112,8 @@ public:
 		return the number of key-value pairs in the dict.
 	*/
 	Int getPairCount() const;
+	unsigned debugRef() const { return m_data ? (unsigned)m_data->m_refCount : 0; }
+	void *debugData() const { return (void *)m_data; }
 
 	/**
 		Return the key for the nth pair (0-based index).

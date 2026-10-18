@@ -227,6 +227,14 @@ void SidesList::reset(void)
 */
 void SidesList::clear(void)
 {
+	{
+		static unsigned sc = 0; sc++;
+		if (sc <= 10) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: SidesList::clear #%u from=%p\n", sc,
+				__builtin_return_address(0)); fclose(lf); }
+		}
+	}
 	emptySides();
 	emptyTeams();
 }
@@ -305,8 +313,13 @@ Bool SidesList::ParseSidesDataChunk(DataChunkInput &file, DataChunkInfo *info, v
 				static unsigned tc = 0; tc++;
 				if (tc <= 80) {
 					AsciiString tn = d.getAsciiString(TheKey_teamName);
+					// read back the STORED copy immediately: is the name in the
+					// TeamsInfo record right after addTeam?
+					Dict *storedDict = TheSidesList->getTeamInfo(TheSidesList->getNumTeams() - 1)->getDict();
+					AsciiString stored = storedDict->getAsciiString(TheKey_teamName);
+					int nEntries = storedDict->getPairCount();
 					FILE *lft = fopen("RTS_START.LOG", "a");
-					if (lft) { fprintf(lft, "VK: SidesTeam #%u name='%s' of %d\n", tc, tn.str(), count); fclose(lft); }
+					if (lft) { fprintf(lft, "VK: SidesTeam #%u name='%s' stored='%s' entries=%d of %d data=%p ref=%u\n", tc, tn.str(), stored.str(), nEntries, count, storedDict->debugData(), storedDict->debugRef()); fclose(lft); }
 				}
 			}
 		}
@@ -315,9 +328,27 @@ Bool SidesList::ParseSidesDataChunk(DataChunkInput &file, DataChunkInfo *info, v
 		if (lfe) { fprintf(lfe, "VK: SidesParse TEAMS SKIPPED - version %d < V2(%d)\n", (int)info->version, K_SIDES_DATA_VERSION_2); fclose(lfe); }
 	}
 	
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) {
+			Dict *t0d = TheSidesList->getNumTeams() ? TheSidesList->getTeamInfo(0)->getDict() : NULL;
+			fprintf(lf, "VK: sides teams added=%d pre-data=%p pre-ref=%u\n", TheSidesList->getNumTeams(),
+				t0d ? t0d->debugData() : NULL, t0d ? t0d->debugRef() : 0);
+			fclose(lf);
+		}
+	}
 	file.registerParser( AsciiString("PlayerScriptsList"), info->label, ScriptList::ParseScriptsDataChunk );
 	if (!file.parse(NULL)) {
 		throw(ERROR_CORRUPT_FILE_FORMAT);
+	}
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) {
+			Dict *t0d = TheSidesList->getNumTeams() ? TheSidesList->getTeamInfo(0)->getDict() : NULL;
+			fprintf(lf, "VK: sides scripts parsed, teams=%d post-data=%p post-ref=%u\n", TheSidesList->getNumTeams(),
+				t0d ? t0d->debugData() : NULL, t0d ? t0d->debugRef() : 0);
+			fclose(lf);
+		}
 	}
 	ScriptList *scripts[MAX_PLAYER_COUNT];
 	count = ScriptList::getReadScripts(scripts);
@@ -611,6 +642,14 @@ void SidesList::emptySides()
 
 void SidesList::emptyTeams() 
 { 
+	{
+		static unsigned et = 0; et++;
+		if (et <= 10) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: emptyTeams #%u from=%p teams=%d\n", et,
+				__builtin_return_address(0), m_teamrec.getNumTeams()); fclose(lf); }
+		}
+	}
 	m_teamrec.clear();
 	m_skirmishTeamrec.clear();
 }
@@ -741,6 +780,16 @@ void SidesList::addPlayerByTemplate(AsciiString playerTemplateName)
 Bool SidesList::validateSides()
 {
 	Bool modified = false;
+	{
+		static unsigned vs = 0; vs++;
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) {
+			Dict *t0d = getNumTeams() ? getTeamInfo(0)->getDict() : NULL;
+			fprintf(lf, "VK: validateSides #%u enter teams=%d sides=%d data0=%p ref0=%u\n", vs,
+				getNumTeams(), getNumSides(), t0d ? t0d->debugData() : NULL, t0d ? t0d->debugRef() : 0);
+			fclose(lf);
+		}
+	}
 
 	// ensure we have at least one player, and at least one neutral player.
 	Int i;
@@ -825,6 +874,20 @@ validate_team_names:
 		AsciiString tname = tdict->getAsciiString(TheKey_teamName);
 		if (findSideInfo(tname))
 		{
+			{
+				Dict *rd = tdict;
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) {
+					fprintf(lf, "VK: validateSides REMOVING team '%s' pairs=%d key0=%u ourTeamKey=%u type0=%d nthStr0='%s' data=%p ref=%u\n",
+						tname.str(), rd->getPairCount(),
+						rd->getPairCount() > 0 ? (unsigned)rd->getNthKey(0) : 0u,
+						(unsigned)TheKey_teamName,
+						rd->getPairCount() > 0 ? (int)rd->getNthType(0) : -1,
+						rd->getPairCount() > 0 ? rd->getNthAsciiString(0).str() : "",
+						rd->debugData(), rd->debugRef());
+					fclose(lf);
+				}
+			}
 			DEBUG_CRASH(("name %s is duplicate between player and team, removing...\n",tname.str()));
 			removeTeam(i);
 			modified = true;
@@ -851,6 +914,10 @@ validate_team_names:
 
 	}
 
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: validateSides exit teams=%d\n", getNumTeams()); fclose(lf); }
+	}
 	return modified;
 }
 
@@ -1154,7 +1221,13 @@ void TeamsInfoRec::addTeam(const Dict* d)
 		
 		Int i;
 
-		for (int i = 0; i < m_numTeams; i++)
+		// PORT FIX: this loop used to read `for (int i = ...)` which SHADOWED
+		// the outer i - the clear-loop below then started from an
+		// UNINITIALIZED i, cleared already-copied team entries and
+		// double-released their shared Dict data (all team records freed ->
+		// validateSides wiped 24 teams down to 6 -> every scripted spawn/
+		// convoy action no-oped -> no trucks in the shell map).
+		for (i = 0; i < m_numTeams; i++)
 			nti[i] = m_teams[i];
 
 		for ( ; i < m_numTeamsAllocated + TEAM_ALLOC_CHUNK; i++) 

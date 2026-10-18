@@ -211,6 +211,15 @@ void Dict::releaseData()
 	{
 		if (--m_data->m_refCount == 0)
 		{
+			{
+				static unsigned fr = 0; fr++;
+				if (fr <= 40) {
+					FILE *lf = fopen("RTS_START.LOG", "a");
+					if (lf) { fprintf(lf, "VK: Dict FREE #%u data=%p pairs=%u from=%p\n",
+						fr, (void *)m_data, (unsigned)m_data->m_numPairsUsed,
+						__builtin_return_address(0)); fclose(lf); }
+				}
+			}
 			Dict::DictPair* src = m_data->peek();
 			for (Int i = 0; i < m_data->m_numPairsUsed; ++i, ++src)
 				src->clear();
