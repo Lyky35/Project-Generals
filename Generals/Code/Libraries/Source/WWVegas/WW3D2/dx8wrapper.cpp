@@ -2525,8 +2525,9 @@ void DX8Wrapper::LegacyDrawPortBuffers(void *dx8Vb, void *dx8Ib,
 		if (dp <= 30) {
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) {
-				fprintf(lf, "VK: PortBufDraw #%u firstIdx=%u count=%u vOff=%u fvf=0x%x vbCount=%u",
-					dp, firstIndex, indexCount, vertexOffset, (unsigned)info.Get_FVF(), vb->Get_Vertex_Count());
+				fprintf(lf, "VK: PortBufDraw #%u firstIdx=%u count=%u vOff=%u fvf=0x%x vbCount=%u wT=[%.1f %.1f %.1f]",
+					dp, firstIndex, indexCount, vertexOffset, (unsigned)info.Get_FVF(), vb->Get_Vertex_Count(),
+					render_state.world[3][0], render_state.world[3][1], render_state.world[3][2]);
 				if (ib->Get_Shadow_Buffer() && firstIndex + 3 <= ib->Get_Shadow_Size())
 					fprintf(lf, " idx0..2=%u,%u,%u",
 						(unsigned)ib->Get_Shadow_Buffer()[firstIndex],
