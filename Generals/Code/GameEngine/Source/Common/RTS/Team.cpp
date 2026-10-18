@@ -222,6 +222,10 @@ void TeamFactory::clear()
 void TeamFactory::initFromSides(SidesList *sides)
 {
 	clear();
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: initFromSides numTeams=%d\n", sides->getNumTeams()); fclose(lf); }
+	}
 
 	// create the teams we need.
 	for(Int i = 0; i < sides->getNumTeams(); i++)

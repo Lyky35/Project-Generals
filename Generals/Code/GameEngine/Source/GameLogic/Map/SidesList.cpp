@@ -488,6 +488,11 @@ static Bool ParseTeamsDataChunk(DataChunkInput &file, DataChunkInfo *info, void 
 
 void SidesList::prepareForMP_or_Skirmish(void)
 {
+	{
+		static unsigned pf = 0; pf++;
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: prepareForMP_or_Skirmish #%u teams=%d\n", pf, getNumTeams()); fclose(lf); }
+	}
 	m_skirmishTeamrec.clear();
 	Int i;
 	for (int i = 0; i < getNumTeams(); i++)
