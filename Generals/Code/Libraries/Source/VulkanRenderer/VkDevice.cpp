@@ -953,11 +953,11 @@ void VulkanDevice::EndFrame(bool present)
 					int py = (ex.height > 0) ? (int)((uint64_t)(gy * 2 + 1) * ex.height / (GH * 2)) : 0;
 					if (px >= (int)ex.width) px = (int)ex.width - 1;
 					if (py >= (int)ex.height) py = (int)ex.height - 1;
-					gridCols[gi].bufferOffset = 2100000 + gi * 4;
+					gridCols[gi].bufferOffset = 2074640 + gi * 4;
 					gridCols[gi].imageSubresource = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1 };
 					gridCols[gi].imageOffset = { px, py, 0 };
 					gridCols[gi].imageExtent = { 1, 1, 1 };
-					gridDepths[gi].bufferOffset = 2100000 + (GW * GH + gi) * 4;
+					gridDepths[gi].bufferOffset = 2074640 + (GW * GH + gi) * 4;
 					gridDepths[gi].imageSubresource = { VK_IMAGE_ASPECT_DEPTH_BIT, 0, 0, 1 };
 					gridDepths[gi].imageOffset = { px, py, 0 };
 					gridDepths[gi].imageExtent = { 1, 1, 1 };
@@ -1100,7 +1100,7 @@ void VulkanDevice::EndFrame(bool present)
 				for (int gy = 0; gy < GH; gy++) {
 					fprintf(lf, "  ");
 					for (int gx = 0; gx < GW; gx++) {
-						unsigned char *q = b + 2100000 + (gy * GW + gx) * 4;
+						unsigned char *q = b + 2074640 + (gy * GW + gx) * 4;
 						int lum = (q[0] * 30 + q[1] * 59 + q[2] * 11) / 100;
 						const char *ramp = " .:-=+*#%@";
 						int ri = lum * 9 / 255;
@@ -1159,7 +1159,7 @@ void VulkanDevice::EndFrame(bool present)
 				fprintf(lf, "  depth:");
 				for (int gy = 0; gy < GH; gy++) {
 					for (int gx = 0; gx < GW; gx++) {
-						unsigned char *q = b + 2100000 + (GW * GH + gy * GW + gx) * 4;
+						unsigned char *q = b + 2074640 + (GW * GH + gy * GW + gx) * 4;
 						unsigned v = q[0] | (q[1] << 8) | (q[2] << 16);
 						if (v == 0xffffff) fprintf(lf, " ~~~");
 						else if (v == 0) fprintf(lf, " 000");
@@ -1187,8 +1187,12 @@ void VulkanDevice::EndFrame(bool present)
 	presentInfo.pImageIndices = &m_imageIndex;
 	VkResult result = vkQueuePresentKHR(m_presentQueue, &presentInfo);
 	{
-		static bool ph = true;
-		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=EndFrame presented res=%d\n", (int)result); fclose(lf); } }
+		static unsigned pl = 0;
+		pl++;
+		if (result != VK_SUCCESS || pl <= 3) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "hb phase=EndFrame presented res=%d frame=%u\n", (int)result, pl); fclose(lf); }
+		}
 	}
 	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || m_framebufferResized)
 		RecreateSwapchain();

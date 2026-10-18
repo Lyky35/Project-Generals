@@ -2498,6 +2498,26 @@ void DX8Wrapper::LegacyDrawPortBuffers(void *dx8Vb, void *dx8Ib,
 	DX8IndexBufferClass *ib = (DX8IndexBufferClass *)dx8Ib;
 	if (!vb || !ib || !indexCount)
 		return;
+	// RANGE VALIDATION: out-of-bounds index/vertex fetches are UB - on AMD a
+	// bad range page-faults the GPU (VK_ERROR_DEVICE_LOST on the next present,
+	// then the crash cascade); wine/lavapipe tolerate it. Skip + log instead.
+	{
+		unsigned ibCap = ib->Get_Index_Count();
+		unsigned vbCap = vb->Get_Vertex_Count();
+		bool bad = false;
+		if (ibCap && firstIndex + indexCount > ibCap) bad = true;
+		if (vertexOffset > vbCap) bad = true;
+		if (bad) {
+			static unsigned oob = 0;
+			oob++;
+			if (oob <= 20) {
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "VK: PortBufOOB #%u firstIdx=%u count=%u ibCap=%u vOff=%u vbCap=%u\n",
+					oob, firstIndex, indexCount, ibCap, vertexOffset, vbCap); fclose(lf); }
+			}
+			return;
+		}
+	}
 	const FVFInfoClass &info = vb->FVF_Info();
 	{
 		static unsigned dp = 0;
