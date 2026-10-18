@@ -80,6 +80,9 @@ struct VkFrameUniforms {
     float texMat0[4][4];
     float texMat1[4][4];
     float viewMat[4][4];
+    // std140: 496/560 - native shadow map (light view-projection + params)
+    float lightMvp[4][4];
+    float shadowParams[4];	// (bias, darken, enabled, unused)
     float worldViewProj[16];
     float world[16];
 };

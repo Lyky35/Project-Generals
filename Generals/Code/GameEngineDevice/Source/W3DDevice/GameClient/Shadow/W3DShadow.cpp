@@ -52,6 +52,11 @@
 #include "Common/Debug.h"
 #include "Common/PerfTimer.h"
 
+// Native shadow map (defined in the Vulkan/WW3D2 layer)
+extern "C" bool Vulkan_NativeShadow_Active();
+extern "C" bool Vulkan_NativeShadow_Enabled();
+
+
 #define SUN_DISTANCE_FROM_GROUND	10000.0f	//distance of sun (our only light source).
 
 // Global Variables and Functions /////////////////////////////////////////////
@@ -67,6 +72,11 @@ Vector3 LightPosWorld[ MAX_SHADOW_LIGHTS ] =
 //DECLARE_PERF_TIMER(shadowsRender)
 void DoShadows(RenderInfoClass & rinfo, Bool stencilPass)
 {
+	// Native shadow map replaced the legacy stencil-volume/decals pipeline
+	// (each legacy layer was a broken D3D8 stub chain; the Vulkan path is
+	// scene re-rendered from the light + depth compare in the shader).
+	if (Vulkan_NativeShadow_Active() || Vulkan_NativeShadow_Enabled())
+		return;
 	//USE_PERF_TIMER(shadowsRender)
 	shadowCameraFrustum=&rinfo.Camera.Get_Frustum();
 	Int projectionCount=0;

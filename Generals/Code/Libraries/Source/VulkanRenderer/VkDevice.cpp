@@ -1120,6 +1120,22 @@ void VulkanDevice::EndFrame(bool present)
 					}
 					fprintf(lf, "  stencil: nz=%u/%u hist0=%u h1=%u h2=%u h3=%u h4+=%u\n",
 						nz, total, hist[0], hist[1], hist[2], hist[3], hist[4]);
+					// 16x9 stencil coverage grid (counts per cell) for shape check
+					const int SW = 16, SH = 9;
+					unsigned cw = m_swapExtent.width / SW, ch = m_swapExtent.height / SH;
+					if (cw && ch) {
+						for (int gy = 0; gy < SH; gy++) {
+							fprintf(lf, "  sgrid ");
+							for (int gx = 0; gx < SW; gx++) {
+								unsigned c = 0;
+								for (unsigned y = gy * ch; y < (gy + 1) * ch; y += 4)
+									for (unsigned x = gx * cw; x < (gx + 1) * cw; x += 4)
+										if (b[1024 + y * m_swapExtent.width + x]) c++;
+								fprintf(lf, "%3u ", c > 999 ? 999 : c);
+							}
+							fputc('\n', lf);
+						}
+					}
 				}
 				fprintf(lf, "  probes:");
 				for (int pr = 0; pr < 8; pr++) {

@@ -61,7 +61,7 @@ VkDescriptorPool VkDescriptorAllocator::CreatePool()
 {
 	VkDescriptorPoolSize poolSizes[2] = {};
 	poolSizes[0].type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-	poolSizes[0].descriptorCount = m_maxSets * 2;
+	poolSizes[0].descriptorCount = m_maxSets * 3;
 	poolSizes[1].type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
 	poolSizes[1].descriptorCount = m_maxSets;
 	VkDescriptorPoolCreateInfo poolInfo = {};
@@ -101,7 +101,8 @@ void VkDescriptorAllocator::ResetFrame()
 
 VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout layout,
 	VkTexture *tex0, bool filtered0, bool repeat0,
-	VkTexture *tex1, bool filtered1, bool repeat1)
+	VkTexture *tex1, bool filtered1, bool repeat1,
+	VkTexture *texShadow)
 {
 	if (!m_device || !tex0 || !tex1) {
 		static bool l1=false; if(!l1){l1=true;FILE*lf=fopen("RTS_START.LOG","a");if(lf){fprintf(lf,"AllocTexSet fail: dev=%p t0=%p t1=%p\n",(void*)m_device,(void*)tex0,(void*)tex1);fclose(lf);}}
@@ -132,15 +133,19 @@ VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout 
 		}
 	}
 
-	VkDescriptorImageInfo imageInfos[2] = {};
+	if (!texShadow) texShadow = tex0;
+	VkDescriptorImageInfo imageInfos[3] = {};
 	imageInfos[0].sampler = tex0->GetSampler(filtered0, repeat0);
 	imageInfos[0].imageView = tex0->GetView();
 	imageInfos[0].imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 	imageInfos[1].sampler = tex1->GetSampler(filtered1, repeat1);
 	imageInfos[1].imageView = tex1->GetView();
 	imageInfos[1].imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
-	VkWriteDescriptorSet writes[2] = {};
-	for (int i = 0; i < 2; i++) {
+	imageInfos[2].sampler = texShadow->GetSampler(true, false);
+	imageInfos[2].imageView = texShadow->GetView();
+	imageInfos[2].imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+	VkWriteDescriptorSet writes[3] = {};
+	for (int i = 0; i < 3; i++) {
 		writes[i].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
 		writes[i].dstSet = set;
 		writes[i].dstBinding = (uint32_t)i;

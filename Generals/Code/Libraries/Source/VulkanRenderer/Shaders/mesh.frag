@@ -11,6 +11,7 @@ layout(location = 0) out vec4 outColor;
 
 layout(set = 0, binding = 0) uniform sampler2D texStage0;
 layout(set = 0, binding = 1) uniform sampler2D texStage1;
+layout(set = 0, binding = 2) uniform sampler2D shadowMap;
 
 layout(set = 1, binding = 0) uniform FrameData {
 	vec4 ambientColor;
@@ -26,6 +27,8 @@ layout(set = 1, binding = 0) uniform FrameData {
 	mat4 texMat0;
 	mat4 texMat1;
 	mat4 viewMat;
+	mat4 lightMvp;
+	vec4 shadowParams;	// (bias, darken, enabled, unused)
 } frame;
 
 layout(constant_id = 0) const int TEX0_OP = 1;
@@ -144,6 +147,23 @@ void main()
 			}
 		}
 		color *= lit;
+	}
+
+	// Native shadow map: darken where the fragment is occluded in light space
+	if (frame.shadowParams.z > 0.5) {
+		vec4 lp = frame.lightMvp * vec4(inWorldPos, 1.0);
+		if (abs(lp.w) > 1e-5) {
+			vec3 lpc = lp.xyz / lp.w;
+			// negative-height viewport: ndc +y maps to image row 0
+			vec2 suv = vec2(lpc.x * 0.5 + 0.5, 0.5 - lpc.y * 0.5);
+			if (lpc.z > 0.0 && lpc.z < 1.0 &&
+				suv.x > 0.002 && suv.x < 0.998 && suv.y > 0.002 && suv.y < 0.998) {
+				float d = texture(shadowMap, suv).r;
+				if (lpc.z - frame.shadowParams.x > d) {
+					color *= frame.shadowParams.y;
+				}
+			}
+		}
 	}
 
 	if (ALPHATEST == 1) {

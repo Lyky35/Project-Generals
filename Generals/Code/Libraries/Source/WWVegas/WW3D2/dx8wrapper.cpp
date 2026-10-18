@@ -258,6 +258,27 @@ static int VulkanRtCacheCount = 0;
 
 static void VulkanReleaseRtCache();
 extern "C" void Vulkan_Mark_TexReadback_Fresh();
+// ---------------------------------------------------------------------------
+// Native shadow map (replaces the legacy D3D8 stencil-volume pipeline)
+// ---------------------------------------------------------------------------
+static TextureClass *g_nativeShadowRT = nullptr;
+static VkTexture *g_nativeShadowDepth = nullptr;
+static Matrix4 g_lightMvpSnapshot;
+static bool g_lightMvpValid = false;
+static bool g_nativeShadowActive = false;
+static bool g_legacyShadowDisabled = false;
+
+static VkTexture *VulkanGetRtDepthOf(VkTexture *color)
+{
+	for (int i = 0; i < VulkanRtCacheCount; i++) {
+		if (VulkanRtCache[i].texture == color)
+			return VulkanRtCache[i].depth;
+	}
+	return nullptr;
+}
+
+extern "C" bool Vulkan_NativeShadow_Active() { return g_nativeShadowActive; }
+extern "C" bool Vulkan_NativeShadow_Enabled() { return g_lightMvpValid; }
 extern "C" void Vulkan_FlushRtCache() { VulkanReleaseRtCache(); }
 extern "C" void Vulkan_Clear_Pipeline_Cache() { DX8Wrapper::_Get_Shader_Manager().ClearPipelineCache(); }
 
@@ -1124,8 +1145,15 @@ static void VulkanBeginTargetPass(VkTexture *target, const float *clearColor, fl
 		vkCmdBeginRenderPass(cmd, &rpBegin, VK_SUBPASS_CONTENTS_INLINE);
 	} else {
 		VkFramebuffer fb = VulkanGetRtFramebuffer(target);
-		if (fb == VK_NULL_HANDLE)
+		if (fb == VK_NULL_HANDLE) {
+			static unsigned rf = 0;
+			rf++;
+			if (rf <= 6) {
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "VK: BeginTargetPass RT-FB-NULL #%u target=%p\n", rf, (void *)target); fclose(lf); }
+			}
 			return;
+		}
 		VkClearValue clearValues[2];
 		clearValues[0].color.float32[0] = clearColor[0];
 		clearValues[0].color.float32[1] = clearColor[1];
@@ -1670,7 +1698,7 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	if (addrV1 == 0x12345678) addrV1 = D3DTADDRESS_WRAP;
 	if (addrU1 != D3DTADDRESS_WRAP || addrV1 != D3DTADDRESS_WRAP) rep1 = false;
 	VkDescriptorSet texSet = DX8Wrapper::DescriptorAllocator.AllocateTextureSet(
-		DX8Wrapper::ShaderManager.GetTextureSetLayout(), tex0, filt0, rep0, tex1, filt1, rep1);
+		DX8Wrapper::ShaderManager.GetTextureSetLayout(), tex0, filt0, rep0, tex1, filt1, rep1, (g_lightMvpValid && g_nativeShadowDepth) ? g_nativeShadowDepth : &VulkanWhiteTexture);
 
 	VkFrameUniforms ubo;
 	DX8Wrapper::VulkanFillFrameUniforms(&ubo);
@@ -2658,6 +2686,101 @@ static int VulkanMapTexOp(unsigned colorOp, unsigned arg1)
 	return 2;
 }
 
+bool DX8Wrapper::NativeShadow_Ready()
+{
+	if (g_nativeShadowRT && g_nativeShadowDepth)
+		return true;
+	if (!g_nativeShadowRT) {
+		VulkanDevice &device = VulkanDevice::Instance();
+		if (!device.IsInitialized())
+			return false;
+		g_nativeShadowRT = Create_Render_Target((int)device.GetSwapExtent().width,
+			(int)device.GetSwapExtent().height, false);
+		if (!g_nativeShadowRT) {
+			g_nativeShadowRT = nullptr;
+			return false;
+		}
+	}
+	g_nativeShadowDepth = VulkanGetRtDepthOf(g_nativeShadowRT->Peek_Vulkan_Texture());
+	{
+		static unsigned rd = 0;
+		rd++;
+		if (rd <= 4) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: NativeShadow.Ready #%u rt=%p depth=%p\n",
+				rd, (void *)g_nativeShadowRT, (void *)g_nativeShadowDepth); fclose(lf); }
+		}
+	}
+	return g_nativeShadowDepth != nullptr;
+}
+
+void DX8Wrapper::NativeShadow_CaptureLightMvp()
+{
+	g_lightMvpSnapshot = render_state.view * CachedProjection;
+	g_lightMvpValid = true;
+}
+
+void DX8Wrapper::NativeShadow_OpenRT()
+{
+	if (!g_nativeShadowRT)
+		return;
+	g_nativeShadowActive = true;
+	g_legacyShadowDisabled = true;
+	Set_Render_Target(g_nativeShadowRT);
+	EnsureTargetPass();
+	{
+		static unsigned op = 0;
+		if (op < 6) {
+			op++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: Shadow.OpenRT #%u rt=%p target=%p open=%d\n",
+				op, (void *)g_nativeShadowRT, (void *)CurrentRenderTarget, (int)VulkanTargetPassOpen); fclose(lf); }
+		}
+	}
+}
+
+void DX8Wrapper::NativeShadow_CloseRT()
+{
+	if (!g_nativeShadowRT)
+		return;
+	EndTargetPass();
+	Set_Render_Target(nullptr);
+	EnsureTargetPass();	// reopen the main pass with its clear
+	{
+		static unsigned cl = 0;
+		if (cl < 6) {
+			cl++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: Shadow.CloseRT #%u open=%d target=%p\n",
+				cl, (int)VulkanTargetPassOpen, (void *)CurrentRenderTarget); fclose(lf); }
+		}
+	}
+	{
+		VkTexture *depth = g_nativeShadowDepth;
+		if (depth && depth->GetImage() != VK_NULL_HANDLE) {
+			VulkanDevice &device = VulkanDevice::Instance();
+			VkCommandBuffer cmd = device.GetCommandBuffer();
+			if (cmd != VK_NULL_HANDLE) {
+				VkImageMemoryBarrier b = {};
+				b.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+				b.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+				b.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+				b.srcAccessMask = VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT;
+				b.dstAccessMask = VK_ACCESS_SHADER_READ_BIT;
+				b.oldLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
+				b.newLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+				b.image = depth->GetImage();
+				b.subresourceRange = { VK_IMAGE_ASPECT_DEPTH_BIT, 0, 1, 0, 1 };
+				vkCmdPipelineBarrier(cmd,
+					VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT,
+					VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT,
+					0, 0, nullptr, 0, nullptr, 1, &b);
+			}
+		}
+	}
+	g_nativeShadowActive = false;
+}
+
 void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 {
 	memset(ubo, 0, sizeof(*ubo));
@@ -2766,6 +2889,15 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 	unsigned tfactor = DX8Wrapper::RenderStates[D3DRS_TEXTUREFACTOR];
 	if (tfactor == 0x12345678) tfactor = 0xffffffffu;	// D3D default = white
 	VulkanDecodeColor(tfactor, ubo->tfactorColor);
+
+	// Native shadow map params + light view-projection (captured while the
+	// light pass had the view/proj bound)
+	ubo->shadowParams[0] = 0.0035f;	// depth bias
+	ubo->shadowParams[1] = 0.40f;		// darkening in shadow
+	if (g_lightMvpValid) {
+		memcpy(ubo->lightMvp, &g_lightMvpSnapshot[0][0], sizeof(ubo->lightMvp));
+		ubo->shadowParams[2] = 1.0f;
+	}
 
 	for (int i = 0; i < 4; i++) {
 		if (DX8Wrapper::render_state.LightEnable[i]) {

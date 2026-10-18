@@ -1242,6 +1242,75 @@ void W3DView::calcDeltaScroll(Coord2D &screenDelta)
 /** Draw member for the W3D window, this will literally draw the window 
   * for this view */
 //-------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// Native shadow map: re-render the scene from the sun light into an offscreen
+// depth target; the main pass darkens occluded fragments (mesh.frag). Replaces
+// the legacy D3D8 stencil-volume/decals pipeline.
+// ---------------------------------------------------------------------------
+static void NativeShadow_Render(RTS3DScene *scene, CameraClass *cam)
+{
+	if (!scene || !cam)
+		return;
+	if (!DX8Wrapper::NativeShadow_Ready())
+		return;
+
+	// save camera state
+	Matrix3D savedTm = cam->Get_Transform();
+	CameraClass::ProjectionType savedProj = cam->Get_Projection_Type();
+	Vector2 savedVMin, savedVMax;
+	cam->Get_View_Plane(savedVMin, savedVMax);
+	float savedNear = 0.0f, savedFar = 0.0f;
+	cam->Get_Clip_Planes(savedNear, savedFar);
+
+	// light pose: eye at LightPosWorld[0], looking at the origin
+	extern Vector3 LightPosWorld[];
+	Vector3 eye = LightPosWorld[0];
+	Vector3 fwd(0.0f, 0.0f, -1.0f);
+	if (eye.Length2() > 1e-6f) {
+		fwd = eye;
+		fwd.Normalize();
+		fwd = Vector3(-fwd.X, -fwd.Y, -fwd.Z);
+	}
+	// orthonormal basis: right = fwd x upH (manual cross to avoid API quirks)
+	float ux = 0.0f, uy = 1.0f, uz = 0.0f;
+	float rx = fwd.Y * uz - fwd.Z * uy;
+	float ry = fwd.Z * ux - fwd.X * uz;
+	float rz = fwd.X * uy - fwd.Y * ux;
+	if (rx * rx + ry * ry + rz * rz < 1e-6f) {
+		ux = 1.0f; uy = 0.0f; uz = 0.0f;
+		rx = fwd.Y * uz - fwd.Z * uy;
+		ry = fwd.Z * ux - fwd.X * uz;
+		rz = fwd.X * uy - fwd.Y * ux;
+	}
+	float rl = sqrtf(rx * rx + ry * ry + rz * rz);
+	rx /= rl; ry /= rl; rz /= rl;
+	// upv = right x fwd
+	float uvx = ry * fwd.Z - rz * fwd.Y;
+	float uvy = rz * fwd.X - rx * fwd.Z;
+	float uvz = rx * fwd.Y - ry * fwd.X;
+	Vector3 right(rx, ry, rz);
+	Vector3 upv(uvx, uvy, uvz);
+	Matrix3D lightTm(right, upv, Vector3(-fwd.X, -fwd.Y, -fwd.Z), eye);
+	cam->Set_Transform(lightTm);
+	cam->Set_Projection_Type(CameraClass::ORTHO);
+	float dist = eye.Length();
+	cam->Set_Clip_Planes(10.0f, dist + 4096.0f);
+	float halfAtDist = 4096.0f / 10.0f;	// view plane * znear = ortho extent
+	cam->Set_View_Plane(Vector2(-halfAtDist, -halfAtDist), Vector2(halfAtDist, halfAtDist));
+	cam->Apply();
+
+	DX8Wrapper::NativeShadow_CaptureLightMvp();
+	DX8Wrapper::NativeShadow_OpenRT();
+	scene->doRender(cam);
+	DX8Wrapper::NativeShadow_CloseRT();
+
+	// restore camera
+	cam->Set_Transform(savedTm);
+	cam->Set_Projection_Type(savedProj);
+	cam->Set_View_Plane(savedVMin, savedVMax);
+	cam->Set_Clip_Planes(savedNear, savedFar);
+}
+
 void W3DView::drawView( void )
 {
 	DRAW();
@@ -1286,6 +1355,9 @@ void W3DView::draw( void )
 		W3DDisplay::m_3DScene->setCustomPassMode(customScenePassMode);
 		if (m_isWireFrameEnabled)
 			W3DDisplay::m_3DScene->Set_Extra_Pass_Polygon_Mode(SceneClass::EXTRA_PASS_CLEAR_LINE);
+		// DISABLED: native shadow experiment caused artifacts + a full extra
+		// scene render per frame (2x cost) - legacy DoShadows remains active.
+		// NativeShadow_Render(W3DDisplay::m_3DScene, m_3DCamera);
 		W3DDisplay::m_3DScene->doRender( m_3DCamera );
 		W3DDisplay::m_3DScene->Set_Extra_Pass_Polygon_Mode(SceneClass::EXTRA_PASS_DISABLE);
 		m_isWireFrameEnabled = m_nextWireFrameEnabled;
@@ -1331,6 +1403,7 @@ void W3DView::draw( void )
 		//The pass that rendered into a texture may have left the z-buffer in a weird state
 		//so clear it before rendering normal scene.
 		///@todo: Don't clear z-buffer unless shader uses z-bias or anything else that would cause <= z to fail on normal render.
+		// NativeShadow_Render(W3DDisplay::m_3DScene, m_3DCamera);
 		DX8Wrapper::Clear(false, true, Vector3(0.0f,0.0f,0.0f), TheWaterTransparency->m_minWaterOpacity);	// Clear z but not color
 		W3DDisplay::m_3DScene->setCustomPassMode(SCENE_PASS_DEFAULT);
 		W3DDisplay::m_3DScene->doRender( m_3DCamera );

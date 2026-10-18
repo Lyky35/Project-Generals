@@ -157,8 +157,8 @@ VkShaderModule VkShaderManager::LoadModule(const char *path)
 
 bool VkShaderManager::CreateDescriptorLayouts()
 {
-	VkDescriptorSetLayoutBinding texBindings[2] = {};
-	for (int i = 0; i < 2; i++) {
+	VkDescriptorSetLayoutBinding texBindings[3] = {};
+	for (int i = 0; i < 3; i++) {
 		texBindings[i].binding = (uint32_t)i;
 		texBindings[i].descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
 		texBindings[i].descriptorCount = 1;
@@ -166,7 +166,7 @@ bool VkShaderManager::CreateDescriptorLayouts()
 	}
 	VkDescriptorSetLayoutCreateInfo texLayoutInfo = {};
 	texLayoutInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
-	texLayoutInfo.bindingCount = 2;
+	texLayoutInfo.bindingCount = 3;
 	texLayoutInfo.pBindings = texBindings;
 	if (vkCreateDescriptorSetLayout(m_device->GetDevice(), &texLayoutInfo, nullptr, &m_textureSetLayout) != VK_SUCCESS)
 		return false;

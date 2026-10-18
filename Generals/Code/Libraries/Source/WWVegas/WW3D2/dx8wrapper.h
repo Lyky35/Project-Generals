@@ -554,6 +554,10 @@ public:
 		unsigned copyStart, unsigned copyCount, unsigned hint);
 	static void LegacyDrawPortBuffers(void *dx8Vb, void *dx8Ib,
 		unsigned firstIndex, unsigned indexCount, unsigned vertexOffset);
+	static bool NativeShadow_Ready();
+	static void NativeShadow_CaptureLightMvp();
+	static void NativeShadow_OpenRT();
+	static void NativeShadow_CloseRT();
 	static unsigned PeekRenderState(unsigned state) { return RenderStates[state]; }
 protected:
 	static bool VulkanDrawIndexed(
