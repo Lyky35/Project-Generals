@@ -1295,10 +1295,23 @@ void DX8Wrapper::Set_DX8_Transform_Cached(D3DTRANSFORMSTATETYPE transform, const
 {
 	switch ((int)transform) {
 	case D3DTS_WORLD:
+		// PORT FIX: the Vulkan MVP reads render_state.world directly. The
+		// sorting renderer restores world/view via _Set_DX8_Transform, which
+		// used to leave render_state untouched - so translucent quads
+		// (particles: pre-transformed to view space with identity world/view
+		// at Insert) were drawn AGAINST THE CAMERA VIEW from the last scene
+		// draw = double-transformed off-screen = invisible explosions/smoke.
+		// Callers pass the stored (already-transposed) form, like the
+		// WORLD/VIEW_CHANGED reapply path - assign as-is.
+		render_state.world = m;
+		render_state_changed |= (unsigned)WORLD_CHANGED;
+		break;
 	case D3DTS_VIEW:
+		render_state.view = m;
+		render_state_changed |= (unsigned)VIEW_CHANGED;
+		break;
 	case D3DTS_PROJECTION:
-		if (transform == D3DTS_PROJECTION)
-			CachedProjection = *(const Matrix4*)&m;
+		CachedProjection = *(const Matrix4*)&m;
 		break;
 	default:
 		if (transform >= D3DTS_TEXTURE0 && transform <= D3DTS_TEXTURE7)
