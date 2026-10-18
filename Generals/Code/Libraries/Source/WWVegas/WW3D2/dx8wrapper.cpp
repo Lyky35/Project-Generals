@@ -1539,8 +1539,12 @@ bool DX8Wrapper::VulkanDrawIndexed(
 				fprintf(lf, "\n");
 			}
 			if (lf) {
-				fprintf(lf, "VK: TERRAIN-DRAW #%d tex0=%p %ux%u idx=%u blend=%d/%d/%d z=%d/%d colVert=%d diffSrc=%d flags=%u nullTex=%llu validTex=%llu\n",
-					mvLog, (void *)t0, t0 ? t0->GetWidth() : 0, t0 ? t0->GetHeight() : 0,
+				fprintf(lf, "VK: TERRAIN-DRAW #%d tex0=%p '%s' %ux%u tex1=%p '%s' idx=%u blend=%d/%d/%d z=%d/%d colVert=%d diffSrc=%d flags=%u nullTex=%llu validTex=%llu\n",
+					mvLog, (void *)t0,
+					(DX8Wrapper::BoundTextures[0] && DX8Wrapper::BoundTextures[0]->Get_Texture_Name()) ? DX8Wrapper::BoundTextures[0]->Get_Texture_Name() : "(null)",
+					t0 ? t0->GetWidth() : 0, t0 ? t0->GetHeight() : 0,
+					(void *)tex1,
+					(DX8Wrapper::BoundTextures[1] && DX8Wrapper::BoundTextures[1]->Get_Texture_Name()) ? DX8Wrapper::BoundTextures[1]->Get_Texture_Name() : "(null)",
 					(unsigned)indexCount,
 					(int)state.blendEnable, (int)state.srcBlend, (int)state.dstBlend,
 					(int)state.depthTest, (int)state.depthWrite,

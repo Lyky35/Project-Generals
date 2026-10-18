@@ -1118,7 +1118,13 @@ void VulkanDevice::EndFrame(bool present)
 						if (sv) nz++;
 						if (sv >= 4) hist[4]++; else hist[sv]++;
 					}
-					fprintf(lf, "  stencil: nz=%u/%u hist0=%u h1=%u h2=%u h3=%u h4+=%u\n",
+					fprintf(lf, "  rgbrow:");
+				for (int gx = 0; gx < 16; gx++) {
+					unsigned char *q = b + 2074640 + (0 * 16 + gx) * 4;
+					fprintf(lf, " %u,%u,%u", q[2], q[1], q[0]);
+				}
+				fputc('\n', lf);
+				fprintf(lf, "  stencil: nz=%u/%u hist0=%u h1=%u h2=%u h3=%u h4+=%u\n",
 						nz, total, hist[0], hist[1], hist[2], hist[3], hist[4]);
 					// 16x9 stencil coverage grid (counts per cell) for shape check
 					const int SW = 16, SH = 9;
