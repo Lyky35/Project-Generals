@@ -70,6 +70,7 @@ class TextureClass : public W3DMPO, public RefCountClass
 
 	friend DX8Wrapper;
 	friend TextureLoader;
+	friend TextureLoadTaskClass;
 	friend LoaderThreadClass;
 	friend DX8TextureManagerClass;
 

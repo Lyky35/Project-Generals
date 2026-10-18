@@ -596,6 +596,10 @@ void W3DAssetManager::Remap_Palette(SurfaceClass *surface, const int color, Bool
 
 	size=PixelSize(sd);
 	unsigned char *bits=(unsigned char*) surface->Lock(&pitch);
+	// PORT FIX: SurfaceClass shadows are always32bpp; PixelSize is0 for
+	// WW3D_FORMAT_UNKNOWN which silently skipped every remap branch.
+	if (size == 0 && bits && pitch == (int)(sd.Width * 4))
+		size = 4;
 
 	if (doPaletteOnly)
 	{	//only recolor the palette which is stored in top row.  Model only references these pixels.
@@ -922,6 +926,14 @@ int W3DAssetManager::Recolor_Mesh(RenderObjClass *robj, const int color)
 		if (_strnicmp(oldtex->Get_Texture_Name(),"ZHC", 3) == 0)
 		{	//This texture needs to be adjusted for housecolor
 			newtex=Recolor_Texture(oldtex,color);
+			{
+				static unsigned zr = 0; zr++;
+				if (zr <= 60) {
+					FILE *lf = fopen("RTS_START.LOG", "a");
+					if (lf) { fprintf(lf, "VK: RecolorTexture '%s' -> %s\n",
+						oldtex->Get_Texture_Name(), newtex ? "OK" : "NULL"); fclose(lf); }
+				}
+			}
 			if (newtex)
 			{
 				model->Replace_Texture(oldtex,newtex);

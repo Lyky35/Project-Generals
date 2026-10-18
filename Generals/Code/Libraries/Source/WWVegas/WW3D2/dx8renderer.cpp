@@ -1659,6 +1659,16 @@ void DX8TextureCategoryClass::Render(void)
 
 		for (unsigned i=0;i<MAX_TEXTURE_STAGES;++i) {
 			SNAPSHOT_SAY(("Set_Texture(%d,%s)\n",i,Peek_Texture(i) ? Peek_Texture(i)->Get_Texture_Name() : "NULL"));
+			if (i==0 && Peek_Texture(0) && Peek_Texture(0)->Get_Texture_Name()) {
+				const char *bn = Peek_Texture(0)->Get_Texture_Name();
+				if (strstr(bn, "hca_") || strstr(bn, "#")) {
+					static unsigned bb = 0; bb++;
+					if (bb <= 20) {
+						FILE *lf = fopen("RTS_START.LOG", "a");
+						if (lf) { fprintf(lf, "VK: SkinTexBind #%u tex0='%s' pass=%u\n", bb, bn, (unsigned)pass); fclose(lf); }
+					}
+				}
+			}
 			DX8Wrapper::Set_Texture(i,Peek_Texture(i));
 		}
 

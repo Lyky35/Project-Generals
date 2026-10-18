@@ -1252,6 +1252,13 @@ void TextureLoadTaskClass::Apply(bool initialize)
 		WWASSERT(LockedSurfacePtr[i]==NULL);
 	}
 
+	// PORT FIX: the async path left TextureFormat at WW3D_FORMAT_UNKNOWN (the
+	// Vulkan port's ctor no longer queries a D3D surface format). Everything
+	// keyed off Get_Level_Description()/PixelSize silently broke - most visibly
+	// Remap_Palette (PixelSize==0 skips ALL branches -> infantry team-color
+	// recolor was an identity op -> units stayed baked red).
+	Texture->TextureFormat = Format;
+
 	Texture->Apply_New_Surface(initialize);
 
 	// Ownership of VulkanTexture transferred to TextureClass in Apply_New_Surface
