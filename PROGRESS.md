@@ -21,6 +21,39 @@ next-steps list. After each accomplished step: commit + push.
 
 ## Log
 
+### 2026-10-17 - BASELINE: clean good state (77f63d7) - shadows deferred
+
+User-confirmed good point. Snapshot of what works at this commit:
+- Shell map renders: terrain with textures + blending (stone/sand/grass), models
+  (buildings/vehicles/trees with correct DDS skins), menu/UI, fonts, stats.
+- Crash-free (present res=0 frames; the readback/UBO/alignment/device-lost bugs
+  of the shadow era are all fixed - see below).
+- Single scene render, ~30k draws/frame (perf restored).
+- LEGACY SHADOWS DELIBERATELY OFF: DoShadows returns unconditionally and the
+  player-index raw XYZRHW quad is disabled - the ported stencil-volume/decals
+  cluster produced artifacts worse than no shadows (half-ported raw-device
+  paths woken up by the D3D8 adapter/dummy device). SHADOWS ARE A DEFERRED
+  FEATURE: revisit later, preferably as a native Vulkan shadow map (light-space
+  depth pass + shader compare) validated incrementally, not the legacy stack.
+
+Key fixes that got the renderer to this baseline (full detail in entries 1-21+):
+- transform chain (world*view*proj, Matrix3D::Get_Inverse stub), D3D state
+  sentinels, COLORVERTEX/DIFFUSEMATERIALSOURCE, ALPHAOP/TEXCOORDINDEX,
+  point lights, eye-distance fog, mip chain generation, DDS header parse
+  (Reserved1[11]), Targa::Load pixel reads, TextureClass(SurfaceClass*) upload,
+  surface Lock for CPU-only surfaces, W3DShaderManager device-stub texture
+  binds, TerrainTextureClass 32-bit fill, UBO std140 alignment (drawFlags 224 /
+  lightAtten 240), depth-format/renderpass order + STENCIL-capable selection,
+  HasStencil() truth, RT-cache flush on swapchain recreate, present-failure
+  handling, readback buffer bounds (the device-lost(-4) crash), PortBuf ranges.
+
+Open items (next):
+- Lightmap/skybox verification (TERRAIN-DRAW now logs 40 passes with both
+  stage texture names - one log will name the culprit if still wrong).
+- Shell-map background AI/trucks never arriving - game-logic track, unrelated
+  to rendering; investigate separately.
+- Menu texture polish (was queued; may already be fixed by the UBO alignment).
+- Shadows: deferred (see above).
 ### 2026-10-12 — Session start
 
 - Verified repo at `eba76c7` (notes rewrite), tree clean.
