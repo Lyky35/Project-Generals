@@ -48,6 +48,14 @@ Known state (see PROGRESS.md / NOTES.md)
 - Terrain, buildings, units (skinned meshes) render via the Vulkan
   pipeline. Teams spawn (Spawn 1.1, Comanche Patrol, etc.), AI/pathing
   runs, reinforcement scripts fire.
+- Fixed in this refresh (second pass): invisible particle FX (sorting
+  renderer never restored world/view through _Set_DX8_Transform - sorted
+  translucent quads were double-transformed off-screen; explosions/smoke/
+  missile trails now render); silent explosion/missile sounds (IMA-ADPCM
+  WAVs - most combat SFX - decoded to headerless silence and leaked the
+  3D voice pool; full IMA decoder added); infantry staying the baked red
+  team color (recolor now flushes the async texture loader before
+  remapping ZHCA skins; vehicles were already green via a different path).
 - Fixed in this refresh: missing explosion/smoke/trail FX (dynamic-LOD
   particle culling at low FPS + garbage normals in particle vertices);
   black infantry/vehicles (team-color texture recolor read zeroed CPU
