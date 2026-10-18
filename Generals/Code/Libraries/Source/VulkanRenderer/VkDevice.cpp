@@ -796,6 +796,12 @@ extern "C" void Vulkan_FlushRtCache();
 
 bool VulkanDevice::RecreateSwapchain()
 {
+	{
+		static unsigned rc = 0;
+		rc++;
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: RecreateSwapchain enter #%u oldRp=%p\n", rc, (void*)m_renderPass); fclose(lf); }
+	}
 	vkDeviceWaitIdle(m_device);
 	CleanupSwapchain();
 	// The RT framebuffer cache references the DESTROYED renderpasses/depth
@@ -815,6 +821,12 @@ bool VulkanDevice::RecreateSwapchain()
 	m_imagesInFlight.clear();
 	m_imagesInFlight.resize(m_swapImages.size(), VK_NULL_HANDLE);
 	m_framebufferResized = false;
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: RecreateSwapchain done newRp=%p depth=%p fb0=%p\n",
+			(void*)m_renderPass, (void*)m_depthImage,
+			m_framebuffers.empty() ? nullptr : (void*)m_framebuffers[0]); fclose(lf); }
+	}
 	return true;
 }
 
