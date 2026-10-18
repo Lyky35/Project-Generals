@@ -325,7 +325,17 @@ void * SurfaceClass::Lock(int * pitch)
 	if (!ShadowMemory) {
 		ShadowPitch = w * 4;
 		ShadowMemory = new unsigned char[ShadowPitch * h];
-		::ZeroMemory(ShadowMemory, ShadowPitch * h);
+		if (VulkanSurface && VulkanSurface->GetImage() != VK_NULL_HANDLE) {
+			// Port fix: a CPU lock of a GPU-resident surface must READ THE
+			// PIXELS BACK. Zero-filling made Recolor_Texture_One_Time (team
+			// colors: infantry/vehicle skins with xxD/xxA palettes) remap an
+			// all-zero image -> black units.
+			if (!VulkanSurface->ReadbackLevel(ShadowMemory, ShadowPitch)) {
+				::ZeroMemory(ShadowMemory, ShadowPitch * h);
+			}
+		} else {
+			::ZeroMemory(ShadowMemory, ShadowPitch * h);
+		}
 	}
 	*pitch = ShadowPitch;
 	return ShadowMemory;

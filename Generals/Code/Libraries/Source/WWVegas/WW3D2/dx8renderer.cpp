@@ -1311,6 +1311,19 @@ void DX8SkinFVFCategoryContainer::Render(void)
 				const Vector2* uv1=mmc->Get_UV_Array_By_Index(1);
 				const unsigned* diffuse=mmc->Get_Color_Array(0,false);
 
+				{
+					static unsigned skd = 0; skd++;
+					if (skd <= 80) {
+						FILE *lf = fopen("RTS_START.LOG", "a");
+						if (lf) {
+							fprintf(lf, "VK: skinmesh #%u '%s' verts=%d diffuse=%s uv0=%s uv1=%s\n",
+								skd, mesh->Get_Name() ? mesh->Get_Name() : "?", mesh_vertex_count,
+								diffuse ? "arr" : "NULL", uv0 ? "arr" : "NULL", uv1 ? "arr" : "NULL");
+							fclose(lf);
+						}
+					}
+				}
+
 				VertexFormatXYZNDUV2* verts=dest_verts+vertex_offset;
 
 	//			mesh->Compose_Deformed_Vertex_Buffer(verts,uv0,uv1,diffuse);

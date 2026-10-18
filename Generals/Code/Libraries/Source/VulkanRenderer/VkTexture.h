@@ -31,8 +31,11 @@ public:
 
     void TransitionLayout(VkCommandBuffer cmd, VkImageLayout oldLayout, VkImageLayout newLayout,
         uint32_t baseMip, uint32_t mipCount);
-    void UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const void *pixels);
+    void UploadLevel(uint32_t mip, uint32_t mipWidth, uint32_t mipHeight, const void *pixels);
     void GenerateMipmaps();
+    // Synchronous GPU->CPU readback of mip 0 into dst (pitch bytes/row).
+    // 32-bit formats only. Image must be a regular color texture.
+    bool ReadbackLevel(void *dst, uint32_t pitchBytes);
 
     VkSampler FindOrCreateSampler(bool filtered, bool repeat);
     VkSampler GetSampler(bool filtered, bool repeat);

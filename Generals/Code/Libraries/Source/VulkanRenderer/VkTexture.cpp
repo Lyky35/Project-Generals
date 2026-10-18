@@ -437,6 +437,101 @@ void VkTexture::UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const
 	vkFreeMemory(dev, stagingMemory, nullptr);
 }
 
+bool VkTexture::ReadbackLevel(void *dst, uint32_t pitchBytes)
+{
+	if (!m_device || m_image == VK_NULL_HANDLE || !dst || m_width == 0 || m_height == 0)
+		return false;
+	// 32-bit texels only (B8G8R8A8/R8G8B8A8/other 4-byte formats the port uses)
+	const uint32_t bpp = 4;
+	const size_t rowBytes = (size_t)m_width * bpp;
+	const size_t totalBytes = rowBytes * m_height;
+	if (pitchBytes < rowBytes)
+		return false;
+
+	VulkanDevice &dev = *m_device;
+	VkDevice device = dev.GetDevice();
+
+	VkBufferCreateInfo bi = {};
+	bi.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
+	bi.size = totalBytes;
+	bi.usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT;
+	bi.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+	VkBuffer buf = VK_NULL_HANDLE;
+	if (vkCreateBuffer(device, &bi, nullptr, &buf) != VK_SUCCESS)
+		return false;
+	VkMemoryRequirements mr;
+	vkGetBufferMemoryRequirements(device, buf, &mr);
+	VkMemoryAllocateInfo ai = {};
+	ai.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+	ai.allocationSize = mr.size;
+	ai.memoryTypeIndex = dev.FindMemoryType(mr.memoryTypeBits,
+		VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
+	VkDeviceMemory mem = VK_NULL_HANDLE;
+	if (ai.memoryTypeIndex == UINT32_MAX ||
+		vkAllocateMemory(device, &ai, nullptr, &mem) != VK_SUCCESS) {
+		vkDestroyBuffer(device, buf, nullptr);
+		return false;
+	}
+	vkBindBufferMemory(device, buf, mem, 0);
+
+	VkCommandBuffer cmd = dev.BeginOneTimeCommands();
+	if (cmd == VK_NULL_HANDLE) {
+		vkDestroyBuffer(device, buf, nullptr);
+		vkFreeMemory(device, mem, nullptr);
+		return false;
+	}
+	{
+		VkImageMemoryBarrier b = {};
+		b.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+		b.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+		b.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+		b.srcAccessMask = VK_ACCESS_SHADER_READ_BIT;
+		b.dstAccessMask = VK_ACCESS_TRANSFER_READ_BIT;
+		b.image = m_image;
+		b.oldLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+		b.newLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+		b.subresourceRange = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 };
+		vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT,
+			VK_PIPELINE_STAGE_TRANSFER_BIT, 0, 0, nullptr, 0, nullptr, 1, &b);
+	}
+	{
+		VkBufferImageCopy rg = {};
+		rg.imageSubresource = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1 };
+		rg.imageExtent = { m_width, m_height, 1 };
+		vkCmdCopyImageToBuffer(cmd, m_image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, buf, 1, &rg);
+	}
+	{
+		VkImageMemoryBarrier b = {};
+		b.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+		b.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+		b.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+		b.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+		b.dstAccessMask = VK_ACCESS_SHADER_READ_BIT;
+		b.image = m_image;
+		b.oldLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+		b.newLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+		b.subresourceRange = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 };
+		vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_TRANSFER_BIT,
+			VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, 0, 0, nullptr, 0, nullptr, 1, &b);
+	}
+	dev.EndOneTimeCommands(cmd);	// submits and waits idle
+
+	void *mapped = nullptr;
+	bool ok = false;
+	if (vkMapMemory(device, mem, 0, VK_WHOLE_SIZE, 0, &mapped) == VK_SUCCESS && mapped) {
+		const unsigned char *src = (const unsigned char *)mapped;
+		unsigned char *d = (unsigned char *)dst;
+		for (uint32_t y = 0; y < m_height; y++) {
+			memcpy(d + (size_t)y * pitchBytes, src + (size_t)y * rowBytes, rowBytes);
+		}
+		vkUnmapMemory(device, mem);
+		ok = true;
+	}
+	vkDestroyBuffer(device, buf, nullptr);
+	vkFreeMemory(device, mem, nullptr);
+	return ok;
+}
+
 void VkTexture::GenerateMipmaps()
 {
 	// Port fix (AMD black terrain): mid-loop level i was blitted into

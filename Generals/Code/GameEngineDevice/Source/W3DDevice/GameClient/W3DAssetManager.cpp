@@ -649,6 +649,11 @@ TextureClass * W3DAssetManager::Recolor_Texture_One_Time(TextureClass *texture, 
 	DEBUG_ASSERTCRASH( psize == 2 || psize == 4, ("Can't Recolor Texture %s", name) );
 
 	oldsurf=texture->Get_Surface_Level();
+	if (!oldsurf) {
+		// Port fix: uninitialized texture (no GPU image yet) - creating a
+		// recolor from a NULL surface produced a black team-color texture.
+		return NULL;
+	}
 
 	newsurf=NEW_REF(SurfaceClass,(desc.Width,desc.Height,desc.Format));
 	newsurf->Copy(0,0,0,0,desc.Width,desc.Height,oldsurf);
