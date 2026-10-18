@@ -48,6 +48,10 @@ Known state (see PROGRESS.md / NOTES.md)
 - Terrain, buildings, units (skinned meshes) render via the Vulkan
   pipeline. Teams spawn (Spawn 1.1, Comanche Patrol, etc.), AI/pathing
   runs, reinforcement scripts fire.
+- Fixed (fourth pass): infantry team color still rendering baked red - async-
+  loaded textures never received their TextureFormat (Vulkan port change),
+  so PixelSize()==0 made Remap_Palette skip every branch and the hue-shift
+  recolor was a silent no-op. Accent pixels now verified: red -> player hue.
 - Fixed in this refresh (second pass): invisible particle FX (sorting
   renderer never restored world/view through _Set_DX8_Transform - sorted
   translucent quads were double-transformed off-screen; explosions/smoke/
