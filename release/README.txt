@@ -1,5 +1,7 @@
-Project Generals - RTS.exe milestone build (release 1.2)
-========================================================
+Project Generals - RTS.exe milestone build (release 1.2, refreshed)
+==================================================================
+2026-10-18 refresh: FX, team-color skin and metallic-lightmap fixes on
+top of the original 1.2 cut (see "Fixed in this build" below).
 
 What this is
 ------------
@@ -14,6 +16,11 @@ Extract the whole folder and run RTS.exe on Windows 10+ x64, ideally next
 to an installed copy of Generals / Zero Hour (the game data .big archives
 and Data\ folder are required - the build reads them from the install
 location / current directory).
+
+Optional env vars:
+  RTS_NO_LOD=1     disable FPS-based dynamic LOD (no particle/debris
+                   culling). Use this if explosions/smoke/trails are
+                   missing on a slow GPU; high-end GPUs don't need it.
 
 Bundled DLLs (required, keep next to RTS.exe):
   libwinpthread-1.dll       (MinGW runtime; libgcc/libstdc++ are static)
@@ -41,6 +48,12 @@ Known state (see PROGRESS.md / NOTES.md)
 - Terrain, buildings, units (skinned meshes) render via the Vulkan
   pipeline. Teams spawn (Spawn 1.1, Comanche Patrol, etc.), AI/pathing
   runs, reinforcement scripts fire.
+- Fixed in this refresh: missing explosion/smoke/trail FX (dynamic-LOD
+  particle culling at low FPS + garbage normals in particle vertices);
+  black infantry/vehicles (team-color texture recolor read zeroed CPU
+  shadows instead of the GPU image); bugged lightmap on metallic building
+  parts (UV slots 2-3 and env-map reflection texgen now supported by the
+  Vulkan pipeline).
 - Fixed in this build: the frame-74 hang on first skinned-unit render
   (shadowed 'cnt' in the skin deform loops made GCC spin forever); the
   team-registry wipe (addTeam shadowed-i bug that silently killed every

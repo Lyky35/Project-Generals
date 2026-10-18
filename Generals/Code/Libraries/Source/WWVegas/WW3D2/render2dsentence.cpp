@@ -1327,7 +1327,12 @@ FontCharsClass::FontCharsClass (void) :
 FontCharsClass::~FontCharsClass (void) 
 {
 	while ( BufferList.Count() ) {
-		delete [] BufferList[0];
+		// PORT FIX: FontCharsBuffer objects are allocated with W3DNEW (single
+		// object, pool-glued) but were freed with delete[] - UB that made the
+		// MinGW heap read a bogus array cookie (AV 0xffffffffffffffff) the
+		// first time the game actually shut down (Release_All_FontChars ->
+		// ~FontCharsClass). MSVC tolerated it; GCC does not.
+		delete BufferList[0];
 		BufferList.Delete(0);
 	}
 
