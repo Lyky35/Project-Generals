@@ -283,6 +283,16 @@ Bool SidesList::ParseSidesDataChunk(DataChunkInput &file, DataChunkInfo *info, v
 			TheSidesList->getSideInfo(i)->addToBuildList(pBuildList, j);
 		}
 	}	
+	{
+		static unsigned sidesParsed = 0;
+		sidesParsed++;
+		FILE *lfp = fopen("RTS_START.LOG", "a");
+		if (lfp) {
+			fprintf(lfp, "VK: SidesParse #%u version=%d teamsBeforeV2=%d\n",
+				sidesParsed, (int)info->version, TheSidesList->getNumTeams());
+			fclose(lfp);
+		}
+	}
 	if (info->version >= K_SIDES_DATA_VERSION_2)
 	{
 		count = file.readInt();
@@ -291,7 +301,18 @@ Bool SidesList::ParseSidesDataChunk(DataChunkInput &file, DataChunkInfo *info, v
 		{
 			Dict d =  file.readDict();
 			TheSidesList->addTeam(&d);
+			{
+				static unsigned tc = 0; tc++;
+				if (tc <= 80) {
+					AsciiString tn = d.getAsciiString(TheKey_teamName);
+					FILE *lft = fopen("RTS_START.LOG", "a");
+					if (lft) { fprintf(lft, "VK: SidesTeam #%u name='%s' of %d\n", tc, tn.str(), count); fclose(lft); }
+				}
+			}
 		}
+	} else {
+		FILE *lfe = fopen("RTS_START.LOG", "a");
+		if (lfe) { fprintf(lfe, "VK: SidesParse TEAMS SKIPPED - version %d < V2(%d)\n", (int)info->version, K_SIDES_DATA_VERSION_2); fclose(lfe); }
 	}
 	
 	file.registerParser( AsciiString("PlayerScriptsList"), info->label, ScriptList::ParseScriptsDataChunk );
