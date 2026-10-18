@@ -133,11 +133,13 @@ bool VkTexture::Create(VulkanDevice *device, uint32_t width, uint32_t height, Vk
 	imageInfo.arrayLayers = 1;
 	imageInfo.samples = VK_SAMPLE_COUNT_1_BIT;
 	imageInfo.tiling = VK_IMAGE_TILING_OPTIMAL;
-	imageInfo.usage = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
+	// TRANSFER_SRC always: SurfaceClass::Lock readbacks (team-color recolor)
+	// are legal on every image, not just mip chains (1-mip images were
+	// missing the bit -> undefined readback on strict drivers).
+	imageInfo.usage = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT |
+		VK_IMAGE_USAGE_TRANSFER_SRC_BIT;
 	if (renderTarget)
 		imageInfo.usage |= VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
-	if (m_mips > 1)
-		imageInfo.usage |= VK_IMAGE_USAGE_TRANSFER_SRC_BIT;
 	imageInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 	imageInfo.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
 

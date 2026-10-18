@@ -650,8 +650,15 @@ TextureClass * W3DAssetManager::Recolor_Texture_One_Time(TextureClass *texture, 
 
 	oldsurf=texture->Get_Surface_Level();
 	if (!oldsurf) {
-		// Port fix: uninitialized texture (no GPU image yet) - creating a
-		// recolor from a NULL surface produced a black team-color texture.
+		// Port fix: the file ctor marks textures Initialized while the GPU
+		// image is still queued on the loader; infantry spawning stream their
+		// ZHCA skins exactly when the queue is deepest, so the recolor used
+		// to bail and the unit kept the original BAKED-RED texture. Flush
+		// the loader and retry before giving up.
+		TextureLoader::Flush_Pending_Load_Tasks();
+		oldsurf=texture->Get_Surface_Level();
+	}
+	if (!oldsurf) {
 		return NULL;
 	}
 
