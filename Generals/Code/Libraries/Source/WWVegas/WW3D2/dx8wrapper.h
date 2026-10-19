@@ -988,6 +988,17 @@ WWINLINE void DX8Wrapper::Get_Shader(ShaderClass& shader)
 
 WWINLINE void DX8Wrapper::Set_Texture(unsigned stage,TextureClass* texture)
 {
+	// PORT FIX: the Vulkan backend only models MAX_TEXTURE_STAGES=2 (D3D8 had
+	// 8), but upstream callers still bind stages 2/3 (water shader, shader
+	// manager). The old WWASSERT was debug-only, so release builds read and
+	// REF_PTR_SET past Textures[2] into adjacent RenderStateStruct fields -
+	// the mission-start crash where setupJbaWaterShader "released" float
+	// data (0x3f19999a3f32b2b3) as a pointer. Stage>=2 never reached the GPU
+	// anyway (the pipeline samples only tex0/tex1) - guard it out.
+	if (stage >= MAX_TEXTURE_STAGES)
+	{
+		return;
+	}
 	WWASSERT(stage<MAX_TEXTURE_STAGES);
 	if (texture==render_state.Textures[stage]) return;
 	REF_PTR_SET(render_state.Textures[stage],texture);
