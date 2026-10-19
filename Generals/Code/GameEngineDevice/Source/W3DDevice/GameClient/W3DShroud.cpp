@@ -191,6 +191,12 @@ void W3DShroud::init(WorldHeightMap *pMap, Real worldCellSizeX, Real worldCellSi
 	DEBUG_ASSERTCRASH( shroudBits != NULL, ("Failed to lock shroud src surface"));
 	m_srcTextureData=shroudBits;
 	m_srcTexturePitch=shroudPitch;
+	{
+		static unsigned ip = 0; ip++;
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: ShroudInit #%u srcData=%p pitch=%d surf=%p w=%d\n",
+			ip, m_srcTextureData, m_srcTexturePitch, (void*)m_pSrcTexture, srcWidth); fclose(lf); }
+	}
 
 	//clear entire texture to black
 	memset(m_srcTextureData,0,m_srcTexturePitch*srcHeight);
@@ -218,6 +224,12 @@ void W3DShroud::init(WorldHeightMap *pMap, Real worldCellSizeX, Real worldCellSi
 ///Called on map reset.
 void W3DShroud::reset()
 {
+	{
+		static unsigned rs = 0; rs++;
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: ShroudReset #%u oldSrcData=%p oldSurf=%p\n",
+			rs, m_srcTextureData, (void*)m_pSrcTexture); fclose(lf); }
+	}
 	//Free old shroud data since it may no longer fit new map.
 	if (m_pSrcTexture)
 		m_pSrcTexture->Release_Ref();
@@ -313,9 +325,10 @@ void W3DShroud::setShroudLevel(Int x, Int y, W3DShroudLevel level, Bool textureO
 			if (wc <= 20 || (wc % 500) == 0) {
 				FILE *lf = fopen("RTS_START.LOG", "a");
 				if (lf) {
-					fprintf(lf, "VK: ShroudCell #%u cell=(%d,%d) level=%d hist(lo/mid/hi/clear)=%u/%u/%u/%u\n",
+					fprintf(lf, "VK: ShroudCell #%u cell=(%d,%d) level=%d hist(lo/mid/hi/clear)=%u/%u/%u/%u srcData=%p surf=%p\n",
 						wc, (int)x, (int)y, (int)level,
-						lvlHist[0], lvlHist[1], lvlHist[2], lvlHist[3]);
+						lvlHist[0], lvlHist[1], lvlHist[2], lvlHist[3],
+						m_srcTextureData, (void*)m_pSrcTexture);
 					fclose(lf);
 				}
 			}

@@ -1413,6 +1413,54 @@ void GameWindowManager::winRepaint( void )
 			snprintf(m, sizeof(m), "winRepaint call #%u", (unsigned)rc);
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) { fprintf(lf, "%s\n", m); fclose(lf); }
+			// GUI window dump (id+name+screen rect) - enables deterministic
+			// menu navigation by mapping buttons to real rectangles.
+			// Re-dump whenever the window set CHANGES (menus create children
+			// lazily - first8 fixed rounds missed every button).
+			static int dumpRounds = 0;
+			static int lastCount = -1;
+			int curCount = 0;
+			{
+				GameWindow *cw = winGetWindowList();
+				int g2 = 0;
+				while (cw && g2++ < 600) { curCount++; cw = cw->winGetNext(); }
+			}
+			if (curCount != lastCount) {
+				lastCount = curCount;
+				dumpRounds = 0;
+			}
+			if (dumpRounds < 30) {
+				dumpRounds++;
+				FILE *lf2 = fopen("RTS_START.LOG", "a");
+				if (lf2) {
+					// Two-level tree walk: m_windowList holds TOP-LEVEL windows
+					// only; children (all the buttons) hang off winGetChild().
+					int guard = 0;
+					GameWindow *w = winGetWindowList();
+					while (w && guard++ < 800) {
+						for (int lvl = 0; lvl < 4 && w; lvl++) {
+							GameWindow *c = (lvl == 0) ? w : w->winGetChild();
+							int g2 = 0;
+							while (c && g2++ < 400) {
+								Int x = 0, y = 0, wd = 0, ht = 0;
+								c->winGetScreenPosition(&x, &y);
+								c->winGetSize(&wd, &ht);
+								AsciiString wname = "";
+								if (TheNameKeyGenerator)
+									wname = TheNameKeyGenerator->keyToName(c->winGetWindowId());
+								fprintf(lf2, "VK: WinDump id=%d name='%s' pos=(%d,%d) size=%dx%d hidden=%d status=%08x lvl=%d\n",
+									c->winGetWindowId(), wname.str() ? wname.str() : "?",
+									(int)x, (int)y, (int)wd, (int)ht,
+									(int)c->winIsHidden(), (unsigned)c->winGetStatus(), lvl);
+								c = c->winGetNext();
+							}
+							w = w->winGetNext();
+						}
+					}
+					fprintf(lf2, "VK: WinDump end round=%d\n", dumpRounds);
+					fclose(lf2);
+				}
+			}
 		}
 	}
 
