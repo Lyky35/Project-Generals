@@ -3242,3 +3242,88 @@ void DX8Wrapper::Set_ZEnable(bool enable) { RenderStates[D3DRS_ZENABLE] = enable
 void DX8Wrapper::Set_ShadeMode(unsigned) {}
 
 IDirect3D8* DX8Wrapper::_Get_D3D8() { return 0; }
+
+// ---------------------------------------------------------------------------
+// Native terrain pass: explicit pipeline per pass mode - no TextureStageStates,
+// no TCI/texMat translation. Called from HeightMap render when
+// RTS_NATIVE_TERRAIN is enabled (kill-switch for bisecting).
+bool DX8Wrapper::VulkanDrawTerrainPass(int mode,
+	VkGpuBuffer *vb, VkGpuBuffer *ib,
+	uint32_t indexCount, uint32_t vertexCount,
+	float stretch,
+	TextureClass *texA, bool wrapA, bool linearA,
+	TextureClass *texB, bool wrapB, bool linearB)
+{
+	(void)vertexCount;
+	if (!vb || !ib || indexCount == 0)
+		return false;
+
+	DX8Wrapper::EnsureTargetPass();
+	VulkanDevice &device = VulkanDevice::Instance();
+	VkCommandBuffer cmd = device.GetCommandBuffer();
+	if (cmd == VK_NULL_HANDLE)
+		return false;
+
+	VkPipeline pipeline = DX8Wrapper::ShaderManager.GetTerrainPipeline(mode, 12, 16, 24);
+	if (pipeline == VK_NULL_HANDLE)
+		return false;
+	vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
+
+	// Viewport/scissor (same convention as VulkanDrawIndexed).
+	D3DVIEWPORT8 vp;
+	VkExtent2D targetExtent = device.GetSwapExtent();
+	if (DX8Wrapper::ViewportValid) {
+		vp = DX8Wrapper::CachedViewport;
+	} else {
+		vp.X = 0; vp.Y = 0;
+		vp.Width = targetExtent.width; vp.Height = targetExtent.height;
+		vp.MinZ = 0.0f; vp.MaxZ = 1.0f;
+	}
+	VkViewport viewport = {};
+	viewport.x = (float)vp.X;
+	viewport.y = (float)(vp.Y + vp.Height);
+	viewport.width = (float)vp.Width;
+	viewport.height = -(float)vp.Height;
+	viewport.minDepth = vp.MinZ;
+	viewport.maxDepth = vp.MaxZ;
+	vkCmdSetViewport(cmd, 0, 1, &viewport);
+	VkRect2D scissor = {};
+	scissor.offset.x = (int32_t)vp.X;
+	scissor.offset.y = (int32_t)(targetExtent.height - (vp.Y + vp.Height));
+	scissor.extent.width = vp.Width;
+	scissor.extent.height = vp.Height;
+	vkCmdSetScissor(cmd, 0, 1, &scissor);
+
+	// Textures (white fallbacks for unused slots; shadow binding = white).
+	VkTexture *vtA = texA ? texA->Peek_Vulkan_Texture() : NULL;
+	VkTexture *vtB = texB ? texB->Peek_Vulkan_Texture() : NULL;
+	if (!vtA) vtA = &VulkanWhiteTexture;
+	if (!vtB) vtB = &VulkanWhiteTexture;
+	VkDescriptorSet texSet = DX8Wrapper::DescriptorAllocator.AllocateTextureSet(
+		DX8Wrapper::ShaderManager.GetTextureSetLayout(),
+		vtA, linearA, wrapA, vtB, linearB, wrapB, &VulkanWhiteTexture);
+	if (texSet == VK_NULL_HANDLE)
+		return false;
+	vkCmdBindDescriptorSets(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS,
+		DX8Wrapper::ShaderManager.GetPipelineLayout(), 0, 1, &texSet, 0, NULL);
+
+	// Push: mvp (row-vector chain, same as VulkanDrawIndexed) + stretch.
+	Matrix4 mvp = DX8Wrapper::render_state.world * DX8Wrapper::render_state.view * DX8Wrapper::CachedProjection;
+	struct Push {
+		float mvp[16];
+		float stretch;
+	} push;
+	memcpy(push.mvp, &mvp[0][0], sizeof(push.mvp));
+	push.stretch = stretch;
+	vkCmdPushConstants(cmd, DX8Wrapper::ShaderManager.GetPipelineLayout(),
+		VK_SHADER_STAGE_VERTEX_BIT, 0, sizeof(push), &push);
+
+	VkBuffer vbuf = vb->GetBuffer();
+	VkDeviceSize voff = 0;
+	vkCmdBindVertexBuffers(cmd, 0, 1, &vbuf, &voff);
+	vkCmdBindIndexBuffer(cmd, ib->GetBuffer(), 0, VK_INDEX_TYPE_UINT16);
+	vkCmdDrawIndexed(cmd, indexCount, 1, 0, 0, 0);
+	VulkanFrameDraws++;
+	VulkanFrameIndices += indexCount;
+	return true;
+}

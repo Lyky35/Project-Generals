@@ -559,6 +559,15 @@ public:
 	static void NativeShadow_OpenRT();
 	static void NativeShadow_CloseRT();
 	static unsigned PeekRenderState(unsigned state) { return RenderStates[state]; }
+public:
+	// Native terrain pass draw (bypasses D3D stage-state translation).
+	// mode:0 base,1 alpha,2 cloud+noise,3 cloud-only,4 noise-only.
+	static bool VulkanDrawTerrainPass(int mode,
+		VkGpuBuffer *vb, VkGpuBuffer *ib,
+		uint32_t indexCount, uint32_t vertexCount,
+		float stretch,
+		class TextureClass *texA, bool wrapA, bool linearA,
+		class TextureClass *texB, bool wrapB, bool linearB);
 protected:
 	static bool VulkanDrawIndexed(
 		VkGpuBuffer *vb, uint32_t vbOffsetBytes, unsigned fvf, const FVFInfoClass &fvfInfo,

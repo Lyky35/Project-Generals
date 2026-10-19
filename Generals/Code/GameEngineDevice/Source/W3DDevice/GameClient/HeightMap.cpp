@@ -3949,6 +3949,51 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 
 	Int pass;
  	for (int pass =0; pass<devicePasses; pass++) {
+		// ---- Native Vulkan terrain passes (RTS_NATIVE_TERRAIN=1) -----------
+		// Explicit pipelines per pass; zero D3D texture-stage-state
+		// translation (the source of the TCI/texMat bug cluster). Noise/cloud
+		// uv = worldPos.xy * STRETCH (algebraically identical to the legacy
+		// camera-pos texgen with inv(view)*STRETCH - the view cancels).
+		{
+			// Native terrain ON by default (user directive: the D3D8 state
+			// translation layer kept producing texgen/stage bugs). Set
+			// RTS_LEGACY_TERRAIN=1 to bisect back to the old pass path.
+			static const Bool nativeTerrain = [](){
+				const char *e = getenv("RTS_LEGACY_TERRAIN");
+				return !(e != NULL && e[0] != '\0' && e[0] != '0');
+			}();
+			if (nativeTerrain && !doMultiPassWireFrame && !m_disableTextures && Is_Hidden() == 0) {
+				int mode;
+				if (pass == 0) mode = 0;
+				else if (pass == 1) mode = 1;
+				else if (st == W3DShaderManager::ST_TERRAIN_BASE_NOISE1) mode = 3;
+				else if (st == W3DShaderManager::ST_TERRAIN_BASE_NOISE2) mode = 4;
+				else mode = 2;
+				TextureClass *texA;
+				if (pass == 0) texA = W3DShaderManager::getShaderTexture(0);
+				else if (pass == 1) texA = W3DShaderManager::getShaderTexture(1);
+				else if (mode == 4) texA = W3DShaderManager::getShaderTexture(3);
+				else texA = W3DShaderManager::getShaderTexture(2);
+				TextureClass *texB = (mode == 2) ? W3DShaderManager::getShaderTexture(3) : NULL;
+				const Bool wrap = (mode >= 2);
+				const Bool linear = (TheGlobalData->m_bilinearTerrainTex || TheGlobalData->m_trilinearTerrainTex) ? true : false;
+				const float stretch = 1.0f / (63.0f * MAP_XY_FACTOR / 2.0f);
+				for (int j = 0; j < m_numVBTilesY; j++)
+					for (int i = 0; i < m_numVBTilesX; i++) {
+						Int numPolys = VERTEX_BUFFER_TILE_LENGTH*VERTEX_BUFFER_TILE_LENGTH*2;
+						Int numVertex = (VERTEX_BUFFER_TILE_LENGTH*2)*(VERTEX_BUFFER_TILE_LENGTH*2);
+						if (m_halfResMesh) { numPolys /= 4; numVertex /= 4; }
+						DX8VertexBufferClass *tileVB = m_vertexBufferTiles[j*m_numVBTilesX+i];
+						DX8Wrapper::VulkanDrawTerrainPass(mode,
+							tileVB ? tileVB->Get_Vulkan_Vertex_Buffer() : NULL,
+							m_indexBuffer ? m_indexBuffer->Get_Vulkan_Index_Buffer() : NULL,
+							(unsigned)(numPolys * 3), (unsigned)numVertex, stretch,
+							texA, !wrap, linear, texB, wrap, linear);
+					}
+				continue;
+			}
+		}
+		// ---- end native terrain passes --------------------------------------
 #ifdef TIMING_TESTS
 #endif
 		if (!doMultiPassWireFrame)	//multi-pass wireframe doesn't use regular shaders.

@@ -112,6 +112,8 @@ public:
 	void Shutdown();
 
 	VkPipeline_T* GetPipeline(const VkPipelineState &state);
+	// Native terrain pipelines (mode:0 base,1 alpha,2 cloud+noise,3 cloud,4 noise).
+	VkPipeline_T* GetTerrainPipeline(int mode, uint32_t diffuseOffset, uint32_t uv0Offset, uint32_t uv1Offset);
 	void SetVertexLayout(const VkVertexLayoutDesc &layout);
 	void ClearPipelineCache();
 
@@ -124,6 +126,9 @@ private:
 	// Shader modules
 	VkShaderModule m_vertModule;
 	VkShaderModule m_fragModule;
+	VkShaderModule m_terrainVertModule = VK_NULL_HANDLE;
+	VkShaderModule m_terrainFragModule = VK_NULL_HANDLE;
+	std::unordered_map<int, VkPipeline_T*> m_terrainPipelines;
 	
 	// Descriptor set layouts
 	VkDescriptorSetLayout m_textureSetLayout;
