@@ -367,9 +367,15 @@ TextureClass::~TextureClass(void)
 	}
 
 	if (VulkanTexture) {
-		VulkanTexture->Destroy();
-		delete VulkanTexture;
-		VulkanTexture = NULL;
+		if (VkTextureIsBorrowed) {
+			// Shared image owned by another TextureClass - just drop our ref.
+			VulkanTexture = NULL;
+			VkTextureIsBorrowed = false;
+		} else {
+			VulkanTexture->Destroy();
+			delete VulkanTexture;
+			VulkanTexture = NULL;
+		}
 	}
 	DX8TextureManagerClass::Remove(this);
 }
@@ -586,9 +592,14 @@ void TextureClass::Apply_Null(unsigned int stage)
 void TextureClass::Apply_New_Surface(bool initialized)
 {
 	if (VulkanTexture) {
-		VulkanTexture->Destroy();
-		delete VulkanTexture;
+		if (VkTextureIsBorrowed) {
+			VulkanTexture = NULL;	// borrowed - not ours to delete
+		} else {
+			VulkanTexture->Destroy();
+			delete VulkanTexture;
+		}
 	}
+	VkTextureIsBorrowed = false;
 	VulkanTexture=TextureLoadTask->Peek_Vulkan_Texture();
 	TextureLoadTask->Set_Vulkan_Texture(NULL);	// ownership transferred to this texture
 	if (initialized) Initialized=true;

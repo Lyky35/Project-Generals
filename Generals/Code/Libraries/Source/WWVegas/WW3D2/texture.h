@@ -233,6 +233,12 @@ class TextureClass : public W3DMPO, public RefCountClass
 
 		// Direct3D texture object
 		VkTexture *VulkanTexture;
+		// True when VulkanTexture is SHARED from another TextureClass
+		// (AlphaTerrainTextureClass borrows the base terrain atlas to save
+		// memory). D3D8 relied on COM refcounting for that share; with raw
+		// pointers a second Destroy+delete double-freed the VkTexture during
+		// terrain invalidation at mission start -> heap corruption -> crash.
+		bool VkTextureIsBorrowed = false;
 		bool Initialized;
 
 		// Name

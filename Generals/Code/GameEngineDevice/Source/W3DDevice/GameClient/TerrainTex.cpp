@@ -616,8 +616,14 @@ AlphaTerrainTextureClass::AlphaTerrainTextureClass( TextureClass *pBaseTex ):
 		delete VulkanTexture;
 		VulkanTexture = NULL;
 	}
-	// Attach the base texture's Vulkan texture (shared; VkTexture is refcounted via TextureClass).
+	// Attach the base texture's Vulkan texture (shared with pBaseTex to save
+	// memory / avoid seams). The port's TextureClass owns VkTextures with raw
+	// new/delete (D3D8 used COM AddRef), so mark this one borrowed - otherwise
+	// both classes Destroy+delete the same pointer during terrain invalidation
+	// (double free at mission start -> heap corruption -> crash in the next
+	// texture upload).
 	VulkanTexture = pBaseTex->Peek_Vulkan_Texture();
+	VkTextureIsBorrowed = true;
 }
 
 
