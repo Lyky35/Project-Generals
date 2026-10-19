@@ -539,6 +539,13 @@ TextureClass *DummyTexture=NULL;
 /** Updates video memory surface with currently visible shroud data */
 void W3DShroud::render(CameraClass *cam)
 {
+	{
+		static unsigned rp = 0; rp++;
+		if (rp <= 12 || (rp % 240) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: ShroudUpdate #%u src=%p\n", rp, (void*)m_pSrcTexture); fclose(lf); }
+		}
+	}
 	if (!m_pSrcTexture)
 		return; //nothing to update from.  Must be in reset state.
 
@@ -799,13 +806,28 @@ void W3DShroudMaterialPassClass::Install_Materials(void) const
 {
 	{
 		static unsigned sp = 0; sp++;
-		if (sp <= 20 || (sp % 200) == 0) {
+		if (sp <= 40 || (sp % 200) == 0) {
+			W3DShroud *sh = (TheTerrainRenderObject ? TheTerrainRenderObject->getShroud() : NULL);
+			TextureClass *tex = sh ? sh->getShroudTexture() : NULL;
+			unsigned black = 0, nonz = 0;
+			int pitch = 0;
+			SurfaceClass *ss = tex ? tex->Get_Surface_Level(0) : NULL;
+			unsigned char *px = ss ? (unsigned char *)ss->Lock(&pitch) : NULL;
+			if (px && pitch >= 4) {
+				SurfaceClass::SurfaceDescription d; ss->Get_Description(d);
+				for (int y = 0; y < 16 && (int)y < d.Height; y += 4) {
+					for (int x = 0; x < 64 && (int)x < d.Width; x += 8) {
+						const unsigned *q = (const unsigned *)(px + y * pitch) + x;
+						if ((*q & 0xffffff) == 0) black++; else nonz++;
+					}
+				}
+			}
+			if (px) ss->Unlock();
+			if (ss) ss->Release_Ref();
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf) {
-				fprintf(lf, "VK: ShroudInstall #%u hasShroud=%d tex=%p\n", sp,
-					(TheTerrainRenderObject && TheTerrainRenderObject->getShroud()) ? 1 : 0,
-					(void*)((TheTerrainRenderObject && TheTerrainRenderObject->getShroud()) ?
-						TheTerrainRenderObject->getShroud()->getShroudTexture() : NULL));
+				fprintf(lf, "VK: ShroudInstall #%u hasShroud=%d tex=%p maskBlack=%u maskNonZero=%u\n", sp,
+					(sh) ? 1 : 0, (void*)tex, black, nonz);
 				fclose(lf);
 			}
 		}

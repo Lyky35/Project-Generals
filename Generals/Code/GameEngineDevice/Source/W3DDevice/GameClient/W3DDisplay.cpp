@@ -1703,6 +1703,11 @@ AGAIN:
 			{
 				if (TheTerrainRenderObject->getShroud())
 				{
+					static unsigned cs = 0; cs++;
+					if (cs <= 12 || (cs % 240) == 0) {
+						FILE *lf = fopen("RTS_START.LOG", "a");
+						if (lf) { fprintf(lf, "VK: ShroudCall #%u\n", cs); fclose(lf); }
+					}
 					TheTerrainRenderObject->getShroud()->render(primaryW3DView->get3DCamera());
 				}
 			}
