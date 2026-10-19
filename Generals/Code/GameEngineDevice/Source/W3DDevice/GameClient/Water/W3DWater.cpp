@@ -1696,6 +1696,17 @@ void WaterRenderObjClass::Render(RenderInfoClass & rinfo)
 		Vector3 pos=rinfo.Camera.Get_Position();
 		pos.Z = TheGlobalData->m_skyBoxPositionZ;
 		m_skyBox->Set_Position(pos);
+		{
+			static unsigned sk = 0; sk++;
+			if (sk <= 6) {
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) {
+					fprintf(lf, "VK: SkyDraw #%u obj=%p cam=(%.1f,%.1f,%.1f) boxZ=%.1f\n",
+						sk, (void*)m_skyBox, pos.X, pos.Y, pos.Z, TheGlobalData->m_skyBoxPositionZ);
+					fclose(lf);
+				}
+			}
+		}
 		m_skyBox->Render(rinfo);
 	}
 

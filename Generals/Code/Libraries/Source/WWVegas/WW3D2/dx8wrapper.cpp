@@ -1451,6 +1451,32 @@ bool DX8Wrapper::VulkanDrawIndexed(
 		if (!boundTex0)
 			state.tex0Op = 0;
 	}
+	{
+		// Terrain-black probe: first fvf=0x242 draw after each atlas rebuild.
+		extern unsigned g_vkTerrainSerial;
+		static unsigned terrSeen = 0, terrLogged = 0;
+		if (fvf == 0x242 && terrSeen != g_vkTerrainSerial) {
+			terrSeen = g_vkTerrainSerial;
+			terrLogged = 0;
+		}
+		if (fvf == 0x242 && terrLogged < 6) {
+			terrLogged++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: TerrPipe #%u tex0Op=%d tex1Op=%d uv0=%d uv1=%d blend=%d/%d light=%d fog=%d tex0miss=%d\n",
+					terrLogged, (int)state.tex0Op, (int)state.tex1Op,
+					(int)state.uvSel0, (int)state.uvSel1,
+					state.srcBlend, state.dstBlend, (int)state.lighting, (int)state.fog,
+					(int)(DX8Wrapper::BoundTextures[0] ? 0 : 1));
+				fprintf(lf, "VK: TerrMat0 texMat0 row0=(%.3f,%.3f,%.3f,%.3f) row3=(%.3f,%.3f,%.3f,%.3f)\n",
+					DX8Wrapper::CachedTexTransform[0][0][0], DX8Wrapper::CachedTexTransform[0][0][1],
+					DX8Wrapper::CachedTexTransform[0][0][2], DX8Wrapper::CachedTexTransform[0][0][3],
+					DX8Wrapper::CachedTexTransform[0][3][0], DX8Wrapper::CachedTexTransform[0][3][1],
+					DX8Wrapper::CachedTexTransform[0][3][2], DX8Wrapper::CachedTexTransform[0][3][3]);
+				fclose(lf);
+			}
+		}
+	}
 	VkPipeline pipeline = DX8Wrapper::ShaderManager.GetPipeline(state);
 	if (pipeline == VK_NULL_HANDLE) {
 		static unsigned pn = 0;
