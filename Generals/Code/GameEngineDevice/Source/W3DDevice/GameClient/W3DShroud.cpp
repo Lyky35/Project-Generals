@@ -305,6 +305,21 @@ void W3DShroud::setShroudLevel(Int x, Int y, W3DShroudLevel level, Bool textureO
 	{
 		if (level < TheGlobalData->m_shroudAlpha)
 			level = TheGlobalData->m_shroudAlpha;
+		{	// reveal-write counter: does ANY shroud cell update fire?
+			static unsigned wc = 0; wc++;
+			static unsigned lvlHist[4] = {0,0,0,0};	// buckets:0-63,64-191,192-254,255
+			int b = level >= 255 ? 3 : (level >= 192 ? 2 : (level >= 64 ? 1 : 0));
+			lvlHist[b]++;
+			if (wc <= 20 || (wc % 500) == 0) {
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) {
+					fprintf(lf, "VK: ShroudCell #%u cell=(%d,%d) level=%d hist(lo/mid/hi/clear)=%u/%u/%u/%u\n",
+						wc, (int)x, (int)y, (int)level,
+						lvlHist[0], lvlHist[1], lvlHist[2], lvlHist[3]);
+					fclose(lf);
+				}
+			}
+		}
 
 #if defined(_DEBUG) || defined(_INTERNAL)
 		if (TheGlobalData && TheGlobalData->m_fogOfWarOn)
@@ -815,8 +830,8 @@ void W3DShroudMaterialPassClass::Install_Materials(void) const
 			unsigned char *px = ss ? (unsigned char *)ss->Lock(&pitch) : NULL;
 			if (px && pitch >= 4) {
 				SurfaceClass::SurfaceDescription d; ss->Get_Description(d);
-				for (int y = 0; y < 16 && (int)y < d.Height; y += 4) {
-					for (int x = 0; x < 64 && (int)x < d.Width; x += 8) {
+				for (int y = 0; y < d.Height; y += (d.Height / 16 ? d.Height / 16 : 1)) {
+					for (int x = 0; x < d.Width; x += (d.Width / 16 ? d.Width / 16 : 1)) {
 						const unsigned *q = (const unsigned *)(px + y * pitch) + x;
 						if ((*q & 0xffffff) == 0) black++; else nonz++;
 					}
