@@ -323,6 +323,29 @@ void* TextureLoader::Load_Surface_Immediate(
 
 	unsigned char* src_surface=(unsigned char*)targa.GetImage();
 
+	// Port fix (TGA row order): Targa::Open's origin-normalization leaves
+	// image memory BOTTOM-up (first stored row = image bottom), while both
+	// D3D8 and Vulkan sample uv.y=0 at row0. Retail artwork therefore
+	// rendered vertically mirrored in this port for every TGA - the world
+	// looked fine only because nearly all3D art ships as DDS (3615 DDS vs
+	//133 TGA); the UI sprite sheets and infantry ZHCA skins are TGA, which
+	// produced the garbled control-bar dump (the sheet's BOTTOM band shown
+	// where the top band was asked for) and mirrored unit skins.
+	if (src_surface && src_width && src_height && src_bpp) {
+		size_t rowBytes = (size_t)src_width * src_bpp;
+		unsigned char *rowTmp = (unsigned char *)malloc(rowBytes);
+		if (rowTmp) {
+			for (unsigned y = 0; y < src_height / 2; ++y) {
+				unsigned char *a = src_surface + (size_t)y * rowBytes;
+				unsigned char *b = src_surface + (size_t)(src_height - 1 - y) * rowBytes;
+				memcpy(rowTmp, a, rowBytes);
+				memcpy(a, b, rowBytes);
+				memcpy(b, rowTmp, rowBytes);
+			}
+			free(rowTmp);
+		}
+	}
+
 	// No paletted destination format allowed
 	unsigned char* converted_surface=NULL;
 	if (src_format==WW3D_FORMAT_A1R5G5B5 || src_format==WW3D_FORMAT_R5G6B5 || src_format==WW3D_FORMAT_A4R4G4B4 ||
@@ -501,6 +524,24 @@ bool TextureLoader::Load_Uncompressed_Mipmap_Levels_From_TGA(TextureLoadTaskClas
 		return false;
 	}
 	unsigned char* src_surface=(unsigned char*)targa.GetImage();
+
+	// Port fix (TGA row order): same bottom-up -> top-down flip as
+	// Load_Surface_Immediate; this is the async path every normal texture
+	// takes (world art is DDS so it looked fine; TGA UI sheets/skins mirrored).
+	if (src_surface && src_width && src_height && src_bpp) {
+		size_t rowBytes = (size_t)src_width * src_bpp;
+		unsigned char *rowTmp = (unsigned char *)malloc(rowBytes);
+		if (rowTmp) {
+			for (unsigned y = 0; y < src_height / 2; ++y) {
+				unsigned char *a = src_surface + (size_t)y * rowBytes;
+				unsigned char *b = src_surface + (size_t)(src_height - 1 - y) * rowBytes;
+				memcpy(rowTmp, a, rowBytes);
+				memcpy(a, b, rowBytes);
+				memcpy(b, rowTmp, rowBytes);
+			}
+			free(rowTmp);
+		}
+	}
 
 	// No paletted format allowed when generating mipmaps
 	unsigned char* converted_surface=NULL;
