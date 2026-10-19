@@ -48,6 +48,10 @@ Known state (see PROGRESS.md / NOTES.md)
 - Terrain, buildings, units (skinned meshes) render via the Vulkan
   pipeline. Teams spawn (Spawn 1.1, Comanche Patrol, etc.), AI/pathing
   runs, reinforcement scripts fire.
+- Fixed (fifth pass): garbled control-bar/menu sprites - every TGA rendered
+  vertically mirrored (UI sprite sheets + infantry skins; world art is DDS
+  so it looked fine). Row order corrected in both TGA loader paths; the
+  C&C Generals logo and control-bar art now draw upright.
 - Fixed (fourth pass): infantry team color still rendering baked red - async-
   loaded textures never received their TextureFormat (Vulkan port change),
   so PixelSize()==0 made Remap_Palette skip every branch and the hue-shift
