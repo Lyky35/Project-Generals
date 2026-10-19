@@ -48,6 +48,7 @@
 
 #include "W3DDevice/GameClient/WorldHeightMap.h"
 #include "W3DDevice/GameClient/TileData.h"
+#include "WW3D2/textureloader.h"
 #include "W3DDevice/GameClient/HeightMap.h"
 #include "W3DDevice/GameClient/TerrainTex.h"
 #include "W3DDevice/GameClient/W3DShadow.h"
@@ -1949,6 +1950,9 @@ void WorldHeightMap::getAlphaUVData(Int xIndex, Int yIndex, float U[4], float V[
 TextureClass *WorldHeightMap::getTerrainTexture(void)
 {
 	if (m_terrainTex == NULL) {
+		// PORT: make sure any texture the atlas/edge/alpha builds are about
+		// to read is fully resident (proven pattern from the recolor fix).
+		TextureLoader::Flush_Pending_Load_Tasks();
 		Int edgeHeight;
 		Int height = updateTileTexturePositions(&edgeHeight);
 		Int pow2Height = 1;

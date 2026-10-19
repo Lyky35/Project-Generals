@@ -115,6 +115,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 	//DEBUG_ASSERTCRASH(tilesPerRow*numRows >= htMap->m_numBitmapTiles, ("Too many tiles."));
 	DEBUG_ASSERTCRASH((Int)surface_desc.Width >= tilePixelExtent*tilesPerRow, ("Bitmap too small."));
 #endif
+	int diagCopied = 0, diagSkipped = 0, diagZero = 0;
 	if (1) {	// desc.Format is UNKNOWN on borrowed surfaces - always fill
 #if 0
 		UnsignedInt cellX, cellY;
@@ -129,9 +130,18 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 		Int pixelBytes = 4;	// A8R8G8B8
 		for (tileNdx=0; tileNdx < htMap->m_numBitmapTiles; tileNdx++) {
 			TileData *pTile = htMap->getSourceTile(tileNdx);
-			if (!pTile) continue;
+			if (!pTile) { diagSkipped++; continue; }
 			ICoord2D position = pTile->m_tileLocationInTexture;
-			if (position.x<=0) continue; // all real tile offsets start at 2.  jba.
+			if (position.x<=0) { diagSkipped++; continue; } // all real tile offsets start at 2.  jba.
+			diagCopied++;
+			{
+				UnsignedByte *probe = pTile->getRGBDataForWidth(tilePixelExtent);
+				if (probe) {
+					unsigned acc = 0;
+					for (int q = 0; q < TILE_BYTES_PER_PIXEL * tilePixelExtent; q += 17) acc += probe[q];
+					if (acc < 8) diagZero++;
+				}
+			}
 
 			Int i,j;
 			for (int j =0; j<tilePixelExtent; j++) {
@@ -199,10 +209,16 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 		unsigned nnz = 0;
 		if (b) for (unsigned q = 0; q < 4096; q += 16) if (b[q]) nnz++;
 		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: TerrainAtlas update #%u %ux%u fmt=%d pitch=%d nnz=%u first=%02x%02x%02x%02x vkTex=%p this=%p\n",
-			up, (unsigned)surface_desc.Width, (unsigned)surface_desc.Height, (int)surface_desc.Format,
-			pitch, nnz, b?b[0]:0, b?b[1]:0, b?b[2]:0, b?b[3]:0,
-			(void *)surface_level->Peek_Vulkan_Texture(), (void *)this); fclose(lf); }
+		if (lf) {
+			fprintf(lf, "VK: TerrainAtlas update #%u %ux%u fmt=%d pitch=%d nnz=%u first=%02x%02x%02x%02x vkTex=%p this=%p\n",
+				up, (unsigned)surface_desc.Width, (unsigned)surface_desc.Height, (int)surface_desc.Format,
+				pitch, nnz, b?b[0]:0, b?b[1]:0, b?b[2]:0, b?b[3]:0,
+				(void *)surface_level->Peek_Vulkan_Texture(), (void *)this);
+			fprintf(lf, "VK: AtlasFill #%u %dx%d copied=%d skipped=%d zeroTiles=%d classes=%d bitmapTiles=%d\n",
+				up, (int)surface_desc.Width, (int)surface_desc.Height,
+				diagCopied, diagSkipped, diagZero,
+				(int)htMap->m_numTextureClasses, (int)htMap->m_numBitmapTiles);
+			fclose(lf); }
 	}
 	surface_level->Unlock();
 	// Port fix (camera-distance symptom: close=fine, far=broken): only mip0

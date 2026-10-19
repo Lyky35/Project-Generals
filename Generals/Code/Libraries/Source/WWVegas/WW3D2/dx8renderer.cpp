@@ -1717,6 +1717,22 @@ void DX8TextureCategoryClass::Render(void)
 		*/
 		DX8PolygonRendererClass * renderer = prt->Peek_Polygon_Renderer();
 		MeshClass * mesh = prt->Peek_Mesh();
+		{
+			static unsigned sky = 0;
+			if (mesh && mesh->Get_Name() && strstr(mesh->Get_Name(), "SKYBOX") && sky < 8) {
+				sky++;
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) {
+					fprintf(lf, "VK: SkyCat #%u mesh='%s' pass=%u tex0='%s' tex1='%s' primg=%d textur=%d\n",
+						sky, mesh->Get_Name(), (unsigned)pass,
+						Peek_Texture(0) ? Peek_Texture(0)->Get_Texture_Name() : "NULL",
+						Peek_Texture(1) ? Peek_Texture(1)->Get_Texture_Name() : "NULL",
+						(int)Get_Shader().Get_Primary_Gradient(),
+						(int)Get_Shader().Get_Texturing());
+					fclose(lf);
+				}
+			}
+		}
 		
 		if (mesh->Get_Base_Vertex_Offset() == VERTEX_BUFFER_OVERFLOW)	//check if this mesh is valid
 		{	//skip this mesh so it gets rendered later after vertices are filled in.
