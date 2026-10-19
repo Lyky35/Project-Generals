@@ -159,6 +159,10 @@ void main()
 				lit += frame.lightColors[i].rgb * ndl;
 			}
 		}
+		// PORT FIX: ambient + up to4 unclamped light diffs could exceed1 and
+		// saturate lit surfaces to white (mission sun + map point lights +
+		// selection/tint adds). Clamp the light multiplier.
+		lit = min(lit, vec3(1.0));
 		color *= lit;
 	}
 

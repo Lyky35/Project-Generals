@@ -54,6 +54,8 @@
 #include "WW3D2/dx8wrapper.h"
 #include "d3d8types.h"
 
+unsigned g_vkTerrainSerial = 0;	// bumped per atlas rebuild - terrain-vert probe keys off this
+
 /******************************************************************************
 						TerrainTextureClass
 ******************************************************************************/
@@ -192,6 +194,7 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 	{
 		static unsigned up = 0;
 		up++;
+		g_vkTerrainSerial++;
 		unsigned char *b = (unsigned char *)pBits;
 		unsigned nnz = 0;
 		if (b) for (unsigned q = 0; q < 4096; q += 16) if (b[q]) nnz++;

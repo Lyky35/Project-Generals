@@ -187,7 +187,25 @@ Bool W3DTerrainLogic::loadMap( AsciiString filename , Bool query )
 		return FALSE;
 
 	// Map file now contains lighting & time of day info.
+	// Breadcrumb (terrain-black hunt): log the tod copy + resulting values;
+	// mission terrain vertex colors are built from m_terrainAmbient[0]/
+	// m_terrainDiffuse[0] (HeightMap::doTheLight) - zero values here = black
+	// terrain on that map.
 	if( TheWritableGlobalData->setTimeOfDay( TheGlobalData->m_timeOfDay ) )
+	{
+		static unsigned todLog = 0; todLog++;
+		if (todLog <= 6 || (todLog % 200) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: TOD #%u tod=%d amb=(%.3f,%.3f,%.3f) dif=(%.3f,%.3f,%.3f) pos=(%.2f,%.2f,%.2f)\n",
+					todLog, (int)TheGlobalData->m_timeOfDay,
+					(float)TheGlobalData->m_terrainAmbient[0].red, (float)TheGlobalData->m_terrainAmbient[0].green, (float)TheGlobalData->m_terrainAmbient[0].blue,
+					(float)TheGlobalData->m_terrainDiffuse[0].red, (float)TheGlobalData->m_terrainDiffuse[0].green, (float)TheGlobalData->m_terrainDiffuse[0].blue,
+					(float)TheGlobalData->m_terrainLightPos[0].x, (float)TheGlobalData->m_terrainLightPos[0].y, (float)TheGlobalData->m_terrainLightPos[0].z);
+				fclose(lf);
+			}
+		}
+	}
 		TheGameClient->setTimeOfDay( TheGlobalData->m_timeOfDay );
 
 	return TRUE;  // success

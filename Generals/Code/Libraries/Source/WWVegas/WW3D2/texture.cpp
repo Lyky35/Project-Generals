@@ -400,9 +400,14 @@ void TextureClass::Invalidate()
 	if (Is_Missing_Texture()) return;
 
 	if (VulkanTexture) {
-		VulkanTexture->Destroy();
-		delete VulkanTexture;
-		VulkanTexture = NULL;
+		if (VkTextureIsBorrowed) {
+			VulkanTexture = NULL;	// borrowed - not ours to delete (see texture.h)
+			VkTextureIsBorrowed = false;
+		} else {
+			VulkanTexture->Destroy();
+			delete VulkanTexture;
+			VulkanTexture = NULL;
+		}
 	}
 
 	if (!WW3D::Is_Texturing_Enabled()) {
@@ -426,8 +431,12 @@ void TextureClass::Invalidate()
 void TextureClass::Load_Locked_Surface()
 {
 	if (VulkanTexture) {
-		VulkanTexture->Destroy();
-		delete VulkanTexture;
+		if (VkTextureIsBorrowed) {
+			VkTextureIsBorrowed = false;	// drop the borrow; this reload owns a fresh image
+		} else {
+			VulkanTexture->Destroy();
+			delete VulkanTexture;
+		}
 	}
 	VulkanTexture=NULL;
 	TextureLoader::Request_Thumbnail(this);

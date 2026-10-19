@@ -1508,7 +1508,9 @@ void W3DRoadBuffer::addMapObject(RoadSegment *pRoad, Bool updateTheCounts)
 	Bool addBefore = false;
 	Bool addAfter = false;
 	Bool bothMatch = false;
-	for (int i =0; i<m_numRoads; i++) {
+	// PORT FIX (UB): 'for (int i...)' shadowed the outer 'Int i'; 'addIndex'
+	// below read the uninitialized outer i under GCC -> garbage road index.
+	for (i =0; i<m_numRoads; i++) {
 		bothMatch = false;
 		if ( (m_roads[i].m_pt1.loc==loc1 && m_roads[i].m_pt2.loc==loc2) ||
 			(m_roads[i].m_pt1.loc==loc2 && m_roads[i].m_pt2.loc==loc1) ) {

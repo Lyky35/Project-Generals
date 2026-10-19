@@ -1533,7 +1533,11 @@ bool DX8Wrapper::VulkanDrawIndexed(
 			else TerrainDrawsNullTex++;
 		}
 		static int mvLog = 0;
-		if (fvf == 0x242 && mvLog < 40) {
+		static unsigned terrainSerialSeen = 0;
+		extern unsigned g_vkTerrainSerial;
+		bool newMap = (terrainSerialSeen != g_vkTerrainSerial);
+		if (fvf == 0x242 && (mvLog < 40 || newMap)) {
+			if (newMap) terrainSerialSeen = g_vkTerrainSerial;
 			mvLog++;
 			FILE *lf = fopen("RTS_START.LOG", "a");
 			if (lf && mvLog == 1) {
@@ -2703,7 +2707,10 @@ static int VulkanMapTexOp(unsigned colorOp, unsigned arg1)
 			return 1;
 		if (arg1 == D3DTA_TFACTOR)
 			return 4;
-		return 0;
+		// DIFFUSE/CURRENT/TFACTOR-less SELECTARG1 = "use the incoming color"
+		// (the vertex diffuse at stage 0) - op5. Returning0 (stage disabled)
+		// silently dropped a whole texture stage on such materials.
+		return 5;
 	case D3DTOP_SELECTARG2:
 		// ARG2 is D3DTA_DIFFUSE for the engine's untextured draws; the shader's
 		// "current" already holds the diffuse - select it (op 5).
@@ -2862,7 +2869,10 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 	}
 	unsigned ambient = DX8Wrapper::RenderStates[D3DRS_AMBIENT];
 	if (ambient == 0x12345678)
-		ambient = 0x00ffffff;
+		ambient = 0x000000;	// PORT FIX: D3D8 default ambient is BLACK (the earlier
+		                     // half-fix only corrected the log line; white here
+		                     // saturated every env-less draw after a state
+		                     // invalidation - lit side blew out to white)
 	VulkanDecodeColor(ambient, ubo->ambientColor);
 	ubo->ambientColor[3] = 1.0f;
 
@@ -2938,6 +2948,26 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 		ubo->shadowParams[2] = 1.0f;
 	}
 
+	{
+		static unsigned lv = 0; lv++;
+		if (lv <= 20 || (lv % 3000) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: LightVals #%u amb=%06x", lv,
+					(unsigned)(DX8Wrapper::RenderStates[D3DRS_AMBIENT] == 0x12345678 ? 0 : DX8Wrapper::RenderStates[D3DRS_AMBIENT]));
+				for (int li = 0; li < 4; li++) {
+					if (DX8Wrapper::render_state.LightEnable[li]) {
+						const D3DLIGHT8 &l = DX8Wrapper::render_state.Lights[li];
+						fprintf(lf, " L%d(type=%d diff=(%.2f,%.2f,%.2f) att=(%.2f,%.2f,%.2f))",
+							li, (int)l.Type, l.Diffuse.r, l.Diffuse.g, l.Diffuse.b,
+							l.Attenuation0, l.Attenuation1, l.Attenuation2);
+					}
+				}
+				fprintf(lf, "\n");
+				fclose(lf);
+			}
+		}
+	}
 	for (int i = 0; i < 4; i++) {
 		if (DX8Wrapper::render_state.LightEnable[i]) {
 			const D3DLIGHT8 &light = DX8Wrapper::render_state.Lights[i];
@@ -2946,7 +2976,13 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 				ubo->lightDirs[i][1] = light.Position.y;
 				ubo->lightDirs[i][2] = light.Position.z;
 				ubo->lightDirs[i][3] = 1.0f;
-				ubo->lightAtten[i][0] = light.Attenuation0;
+				// PORT FIX (ZH parity): base-Generals used Attenuation0=0.01
+				// here which makes1/(atten) blow up to ~100x within a few
+				// world units of any map point light - units render pure white
+				// near lights. ZH shipped the same fix (GeneralsMD dx8wrapper:
+				// "CNC3 Generals code for the attenuation factors is causing
+				// the lights to over-brighten - changing Attenuation0 to 1.0").
+				ubo->lightAtten[i][0] = (light.Attenuation0 > 0.0f && light.Attenuation0 < 1.0f) ? 1.0f : light.Attenuation0;
 				ubo->lightAtten[i][1] = light.Attenuation1;
 				ubo->lightAtten[i][2] = light.Attenuation2;
 				ubo->lightAtten[i][3] = light.Range;

@@ -1516,7 +1516,10 @@ void W3DDisplay::calculateTerrainLOD( void )
 		TheWritableGlobalData->m_terrainLOD = curLOD;
 		m_3DScene->drawTerrainOnly(true);
 		TheTerrainRenderObject->adjustTerrainLOD(0);
-		for (int i =0; i<NUM_SAMPLES; i++) {
+		// PORT FIX (UB): this loop used 'for (int i...)' which SHADOWED the
+		// outer 'Int i'; the frameTime average below then read the outer i
+		// (uninitialized) under GCC -O3 -> terrain LOD picked at random.
+		for (i =0; i<NUM_SAMPLES; i++) {
 			Int64 startTime64 = getPerformanceCounter();
 			// start render block
 			updateViews();
