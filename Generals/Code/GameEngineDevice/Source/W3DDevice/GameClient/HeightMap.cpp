@@ -3863,6 +3863,22 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 
 	DX8Wrapper::Set_Index_Buffer(m_indexBuffer,0);
 
+	{	// Shroud-vs-black breadcrumb: does the terrain ever receive an
+		// additional/material pass (the shroud multiply), and is fog-of-war on?
+		static unsigned hp = 0; hp++;
+		if (hp <= 8 || (hp % 300) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: TerrainRender #%u addPass=%d shroudObj=%d customPass=%d disableTex=%d\n",
+					hp, (int)rinfo.Additional_Pass_Count(),
+					(int)(m_shroud != NULL),
+					(int)((RTS3DScene *)rinfo.Camera.Get_User_Data())->getCustomPassMode(),
+					(int)m_disableTextures);
+				fclose(lf);
+			}
+		}
+	}
+
 	Bool doMultiPassWireFrame=FALSE;
 
 	if (((RTS3DScene *)rinfo.Camera.Get_User_Data())->getCustomPassMode() == SCENE_PASS_ALPHA_MASK ||

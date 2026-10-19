@@ -797,6 +797,19 @@ void W3DShroud::setShroudFilter(Bool enable)
 ///Set render states required to draw shroud pass.
 void W3DShroudMaterialPassClass::Install_Materials(void) const
 {
+	{
+		static unsigned sp = 0; sp++;
+		if (sp <= 20 || (sp % 200) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: ShroudInstall #%u hasShroud=%d tex=%p\n", sp,
+					(TheTerrainRenderObject && TheTerrainRenderObject->getShroud()) ? 1 : 0,
+					(void*)((TheTerrainRenderObject && TheTerrainRenderObject->getShroud()) ?
+						TheTerrainRenderObject->getShroud()->getShroudTexture() : NULL));
+				fclose(lf);
+			}
+		}
+	}
 	if (TheTerrainRenderObject->getShroud())
 	{
  		W3DShaderManager::setTexture(0,TheTerrainRenderObject->getShroud()->getShroudTexture());
