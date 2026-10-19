@@ -1459,21 +1459,36 @@ bool DX8Wrapper::VulkanDrawIndexed(
 			terrSeen = g_vkTerrainSerial;
 			terrLogged = 0;
 		}
-		if (fvf == 0x242 && terrLogged < 6) {
-			terrLogged++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: TerrPipe #%u tex0Op=%d tex1Op=%d uv0=%d uv1=%d blend=%d/%d light=%d fog=%d tex0miss=%d\n",
-					terrLogged, (int)state.tex0Op, (int)state.tex1Op,
-					(int)state.uvSel0, (int)state.uvSel1,
-					state.srcBlend, state.dstBlend, (int)state.lighting, (int)state.fog,
-					(int)(DX8Wrapper::BoundTextures[0] ? 0 : 1));
-				fprintf(lf, "VK: TerrMat0 texMat0 row0=(%.3f,%.3f,%.3f,%.3f) row3=(%.3f,%.3f,%.3f,%.3f)\n",
-					DX8Wrapper::CachedTexTransform[0][0][0], DX8Wrapper::CachedTexTransform[0][0][1],
-					DX8Wrapper::CachedTexTransform[0][0][2], DX8Wrapper::CachedTexTransform[0][0][3],
-					DX8Wrapper::CachedTexTransform[0][3][0], DX8Wrapper::CachedTexTransform[0][3][1],
-					DX8Wrapper::CachedTexTransform[0][3][2], DX8Wrapper::CachedTexTransform[0][3][3]);
-				fclose(lf);
+		if (fvf == 0x242) {
+			// Log once per UNIQUE state signature so every terrain pass
+			// (base/alpha/noise x cloud) is captured, not just the first6.
+			static int lastSig[8] = {-2,-2,-2,-2,-2,-2,-2,-2};
+			static unsigned sigCount[8] = {0,0,0,0,0,0,0,0};
+			int sig = ((int)state.tex0Op) | ((int)state.tex1Op << 4) |
+				((int)state.uvSel0 << 8) | ((int)state.uvSel1 << 12) |
+				((int)state.srcBlend << 16) | ((int)state.dstBlend << 20);
+			for (int sg = 0; sg < 8; sg++) {
+				if (lastSig[sg] == sig) { sigCount[sg]++; break; }
+				if (lastSig[sg] == -2) {
+					lastSig[sg] = sig;
+					sigCount[sg] = 1;
+					FILE *lf = fopen("RTS_START.LOG", "a");
+					if (lf) {
+						fprintf(lf, "VK: TerrPipeSig tex0Op=%d tex1Op=%d uv0=%d uv1=%d blend=%d/%d light=%d fog=%d tex0='%s' tex1='%s'\n",
+							(int)state.tex0Op, (int)state.tex1Op,
+							(int)state.uvSel0, (int)state.uvSel1,
+							state.srcBlend, state.dstBlend, (int)state.lighting, (int)state.fog,
+							DX8Wrapper::BoundTextures[0] ? DX8Wrapper::BoundTextures[0]->Get_Texture_Name() : "NULL",
+							DX8Wrapper::BoundTextures[1] ? DX8Wrapper::BoundTextures[1]->Get_Texture_Name() : "NULL");
+						fprintf(lf, "VK: TerrMat texMat0 row0=(%.3f,%.3f,%.3f,%.3f) row1=(%.3f,%.3f,%.3f,%.3f)\n",
+							DX8Wrapper::CachedTexTransform[0][0][0], DX8Wrapper::CachedTexTransform[0][0][1],
+							DX8Wrapper::CachedTexTransform[0][0][2], DX8Wrapper::CachedTexTransform[0][0][3],
+							DX8Wrapper::CachedTexTransform[0][1][0], DX8Wrapper::CachedTexTransform[0][1][1],
+							DX8Wrapper::CachedTexTransform[0][1][2], DX8Wrapper::CachedTexTransform[0][1][3]);
+						fclose(lf);
+					}
+					break;
+				}
 			}
 		}
 	}
@@ -3110,12 +3125,22 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 		// texture with UV set 1 - the shader previously always used UV0.
 		// uvSel encoding: 0..3 = passthrough UV channels; 4 = camera-space
 		// position texgen; 5 = camera-space normal; 6 = reflection vector.
+		// Compare the FULL TEXCOORDINDEX value: the earlier version masked
+		// idx with 0xffff0000 first, which collapsed ALL three camera-space
+		// modes (compat NORMAL=0x00010000, POSITION=...01, REFLECTION=...02)
+		// onto the NORMAL branch - so the terrain noise/cloud pass (which
+		// requests CAMERA-SPACE POSITION) sampled with NORMAL texgen: flat
+		// terrain normals => one constant texel => view-dependent, often
+		// black => the noise multiply blacked out mission terrain. Also
+		// handled: the real D3D8 values (POSITION=0x00030000,
+		// REFLECTION=0x00020000) in case any data carries them.
 		auto mapUv = [](unsigned idx) -> int {
 			if (idx == 0x12345678) return 0;
-			unsigned tci = idx & 0xffff0000u;
-			if (tci == 0x00010002u) return 6;	// TCI_CAMERASPACEREFLECTIONVECTOR
-			if (tci == 0x00010000u) return 5;	// TCI_CAMERASPACENORMAL
-			if (tci == 0x00010001u) return 4;	// TCI_CAMERASPACEPOSITION
+			if (idx == 0x00010002u) return 6;	// compat TCI_CAMERASPACEREFLECTIONVECTOR
+			if (idx == 0x00010001u) return 4;	// compat TCI_CAMERASPACEPOSITION
+			if (idx == 0x00010000u) return 5;	// TCI_CAMERASPACENORMAL
+			if ((idx & 0xffff0000u) == 0x00030000u) return 4;	// D3D8 TCI_CAMERASPACEPOSITION
+			if ((idx & 0xffff0000u) == 0x00020000u) return 6;	// D3D8 TCI_CAMERASPACEREFLECTIONVECTOR
 			unsigned slot = idx & 0x0000ffffu;
 			return (slot <= 3) ? (int)slot : 0;	// lightmap/metal UV slots 2-3
 		};

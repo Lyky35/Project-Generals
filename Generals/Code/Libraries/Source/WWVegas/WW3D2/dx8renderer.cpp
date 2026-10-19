@@ -1723,12 +1723,19 @@ void DX8TextureCategoryClass::Render(void)
 				sky++;
 				FILE *lf = fopen("RTS_START.LOG", "a");
 				if (lf) {
-					fprintf(lf, "VK: SkyCat #%u mesh='%s' pass=%u tex0='%s' tex1='%s' primg=%d textur=%d\n",
-						sky, mesh->Get_Name(), (unsigned)pass,
-						Peek_Texture(0) ? Peek_Texture(0)->Get_Texture_Name() : "NULL",
-						Peek_Texture(1) ? Peek_Texture(1)->Get_Texture_Name() : "NULL",
-						(int)Get_Shader().Get_Primary_Gradient(),
-						(int)Get_Shader().Get_Texturing());
+					{
+						Vector3 mdiff(1,1,1);
+						VertexMaterialClass *vm = (VertexMaterialClass *)Peek_Material();
+						if (vm) vm->Get_Diffuse(&mdiff);
+						unsigned dsrc = vm ? (unsigned)vm->Get_Diffuse_Color_Source() : 99;
+						fprintf(lf, "VK: SkyCat #%u mesh='%s' pass=%u tex0='%s' primg=%d textur=%d matDiff=(%.2f,%.2f,%.2f) diffSrc=%u\n",
+							sky, mesh->Get_Name(), (unsigned)pass,
+							Peek_Texture(0) ? Peek_Texture(0)->Get_Texture_Name() : "NULL",
+							(int)Get_Shader().Get_Primary_Gradient(),
+							(int)Get_Shader().Get_Texturing(),
+							(float)mdiff.X, (float)mdiff.Y, (float)mdiff.Z,
+							dsrc);
+					}
 					fclose(lf);
 				}
 			}
