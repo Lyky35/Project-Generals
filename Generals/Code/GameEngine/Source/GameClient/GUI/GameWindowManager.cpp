@@ -1185,6 +1185,20 @@ WinInputReturnCode GameWindowManager::winProcessMouseEvent( GameWindowMessage ms
 				{
 
 					tempWin = window;
+					if( msg == GWM_LEFT_DOWN || msg == GWM_LEFT_UP )
+					{	static unsigned dp = 0; dp++;
+						if (dp <= 60) {
+							AsciiString wname = "";
+							if (TheNameKeyGenerator)
+								wname = TheNameKeyGenerator->keyToName(tempWin->winGetWindowId());
+							FILE *lf = fopen("RTS_START.LOG", "a");
+							if (lf) { fprintf(lf, "VK: ClickTarget #%u %s win=%p name='%s' status=%08x region=(%d,%d)-(%d,%d)\n",
+								dp, (msg==GWM_LEFT_DOWN)?"DOWN":"UP", (void*)tempWin,
+								wname.str()?wname.str():"?", (unsigned)tempWin->winGetStatus(),
+								(int)tempWin->m_region.lo.x,(int)tempWin->m_region.lo.y,
+								(int)tempWin->m_region.hi.x,(int)tempWin->m_region.hi.y); fclose(lf); }
+						}
+					}
 	
 					// Give everyone a chance to do something with the clicks
 					GameWindow *oldLoneWindow = m_loneWindow;
@@ -1196,6 +1210,18 @@ WinInputReturnCode GameWindowManager::winProcessMouseEvent( GameWindowMessage ms
 							break;
 
 					}  // end while
+					if( (msg == GWM_LEFT_DOWN || msg == GWM_LEFT_UP) )
+					{	static unsigned ep = 0; ep++;
+						if (ep <= 60) {
+							AsciiString ename = "";
+							if (tempWin && TheNameKeyGenerator)
+								ename = TheNameKeyGenerator->keyToName(tempWin->winGetWindowId());
+							FILE *lf = fopen("RTS_START.LOG", "a");
+							if (lf) { fprintf(lf, "VK: ClickEater #%u %s tempWin=%p name='%s' used=%d\n",
+								ep, (msg==GWM_LEFT_DOWN)?"DOWN":"UP", (void*)tempWin,
+								ename.str()?ename.str():"?", (tempWin!=NULL)?1:0); fclose(lf); }
+						}
+					}
 
 						
 					// First check to see if m_loneWindow is set if so, close the window

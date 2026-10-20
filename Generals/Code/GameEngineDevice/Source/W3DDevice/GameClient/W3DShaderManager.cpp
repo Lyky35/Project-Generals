@@ -1124,17 +1124,40 @@ Matrix4 inv = curView.Inverse(); // Vulkan uniform path; inverse for UV matrices
 			yoffset = -(float)shroud->getDrawOriginY() + height;
 		}
 
-	// Translation matrix - handled by Vulkan uniform buffers
-// // offset via identity
-	if(0) D3DXMatrixTranslation((D3DXMATRIX*)&offset, xoffset, yoffset,0);
-
-		width = 1.0f/(width*shroud->getTextureWidth());
-		height = 1.0f/(height*shroud->getTextureHeight());
-	// Scale matrix - handled by Vulkan uniform buffers
-// scale.Make_Identity(); scale[0][0]=width; scale[1][1]= height;
-	// CurView matrix - constructed from Vulkan uniform buffers
-// *((D3DXMATRIX *)&curView) = (inv * offset) * scale;
-		DX8Wrapper::_Set_DX8_Transform((D3DTRANSFORMSTATETYPE )(D3DTS_TEXTURE0+stage), *((Matrix4*)&curView));
+	// PORT FIX: the upstream composition (inv*offset)*scale was commented out
+	// with "handled by Vulkan uniform buffers" - nothing else built it, so the
+	// RAW VIEW MATRIX was uploaded as the shroud texgen matrix. Wrong matrix
+	// => sampled shroud UVs land on the clamped black border/arbitrary texels;
+	// the draw-origin offset (large on missions) and the view itself both
+	// change the result => mission terrain multiplied to black while the shell
+	// (small offsets) looked fine, and camera zoom changed the sampled texel =>
+	// the "terrain black when zoomed out, visible when zoomed in" symptom.
+	// Restored exactly as upstream (same structure as the working terrain
+	// inv*scale noise composition).
+	Matrix4 shroudScale;
+	shroudScale.Make_Identity();
+	width = 1.0f/(width*shroud->getTextureWidth());
+	height = 1.0f/(height*shroud->getTextureHeight());
+	shroudScale[0][0] = width;
+	shroudScale[1][1] = height;
+	Matrix4 shroudOffset;
+	shroudOffset.Make_Identity();
+	shroudOffset[3][0] = xoffset;
+	shroudOffset[3][1] = yoffset;
+	Matrix4 shroudMat = (inv * shroudOffset) * shroudScale;
+	{	static Real lastXo=1e9f, lastYo=1e9f, lastW=1e9f;
+		if (xoffset!=lastXo || yoffset!=lastYo || width!=lastW) {
+			lastXo=xoffset; lastYo=yoffset; lastW=width;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: ShroudMat stage=%d off=(%.1f,%.1f) scale=(%.6f,%.6f) m00=%.4f m03=%.4f m30=%.2f m31=%.2f\n",
+					(int)stage,xoffset,yoffset,width,height,
+					shroudMat[0][0],shroudMat[0][3],shroudMat[3][0],shroudMat[3][1]);
+				fclose(lf);
+			}
+		}
+	}
+		DX8Wrapper::_Set_DX8_Transform((D3DTRANSFORMSTATETYPE )(D3DTS_TEXTURE0+stage), shroudMat);
 	}
 	m_stageOfSet=stage;
 	return TRUE;

@@ -708,6 +708,9 @@ void Mouse::createStreamMessages( void )
 		{
 
 			case GWM_LEFT_DOWN:
+				{ static unsigned p=0; p++;
+				  if (p<=40||(p%25)==0) { FILE*lf=fopen("RTS_START.LOG","a");
+				    if(lf){fprintf(lf,"VK: MouseStream #%u DOWN pos=(%d,%d)\n",p,m_currMouse.pos.x,m_currMouse.pos.y);fclose(lf);} } }
 				msg = TheMessageStream->appendMessage( GameMessage::MSG_RAW_MOUSE_LEFT_BUTTON_DOWN );
 				msg->appendPixelArgument( m_currMouse.pos );
 				msg->appendIntegerArgument( TheKeyboard->getModifierFlags() );

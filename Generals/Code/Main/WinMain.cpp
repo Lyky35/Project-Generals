@@ -658,7 +658,16 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message,
 			case WM_RBUTTONUP:
 			case WM_RBUTTONDBLCLK:
 			{
-
+				{	static unsigned msp = 0; msp++;
+					if (msp <= 60 || (msp % 40) == 0) {
+						FILE *lf = fopen("RTS_START.LOG", "a");
+						if (lf) { fprintf(lf, "VK: MouseMsg #%u msg=0x%x wp=0x%x lp=(%d,%d) mouse=%p\n",
+							msp, (unsigned)message, (unsigned)wParam,
+							(int)(short)LOWORD(lParam), (int)(short)HIWORD(lParam), (void*)TheWin32Mouse);
+							fclose(lf);
+					}
+					}
+				}
 				if( TheWin32Mouse )
 					TheWin32Mouse->addWin32Event( message, wParam, lParam, TheMessageTime );
 
@@ -691,6 +700,12 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message,
 			{
 				Int x = (Int)LOWORD( lParam );
 				Int y = (Int)HIWORD( lParam );
+				{	static unsigned mvp = 0; mvp++;
+					if (mvp <= 40 || (mvp % 200) == 0) {
+						FILE *lf = fopen("RTS_START.LOG", "a");
+						if (lf) { fprintf(lf, "VK: MouseMove #%u at=(%d,%d)\n", mvp, x, y); fclose(lf); }
+					}
+				}
 				RECT rect;
 //				Int keys = wParam;
 

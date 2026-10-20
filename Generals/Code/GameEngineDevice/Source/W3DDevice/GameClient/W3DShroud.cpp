@@ -61,6 +61,19 @@ static void W3DShroud_CopyRectsStub(SurfaceClass *src, RECT *srcRects, UINT cRec
 	RECT fullRect = { 0, 0, (LONG)sd.Width, (LONG)sd.Height };
 	RECT *useRects = srcRects ? srcRects : &fullRect;
 	UINT useCount = srcRects ? cRects : 1;
+	{	static unsigned cp = 0; cp++;
+		if (cp <= 12 || (cp % 240) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: ShroudCopy #%u rects=%u rect0=(%ld,%ld)-(%ld,%ld) dst=(%ld,%ld) srcImg=%p dstImg=%p\n",
+					cp, useCount,
+					useRects[0].left, useRects[0].top, useRects[0].right, useRects[0].bottom,
+					dstPoints ? dstPoints[0].x : 0, dstPoints ? dstPoints[0].y : 0,
+					(void*)srcTex->GetImage(), (void*)dstTex->GetImage());
+				fclose(lf);
+			}
+		}
+	}
 	DX8Wrapper::_Copy_Vulkan_Rects(srcTex, useRects, useCount, dstTex, dstPoints);
 }
 
@@ -369,7 +382,11 @@ void W3DShroud::setShroudLevel(Int x, Int y, W3DShroudLevel level, Bool textureO
 				bluepixel = 255;
 			}
 
-			UnsignedShort *texel = (UnsignedShort *)((Byte *)m_srcTextureData + x*2 + y*m_srcTexturePitch);
+			// PORT FIX: SurfaceClass promotes R5G6B5 -> A8R8G8B8 (32-bit shadow,
+			// pitch = w*4). The original 16-bit write at x*2 mispacked cells into
+			// half-width pixels (right half stayed zero = black) so the uploaded
+			// shroud image never matched cell data.
+			UnsignedInt *texel32 = (UnsignedInt *)((Byte *)m_srcTextureData + x*4 + y*m_srcTexturePitch);
 
 //      For those interested, MLorenzen has this bock commented out until he gets back on Mon, Sept. 30 2002
 			// If this code is still here by mid october, nuke it!
@@ -382,7 +399,8 @@ void W3DShroud::setShroudLevel(Int x, Int y, W3DShroudLevel level, Bool textureO
 //				bluepixel -= redpixel;
 //			}
 
-			*texel = ( ((bluepixel&0xf8) >> 3) | ((greenpixel&0xfc)<<3) | ((redpixel&0xf8)<<8));
+			*texel32 = 0xff000000u | ((UnsignedInt)(redpixel & 0xff) << 16)
+				| ((UnsignedInt)(greenpixel & 0xff) << 8) | (UnsignedInt)(bluepixel & 0xff);
 		}
 		return;
 	}
@@ -432,13 +450,23 @@ void W3DShroud::fillShroudData(W3DShroudLevel level)
 		pixel=( ((bluepixel&0xf8) >> 3) | ((greenpixel&0xfc)<<3) | ((redpixel&0xf8)<<8));
 	}
 
-	UnsignedShort *ptr=(UnsignedShort *)m_srcTextureData;
-	Int pitch = m_srcTexturePitch >> 1;	//2 bytes per pointer increment 
+	// PORT FIX: 32-bit promoted shadow (see setShroudLevel) - write ARGB8888.
+	UnsignedInt pixel32 = 0xff000000u
+		| ((UnsignedInt)((pixel >> 8) & 0xf8 ? (((pixel >> 8) & 0xf8) | (((pixel >> 8) & 0xf8) >> 5)) : 0) << 16)
+		| ((UnsignedInt)(((pixel >> 3) & 0xfc) | (((pixel >> 3) & 0xfc) >> 6)) << 8)
+		| (UnsignedInt)((pixel & 0x1f) | ((pixel & 0x1f) << 5));
+	{
+		// expand 5/6/5 bits to 8 bits properly
+		unsigned r5 = (pixel >> 11) & 31, g6 = (pixel >> 5) & 63, b5 = pixel & 31;
+		pixel32 = 0xff000000u | ((r5 * 255 / 31) << 16) | ((g6 * 255 / 63) << 8) | (b5 * 255 / 31);
+	}
+	UnsignedInt *ptr32=(UnsignedInt *)m_srcTextureData;
+	Int pitch32 = m_srcTexturePitch >> 2;	//4 bytes per pixel
 	for (int y =0; y<m_numCellsY; y++)
 	{
 		for (int x =0; x<m_numCellsX; x++)
-			ptr[x]=pixel;
-		ptr	+= pitch;
+			ptr32[x]=pixel32;
+		ptr32	+= pitch32;
 	}
 
 #ifdef DO_FOG_INTERPOLATION
