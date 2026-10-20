@@ -45,6 +45,7 @@
 //-----------------------------------------------------------------------------
 //         Includes                                                      
 //-----------------------------------------------------------------------------
+#include <cmath>
 #include "W3DDevice/GameClient/heightmap.h"
 
 #include <stdio.h>
@@ -3645,6 +3646,7 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 	float maxX = -minX;
 	float minY = 200000;
 	float maxY = -minY;
+	Int validCorners = 0;
 	for (int i =0; i<2; i++) {
 		for (int j =0; j<2; j++) {
 			float xmod = (-i + 0.5 + viewport.Min.X) * zmod * xscale;// / aspect;
@@ -3661,11 +3663,32 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 
 			x = Vector3::Find_X_At_Z(intersectionZ, rayLocation, rayDirectionPt);
 			y = Vector3::Find_Y_At_Z(intersectionZ, rayLocation, rayDirectionPt);
-			if (x<minX) minX = x;
-			if (x>maxX) maxX = x;
-			if (y<minY) minY = y;
-			if (y>maxY) maxY = y;
+			// PORT FIX (cinematic black terrain): oblique/horizon rays make
+			// Find_X/Y_At_Z return inf/NaN (ray parallel to the ground plane)
+			// or hit the plane BEHIND the camera (view pitched up - upstream
+			// noted "@todo find out why values go out of range"). Garbage
+			// corners produced an empty visibility window and the code below
+			// then jumped drawOrg to map CENTER, rebuilding every terrain tile
+			// away from the camera = terrain rendered black during cinematics.
+			// Only accept finite intersections in front of the camera.
+			Real t = (intersectionZ - rayLocation.Z) / rayDirection.Z;
+			if (t > 0.0f && std::isfinite(x) && std::isfinite(y)) {
+				if (x<minX) minX = x;
+				if (x>maxX) maxX = x;
+				if (y<minY) minY = y;
+				if (y>maxY) maxY = y;
+				validCorners++;
+			}
 		}
+	}
+
+	// Seed the ground rect with the camera's own footprint so a partial/empty
+	// corner set still centers on where the camera actually is.
+	if (std::isfinite(camera_location.X) && std::isfinite(camera_location.Y)) {
+		if (camera_location.X<minX) minX = camera_location.X;
+		if (camera_location.X>maxX) maxX = camera_location.X;
+		if (camera_location.Y<minY) minY = camera_location.Y;
+		if (camera_location.Y>maxY) maxY = camera_location.Y;
 	}
 
 	// convert back to cell indexes.
@@ -3697,6 +3720,21 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 	}
 	calcVis(frustum, m_map, minX-WIDE_STEP/2, minY-WIDE_STEP/2, maxX+WIDE_STEP/2, maxY+WIDE_STEP/2, limit);
 
+	if (visMaxX < visMinX || visMaxY < visMinY) {
+		// PORT FIX: frustum point tests found no terrain (skyward frames,
+		// degenerate rect). Upstream fell through and centered drawOrg on the
+		// whole map - a full rebuild that blanks terrain while the cinematic
+		// camera is elsewhere (black flash). Keep the previous window.
+		static unsigned bailVis = 0; bailVis++;
+		if (bailVis <= 20 || (bailVis % 60) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: TerrBail emptyVis #%u validCorners=%d rect=(%.1f,%.1f)-(%.1f,%.1f)\n",
+				bailVis, (int)validCorners, minX, minY, maxX, maxY); fclose(lf); }
+		}
+		m_updating = false;
+		return;
+	}
+
 	if (m_map) {
 		Int newOrgX;
 		if (visMaxX-visMinX > m_x) {
@@ -3722,6 +3760,14 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 		Int deltaX = newOrgX - m_map->getDrawOrgX();
 		Int deltaY = newOrgY - m_map->getDrawOrgY();
 		if (IABS(deltaX) > m_x/2 || IABS(deltaY)>m_x/2) {
+			{	static unsigned jmp = 0; jmp++;
+				if (jmp <= 40 || (jmp % 60) == 0) {
+					FILE *lf = fopen("RTS_START.LOG", "a");
+					if (lf) { fprintf(lf, "VK: TerrOrgJump #%u old=(%d,%d) new=(%d,%d) delta=(%d,%d) vis=(%d,%d)-(%d,%d)\n",
+						jmp, m_map->getDrawOrgX(), m_map->getDrawOrgY(), newOrgX, newOrgY, deltaX, deltaY,
+						visMinX, visMinY, visMaxX, visMaxY); fclose(lf); }
+				}
+			}
 			m_map->setDrawOrg(newOrgX, newOrgY);
 			m_originY = 0;
 			m_originX = 0;

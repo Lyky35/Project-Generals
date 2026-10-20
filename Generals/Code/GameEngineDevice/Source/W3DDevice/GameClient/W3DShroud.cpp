@@ -326,6 +326,17 @@ void W3DShroud::setShroudLevel(Int x, Int y, W3DShroudLevel level, Bool textureO
 	if (!m_pSrcTexture)
 		return;
 
+	if (!(x < m_numCellsX && y < m_numCellsY)) {
+		// PORT FIX probe: reveals rejected by the shroud range = cells the
+		// game logic manages but the shroud texture cannot hold (alignment /
+		// sizing mismatch => terrain stays black where logic thinks revealed).
+		static unsigned dr = 0; dr++;
+		if (dr <= 60 || (dr % 100) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: ShroudDrop #%u cell=(%d,%d) numCells=(%d,%d) level=%d\n",
+				dr, x, y, m_numCellsX, m_numCellsY, (int)level); fclose(lf); }
+		}
+	} else
 	if (x < m_numCellsX && y < m_numCellsY)
 	{
 		if (level < TheGlobalData->m_shroudAlpha)
@@ -722,6 +733,38 @@ void W3DShroud::render(CameraClass *cam)
 		visEndY = m_numCellsY;
 	}
 
+	// PORT FIX (black terrain under the camera during cinematics): the
+	// heightmap-derived vis rect carries border/drawOrg conventions that
+	// drifted from the shroud grid (observed window at cells45..78 while the
+	// camera ground sat at cell ~41 -> shroud UVs under the camera fell just
+	// outside the copied window and clamped to its black edge every frame).
+	// Re-anchor the window on the CAMERA ground (same borderless grid the
+	// reveals write to: cell = world/cellSize) centered in the dst interior.
+	// Copy rect, m_drawOriginX (=> shroud texgen offset) and fog window all
+	// derive from visStart/visEnd below, so everything stays consistent.
+	if (cam)
+	{
+		Vector3 camPos = cam->Get_Position();
+		Int camCellX = REAL_TO_INT_FLOOR(camPos.X / m_cellWidth);
+		Int camCellY = REAL_TO_INT_FLOOR(camPos.Y / m_cellHeight);
+		Int interiorW = m_dstTextureWidth - 2;
+		Int interiorH = m_dstTextureHeight - 2;
+		if (interiorW > m_numCellsX) interiorW = m_numCellsX;
+		if (interiorH > m_numCellsY) interiorH = m_numCellsY;
+		if (interiorW < 1) interiorW = 1;
+		if (interiorH < 1) interiorH = 1;
+		visStartX = camCellX - interiorW / 2;
+		visStartY = camCellY - interiorH / 2;
+		if (visStartX < 0) visStartX = 0;
+		if (visStartY < 0) visStartY = 0;
+		if (visStartX > m_numCellsX - interiorW) visStartX = m_numCellsX - interiorW;
+		if (visStartY > m_numCellsY - interiorH) visStartY = m_numCellsY - interiorH;
+		visEndX = visStartX + interiorW;
+		visEndY = visStartY + interiorH;
+		if (visEndX > m_numCellsX) visEndX = m_numCellsX;
+		if (visEndY > m_numCellsY) visEndY = m_numCellsY;
+	}
+
 	m_drawOriginX = (Real)visStartX * m_cellWidth;
 	m_drawOriginY	= (Real)visStartY * m_cellHeight;
 
@@ -760,11 +803,23 @@ void W3DShroud::render(CameraClass *cam)
 
 	RECT	srcRect;
 	POINT	dstPoint={1,1};	//first row/column is reserved for border.
-	
+
+	// PORT FIX (black terrain in revealed areas): the copy rect used the
+	// runtime vis window (drawWidth-derived, measured ~41 cells) but the DST
+	// texture interior is LARGER (~62 cells, sized at init from a different
+	// drawWidth snapshot - stretch vs normal). The uncopied remainder stayed
+	// at its initial black fill, and shroud UVs mapping there clamped to the
+	// black border even though SRC cells were revealed (ShroudView probe:
+	// srcPix=0xff at camera cell, dst black, dstNonz bbox not covering).
+	// Always fill the DST interior starting at visStart.
 	srcRect.left=visStartX;
 	srcRect.top=visStartY;
-	srcRect.right=visEndX;
-	srcRect.bottom=visEndY;
+	srcRect.right=visStartX + m_dstTextureWidth - 2;
+	srcRect.bottom=visStartY + m_dstTextureHeight - 2;
+	if (srcRect.right > m_numCellsX) srcRect.right = m_numCellsX;
+	if (srcRect.bottom > m_numCellsY) srcRect.bottom = m_numCellsY;
+	visEndX = srcRect.right;	//keep fog interpolation on the same window
+	visEndY = srcRect.bottom;
 
 #ifdef DO_FOG_INTERPOLATION
 	//interpolate current shroud state to the final one
@@ -796,6 +851,80 @@ void W3DShroud::render(CameraClass *cam)
 	}
 
 	REF_PTR_RELEASE (pDestSurface);
+
+	// Full-chain shroud probe (gated): does the CAMERA ground cell hold
+	// revealed data in the SRC shadow and in the DST texture that terrain
+	// samples? Discriminates content/fog bug vs uv-mapping/sampling bug.
+	{	static unsigned vp = 0; vp++;
+		if (cam && (vp <= 20 || (vp % 90) == 0)) {
+			Vector3 cp = cam->Get_Position();
+			WorldHeightMap *hmp = TheTerrainRenderObject->getMap();
+			Int cx = (Int)floor(cp.X / m_cellWidth) + hmp->getBorderSize();
+			Int cy = (Int)floor(cp.Y / m_cellHeight) + hmp->getBorderSize();
+			UnsignedInt srcPix = 0;
+			if (cx >= 0 && cy >= 0 && cx < m_numCellsX && cy < m_numCellsY && m_srcTextureData)
+				srcPix = ((UnsignedInt *)m_srcTextureData)[cx + cy * (m_srcTexturePitch >> 2)];
+			unsigned dstPix = 0; unsigned dstNonz = 0; Int bbx0=99999, bby0=99999, bbx1=-1, bby1=-1;
+			{
+				SurfaceClass *rd = m_pDstTexture ? m_pDstTexture->Get_Surface_Level(0) : NULL;
+				if (rd) {
+					int pitch = 0;
+					void *px = rd->Lock(&pitch);
+					if (px && pitch >= 4) {
+						SurfaceClass::SurfaceDescription dsc; rd->Get_Description(dsc);
+						for (unsigned yy = 0; yy < dsc.Height; yy += (dsc.Height/24 ? dsc.Height/24 : 1)) {
+							for (unsigned xx = 0; xx < dsc.Width; xx += (dsc.Width/24 ? dsc.Width/24 : 1)) {
+								unsigned v = ((UnsignedInt *)((char *)px + yy * pitch))[xx] & 0xffffff;
+								if (v) { dstNonz++;
+									if ((Int)xx<bbx0) bbx0=xx; if ((Int)yy<bby0) bby0=yy;
+									if ((Int)xx>bbx1) bbx1=xx; if ((Int)yy>bby1) bby1=yy; }
+							}
+						}
+						Int dxp = (cx - visStartX) + 1, dyp = (cy - visStartY) + 1;
+						if (dxp >= 0 && dyp >= 0 && dxp < (Int)dsc.Width && dyp < (Int)dsc.Height)
+							dstPix = ((UnsignedInt *)((char *)px + dyp * pitch))[dxp] & 0xffffff;
+					}
+					rd->Unlock();
+					REF_PTR_RELEASE(rd);
+				}
+			}
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: ShroudView #%u cam=(%.0f,%.0f) cell=(%d,%d) srcPix=0x%06x dstPix=0x%06x dstNonz=%u bbox=(%d,%d)-(%d,%d) vis=(%d,%d)-(%d,%d) org=(%d,%d)\n",
+				vp, cp.X, cp.Y, cx, cy, srcPix, dstPix, dstNonz, bbx0,bby0,bbx1,bby1,
+				visStartX, visStartY, visEndX, visEndY, m_drawOriginX, m_drawOriginY); fclose(lf); }
+			// Dump DST (full) and SRC (full) to PGM files (RTS_SHROUD_DUMP=1).
+			{	static const bool dumpShroud = [](){ const char *e=getenv("RTS_SHROUD_DUMP"); return e&&e[0]&&e[0]!='0'; }();
+			  if (dumpShroud) {
+				static unsigned dn = 0; dn++;
+				char fn[128];
+				SurfaceClass *rd = m_pDstTexture ? m_pDstTexture->Get_Surface_Level(0) : NULL;
+				if (rd) {
+					int pitch = 0; void *px = rd->Lock(&pitch);
+					if (px) {
+						SurfaceClass::SurfaceDescription dsc; rd->Get_Description(dsc);
+						snprintf(fn, sizeof(fn), "shrouddst%03u.pgm", dn);
+						FILE *f = fopen(fn, "wb");
+						if (f) { fprintf(f, "P5\n%u %u\n255\n", dsc.Width, dsc.Height);
+							for (unsigned yy=0; yy<dsc.Height; yy++) for (unsigned xx=0; xx<dsc.Width; xx++) {
+								unsigned v = ((unsigned char*)px + yy*pitch)[xx*4]; // B channel of BGRA
+								fputc(v > 20 ? 255 : 0, f); }
+							fclose(f); }
+					}
+					rd->Unlock(); REF_PTR_RELEASE(rd);
+				}
+				if (m_srcTextureData) {
+					snprintf(fn, sizeof(fn), "shroudsrc%03u.pgm", dn);
+					FILE *f = fopen(fn, "wb");
+					if (f) { fprintf(f, "P5\n%d %d\n255\n", m_numCellsX, m_numCellsY);
+						for (int yy=0; yy<m_numCellsY; yy++) for (int xx=0; xx<m_numCellsX; xx++) {
+							unsigned v = ((UnsignedInt *)m_srcTextureData)[xx + yy*(m_srcTexturePitch>>2)] & 0xff;
+							fputc(v > 20 ? 255 : 0, f); }
+						fclose(f); }
+				}
+			  }
+			}
+		}
+	}
 }
 
 #define FOG_INTERPOLATION_RATE	(255.0f/1000.0f)	//take one second to go from black to fully lit.

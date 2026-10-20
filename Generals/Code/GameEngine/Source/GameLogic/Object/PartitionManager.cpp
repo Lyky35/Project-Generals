@@ -3041,6 +3041,18 @@ void PartitionManager::shroudMapForPlayer( Int playerIndex )
 //-----------------------------------------------------------------------------
 void PartitionManager::refreshShroudForLocalPlayer()
 {
+	// PORT probe: partition grid vs shroud texture alignment facts.
+	{
+		static unsigned rp = 0; rp++;
+		if (rp <= 4 || rp == 100) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: PartGrid #%u cells=(%d,%d) cellSize=%.2f worldLo=(%.0f,%.0f) worldHi=(%.0f,%.0f) total=%d\n",
+				rp, m_cellCountX, m_cellCountY, m_cellSize,
+				m_worldExtents.lo.x, m_worldExtents.lo.y, m_worldExtents.hi.x, m_worldExtents.hi.y,
+				m_totalCellCount);
+				fclose(lf); }
+		}
+	}
 	// This is a drawing refresh only, and so is allowed to use the Local Player.
 	TheDisplay->clearShroud();
 	TheRadar->clearShroud();
