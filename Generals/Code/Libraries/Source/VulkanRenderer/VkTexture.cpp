@@ -36,6 +36,7 @@ VkTexture::VkTexture()
 	, m_height(0)
 	, m_mips(1)
 	, m_allocBytes(0)
+	, m_layout(VK_IMAGE_LAYOUT_UNDEFINED)
 	, m_samplerCount(0)
 {
 	for (int i = 0; i < 4; i++) {
@@ -285,6 +286,7 @@ void VkTexture::TransitionLayout(VkCommandBuffer cmd, VkImageLayout oldLayout, V
 		dstStage = VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
 	}
 	vkCmdPipelineBarrier(cmd, srcStage, dstStage, 0, 0, nullptr, 0, nullptr, 1, &barrier);
+	m_layout = newLayout;
 }
 
 void VkTexture::UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const void *pixels)
@@ -495,6 +497,7 @@ bool VkTexture::ReadbackLevel(void *dst, uint32_t pitchBytes)
 		b.subresourceRange = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 };
 		vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT,
 			VK_PIPELINE_STAGE_TRANSFER_BIT, 0, 0, nullptr, 0, nullptr, 1, &b);
+		m_layout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
 	}
 	{
 		VkBufferImageCopy rg = {};
@@ -515,6 +518,7 @@ bool VkTexture::ReadbackLevel(void *dst, uint32_t pitchBytes)
 		b.subresourceRange = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 };
 		vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_TRANSFER_BIT,
 			VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, 0, 0, nullptr, 0, nullptr, 1, &b);
+		m_layout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 	}
 	dev.EndOneTimeCommands(cmd);	// submits and waits idle
 

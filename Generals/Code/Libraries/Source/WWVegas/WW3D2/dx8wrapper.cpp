@@ -2299,15 +2299,27 @@ void DX8Wrapper::_Copy_Vulkan_Rects(
 			bars[i].dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
 			bars[i].subresourceRange = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 };
 		}
+		// PORT FIX: oldLayout = each image's TRACKED layout. Claiming
+		// SHADER_READ_ONLY when the image is in another state is UB that
+		// amdvlk64 turns into 0xc0000005 (field crash with graphics-hook64
+		// frames on top - the hook just intercepted the bad call).
+		VkImageLayout srcOld = pSourceTexture->GetLayout();
+		VkImageLayout dstOld = pDestinationTexture->GetLayout();
+		auto accessFor = [](VkImageLayout l) -> VkAccessFlags {
+			if (l == VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL) return VK_ACCESS_SHADER_READ_BIT;
+			if (l == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL || l == VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL)
+				return VK_ACCESS_TRANSFER_WRITE_BIT;
+			return 0;
+		};
 		bars[0].image = pSourceTexture->GetImage();
-		bars[0].srcAccessMask = VK_ACCESS_SHADER_READ_BIT;
+		bars[0].srcAccessMask = accessFor(srcOld);
 		bars[0].dstAccessMask = VK_ACCESS_TRANSFER_READ_BIT;
-		bars[0].oldLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+		bars[0].oldLayout = srcOld;
 		bars[0].newLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
 		bars[1].image = pDestinationTexture->GetImage();
-		bars[1].srcAccessMask = 0;
+		bars[1].srcAccessMask = accessFor(dstOld);
 		bars[1].dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
-		bars[1].oldLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+		bars[1].oldLayout = dstOld;
 		bars[1].newLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
 		vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT,
 			VK_PIPELINE_STAGE_TRANSFER_BIT, 0, 0, nullptr, 0, nullptr, 2, bars);
@@ -2363,6 +2375,8 @@ void DX8Wrapper::_Copy_Vulkan_Rects(
 		bars[1].image = pDestinationTexture->GetImage();
 		bars[1].oldLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
 		bars[1].newLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+		pSourceTexture->SetLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+		pDestinationTexture->SetLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 		vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_TRANSFER_BIT,
 			VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, 0, 0, nullptr, 0, nullptr, 2, bars);
 	}

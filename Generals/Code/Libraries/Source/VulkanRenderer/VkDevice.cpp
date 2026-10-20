@@ -185,6 +185,40 @@ void VulkanDevice::Shutdown()
 
 bool VulkanDevice::CreateInstance()
 {
+	// PORT FIX (field crash: amdvlk64 AV, graphics-hook64.dll in the stack,
+	// user runs no OBS): orphaned/registered Vulkan IMPLICIT LAYERS (OBS/
+	// Streamlabs-family graphics-hook64, RTSS, MangoHud) are auto-loaded into
+	// every Vulkan app by the loader. Disable third-party implicit layers by
+	// default before instance creation. Opt back in with RTS_VK_LAYERS=1.
+	{
+		const char *optIn = getenv("RTS_VK_LAYERS");
+		if (!optIn || optIn[0] == '\0' || optIn[0] == '0') {
+#ifdef _WIN32
+			SetEnvironmentVariableA("VK_LOADER_LAYERS_DISABLE",
+				"VK_LAYER_OBS_HOOK:VK_LAYER_RTSS:VK_LAYER_MANGOHUD_overlay:*OBS*:*obs*:*RTSS*:*MangoHud*:*mangohud*");
+#else
+			setenv("VK_LOADER_LAYERS_DISABLE",
+				"VK_LAYER_OBS_HOOK:VK_LAYER_RTSS:VK_LAYER_MANGOHUD_overlay:*OBS*:*obs*:*RTSS*:*MangoHud*:*mangohud*", 1);
+#endif
+		}
+		static bool loggedLayers = false;
+		if (!loggedLayers) {
+			loggedLayers = true;
+			uint32_t lcount = 0;
+			vkEnumerateInstanceLayerProperties(&lcount, nullptr);
+			std::vector<VkLayerProperties> lprops(lcount ? lcount : 1);
+			if (lcount)
+				vkEnumerateInstanceLayerProperties(&lcount, lprops.data());
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: VkLayers n=%u", (unsigned)lcount);
+				for (uint32_t li = 0; li < lcount && li < 16; li++)
+					fprintf(lf, " '%s'", lprops[li].layerName);
+				fprintf(lf, "\n");
+				fclose(lf);
+			}
+		}
+	}
 	VkApplicationInfo appInfo = {};
 	appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
 	appInfo.pApplicationName = "Command and Conquer Generals";

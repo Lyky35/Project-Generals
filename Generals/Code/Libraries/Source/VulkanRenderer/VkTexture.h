@@ -41,6 +41,10 @@ public:
     VkSampler GetSampler(bool filtered, bool repeat);
 
     VkImage GetImage() const { return m_image; }
+    // Tracked layout: strict drivers (amdvlk) crash on barriers that claim a
+    // layout the image is not actually in; keep the truth here.
+    VkImageLayout GetLayout() const { return m_layout; }
+    void SetLayout(VkImageLayout l) { m_layout = l; }
     VkImageView GetView() const { return m_view; }
     VkSampler GetSampler() const { return m_samplerCount > 0 ? m_samplers[0].sampler : VK_NULL_HANDLE; }
     VkFormat GetFormat() const { return m_format; }
@@ -58,6 +62,7 @@ private:
     uint32_t m_height;
     uint32_t m_mips;
     uint64_t m_allocBytes;
+    VkImageLayout m_layout;
     SamplerEntry m_samplers[4];
     int m_samplerCount;
     VkSampler m_sampler;
