@@ -193,12 +193,18 @@ bool VulkanDevice::CreateInstance()
 	{
 		const char *optIn = getenv("RTS_VK_LAYERS");
 		if (!optIn || optIn[0] == '\0' || optIn[0] == '0') {
+			// Expanded: user's machine also registers GOG Galaxy overlay x3 and
+			// LUNARG monitor/screenshot/api_dump as implicit layers.
 #ifdef _WIN32
 			SetEnvironmentVariableA("VK_LOADER_LAYERS_DISABLE",
-				"VK_LAYER_OBS_HOOK:VK_LAYER_RTSS:VK_LAYER_MANGOHUD_overlay:*OBS*:*obs*:*RTSS*:*MangoHud*:*mangohud*");
+				"VK_LAYER_OBS_HOOK:VK_LAYER_RTSS:VK_LAYER_MANGOHUD_overlay:"
+				"GalaxyOverlayVkLayer:*Galaxy*:*OBS*:*obs*:*RTSS*:*MangoHud*:*mangohud*:"
+				"*LUNARG_monitor*:*LUNARG_screenshot*:*LUNARG_api_dump*:*gfxreconstruct*");
 #else
 			setenv("VK_LOADER_LAYERS_DISABLE",
-				"VK_LAYER_OBS_HOOK:VK_LAYER_RTSS:VK_LAYER_MANGOHUD_overlay:*OBS*:*obs*:*RTSS*:*MangoHud*:*mangohud*", 1);
+				"VK_LAYER_OBS_HOOK:VK_LAYER_RTSS:VK_LAYER_MANGOHUD_overlay:"
+				"GalaxyOverlayVkLayer:*Galaxy*:*OBS*:*obs*:*RTSS*:*MangoHud*:*mangohud*:"
+				"*LUNARG_monitor*:*LUNARG_screenshot*:*LUNARG_api_dump*:*gfxreconstruct*", 1);
 #endif
 		}
 		static bool loggedLayers = false;
@@ -251,6 +257,47 @@ bool VulkanDevice::CreateInstance()
 	vkLog("vkCreateInstance", (int)instRes);
 	if (instRes != VK_SUCCESS)
 		return false;
+
+	// PORT FIX diagnostics (field crash: graphics-hook64 interposing our
+	// presents): log WHICH vulkan-1.dll was loaded and WHICH module owns the
+	// present function. If the disable env was ignored (old SYSTEM loader
+	// used because our shipped vulkan-1.dll is missing/stale next to
+	// RTS.exe) or a layer still interposes, these two lines say so.
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+#ifdef _WIN32
+		char path[MAX_PATH] = "?";
+		HMODULE loaderMod = GetModuleHandleA("vulkan-1.dll");
+		if (loaderMod)
+			GetModuleFileNameA(loaderMod, path, MAX_PATH);
+		if (lf) { fprintf(lf, "VK: vulkan1=%s\n", path); fclose(lf); lf = nullptr; }
+		// Which module owns vkQueuePresentKHR in THIS instance's chain?
+		PFN_vkGetInstanceProcAddr gipa =
+			(PFN_vkGetInstanceProcAddr)vkGetInstanceProcAddr(m_instance, "vkGetInstanceProcAddr");
+		PFN_vkQueuePresentKHR presentFn = gipa
+			? (PFN_vkQueuePresentKHR)gipa(m_instance, "vkQueuePresentKHR")
+			: nullptr;
+		char owner[MAX_PATH] = "?";
+		BOOL interposed = FALSE;
+		if (presentFn) {
+			HMODULE ownerMod = nullptr;
+			if (GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS,
+					(LPCSTR)presentFn, &ownerMod) && ownerMod) {
+				GetModuleFileNameA(ownerMod, owner, MAX_PATH);
+				if (loaderMod && ownerMod != loaderMod)
+					interposed = TRUE;
+			}
+		}
+		lf = fopen("RTS_START.LOG", "a");
+		if (lf) {
+			fprintf(lf, "VK: PresentFn=%s%s\n", owner,
+				interposed ? " [LAYER INTERPOSED - third-party Vulkan layer ACTIVE]" : "");
+			fclose(lf);
+		}
+#else
+		if (lf) { fprintf(lf, "VK: vulkan1=(posix)\n"); fclose(lf); }
+#endif
+	}
 
 	if (kEnableValidation) {
 		VkDebugUtilsMessengerCreateInfoEXT messengerInfo = {};
