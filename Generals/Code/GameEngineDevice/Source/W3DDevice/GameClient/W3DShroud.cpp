@@ -274,12 +274,14 @@ Bool W3DShroud::ReAcquireResources(void)
 	
 		// Create destination texture (stored in video memory).
 		// Since we control the video memory copy, we can do partial updates more efficiently. Or do shift blits.
-#if defined(_DEBUG) || defined(_INTERNAL)
-		if (TheGlobalData && TheGlobalData->m_fogOfWarOn)
+		// PORT FIX (AMD crash + black terrain): the SRC surface is created as
+		// R5G6B5 but SurfaceClass PROMOTES it to 32-bit A8R8G8B8; the DST
+		// TextureClass(R5G6B5) stayed a true 16-bit 565 image, so the shroud
+		// vkCmdCopyImage ran 32->16 (illegal format mismatch). lavapipe
+		// tolerated it (local builds looked fixed); amdvlk64 crashed with
+		// 0xc0000005 and/or left the dst black/garbage = terrain still black
+		// in missions. Create the dst as A8R8G8B8 to match the src image.
 			m_pDstTexture = MSGNEW("TextureClass") TextureClass(m_dstTextureWidth,m_dstTextureHeight,WW3D_FORMAT_A8R8G8B8,TextureClass::MIP_LEVELS_1, TextureClass::POOL_DEFAULT);
-		else
-#endif
-			m_pDstTexture = MSGNEW("TextureClass") TextureClass(m_dstTextureWidth,m_dstTextureHeight,WW3D_FORMAT_R5G6B5,TextureClass::MIP_LEVELS_1, TextureClass::POOL_DEFAULT);
 
 		DEBUG_ASSERTCRASH( m_pDstTexture != NULL, ("Failed ReAcquire of shroud texture"));
 
@@ -529,11 +531,17 @@ void W3DShroud::fillBorderShroudData(W3DShroudLevel level, SurfaceClass* pDestSu
 	}
 
 	//Skip to unused texels within the shroud data
-	UnsignedShort *ptr=(UnsignedShort *)m_srcTextureData + m_numCellsY*(m_srcTexturePitch >> 1);
+	// PORT FIX:32-bit promoted shadow (see setShroudLevel) - same expansion.
+	UnsignedInt borderPix32;
+	{
+		unsigned r5 = (pixel >> 11) & 31, g6 = (pixel >> 5) & 63, b5 = pixel & 31;
+		borderPix32 = 0xff000000u | ((r5 * 255 / 31) << 16) | ((g6 * 255 / 63) << 8) | (b5 * 255 / 31);
+	}
+	UnsignedInt *ptr32=(UnsignedInt *)m_srcTextureData + m_numCellsY*(m_srcTexturePitch >> 2);
 
 	//Fill unused texels with border color
 	for (int x =0; x<m_numCellsX; x++)
-			ptr[x]=pixel;
+			ptr32[x]=borderPix32;
 
 	//Fill destination texture with border color
 
@@ -865,6 +873,10 @@ void W3DShroud::render(CameraClass *cam)
 			if (cx >= 0 && cy >= 0 && cx < m_numCellsX && cy < m_numCellsY && m_srcTextureData)
 				srcPix = ((UnsignedInt *)m_srcTextureData)[cx + cy * (m_srcTexturePitch >> 2)];
 			unsigned dstPix = 0; unsigned dstNonz = 0; Int bbx0=99999, bby0=99999, bbx1=-1, bby1=-1;
+			// PORT FIX: dst readback (Lock -> GPU sync) mid-frame crashed
+			// amdvlk64; only do it with RTS_SHROUD_DUMP=1.
+			static const bool dumpShroud2 = [](){ const char *e=getenv("RTS_SHROUD_DUMP"); return e&&e[0]&&e[0]!='0'; }();
+			if (dumpShroud2)
 			{
 				SurfaceClass *rd = m_pDstTexture ? m_pDstTexture->Get_Surface_Level(0) : NULL;
 				if (rd) {
