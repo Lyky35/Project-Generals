@@ -866,9 +866,18 @@ void W3DShroud::render(CameraClass *cam)
 	{	static unsigned vp = 0; vp++;
 		if (cam && (vp <= 20 || (vp % 90) == 0)) {
 			Vector3 cp = cam->Get_Position();
-			WorldHeightMap *hmp = TheTerrainRenderObject->getMap();
-			Int cx = (Int)floor(cp.X / m_cellWidth) + hmp->getBorderSize();
-			Int cy = (Int)floor(cp.Y / m_cellHeight) + hmp->getBorderSize();
+			// PORT FIX: reveals write PARTITION cells (world/cellSize, NO border
+			// offset - PartitionManager::worldToCell). The probe previously added
+			// getBorderSize() and therefore read BORDER cells (always shrouded or
+			// out of range) - every "camera cell black" sample was meaningless.
+			// true cell = world/cellW; also log the cell the SHADER actually
+			// samples via the drawOrigin transform (matches ShroudMat uv).
+			Int cx = (Int)floor(cp.X / m_cellWidth);
+			Int cy = (Int)floor(cp.Y / m_cellHeight);
+			Int sx = (Int)floor((cp.X - (Real)m_drawOriginX + m_cellWidth) / m_cellWidth) + visStartX;
+			Int sy = (Int)floor((cp.Y - (Real)m_drawOriginY + m_cellHeight) / m_cellHeight) + visStartY;
+			Int dstCol = sx - visStartX + 1;
+			Int dstRow = sy - visStartY + 1;
 			UnsignedInt srcPix = 0;
 			if (cx >= 0 && cy >= 0 && cx < m_numCellsX && cy < m_numCellsY && m_srcTextureData)
 				srcPix = ((UnsignedInt *)m_srcTextureData)[cx + cy * (m_srcTexturePitch >> 2)];
@@ -900,10 +909,13 @@ void W3DShroud::render(CameraClass *cam)
 					REF_PTR_RELEASE(rd);
 				}
 			}
+			UnsignedInt sxPix = 0;
+			if (sx >= 0 && sy >= 0 && sx < m_numCellsX && sy < m_numCellsY && m_srcTextureData)
+				sxPix = ((UnsignedInt *)m_srcTextureData)[sx + sy * (m_srcTexturePitch >> 2)];
 			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: ShroudView #%u cam=(%.0f,%.0f) cell=(%d,%d) srcPix=0x%06x dstPix=0x%06x dstNonz=%u bbox=(%d,%d)-(%d,%d) vis=(%d,%d)-(%d,%d) org=(%d,%d)\n",
-				vp, cp.X, cp.Y, cx, cy, srcPix, dstPix, dstNonz, bbx0,bby0,bbx1,bby1,
-				visStartX, visStartY, visEndX, visEndY, m_drawOriginX, m_drawOriginY); fclose(lf); }
+			if (lf) { fprintf(lf, "VK: ShroudView #%u cam=(%.0f,%.0f) cell=(%d,%d) src=0x%06x shader=(%d,%d) shSrc=0x%06x dstCol=%d vis=(%d,%d)-(%d,%d)\n",
+				vp, cp.X, cp.Y, cx, cy, srcPix, sx, sy, sxPix, dstCol,
+				visStartX, visStartY, visEndX, visEndY); fclose(lf); }
 			// Dump DST (full) and SRC (full) to PGM files (RTS_SHROUD_DUMP=1).
 			{	static const bool dumpShroud = [](){ const char *e=getenv("RTS_SHROUD_DUMP"); return e&&e[0]&&e[0]!='0'; }();
 			  if (dumpShroud) {

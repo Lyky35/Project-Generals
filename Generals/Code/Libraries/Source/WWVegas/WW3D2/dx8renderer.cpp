@@ -1480,6 +1480,19 @@ unsigned DX8TextureCategoryClass::Add_Mesh(
 	unsigned pass)
 {
 	int poly_count=split_table.Get_Polygon_Count();
+	{
+		MeshModelClass *smm = split_table.Get_Mesh_Model_Class();
+		const char *bn = smm ? smm->Get_Name() : nullptr;
+		if (bn && (strstr(bn, "PROP") || strstr(bn, "ROTOR") || strstr(bn, "BLADE"))) {
+			static unsigned cp = 0; cp++;
+			if (cp <= 30) {
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "VK: BladeCatAdd mesh='%s' pass=%d splitPolys=%d tex0='%s'\n",
+					bn, pass, poly_count,
+					textures[0] ? textures[0]->Get_Texture_Name() : "(null)"); fclose(lf); }
+			}
+		}
+	}
 
 	unsigned index_count=0;
 
@@ -2043,6 +2056,23 @@ void DX8MeshRendererClass::Register_Mesh_Type(MeshModelClass* mmc)
 #endif
 	bool skin=(mmc->Get_Flag(MeshModelClass::SKIN) && mmc->VertexBoneLink);
 	bool sorting=((!!mmc->Get_Flag(MeshModelClass::SORT)) && WW3D::Is_Sorting_Enabled());
+	{
+		const char *bn = mmc->Get_Name();
+		if (bn && (strstr(bn, "PROP") || strstr(bn, "ROTOR") || strstr(bn, "BLADE"))) {
+			static unsigned rp = 0; rp++;
+			if (rp <= 30) {
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) {
+					fprintf(lf, "VK: BladeReg mesh='%s' skin=%d sorting=%d already=%d polys=%d listEmpty=%d\n",
+						bn, (int)skin, (int)sorting,
+						_RegisteredMeshList.Contains(mmc) ? 1 : 0,
+						mmc->Get_Polygon_Count(),
+						mmc->PolygonRendererList.Is_Empty() ? 1 : 0);
+					fclose(lf);
+				}
+			}
+		}
+	}
 	if (skin) {
 
 		/*
@@ -2081,7 +2111,16 @@ void DX8MeshRendererClass::Register_Mesh_Type(MeshModelClass* mmc)
 			/*
 			** Search for an existing FVF Category Container that matches this mesh
 			*/
-			for (int i=0;i<texture_category_container_lists_rigid.Count();++i) {
+			// PORT FIX (chopper blades invisible): the MSVC version relied on the
+			// old for-scope leak - `i` kept the loop-exit value after the loop
+			// (Count() when nothing matched, else the break index). GCC scopes
+			// `i` to the for, so the follow-up `int i;` was UNINITIALIZED
+			// garbage: when a mesh's FVF matched no existing container (the
+			// blades' case - BladeReg: FAILED(listEmpty)), the garbage compare
+			// almost always skipped the new-container branch too and the mesh
+			// registered NOTHING, every frame, forever. Hoist + initialize.
+			int i = 0;
+			for (; i<texture_category_container_lists_rigid.Count(); ++i) {
 				FVFCategoryList * list=texture_category_container_lists_rigid[i];
 				WWASSERT(list);
 				DX8FVFCategoryContainer * container=list->Peek_Head();
@@ -2091,7 +2130,6 @@ void DX8MeshRendererClass::Register_Mesh_Type(MeshModelClass* mmc)
 				break;
 			}
 
-			int i;
 			if (i==texture_category_container_lists_rigid.Count()) {
 
 				/*
@@ -2103,6 +2141,17 @@ void DX8MeshRendererClass::Register_Mesh_Type(MeshModelClass* mmc)
 				Add_Rigid_Mesh_To_Container(new_fvf_category,fvf,mmc);
 			}
 
+			{
+				const char *bn = mmc->Get_Name();
+				if (bn && (strstr(bn, "PROP") || strstr(bn, "ROTOR") || strstr(bn, "BLADE"))) {
+					static unsigned ra = 0; ra++;
+					if (ra <= 30) {
+						FILE *lf = fopen("RTS_START.LOG", "a");
+						if (lf) { fprintf(lf, "VK: BladeReg afterAdd mesh='%s' listEmpty=%d\n",
+							bn, mmc->PolygonRendererList.Is_Empty() ? 1 : 0); fclose(lf); }
+					}
+				}
+			}
 			/*
 			** Done processing the mesh, add its polygon renderers to the global registered mesh list
 			*/
@@ -2110,6 +2159,16 @@ void DX8MeshRendererClass::Register_Mesh_Type(MeshModelClass* mmc)
 				_RegisteredMeshList.Add_Tail(mmc);
 			}
 			else {
+				{
+					const char *bn = mmc->Get_Name();
+					if (bn && (strstr(bn, "PROP") || strstr(bn, "ROTOR") || strstr(bn, "BLADE"))) {
+						static unsigned rf = 0; rf++;
+						if (rf <= 30) {
+							FILE *lf = fopen("RTS_START.LOG", "a");
+							if (lf) { fprintf(lf, "VK: BladeReg FAILED(listEmpty) mesh='%s' n=%u\n", bn, rf); fclose(lf); }
+						}
+					}
+				}
 				WWDEBUG_SAY(("Error: Register_Mesh_Type failed! file: %s line: %d\r\n",__FILE__,__LINE__));
 			}
 		}
