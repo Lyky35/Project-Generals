@@ -866,16 +866,31 @@ void W3DShroud::render(CameraClass *cam)
 	{	static unsigned vp = 0; vp++;
 		if (cam && (vp <= 20 || (vp % 90) == 0)) {
 			Vector3 cp = cam->Get_Position();
+			// PORT FIX v2: measure the ground point the player actually LOOKS AT
+			// (center of view), not the camera's own position cell - fog covering
+			// the view direction is what makes terrain black while "the camera
+			// cell" reads revealed. Ray: camera forward (row2 of transform, sign
+			// resolved by t>0) intersected with the z=0 ground plane; falls back
+			// to the camera position when degenerate.
+			Vector3 lookPt = cp;
+			{
+				Matrix3D xfm = cam->Get_Transform();
+				Vector3 dir(xfm[0][2], xfm[1][2], xfm[2][2]);	// camera z column (see HeightMap ray code)
+				Real t = (dir.Z != 0.0f) ? (-cp.Z / dir.Z) : (Real)-1;
+				if (!(t > 0.0f)) {
+					dir = -dir;
+					t = (dir.Z != 0.0f) ? (-cp.Z / dir.Z) : (Real)-1;
+				}
+				if (t > 0.0f && std::isfinite((float)t))
+					lookPt = cp + dir * t;
+			}
+			Vector3 cp2 = lookPt;
 			// PORT FIX: reveals write PARTITION cells (world/cellSize, NO border
-			// offset - PartitionManager::worldToCell). The probe previously added
-			// getBorderSize() and therefore read BORDER cells (always shrouded or
-			// out of range) - every "camera cell black" sample was meaningless.
-			// true cell = world/cellW; also log the cell the SHADER actually
-			// samples via the drawOrigin transform (matches ShroudMat uv).
-			Int cx = (Int)floor(cp.X / m_cellWidth);
-			Int cy = (Int)floor(cp.Y / m_cellHeight);
-			Int sx = (Int)floor((cp.X - (Real)m_drawOriginX + m_cellWidth) / m_cellWidth) + visStartX;
-			Int sy = (Int)floor((cp.Y - (Real)m_drawOriginY + m_cellHeight) / m_cellHeight) + visStartY;
+			// offset - PartitionManager::worldToCell).
+			Int cx = (Int)floor(cp2.X / m_cellWidth);
+			Int cy = (Int)floor(cp2.Y / m_cellHeight);
+			Int sx = (Int)floor((cp2.X - (Real)m_drawOriginX + m_cellWidth) / m_cellWidth) + visStartX;
+			Int sy = (Int)floor((cp2.Y - (Real)m_drawOriginY + m_cellHeight) / m_cellHeight) + visStartY;
 			Int dstCol = sx - visStartX + 1;
 			Int dstRow = sy - visStartY + 1;
 			UnsignedInt srcPix = 0;
@@ -913,8 +928,8 @@ void W3DShroud::render(CameraClass *cam)
 			if (sx >= 0 && sy >= 0 && sx < m_numCellsX && sy < m_numCellsY && m_srcTextureData)
 				sxPix = ((UnsignedInt *)m_srcTextureData)[sx + sy * (m_srcTexturePitch >> 2)];
 			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: ShroudView #%u cam=(%.0f,%.0f) cell=(%d,%d) src=0x%06x shader=(%d,%d) shSrc=0x%06x dstCol=%d vis=(%d,%d)-(%d,%d)\n",
-				vp, cp.X, cp.Y, cx, cy, srcPix, sx, sy, sxPix, dstCol,
+			if (lf) { fprintf(lf, "VK: ShroudView #%u cam=(%.0f,%.0f) look=(%.0f,%.0f) cell=(%d,%d) src=0x%06x shader=(%d,%d) shSrc=0x%06x dstCol=%d vis=(%d,%d)-(%d,%d)\n",
+				vp, cp.X, cp.Y, cp2.X, cp2.Y, cx, cy, srcPix, sx, sy, sxPix, dstCol,
 				visStartX, visStartY, visEndX, visEndY); fclose(lf); }
 			// Dump DST (full) and SRC (full) to PGM files (RTS_SHROUD_DUMP=1).
 			{	static const bool dumpShroud = [](){ const char *e=getenv("RTS_SHROUD_DUMP"); return e&&e[0]&&e[0]!='0'; }();

@@ -4054,6 +4054,22 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 				else if (mode == 4) texA = W3DShaderManager::getShaderTexture(3);
 				else texA = W3DShaderManager::getShaderTexture(2);
 				TextureClass *texB = (mode == 2) ? W3DShaderManager::getShaderTexture(3) : NULL;
+				{	// field probe: which terrain mode/texture runs each frame
+					static unsigned td = 0; td++;
+					if (td <= 60 || (td % 240) == 0) {
+						FILE *lf = fopen("RTS_START.LOG", "a");
+						if (lf) {
+							fprintf(lf, "VK: TerrDraw pass=%d mode=%d hidden=%d lightMap=%d cloudMap=%d terrLOD=%d texA='%s' texB='%s'\n",
+								pass, mode, (int)Is_Hidden(),
+								(TheGlobalData && TheGlobalData->m_useLightMap) ? 1 : 0,
+								(TheGlobalData && TheGlobalData->m_useCloudMap) ? 1 : 0,
+								(TheGlobalData ? (int)TheGlobalData->m_terrainLOD : -1),
+								texA ? texA->Get_Texture_Name() : "(null)",
+								texB ? texB->Get_Texture_Name() : "(null)");
+							fclose(lf);
+						}
+					}
+				}
 				const Bool wrap = (mode >= 2);
 				const Bool linear = (TheGlobalData->m_bilinearTerrainTex || TheGlobalData->m_trilinearTerrainTex) ? true : false;
 				const float stretch = 1.0f / (63.0f * MAP_XY_FACTOR / 2.0f);
@@ -4354,6 +4370,13 @@ void HeightMapRenderObjClass::renderShoreLines(CameraClass *pCamera)
 ///Performs additional terrain rendering pass, blending in the black shroud texture.
 void HeightMapRenderObjClass::renderTerrainPass(CameraClass *pCamera)
 {
+	{	static unsigned sp = 0; sp++;
+		if (sp <= 40 || (sp % 240) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: ShroudPass #%u hidden=%d tiles=%dx%d\n",
+				sp, (int)Is_Hidden(), m_numVBTilesX, m_numVBTilesY); fclose(lf); }
+		}
+	}
 	DX8Wrapper::Set_Transform(D3DTS_WORLD,Matrix3D(1));
 
 	//Apply the shader and material
