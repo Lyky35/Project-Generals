@@ -3587,6 +3587,15 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 #endif
 
 	m_updating = true;
+	{	static unsigned wc = 0; wc++;
+		if (wc <= 30 || (wc % 150) == 0) {
+			Vector3 cp = camera->Get_Position();
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: TerrWin #%u cam=(%.0f,%.0f) org=(%d,%d) needFull=%d win=%dx%d\n",
+				wc, cp.X, cp.Y, m_map->getDrawOrgX(), m_map->getDrawOrgY(),
+				(int)m_needFullUpdate, m_x, m_y); fclose(lf); }
+		}
+	}
 	if (m_needFullUpdate) {
 		m_needFullUpdate = false;
 		updateBlock(0, 0, m_x-1, m_y-1, m_map, pLightsIterator);
@@ -3597,10 +3606,18 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 #endif
 		m_bridgeBuffer->doFullUpdate();
 		m_bridgeBuffer->updateCenter(camera, pLightsIterator);
-		m_updating = false;
-		return;
+		// PORT FIX (field: terrain black at mission start; rotating the
+		// camera revealed portions): this branch RETURNED without ever
+		// centering drawOrg on the camera. After a map load the full rebuild
+		// therefore left the terrain window at its load-time origin, and with
+		// a static camera nothing re-ran updateCenter - everything outside
+		// the stale window had NO GEOMETRY (black). Only moving/rotating the
+		// camera hit setCameraTransform -> updateCenter again -> TerrOrgJump,
+		// which is why rotation "revealed portions". Fall through to the
+		// camera-based centering below.
+	} else {
+		m_bridgeBuffer->updateCenter(camera, pLightsIterator);
 	}
-	m_bridgeBuffer->updateCenter(camera, pLightsIterator);
 
 	if (m_x >= m_map->getXExtent() && m_y >= m_map->getYExtent()) {
 		m_updating = false;

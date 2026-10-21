@@ -689,6 +689,16 @@ void MeshClass::Render(RenderInfoClass & rinfo)
 		m_materialPassEmissiveOverride = rinfo.materialPassEmissiveOverride;
 
 		WW3D::Add_To_Static_Sort_List(this, sort_level);
+		{
+			const char *bnm = Get_Name();
+			if (bnm && (strstr(bnm, "PROP") || strstr(bnm, "ROTOR") || strstr(bnm, "BLADE"))) {
+				static unsigned sp = 0; sp++;
+				if (sp <= 12) {
+					FILE *lf = fopen("RTS_START.LOG", "a");
+					if (lf) { fprintf(lf, "VK: BladeProbe SORTED mesh='%s' sortlvl=%d\n", bnm, (int)sort_level); fclose(lf); }
+				}
+			}
+		}
 
 	} else {
 
@@ -759,6 +769,50 @@ void MeshClass::Render(RenderInfoClass & rinfo)
 						}
 					}
 				}
+
+			// field probe v2 (chopper blades): per-name capped; dumps list
+			// state after Register_For_Rendering so the next field log shows
+			// WHY a blade mesh draws nothing (empty renderer list vs state).
+			{
+				const char *bnm = Get_Name();
+				if (bnm && (strstr(bnm, "PROP") || strstr(bnm, "ROTOR") || strstr(bnm, "BLADE"))) {
+					static const char *seen[12]; static unsigned cnt[12]; static unsigned total = 0;
+					int slot = -1;
+					for (int si = 0; si < 12; si++)
+						if (seen[si] && strcmp(seen[si], bnm) == 0) { slot = si; break; }
+					if (slot < 0) { for (int si = 0; si < 12; si++) if (!seen[si]) { slot = si; seen[si] = bnm; break; } }
+					bool log = (slot < 0) || (cnt[slot] < 4);
+					if (log) { if (slot >= 0) cnt[slot]++; total++; }
+					if (log && total <= 48) {
+						FILE *lf = fopen("RTS_START.LOG", "a");
+						if (lf) {
+							int listEmpty = Model->PolygonRendererList.Is_Empty() ? 1 : 0;
+							fprintf(lf, "VK: BladeProbe mesh='%s' polys=%d verts=%d skin=%d sortlvl=%d listEmpty=%d",
+								bnm, Model->Get_Polygon_Count(), Model->Get_Vertex_Count(),
+								(Model->Get_Flag(MeshGeometryClass::SKIN)) ? 1 : 0,
+								(int)Model->Get_Sort_Level(), listEmpty);
+							if (!listEmpty) {
+								DX8PolygonRendererListIterator bit(&Model->PolygonRendererList);
+								int prn = 0;
+								for (; !bit.Is_Done() && prn < 3; bit.Next(), prn++) {
+									DX8PolygonRendererClass *bpr = bit.Peek_Obj();
+									if (!bpr || !bpr->Get_Texture_Category()) { fprintf(lf, " |prNULL"); continue; }
+									DX8TextureCategoryClass *bcat = bpr->Get_Texture_Category();
+									ShaderClass bshd = bcat->Get_Shader();
+									TextureClass *t0 = bcat->Peek_Texture(0);
+									fprintf(lf, " |tex0='%s' src=%d dst=%d atest=%d cull=%d",
+										t0 ? t0->Get_Texture_Name() : "(null)",
+										(int)bshd.Get_Src_Blend_Func(), (int)bshd.Get_Dst_Blend_Func(),
+										(int)bshd.Get_Alpha_Test(), (int)bshd.Get_Cull_Mode());
+								}
+							}
+							fprintf(lf, "\n");
+							fclose(lf);
+						}
+					}
+				}
+			}
+
 				if (Model->PolygonRendererList.Is_Empty())
 					return;
 			}
