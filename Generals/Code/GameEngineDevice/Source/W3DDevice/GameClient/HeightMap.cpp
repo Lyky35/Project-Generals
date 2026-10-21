@@ -3778,7 +3778,7 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 		{	static unsigned tr = 0; tr++;
 			if (tr <= 40 || (tr % 150) == 0) {
 				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "VK: TerrRect #%u rect=(%d,%d)-(%d,%d) vis=(%d,%d)-(%d,%d) fov=%d newOrg=(%d,%d)\n",
+				if (lf) { fprintf(lf, "VK: TerrRect #%u rect=(%.0f,%.0f)-(%.0f,%.0f) vis=(%d,%d)-(%d,%d) fov=%d newOrg=(%d,%d)\n",
 					tr, minX, minY, maxX, maxY, visMinX, visMinY, visMaxX, visMaxY,
 					(TheTacticalView ? (int)TheTacticalView->getFieldOfView() : -99),
 					newOrgX, newOrgY); fclose(lf); }
