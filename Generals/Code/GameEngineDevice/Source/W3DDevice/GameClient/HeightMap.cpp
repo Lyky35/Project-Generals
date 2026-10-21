@@ -3570,6 +3570,16 @@ is rendered. */
 //=============================================================================
 void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjListIterator *pLightsIterator)
 {
+	{	static unsigned ec = 0; ec++;
+		int reason = 0;
+		if (m_map==NULL) reason = 1;
+		else if (m_updating) reason = 2;
+		else if (m_vertexBufferTiles==NULL) reason = 3;
+		if (reason && (ec <= 30 || (ec % 200) == 0)) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: UpdCenterEarly reason=%d call=%u\n", reason, ec); fclose(lf); }
+		}
+	}
 	if (m_map==NULL) {
 		return;
 	}

@@ -136,7 +136,13 @@ void Display::drawViews( void )
  */
 void Display::updateViews( void )
 {
-
+	{	static unsigned uv = 0; uv++;
+		if (uv <= 20 || (uv % 300) == 0) {
+			int n = 0; for (View *vv = m_viewList; vv; vv = vv->getNextView()) n++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: UpdateViews #%u viewCount=%d\n", uv, n); fclose(lf); }
+		}
+	}
 	for( View *v = m_viewList; v; v = v->getNextView() )
 		v->updateView();
 

@@ -808,12 +808,24 @@ Bool W3DView::updateCameraMovements()
 */
 void W3DView::updateView(void)
 {
+	{	static unsigned uv = 0; uv++;
+		if (uv <= 20 || (uv % 300) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: UpdateViewW3D #%u\n", uv); fclose(lf); }
+		}
+	}
 	UPDATE();
 }
 
 //DECLARE_PERF_TIMER(W3DView_updateView)
 void W3DView::update(void)
 {
+	{	static unsigned vu = 0; vu++;
+		if (vu <= 30 || (vu % 200) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: ViewUpd #%u\n", vu); fclose(lf); }
+		}
+	}
 	//USE_PERF_TIMER(W3DView_updateView)
 	Bool recalcCamera = false;
 	Bool didScriptedMovement = false;
@@ -1098,8 +1110,16 @@ void W3DView::update(void)
 	if (TheScriptEngine->isTimeFast()) {
 		return; // don't draw - makes it faster :) jba.
 	}
-	if (recalcCamera)
-		setCameraTransform();
+	// PORT FIX (field: terrain black while the camera is STATIC, moving the
+	// camera fixes it): updateCenter (terrain window centering) only ran when
+	// recalcCamera was set - camera teleports whose last frame didn't mark it,
+	// or an empty-vis bail on the final scripted frame, stranded the window at
+	// an OLD position with NOBODY calling again until the player moved.
+	// setCameraTransform is idempotent for an unchanged view (rebuild +
+	// constraints + updateCenter), and during movement this ran every frame
+	// anyway - call it unconditionally so the terrain window always tracks the
+	// actual camera. Static => window stays correct; bail => retried next frame.
+	setCameraTransform();
 
 	Region3D axisAlignedRegion;
 	getAxisAlignedViewRegion(axisAlignedRegion);
