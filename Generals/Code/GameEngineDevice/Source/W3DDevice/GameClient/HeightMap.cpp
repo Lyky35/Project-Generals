@@ -3753,22 +3753,36 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 	}
 
 	if (m_map) {
-		Int newOrgX;
-		if (visMaxX-visMinX > m_x) {
-			newOrgX = (maxX+minX)/2-m_x/2.0;	
-		} else {
-			newOrgX = (visMaxX+visMinX)/2-m_x/2.0;
+		// PORT FIX (field: black terrain until the camera is rotated): upstream
+		// used the RAW RAY-RECT midpoint whenever vis span > window ((maxX+minX)/2
+		// branch; the vis-center was only used for the FOV-zoom special case and
+		// fieldOfView==0 in normal gameplay). The corner-ray hull extends far
+		// beyond where the player looks on long pitched views, so the midpoint
+		// put the129-cell window in the MIDDLE OF THE HULL - outside the
+		// point-tested vis region and off screen => no terrain geometry => black;
+		// rotating recomputed and sometimes landed on the visible band =
+		// "rotation makes terrain appear". Field proof: TerrWin cam=(1211,505)
+		// org=(101,22) => window world [1616..3680] while camera AND look-point
+		// were left of1616. ALWAYS center on the vis region (seeded by the
+		// camera ground point) and clamp inside it.
+		Int newOrgX = (visMaxX + visMinX) / 2 - m_x / 2;
+		Int newOrgY = (visMaxY + visMinY) / 2 - m_y / 2;
+		if (visMaxX - visMinX >= m_x) {
+			if (newOrgX < visMinX) newOrgX = visMinX;
+			if (newOrgX > visMaxX - m_x) newOrgX = visMaxX - m_x;
 		}
-
-		Int newOrgY;
-		if (visMaxY - visMinY > m_y) {
-			newOrgY = visMinY+1;	
-		}	else {
-			newOrgY = (visMaxY+visMinY)/2-m_y/2.0;
-		}																															  
-		if (TheTacticalView->getFieldOfView() != 0) {
-			newOrgX = (visMaxX+visMinX)/2-m_x/2.0;
-			newOrgY = (visMaxY+visMinY)/2-m_y/2.0;
+		if (visMaxY - visMinY >= m_y) {
+			if (newOrgY < visMinY) newOrgY = visMinY;
+			if (newOrgY > visMaxY - m_y) newOrgY = visMaxY - m_y;
+		}
+		{	static unsigned tr = 0; tr++;
+			if (tr <= 40 || (tr % 150) == 0) {
+				FILE *lf = fopen("RTS_START.LOG", "a");
+				if (lf) { fprintf(lf, "VK: TerrRect #%u rect=(%d,%d)-(%d,%d) vis=(%d,%d)-(%d,%d) fov=%d newOrg=(%d,%d)\n",
+					tr, minX, minY, maxX, maxY, visMinX, visMinY, visMaxX, visMaxY,
+					(TheTacticalView ? (int)TheTacticalView->getFieldOfView() : -99),
+					newOrgX, newOrgY); fclose(lf); }
+			}
 		}
 		if (m_halfResMesh) {
 			newOrgX &= 0xFFFFFFFE;

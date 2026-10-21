@@ -328,7 +328,7 @@ void W3DShroud::setShroudLevel(Int x, Int y, W3DShroudLevel level, Bool textureO
 	if (!m_pSrcTexture)
 		return;
 
-	if (!(x < m_numCellsX && y < m_numCellsY)) {
+	if (!(x >= 0 && y >= 0 && x < m_numCellsX && y < m_numCellsY)) {
 		// PORT FIX probe: reveals rejected by the shroud range = cells the
 		// game logic manages but the shroud texture cannot hold (alignment /
 		// sizing mismatch => terrain stays black where logic thinks revealed).
@@ -339,7 +339,7 @@ void W3DShroud::setShroudLevel(Int x, Int y, W3DShroudLevel level, Bool textureO
 				dr, x, y, m_numCellsX, m_numCellsY, (int)level); fclose(lf); }
 		}
 	} else
-	if (x < m_numCellsX && y < m_numCellsY)
+	if (x >= 0 && y >= 0 && x < m_numCellsX && y < m_numCellsY)
 	{
 		if (level < TheGlobalData->m_shroudAlpha)
 			level = TheGlobalData->m_shroudAlpha;
