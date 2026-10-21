@@ -66,6 +66,28 @@ VulkanDevice::~VulkanDevice()
 	Shutdown();
 }
 
+void VulkanDevice::DrainDeferred()
+{
+	if (m_deferred.empty())
+		return;
+	std::vector<std::pair<uint64_t, std::function<void()>>> keep;
+	keep.reserve(m_deferred.size());
+	for (auto &e : m_deferred) {
+		if (m_frameCounter >= e.first + (uint64_t)MAX_FRAMES_IN_FLIGHT)
+			e.second();
+		else
+			keep.push_back(std::move(e));
+	}
+	m_deferred.swap(keep);
+}
+
+void VulkanDevice::DrainAllDeferred()
+{
+	for (auto &e : m_deferred)
+		e.second();
+	m_deferred.clear();
+}
+
 VulkanDevice &VulkanDevice::Instance()
 {
 	static VulkanDevice instance;
@@ -142,6 +164,11 @@ bool VulkanDevice::Init(HWND hwnd)
 
 void VulkanDevice::Shutdown()
 {
+	if (m_device) {
+		// Deferred destroys must run before device teardown.
+		vkDeviceWaitIdle(m_device);
+		DrainAllDeferred();
+	}
 	if (m_device != VK_NULL_HANDLE) {
 		vkDeviceWaitIdle(m_device);
 		CleanupSwapchain();
@@ -929,6 +956,10 @@ bool VulkanDevice::BeginFrame()
 		Flush_Retired_Dynamic_Buffers();
 	}
 	vkWaitForFences(m_device, 1, &m_inFlightFences[m_frameIndex], VK_TRUE, ~0ULL);
+	// The waited fence just proved frames up to (counter - MAX) are complete:
+	// run deferred destroys that became safe, then tick the frame counter.
+	DrainDeferred();
+	++m_frameCounter;
 
 	VkResult result = vkAcquireNextImageKHR(m_device, m_swapchain, ~0ULL,
 		m_imageAvailableSemaphores[m_frameIndex], VK_NULL_HANDLE, &m_imageIndex);

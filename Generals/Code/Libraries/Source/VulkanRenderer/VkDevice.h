@@ -7,6 +7,8 @@
 #endif
 
 #include <cstdint>
+#include <functional>
+#include <utility>
 #include <windows.h>
 #include <vulkan/vulkan.h>
 #include <vulkan/vulkan_win32.h>
@@ -47,6 +49,17 @@ public:
     VkFormat GetDepthFormat() const { return m_depthFormat; }
     uint32_t GetFrameIndex() const { return m_frameIndex; }
     VkCommandBuffer GetCommandBuffer() const { return m_commandBuffers[m_frameIndex]; }
+
+    // PORT FIX (amdvlk crash at mission start): destroying textures/framebuffers
+    // while frames are still in flight is spec-illegal and dereferenced freed
+    // views inside the next vkCmdBeginRenderPass (crash stack:
+    // VulkanBeginTargetPass -> vkCmdBeginRenderPass -> AV). Destroy work is
+    // queued here and runs after MAX_FRAMES_IN_FLIGHT frames have completed.
+    uint64_t FrameCounter() const { return m_frameCounter; }
+    void Defer(uint64_t frame, std::function<void()> fn) { m_deferred.emplace_back(frame, std::move(fn)); }
+    void DeferCurrent(std::function<void()> fn) { Defer(m_frameCounter, std::move(fn)); }
+    void DrainDeferred();
+    void DrainAllDeferred();
 
     bool CreateSurface(void* hwnd);
 
@@ -91,6 +104,8 @@ private:
     VkSurfaceKHR m_surface;
     HWND m_hwnd;
     uint32_t m_frameIndex;
+    uint64_t m_frameCounter = 0;
+    std::vector<std::pair<uint64_t, std::function<void()>>> m_deferred;
 
     uint32_t m_graphicsFamily;
     uint32_t m_presentFamily;

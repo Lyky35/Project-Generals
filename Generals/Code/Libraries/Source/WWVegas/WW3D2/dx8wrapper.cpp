@@ -1192,6 +1192,44 @@ void DX8Wrapper::EndTargetPass()
 	VulkanEndTargetPass();
 }
 
+// PORT FIX: the RT framebuffer cache is keyed by raw VkTexture* and was
+// NEVER invalidated when a texture died - at mission start the shell/menu
+// render-to-textures are destroyed, the heap reuses the pointer for a new
+// texture, the cache hit hands back a framebuffer whose image view was freed,
+// and vkCmdBeginRenderPass dereferences it inside amdvlk (field crash: same
+// IP both runs, stack VulkanBeginTargetPass -> vkCmdBeginRenderPass). Also
+// defer the framebuffer/depth destroy past in-flight frames.
+extern "C" void Vulkan_NotifyTextureDestroyed(VkTexture *texture)
+{
+	if (!texture)
+		return;
+	if (VulkanTargetPassOpen && VulkanPassTarget == texture)
+		VulkanEndTargetPass();
+	for (int i = 0; i < VulkanRtCacheCount; i++) {
+		if (VulkanRtCache[i].texture != texture)
+			continue;
+		VkFramebuffer fb = VulkanRtCache[i].framebuffer;
+		VkTexture *depth = VulkanRtCache[i].depth;
+		VkDevice dev = VulkanDevice::Instance().GetDevice();
+		static unsigned purge = 0; purge++;
+		if (purge <= 20 || (purge % 60) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: RtCachePurge #%u tex=%p fb=%p\n", purge, (void*)texture, (void*)fb); fclose(lf); }
+		}
+		if (fb || depth) {
+			VulkanDevice::Instance().DeferCurrent([dev, fb, depth]() {
+				if (fb)
+					vkDestroyFramebuffer(dev, fb, nullptr);
+				if (depth)
+					delete depth;
+			});
+		}
+		VulkanRtCache[i] = VulkanRtCache[VulkanRtCacheCount - 1];
+		VulkanRtCacheCount--;
+		i--;
+	}
+}
+
 void DX8Wrapper::EnsureTargetPass()
 {
 	VkTexture *want = DX8Wrapper::UsingDefaultTarget ? NULL : DX8Wrapper::CurrentRenderTarget;

@@ -727,31 +727,43 @@ VkSampler VkTexture::GetSampler(bool filtered, bool repeat)
 	return FindOrCreateSampler(filtered, repeat);
 }
 
+extern "C" void Vulkan_NotifyTextureDestroyed(VkTexture *texture);
+
 void VkTexture::Destroy()
 {
 	if (!m_device)
 		return;
+	// PORT FIX (mission-start amdvlk crash): purge the RT framebuffer cache
+	// entry that still references this texture's view, and DEFER the actual
+	// vkDestroy* calls until MAX_FRAMES_IN_FLIGHT frames have completed -
+	// destroying views/images that pending frames still reference is UB that
+	// strict drivers turn into 0xc0000005 at the next vkCmdBeginRenderPass.
+	Vulkan_NotifyTextureDestroyed(this);
 	VkDevice dev = m_device->GetDevice();
+	VkImage img = m_image;
+	VkImageView view = m_view;
+	VkDeviceMemory mem = m_memory;
 	// NOTE: samplers are process-wide now (g_sharedSamplers) - they must NOT be
 	// destroyed here: in-flight command buffers still reference them.
 	m_samplerCount = 0;
-	if (m_view != VK_NULL_HANDLE) {
-		vkDestroyImageView(dev, m_view, nullptr);
-		m_view = VK_NULL_HANDLE;
-	}
-	if (m_image != VK_NULL_HANDLE) {
-		vkDestroyImage(dev, m_image, nullptr);
-		m_image = VK_NULL_HANDLE;
-	}
-	if (m_memory != VK_NULL_HANDLE) {
-		vkFreeMemory(dev, m_memory, nullptr);
-		m_memory = VK_NULL_HANDLE;
-	}
+	m_view = VK_NULL_HANDLE;
+	m_image = VK_NULL_HANDLE;
+	m_memory = VK_NULL_HANDLE;
 	if (m_allocBytes) {
 		g_liveTexBytes = (g_liveTexBytes > m_allocBytes) ? g_liveTexBytes - m_allocBytes : 0;
 		if (g_liveTexCount > 0)
 			g_liveTexCount--;
 		m_allocBytes = 0;
+	}
+	if (view != VK_NULL_HANDLE || img != VK_NULL_HANDLE || mem != VK_NULL_HANDLE) {
+		m_device->DeferCurrent([dev, img, view, mem]() {
+			if (view != VK_NULL_HANDLE)
+				vkDestroyImageView(dev, view, nullptr);
+			if (img != VK_NULL_HANDLE)
+				vkDestroyImage(dev, img, nullptr);
+			if (mem != VK_NULL_HANDLE)
+				vkFreeMemory(dev, mem, nullptr);
+		});
 	}
 	m_device = nullptr;
 }
