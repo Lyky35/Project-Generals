@@ -3638,84 +3638,46 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 	if (m_halfResMesh) {
 		cellOffset = 2;
 	}
-	// determine the ray corresponding to the camera and distance to projection plane
+	// ============================================================
+	// PORT FIX OPTION B - rect from camera-ground + look-point.
+	// The1999 corner-ray hull (Find_X_At_Z over the view plane) produced a
+	// rect rotated ~140 degrees away from the actual view direction (field
+	// angle analysis: window-center vs ShroudView look-point clustered at
+	// -140 deg / +163 deg) - the terrain culling window pointed at the wrong
+	// side of the camera, so terrain appeared only when the player rotated
+	// far enough for the broken hull to sweep across the visible band.
+	// The look vector (camera transform z column, t>0 resolved) is validated
+	// by the ShroudView probe, so the rect is now the AABB of
+	// [camera ground .. forward-ray/ground hit] padded by a full window +
+	// margin. The frustum point tests (calcVis) below tighten it to the
+	// actually-visible band. Also removes the per-frame full-map min-height
+	// scan and all inf/NaN horizon intersections.
+	// ============================================================
 	Matrix3D camera_matrix = camera->Get_Transform();
-	
 	Vector3 camera_location  = camera->Get_Position();
 
-	Vector3 rayLocation;
-	Vector3 rayDirection;
-	Vector3 rayDirectionPt;
-	// the projected ray has the same origin as the camera
-	rayLocation = camera_location; 
-	// determine the location of the screen coordinate in camera-model space
-	const ViewportClass &viewport = camera->Get_Viewport();
-	Int i, j, minHt;
-
-	Real intersectionZ;
-	minHt = m_map->getMaxHeightValue();
-	for (int i =0; i<m_x; i++) {
-		for (int j =0; j<m_y; j++) {
-			Short cur = m_map->getDisplayHeight(i,j);
-			if (cur<minHt) minHt = cur;
-		}
+	Vector3 lookFwd(camera_matrix[0][2], camera_matrix[1][2], camera_matrix[2][2]);
+	Real lookT = (lookFwd.Z != 0.0f) ? (-camera_location.Z / lookFwd.Z) : (Real)-1;
+	if (!(lookT > 0.0f)) {
+		lookFwd = -lookFwd;
+		lookT = (lookFwd.Z != 0.0f) ? (-camera_location.Z / lookFwd.Z) : (Real)-1;
 	}
-	intersectionZ = (float)minHt;
-//	float aspect = camera->Get_Aspect_Ratio();
+	Vector3 lookPoint = camera_location;
+	if (lookT > 0.0f && std::isfinite((float)lookT))
+		lookPoint = camera_location + lookFwd * lookT;
 
-	Vector2 min,max;
-	camera->Get_View_Plane(min,max);
-	float xscale = (max.X - min.X);
-	float yscale = (max.Y - min.Y);
-
-	float zmod = -1.0; // Scene->vpd; // Note: view plane distance is now always 1.0 from the camera
-	float minX = 200000;
-	float maxX = -minX;
-	float minY = 200000;
-	float maxY = -minY;
-	Int validCorners = 0;
-	for (int i =0; i<2; i++) {
-		for (int j =0; j<2; j++) {
-			float xmod = (-i + 0.5 + viewport.Min.X) * zmod * xscale;// / aspect;
-			float ymod = (j - 0.5 - viewport.Min.Y) * zmod * yscale;// * aspect;
-
-			// transform the screen coordinates by the camera's matrix into world coordinates.
-			float x = zmod * camera_matrix[0][2] + xmod * camera_matrix[0][0] + ymod * camera_matrix[0][1];
-			float y = zmod * camera_matrix[1][2] + xmod * camera_matrix[1][0] + ymod * camera_matrix[1][1];
-			float z = zmod * camera_matrix[2][2] + xmod * camera_matrix[2][0] + ymod * camera_matrix[2][1];
-
-			rayDirection.Set(x,y,z);
-			rayDirection.Normalize();
-			rayDirectionPt = rayLocation+rayDirection;
-
-			x = Vector3::Find_X_At_Z(intersectionZ, rayLocation, rayDirectionPt);
-			y = Vector3::Find_Y_At_Z(intersectionZ, rayLocation, rayDirectionPt);
-			// PORT FIX (cinematic black terrain): oblique/horizon rays make
-			// Find_X/Y_At_Z return inf/NaN (ray parallel to the ground plane)
-			// or hit the plane BEHIND the camera (view pitched up - upstream
-			// noted "@todo find out why values go out of range"). Garbage
-			// corners produced an empty visibility window and the code below
-			// then jumped drawOrg to map CENTER, rebuilding every terrain tile
-			// away from the camera = terrain rendered black during cinematics.
-			// Only accept finite intersections in front of the camera.
-			Real t = (intersectionZ - rayLocation.Z) / rayDirection.Z;
-			if (t > 0.0f && std::isfinite(x) && std::isfinite(y)) {
-				if (x<minX) minX = x;
-				if (x>maxX) maxX = x;
-				if (y<minY) minY = y;
-				if (y>maxY) maxY = y;
-				validCorners++;
-			}
-		}
-	}
-
-	// Seed the ground rect with the camera's own footprint so a partial/empty
-	// corner set still centers on where the camera actually is.
-	if (std::isfinite(camera_location.X) && std::isfinite(camera_location.Y)) {
-		if (camera_location.X<minX) minX = camera_location.X;
-		if (camera_location.X>maxX) maxX = camera_location.X;
-		if (camera_location.Y<minY) minY = camera_location.Y;
-		if (camera_location.Y>maxY) maxY = camera_location.Y;
+	// pad by a full window so the eventual vis-centered window always fits,
+	// plus WIDE_STEP margin for the calcVis seeding below.
+	Real expand = (Real)(m_x + WIDE_STEP) * MAP_XY_FACTOR;
+	float minX = (camera_location.X < lookPoint.X ? camera_location.X : lookPoint.X) - expand;
+	float maxX = (camera_location.X > lookPoint.X ? camera_location.X : lookPoint.X) + expand;
+	float minY = (camera_location.Y < lookPoint.Y ? camera_location.Y : lookPoint.Y) - expand;
+	float maxY = (camera_location.Y > lookPoint.Y ? camera_location.Y : lookPoint.Y) + expand;
+	Int validCorners = 2;	// camera-anchored rect is always usable
+	if (!std::isfinite(minX) || !std::isfinite(maxX) ||
+		!std::isfinite(minY) || !std::isfinite(maxY)) {
+		minX = maxX = camera_location.X;
+		minY = maxY = camera_location.Y;
 	}
 
 	// convert back to cell indexes.
@@ -3787,11 +3749,26 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 		}
 		{	static unsigned tr = 0; tr++;
 			if (tr <= 40 || (tr % 150) == 0) {
+				// SELF-CONTAINED verification line: cam + look + window on one
+				// line (pairing TerrRect with ShroudView was unreliable - up to
+				//150 updateCenter calls apart during fast cinematics).
+				Real ltx = lookPoint.X / MAP_XY_FACTOR;
+				Real lty = lookPoint.Y / MAP_XY_FACTOR;
+				Real wcx = newOrgX + m_x * 0.5f;
+				Real wcy = newOrgY + m_y * 0.5f;
+				// signed angle between (window-center - cam) and (look - cam)
+				Real vx = wcx - camera_location.X / MAP_XY_FACTOR;
+				Real vy = wcy - camera_location.Y / MAP_XY_FACTOR;
+				Real ux = ltx - camera_location.X / MAP_XY_FACTOR;
+				Real uy = lty - camera_location.Y / MAP_XY_FACTOR;
+				Real ang = atan2f(vx * uy - vy * ux, vx * ux + vy * uy) * 57.29578f;
+				int covered = (ltx >= newOrgX && ltx <= newOrgX + m_x &&
+					lty >= newOrgY && lty <= newOrgY + m_y) ? 1 : 0;
 				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "VK: TerrRect #%u rect=(%.0f,%.0f)-(%.0f,%.0f) vis=(%d,%d)-(%d,%d) fov=%d newOrg=(%d,%d)\n",
-					tr, minX, minY, maxX, maxY, visMinX, visMinY, visMaxX, visMaxY,
-					(TheTacticalView ? (int)TheTacticalView->getFieldOfView() : -99),
-					newOrgX, newOrgY); fclose(lf); }
+				if (lf) { fprintf(lf, "VK: TerrRect #%u cam=(%.0f,%.0f) look=(%.0f,%.0f) rect=(%.0f,%.0f)-(%.0f,%.0f) vis=(%d,%d)-(%d,%d) newOrg=(%d,%d) covered=%d ang=%.1f mw=%d border=%d expand=%.0f\n",
+					tr, camera_location.X, camera_location.Y, lookPoint.X, lookPoint.Y,
+					minX, minY, maxX, maxY, visMinX, visMinY, visMaxX, visMaxY,
+					newOrgX, newOrgY, covered, ang, m_x, m_map->getBorderSize(), expand); fclose(lf); }
 			}
 		}
 		if (m_halfResMesh) {
