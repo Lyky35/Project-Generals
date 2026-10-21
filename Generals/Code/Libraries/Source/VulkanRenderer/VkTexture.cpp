@@ -337,6 +337,8 @@ void VkTexture::UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const
 		case VK_FORMAT_A1R5G5B5_UNORM_PACK16:
 		case VK_FORMAT_A4R4G4B4_UNORM_PACK16:
 			texelSize = 2;
+		case VK_FORMAT_R16_UNORM:
+			texelSize = 2;
 			break;
 		case VK_FORMAT_R8G8B8_UNORM:
 			texelSize = 3;

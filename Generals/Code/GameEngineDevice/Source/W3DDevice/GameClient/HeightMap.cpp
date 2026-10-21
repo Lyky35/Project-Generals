@@ -47,6 +47,7 @@
 //-----------------------------------------------------------------------------
 #include <cmath>
 #include "W3DDevice/GameClient/heightmap.h"
+#include "W3DDevice/GameClient/TerrainClipmap.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -1461,6 +1462,7 @@ void HeightMapRenderObjClass::adjustTerrainLOD(Int adj)
 //=============================================================================
 void HeightMapRenderObjClass::ReleaseResources(void)
 {
+	m_clipmap.Reset();	// device loss: clipmap textures must die with the device
 	if (m_treeBuffer) {
 		m_treeBuffer->freeTreeBuffers();
 	}
@@ -2677,6 +2679,9 @@ Int HeightMapRenderObjClass::initHeightData(Int x, Int y, WorldHeightMap *pMap, 
 	m_scorchesInBuffer = 0; 
 	m_curNumScorchVertices=0;
 	m_curNumScorchIndices=0;
+
+	// Option C (M1): bake whole-map height/color textures for this map.
+	m_clipmap.Ensure(m_map, this, true);
 	// If the size changed, we need to allocate.
 	Bool needToAllocate = (x != m_x || y != m_y);
 	// If the textures aren't allocated (usually because of a hardware reset) need to allocate.
@@ -3185,6 +3190,9 @@ Int HeightMapRenderObjClass::getStaticDiffuse(Int x, Int y)
 //=============================================================================
 void HeightMapRenderObjClass::On_Frame_Update(void)
 {	
+
+	// Option C: lazy (re)build after device loss / map swap - no-op when valid.
+	if (m_map) m_clipmap.Ensure(m_map, this);
 
 	Int i,j,k;
 	DX8VertexBufferClass	**pVB;

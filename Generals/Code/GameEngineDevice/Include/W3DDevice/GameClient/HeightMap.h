@@ -39,6 +39,7 @@
 #include "Lib/BaseType.h"
 #include "Common/GameType.h"
 #include "WorldHeightMap.h"
+#include "W3DDevice/GameClient/TerrainClipmap.h"
 
 #define MAX_ENABLED_DYNAMIC_LIGHTS 20
 typedef UnsignedByte HeightSampleType;	//type of data to store in heightmap
@@ -203,6 +204,7 @@ public:
 	Real getMaxHeight(void) const {return m_maxHeight;}	///<return maximum height of entire terrain
 	Real getMaxCellHeight(Real x, Real y) const;	///< returns maximum height of the 4 cell corners.
 	WorldHeightMap *getMap(void) {return m_map;}	///< returns object holding the heightmap samples - need this for fast access.
+	TerrainClipmap &getClipmap(void) { return m_clipmap; } ///< Option C clipmap textures
 	Bool isClearLineOfSight(const Coord3D& pos, const Coord3D& posOther) const;
 
 	Bool getShowImpassableAreas(void) {return m_showImpassableAreas;}
@@ -245,6 +247,7 @@ protected:
 	void drawScorches(void);		///< Draws the scorch mark polygons in m_vertexScorch.
 #endif
 	WorldHeightMap *m_map;
+	TerrainClipmap m_clipmap; ///< Option C: whole-map height/color textures (clipmap source)
 	Int	m_x;	///< dimensions of heightmap 
 	Int	m_y;	///< dimensions of heightmap
 	Int m_originX; ///<  Origin point in the grid.  Slides around.
