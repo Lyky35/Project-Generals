@@ -41,6 +41,8 @@ VkShaderManager::VkShaderManager()
 	, m_vertModule(VK_NULL_HANDLE)
 	, m_fragModule(VK_NULL_HANDLE)
 	, m_terrainVertModule(VK_NULL_HANDLE)
+	, m_clipmapVertModule(VK_NULL_HANDLE)
+	, m_clipmapPipeline(VK_NULL_HANDLE)
 	, m_terrainFragModule(VK_NULL_HANDLE)
 	, m_textureSetLayout(VK_NULL_HANDLE)
 	, m_frameSetLayout(VK_NULL_HANDLE)
@@ -76,6 +78,9 @@ bool VkShaderManager::Init(VulkanDevice *device, const char *shaderDir)
 		snprintf(tfragPath, sizeof(tfragPath), "%s/terrain.frag.spv", shaderDir);
 		m_terrainVertModule = LoadModule(tvertPath);
 		m_terrainFragModule = LoadModule(tfragPath);
+		char cvPath[300];
+		snprintf(cvPath, sizeof(cvPath), "%s/clipmap.vert.spv", shaderDir);
+		m_clipmapVertModule = LoadModule(cvPath);	// fail-soft: null -> clipmap disabled
 	}
 	if (!CreateDescriptorLayouts())
 		return false;
@@ -124,6 +129,14 @@ void VkShaderManager::Shutdown()
 	if (m_fragModule != VK_NULL_HANDLE) {
 		vkDestroyShaderModule(dev, m_fragModule, nullptr);
 		m_fragModule = VK_NULL_HANDLE;
+	}
+	if (m_clipmapPipeline != VK_NULL_HANDLE) {
+		vkDestroyPipeline(dev, m_clipmapPipeline, nullptr);
+		m_clipmapPipeline = VK_NULL_HANDLE;
+	}
+	if (m_clipmapVertModule != VK_NULL_HANDLE) {
+		vkDestroyShaderModule(dev, m_clipmapVertModule, nullptr);
+		m_clipmapVertModule = VK_NULL_HANDLE;
 	}
 	if (m_terrainVertModule != VK_NULL_HANDLE) {
 		vkDestroyShaderModule(dev, m_terrainVertModule, nullptr);
@@ -824,4 +837,120 @@ VkPipeline VkShaderManager::GetTerrainPipeline(int mode, uint32_t diffuseOffset,
 	}
 	m_terrainPipelines[mode] = pipeline;
 	return pipeline;
+}
+
+VkPipeline VkShaderManager::GetClipmapPipeline()
+{
+	if (m_clipmapPipeline != VK_NULL_HANDLE)
+		return m_clipmapPipeline;
+	if (m_clipmapVertModule == VK_NULL_HANDLE || m_terrainFragModule == VK_NULL_HANDLE)
+		return VK_NULL_HANDLE;
+
+	VkVertexLayoutDesc layout = {};
+	layout.bindings[0].binding = 0;
+	layout.bindings[0].stride = 32;
+	layout.bindings[0].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+	layout.bindings[1].binding = 1;
+	layout.bindings[1].stride = 64;
+	layout.bindings[1].inputRate = VK_VERTEX_INPUT_RATE_INSTANCE;
+	layout.bindingCount = 2;
+	layout.attributeCount = 5;
+	layout.attributes[0].location = 0; layout.attributes[0].binding = 0;
+	layout.attributes[0].format = VK_FORMAT_R32G32B32_SFLOAT; layout.attributes[0].offset = 0;
+	layout.attributes[1].location = 1; layout.attributes[1].binding = 1;
+	layout.attributes[1].format = VK_FORMAT_R32G32B32_SFLOAT; layout.attributes[1].offset = 0;
+	layout.attributes[2].location = 2; layout.attributes[2].binding = 0;
+	layout.attributes[2].format = VK_FORMAT_B8G8R8A8_UNORM; layout.attributes[2].offset = 12;
+	layout.attributes[3].location = 3; layout.attributes[3].binding = 0;
+	layout.attributes[3].format = VK_FORMAT_R32G32_SFLOAT; layout.attributes[3].offset = 16;
+	layout.attributes[4].location = 4; layout.attributes[4].binding = 0;
+	layout.attributes[4].format = VK_FORMAT_R32G32_SFLOAT; layout.attributes[4].offset = 24;
+
+	VkPipelineShaderStageCreateInfo cvert = {};
+	cvert.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+	cvert.stage = VK_SHADER_STAGE_VERTEX_BIT;
+	cvert.module = m_clipmapVertModule;
+	cvert.pName = "main";
+
+	int32_t specMode = 0;
+	VkSpecializationMapEntry specEntry = {};
+	specEntry.constantID = 0;
+	specEntry.offset = 0;
+	specEntry.size = sizeof(int32_t);
+	VkSpecializationInfo specInfo = {};
+	specInfo.mapEntryCount = 1;
+	specInfo.pMapEntries = &specEntry;
+	specInfo.dataSize = sizeof(int32_t);
+	specInfo.pData = &specMode;
+	VkPipelineShaderStageCreateInfo cfrag = {};
+	cfrag.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+	cfrag.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
+	cfrag.module = m_terrainFragModule;
+	cfrag.pName = "main";
+	cfrag.pSpecializationInfo = &specInfo;
+	VkPipelineShaderStageCreateInfo stages[2] = { cvert, cfrag };
+
+	VkPipelineVertexInputStateCreateInfo vertexInput = {};
+	vertexInput.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+	vertexInput.vertexBindingDescriptionCount = layout.bindingCount;
+	vertexInput.pVertexBindingDescriptions = layout.bindings;
+	vertexInput.vertexAttributeDescriptionCount = layout.attributeCount;
+	vertexInput.pVertexAttributeDescriptions = layout.attributes;
+	VkPipelineInputAssemblyStateCreateInfo inputAssembly = {};
+	inputAssembly.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
+	inputAssembly.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+	VkPipelineViewportStateCreateInfo viewportState = {};
+	viewportState.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
+	viewportState.viewportCount = 1;
+	viewportState.scissorCount = 1;
+	VkPipelineRasterizationStateCreateInfo raster = {};
+	raster.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
+	raster.polygonMode = VK_POLYGON_MODE_FILL;
+	raster.cullMode = VK_CULL_MODE_NONE;
+	raster.frontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE;
+	raster.lineWidth = 1.0f;
+	VkPipelineMultisampleStateCreateInfo msaa = {};
+	msaa.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
+	msaa.rasterizationSamples = VK_SAMPLE_COUNT_1_BIT;
+	VkPipelineDepthStencilStateCreateInfo depth = {};
+	depth.sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
+	depth.depthTestEnable = VK_TRUE;
+	depth.depthWriteEnable = VK_TRUE;
+	depth.depthCompareOp = VK_COMPARE_OP_LESS_OR_EQUAL;
+	VkPipelineColorBlendAttachmentState blendAtt = {};
+	blendAtt.colorWriteMask = 0xf;
+	VkPipelineColorBlendStateCreateInfo blend = {};
+	blend.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
+	blend.attachmentCount = 1;
+	blend.pAttachments = &blendAtt;
+	VkDynamicState dynStates[2] = { VK_DYNAMIC_STATE_VIEWPORT, VK_DYNAMIC_STATE_SCISSOR };
+	VkPipelineDynamicStateCreateInfo dynamic = {};
+	dynamic.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
+	dynamic.dynamicStateCount = 2;
+	dynamic.pDynamicStates = dynStates;
+	VkGraphicsPipelineCreateInfo info = {};
+	info.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
+	info.stageCount = 2;
+	info.pStages = stages;
+	info.pVertexInputState = &vertexInput;
+	info.pInputAssemblyState = &inputAssembly;
+	info.pViewportState = &viewportState;
+	info.pRasterizationState = &raster;
+	info.pMultisampleState = &msaa;
+	info.pDepthStencilState = &depth;
+	info.pColorBlendState = &blend;
+	info.pDynamicState = &dynamic;
+	info.layout = m_pipelineLayout;
+	info.renderPass = m_device->GetRenderPass();
+	if (vkCreateGraphicsPipelines(m_device->GetDevice(), m_pipelineCache, 1, &info, nullptr, &m_clipmapPipeline) != VK_SUCCESS) {
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: clipmap pipeline build FAILED\n"); fclose(lf); }
+		m_clipmapPipeline = VK_NULL_HANDLE;
+		return VK_NULL_HANDLE;
+	}
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: clipmap pipeline built\n"); fclose(lf); }
+	}
+	return m_clipmapPipeline;
 }

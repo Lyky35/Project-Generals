@@ -14,13 +14,15 @@
 // ---------------------------------------------------------------------------
 
 class VkTexture;
+class VkGpuBuffer;
 class WorldHeightMap;
 class HeightMapRenderObjClass;
 
 class TerrainClipmap
 {
 public:
-	TerrainClipmap() : m_heightTex(0), m_colorTex(0), m_map(0), m_built(false),
+	TerrainClipmap() : m_heightTex(0), m_colorTex(0), m_vb(0), m_ib(0), m_idxCount(0),
+		m_map(0), m_built(false),
 		m_cellsX(0), m_cellsY(0), m_border(0), m_cellSize(0.0f) {}
 	~TerrainClipmap();
 
@@ -42,9 +44,21 @@ public:
 	VkTexture *PeekHeightTex(void) const { return m_heightTex; }
 	VkTexture *PeekColorTex(void) const { return m_colorTex; }
 
+	// M2a mesh: full-map quad-corner grid (legacy topology), atlas/alpha UVs
+	// baked; drawn by VulkanDrawClipmapPass when RTS_CLIPMAP=1 (mode0 only).
+	bool HasMesh(void) const { return m_vb != 0 && m_ib != 0; }
+	VkGpuBuffer *GetVb(void) const { return m_vb; }
+	VkGpuBuffer *GetIb(void) const { return m_ib; }
+	unsigned GetIdxCount(void) const { return m_idxCount; }
+
 private:
+	void BuildMesh(WorldHeightMap *map);
+
 	VkTexture *m_heightTex;
 	VkTexture *m_colorTex;
+	VkGpuBuffer *m_vb;
+	VkGpuBuffer *m_ib;
+	unsigned m_idxCount;
 	WorldHeightMap *m_map;   // not ref-counted: callers re-Ensure every frame
 	bool m_built;
 	int m_cellsX, m_cellsY, m_border;

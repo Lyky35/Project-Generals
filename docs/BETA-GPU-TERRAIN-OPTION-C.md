@@ -65,8 +65,16 @@ Branch: `beta` (cut from main @ ebc3f65 - Option B landed as the interim fix).
 
 ## Milestones
 1. [ ] M1: HeightTex+ColorTex builders + upload, log stats (no draw change).
-2. [ ] M2: ClipmapMesh + pipeline; RTS_CLIPMAP=1 renders base pass only,
-       side-by-side screenshots vs legacy (same camera).
+2. [x] M2a LANDED: full-map quad-corner grid (legacy topology, FLIP_TRIANGLES
+       payload rotation replicated) + clipmap.vert (height/color texture fetch
+       in VS, baked atlas/alpha UVs) + GetClipmapPipeline + VulkanDrawClipmapPass
+       (UINT32 indices). Gate: RTS_CLIPMAP=1 env, mode0 base pass only; legacy
+       tiles stay the fallback/default (boot parity verified). Shell proof:
+       mesh=185x185 idx=205350, pipeline built, draw ACTIVE, terrain mean~56
+       bright, zero crashes. NOTE: the runtime loads *.spv from the DATA dir
+       shaders/ - ship clipmap.vert.spv there (build/bin/shaders is not read).
+       Remaining M2: alpha+shroud passes on clipmap (visual parity on missions),
+       then M4 deletes the tile subsystem; rings/LOD = M5.
 3. [ ] M3: shroud + alpha passes on clipmap; visual parity shell + mission.
 4. [ ] M4: delete tile/window subsystem; full-map; perf pass.
 5. [ ] M5: ring seams/LOD polish.

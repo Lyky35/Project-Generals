@@ -1840,6 +1840,86 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	return true;
 }
 
+bool DX8Wrapper::VulkanDrawClipmapPass(VkGpuBuffer *vb, VkGpuBuffer *ib,
+	uint32_t indexCount, TextureClass *atlas, VkTexture *heightTex, VkTexture *colorTex,
+	float cellsX, float cellsY, float border, float cellSize)
+{
+	if (!vb || !ib || indexCount == 0 || !heightTex || !colorTex)
+		return false;
+
+	DX8Wrapper::EnsureTargetPass();
+	VulkanDevice &device = VulkanDevice::Instance();
+	VkCommandBuffer cmd = device.GetCommandBuffer();
+	if (cmd == VK_NULL_HANDLE)
+		return false;
+
+	VkPipeline pipeline = DX8Wrapper::ShaderManager.GetClipmapPipeline();
+	if (pipeline == VK_NULL_HANDLE)
+		return false;
+	vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
+
+	D3DVIEWPORT8 vp;
+	VkExtent2D targetExtent = device.GetSwapExtent();
+	if (DX8Wrapper::ViewportValid) {
+		vp = DX8Wrapper::CachedViewport;
+	} else {
+		vp.X = 0; vp.Y = 0; vp.Width = targetExtent.width; vp.Height = targetExtent.height;
+		vp.MinZ = 0.0f; vp.MaxZ = 1.0f;
+	}
+	VkViewport viewport = {};
+	viewport.x = (float)vp.X;
+	viewport.y = (float)(vp.Y + vp.Height);
+	viewport.width = (float)vp.Width;
+	viewport.height = -(float)vp.Height;
+	viewport.minDepth = vp.MinZ;
+	viewport.maxDepth = vp.MaxZ;
+	vkCmdSetViewport(cmd, 0, 1, &viewport);
+	VkRect2D scissor = {};
+	scissor.offset.x = (int32_t)vp.X;
+	scissor.offset.y = (int32_t)(targetExtent.height - (vp.Y + vp.Height));
+	scissor.extent.width = vp.Width;
+	scissor.extent.height = vp.Height;
+	vkCmdSetScissor(cmd, 0, 1, &scissor);
+
+	// set0: 0=atlas(frag mode0), 1=heightTex(VS), 2=colorTex(VS)
+	VkTexture *vtA = atlas ? atlas->Peek_Vulkan_Texture() : NULL;
+	if (!vtA) vtA = &VulkanWhiteTexture;
+	VkDescriptorSet texSet = DX8Wrapper::DescriptorAllocator.AllocateTextureSet(
+		DX8Wrapper::ShaderManager.GetTextureSetLayout(),
+		vtA, true, true,
+		heightTex, false, false,
+		colorTex);
+	if (texSet == VK_NULL_HANDLE)
+		return false;
+	vkCmdBindDescriptorSets(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS,
+		DX8Wrapper::ShaderManager.GetPipelineLayout(), 0, 1, &texSet, 0, NULL);
+
+	Matrix4 mvp = DX8Wrapper::render_state.world * DX8Wrapper::render_state.view * DX8Wrapper::CachedProjection;
+	struct Push {
+		float mvp[16];
+		float stretch;
+		float pad0, pad1, pad2;
+		float mapInfo[4];
+	} push;
+	memset(&push, 0, sizeof(push));
+	memcpy(push.mvp, &mvp[0][0], sizeof(push.mvp));
+	push.mapInfo[0] = cellsX;
+	push.mapInfo[1] = cellsY;
+	push.mapInfo[2] = border;
+	push.mapInfo[3] = cellSize;
+	vkCmdPushConstants(cmd, DX8Wrapper::ShaderManager.GetPipelineLayout(),
+		VK_SHADER_STAGE_VERTEX_BIT, 0, sizeof(push), &push);
+
+	VkBuffer vbuf = vb->GetBuffer();
+	VkDeviceSize voff = 0;
+	vkCmdBindVertexBuffers(cmd, 0, 1, &vbuf, &voff);
+	vkCmdBindIndexBuffer(cmd, ib->GetBuffer(), 0, VK_INDEX_TYPE_UINT32);
+	vkCmdDrawIndexed(cmd, indexCount, 1, 0, 0, 0);
+	VulkanFrameDraws++;
+	VulkanFrameIndices += indexCount;
+	return true;
+}
+
 void DX8Wrapper::Draw_Sorting_IB_VB(
 	unsigned primitive_type,
 	unsigned short start_index,

@@ -4063,6 +4063,27 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 				else if (mode == 4) texA = W3DShaderManager::getShaderTexture(3);
 				else texA = W3DShaderManager::getShaderTexture(2);
 				TextureClass *texB = (mode == 2) ? W3DShaderManager::getShaderTexture(3) : NULL;
+				// Option C M2a: full-map clipmap draw for the base pass (mode0)
+				// when RTS_CLIPMAP=1; legacy tiles remain the fallback.
+				{
+					static const Bool clipmapTerrain = [](){
+						const char *e = getenv("RTS_CLIPMAP");
+						return e != NULL && e[0] != '\0' && e[0] != '0';
+					}();
+					if (clipmapTerrain && pass == 0 && mode == 0 && m_clipmap.HasMesh()) {
+						static unsigned cd = 0; cd++;
+						if (cd == 1) {
+							FILE *lf = fopen("RTS_START.LOG", "a");
+							if (lf) { fprintf(lf, "VK: ClipMap draw ACTIVE (RTS_CLIPMAP=1)\n"); fclose(lf); }
+						}
+						DX8Wrapper::VulkanDrawClipmapPass(
+							m_clipmap.GetVb(), m_clipmap.GetIb(), m_clipmap.GetIdxCount(),
+							texA, m_clipmap.PeekHeightTex(), m_clipmap.PeekColorTex(),
+							(float)m_clipmap.GetCellsX(), (float)m_clipmap.GetCellsY(),
+							(float)m_clipmap.GetBorder(), m_clipmap.GetCellSize());
+						continue;
+					}
+				}
 				{	// field probe: which terrain mode/texture runs each frame
 					static unsigned td = 0; td++;
 					if (td <= 60 || (td % 240) == 0) {
