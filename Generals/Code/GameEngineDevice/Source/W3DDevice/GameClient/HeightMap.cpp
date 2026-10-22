@@ -2438,9 +2438,11 @@ RenderObjClass *	 HeightMapRenderObjClass::Clone(void) const
 //=============================================================================
 void HeightMapRenderObjClass::loadRoadsAndBridges(W3DTerrainLogic *pTerrainLogic, Bool saveGame)
 {	
+	{	FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: loadRoadsAndBridges enter save=%d rb=%p road=%p\n", (int)saveGame, (void*)m_bridgeBuffer, (void*)m_roadBuffer); fclose(lf); }
+	}
 	if (DX8Wrapper::_Get_D3D_Device8() && (DX8Wrapper::_Get_D3D_Device8()->TestCooperativeLevel()) != D3D_OK)
 		return;	//device not ready to render anything
-
 #ifdef DO_ROADS
 	if (m_roadBuffer) {
 		m_roadBuffer->loadRoads();
@@ -3694,8 +3696,32 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 		return;
 	}
 
-	if (m_vertexBufferTiles ==NULL)
-		return;		//did not initialize resources yet.
+	if (m_vertexBufferTiles ==NULL) {
+		// Option C/M4: under the clipmap the sliding tile window is gone
+		// (tiles intentionally NULL), but the bridge buffer still needs
+		// updateCenter - it is what lazily builds bridge geometry
+		// (m_curNumBridgeIndices stays0 until it runs, then drawBridges
+		// early-returns every frame = bridges never rendered - field #8).
+		// Trees need the same view-change nudge as the normal path below.
+		if (ClipmapTerrainOn()) {
+			{	static unsigned fw = 0; fw++;
+				if (fw <= 8 || (fw % 200) == 0) {
+					FILE *lf = fopen("RTS_START.LOG", "a");
+					if (lf) { fprintf(lf, "VK: UpdCenterClip forward trees/bridges #%u full=%d\n", fw, (int)m_needFullUpdate); fclose(lf); }
+				}
+			}
+			if (m_treeBuffer)
+				m_treeBuffer->doFullUpdate();
+			if (m_needFullUpdate) {
+				m_needFullUpdate = false;
+				if (m_bridgeBuffer)
+					m_bridgeBuffer->doFullUpdate();
+			}
+			if (m_bridgeBuffer)
+				m_bridgeBuffer->updateCenter(camera, pLightsIterator);
+		}
+		return;		//did not initialize resources yet / no tile window under clipmap
+	}
 
 	m_treeBuffer->doFullUpdate();	// Tell the trees to update for view change.
 

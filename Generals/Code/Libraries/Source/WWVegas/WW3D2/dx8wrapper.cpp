@@ -1916,6 +1916,17 @@ bool DX8Wrapper::VulkanDrawClipmapPass(int mode, VkGpuBuffer *vb, VkGpuBuffer *i
 	memset(&push, 0, sizeof(push));
 	memcpy(push.mvp, &mvp[0][0], sizeof(push.mvp));
 	push.stretch = stretch;	// cloud/noise UV scale (modes 2-4)
+	{
+		// Cloud shadow slide (legacy TerrainTex: -0.02,-0.03 UV/sec) - the
+		// clipmap cloud pass previously had no time term so cloud shadows
+		// sat still (field report). Offsets are wrapped to [0,1) on the CPU
+		// so float precision never degrades; the texture sampler WRAPs.
+		float t = timeGetTime() * 0.001f;
+		float ox = -0.02f * t;  ox -= (float)(int)ox;
+		float oy = -0.03f * t;  oy -= (float)(int)oy;
+		push.pad0 = ox;
+		push.pad1 = oy;
+	}
 	push.mapInfo[0] = cellsX;
 	push.mapInfo[1] = cellsY;
 	push.mapInfo[2] = border;

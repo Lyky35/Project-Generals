@@ -64,8 +64,12 @@ void W3DCameoMovieDraw( GameWindow *window, WinInstanceData *instData )
 //-------------------------------------------------------------------------------------------------
 void W3DLeftHUDDraw( GameWindow *window, WinInstanceData *instData )
 {
-	// draw the default stuff
-//
+	// draw the default stuff - the window background (HUD frame / radar
+	// plate). This was commented out, so with no radar (or no movie) the
+	// whole LeftHUD area rendered NOTHING = "minimap doesn't display at
+	// all" (field report). The radar/video draw on top of it.
+	W3DGameWinDefaultDraw( window, instData );
+
 	Player *player = ThePlayerList->getLocalPlayer();
 	// draw video buffer
 	VideoBuffer *video = TheInGameUI->videoBuffer();

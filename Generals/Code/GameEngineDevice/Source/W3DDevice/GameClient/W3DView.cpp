@@ -787,7 +787,21 @@ Bool W3DView::updateCameraMovements()
 		didUpdate = true;
 	} else if (m_doingMoveCameraOnWaypointPath) {
 		m_previousLookAtPosition = *getPosition();
-		moveAlongWaypointPath(TheW3DFrameLengthInMsec);
+		// PORT: pace the cinematic/waypoint pan by the REAL frame delta.
+		// TheW3DFrameLengthInMsec is a fixed33ms (30fps target); whenever
+		// the game renders slower than 30fps (mission start = heaviest
+		// load) the pan - and the letterbox/script steps riding on it -
+		// stretched out to a multiple of their intended duration (field:
+		// "transition from end of cinematic to game takes forever",
+		// letterbox bars lingering). Clamped5..120ms so a loading hitch
+		// can't teleport the camera but fps variance no longer slows it.
+		static UnsignedInt lastPanMs = 0;
+		UnsignedInt nowMs = timeGetTime();
+		Int panDt = lastPanMs ? (Int)(nowMs - lastPanMs) : TheW3DFrameLengthInMsec;
+		lastPanMs = nowMs;
+		if (panDt < 5) panDt = 5;
+		if (panDt > 120) panDt = 120;
+		moveAlongWaypointPath(panDt);
 		didUpdate = true;
 	}
 	if (m_doingScriptedCameraLock)

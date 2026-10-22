@@ -40,7 +40,10 @@ void main()
 	float h = texelFetch(heightTex, ic, 0).r;
 	vec3 world = vec3(inPos.x, inPos.y, h * 255.0 * (pc.mapInfo.w / 16.0));
 	vec4 col = texelFetch(colorTex, ic, 0);
-	vDiff = vec4(col.rgb, 1.0);
+	// vertex alpha = per-corner terrain blend weight baked by BuildMesh
+	// (legacy updateVB wrote alpha[k]<<24 into the vertex color); the alpha
+	// pass multiplies it with the alpha-map texel for tile-to-tile blending
+	vDiff = vec4(col.rgb, inDiffuse.a);
 	vUV0 = inUV0;
 	vUV1 = inUV1;
 	vWorld = world;

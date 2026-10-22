@@ -170,7 +170,12 @@ void TerrainClipmap::BuildMesh(WorldHeightMap *map)
 				corners[k].x = (float)(cx - border) * cs;
 				corners[k].y = (float)(cy - border) * cs;
 				corners[k].z = 0.0f;              // VS fetches HeightTex
-				corners[k].diff = 0;              // VS fetches ColorTex
+				// blend alpha in the high byte (legacy updateVB wrote
+				// alpha[k]<<24 here); ColorTex supplies the RGB. The alpha
+				// pass (terrain mode1) blends with t.a * vDiff.a - without
+				// this the per-vertex weight was forced to1 and adjacent
+				// terrain tiles met with a hard edge (no blending).
+				corners[k].diff = ((unsigned int)alpha[k] << 24);
 				corners[k].u0 = U[k];
 				corners[k].v0 = V[k];
 				corners[k].u1 = UA[k];

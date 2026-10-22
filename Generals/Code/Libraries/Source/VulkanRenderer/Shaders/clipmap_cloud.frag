@@ -30,7 +30,8 @@ layout(constant_id = 0) const int MODE = 2;
 
 void main()
 {
-	vec2 uv = vWorld.xy * vStretch;
+	// pad0/pad1 = wrapped cloud slide offsets (UV units, ~-0.02,-0.03/s)
+	vec2 uv = vWorld.xy * vStretch + vec2(pc.pad0, pc.pad1);
 	if (MODE == 2) {
 		vec4 c = texture(texA, uv);
 		vec4 n = texture(texB, uv);
