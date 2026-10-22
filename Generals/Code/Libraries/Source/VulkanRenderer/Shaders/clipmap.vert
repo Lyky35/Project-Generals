@@ -32,10 +32,14 @@ layout(location = 4) out float vStretch;
 
 void main()
 {
-	vec2 uvH = (inPos.xy + pc.mapInfo.zw * pc.mapInfo.w) / (pc.mapInfo.w * pc.mapInfo.xy);
-	float h = texture(heightTex, uvH).r;                 // 0..1 == byte/255
+	// texelFetch: integer cell addressing (world/cellSize + border), NO sampler
+	// - lavapipe's JIT crashed on texture() in the vertex stage (diag build
+	// with fetches stubbed ran215 draws stable vs crash at draw #2).
+	ivec2 ic = clamp(ivec2(floor(inPos.xy / pc.mapInfo.w) + ivec2(pc.mapInfo.z)),
+		ivec2(0), ivec2(pc.mapInfo.xy) - ivec2(1));
+	float h = texelFetch(heightTex, ic, 0).r;
 	vec3 world = vec3(inPos.x, inPos.y, h * 255.0 * (pc.mapInfo.w / 16.0));
-	vec4 col = texture(colorTex, uvH);
+	vec4 col = texelFetch(colorTex, ic, 0);
 	vDiff = vec4(col.rgb, 1.0);
 	vUV0 = inUV0;
 	vUV1 = inUV1;
