@@ -73,6 +73,15 @@ static void ConvertShortMapPathToLongMapPath(AsciiString &mapName)
 		DEBUG_CRASH(("Invalid map name %s", mapName.str()));
 		return;
 	}
+
+	// PORT FIX: the disc install used long paths (Maps\Name\Name\Name.map)
+	// but the .big archives store the short form (Maps\Name\Name.map). If the
+	// path already resolves in the archive/local filesystem, leave it alone -
+	// otherwise -file/-map double-converts and the map is not found.
+	if (TheArchiveFileSystem && TheArchiveFileSystem->doesFileExist(mapName.str()))
+		return;
+	if (TheLocalFileSystem && TheLocalFileSystem->doesFileExist(mapName.str()))
+		return;
 	path.nextToken(&token, "\\/");
 	while (!token.endsWithNoCase(".map") && (token.getLength() > 0))
 	{
@@ -631,16 +640,6 @@ Int parseDisplayDebug(char *args[], int)
 	return 1;
 }
 
-Int parseFile(char *args[], int num)
-{
-	if (TheWritableGlobalData && num > 1)
-	{
-		TheWritableGlobalData->m_initialFile = args[1];
-		ConvertShortMapPathToLongMapPath(TheWritableGlobalData->m_initialFile);
-	}
-	return 2;
-}
-
 Int parsePreload( char *args[], int num )
 {
 	if( TheWritableGlobalData )
@@ -680,6 +679,22 @@ Int parseVTune ( char *args[], int num )
 /// end stuff for VTUNE
 
 #endif // defined(_DEBUG) || defined(_INTERNAL)
+
+// PORT: was inside the DEBUG-only block above; -file must work in release
+// builds so the wine test harness can boot straight into a mission.
+Int parseFile(char *args[], int num)
+{
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "CMDLINE parseFile num=%d arg1='%s'\n", num, num>1?args[1]:"(none)"); fclose(lf); }
+	}
+	if (TheWritableGlobalData && num > 1)
+	{
+		TheWritableGlobalData->m_initialFile = args[1];
+		ConvertShortMapPathToLongMapPath(TheWritableGlobalData->m_initialFile);
+	}
+	return 2;
+}
 
 //=============================================================================
 //=============================================================================
@@ -1152,7 +1167,6 @@ static CommandLineParam params[] =
 	{ "-jabber", parseJabber },
 	{ "-munkee", parseMunkee },
 	{ "-displayDebug", parseDisplayDebug },
-	{ "-file", parseFile },
 	{ "-preload", parsePreload },
 	{ "-preloadEverything", parsePreloadEverything },
 	{ "-logAssets", parseLogAssets },
@@ -1169,6 +1183,9 @@ static CommandLineParam params[] =
 	{ "-setDebugLevel", parseSetDebugLevel },
 	{ "-clearDebugLevel", parseClearDebugLevel },
 #endif
+	// PORT: -file (load a .map/.rep from the command line) was DEBUG-only;
+	// the wine test harness needs it to boot straight into missions.
+	{ "-file", parseFile },
 	{ "-forceBenchmark", parseForceBenchmark },
 	{ "-buildmapcache", parseBuildMapCache },
 	{ "-noshadowvolumes", parseNoShadows },
@@ -1195,6 +1212,15 @@ static CommandLineParam params[] =
 //=============================================================================
 void parseCommandLine(int argc, char *argv[])
 {
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) {
+			fprintf(lf, "CMDLINE argc=%d:", argc);
+			for (int ai = 1; ai < argc; ai++) fprintf(lf, " [%s]", argv[ai]);
+			fprintf(lf, "\n");
+			fclose(lf);
+		}
+	}
 	// To parse command-line parameters, we loop through a table holding arguments
 	// and functions to handle them.  Comparisons can be case-(in)sensitive, and
 	// can check the entire string (for testing the presence of a flag) or check
