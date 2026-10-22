@@ -3479,6 +3479,9 @@ void HeightMapRenderObjClass::removeTerrainBibDrawable(DrawableID id)
 //=============================================================================
 void HeightMapRenderObjClass::staticLightingChanged( void )
 {
+	// Option C: keep the clipmap ColorTex in sync with terrain lighting.
+	if (m_map) m_clipmap.Ensure(m_map, this, true);
+
 	// Cause the terrain to get updated with new lighting.
 	m_needFullUpdate = true;
 
@@ -3495,7 +3498,10 @@ void HeightMapRenderObjClass::staticLightingChanged( void )
 /** When the time of day changes, the lighting changes and we need to update. */
 //=============================================================================
 void HeightMapRenderObjClass::setTimeOfDay( TimeOfDay tod )
-{		 
+{
+	// Option C: TOD relights terrain - rebake clipmap static colors too.
+	if (m_map) m_clipmap.Ensure(m_map, this, true);
+		 
 	staticLightingChanged();
 }
 
@@ -4106,16 +4112,29 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 						FILE *lf = fopen("RTS_START.LOG", "a");
 						if (lf) { fprintf(lf, "VK: ClipMap draw ENTER #%u\n", de); fclose(lf); }
 					}
-					DX8Wrapper::VulkanDrawClipmapPass(mode,
+					bool clipOk = DX8Wrapper::VulkanDrawClipmapPass(mode,
 						m_clipmap.GetVb(), m_clipmap.GetIb(), m_clipmap.GetIdxCount(),
 						texA, m_clipmap.PeekHeightTex(), m_clipmap.PeekColorTex(),
 						(float)m_clipmap.GetCellsX(), (float)m_clipmap.GetCellsY(),
 						(float)m_clipmap.GetBorder(), m_clipmap.GetCellSize());
-					{	static unsigned dex = 0; dex++;
-						FILE *lf = fopen("RTS_START.LOG", "a");
-						if (lf) { fprintf(lf, "VK: ClipMap draw EXIT #%u\n", dex); fclose(lf); }
+					if (clipOk) {
+						static unsigned dex = 0; dex++;
+						if (dex <= 6 || (dex % 60) == 0) {
+							FILE *lf = fopen("RTS_START.LOG", "a");
+							if (lf) { fprintf(lf, "VK: ClipMap draw OK #%u\n", dex); fclose(lf); }
+						}
+						continue;
 					}
-					continue;				}
+					// pipeline/shader unavailable (clipmap.vert.spv missing from the
+					// game shaders dir) - fall through to the legacy tile loop.
+					{
+						static unsigned df = 0; df++;
+						if (df <= 8) {
+							FILE *lf = fopen("RTS_START.LOG", "a");
+							if (lf) { fprintf(lf, "VK: ClipMap draw FAILED #%u -> legacy tiles\n", df); fclose(lf); }
+						}
+					}
+				}
 				{	// field probe: which terrain mode/texture runs each frame
 					static unsigned td = 0; td++;
 					if (td <= 60 || (td % 240) == 0) {
@@ -4283,10 +4302,19 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 					// height/color MUST match the base pass so the EQUAL depth
 					// test lands (white placeholders would shift z and the
 					// multiply would silently draw nowhere).
-					DX8Wrapper::VulkanDrawClipmapShroudPass(
-						m_clipmap.GetVb(), m_clipmap.GetIb(), m_clipmap.GetIdxCount(),
-						svk, m_clipmap.PeekHeightTex(), m_clipmap.PeekColorTex(),
-						(float)offX, (float)offY, (float)scaleX, (float)scaleY);
+					if (DX8Wrapper::VulkanDrawClipmapShroudPass(
+							m_clipmap.GetVb(), m_clipmap.GetIb(), m_clipmap.GetIdxCount(),
+							svk, m_clipmap.PeekHeightTex(), m_clipmap.PeekColorTex(),
+							(float)offX, (float)offY, (float)scaleX, (float)scaleY)) {
+						return;	// clipmap shroud ok - skip legacy tile shroud
+					}
+					{
+						static unsigned sf = 0; sf++;
+						if (sf <= 8) {
+							FILE *lf = fopen("RTS_START.LOG", "a");
+							if (lf) { fprintf(lf, "VK: ClipMap SHROUD FAILED #%u -> legacy tile shroud\n", sf); fclose(lf); }
+						}
+					}
 				}
 			}
 			else
