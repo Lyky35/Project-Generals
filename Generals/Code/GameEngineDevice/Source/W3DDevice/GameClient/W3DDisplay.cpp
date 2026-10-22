@@ -2022,6 +2022,11 @@ void W3DDisplay::toggleLetterBox(void)
 
 void W3DDisplay::enableLetterBox(Bool enable)
 {
+	{	static unsigned lc = 0; lc++;
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: enableLetterBox #%u -> %d (was %d)\n",
+			lc, (int)enable, (int)m_letterBoxEnabled); fclose(lf); }
+	}
 	if (enable)
 	{
 		if (!m_letterBoxEnabled)

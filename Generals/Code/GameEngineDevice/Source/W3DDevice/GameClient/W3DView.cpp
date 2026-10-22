@@ -2924,6 +2924,11 @@ void W3DView::moveAlongWaypointPath(Int milliseconds)
 		return;
 	}
 	if (m_mcwpInfo.elapsedTimeMilliseconds>m_mcwpInfo.totalTimeMilliseconds) {
+		{	static unsigned pd = 0; pd++;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: CamPanDone #%u elapsed=%d total=%d\n",
+				pd, m_mcwpInfo.elapsedTimeMilliseconds, m_mcwpInfo.totalTimeMilliseconds); fclose(lf); }
+		}
 		m_doingMoveCameraOnWaypointPath = false;
 		m_freezeTimeForCameraMovement = false;
 		m_angle = m_mcwpInfo.cameraAngle[m_mcwpInfo.numWaypoints];

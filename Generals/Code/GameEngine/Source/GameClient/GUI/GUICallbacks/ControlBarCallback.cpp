@@ -501,6 +501,14 @@ extern void toggleReplayControls( void );
 //-------------------------------------------------------------------------------------------------
 void ShowControlBar( Bool immediate )
 {
+	// PORT FIX (field: letterbox bar still masking the top of the screen when
+	// the action bar/HUD is opened): the mission script can stall before
+	// CAMERA_LETTERBOX_END, leaving m_letterBoxEnabled on for the whole game.
+	// Showing the control bar is exactly what LETTERBOX_END does - so any path
+	// that brings the HUD up also clears a stuck letterbox.
+	if (TheDisplay)
+		TheDisplay->enableLetterBox(FALSE);
+
 	showReplayControls();
 	if(TheControlBar)
 		TheControlBar->showSpecialPowerShortcut();

@@ -27,6 +27,9 @@ void TerrainClipmap::Reset()
 	m_colorTex = 0;
 	m_map = 0;
 	m_built = false;
+	m_staticColors.clear();
+	m_dynScratch.clear();
+	m_dynamicLit = false;
 	m_cellsX = m_cellsY = m_border = 0;
 	m_cellSize = 0.0f;
 }
@@ -35,6 +38,13 @@ void TerrainClipmap::WorldToUV(float wx, float wy, float *u, float *v) const
 {
 	*u = (wx + (float)m_border * m_cellSize) / (m_cellSize * (float)m_cellsX);
 	*v = (wy + (float)m_border * m_cellSize) / (m_cellSize * (float)m_cellsY);
+}
+
+void TerrainClipmap::UploadColors(const unsigned int *pixels)
+{
+	if (!m_colorTex || !pixels)
+		return;
+	m_colorTex->UploadLevel(0, (uint32_t)m_cellsX, (uint32_t)m_cellsY, pixels);
 }
 
 void TerrainClipmap::Ensure(WorldHeightMap *map, HeightMapRenderObjClass *heightMap, bool force)
@@ -79,7 +89,12 @@ void TerrainClipmap::Ensure(WorldHeightMap *map, HeightMapRenderObjClass *height
 	}
 
 	// ---- static lighting colors: same packed value updateVB writes ----
-	std::vector<unsigned int> colors((size_t)w * (size_t)h);
+	// Kept as m_staticColors: baseline for per-frame dynamic-light re-bakes
+	// (explosions/muzzle flashes) under the clipmap - see UploadColors.
+	m_staticColors.resize((size_t)w * (size_t)h);
+	m_dynScratch.resize((size_t)w * (size_t)h);
+	m_dynamicLit = false;
+	std::vector<unsigned int> &colors = m_staticColors;
 	int colorNonz = 0;
 	for (int y = 0; y < h; y++) {
 		for (int x = 0; x < w; x++) {

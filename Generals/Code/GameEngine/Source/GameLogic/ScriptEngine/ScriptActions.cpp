@@ -943,11 +943,18 @@ void ScriptActions::doRotateCameraTowardWaypoint(const AsciiString& waypointName
 //-------------------------------------------------------------------------------------------------
 void ScriptActions::doMoveCameraAlongWaypointPath(const AsciiString& waypoint, Real sec, Real cameraStutterSec)
 {
+	Bool found = FALSE;
 	for (Waypoint *way = TheTerrainLogic->getFirstWaypoint(); way; way = way->getNext()) {
 		if (way->getName() == waypoint) {
 			TheTacticalView->moveCameraAlongWaypointPath(way, sec*1000, cameraStutterSec*1000, true);			
+			found = TRUE;
 			break;
 		}
+	}
+	{	FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: CamPanStart wp='%s' sec=%.1f found=%d frame=%d\n",
+			waypoint.str(), (double)sec, (int)found,
+			TheGameLogic ? TheGameLogic->getFrame() : -1); fclose(lf); }
 	}
 }
 
@@ -3534,6 +3541,11 @@ void ScriptActions::doPlayerExitAllBuildings(const AsciiString& playerName)
 //-------------------------------------------------------------------------------------------------
 void ScriptActions::doLetterBoxMode(Bool startLetterbox)
 {
+	{	FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: LetterBox script %s frame=%d\n",
+			startLetterbox ? "BEGIN" : "END",
+			TheGameLogic ? TheGameLogic->getFrame() : -1); fclose(lf); }
+	}
 	if (startLetterbox)
 	{
 		HideControlBar(TRUE);

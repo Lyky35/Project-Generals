@@ -46,6 +46,17 @@ public:
 	VkTexture *PeekHeightTex(void) const { return m_heightTex; }
 	VkTexture *PeekColorTex(void) const { return m_colorTex; }
 
+	// Dynamic terrain lights (explosions/muzzle flashes): the legacy tile path
+	// patched vertex colors every frame (updateVBForLight); under the clipmap
+	// ColorTex is baked once, so HeightMap re-bakes dynamic light additively
+	// from this baseline and uploads through here.
+	const unsigned int *PeekStaticColors(void) const
+		{ return m_staticColors.empty() ? 0 : &m_staticColors[0]; }
+	std::vector<unsigned int> &DynamicScratch(void) { return m_dynScratch; }
+	void UploadColors(const unsigned int *pixels);
+	bool IsDynamicLit(void) const { return m_dynamicLit; }
+	void SetDynamicLit(bool lit) { m_dynamicLit = lit; }
+
 	// M2a mesh: full-map quad-corner grid (legacy topology), atlas/alpha UVs
 	// baked; drawn by VulkanDrawClipmapPass (modes 0-4).
 	// M5: the index buffer is partitioned into cell chunks with bounding
@@ -71,6 +82,9 @@ private:
 
 	VkTexture *m_heightTex;
 	VkTexture *m_colorTex;
+	std::vector<unsigned int> m_staticColors;	// baseline colors from Ensure
+	std::vector<unsigned int> m_dynScratch;		// static + dynamic lights
+	bool m_dynamicLit = false;					// dynScratch currently on GPU
 	VkGpuBuffer *m_vb;
 	VkGpuBuffer *m_ib;
 	unsigned m_idxCount;

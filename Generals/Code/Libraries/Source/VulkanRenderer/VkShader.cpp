@@ -248,7 +248,11 @@ bool VkShaderManager::CreateDescriptorLayouts()
 bool VkShaderManager::CreatePipelineLayout()
 {
 	VkPushConstantRange pushRange = {};
-	pushRange.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
+	// VERTEX|FRAGMENT: clipmap_cloud.frag reads the cloud-slide offsets in
+	// pad0/pad1. The range was VERTEX-only, which per spec makes the frag
+	// stage's push-constant access undefined (field: cloud shadows "not
+	// moving/updating fluidly" - the offsets never reliably arrived).
+	pushRange.stageFlags = VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT;
 	pushRange.offset = 0;
 	pushRange.size = 128;
 	VkDescriptorSetLayout layouts[] = { m_textureSetLayout, m_frameSetLayout };

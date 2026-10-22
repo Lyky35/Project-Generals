@@ -3367,6 +3367,79 @@ void HeightMapRenderObjClass::On_Frame_Update(void)
 		}
 		pLight->m_priorEnable = pLight->m_enabled;
 	}
+
+	// Option C/M4: under the clipmap there are no tile VBs to patch, so the
+	// legacy loops below iterate m_numVBTiles*=0 and dynamic lights
+	// (explosions, muzzle flashes) never reached the terrain - field report.
+	// Instead re-bake ColorTex: baseline (m_staticColors) + additive dynamic
+	// contributions over each light's cell rect, then upload. Cheap: only the
+	// light rects are recomputed and full upload is ~130KB.
+	if (ClipmapTerrainOn() && m_clipmap.IsBuilt() && m_clipmap.PeekStaticColors()) {
+		if (numDynaLights > 0) {
+			const unsigned int *base = m_clipmap.PeekStaticColors();
+			std::vector<unsigned int> &scratch = m_clipmap.DynamicScratch();
+			scratch.assign(base, base + (size_t)m_clipmap.GetCellsX() * (size_t)m_clipmap.GetCellsY());
+			const Int w = m_clipmap.GetCellsX();
+			const Int h = m_clipmap.GetCellsY();
+			const Int border = m_clipmap.GetBorder();
+			const Real cs = m_clipmap.GetCellSize();
+			for (Int k = 0; k < numDynaLights; k++) {
+				W3DDynamicLight *pLight = enabledLights[k];
+				// light rects are borderless world-cells -> texture coords add the border
+				Int tx0 = (Int)pLight->m_minX + border;
+				Int ty0 = (Int)pLight->m_minY + border;
+				Int tx1 = (Int)(pLight->m_maxX + 1.0f) + border;
+				Int ty1 = (Int)(pLight->m_maxY + 1.0f) + border;
+				if (tx0 < 0) tx0 = 0; if (ty0 < 0) ty0 = 0;
+				if (tx1 > w) tx1 = w; if (ty1 > h) ty1 = h;
+				for (Int ty = ty0; ty < ty1; ty++) {
+					for (Int tx = tx0; tx < tx1; tx++) {
+						// per-cell normal - same central-difference math as
+						// getStaticDiffuse/updateVB so dynamic shading matches
+						// the legacy per-vertex bake
+						Int cellOffset = m_halfResMesh ? 2 : 1;
+						Int un0 = tx - cellOffset; if (un0 < 0) un0 = 0;
+						Int up1 = tx + cellOffset; if (up1 >= w) up1 = w - 1;
+						Int vn0 = ty - cellOffset; if (vn0 < 0) vn0 = 0;
+						Int vp1 = ty + cellOffset; if (vp1 >= h) vp1 = h - 1;
+						Vector3 l2r(2.0f * MAP_XY_FACTOR, 0.0f,
+							MAP_HEIGHT_SCALE * (m_map->getHeight(up1, ty) - m_map->getHeight(un0, ty)));
+						Vector3 n2f(0.0f, 2.0f * MAP_XY_FACTOR,
+							MAP_HEIGHT_SCALE * (m_map->getHeight(tx, vp1) - m_map->getHeight(tx, vn0)));
+						Vector3 normal;
+						Vector3::Normalized_Cross_Product(l2r, n2f, &normal);
+
+						// baseline vertex (world pos + static color) -> dynamic add
+						VERTEX_FORMAT vMirror;
+						VERTEX_FORMAT vOut;
+						vMirror.x = (Real)(tx - border) * cs;
+						vMirror.y = (Real)(ty - border) * cs;
+						vMirror.z = (Real)m_map->getHeight(tx, ty) * MAP_HEIGHT_SCALE;
+						vMirror.diffuse = scratch[(size_t)ty * w + tx];
+						vMirror.u1 = vMirror.v1 = 0; vMirror.u2 = vMirror.v2 = 1;
+						vOut = vMirror;	// depth-fade inside reads vb->z
+						Vector3 dummyRay(0, 0, 1);
+						doTheDynamicLight(&vOut, &vMirror, &dummyRay, &normal, &pLight, 1);
+						scratch[(size_t)ty * w + tx] = vOut.diffuse;
+					}
+				}
+			}
+			m_clipmap.UploadColors(&scratch[0]);
+			m_clipmap.SetDynamicLit(true);
+			{	static unsigned dl = 0; dl++;
+				if (dl <= 8 || (dl % 300) == 0) {
+					FILE *lf = fopen("RTS_START.LOG", "a");
+					if (lf) { fprintf(lf, "VK: ClipMapDynLights bake #%u n=%d\n", dl, numDynaLights); fclose(lf); }
+				}
+			}
+		} else if (m_clipmap.IsDynamicLit()) {
+			// lights gone - restore the static baseline once
+			m_clipmap.UploadColors(m_clipmap.PeekStaticColors());
+			m_clipmap.SetDynamicLit(false);
+		}
+		return;	// no tile loop under the clipmap
+	}
+
 	if (numDynaLights > 0) {
 		//step through each vertex buffer that needs updating
 		for (int j =0; j<m_numVBTilesY; j++)

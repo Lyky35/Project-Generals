@@ -1932,7 +1932,7 @@ bool DX8Wrapper::VulkanDrawClipmapPass(int mode, VkGpuBuffer *vb, VkGpuBuffer *i
 	push.mapInfo[2] = border;
 	push.mapInfo[3] = cellSize;
 	vkCmdPushConstants(cmd, DX8Wrapper::ShaderManager.GetPipelineLayout(),
-		VK_SHADER_STAGE_VERTEX_BIT, 0, sizeof(push), &push);
+		VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT, 0, sizeof(push), &push);
 
 	VkBuffer vbuf = vb->GetBuffer();
 	VkDeviceSize voff = 0;

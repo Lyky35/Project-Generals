@@ -3735,7 +3735,14 @@ void InGameUI::stopMovie( void )
 	}
 
 	if (!m_currentlyPlayingMovie.isEmpty()) {
-		//TheScriptEngine->notifyOfCompletedVideo(m_currentlyPlayingMovie); // removing sync error source -MDC
+		// PORT FIX (field: letterbox stuck on after cinematic, cinematic-to-game
+		// transition never completes): MDC removed this notify as an MP sync
+		// hazard, which left ANY script waiting on HAS_FINISHED_VIDEO blocked
+		// forever in single player - CAMERA_LETTERBOX_END sits behind that wait,
+		// so the bars + hidden control bar stayed for the whole mission.
+		// Restored for single player only (MP logic stays lockstep-safe).
+		if (TheRecorder && !TheRecorder->isMultiplayer())
+			TheScriptEngine->notifyOfCompletedVideo(m_currentlyPlayingMovie);
 		m_currentlyPlayingMovie = AsciiString::TheEmptyString;
 	}
 }

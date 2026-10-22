@@ -35,7 +35,8 @@
 #include "GameClient/DisplayStringManager.h"
 #include "GameClient/GameText.h"
 #include "GameClient/GlobalLanguage.h"
-//#include "GameLogic/ScriptEngine.h"
+#include "GameLogic/ScriptEngine.h"
+#include "Common/Recorder.h"
 //#include "GameLogic/GameLogic.h"
 
 /// The Display singleton instance.
@@ -226,6 +227,9 @@ void Display::playLogoMovie( AsciiString movieName, Int minMovieLength, Int minC
 
 	if ( m_videoStream == NULL )
 	{
+		// PORT FIX: failed open must still satisfy script video-waits (SP)
+		if (TheRecorder && !TheRecorder->isMultiplayer())
+			TheScriptEngine->notifyOfCompletedVideo(movieName);
 		return;
 	}
 	
@@ -294,7 +298,11 @@ void Display::stopMovie( void )
 	}
 
 	if (!m_currentlyPlayingMovie.isEmpty()) {
-		//TheScriptEngine->notifyOfCompletedVideo(m_currentlyPlayingMovie); // Removing this sync-error cause MDC
+		// PORT FIX: see InGameUI::stopMovie - restoring video-completion notify
+		// for single player so scripts waiting on HAS_FINISHED_VIDEO (e.g.
+		// CAMERA_LETTERBOX_END after the intro cinematic) don't block forever.
+		if (TheRecorder && !TheRecorder->isMultiplayer())
+			TheScriptEngine->notifyOfCompletedVideo(m_currentlyPlayingMovie);
 		m_currentlyPlayingMovie = AsciiString::TheEmptyString;
 	}
 	if(m_copyrightDisplayString)
