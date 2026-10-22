@@ -49,6 +49,33 @@
 #include "W3DDevice/GameClient/heightmap.h"
 #include "W3DDevice/GameClient/TerrainClipmap.h"
 
+// Option C: is the clipmap draw path enabled (RTS_CLIPMAP env)?
+static Bool ClipmapTerrainOn(void)
+{
+	static const Bool on = [](){
+		const char *e = getenv("RTS_CLIPMAP");
+		return e != NULL && e[0] != '\0' && e[0] != '0';
+	}();
+	return on;
+}
+// Bisect/stability switches (default off): RTS_CLIPMAP_NOSHROUD / _NOALPHA
+static Bool ClipmapNoShroud(void)
+{
+	static const Bool v = [](){
+		const char *e = getenv("RTS_CLIPMAP_NOSHROUD");
+		return e != NULL && e[0] != '\0' && e[0] != '0';
+	}();
+	return v;
+}
+static Bool ClipmapNoAlpha(void)
+{
+	static const Bool v = [](){
+		const char *e = getenv("RTS_CLIPMAP_NOALPHA");
+		return e != NULL && e[0] != '\0' && e[0] != '0';
+	}();
+	return v;
+}
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -4063,27 +4090,32 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 				else if (mode == 4) texA = W3DShaderManager::getShaderTexture(3);
 				else texA = W3DShaderManager::getShaderTexture(2);
 				TextureClass *texB = (mode == 2) ? W3DShaderManager::getShaderTexture(3) : NULL;
-				// Option C M2a: full-map clipmap draw for the base pass (mode0)
+				// Option C M2b: clipmap draws base (mode0) + alpha (mode1) passes
 				// when RTS_CLIPMAP=1; legacy tiles remain the fallback.
-				{
-					static const Bool clipmapTerrain = [](){
-						const char *e = getenv("RTS_CLIPMAP");
-						return e != NULL && e[0] != '\0' && e[0] != '0';
-					}();
-					if (clipmapTerrain && pass == 0 && mode == 0 && m_clipmap.HasMesh()) {
-						static unsigned cd = 0; cd++;
-						if (cd == 1) {
-							FILE *lf = fopen("RTS_START.LOG", "a");
-							if (lf) { fprintf(lf, "VK: ClipMap draw ACTIVE (RTS_CLIPMAP=1)\n"); fclose(lf); }
-						}
-						DX8Wrapper::VulkanDrawClipmapPass(
-							m_clipmap.GetVb(), m_clipmap.GetIb(), m_clipmap.GetIdxCount(),
-							texA, m_clipmap.PeekHeightTex(), m_clipmap.PeekColorTex(),
-							(float)m_clipmap.GetCellsX(), (float)m_clipmap.GetCellsY(),
-							(float)m_clipmap.GetBorder(), m_clipmap.GetCellSize());
-						continue;
+				// M2b: base(mode0)+alpha(mode1) on clipmap. The earlier alpha crash
+				// was the binding2-never-written descriptor bug (fixed in
+				// VkDescriptors: writes=3) - the VS color fetch used an unwritten
+				// descriptor; verified stable since.
+				if (ClipmapTerrainOn() && (mode == 0 || mode == 1) && m_clipmap.HasMesh()) {
+					static unsigned cd = 0; cd++;
+					if (cd == 1) {
+						FILE *lf = fopen("RTS_START.LOG", "a");
+						if (lf) { fprintf(lf, "VK: ClipMap draw ACTIVE (RTS_CLIPMAP=1)\n"); fclose(lf); }
 					}
-				}
+					{	static unsigned de = 0; de++;
+						FILE *lf = fopen("RTS_START.LOG", "a");
+						if (lf) { fprintf(lf, "VK: ClipMap draw ENTER #%u\n", de); fclose(lf); }
+					}
+					DX8Wrapper::VulkanDrawClipmapPass(mode,
+						m_clipmap.GetVb(), m_clipmap.GetIb(), m_clipmap.GetIdxCount(),
+						texA, m_clipmap.PeekHeightTex(), m_clipmap.PeekColorTex(),
+						(float)m_clipmap.GetCellsX(), (float)m_clipmap.GetCellsY(),
+						(float)m_clipmap.GetBorder(), m_clipmap.GetCellSize());
+					{	static unsigned dex = 0; dex++;
+						FILE *lf = fopen("RTS_START.LOG", "a");
+						if (lf) { fprintf(lf, "VK: ClipMap draw EXIT #%u\n", dex); fclose(lf); }
+					}
+					continue;				}
 				{	// field probe: which terrain mode/texture runs each frame
 					static unsigned td = 0; td++;
 					if (td <= 60 || (td % 240) == 0) {
@@ -4231,9 +4263,38 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 
 		if (m_shroud && rinfo.Additional_Pass_Count())
 		{
-			rinfo.Peek_Additional_Pass(0)->Install_Materials();
-			renderTerrainPass(&rinfo.Camera);
-			rinfo.Peek_Additional_Pass(0)->UnInstall_Materials();
+			// M2b: shroud multiply on clipmap (binding2 fix verified stable).
+			// Opt OUT with RTS_CLIPMAP_NOSHROUD=1 (legacy tile shroud path).
+			if (ClipmapTerrainOn() && !ClipmapNoShroud() && m_clipmap.HasMesh())
+			{
+				// Option C M2b: shroud multiply via clipmap grid + shroud.frag
+				// (uv = (world+off)*scale - the upstream inv*offset*scale view
+				// cancels exactly; same params as ShroudTextureShader::set).
+				W3DShroud *shroud = TheTerrainRenderObject->getShroud();
+				TextureClass *stex = shroud ? shroud->getShroudTexture() : NULL;
+				VkTexture *svk = stex ? stex->Peek_Vulkan_Texture() : NULL;
+				if (shroud && svk) {
+					Real cellW = shroud->getCellWidth();
+					Real cellH = shroud->getCellHeight();
+					Real offX = -(Real)shroud->getDrawOriginX() + cellW;
+					Real offY = -(Real)shroud->getDrawOriginY() + cellH;
+					Real scaleX = 1.0f / (cellW * shroud->getTextureWidth());
+					Real scaleY = 1.0f / (cellH * shroud->getTextureHeight());
+					// height/color MUST match the base pass so the EQUAL depth
+					// test lands (white placeholders would shift z and the
+					// multiply would silently draw nowhere).
+					DX8Wrapper::VulkanDrawClipmapShroudPass(
+						m_clipmap.GetVb(), m_clipmap.GetIb(), m_clipmap.GetIdxCount(),
+						svk, m_clipmap.PeekHeightTex(), m_clipmap.PeekColorTex(),
+						(float)offX, (float)offY, (float)scaleX, (float)scaleY);
+				}
+			}
+			else
+			{
+				rinfo.Peek_Additional_Pass(0)->Install_Materials();
+				renderTerrainPass(&rinfo.Camera);
+				rinfo.Peek_Additional_Pass(0)->UnInstall_Materials();
+			}
 		}
 
 		ShaderClass::Invalidate();

@@ -114,8 +114,10 @@ public:
 	VkPipeline_T* GetPipeline(const VkPipelineState &state);
 	// Native terrain pipelines (mode:0 base,1 alpha,2 cloud+noise,3 cloud,4 noise).
 	VkPipeline_T* GetTerrainPipeline(int mode, uint32_t diffuseOffset, uint32_t uv0Offset, uint32_t uv1Offset);
-	// Option C M2a: clipmap pipeline (clipmap.vert + terrain.frag mode0).
-	VkPipeline_T* GetClipmapPipeline();
+	// Option C M2a/b: clipmap pipelines (clipmap.vert + terrain.frag modes;
+	// shroud = clipmap.vert + shroud.frag modulate).
+	VkPipeline_T* GetClipmapPipeline(int mode);
+	VkPipeline_T* GetClipmapShroudPipeline();
 	void SetVertexLayout(const VkVertexLayoutDesc &layout);
 	void ClearPipelineCache();
 
@@ -131,8 +133,10 @@ private:
 	VkShaderModule m_terrainVertModule = VK_NULL_HANDLE;
 	VkShaderModule m_terrainFragModule = VK_NULL_HANDLE;
 	VkShaderModule m_clipmapVertModule = VK_NULL_HANDLE;
+	VkShaderModule m_shroudFragModule = VK_NULL_HANDLE;
 	std::unordered_map<int, VkPipeline_T*> m_terrainPipelines;
-	VkPipeline m_clipmapPipeline = VK_NULL_HANDLE;
+	VkPipeline m_clipmapPipelines[2] = { VK_NULL_HANDLE, VK_NULL_HANDLE };
+	VkPipeline m_clipmapShroudPipeline = VK_NULL_HANDLE;
 	
 	// Descriptor set layouts
 	VkDescriptorSetLayout m_textureSetLayout;

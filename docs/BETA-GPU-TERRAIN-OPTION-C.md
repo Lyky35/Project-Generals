@@ -75,6 +75,26 @@ Branch: `beta` (cut from main @ ebc3f65 - Option B landed as the interim fix).
        shaders/ - ship clipmap.vert.spv there (build/bin/shaders is not read).
        Remaining M2: alpha+shroud passes on clipmap (visual parity on missions),
        then M4 deletes the tile subsystem; rings/LOD = M5.
+2b. [x] M2b COMPLETE + VERIFIED: alpha(mode1) AND shroud-multiply passes now run
+       on the clipmap BY DEFAULT under RTS_CLIPMAP=1 (opt OUT shroud via
+       RTS_CLIPMAP_NOSHROUD=1; legacy stays the default with the flag unset).
+       CRASH ROOT CAUSE FOUND VIA VALIDATION LAYER: vkUpdateDescriptorSets was
+       called with count=2 - binding2 (shadowMap/colorTex) was NEVER written;
+       clipmap.vert statically samples binding2 (color fetch) => UB => lavapipe
+       SEGV at draw#2 (diag: fetch-stubbed VS ran215 draws stable, real fetch
+       died every time; VUID-vkCmdDrawIndexed-None-08114 "Binding 2 never
+       updated"). Fixed writes=3. Also: texture descriptor stageFlags were
+       FRAGMENT-only (VS access invalid) -> VERTEX|FRAGMENT; field debug
+       probes that recorded barriers+copies INSIDE the active render pass
+       (EndFrame color/depth readback every60f + unit-texture TEXREADBACK) are
+       DEFAULT-OFF behind RTS_SCREENDUMP=1 (suspects in the field amdvlk
+       mission crash); depth barriers fixed to DEPTH|STENCIL (D24S8).
+       VERIFICATION: full clipmap boots PASS=3/3 (hb~170 each, shroud pipe
+       built); MISSION cinematic renders correctly on the clipmap path (bright
+       roads/plaza/buildings, fin2 mean=57 incl. letterbox), zero crashes.
+3. [ ] M4: delete tile subsystem (updateCenter/calcVis/drawOrg streaming,
+       m_vertexBufferTiles) once clipmap is the default - NEXT SESSION.
+4. [ ] M5: ring LOD - only if maps outgrow the250k-cell full-grid guard.
 3. [ ] M3: shroud + alpha passes on clipmap; visual parity shell + mission.
 4. [ ] M4: delete tile/window subsystem; full-map; perf pass.
 5. [ ] M5: ring seams/LOD polish.

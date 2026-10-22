@@ -568,10 +568,13 @@ public:
 		float stretch,
 		class TextureClass *texA, bool wrapA, bool linearA,
 		class TextureClass *texB, bool wrapB, bool linearB);
-	// Option C M2a: full-map clipmap draw (base pass, UINT32 indices).
-	static bool VulkanDrawClipmapPass(VkGpuBuffer *vb, VkGpuBuffer *ib,
+	// Option C M2a/b: full-map clipmap draws (UINT32 indices).
+	static bool VulkanDrawClipmapPass(int mode, VkGpuBuffer *vb, VkGpuBuffer *ib,
 		uint32_t indexCount, class TextureClass *atlas, class VkTexture *heightTex, class VkTexture *colorTex,
 		float cellsX, float cellsY, float border, float cellSize);
+	static bool VulkanDrawClipmapShroudPass(VkGpuBuffer *vb, VkGpuBuffer *ib,
+		uint32_t indexCount, class VkTexture *shroudTex, class VkTexture *heightTex, class VkTexture *colorTex,
+		float offX, float offY, float scaleX, float scaleY);
 protected:
 	static bool VulkanDrawIndexed(
 		VkGpuBuffer *vb, uint32_t vbOffsetBytes, unsigned fvf, const FVFInfoClass &fvfInfo,

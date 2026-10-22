@@ -997,9 +997,17 @@ void VulkanDevice::EndFrame(bool present)
 	// settles "engine black everywhere" vs "lavapipe-only renders" without eyes.
 	bool wantReadback = false;
 	{
+		static const bool screenDump = [](){
+			const char *e = getenv("RTS_SCREENDUMP");
+			return e != NULL && e[0] != '\0' && e[0] != '0';
+		}();
 		static unsigned s_rbCount = 0;
 		s_rbCount++;
-		wantReadback = (s_rbCount <= 2) || ((s_rbCount % 60) == 0);
+		// FIELD DEBUG PROBE - default OFF: this recorded barriers+copies on the
+		// frame command buffer (validation: copy/barrier INSIDE the active
+		// render pass + depth aspect errors) and is a suspect in field driver
+		// crashes. Opt in with RTS_SCREENDUMP=1.
+		wantReadback = screenDump && ((s_rbCount <= 2) || ((s_rbCount % 60) == 0));
 	}
 	if (wantReadback) {
 		if (m_readbackBuf == VK_NULL_HANDLE) {
@@ -1050,7 +1058,8 @@ void VulkanDevice::EndFrame(bool present)
 
 			toTransfer.image = m_depthImage;
 			toTransfer.oldLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
-			toTransfer.subresourceRange = { VK_IMAGE_ASPECT_DEPTH_BIT, 0, 1, 0, 1 };
+			// D24S8: barrier aspect must include STENCIL (validation03320).
+			toTransfer.subresourceRange = { VK_IMAGE_ASPECT_DEPTH_BIT | VK_IMAGE_ASPECT_STENCIL_BIT, 0, 1, 0, 1 };
 			vkCmdPipelineBarrier(cmd, rbSrcStage, rbDstXfer, 0,
 				0, nullptr, 0, nullptr, 1, &toTransfer);
 
@@ -1146,7 +1155,7 @@ void VulkanDevice::EndFrame(bool present)
 			toPresent.image = m_depthImage;
 			toPresent.oldLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
 			toPresent.newLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
-			toPresent.subresourceRange = { VK_IMAGE_ASPECT_DEPTH_BIT, 0, 1, 0, 1 };
+			toPresent.subresourceRange = { VK_IMAGE_ASPECT_DEPTH_BIT | VK_IMAGE_ASPECT_STENCIL_BIT, 0, 1, 0, 1 };
 			vkCmdPipelineBarrier(cmd, rbSrcXfer, VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT, 0,
 				0, nullptr, 0, nullptr, 1, &toPresent);
 		} else {

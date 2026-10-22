@@ -153,7 +153,14 @@ VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout 
 		writes[i].descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
 		writes[i].pImageInfo = &imageInfos[i];
 	}
-	vkUpdateDescriptorSets(m_device->GetDevice(), 2, writes, 0, nullptr);
+	// PORT FIX (clipmap crash + field VUID-vkCmdDrawIndexed-None-08114): only
+	// the FIRST TWO bindings were written - binding2 (shadowMap / clipmap
+	// colorTex) was "never updated". Legacy shaders dead-code the unused
+	// shadowMap sampler so lavapipe tolerated it; clipmap.vert STATICALLY
+	// SAMPLES binding2 (texelFetch color) -> using the unwritten descriptor
+	// is UB -> lavapipe crashed in draw/JIT (diag: fetch-stubbed VS stable,
+	// real fetch died at draw#2). Writes must cover all3 bindings.
+	vkUpdateDescriptorSets(m_device->GetDevice(), 3, writes, 0, nullptr);
 	{
 		static unsigned dsLog = 0;
 		if (dsLog < 16) {
