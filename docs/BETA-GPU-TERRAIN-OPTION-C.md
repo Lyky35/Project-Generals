@@ -92,11 +92,19 @@ Branch: `beta` (cut from main @ ebc3f65 - Option B landed as the interim fix).
        VERIFICATION: full clipmap boots PASS=3/3 (hb~170 each, shroud pipe
        built); MISSION cinematic renders correctly on the clipmap path (bright
        roads/plaza/buildings, fin2 mean=57 incl. letterbox), zero crashes.
-3. [ ] M4: delete tile subsystem (updateCenter/calcVis/drawOrg streaming,
-       m_vertexBufferTiles) once clipmap is the default - NEXT SESSION.
-4. [ ] M5: ring LOD - only if maps outgrow the250k-cell full-grid guard.
-3. [ ] M3: shroud + alpha passes on clipmap; visual parity shell + mission.
-4. [ ] M4: delete tile/window subsystem; full-map; perf pass.
-5. [ ] M5: ring seams/LOD polish.
+3. [x] M4 COMPLETE + VERIFIED: tile/window subsystem retired under
+        RTS_CLIPMAP=1. initHeightData forces m_drawEntireTerrain=TRUE +
+        full-extent x/y + drawOrg(0,0); the tile VB/IB allocation block is
+        skipped (clipmap branch restores m_map/stage/destAlpha/scorch that
+        freeMapResources releases; tile counts=0, tiles=NULL so updateCenter
+        early-returns and tile loops are zero-iterations). CRASH ROOT CAUSE
+        FOUND: freeMapResources does REF_PTR_RELEASE(m_map) - the first M4
+        build did not re-set m_map in the clipmap branch => roads preload
+        (updateSegLighting->TheTerrainRenderObject->getMap()->getBorderSize())
+        NULL-deref (fault=0x14) at map load. Fixed with REF_PTR_SET(m_map,pMap)
+        + stage/destAlpha/scorch recreation. VERIFY: clipmap boot hb=157
+        drawOK=11 FAILED=0 mean~65; legacy boot hb=145 mean~63; clipmap
+        MISSION_OK mean~24 == legacy mean~23, zero crashes both modes.
+4. [ ] M5: ring LOD/seams - only if maps outgrow the250k-cell full-grid guard.
 
-Status: branch created, design locked; code starts at M1.
+Status: M1-M4 done on beta (M4 = tile retirement); M5 pending, gated on map size.

@@ -2628,6 +2628,16 @@ Int HeightMapRenderObjClass::initHeightData(Int x, Int y, WorldHeightMap *pMap, 
 
 	REF_PTR_SET(m_map,pMap);	//update our heightmap pointer in case it changed since last call.
 
+	// Option C M4: clipmap retires the sliding-window tile subsystem.
+	// Force full-map extents and a full (0,0) drawOrg - identity mapping for
+	// the shoreline/edging/shadow consumers that still read drawOrg - and skip
+	// tile VB/IB allocation entirely below.
+	if (ClipmapTerrainOn() && m_map) {
+		TheWritableGlobalData->m_drawEntireTerrain = TRUE;
+		x = m_map->getXExtent();
+		y = m_map->getYExtent();
+	}
+
 	if (m_shroud)
 		m_shroud->init(m_map,TheGlobalData->m_partitionCellSize,TheGlobalData->m_partitionCellSize);
 #ifdef DO_ROADS
@@ -2719,6 +2729,35 @@ Int HeightMapRenderObjClass::initHeightData(Int x, Int y, WorldHeightMap *pMap, 
 	{	//requested heightmap different from old one.
 		//allocate a new one.
 		freeMapResources();	//free old data and ib/vb
+		if (ClipmapTerrainOn())
+		{
+			// M4: no tile VB/IB - the clipmap grid draws the whole map; drawOrg
+			// stays (0,0) full-extent (set above) so world-space consumers work.
+			// freeMapResources() released m_map / stage / destAlpha / scorch:
+			// restore everything the legacy branch re-creates except tiles.
+			REF_PTR_SET(m_map, pMap);
+			m_stageTwoTexture = NEW CloudMapTerrainTextureClass;
+			m_stageThreeTexture = NEW LightMapTerrainTextureClass(m_macroTextureName);
+			m_destAlphaTexture = MSGNEW("TextureClass") TextureClass(256, 1, WW3D_FORMAT_A8R8G8B8, TextureClass::MIP_LEVELS_1);
+			initDestAlphaLUT();
+#ifdef DO_SCORCH
+			allocateScorchBuffers();
+#endif
+			m_indexBuffer = NULL;
+			m_numVBTilesX = 0;
+			m_numVBTilesY = 0;
+			m_numBlockColumnsInLastVB = 0;
+			m_numBlockRowsInLastVB = 0;
+			m_numVertexBufferTiles = 0;
+			m_x = x;
+			m_y = y;
+			m_vertexBufferTiles = NULL;
+			m_vertexBufferBackup = NULL;
+			m_vertexMaterialClass = VertexMaterialClass::Get_Preset(VertexMaterialClass::PRELIT_DIFFUSE);
+			m_shaderClass = detailOpaqueShader;
+		}
+		else
+		{
 		REF_PTR_SET(m_map,pMap);	//update our heightmap pointer in case it changed since last call.
 		m_stageTwoTexture=NEW CloudMapTerrainTextureClass;
 		m_stageThreeTexture=NEW LightMapTerrainTextureClass(m_macroTextureName);
@@ -2818,6 +2857,11 @@ Int HeightMapRenderObjClass::initHeightData(Int x, Int y, WorldHeightMap *pMap, 
 #endif
 
 		m_shaderClass = detailOpaqueShader;	//		ShaderClass::_PresetOpaqueShader;
+		}	// end else (legacy tile allocation)
+	}
+
+	if (ClipmapTerrainOn() && m_map) {
+		m_map->setDrawOrg(0, 0);	// full-map origin (identity for consumers)
 	}
 
 	updateBlock(0,0,x-1,y-1,pMap,pLightsIterator);
