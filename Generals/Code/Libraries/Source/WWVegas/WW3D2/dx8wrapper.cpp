@@ -1847,8 +1847,10 @@ bool DX8Wrapper::VulkanDrawIndexed(
 }
 
 bool DX8Wrapper::VulkanDrawClipmapPass(int mode, VkGpuBuffer *vb, VkGpuBuffer *ib,
-	uint32_t indexCount, TextureClass *atlas, VkTexture *heightTex, VkTexture *colorTex,
-	float cellsX, float cellsY, float border, float cellSize)
+	uint32_t firstIndex, uint32_t indexCount,
+	TextureClass *atlas, VkTexture *noiseTex,
+	VkTexture *heightTex, VkTexture *colorTex,
+	float cellsX, float cellsY, float border, float cellSize, float stretch)
 {
 	if (!vb || !ib || indexCount == 0 || !heightTex || !colorTex)
 		return false;
@@ -1887,14 +1889,18 @@ bool DX8Wrapper::VulkanDrawClipmapPass(int mode, VkGpuBuffer *vb, VkGpuBuffer *i
 	scissor.extent.height = vp.Height;
 	vkCmdSetScissor(cmd, 0, 1, &scissor);
 
-	// set0: 0=atlas(frag mode0), 1=heightTex(VS), 2=colorTex(VS)
+	// set0: 0=atlas(frag mode0-1) / cloud-or-noise(frag mode2-4),
+	//       1=heightTex(VS), 2=colorTex(VS) / noise(mode2 frag).
 	VkTexture *vtA = atlas ? atlas->Peek_Vulkan_Texture() : NULL;
 	if (!vtA) vtA = &VulkanWhiteTexture;
+	VkTexture *vtB = colorTex;
+	if (mode == 2 && noiseTex)
+		vtB = noiseTex;	// mode2 frag samples noise at binding2
 	VkDescriptorSet texSet = DX8Wrapper::DescriptorAllocator.AllocateTextureSet(
 		DX8Wrapper::ShaderManager.GetTextureSetLayout(),
 		vtA, true, true,
 		heightTex, false, false,
-		colorTex);
+		vtB);
 	if (texSet == VK_NULL_HANDLE)
 		return false;
 	vkCmdBindDescriptorSets(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS,
@@ -1909,6 +1915,7 @@ bool DX8Wrapper::VulkanDrawClipmapPass(int mode, VkGpuBuffer *vb, VkGpuBuffer *i
 	} push;
 	memset(&push, 0, sizeof(push));
 	memcpy(push.mvp, &mvp[0][0], sizeof(push.mvp));
+	push.stretch = stretch;	// cloud/noise UV scale (modes 2-4)
 	push.mapInfo[0] = cellsX;
 	push.mapInfo[1] = cellsY;
 	push.mapInfo[2] = border;
@@ -1920,7 +1927,7 @@ bool DX8Wrapper::VulkanDrawClipmapPass(int mode, VkGpuBuffer *vb, VkGpuBuffer *i
 	VkDeviceSize voff = 0;
 	vkCmdBindVertexBuffers(cmd, 0, 1, &vbuf, &voff);
 	vkCmdBindIndexBuffer(cmd, ib->GetBuffer(), 0, VK_INDEX_TYPE_UINT32);
-	vkCmdDrawIndexed(cmd, indexCount, 1, 0, 0, 0);
+	vkCmdDrawIndexed(cmd, indexCount, 1, firstIndex, 0, 0);
 	VulkanFrameDraws++;
 	VulkanFrameIndices += indexCount;
 	return true;
@@ -3468,7 +3475,8 @@ bool DX8Wrapper::VulkanDrawTerrainPass(int mode,
 
 
 bool DX8Wrapper::VulkanDrawClipmapShroudPass(VkGpuBuffer *vb, VkGpuBuffer *ib,
-	uint32_t indexCount, VkTexture *shroudTex, VkTexture *heightTex, VkTexture *colorTex,
+	uint32_t firstIndex, uint32_t indexCount,
+	VkTexture *shroudTex, VkTexture *heightTex, VkTexture *colorTex,
 	float offX, float offY, float scaleX, float scaleY)
 {
 	if (!vb || !ib || indexCount == 0 || !shroudTex)
@@ -3538,7 +3546,7 @@ bool DX8Wrapper::VulkanDrawClipmapShroudPass(VkGpuBuffer *vb, VkGpuBuffer *ib,
 	VkDeviceSize voff = 0;
 	vkCmdBindVertexBuffers(cmd, 0, 1, &vbuf, &voff);
 	vkCmdBindIndexBuffer(cmd, ib->GetBuffer(), 0, VK_INDEX_TYPE_UINT32);
-	vkCmdDrawIndexed(cmd, indexCount, 1, 0, 0, 0);
+	vkCmdDrawIndexed(cmd, indexCount, 1, firstIndex, 0, 0);
 	VulkanFrameDraws++;
 	VulkanFrameIndices += indexCount;
 	return true;

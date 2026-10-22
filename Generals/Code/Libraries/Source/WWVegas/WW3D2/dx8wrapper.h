@@ -568,12 +568,18 @@ public:
 		float stretch,
 		class TextureClass *texA, bool wrapA, bool linearA,
 		class TextureClass *texB, bool wrapB, bool linearB);
-	// Option C M2a/b: full-map clipmap draws (UINT32 indices).
+	// Option C M2a/b/M5: full-map clipmap draws (UINT32 indices, chunked:
+	// firstIndex/indexCount select one frustum-visible chunk).
+	// mode 0-1: atlas + colorTex (base/alpha); mode 2-4: cloud/noise multiply
+	// overlays (noiseTex feeds binding2 for mode2; stretch = cloud UV scale).
 	static bool VulkanDrawClipmapPass(int mode, VkGpuBuffer *vb, VkGpuBuffer *ib,
-		uint32_t indexCount, class TextureClass *atlas, class VkTexture *heightTex, class VkTexture *colorTex,
-		float cellsX, float cellsY, float border, float cellSize);
+		uint32_t firstIndex, uint32_t indexCount,
+		class TextureClass *atlas, class VkTexture *noiseTex,
+		class VkTexture *heightTex, class VkTexture *colorTex,
+		float cellsX, float cellsY, float border, float cellSize, float stretch);
 	static bool VulkanDrawClipmapShroudPass(VkGpuBuffer *vb, VkGpuBuffer *ib,
-		uint32_t indexCount, class VkTexture *shroudTex, class VkTexture *heightTex, class VkTexture *colorTex,
+		uint32_t firstIndex, uint32_t indexCount,
+		class VkTexture *shroudTex, class VkTexture *heightTex, class VkTexture *colorTex,
 		float offX, float offY, float scaleX, float scaleY);
 protected:
 	static bool VulkanDrawIndexed(

@@ -20,6 +20,7 @@ void TerrainClipmap::Reset()
 	if (m_vb) { m_vb->Destroy(); delete m_vb; m_vb = 0; }
 	if (m_ib) { m_ib->Destroy(); delete m_ib; m_ib = 0; }
 	m_idxCount = 0;
+	m_chunks.clear();
 	delete m_heightTex;
 	m_heightTex = 0;
 	delete m_colorTex;
@@ -136,13 +137,18 @@ struct ClipmapVert {
 	float u1, v1;   // alpha-map (uv set1)
 };
 
+// M5: index-buffer chunk size in cells (32x32 = 2048 idx/chunk). Chunks get
+// bounding spheres computed from the height data for per-frame frustum culling.
+static const int CLIPMAP_CHUNK_CELLS = 32;
+
 void TerrainClipmap::BuildMesh(WorldHeightMap *map)
 {
 	const int w = m_cellsX, h = m_cellsY;
-	// verts: w*h cells * 4 corners; guard uint32-safe but keep sane (< 1M)
-	if (w * h > 250000) {
+	// verts: w*h cells * 4 corners. M5 raised the guard (chunked culling makes
+	// big maps cheap to draw; memory = cells*4*32B ~ 64MB at 500k cells).
+	if (w * h > 500000) {
 		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: ClipMap mesh SKIPPED (map %dx%d too big for M2a full-grid)\n", w, h); fclose(lf); }
+		if (lf) { fprintf(lf, "VK: ClipMap mesh SKIPPED (map %dx%d too big for full-grid)\n", w, h); fclose(lf); }
 		return;
 	}
 	std::vector<ClipmapVert> verts((size_t)w * h * 4);
@@ -183,15 +189,83 @@ void TerrainClipmap::BuildMesh(WorldHeightMap *map)
 			verts[vi++] = corners[3];
 		}
 	}
+	// M5: emit the IB CHUNK-MAJOR so each chunk owns a contiguous index range
+	// (vertex IDs stay cell-major: cell (i,j) -> verts (j*w+i)*4 .. +3).
 	std::vector<unsigned int> idx((size_t)w * h * 6);
 	size_t ii = 0;
-	for (int j = 0; j < h; j++) {
-		for (int i = 0; i < w; i++) {
-			unsigned int b = (unsigned int)((j * w + i) * 4);
-			idx[ii++] = b;     idx[ii++] = b + 2; idx[ii++] = b + 3;
-			idx[ii++] = b;     idx[ii++] = b + 1; idx[ii++] = b + 2;
+	{
+		const int chunkW = CLIPMAP_CHUNK_CELLS;
+		const int chunksX = (w + chunkW - 1) / chunkW;
+		const int chunksY = (h + chunkW - 1) / chunkW;
+		for (int cy = 0; cy < chunksY; cy++) {
+			for (int cx = 0; cx < chunksX; cx++) {
+				int x0 = cx * chunkW, y0 = cy * chunkW;
+				int x1 = x0 + chunkW; if (x1 > w) x1 = w;
+				int y1 = y0 + chunkW; if (y1 > h) y1 = h;
+				for (int j = y0; j < y1; j++) {
+					for (int i = x0; i < x1; i++) {
+						unsigned int b = (unsigned int)((j * w + i) * 4);
+						idx[ii++] = b;     idx[ii++] = b + 2; idx[ii++] = b + 3;
+						idx[ii++] = b;     idx[ii++] = b + 1; idx[ii++] = b + 2;
+					}
+				}
+			}
 		}
 	}
+	// M5: partition the (already cell-major) index buffer into chunks and give
+	// each a bounding sphere (world AABB of its cells x min/max height).
+	const int chunkW = CLIPMAP_CHUNK_CELLS;
+	const int chunksX = (w + chunkW - 1) / chunkW;
+	const int chunksY = (h + chunkW - 1) / chunkW;
+	m_chunks.clear();
+	m_chunks.reserve((size_t)chunksX * chunksY);
+	// (cs / border already in scope from the vertex loop above)
+	for (int cy = 0; cy < chunksY; cy++) {
+		for (int cx = 0; cx < chunksX; cx++) {
+			int x0 = cx * chunkW, y0 = cy * chunkW;
+			int x1 = x0 + chunkW; if (x1 > w) x1 = w;
+			int y1 = y0 + chunkW; if (y1 > h) y1 = h;
+			Chunk ck;
+			ck.indexCount = (unsigned)((size_t)(y1 - y0) * (x1 - x0) * 6);
+			ck.firstIndex = 0;	// filled below (IB is chunk-major)
+			// world XY of the cell-corner block
+			float minX = (float)(x0 - border) * cs;
+			float maxX = (float)(x1 - border) * cs;
+			float minY = (float)(y0 - border) * cs;
+			float maxY = (float)(y1 - border) * cs;
+			float minZ = 1e9f, maxZ = -1e9f;
+			for (int y = y0; y < y1; y++) {
+				for (int x = x0; x < x1; x++) {
+					// cell (x,y) corners span heights at (x,y)..(x+1,y+1)
+					for (int yy = y; yy <= y + 1 && yy < h; yy++) {
+						for (int xx = x; xx <= x + 1 && xx < w; xx++) {
+							float z = (float)map->getHeight(xx, yy) * (cs / 16.0f);
+							if (z < minZ) minZ = z;
+							if (z > maxZ) maxZ = z;
+						}
+					}
+				}
+			}
+			if (minZ > maxZ) { minZ = 0.0f; maxZ = 0.0f; }
+			ck.cx = (minX + maxX) * 0.5f;
+			ck.cy = (minY + maxY) * 0.5f;
+			ck.cz = (minZ + maxZ) * 0.5f;
+			float ex = (maxX - minX) * 0.5f;
+			float ey = (maxY - minY) * 0.5f;
+			float ez = (maxZ - minZ) * 0.5f;
+			ck.radius = sqrtf(ex * ex + ey * ey + ez * ez);
+			m_chunks.push_back(ck);
+		}
+	}
+	// assign contiguous firstIndex in the same chunk-major order as the IB
+	{
+		unsigned acc = 0;
+		for (size_t i = 0; i < m_chunks.size(); i++) {
+			m_chunks[i].firstIndex = acc;
+			acc += m_chunks[i].indexCount;
+		}
+	}
+
 	VulkanDevice &dev = VulkanDevice::Instance();
 	m_vb = new VkGpuBuffer();
 	if (!m_vb->Create(&dev, verts.size() * sizeof(ClipmapVert),
@@ -212,4 +286,12 @@ void TerrainClipmap::BuildMesh(WorldHeightMap *map)
 	}
 	m_ib->Upload(idx.data(), idx.size() * sizeof(unsigned int));
 	m_idxCount = (unsigned)idx.size();
+	{
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) {
+			fprintf(lf, "VK: ClipMap chunks=%d (%dx%d cells each) totalIdx=%u\n",
+				(int)m_chunks.size(), chunkW, chunkW, m_idxCount);
+			fclose(lf);
+		}
+	}
 }

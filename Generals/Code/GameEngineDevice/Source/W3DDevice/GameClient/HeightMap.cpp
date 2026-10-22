@@ -49,15 +49,6 @@
 #include "W3DDevice/GameClient/heightmap.h"
 #include "W3DDevice/GameClient/TerrainClipmap.h"
 
-// Option C: is the clipmap draw path enabled (RTS_CLIPMAP env)?
-static Bool ClipmapTerrainOn(void)
-{
-	static const Bool on = [](){
-		const char *e = getenv("RTS_CLIPMAP");
-		return e != NULL && e[0] != '\0' && e[0] != '0';
-	}();
-	return on;
-}
 // Bisect/stability switches (default off): RTS_CLIPMAP_NOSHROUD / _NOALPHA
 static Bool ClipmapNoShroud(void)
 {
@@ -113,6 +104,31 @@ static Bool ClipmapNoAlpha(void)
 #include "W3DDevice/GameClient/W3DShroud.h"
 #include "WW3D2/DX8Wrapper.h"
 #include "WW3D2/Light.h"
+
+// Option C: is the clipmap draw path enabled?
+// DEFAULT ON (user directive: legacy only as an opt-out). RTS_CLIPMAP=0
+// forces the legacy tile renderer. Also requires the clipmap shaders to
+// have loaded - if clipmap.vert.spv is missing from the game's shaders dir
+// we stay on legacy tiles entirely (M4 would otherwise skip tile alloc and
+// leave black terrain).
+static Bool ClipmapTerrainOn(void)
+{
+	static const Bool on = [](){
+		const char *e = getenv("RTS_CLIPMAP");
+		if (e != NULL && e[0] == '0')
+			return false;
+		bool avail = DX8Wrapper::_Get_Shader_Manager().ClipmapShadersAvailable();
+		if (!avail) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) {
+				fprintf(lf, "VK: ClipMap shaders MISSING (clipmap.vert.spv/shroud.frag.spv in shaders/) - staying on legacy tiles\n");
+				fclose(lf);
+			}
+		}
+		return avail;
+	}();
+	return on;
+}
 #include "WW3D2/Scene.h"
 #include "W3DDevice/GameClient/W3DPoly.h"
 #include "W3DDevice/GameClient/W3DCustomScene.h"
@@ -2636,6 +2652,12 @@ Int HeightMapRenderObjClass::initHeightData(Int x, Int y, WorldHeightMap *pMap, 
 		TheWritableGlobalData->m_drawEntireTerrain = TRUE;
 		x = m_map->getXExtent();
 		y = m_map->getYExtent();
+		// Expand the map's draw rect to the full map BEFORE shroud->init:
+		// the shroud texture is sized from getDrawWidth(), and the clipmap
+		// shroud pass multiplies the WHOLE-map mesh. A window-sized shroud
+		// texture samples its black border outside the camera window =>
+		// direction-dependent black terrain (the field "fog of war" bug).
+		m_map->setDrawOrg(0, 0);
 	}
 
 	if (m_shroud)
@@ -4140,42 +4162,54 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 				else if (mode == 4) texA = W3DShaderManager::getShaderTexture(3);
 				else texA = W3DShaderManager::getShaderTexture(2);
 				TextureClass *texB = (mode == 2) ? W3DShaderManager::getShaderTexture(3) : NULL;
-				// Option C M2b: clipmap draws base (mode0) + alpha (mode1) passes
-				// when RTS_CLIPMAP=1; legacy tiles remain the fallback.
-				// M2b: base(mode0)+alpha(mode1) on clipmap. The earlier alpha crash
-				// was the binding2-never-written descriptor bug (fixed in
-				// VkDescriptors: writes=3) - the VS color fetch used an unwritten
-				// descriptor; verified stable since.
-				if (ClipmapTerrainOn() && (mode == 0 || mode == 1) && m_clipmap.HasMesh()) {
+				// Option C M2b/M5: clipmap draws ALL terrain passes (base,
+				// alpha, cloud+noise, cloud, noise = modes 0-4) as frustum-
+				// culled chunks; legacy tiles remain the opt-out/fallback.
+				if (ClipmapTerrainOn() && m_clipmap.HasMesh()) {
 					static unsigned cd = 0; cd++;
 					if (cd == 1) {
 						FILE *lf = fopen("RTS_START.LOG", "a");
-						if (lf) { fprintf(lf, "VK: ClipMap draw ACTIVE (RTS_CLIPMAP=1)\n"); fclose(lf); }
+						if (lf) { fprintf(lf, "VK: ClipMap draw ACTIVE (default on)\n"); fclose(lf); }
 					}
-					{	static unsigned de = 0; de++;
-						FILE *lf = fopen("RTS_START.LOG", "a");
-						if (lf) { fprintf(lf, "VK: ClipMap draw ENTER #%u\n", de); fclose(lf); }
+					// cloud/noise UV scale (same formula as the legacy native path)
+					const float clipStretch = 1.0f / (63.0f * MAP_XY_FACTOR / 2.0f);
+					VkTexture *noiseVk = (mode == 2 && texB) ? texB->Peek_Vulkan_Texture() : NULL;
+					int drewChunks = 0, triedChunks = 0;
+					for (int ci = 0; ci < m_clipmap.GetChunkCount(); ci++) {
+						const TerrainClipmap::Chunk &ck = m_clipmap.GetChunk(ci);
+						// frustum-cull the chunk (bounding sphere vs camera)
+						SphereClass sph(Vector3(ck.cx, ck.cy, ck.cz), ck.radius);
+						if (rinfo.Camera.Cull_Sphere(sph))
+							continue;
+						triedChunks++;
+						if (DX8Wrapper::VulkanDrawClipmapPass(mode,
+							m_clipmap.GetVb(), m_clipmap.GetIb(),
+							ck.firstIndex, ck.indexCount,
+							texA, noiseVk,
+							m_clipmap.PeekHeightTex(), m_clipmap.PeekColorTex(),
+							(float)m_clipmap.GetCellsX(), (float)m_clipmap.GetCellsY(),
+							(float)m_clipmap.GetBorder(), m_clipmap.GetCellSize(),
+							clipStretch))
+							drewChunks++;
 					}
-					bool clipOk = DX8Wrapper::VulkanDrawClipmapPass(mode,
-						m_clipmap.GetVb(), m_clipmap.GetIb(), m_clipmap.GetIdxCount(),
-						texA, m_clipmap.PeekHeightTex(), m_clipmap.PeekColorTex(),
-						(float)m_clipmap.GetCellsX(), (float)m_clipmap.GetCellsY(),
-						(float)m_clipmap.GetBorder(), m_clipmap.GetCellSize());
-					if (clipOk) {
+					if (drewChunks > 0) {
 						static unsigned dex = 0; dex++;
 						if (dex <= 6 || (dex % 60) == 0) {
 							FILE *lf = fopen("RTS_START.LOG", "a");
-							if (lf) { fprintf(lf, "VK: ClipMap draw OK #%u\n", dex); fclose(lf); }
+							if (lf) { fprintf(lf, "VK: ClipMap draw OK #%u mode=%d chunks=%d/%d\n", dex, mode, drewChunks, m_clipmap.GetChunkCount()); fclose(lf); }
 						}
 						continue;
 					}
-					// pipeline/shader unavailable (clipmap.vert.spv missing from the
-					// game shaders dir) - fall through to the legacy tile loop.
+					if (triedChunks == 0 && m_clipmap.GetChunkCount() > 0) {
+						// whole map culled - nothing to draw this pass (valid)
+						continue;
+					}
+					// pipeline/shader unavailable - fall through to legacy tiles.
 					{
 						static unsigned df = 0; df++;
 						if (df <= 8) {
 							FILE *lf = fopen("RTS_START.LOG", "a");
-							if (lf) { fprintf(lf, "VK: ClipMap draw FAILED #%u -> legacy tiles\n", df); fclose(lf); }
+							if (lf) { fprintf(lf, "VK: ClipMap draw FAILED #%u mode=%d -> legacy tiles\n", df, mode); fclose(lf); }
 						}
 					}
 				}
@@ -4346,12 +4380,21 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 					// height/color MUST match the base pass so the EQUAL depth
 					// test lands (white placeholders would shift z and the
 					// multiply would silently draw nowhere).
-					if (DX8Wrapper::VulkanDrawClipmapShroudPass(
-							m_clipmap.GetVb(), m_clipmap.GetIb(), m_clipmap.GetIdxCount(),
-							svk, m_clipmap.PeekHeightTex(), m_clipmap.PeekColorTex(),
-							(float)offX, (float)offY, (float)scaleX, (float)scaleY)) {
-						return;	// clipmap shroud ok - skip legacy tile shroud
+					int shroudDrew = 0;
+					for (int ci = 0; ci < m_clipmap.GetChunkCount(); ci++) {
+						const TerrainClipmap::Chunk &ck = m_clipmap.GetChunk(ci);
+						SphereClass sph(Vector3(ck.cx, ck.cy, ck.cz), ck.radius);
+						if (rinfo.Camera.Cull_Sphere(sph))
+							continue;
+						if (DX8Wrapper::VulkanDrawClipmapShroudPass(
+								m_clipmap.GetVb(), m_clipmap.GetIb(),
+								ck.firstIndex, ck.indexCount,
+								svk, m_clipmap.PeekHeightTex(), m_clipmap.PeekColorTex(),
+								(float)offX, (float)offY, (float)scaleX, (float)scaleY))
+							shroudDrew++;
 					}
+					if (shroudDrew > 0 || m_clipmap.GetChunkCount() == 0)
+						return;	// clipmap shroud ok - skip legacy tile shroud
 					{
 						static unsigned sf = 0; sf++;
 						if (sf <= 8) {

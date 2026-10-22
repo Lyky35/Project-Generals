@@ -85,6 +85,9 @@ bool VkShaderManager::Init(VulkanDevice *device, const char *shaderDir)
 		char sfPath[300];
 		snprintf(sfPath, sizeof(sfPath), "%s/shroud.frag.spv", shaderDir);
 		m_shroudFragModule = LoadModule(sfPath);
+		char ccfPath[300];
+		snprintf(ccfPath, sizeof(ccfPath), "%s/clipmap_cloud.frag.spv", shaderDir);
+		m_clipmapCloudFragModule = LoadModule(ccfPath);	// fail-soft: cloud passes off
 	}
 	if (!CreateDescriptorLayouts())
 		return false;
@@ -861,10 +864,13 @@ VkPipeline VkShaderManager::GetTerrainPipeline(int mode, uint32_t diffuseOffset,
 
 VkPipeline VkShaderManager::GetClipmapPipeline(int mode)
 {
-	if (mode < 0 || mode > 1) mode = 0;
+	if (mode < 0 || mode > 4) mode = 0;
 	if (m_clipmapPipelines[mode] != VK_NULL_HANDLE)
 		return m_clipmapPipelines[mode];
-	if (m_clipmapVertModule == VK_NULL_HANDLE || m_terrainFragModule == VK_NULL_HANDLE)
+	// modes 0-1: clipmap.vert + terrain.frag; modes 2-4: clipmap.vert +
+	// clipmap_cloud.frag (cloud/noise multiply overlays, M5).
+	VkShaderModule fragModule = (mode >= 2) ? m_clipmapCloudFragModule : m_terrainFragModule;
+	if (m_clipmapVertModule == VK_NULL_HANDLE || fragModule == VK_NULL_HANDLE)
 		return VK_NULL_HANDLE;
 
 	VkVertexLayoutDesc layout = {};
@@ -893,7 +899,7 @@ VkPipeline VkShaderManager::GetClipmapPipeline(int mode)
 	cvert.module = m_clipmapVertModule;
 	cvert.pName = "main";
 
-	int32_t specMode = 0;
+	int32_t specMode = mode;
 	VkSpecializationMapEntry specEntry = {};
 	specEntry.constantID = 0;
 	specEntry.offset = 0;
@@ -906,7 +912,7 @@ VkPipeline VkShaderManager::GetClipmapPipeline(int mode)
 	VkPipelineShaderStageCreateInfo cfrag = {};
 	cfrag.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
 	cfrag.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
-	cfrag.module = m_terrainFragModule;
+	cfrag.module = fragModule;
 	cfrag.pName = "main";
 	cfrag.pSpecializationInfo = &specInfo;
 	VkPipelineShaderStageCreateInfo stages[2] = { cvert, cfrag };
@@ -940,10 +946,24 @@ VkPipeline VkShaderManager::GetClipmapPipeline(int mode)
 	depth.depthCompareOp = VK_COMPARE_OP_LESS_OR_EQUAL;
 	VkPipelineColorBlendAttachmentState blendAtt = {};
 	blendAtt.colorWriteMask = 0xf;
+	// depth: modes 0-1 write depth (base/alpha); modes 2-4 are overlays drawn
+	// EQUAL over the base pass (cloud/noise multiply).
+	if (mode >= 2) {
+		depth.depthWriteEnable = VK_FALSE;
+		depth.depthCompareOp = VK_COMPARE_OP_EQUAL;
+	}
 	if (mode == 1) {
 		blendAtt.blendEnable = VK_TRUE;
 		blendAtt.srcColorBlendFactor = VK_BLEND_FACTOR_SRC_ALPHA;
 		blendAtt.dstColorBlendFactor = VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA;
+		blendAtt.srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE;
+		blendAtt.dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO;
+	} else if (mode >= 2) {
+		// cloud x noise multiply: DST_COLOR/ZERO (matches legacy terrain
+		// pipeline mode>=2).
+		blendAtt.blendEnable = VK_TRUE;
+		blendAtt.srcColorBlendFactor = VK_BLEND_FACTOR_DST_COLOR;
+		blendAtt.dstColorBlendFactor = VK_BLEND_FACTOR_ZERO;
 		blendAtt.srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE;
 		blendAtt.dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO;
 	}
@@ -972,7 +992,7 @@ VkPipeline VkShaderManager::GetClipmapPipeline(int mode)
 	info.renderPass = m_device->GetRenderPass();
 	if (vkCreateGraphicsPipelines(m_device->GetDevice(), m_pipelineCache, 1, &info, nullptr, &m_clipmapPipelines[mode]) != VK_SUCCESS) {
 		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: clipmap pipeline build FAILED\n"); fclose(lf); }
+		if (lf) { fprintf(lf, "VK: clipmap pipeline build FAILED mode=%d\n", mode); fclose(lf); }
 		m_clipmapPipelines[mode] = VK_NULL_HANDLE;
 		return VK_NULL_HANDLE;
 	}

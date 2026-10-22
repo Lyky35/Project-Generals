@@ -13,6 +13,8 @@
 //   with the legacy tile renderer remaining the default.
 // ---------------------------------------------------------------------------
 
+#include <vector>
+
 class VkTexture;
 class VkGpuBuffer;
 class WorldHeightMap;
@@ -45,14 +47,27 @@ public:
 	VkTexture *PeekColorTex(void) const { return m_colorTex; }
 
 	// M2a mesh: full-map quad-corner grid (legacy topology), atlas/alpha UVs
-	// baked; drawn by VulkanDrawClipmapPass when RTS_CLIPMAP=1 (mode0 only).
+	// baked; drawn by VulkanDrawClipmapPass (modes 0-4).
+	// M5: the index buffer is partitioned into cell chunks with bounding
+	// spheres so the draw path frustum-culls per chunk.
 	bool HasMesh(void) const { return m_vb != 0 && m_ib != 0; }
 	VkGpuBuffer *GetVb(void) const { return m_vb; }
 	VkGpuBuffer *GetIb(void) const { return m_ib; }
 	unsigned GetIdxCount(void) const { return m_idxCount; }
 
+	struct Chunk {
+		unsigned firstIndex;
+		unsigned indexCount;
+		float cx, cy, cz;	// bounding-sphere center (world)
+		float radius;
+	};
+	int GetChunkCount(void) const { return (int)m_chunks.size(); }
+	const Chunk &GetChunk(int i) const { return m_chunks[i]; }
+
 private:
 	void BuildMesh(WorldHeightMap *map);
+
+	std::vector<Chunk> m_chunks;
 
 	VkTexture *m_heightTex;
 	VkTexture *m_colorTex;
