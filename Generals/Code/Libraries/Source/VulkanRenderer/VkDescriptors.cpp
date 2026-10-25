@@ -102,7 +102,7 @@ void VkDescriptorAllocator::ResetFrame()
 VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout layout,
 	VkTexture *tex0, bool filtered0, bool repeat0,
 	VkTexture *tex1, bool filtered1, bool repeat1,
-	VkTexture *texShadow)
+	VkTexture *texShadow, bool repeatShadow)
 {
 	if (!m_device || !tex0 || !tex1) {
 		static bool l1=false; if(!l1){l1=true;FILE*lf=fopen("RTS_START.LOG","a");if(lf){fprintf(lf,"AllocTexSet fail: dev=%p t0=%p t1=%p\n",(void*)m_device,(void*)tex0,(void*)tex1);fclose(lf);}}
@@ -141,7 +141,12 @@ VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout 
 	imageInfos[1].sampler = tex1->GetSampler(filtered1, repeat1);
 	imageInfos[1].imageView = tex1->GetView();
 	imageInfos[1].imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
-	imageInfos[2].sampler = texShadow->GetSampler(true, false);
+	// PORT FIX (cliff/terrain Option C): slot2 carries the clipmap mode-2 NOISE
+// texture whose UVs are world*stretch (>>1) and MUST wrap; the hardcoded
+// CLAMP sampler stretched one noise texel across the whole map (field:
+// grainy/flat cloud layer). Callers that don't want wrap pass repeatShadow
+// false (default), keeping legacy behavior for the shadowMap slot.
+imageInfos[2].sampler = texShadow->GetSampler(true, repeatShadow);
 	imageInfos[2].imageView = texShadow->GetView();
 	imageInfos[2].imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 	VkWriteDescriptorSet writes[3] = {};

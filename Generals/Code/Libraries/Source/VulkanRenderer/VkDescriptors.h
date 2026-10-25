@@ -29,7 +29,7 @@ public:
     VkDescriptorSet AllocateTextureSet(VkDescriptorSetLayout layout,
         VkTexture *tex0, bool filtered0, bool repeat0,
         VkTexture *tex1, bool filtered1, bool repeat1,
-        VkTexture *texShadow = nullptr);
+        VkTexture *texShadow = nullptr, bool repeatShadow = false);
     VkDescriptorSet AllocateFrameSet(VkDescriptorSetLayout layout, VkBuffer buffer,
         uint32_t offset, uint32_t range);
 

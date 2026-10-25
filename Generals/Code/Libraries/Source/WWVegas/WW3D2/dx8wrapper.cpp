@@ -1839,6 +1839,34 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	vkCmdBindDescriptorSets(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS,
 		DX8Wrapper::ShaderManager.GetPipelineLayout(), 0, 2, sets, 0, NULL);
 
+	{	// PORT PROBE (round-5: water/bridges/buildings black or invisible on
+		// visibility/camera change). Log the ACTUAL state each mesh draw
+		// carries: texture identity (name+missing flag), blend factors,
+		// colorWriteMask, stencil - the black class must show up as either
+		// a MISSING/odd texture bind, a bogus blend, or an ALPHA-ONLY mask.
+		static unsigned mdrw = 0;
+		unsigned stbl = DX8Wrapper::RenderStates[D3DRS_ALPHABLENDENABLE];
+		unsigned srcB = DX8Wrapper::RenderStates[D3DRS_SRCBLEND];
+		unsigned dstB = DX8Wrapper::RenderStates[D3DRS_DESTBLEND];
+		unsigned wrM = DX8Wrapper::RenderStates[D3DRS_COLORWRITEENABLE];
+		unsigned sten = DX8Wrapper::RenderStates[D3DRS_STENCILENABLE];
+		const char *tn = "(none)"; int miss = 0;
+		if (DX8Wrapper::BoundTextures[0]) { tn = DX8Wrapper::BoundTextures[0]->Get_Texture_Name();
+			// residency check BEFORE the white-fallback overwrites tex0: a
+			// managed texture whose VulkanTexture is still NULL would be bound
+			// white (not black) - flag=2 proves first-use non-residency on the
+			// user's machine, flag=1 proves it resolved to MISSING.
+			if (!DX8Wrapper::BoundTextures[0]->Peek_Vulkan_Texture()) miss = 2; }
+		if (tex0 == MissingTexture::_Get_Missing_Texture()) miss = 1;
+		if (tex0 == MissingTexture::_Get_Missing_Texture()) miss = 1;
+		bool samp = (mdrw < 24) || (mdrw < 512 && (mdrw % 64) == 0) || (mdrw >= 512 && (mdrw % 512) == 0);
+		mdrw++;
+		if (samp) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: MDRW #%u tex='%s' miss=%d blend=%d src=%d dst=%d mask=%d stencil=%d\n",
+				(unsigned)mdrw, tn, miss, stbl, srcB, dstB, wrM, sten); fclose(lf); }
+		}
+	}
 	vkCmdDrawIndexed(cmd, indexCount, 1, firstIndex, (int32_t)vertexOffset, 0);
 	number_of_DX8_calls++;
 	VulkanFrameDraws++;
@@ -1896,11 +1924,22 @@ bool DX8Wrapper::VulkanDrawClipmapPass(int mode, VkGpuBuffer *vb, VkGpuBuffer *i
 	VkTexture *vtB = colorTex;
 	if (mode == 2 && noiseTex)
 		vtB = noiseTex;	// mode2 frag samples noise at binding2
-	VkDescriptorSet texSet = DX8Wrapper::DescriptorAllocator.AllocateTextureSet(
-		DX8Wrapper::ShaderManager.GetTextureSetLayout(),
-		vtA, true, true,
-		heightTex, false, false,
-		vtB);
+		// PORT FIX (round-5 field: cliff textures corrupted on USA01-style maps).
+		// The atlas sampler was WRAP for EVERY clipmap mode; the legacy tile pass
+		// uses CLAMP for modes 0/1 (HeightMap.cpp wrap = (mode >= 2)). Campaign
+		// cliff maps produce corner UVs via the m_cliffInfo early-return in
+		// WorldHeightMap::getUVForTileIndex which is NEVER range-clamped, so
+		// out-of-range UVs on steep faces wrapped ACROSS the atlas (neighbour
+		// tiles bleeding onto cliffs = the reported corruption). Flat ground
+		// UVs stay in [0,1] -> only cliffs were affected, exactly matching the
+		// report. Mode 2 keeps WRAP (cloud atlas scroll needs it, see the
+		// CPU-side wrap of push.pad0/pad1 below); the mode-2 NOISE in slot2
+		// also needs WRAP (world*stretch UVs) - pass repeatShadow for it.
+		VkDescriptorSet texSet = DX8Wrapper::DescriptorAllocator.AllocateTextureSet(
+			DX8Wrapper::ShaderManager.GetTextureSetLayout(),
+			vtA, true, (mode >= 2),
+			heightTex, false, false,
+			vtB, mode >= 2);
 	if (texSet == VK_NULL_HANDLE)
 		return false;
 	vkCmdBindDescriptorSets(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS,

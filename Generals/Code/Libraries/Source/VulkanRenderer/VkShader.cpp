@@ -878,24 +878,28 @@ VkPipeline VkShaderManager::GetClipmapPipeline(int mode)
 		return VK_NULL_HANDLE;
 
 	VkVertexLayoutDesc layout = {};
+	// PORT FIX (clipmap + shroud pipelines, Windows driver strictness):
+	// binding1 was declared (INSTANCE rate, stride 64) to mirror the terrain FVF
+	// "normal", but VulkanDrawClipmapPass and VulkanDrawClipmapShroudPass only
+	// ever bind buffer 0 (vkCmdBindVertexBuffers count=1): attributes on an
+	// unbound vertex binding are UB - strict Windows drivers reject/corrupt the
+	// draws while lavapipe silently tolerated them. clipmap.vert declares inNormal
+	// but NEVER reads it, so describe binding0 only; the unmatched shader input
+	// then gets the spec default (0,0,0,1). binding0 stride 32 = pos(12)+color(4)
+	// +uv0(8)+uv1(8); locations keep their shader numbers (0,2,3,4).
 	layout.bindings[0].binding = 0;
 	layout.bindings[0].stride = 32;
 	layout.bindings[0].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
-	layout.bindings[1].binding = 1;
-	layout.bindings[1].stride = 64;
-	layout.bindings[1].inputRate = VK_VERTEX_INPUT_RATE_INSTANCE;
-	layout.bindingCount = 2;
-	layout.attributeCount = 5;
+	layout.bindingCount = 1;
+	layout.attributeCount = 4;
 	layout.attributes[0].location = 0; layout.attributes[0].binding = 0;
 	layout.attributes[0].format = VK_FORMAT_R32G32B32_SFLOAT; layout.attributes[0].offset = 0;
-	layout.attributes[1].location = 1; layout.attributes[1].binding = 1;
-	layout.attributes[1].format = VK_FORMAT_R32G32B32_SFLOAT; layout.attributes[1].offset = 0;
-	layout.attributes[2].location = 2; layout.attributes[2].binding = 0;
-	layout.attributes[2].format = VK_FORMAT_B8G8R8A8_UNORM; layout.attributes[2].offset = 12;
-	layout.attributes[3].location = 3; layout.attributes[3].binding = 0;
-	layout.attributes[3].format = VK_FORMAT_R32G32_SFLOAT; layout.attributes[3].offset = 16;
-	layout.attributes[4].location = 4; layout.attributes[4].binding = 0;
-	layout.attributes[4].format = VK_FORMAT_R32G32_SFLOAT; layout.attributes[4].offset = 24;
+	layout.attributes[1].location = 2; layout.attributes[1].binding = 0;
+	layout.attributes[1].format = VK_FORMAT_B8G8R8A8_UNORM; layout.attributes[1].offset = 12;
+	layout.attributes[2].location = 3; layout.attributes[2].binding = 0;
+	layout.attributes[2].format = VK_FORMAT_R32G32_SFLOAT; layout.attributes[2].offset = 16;
+	layout.attributes[3].location = 4; layout.attributes[3].binding = 0;
+	layout.attributes[3].format = VK_FORMAT_R32G32_SFLOAT; layout.attributes[3].offset = 24;
 
 	VkPipelineShaderStageCreateInfo cvert = {};
 	cvert.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
@@ -1025,24 +1029,28 @@ VkPipeline VkShaderManager::GetClipmapShroudPipeline()
 	cfrag.pName = "main";
 	VkPipelineShaderStageCreateInfo stages[2] = { cvert, cfrag };
 	VkVertexLayoutDesc layout = {};
+	// PORT FIX (clipmap + shroud pipelines, Windows driver strictness):
+	// binding1 was declared (INSTANCE rate, stride 64) to mirror the terrain FVF
+	// "normal", but VulkanDrawClipmapPass and VulkanDrawClipmapShroudPass only
+	// ever bind buffer 0 (vkCmdBindVertexBuffers count=1): attributes on an
+	// unbound vertex binding are UB - strict Windows drivers reject/corrupt the
+	// draws while lavapipe silently tolerated them. clipmap.vert declares inNormal
+	// but NEVER reads it, so describe binding0 only; the unmatched shader input
+	// then gets the spec default (0,0,0,1). binding0 stride 32 = pos(12)+color(4)
+	// +uv0(8)+uv1(8); locations keep their shader numbers (0,2,3,4).
 	layout.bindings[0].binding = 0;
 	layout.bindings[0].stride = 32;
 	layout.bindings[0].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
-	layout.bindings[1].binding = 1;
-	layout.bindings[1].stride = 64;
-	layout.bindings[1].inputRate = VK_VERTEX_INPUT_RATE_INSTANCE;
-	layout.bindingCount = 2;
-	layout.attributeCount = 5;
+	layout.bindingCount = 1;
+	layout.attributeCount = 4;
 	layout.attributes[0].location = 0; layout.attributes[0].binding = 0;
 	layout.attributes[0].format = VK_FORMAT_R32G32B32_SFLOAT; layout.attributes[0].offset = 0;
-	layout.attributes[1].location = 1; layout.attributes[1].binding = 1;
-	layout.attributes[1].format = VK_FORMAT_R32G32B32_SFLOAT; layout.attributes[1].offset = 0;
-	layout.attributes[2].location = 2; layout.attributes[2].binding = 0;
-	layout.attributes[2].format = VK_FORMAT_B8G8R8A8_UNORM; layout.attributes[2].offset = 12;
-	layout.attributes[3].location = 3; layout.attributes[3].binding = 0;
-	layout.attributes[3].format = VK_FORMAT_R32G32_SFLOAT; layout.attributes[3].offset = 16;
-	layout.attributes[4].location = 4; layout.attributes[4].binding = 0;
-	layout.attributes[4].format = VK_FORMAT_R32G32_SFLOAT; layout.attributes[4].offset = 24;
+	layout.attributes[1].location = 2; layout.attributes[1].binding = 0;
+	layout.attributes[1].format = VK_FORMAT_B8G8R8A8_UNORM; layout.attributes[1].offset = 12;
+	layout.attributes[2].location = 3; layout.attributes[2].binding = 0;
+	layout.attributes[2].format = VK_FORMAT_R32G32_SFLOAT; layout.attributes[2].offset = 16;
+	layout.attributes[3].location = 4; layout.attributes[3].binding = 0;
+	layout.attributes[3].format = VK_FORMAT_R32G32_SFLOAT; layout.attributes[3].offset = 24;
 	VkPipelineVertexInputStateCreateInfo vertexInput = {};
 	vertexInput.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
 	vertexInput.vertexBindingDescriptionCount = layout.bindingCount;

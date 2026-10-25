@@ -1932,51 +1932,67 @@ AGAIN:
 */
 void W3DDisplay::renderLetterBox(UnsignedInt currentTime)
 {
+	// REWRITE (round-5 field: script flag cycle healthy - #3->0/#6->0 probes -
+	// yet the top of the screen stayed black once the HUD came up). Retail
+	// state machine has two hazards for this port: (1) UnsignedInt elapsed
+	// feeds the Real fade with no signed guard (freeze-loop guard-breaks make
+	// 'now' stale/skipped - 474 hits in the field log), and (2) the bar rect
+	// is (m_height - 9/16*m_width)*0.5, which on a >=16:9 display is <= 0 -
+	// passing a NEGATIVE Int height to drawFillRect builds an inverted RectClass
+	// whose quad the W2D pass can flip onto covering geometry (lavapipe culled
+	// the degenerate rect, Windows WSI drew black). Sound machine below:
+	// signed elapsed, fade clamped [0,1] every frame, bars only drawn when
+	// barH > 0, and transition breadcrumbs so the next field run pinpoints
+	// exactly what the renderer draws.
+	Real elapsed = (Real)(currentTime - m_letterBoxFadeStartTime);
+	if (!(elapsed >= 0.0f))	// NaN/wrap guard
+		elapsed = 0.0f;
+	Real t = elapsed / LETTER_BOX_FADE_TIME;
+	Real fade;
+	if (m_letterBoxEnabled)
+	{	// fading IN toward 1
+		fade = (t < 1.0f) ? t : 1.0f;
+	}
+	else
+	{	// fading OUT toward 0 (even if a stale caller left the flag set, the
+		// ShowControlBar force-clear makes this the terminal state)
+		fade = (t < 1.0f) ? 1.0f - t : 0.0f;
+	}
+	m_letterBoxFadeLevel = fade;
+
+	UnsignedInt barH = 0;
+	Real want = (Real)m_height - (9.0f/16.0f * (Real)m_width);
+	if (want > 0.0f)
+		barH = (UnsignedInt)(want * 0.5f);
+
+	{	// breadcrumbs: phase transitions + first frames of each phase, cap 10
+		static unsigned rl = 0;
+		static int lastEn = -1; static int lastFadeNZ = -1;
+		int en = m_letterBoxEnabled ? 1 : 0;
+		int fnz = (fade > 0.0f) ? 1 : 0;
+		if (rl < 10 && (en != lastEn || fnz != lastFadeNZ || rl <= 4))
+		{
+			rl++; lastEn = en; lastFadeNZ = fnz;
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: LB state #%u en=%d fade=%.2f barH=%u W=%d H=%d\n",
+				rl, en, (double)fade, (unsigned)barH, m_width, m_height); fclose(lf); }
+		}
+	}
+
+#ifdef SLIDE_LETTERBOX
+	// retail slide path (never compiled here - kept for parity)
+	if (barH > 0) TheTacticalView->setOrigin(0, (Int)((Real)barH * fade));
+	// NOTE: SLIDE semantics differ from bar path; untouched by the port.
+#endif
+	if (fade > 0.0f && barH > 0)
+	{
+		UnsignedInt lbcolor = (UnsignedInt)((Int)(fade * 255.0f)) << 24;	// black, alpha=fade
+		drawFillRect(0, 0, m_width, (Int)barH, lbcolor);		// top bar
 		if (m_letterBoxEnabled)
-		{	if (m_letterBoxFadeLevel != 1.0f)
-			{
-				m_letterBoxFadeLevel = (currentTime - m_letterBoxFadeStartTime)/LETTER_BOX_FADE_TIME;
-				if (m_letterBoxFadeLevel > 1.0f)
-					m_letterBoxFadeLevel = 1.0f;
-			}
-
-			UnsignedInt lbcolor = (Int)(m_letterBoxFadeLevel * 255.0f) << 24;
-
-#ifdef SLIDE_LETTERBOX
-			Int height = (Int)(getHeight() * 0.12f * m_letterBoxFadeLevel);
-			TheTacticalView->setOrigin(0, height);
-#else
-			drawFillRect( 0, 0, m_width, (m_height-(9.0f/16.0f * m_width))*0.5f, lbcolor );
-			drawFillRect( 0, m_height-(m_height-(9.0f/16.0f * m_width))*0.5f, m_width, m_height, lbcolor );
-#endif
-		}
-		else
-		{	//letter box is disabled, but may still be fading out
-			if (m_letterBoxFadeLevel != 0.0f)
-			{
-				m_letterBoxFadeLevel = 1.0f - (currentTime - m_letterBoxFadeStartTime)/LETTER_BOX_FADE_TIME;
-				if (m_letterBoxFadeLevel < 0.0f)
-					m_letterBoxFadeLevel = 0.0f;
-
-				UnsignedInt lbcolor = (Int)(m_letterBoxFadeLevel * 255.0f) << 24;
-
-#ifdef SLIDE_LETTERBOX
-				Int height = (Int)(getHeight() * 0.12f * m_letterBoxFadeLevel);
-				TheTacticalView->setOrigin(0, height);
-#else
-				drawFillRect( 0, 0, m_width, (m_height-(9.0f/16.0f * m_width))*0.5f, lbcolor );
-				//drawFillRect( 0, m_height-(m_height-(9.0f/16.0f * m_width))*0.5f, m_width, m_height, lbcolor );
-#endif
-			}
-			else
-			{	//box has finished fading out
-#ifdef SLIDE_LETTERBOX
-				TheTacticalView->setOrigin(0, 0);
-#else
-				m_letterBoxEnabled = FALSE;
-#endif
-			}
-		}
+			// retail only re-draws the BOTTOM bar while enabled (its fade-out
+			// bottom rect line is commented out in the original)
+			drawFillRect(0, m_height - (Int)barH, m_width, (Int)barH, lbcolor);
+	}
 }
 
 Bool W3DDisplay::isLetterBoxFading(void)
