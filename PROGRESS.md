@@ -1597,3 +1597,19 @@ the noise repeat factor (NOISE_REPEAT_FACTOR) + D3DTTFF COUNT2 sanity, not the
 op semantics (proved sound vs ps.1.1 text). Mesh::Render probe flood (2.32M
 lines/field log) should be thinned next round (raise %600 -> %4000 or gate on
 name change) to keep RTS_START.LOG tractable.
+
+## ROUND 6.5 (beta11 -> beta12, same day) — startup-crash hotfix
+
+- beta11 Windows field: CRASH on startup INSIDE amdvlk64.dll (0xc0000005 rw=0
+  ip=+0x1b8fbc fault=0x53) right after pipeline build #1 ok=1 + Draw3D #1 +
+  VPSC #1. Root cause was OURS: AllocateTextureSet grew to 4 writes but the
+  backing `VkDescriptorImageInfo imageInfos[3] = {}` never grew -> writing
+  imageInfos[3] = OOB stack write; lavapipe tolerated the corrupt neighbor,
+  AMD driver consumed garbage pImageInfo -> jump to null. Fix imageInfos[4].
+- Full soak re-run clean: exit=124 (timeout kill, no teardown segfault), CRASH=0,
+  pipeline #26 tex1=7 ok=1, WTR trap x8 (rects match field), VPSC 1188 scY==vp.Y.
+- Release -> `rts_v13beta12.zip`, targetCommitish 826af3e (docs commit follows).
+
+NEXT: unchanged from round 6 — Windows re-test of the scissor collapse (#2+#3)
+and the water shimmer read; log lines to watch: VPSC all scY==vp.Y, WTR trap
+rect>0, `tex1=7` pipeline build in-mission.
