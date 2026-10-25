@@ -2813,30 +2813,75 @@ void DX8Wrapper::LegacyDrawIndexedAbs(const unsigned short *idx, unsigned idxCou
 		D3DPT_TRIANGLELIST);
 }
 
+// Strip/fan -> list expansion, see commit note for semantics. D3D8 indexed strips:
+// primCount counts primitives, chain uses primCount+2 indices from startIndex.
+static unsigned short s_ExpIdx[6144];
+static unsigned ExpandIndexChain(D3DPRIMITIVETYPE type, const unsigned short *src,
+	UINT primCount, UINT avail)
+{
+	UINT want = primCount + 2;
+	UINT n = (want < avail) ? want : avail;
+	if (n < 3) return 0;
+	UINT tris = n - 2;
+	if (tris > 6144u / 3) tris = 6144u / 3;
+	for (UINT t = 0; t < tris; t++) {
+		s_ExpIdx[t*3+0] = (type == D3DPT_TRIANGLEFAN) ? src[0] : src[t];
+		s_ExpIdx[t*3+1] = src[t+1];
+		s_ExpIdx[t*3+2] = src[t+2];
+	}
+	return tris * 3;
+}
+static unsigned s_stripLog = 0;
+
 void DrawIndexedLegacy(D3DPRIMITIVETYPE type, INT base, INT numVerts,
 	UINT startIndex, UINT primCount)
 {
-	if (type != D3DPT_TRIANGLELIST || !s_IndexBuffer || !s_IndexBuffer->pData || !numVerts)
+	if (!s_IndexBuffer || !s_IndexBuffer->pData || !numVerts) return;
+	UINT availIdx = (UINT)(s_IndexBuffer->Length / sizeof(WORD)) - startIndex;
+	if (type == D3DPT_TRIANGLELIST) {
+		unsigned idxCount = primCount * 3;
+		if ((startIndex + idxCount) * sizeof(WORD) > s_IndexBuffer->Length)
+			return;
+		DX8Wrapper::LegacyDrawIndexedAbs(s_IndexBuffer->pData + startIndex, idxCount,
+			(unsigned)base, (unsigned)numVerts, (unsigned)base);
 		return;
-	unsigned idxCount = primCount * 3;
-	if ((startIndex + idxCount) * sizeof(WORD) > s_IndexBuffer->Length)
-		return;
-	// fetch = base + index  =>  copy verts [base, base+numVerts), rebase idx by
-	// base, draw with vertexOffset = base handled inside DrawIndexedAbs via hint.
-	DX8Wrapper::LegacyDrawIndexedAbs(s_IndexBuffer->pData + startIndex, idxCount,
+	}
+	if (type != D3DPT_TRIANGLESTRIP && type != D3DPT_TRIANGLEFAN) return;
+	unsigned expCount = ExpandIndexChain(type, (const unsigned short *)s_IndexBuffer->pData + startIndex,
+		primCount, availIdx);
+	if (!expCount) return;
+	if (s_stripLog < 400u) {
+		s_stripLog++;
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: Strips2List #%u prim=%u tris=%u\n", s_stripLog, primCount, expCount/3); fclose(lf); }
+	}
+	DX8Wrapper::LegacyDrawIndexedAbs(s_ExpIdx, expCount,
 		(unsigned)base, (unsigned)numVerts, (unsigned)base);
 }
 
 void DrawIndexedD3D9(D3DPRIMITIVETYPE type, INT base, UINT minV, UINT numV,
 	UINT startIndex, UINT primCount)
 {
-	if (type != D3DPT_TRIANGLELIST || !s_IndexBuffer || !s_IndexBuffer->pData || !numV)
+	if (!s_IndexBuffer || !s_IndexBuffer->pData || !numV) return;
+	UINT availIdx = (UINT)(s_IndexBuffer->Length / sizeof(WORD)) - startIndex;
+	if (type == D3DPT_TRIANGLELIST) {
+		unsigned idxCount = primCount * 3;
+		if ((startIndex + idxCount) * sizeof(WORD) > s_IndexBuffer->Length)
+			return;
+		DX8Wrapper::LegacyDrawIndexedAbs(s_IndexBuffer->pData + startIndex, idxCount,
+			(unsigned)(base + (INT)minV), numV, (unsigned)(base + (INT)minV));
 		return;
-	unsigned idxCount = primCount * 3;
-	if ((startIndex + idxCount) * sizeof(WORD) > s_IndexBuffer->Length)
-		return;
-	// fetch = base + index (minV = window into the source range)
-	DX8Wrapper::LegacyDrawIndexedAbs(s_IndexBuffer->pData + startIndex, idxCount,
+	}
+	if (type != D3DPT_TRIANGLESTRIP && type != D3DPT_TRIANGLEFAN) return;
+	unsigned expCount = ExpandIndexChain(type, (const unsigned short *)s_IndexBuffer->pData + startIndex,
+		primCount, availIdx);
+	if (!expCount) return;
+	if (s_stripLog < 400u) {
+		s_stripLog++;
+		FILE *lf = fopen("RTS_START.LOG", "a");
+		if (lf) { fprintf(lf, "VK: Strips2List #%u prim=%u tris=%u\n", s_stripLog, primCount, expCount/3); fclose(lf); }
+	}
+	DX8Wrapper::LegacyDrawIndexedAbs(s_ExpIdx, expCount,
 		(unsigned)(base + (INT)minV), numV, (unsigned)(base + (INT)minV));
 }
 

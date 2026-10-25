@@ -1801,6 +1801,7 @@ AGAIN:
 		{
 			//USE_PERF_TIMER(BigAssRenderLoop)
 			static Bool couldRender = true;
+			{ static unsigned mrm=0; mrm++; if (mrm<=12) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: PreMainRender #%u bci=%d wt=%d\n",mrm,ShaderClass::Is_Backface_Culling_Inverted()?1:0,TheGlobalData->m_waterType); fclose(lf); } } }
 			if ((TheGlobalData->m_breakTheMovie == FALSE) && (TheGlobalData->m_disableRender == false) && WW3D::Begin_Render( true, true, Vector3( 0.0f, 0.0f, 0.0f ), TheWaterTransparency->m_minWaterOpacity ) == WW3D_ERROR_OK)		
 			{
 				

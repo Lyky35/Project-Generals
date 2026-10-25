@@ -869,11 +869,12 @@ void WaterRenderObjClass::ReAcquireResources(void)
 	else
 	if (m_waterType == WATER_TYPE_2_PVSHADER)
 	{	//pixel/vertex shader based water assets.
+		{ static unsigned rq=0; rq++; if (rq<=3) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: WaterRes ENTER type=%d mesh=%p\n",m_waterType,(void*)m_meshData); fclose(lf); } } }
 		if (FAILED(hr=generateIndexBuffer(PATCH_SIZE,PATCH_SIZE)))
-			return;
+		{ static unsigned rq2=0; rq2++; if (rq2<=3) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: WaterRes idxFail hr=%X\n",(unsigned)hr); fclose(lf); } } return; }
 
 		if (FAILED(hr=generateVertexBuffer(PATCH_SIZE,PATCH_SIZE,sizeof(SEA_PATCH_VERTEX),true)))
-			return;
+		{ static unsigned rq3=0; rq3++; if (rq3<=3) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: WaterRes vertFail hr=%X\n",(unsigned)hr); fclose(lf); } } return; }
 
 		//shader decleration
 		DWORD Declaration[]=
@@ -885,16 +886,24 @@ void WaterRenderObjClass::ReAcquireResources(void)
 			(D3DVSD_END)
 		};
 
-		hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\wave.pso", &Declaration[0], 0, false, &m_dwWavePixelShader);
-		if (FAILED(hr))
-			return;
-
-		hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\wave.vso", &Declaration[0], 0, true, &m_dwWaveVertexShader);
-		if (FAILED(hr))
-			return;
-
-		// Create reflection texture
+		// Port fix: create the reflection RT BEFORE the shader loads. Retail
+		// loads wave.pso/wave.vso first; our adapter's Create*Shader stubs
+		// return E_FAIL, so the old early-returns left m_pReflectionTexture
+		// NULL - renderMirror bled the whole scene to the backbuffer and drawSea
+		// had no reflection texture to bind (the #5 "sea never draws" bug).
 		m_pReflectionTexture = DX8Wrapper::Create_Render_Target (SEA_REFLECTION_SIZE, SEA_REFLECTION_SIZE);
+		{ static unsigned rr=0; rr++; if (rr<=3) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: WaterRes refl=%p\n",(void*)m_pReflectionTexture); fclose(lf); } } }
+
+		// Shader loads are best-effort: on failure the handles stay 0 and
+		// drawSea runs its fixed-function stage-state fallback instead.
+		if (SUCCEEDED(hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\wave.pso", &Declaration[0], 0, false, &m_dwWavePixelShader)))
+		{
+			if (SUCCEEDED(hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\wave.vso", &Declaration[0], 0, true, &m_dwWaveVertexShader)))
+			{
+				{ static unsigned rr2=0; rr2++; if (rr2<=3) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: WaterRes wave shaders OK\n"); fclose(lf); } } }
+			}
+		}
+
 	}
 
 	if (m_waterTrackSystem)
@@ -1468,6 +1477,7 @@ void WaterRenderObjClass::renderMirror(CameraClass *cam)
 	cam->Apply();	//force an update of all the camera dependent parameters like frustum clip planes
 
 	ShaderClass::Invert_Backface_Culling(false);
+	{ static unsigned mne=0; mne++; if (mne<=12) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: MirrorEnd #%u bci=%d rt=%p\n",mne,ShaderClass::Is_Backface_Culling_Inverted()?1:0,(void*)m_pReflectionTexture); fclose(lf); } } }
 
 	WW3D::End_Render(false);
 
@@ -1491,6 +1501,10 @@ void WaterRenderObjClass::renderMirror(CameraClass *cam)
 void WaterRenderObjClass::Render(RenderInfoClass & rinfo)
 {
 	//USE_PERF_TIMER(Water)
+	{
+		static unsigned wty=0; wty++;
+		if (wty<=12 || wty%60==0) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: WaterRender type=%d #%u srt=%u sli=%d bci=%d\n",m_waterType,wty,(unsigned)Get_Sort_Level(),WW3D::Are_Static_Sort_Lists_Enabled()?1:0,ShaderClass::Is_Backface_Culling_Inverted()?1:0); fclose(lf); } }
+	}
 	if (TheTerrainRenderObject && !TheTerrainRenderObject->getMap())
 		return;	//no map has been loaded yet.
 
@@ -1518,6 +1532,10 @@ void WaterRenderObjClass::Render(RenderInfoClass & rinfo)
 		return;
 	}
 
+	{
+		static unsigned wpass=0; wpass++;
+		if (wpass <= 12) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "VK: WaterPass type=%d #%u\n", m_waterType, wpass); fclose(lf); } }
+	}
 	switch(m_waterType)
 	{
 		case WATER_TYPE_0_TRANSLUCENT:
@@ -1530,6 +1548,10 @@ void WaterRenderObjClass::Render(RenderInfoClass & rinfo)
 			break;
 
 		case WATER_TYPE_2_PVSHADER:
+			{
+				static unsigned wt = 0; wt++;
+				if (wt <= 12) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "VK: WaterType=2 drawSea #%u\n", wt); fclose(lf); } }
+			}
 			//Pixel/Vertex Shader based water which uses an off-screen rendered reflection texture
 			drawSea(rinfo);	//draw water surface
 			break;
@@ -1833,7 +1855,21 @@ void WaterRenderObjClass::drawSea(RenderInfoClass & rinfo)
 	m_pDev->SetTextureStageState(1, D3DTSS_ADDRESSU, D3DTADDRESS_CLAMP);
 	m_pDev->SetTextureStageState(1, D3DTSS_ADDRESSV, D3DTADDRESS_CLAMP);
 
-	m_pDev->SetTexture( 0, m_pBumpTexture[m_iBumpFrame]);
+	{
+		static unsigned sa = 0; sa++;
+		if (sa <= 10 || (sa % 400u) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: SeaPass n=%u bump=%d refl=%d v=%u i=%u\n", sa,
+				(int)(m_pBumpTexture[m_iBumpFrame] != NULL), (int)(m_pReflectionTexture != NULL),
+				(unsigned)m_numVertices, (unsigned)m_numIndices); fclose(lf); }
+		}
+	}
+	// COM SetTexture is a no-op stub: binds must go through DX8Wrapper::Set_Texture to
+	// reach port state. Bump array is NULL today (initBumpMap is #if 0) = unbound stage.
+	// m_pBumpTexture is a COM LPDIRECT3DTEXTURE8 handle (d3d8types stub struct carries no
+	// payload, and initBumpMap is #if 0 so the array is all-NULL) - there is nothing real
+	// to bind yet. The animated bump arrives with the later BUMPENVMAP rework, which will
+	// create TextureClass* via _Create_DX8_Texture and bind them through Set_Texture.
 #ifdef MIPMAP_BUMP_TEXTURE
 	m_pDev->SetTextureStageState( 0, D3DTSS_MIPFILTER, D3DTEXF_POINT );
 	m_pDev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_LINEAR );
@@ -1865,7 +1901,10 @@ void WaterRenderObjClass::drawSea(RenderInfoClass & rinfo)
 	m_pDev->SetVertexShaderConstant(CV_ZERO,   D3DXVECTOR4(0.0f, 0.0f, 0.0f, 0.0f), 1);
 	m_pDev->SetVertexShaderConstant(CV_ONE,    D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f), 1);
 
-	m_pDev->SetVertexShader(m_dwWaveVertexShader);
+	// No custom wave VS/PS exists in this port (the handles come from the failing wave.vso/pso
+	// load). Adapter SetVertexShader doubles as SetFVF: patch FVF = XYZDUV1 (pos+color+1 uv
+	// set, stride 24). The old garbage handle set s_FVF to 0, another reason draws bailed.
+	m_pDev->SetVertexShader(DX8_FVF_XYZDUV1);
 	m_pDev->SetPixelShader(m_dwWavePixelShader);
 
 //	Make reflection brighter to compensate for darker coloring on sea floor
@@ -1876,7 +1915,11 @@ void WaterRenderObjClass::drawSea(RenderInfoClass & rinfo)
 	m_pDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA );
 
 	m_pDev->SetRenderState(D3DRS_ALPHABLENDENABLE , TRUE);
-	m_pDev->SetTexture( 1, m_pReflectionTexture->Peek_Vulkan_Texture());
+	// Reflection RT is NULL in this port (ReAcquireResources bails at the wave pso/vso load
+	// before creating it), so the old raw Peek was an unconditional NULL deref on the first
+	// visible sea patch. COM SetTexture was a no-op anyway; bind via port state when present.
+	if (m_pReflectionTexture)
+		DX8Wrapper::Set_Texture( 1, m_pReflectionTexture);
 
 //	m_pDev->SetRenderState(D3DRS_FILLMODE,D3DFILL_WIREFRAME);//LORENZEN
 
@@ -1907,6 +1950,10 @@ void WaterRenderObjClass::drawSea(RenderInfoClass & rinfo)
 			//matrices must be transposed before loading into vertex shader registers
 			D3DXMatrixTranspose(&matWorldViewProj, &matWorldViewProj);
 			m_pDev->SetVertexShaderConstant(CV_WORLDVIEWPROJ_0, &matWorldViewProj, 4);	//pass transform matrix into shader
+			// CV constants feed a custom wave VS that does not exist in this port; the strip
+			// draws now go through the fixed pipeline, so per-patch placement must come from
+			// D3DTS_WORLD - exactly what the shroud 2nd pass below already does.
+			DX8Wrapper::_Set_DX8_Transform(D3DTS_WORLD, *(Matrix4*)&matTempWorld);
 
 			m_pDev->DrawIndexedPrimitive(D3DPT_TRIANGLESTRIP,0,m_numVertices,0,m_numIndices);
 		}
@@ -1978,12 +2025,17 @@ void WaterRenderObjClass::drawSea(RenderInfoClass & rinfo)
 //-------------------------------------------------------------------------------------------------
 /** Renders (draws) the water surface.*/
 //-------------------------------------------------------------------------------------------------
+static unsigned wFrames=0,wTrig=0,wRiv=0,wTrap=0,wRivDraw=0,wTrapDraw=0,wfbOn=0,wfbTot=0;
 void WaterRenderObjClass::renderWater(void)
 {
+	if (wFrames<8) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: W0 #%u trig=%u riv=%u trap=%u fb=%u/%u\n",wFrames,wTrig,wRiv,wTrap,wfbOn,wfbTot); fclose(lf); } }
+	wFrames++; wTrig=0; wRiv=0; wTrap=0;
 	for (PolygonTrigger *pTrig=PolygonTrigger::getFirstPolygonTrigger(); pTrig; pTrig = pTrig->getNext()) {
 		if (pTrig->isWaterArea()) {
+			wTrig++;
 			if (pTrig->getNumPoints()>2) {
 				if (pTrig->isRiver()) {
+					wRiv++;
 					drawRiverWater(pTrig);
 					continue;
 				} 
@@ -2012,7 +2064,7 @@ void WaterRenderObjClass::renderWater(void)
 					}
 
 					else
-						drawTrapezoidWater(points);
+						drawTrapezoidWater(points),wTrap++;
 
 
 				}
@@ -2867,6 +2919,8 @@ void WaterRenderObjClass::drawRiverWater(PolygonTrigger *pTrig)
 	if (wireframeForDebug) {
 		DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_FILLMODE,D3DFILL_WIREFRAME);
 	}
+if (wRivDraw<8) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: WTR river #%u rect=%d fb=%u/%u\n",wRivDraw,rectangleCount,wfbOn,wfbTot); fclose(lf); } }
+	wRivDraw++;
 	DX8Wrapper::Draw_Triangles(	0,rectangleCount*2, 0,	(rectangleCount+1)*2);
 	if (wireframeForDebug) {
 		DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_FILLMODE,D3DFILL_SOLID);
@@ -2895,6 +2949,7 @@ void WaterRenderObjClass::drawRiverWater(PolygonTrigger *pTrig)
 
 void WaterRenderObjClass::setupFlatWaterShader(void) 
 {
+	wfbTot++;
 	//Setup shroud to render in same pass as water
 	if (m_trapezoidWaterPixelShader)
 	{	if (TheTerrainRenderObject->getShroud())
@@ -3188,6 +3243,7 @@ void WaterRenderObjClass::drawTrapezoidWater(Vector3 points[4])
 	if (DX8Wrapper::getBackBufferFormat() == WW3D_FORMAT_A8R8G8B8 && TheGlobalData->m_showSoftWaterEdge && TheWaterTransparency->m_transparentWaterDepth !=0)
 	{		DX8Wrapper::Set_DX8_Render_State(D3DRS_SRCBLEND, D3DBLEND_DESTALPHA );
 			DX8Wrapper::Set_DX8_Render_State(D3DRS_DESTBLEND, D3DBLEND_INVDESTALPHA );
+		wfbOn++;
 	}
 
 
@@ -3215,6 +3271,8 @@ void WaterRenderObjClass::drawTrapezoidWater(Vector3 points[4])
 //		}
 //#endif // FEATHER_WATER
 //#endif //WAVY_WATER
+if (wTrapDraw<8) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: WTR trap #%u rect=%d fb=%u/%u\n",wTrapDraw,rectangleCount,wfbOn,wfbTot); fclose(lf); } }
+	wTrapDraw++;
 		DX8Wrapper::Draw_Triangles(	0,rectangleCount*2, 0,	(rectangleCount+1)*2);//lorenzen thinks this is where to itereate the soft shoreline effect
 	}
 
