@@ -136,7 +136,12 @@ VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout 
 
 	if (!texShadow) texShadow = tex0;
 	if (!tex2) tex2 = tex0;
-	VkDescriptorImageInfo imageInfos[3] = {};
+	// PORT FIX (beta12 field crash inside amdvlk64.dll on the FIRST mesh draw):
+	// the round-6 four-sampler update writes imageInfos[3] - the backing array
+	// stayed [3] = an OOB write on the stack. lavapipe tolerated the garbage
+	// neighbor bytes; the AMD driver then consumed corrupted pImageInfo and
+	// jumped to fault=0x53 (CRASH 0xc0000005 rw=0 ip=amdvlk64+0x1b8fbc).
+	VkDescriptorImageInfo imageInfos[4] = {};
 	imageInfos[0].sampler = tex0->GetSampler(filtered0, repeat0);
 	imageInfos[0].imageView = tex0->GetView();
 	imageInfos[0].imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
