@@ -672,10 +672,49 @@ inline D3DXVECTOR4* D3DXVec4Transform(D3DXVECTOR4* pOut, const D3DXVECTOR4* pV, 
 	if (pOut) { pOut->x = pOut->y = pOut->z = pOut->w = 0.0f; }
 	(void)pV; (void)pM; return pOut;
 }
+// REAL 4x4 inverse. This was an identity stub, which broke the road/noise/lightmap
+// idiom "texture matrix = inv(view) * scale + camera-space-position texgen": with the
+// stub the matrix carried no view at all, so uv = scale*(view*world) slid with the
+// camera (field symptom #4b). A true inverse satisfies M*M^-1 = M^-1*M = I for the
+// stored array layout (Matrix4::Row[4] of Vector4(X,Y,Z,W) aliases the row-major
+// _11.._44/m[4][4] union), so the cancellation works in whatever composition order
+// the caller and the Vulkan shader use. Singular -> identity (D3DX returns NULL;
+// call sites here treat a NULL-return path as "leave matrix as fetched", so
+// identity preserves the previous, crash-free behaviour).
 inline D3DMATRIX* D3DXMatrixInverse(D3DMATRIX* pOut, float* pDeterminant, const D3DMATRIX* pM) {
-	if (pOut) { pOut->_11 = 1; pOut->_22 = 1; pOut->_33 = 1; pOut->_44 = 1; }
-	if (pDeterminant) *pDeterminant = 1.0f;
-	(void)pM; return pOut;
+	if (!pM || !pOut) {
+		if (pOut) { pOut->_11 = pOut->_22 = pOut->_33 = pOut->_44 = 0; }
+		if (pDeterminant) *pDeterminant = 0.0f;
+		return pOut;
+	}
+	float a[4][8];
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) a[i][j] = pM->m[i][j];
+		for (int j = 4; j < 8; j++) a[i][j] = (i == j - 4) ? 1.0f : 0.0f;
+	}
+	float det = 1.0f;
+	for (int col = 0; col < 4; col++) {
+		int piv = col; float best = a[col][col]; if (best < 0.0f) best = -best;
+		for (int r = col + 1; r < 4; r++) { float v = a[r][col]; if (v < 0.0f) v = -v; if (v > best) { best = v; piv = r; } }
+		if (best < 1e-6f) {
+			if (pDeterminant) *pDeterminant = 0.0f;
+			for (int i = 0; i < 4; i++) for (int j = 0; j < 4; j++) pOut->m[i][j] = (i == j) ? 1.0f : 0.0f;
+			return pOut;
+		}
+		if (piv != col) { for (int j = 0; j < 8; j++) { float t = a[col][j]; a[col][j] = a[piv][j]; a[piv][j] = t; } det = -det; }
+		{
+			float d = a[col][col];
+			det *= d;
+			for (int j = 0; j < 8; j++) a[col][j] /= d;
+			for (int r = 0; r < 4; r++) if (r != col) {
+				float f = a[r][col];
+				if (f != 0.0f) for (int j = 0; j < 8; j++) a[r][j] -= f * a[col][j];
+			}
+		}
+	}
+	for (int i = 0; i < 4; i++) for (int j = 0; j < 4; j++) pOut->m[i][j] = a[i][j + 4];
+	if (pDeterminant) *pDeterminant = det;
+	return pOut;
 }
 inline D3DMATRIX* D3DXMatrixIdentity(D3DMATRIX* pOut) {
 	if (pOut) { pOut->_11 = pOut->_22 = pOut->_33 = pOut->_44 = 1; }
@@ -918,17 +957,36 @@ typedef IDirect3D8* LPDIRECT3D8;
 #define D3DTSS_ADDRESSW 13
 #endif
 
+// REAL scaling (was half-written: only 4 fields set, other 12 UNINITIALIZED).
 inline D3DMATRIX* D3DXMatrixScaling(D3DMATRIX* pOut, float sx, float sy, float sz) {
-	if (pOut) { pOut->_11=sx; pOut->_22=sy; pOut->_33=sz; pOut->_44=1; }
+	if (pOut) {
+		for (int i = 0; i < 4; i++) for (int j = 0; j < 4; j++) pOut->m[i][j] = (i == j) ? 1.0f : 0.0f;
+		pOut->_11 = sx; pOut->_22 = sy; pOut->_33 = sz; pOut->_44 = 1;
+	}
 	return pOut;
 }
+// REAL translation (was half-written: only 4 fields set, other 12 UNINITIALIZED).
 inline D3DMATRIX* D3DXMatrixTranslation(D3DMATRIX* pOut, float x, float y, float z) {
-	if (pOut) { pOut->_41=x; pOut->_42=y; pOut->_43=z; pOut->_44=1; }
+	if (pOut) {
+		for (int i = 0; i < 4; i++) for (int j = 0; j < 4; j++) pOut->m[i][j] = (i == j) ? 1.0f : 0.0f;
+		pOut->_41 = x; pOut->_42 = y; pOut->_43 = z; pOut->_44 = 1;
+	}
 	return pOut;
 }
+// REAL 4x4 product (the stub returned a and silently DROPPED b - every caller of
+// this was getting a copy of the left operand). pOut may alias a or b, so both
+// operands are read into locals first. m[i][j] over the D3DMATRIX union reads
+// Matrix4::Row[4] (Vector4{X,Y,Z,W}) memory correctly - 16 row-major floats.
 inline D3DMATRIX* D3DXMatrixMultiply(D3DMATRIX* pOut, const D3DMATRIX* a, const D3DMATRIX* b) {
-	if (pOut) *pOut = *a;
-	(void)b;
+	if (a && b && pOut) {
+		float x[4][4], y[4][4];
+		for (int i = 0; i < 4; i++) for (int j = 0; j < 4; j++) { x[i][j] = a->m[i][j]; y[i][j] = b->m[i][j]; }
+		for (int i = 0; i < 4; i++) for (int j = 0; j < 4; j++) {
+			float v = x[i][0]*y[0][j] + x[i][1]*y[1][j] + x[i][2]*y[2][j] + x[i][3]*y[3][j];
+			pOut->m[i][j] = v;
+		}
+	}
+	else if (pOut) { for (int i = 0; i < 4; i++) for (int j = 0; j < 4; j++) pOut->m[i][j] = (i == j) ? 1.0f : 0.0f; }
 	return pOut;
 }
 
