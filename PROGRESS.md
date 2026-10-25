@@ -1525,3 +1525,75 @@ texture.cpp/textureloader.cpp/assetmgr.cpp, or offscreen alpha RT if swapchain
 alpha is unusable for DESTALPHA reads). Env-bump on water stays BACKLOG
 (m_pBumpTexture LPDIRECT3DTEXTURE8, initBumpMap `#if 0`, BUMPENVMAP rework
 deferred behind shipping this fix set).
+
+## ROUND 6 (beta10 field report -> beta11, shipped 2026-10-25)
+
+Field report: (1) water env-bump effect missing; (2) black band at top of
+screen when HUD open (HUD-minimize clears it); (3) water/bridges/some
+buildings black, rotation-dependent ("maybe fog-of-war related").
+
+- (2)+(3) ONE ROOT CAUSE: scissor/viewport CONVENTION MISMATCH. All 4 draw
+  sites in dx8wrapper.cpp set viewport with the negative-height convention
+  (region rows [vp.Y, vp.Y+H) TOP-DOWN), but scissor used the D3D8 mirrored
+  formula targetExtent.height-(vp.Y+vp.Height). ShowControlBar's tactical
+  viewport [0,0.80H] drew rows [0,0.8H) while the scissor admitted ONLY
+  [0.2H,H] => top 20% never rasterized = the persistent "letterbox-like"
+  bar at 1920x1080 (field `VK: LB` barH=0 ALWAYS => not letterbox rects;
+  HUD-minimize = full-height viewport = band gone). Fix: `scissor.offset.y =
+  (int32_t)vp.Y` at ALL 4 sites + `VK: VPSC` probe (soak: 652/652 samples
+  scY==vp.Y). (3) distant lake/bridges/houses sit IN that clipped top strip;
+  camera rotation moves content between the surviving band and the clipped
+  strip = the rotation-dependent black. Every draw class probed healthy
+  (10,063 MDRW samples ALL miss=0, water feather src=7/dst=8 = DESTALPHA/
+  INVDESTALPHA intended, bridge 5/6 mask=7, housecolor2 opaque, ClipMap
+  healthy, ShroudMat single map-wide firing w/ sound matrix) => beta11
+  scissor fix should collapse #2+#3; user re-test confirms.
+- (1) water env-bump ROOT CAUSE: W3DWater.cpp:912-961 D3DX ps.1.1 assembly
+  is `#if 0` => `m_trapezoidWaterPixelShader` ALWAYS NULL => the PS-gated
+  sparkle/noise stages NEVER RAN: water lost its entire "mad r0.rgb,t1,t2,
+  r0" = prev + sparkle*noise shimmer. Re-expressed as stage states (NOT a
+  BUMPENVMAP rework): engine else-branch in setupFlatWaterShader binds
+  stage1 sparkles + stage2 noise with stage1 COLOROP=D3DTOP_MULTIPLYADD
+  (compat value 25, otherwise unused in WW3D2) => port maps to op 7 =
+  ADDPRODUCT (raw-unsigned prev + stage1texel*stage2texel, faithful to
+  ps.1.1 mad - no 2x-1 signed conversion). Stage2 noise sampled via
+  CAMERASPACEPOSITION texgen (mesh.frag selectUV sel==4 =
+  (texMat2*viewMat*worldPos).xy) fed by the copied D3DTS_TEXTURE2 world->
+  noise matrix through CachedTexTransform[2] -> new UBO member texMat2@704
+  + spec constants TEX2_OP(id10)/UVSEL2(id11) + binding3 sampler. Shroud
+  stays the engine's existing 2nd pass (equivalent multiply) with stage1/2
+  DISABLE guards added before that draw. Op7 sampled only when TEX1_OP==7
+  && TEX2_OP>0; capture gates tex2Op on BoundTextures[2] && stage2op!=DISABLE
+  so state-only touches never grow white-sampling pipeline variants.
+- MAX_TEXTURE_STAGES 2->4 (dx8wrapper.h) to make Set_Texture(2,noise)+
+  TextureStageStates[2] REAL (old stage guard silently dropped them); WWASSERT
+  (dx8renderer.cpp:1187) pins equality WITH MeshMatDescClass::MAX_TEX_STAGES
+  (meshmatdesc.h:68) AND the split-table texture arrays live at that constant -
+  raising only the wrapper = first soak AV 0xc0000005 inside
+  DX8TextureCategoryClass ctor (nm+bisect: ip RVA 0x4a815c = `mov 0x8(%rax)`
+  on garbage textures_[2] read past the 2-entry table; ctor loops a<MAX). Fix:
+  meshmatdesc.h MAX_TEX_STAGES 2->4 too (39 use-sites loop the constant;
+  MAX_UV_ARRAYS grows consistently).
+- Soak lesson: beta10 wine soaks NEVER reached trapezoid water (W0 probe
+  capped at first 8 renderWater calls = all shell frames; WTR trap 0 in
+  soak10c/d) - water op7 path was UNTESTED locally for two rounds. Probes
+  widened (W0 fires while any trigger present, WTR enter at drawTrapezoidWater
+  entry): run9 (type-0 lake INI patch, 1024x768, 300s) now shows W0 #732+
+  trig=8 riv=0 trap=3 fb rising; WTR enter x10; WTR trap x8 with rects
+  IDENTICAL to field (132/56/276/132); pipeline build #26 tex0=2 tex1=7
+  cull=1(=NONE) zfunc=4(EQUAL) blend=7/8 cw=f ok=1; twwater01 MDRW live;
+  CRASH=0; zero VUID noise. exit=139 = wine teardown after last frame, log
+  tail healthy.
+- Release `v1.3-beta` asset -> `rts_v13beta11.zip` (flat 16 entries incl NEW
+  mesh.frag.spv), targetCommitish c572bbf.
+
+NEXT: Windows re-test of beta11 decides whether (2)+(3) collapsed together and
+the water shimmer reads like the original. New log lines to watch: `VK: VPSC`
+(all scY==vp.Y), `VK: pipeline build ... tex1=7` present in-mission, `VK: WTR
+trap` rect>0. If black persists AFTER the scissor fix, the rotation dependence
+is NOT the band and the fog/shroud blend suspects reopen (ShroudMat blend,
+offscreen alpha RT). If the shimmer looks wrong-tuned on Windows, next knob is
+the noise repeat factor (NOISE_REPEAT_FACTOR) + D3DTTFF COUNT2 sanity, not the
+op semantics (proved sound vs ps.1.1 text). Mesh::Render probe flood (2.32M
+lines/field log) should be thinned next round (raise %600 -> %4000 or gate on
+name change) to keep RTS_START.LOG tractable.

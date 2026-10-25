@@ -152,3 +152,22 @@ Everything landed on the clipmap side WITHOUT touching the design above:
   + AUDIT #10; open suspects on Windows are driver strictness and dest-alpha
   composition (feather water blend DESTALPHA/INVDESTALPHA, W3DWater.cpp:3244-
   45), NOT terrain residency (all 1776+ wine MDRW draws miss=0).
+
+## ADDENDUM 2026-10-25 (round-6, beta11) — water env-bump via stage-2 + the constants that had to move together
+
+- The beta11 water rework raised `MAX_TEXTURE_STAGES` (dx8wrapper.h) 2->4. The
+  `WWASSERT(MAX_TEXTURE_STAGES==MeshMatDescClass::MAX_TEX_STAGES)` at
+  dx8renderer.cpp:1187 pins `MeshMatDescClass::MAX_TEX_STAGES` (meshmatdesc.h:68)
+  too — and the split-table / meshmatdesc texture arrays
+  (`Texture[MAX_PASSES][MAX_TEX_STAGES]`, UVSource, TextureArray, MAX_UV_ARRAYS)
+  are the terrain/mesh material storage this Option-C pipeline feeds. Both
+  constants move ATOMICALLY or `Generate_Texture_Categories` reads past the
+  2-entry table: the symptom is an AV inside `DX8TextureCategoryClass` ctor
+  (garbage `textures_[2]` vtable probe), i.e. a crash at first scene build —
+  exactly what the first beta11 soak hit before meshmatdesc.h was raised.
+- Material semantics unchanged: W3D material parsing still caps stages via
+  matpass.h's own `MAX_TEX_STAGES = 2` enum (ZH assets use <=2 per pass); the
+  extra slots exist only for the port's stage2 noise binding on trapezoidWater
+  (op7 ADDPRODUCT: prev + sparkle*noise, `D3DTOP_MULTIPLYADD` carrier, CAMERASPACE
+  POSITION texgen + `texMat2` UBO at 704). GPU terrain draws never see
+  `TEX2_OP>0` — the capture gates tex2Op on `BoundTextures[2] && stage2op!=DISABLE`.
