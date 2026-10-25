@@ -1454,3 +1454,74 @@ worth grepping for `for (int` shadowing after any GCC-UB weirdness.
 `Project-Generals-RTS-Full-V1.2.zip` + `Project-Generals-RTS-v1.2.zip`
 (RTS.exe + MinGW/OpenAL/Vulkan DLLs + shaders/ + README/NOTES/PROGRESS),
 tagged `v1.2` with both zips attached.
+
+### 2026-10-25 — beta10: round-5 field report triage (cliff corruption + black class + letterbox rewrite)
+
+Field report on `v1.3-beta` (beta9 exe, confirmed via 12 WaterRes/PreMainRender/INV
+probe lines in the user's `/home/cyklon/Work/log/log/RTS_START.LOG`):
+
+- CLIFF CORRUPTION ROOT CAUSE = sampler semantics split, NOT a pipeline failure.
+  Field log had all 3 clipmap pipelines built (mode=0/1/2 "clipmap pipeline built")
+  + shroud, 0 FAILED; the mode0/1 OK-line sparseness was the `dex<=6||dex%60==0`
+  breadcrumb sampling artifact (3-mode cycle, 60 mod 3=0 -> every sampled line hits
+  mode2). LESSON: breadcrumb caps can hide healthy periodic streams entirely.
+  VulkanDrawClipmapPass bound the atlas REPEAT in EVERY mode; the legacy tile pass
+  is CLAMP for modes0/1 (HeightMap.cpp `wrap = (mode >= 2)`). Campaign cliff
+  corner UVs (USA01 `m_cliffInfo`) come from the WorldHeightMap::getUVForTileIndex
+  EARLY-RETURN branch which is never range-clamped -> out-of-range UVs on steep
+  faces wrap ACROSS atlas tiles under REPEAT; flat-ground UVs stay in [0,1] =
+  exactly the reported "only cliffs corrupted". Fix = sampler mode-parity
+  (CLAMP modes0/1 reproduces retail exactly - NO WorldHeightMap clamp edit);
+  mode-2 cloud keeps WRAP (its CPU-wrapped slide offsets REQUIRE sampler wrap).
+  Slot2 noise UVs = world*stretch >> 1 also need WRAP: AllocateTextureSet gained
+  `repeatShadow` (slot2 sampler was hardcoded CLAMP = one noise texel stretched
+  across the map; default false keeps the shadowMap slot legacy).
+- CLIPMAP/SHROUD VERTEX-BINDING UB: GetClipmapPipeline + GetClipmapShroudPipeline
+  declared vertex binding1 (INSTANCE rate, stride64 dummy "normal", attr location
+  1) but both pass functions only ever bind buffer0 (vkCmdBindVertexBuffers
+  count=1) -> reading an unbound vertex input is UB; strict Windows drivers can
+  drop the draws (lavapipe tolerated). Fixed at creation: bindingCount=1,
+  attributeCount=4, location-1 attr dropped (clipmap.vert declares inNormal but
+  never reads it; spec default (0,0,0,1) is defined).
+- LETTERBOX #3: flag lifecycle PROVEN healthy in field (`#2->1/#3->0` bracket the
+  LetterBox script BEGIN/END, `#4->0`/`#7->0` = beta7 ShowControlBar force-clear
+  firing, `#5->1/#6->0` = second cinematic). GameColor float-packing theory DEAD
+  (drawFillRect takes raw UnsignedInt W3D ARGB). Geometry fact: at 16:9 the bar
+  height `(m_height-9/16*m_width)*0.5` = 0 -> the persistent band is NOT the bars.
+  Remaining hazards: NEGATIVE-height inverted RectClass quads on >16:9 + freeze-
+  loop guard interactions (474 guard-hit lines in the field log; guard `break`
+  skips whole frames incl. renderLetterBox). renderLetterBox fully REWRITTEN as
+  a sound machine (signed-guarded elapsed, fade clamped [0,1] every frame,
+  barH>0 guard, bottom bar only while enabled) + `VK: LB state #n en= fade=
+  barH= WxH` transition probes (cap10) as the truth source. SLIDE_LETTERBOX is
+  never `#define`d anywhere - only dead-branch `#ifdef`s.
+- BLACK WATER/BRIDGES/BUILDINGS narrowed to Windows-specific: field W0 probes all
+  zero at cap-8 early frames (inconclusive); wine soak shows ALL MDRW draws
+  miss=0 (residency theory NOT reproducible under lavapipe). Suspects left: driver
+  strictness / dest-alpha composition - water feather blend uses SRCBLEND=DESTALPHA
+  + DESTBLEND=INVDESTALPHA (W3DWater.cpp:3244-45); Begin_Render dest-alpha clear
+  IS plumbed (VulkanPassClearColor[3]); shroud blend (ZERO/SRC_COLOR multiply,
+  EQUAL depth) verified sound; field log 0 SHROUD FAILED / 0 TEXREADBACK / 0
+  missing=1. Added `VK: MDRW` per-sampled-draw probe in VulkanDrawIndexed: tex
+  name, miss=1 missing / miss=2 non-resident (re-Peek), blend enable+src/dst,
+  COLORWRITEENABLE, STENCILENABLE. Sampling bug caught in the probe itself:
+  counter only incremented inside the sampled branch -> froze at 24; fixed to
+  increment UNCONDITIONALLY.
+- Wine soak (run9, windowed 1024x768 `-win -xres 1024 -yres 768`): clipmap mode
+  0/1/2 + shroud pipelines all build; LB state prints en=0 fade=0 barH=96;
+  1776+ MDRW lines ALL miss=0 across in-game draws (titlescreenuserinterface,
+  scsmshelluserinterface, ptdogwod06, ptpalm02a/c, cbthouse04, housecolor2,
+  avhummer, uvrockbug, extiretrack, nvtreads, lakedusk...); INI.big WaterType
+  patched 2->0 at plaintext-inside-big offset 442438 for a fast type-0 soak
+  (type-2 reflection RT made wine frames 20-60s each).
+- Release `v1.3-beta` -> single asset `rts_v13beta10.zip` (8469621B, 16 files
+  flat layout incl shaders/ 7 spv), targetCommitish `d6fd2e3...`, notes rewritten.
+
+NEXT: the Windows field run of beta10 decides the remaining two: `VK: LB state`
+lines say whether the band is bars / viewport / neither; `VK: MDRW` lines with
+miss=1/2 or odd blend around river/bridge/building textures drive the black-class
+fix (candidates: force synchronous VkTexture upload on first-use Peek in
+texture.cpp/textureloader.cpp/assetmgr.cpp, or offscreen alpha RT if swapchain
+alpha is unusable for DESTALPHA reads). Env-bump on water stays BACKLOG
+(m_pBumpTexture LPDIRECT3DTEXTURE8, initBumpMap `#if 0`, BUMPENVMAP rework
+deferred behind shipping this fix set).

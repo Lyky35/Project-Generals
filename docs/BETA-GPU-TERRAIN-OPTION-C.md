@@ -64,7 +64,9 @@ Branch: `beta` (cut from main @ ebc3f65 - Option B landed as the interim fix).
 - RTS_CLIPMAP=0 must be bit-identical behavior to the Option-B main build.
 
 ## Milestones
-1. [ ] M1: HeightTex+ColorTex builders + upload, log stats (no draw change).
+1. [x] M1 LANDED: HeightTex+ColorTex builders + upload (R16 height byte*257 exact
+   vs legacy z; A8R8G8B8 static diffuse same packed value updateVB writes),
+   ClipMap built cells=185x185 border=30 shell proof, zero crashes.
 2. [x] M2a LANDED: full-map quad-corner grid (legacy topology, FLIP_TRIANGLES
        payload rotation replicated) + clipmap.vert (height/color texture fetch
        in VS, baked atlas/alpha UVs) + GetClipmapPipeline + VulkanDrawClipmapPass
@@ -105,6 +107,48 @@ Branch: `beta` (cut from main @ ebc3f65 - Option B landed as the interim fix).
         + stage/destAlpha/scorch recreation. VERIFY: clipmap boot hb=157
         drawOK=11 FAILED=0 mean~65; legacy boot hb=145 mean~63; clipmap
         MISSION_OK mean~24 == legacy mean~23, zero crashes both modes.
-4. [ ] M5: ring LOD/seams - only if maps outgrow the250k-cell full-grid guard.
+4. [x] M5 PARTIAL: chunk-major 32x32-cell IB + height-derived bounding spheres +
+   per-chunk frustum cull landed with DEFAULT-ON clipmap (RTS_CLIPMAP=0 =
+   legacy-only opt-out; shader-availability gate keeps tiles when clipmap .spv
+   missing); full-grid guard raised 250k->500k cells covers all ZH maps so
+   concentric-ring LOD/seams stay deferred. Field black-terrain ROOT CAUSE was
+   NOT the culling: W3DShroud sized its texture from the pre-M4 31-cell window
+   -> clamped-black border sampled outside camera window (direction-dependent
+   black moving with camera); fixed by setDrawOrg(0,0) BEFORE shroud->init.
 
-Status: M1-M4 done on beta (M4 = tile retirement); M5 pending, gated on map size.
+Status: M1-M5 landed (ring LOD deferred behind the 500k guard); field rounds
+2-3 (blending/bridges/clouds/minimap/letterbox + dynamic lights), D3DX stub
+class (#4b), beta9 water rewire carried by commit messages; round-5 triage
+in the ADDENDUM below.
+
+## ADDENDUM 2026-10-25 — round-5 field triage on the clipmap pipeline (beta10)
+
+Field report on `v1.3-beta` (beta9 exe, Win10 + campaign USA01-style maps).
+Everything landed on the clipmap side WITHOUT touching the design above:
+
+- CLIFF TEXTURE CORRUPTION = sampler semantics split (see AUDIT #10 item 2):
+  atlas sampler is now mode-parity `repeat = (mode >= 2)` at the pass call
+  site in dx8wrapper.cpp - CLAMP for modes0/1 (identical to the legacy tile
+  pass, which ran the SAME out-of-range campaign cliff UVs through a CLAMP
+  sampler), WRAP for mode2 cloud (CPU slide offsets wrap and REQUIRE sampler
+  wrap). Slot2 noise sampler gained the `repeatShadow` param (WRAP in the
+  clipmap call, default CLAMP for the shadowMap callers in VkDescriptors.h/
+  .cpp).
+- Driver-strictness UB class fixed at pipeline creation (GetClipmapPipeline +
+  GetClipmapShroudPipeline in VkShader.cpp): the declared-but-never-bound
+  INSTANCE binding1 (stride64 dummy normal, attr location1) is gone;
+  bindingCount=1 / attributeCount=4. Unbound vertex inputs are UB and strict
+  Windows drivers can drop exactly the terrain draws this class touched -
+  the "field is healthy under lavapipe but suspicious on Windows" direction
+  this fix closes.
+- Field-log verdict that kept the pipeline design innocent: all clipmap modes
+  0/1/2 + shroud pipelines BUILT on the user's machine, 0 FAILED; the
+  mode0/1 OK-line sparseness was breadcrumb `dex%60` sampling on a 3-mode
+  cycle (60 mod 3=0 always samples mode2), NOT a failing pass. Breadcrumb
+  sampling must not share a factor with stream periods.
+- The letterbox renderer rewrite and the `VK: MDRW`/`VK: LB state` field
+  probes for the black water/bridges/buildings class live on the draw side
+  (W3DDisplay.cpp / VulkanDrawIndexed) and are carried by the beta10 commit
+  + AUDIT #10; open suspects on Windows are driver strictness and dest-alpha
+  composition (feather water blend DESTALPHA/INVDESTALPHA, W3DWater.cpp:3244-
+  45), NOT terrain residency (all 1776+ wine MDRW draws miss=0).
