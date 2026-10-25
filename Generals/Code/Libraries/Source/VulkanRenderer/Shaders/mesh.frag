@@ -14,6 +14,7 @@ layout(location = 0) out vec4 outColor;
 layout(set = 0, binding = 0) uniform sampler2D texStage0;
 layout(set = 0, binding = 1) uniform sampler2D texStage1;
 layout(set = 0, binding = 2) uniform sampler2D shadowMap;
+layout(set = 0, binding = 3) uniform sampler2D texStage2;
 
 layout(set = 1, binding = 0) uniform FrameData {
 	vec4 ambientColor;
@@ -31,6 +32,12 @@ layout(set = 1, binding = 0) uniform FrameData {
 	mat4 viewMat;
 	mat4 lightMvp;
 	vec4 shadowParams;	// (bias, darken, enabled, unused)
+	// mesh.vert passes mvp/world via PUSH CONSTANTS, but the CPU mirror of
+	// this shared ring UBO still carries worldViewProj/world at 576..703 -
+	// declare the same span so texMat2 lands at 704 matching the upload.
+	float vboPadWorldViewProj[16];
+	float vboPadWorld[16];
+	mat4 texMat2;
 } frame;
 
 layout(constant_id = 0) const int TEX0_OP = 1;
@@ -43,6 +50,10 @@ layout(constant_id = 6) const int ALPHAOP0 = 0;
 layout(constant_id = 7) const int ALPHAOP1 = 0;
 layout(constant_id = 8) const int UVSEL0 = 0;
 layout(constant_id = 9) const int UVSEL1 = 0;
+// PORT (round-6 water env-bump): stage-2 noise sampler feeding op7 below;
+// engine sets TEX2_OP>0 only on the trapezoidWater main pass.
+layout(constant_id = 10) const int TEX2_OP = 0;
+layout(constant_id = 11) const int UVSEL2 = 0;
 
 // UV selector: 0..3 = passthrough UV channels (W3D FVF tex slots);
 // 4 = TCI_CAMERASPACEPOSITION, 5 = TCI_CAMERASPACENORMAL,
@@ -126,13 +137,25 @@ void main()
 		vec2 uv1sel = selectUV(UVSEL1, frame.texMat1);
 		vec4 texel = texture(texStage1, uv1sel);
 		float aIn = alpha;
-		color = applyTexOp(color, alpha, texel, TEX1_OP, alpha);
-		if (ALPHAOP1 == 1) alpha = texel.a;
-		else if (ALPHAOP1 == 2) alpha = base.a;
-		else if (ALPHAOP1 == 3) alpha = aIn;
-		else if (ALPHAOP1 == 4) alpha = frame.tfactorColor.a;
-		else if (ALPHAOP1 == 5) alpha = aIn * texel.a;
-		else if (ALPHAOP1 == 6) alpha = aIn + texel.a;
+		if (TEX1_OP == 7) {
+			// PORT op7 = ADDPRODUCT: trapezoidWater ps.1.1 line "mad r0.rgb, t1, t2, r0"
+			// - raw unsigned sparkle texel * raw unsigned noise texel ADDED to prev
+			// (unsigned raw = faithful to ps.1.1; no 2x-1 signed conversion). Noise
+			// sampler uses CAMERASPACEPOSITION texgen: uv = (texMat2 * view * worldPos).xy
+			// fed by the engine's D3DTS_TEXTURE2 world->noise matrix.
+			vec4 noise = vec4(0.0);
+			if (TEX2_OP > 0)
+				noise = texture(texStage2, selectUV(UVSEL2, frame.texMat2));
+			color = min(color + texel.rgb * noise.rgb, vec3(1.0));
+		} else {
+			color = applyTexOp(color, alpha, texel, TEX1_OP, alpha);
+			if (ALPHAOP1 == 1) alpha = texel.a;
+			else if (ALPHAOP1 == 2) alpha = base.a;
+			else if (ALPHAOP1 == 3) alpha = aIn;
+			else if (ALPHAOP1 == 4) alpha = frame.tfactorColor.a;
+			else if (ALPHAOP1 == 5) alpha = aIn * texel.a;
+			else if (ALPHAOP1 == 6) alpha = aIn + texel.a;
+		}
 	}
 
 	if (LIGHTING == 1) {

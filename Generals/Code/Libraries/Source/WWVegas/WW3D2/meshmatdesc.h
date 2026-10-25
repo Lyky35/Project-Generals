@@ -65,7 +65,11 @@ public:
 	enum 
 	{
 		MAX_PASSES = 4,
-		MAX_TEX_STAGES = 2,
+		MAX_TEX_STAGES = 4,
+		// PORT (round-6 water env-bump): raised WITH dx8wrapper.h's MAX_TEXTURE_STAGES
+		// 2->4 - the WWASSERT(MAX_TEXTURE_STAGES==MeshMatDescClass::MAX_TEX_STAGES) in
+		// Generate_Texture_Categories pins them equal, and the split-table texture
+		// arrays must reach stage 2 (noise) or the ctor reads garbage past [1].
 		MAX_COLOR_ARRAYS = 2,
 		MAX_UV_ARRAYS = MAX_PASSES * MAX_TEX_STAGES
 	};

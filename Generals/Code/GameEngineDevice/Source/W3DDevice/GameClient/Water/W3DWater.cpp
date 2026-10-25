@@ -2028,7 +2028,7 @@ void WaterRenderObjClass::drawSea(RenderInfoClass & rinfo)
 static unsigned wFrames=0,wTrig=0,wRiv=0,wTrap=0,wRivDraw=0,wTrapDraw=0,wfbOn=0,wfbTot=0;
 void WaterRenderObjClass::renderWater(void)
 {
-	if (wFrames<8) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: W0 #%u trig=%u riv=%u trap=%u fb=%u/%u\n",wFrames,wTrig,wRiv,wTrap,wfbOn,wfbTot); fclose(lf); } }
+	static unsigned w0p=0; if ((wFrames<8||wTrig+wRiv+wTrap>0)&&w0p<16) { w0p++; FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: W0 #%u trig=%u riv=%u trap=%u fb=%u/%u\n",wFrames,wTrig,wRiv,wTrap,wfbOn,wfbTot); fclose(lf); } }
 	wFrames++; wTrig=0; wRiv=0; wTrap=0;
 	for (PolygonTrigger *pTrig=PolygonTrigger::getFirstPolygonTrigger(); pTrig; pTrig = pTrig->getNext()) {
 		if (pTrig->isWaterArea()) {
@@ -3015,6 +3015,48 @@ void WaterRenderObjClass::setupFlatWaterShader(void)
 		destMatrix = destMatrix*scale;
 		DX8Wrapper::_Set_DX8_Transform(D3DTS_TEXTURE2, *(Matrix4*)&destMatrix);
 
+	} else if (doSparkles && m_waterSparklesTexture && m_waterNoiseTexture) {
+		// PORT FIX (round-6 field: water env-bump effect absent). The ps.1.1
+		// assembly block that made m_trapezoidWaterPixelShader is #if 0 under
+		// this port, so the PS-gated sparkle/noise stages NEVER RAN: the water
+		// surface lost its entire "mad r0.rgb, t1, t2, r0" = prev + sparkle*noise
+		// shimmer (the env-bump look). Re-express that PS as plain stage states
+		// the Vulkan adapter understands: stage1 sparkles with D3DTOP_MULTIPLYADD
+		// (port maps that otherwise-unused code to op 7 = ADDPRODUCT: raw-unsigned
+		// stage1 texel * stage2 texel ADDED to prev, faithful to ps.1.1), stage2
+		// noise sampled via CAMERASPACEPOSITION texgen + D3DTS_TEXTURE2 matrix.
+		// Shroud application stays the engine's existing 2nd pass below.
+		DX8Wrapper::Set_Texture(1, m_waterSparklesTexture);
+		DX8Wrapper::Set_Texture(2, m_waterNoiseTexture);
+
+		DX8Wrapper::Set_DX8_Texture_Stage_State(1, D3DTSS_COLOROP, D3DTOP_MULTIPLYADD);
+		DX8Wrapper::Set_DX8_Texture_Stage_State(1, D3DTSS_COLORARG1, D3DTA_CURRENT);
+		DX8Wrapper::Set_DX8_Texture_Stage_State(1, D3DTSS_COLORARG2, D3DTA_TEXTURE);
+		DX8Wrapper::Set_DX8_Texture_Stage_State(1, D3DTSS_ADDRESSU, D3DTADDRESS_WRAP);
+		DX8Wrapper::Set_DX8_Texture_Stage_State(1, D3DTSS_ADDRESSV, D3DTADDRESS_WRAP);
+
+		// stage2 COLOROP only ENABLES the noise lookup (the product math lives in
+		// the op7 stage1 handler; DX8 combiners cannot span two textures).
+		DX8Wrapper::Set_DX8_Texture_Stage_State(2, D3DTSS_COLOROP, D3DTOP_MODULATE);
+		DX8Wrapper::Set_DX8_Texture_Stage_State(2, D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_CAMERASPACEPOSITION);
+		// Two output coordinates are used.
+		DX8Wrapper::Set_DX8_Texture_Stage_State(2, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_COUNT2);
+		DX8Wrapper::Set_DX8_Texture_Stage_State(2, D3DTSS_ADDRESSU, D3DTADDRESS_WRAP);
+		DX8Wrapper::Set_DX8_Texture_Stage_State(2, D3DTSS_ADDRESSV, D3DTADDRESS_WRAP);
+		D3DXMATRIX inv;
+		float det;
+
+		Matrix4 curView;
+		DX8Wrapper::_Get_DX8_Transform(D3DTS_VIEW, curView);
+		D3DXMatrixInverse(&inv, &det, (D3DXMATRIX*)&curView);
+		D3DXMATRIX scale;
+
+		D3DXMatrixScaling(&scale, NOISE_REPEAT_FACTOR, NOISE_REPEAT_FACTOR,1);
+		D3DXMATRIX destMatrix = inv * scale;
+		D3DXMatrixTranslation(&scale, m_riverVOrigin, m_riverVOrigin,0);
+		destMatrix = destMatrix*scale;
+		DX8Wrapper::_Set_DX8_Transform(D3DTS_TEXTURE2, *(Matrix4*)&destMatrix);
+
 	}
 	m_pDev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_LINEAR );
 	m_pDev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_LINEAR );
@@ -3033,6 +3075,9 @@ void WaterRenderObjClass::setupFlatWaterShader(void)
 //-------------------------------------------------------------------------------------------------
 void WaterRenderObjClass::drawTrapezoidWater(Vector3 points[4])
 {
+	static unsigned wTrapEnter=0;
+	if (wTrapEnter<10) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: WTR enter #%u pts=(%.0f,%.0f)\n",wTrapEnter,points[0][0],points[0][1]); fclose(lf); } }
+	wTrapEnter++;
 	Vector3 origin(points[0]);
 	Vector3 uVec1(points[1]);
 	Vector3 vVec1(points[3]);
@@ -3307,6 +3352,11 @@ if (wTrapDraw<8) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK
 			DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 			//Shroud shader uses z-compare of EQUAL which wouldn't work on water because it doesn't
 			//write to the zbuffer.  Change to LESSEQUAL.
+			// PORT: the main pass left stage1/2 bound (sparkle+noise ADDPRODUCT);
+			// this shroud-only pass must not re-add the shimmer (the PS-era applied
+			// everything in ONE pass instead - hence stage3 shroud there).
+			DX8Wrapper::Set_DX8_Texture_Stage_State(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
+			DX8Wrapper::Set_DX8_Texture_Stage_State(2, D3DTSS_COLOROP, D3DTOP_DISABLE);
 			DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
 			DX8Wrapper::Draw_Triangles(	0,rectangleCount*2, 0,	(rectangleCount+1)*2);
 			DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_ZFUNC, D3DCMP_EQUAL);

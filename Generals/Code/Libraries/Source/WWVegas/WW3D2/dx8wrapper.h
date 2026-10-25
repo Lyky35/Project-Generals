@@ -64,7 +64,9 @@
 #include "dx8indexbuffer.h"
 #include "vertmaterial.h"
 
-const unsigned MAX_TEXTURE_STAGES=2;
+const unsigned MAX_TEXTURE_STAGES=4;	// PORT: raised 2->4 so water can bind the
+							// trapezoidWater ps.1.1 replacement stages (sparkle/noise at 2/3); D3D8
+							// had 8 - the old cap of 2 silently dropped stage-2 texture+state bindings.
 
 enum {
 	BUFFER_TYPE_DX8,

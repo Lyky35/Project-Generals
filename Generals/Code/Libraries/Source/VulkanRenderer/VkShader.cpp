@@ -22,7 +22,8 @@ bool VkPipelineState::operator==(const VkPipelineState &other) const
 		vertexFVF == other.vertexFVF && vertexSize == other.vertexSize &&
 		normalOffset == other.normalOffset && diffuseOffset == other.diffuseOffset &&
 		uv0Offset == other.uv0Offset && uv1Offset == other.uv1Offset &&
-		uv2Offset == other.uv2Offset && uv3Offset == other.uv3Offset;
+		uv2Offset == other.uv2Offset && uv3Offset == other.uv3Offset &&
+		tex2Op == other.tex2Op && uvSel2 == other.uvSel2;
 }
 
 size_t VkPipelineStateHash::operator()(const VkPipelineState &s) const
@@ -211,8 +212,8 @@ VkShaderModule VkShaderManager::LoadModule(const char *path)
 
 bool VkShaderManager::CreateDescriptorLayouts()
 {
-	VkDescriptorSetLayoutBinding texBindings[3] = {};
-	for (int i = 0; i < 3; i++) {
+	VkDescriptorSetLayoutBinding texBindings[4] = {};
+	for (int i = 0; i < 4; i++) {
 		texBindings[i].binding = (uint32_t)i;
 		texBindings[i].descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
 		texBindings[i].descriptorCount = 1;
@@ -226,7 +227,7 @@ bool VkShaderManager::CreateDescriptorLayouts()
 	}
 	VkDescriptorSetLayoutCreateInfo texLayoutInfo = {};
 	texLayoutInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
-	texLayoutInfo.bindingCount = 3;
+	texLayoutInfo.bindingCount = 4;
 	texLayoutInfo.pBindings = texBindings;
 	if (vkCreateDescriptorSetLayout(m_device->GetDevice(), &texLayoutInfo, nullptr, &m_textureSetLayout) != VK_SUCCESS)
 		return false;
@@ -574,19 +575,20 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	vertStage.module = m_vertModule;
 	vertStage.pName = "main";
 
-	VkSpecializationMapEntry specEntries[10];
-	int32_t specValues[10] = {
+	VkSpecializationMapEntry specEntries[12];
+	int32_t specValues[12] = {
 		state.tex0Op, state.tex1Op, state.alphaTest,
 		state.fog, state.lighting, state.alphaFunc,
-		state.alphaOp0, state.alphaOp1, state.uvSel0, state.uvSel1
+		state.alphaOp0, state.alphaOp1, state.uvSel0, state.uvSel1,
+		state.tex2Op, state.uvSel2
 	};
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 12; i++) {
 		specEntries[i].constantID = (uint32_t)i;
 		specEntries[i].offset = (uint32_t)(i * sizeof(int32_t));
 		specEntries[i].size = sizeof(int32_t);
 	}
 	VkSpecializationInfo specInfo = {};
-	specInfo.mapEntryCount = 10;
+	specInfo.mapEntryCount = 12;
 	specInfo.pMapEntries = specEntries;
 	specInfo.dataSize = sizeof(specValues);
 	specInfo.pData = specValues;

@@ -18,6 +18,8 @@ struct VkPipelineState {
 	int32_t alphaOp1;
 	int32_t uvSel0;		// D3DTSS_TEXCOORDINDEX per stage (0/1)
 	int32_t uvSel1;
+	int32_t tex2Op;		// PORT: stage2 op (water noise enable; 0=off)
+	int32_t uvSel2;		// PORT: stage2 uv selector (4=cam-space position)
 	int32_t alphaTest;
 	int32_t fog;
 	int32_t lighting;
@@ -87,6 +89,9 @@ struct VkFrameUniforms {
     float shadowParams[4];	// (bias, darken, enabled, unused)
     float worldViewProj[16];
     float world[16];
+    // PORT std140 704: stage-2 texture transform (trapezoidWater noise
+    // texgen); declared after world so mesh.frag can mirror the span.
+    float texMat2[4][4];
 };
 
 struct VkVertexLayoutDesc {

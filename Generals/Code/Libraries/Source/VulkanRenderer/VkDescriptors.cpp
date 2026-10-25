@@ -61,7 +61,7 @@ VkDescriptorPool VkDescriptorAllocator::CreatePool()
 {
 	VkDescriptorPoolSize poolSizes[2] = {};
 	poolSizes[0].type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-	poolSizes[0].descriptorCount = m_maxSets * 3;
+	poolSizes[0].descriptorCount = m_maxSets * 4;
 	poolSizes[1].type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
 	poolSizes[1].descriptorCount = m_maxSets;
 	VkDescriptorPoolCreateInfo poolInfo = {};
@@ -102,7 +102,8 @@ void VkDescriptorAllocator::ResetFrame()
 VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout layout,
 	VkTexture *tex0, bool filtered0, bool repeat0,
 	VkTexture *tex1, bool filtered1, bool repeat1,
-	VkTexture *texShadow, bool repeatShadow)
+	VkTexture *texShadow, bool repeatShadow,
+	VkTexture *tex2, bool filtered2, bool repeat2)
 {
 	if (!m_device || !tex0 || !tex1) {
 		static bool l1=false; if(!l1){l1=true;FILE*lf=fopen("RTS_START.LOG","a");if(lf){fprintf(lf,"AllocTexSet fail: dev=%p t0=%p t1=%p\n",(void*)m_device,(void*)tex0,(void*)tex1);fclose(lf);}}
@@ -134,6 +135,7 @@ VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout 
 	}
 
 	if (!texShadow) texShadow = tex0;
+	if (!tex2) tex2 = tex0;
 	VkDescriptorImageInfo imageInfos[3] = {};
 	imageInfos[0].sampler = tex0->GetSampler(filtered0, repeat0);
 	imageInfos[0].imageView = tex0->GetView();
@@ -149,8 +151,15 @@ VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout 
 imageInfos[2].sampler = texShadow->GetSampler(true, repeatShadow);
 	imageInfos[2].imageView = texShadow->GetView();
 	imageInfos[2].imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
-	VkWriteDescriptorSet writes[3] = {};
-	for (int i = 0; i < 3; i++) {
+	// PORT binding3: stage-2 texture (trapezoidWater noise under the round-6
+	// env-bump rework). Unwritten descriptors are UB once a fragment statically
+	// samples them (the same VUID-08114 lesson that bit binding2), so every
+	// update covers all four slots.
+	imageInfos[3].sampler = tex2->GetSampler(filtered2, repeat2);
+	imageInfos[3].imageView = tex2->GetView();
+	imageInfos[3].imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+	VkWriteDescriptorSet writes[4] = {};
+	for (int i = 0; i < 4; i++) {
 		writes[i].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
 		writes[i].dstSet = set;
 		writes[i].dstBinding = (uint32_t)i;
@@ -165,7 +174,7 @@ imageInfos[2].sampler = texShadow->GetSampler(true, repeatShadow);
 	// SAMPLES binding2 (texelFetch color) -> using the unwritten descriptor
 	// is UB -> lavapipe crashed in draw/JIT (diag: fetch-stubbed VS stable,
 	// real fetch died at draw#2). Writes must cover all3 bindings.
-	vkUpdateDescriptorSets(m_device->GetDevice(), 3, writes, 0, nullptr);
+	vkUpdateDescriptorSets(m_device->GetDevice(), 4, writes, 0, nullptr);
 	{
 		static unsigned dsLog = 0;
 		if (dsLog < 16) {

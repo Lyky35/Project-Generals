@@ -1460,7 +1460,7 @@ bool DX8Wrapper::VulkanDrawIndexed(
 		return false;
 	}
 
-	VkPipelineState state;
+	VkPipelineState state = {};
 	DX8Wrapper::VulkanBuildPipelineState(&state, fvf, fvfInfo, topology);
 	{
 		static unsigned sl = 0;
@@ -1583,7 +1583,27 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	vkCmdSetViewport(cmd, 0, 1, &viewport);
 	VkRect2D scissor = {};
 	scissor.offset.x = (int32_t)vp.X;
-	scissor.offset.y = (int32_t)(targetExtent.height - (vp.Y + vp.Height));
+	// PORT FIX (round-6 field: black band on top = the HUD-open tactical viewport
+	// [0,0.80H]). The VkViewport here uses the negative-height convention: region
+	// rows [vp.Y, vp.Y+H) top-down with content unflipped (NDC up -> row vp.Y). But
+	// the scissor here used the MIRROR convention targetH-(vp.Y+H) - Vulkan VkRect2D
+	// offsets are TOP-DOWN like the viewport, so every sub-screen viewport clipped
+	// a DIFFERENT band than it drew: menu/fullscreen degenerated (both [0,H]) but the
+	// ShowControlBar setHeight(0.80H) rect drew rows [0,0.8H] while scissor allowed
+	// [0.2H,H] -> rows [0,0.2H) never drawn = the 'letterbox-like' black bar + water/bridges/buildings clipped at top of view (content moved INTO the surviving band on
+	// camera rotation = 'rotating makes them visible'). Scissor must now match the
+	// viewport rows exactly at ALL sites (also fixes the 0.12H cinematic slide band
+	// and GUI sub-rects).
+	scissor.offset.y = (int32_t)vp.Y;
+	{
+		static unsigned vpsc = 0; vpsc++;
+		if (vpsc <= 12 || (vpsc % 600) == 0) {
+			FILE *lf = fopen("RTS_START.LOG", "a");
+			if (lf) { fprintf(lf, "VK: VPSC #%u vp=(%d,%d,%dx%d) scY=%d tgtH=%u\n", vpsc,
+				(int)vp.X, (int)vp.Y, (int)vp.Width, (int)vp.Height, (int32_t)scissor.offset.y,
+				(unsigned)targetExtent.height); fclose(lf); }
+		}
+	}
 	scissor.extent.width = vp.Width;
 	scissor.extent.height = vp.Height;
 	vkCmdSetScissor(cmd, 0, 1, &scissor);
@@ -1803,9 +1823,22 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	unsigned addrV1 = DX8Wrapper::TextureStageStates[1][D3DTSS_ADDRESSV];
 	if (addrU1 == 0x12345678) addrU1 = D3DTADDRESS_WRAP;
 	if (addrV1 == 0x12345678) addrV1 = D3DTADDRESS_WRAP;
-	if (addrU1 != D3DTADDRESS_WRAP || addrV1 != D3DTADDRESS_WRAP) rep1 = false;
+	if (addrU1 != D3DTADDRESS_WRAP || addrV1 != D3DTADDRESS_WRAP) rep1 = false;	VkTexture *tex2 = DX8Wrapper::BoundTextures[2] ? DX8Wrapper::BoundTextures[2]->Peek_Vulkan_Texture() : NULL;
+	if (!tex2) tex2 = &VulkanWhiteTexture;
+	bool filt2 = true, rep2 = true;
+	unsigned min2 = DX8Wrapper::TextureStageStates[2][D3DTSS_MINFILTER];
+	unsigned mag2 = DX8Wrapper::TextureStageStates[2][D3DTSS_MAGFILTER];
+	if (min2 == 0x12345678) min2 = D3DTEXF_POINT;
+	if (mag2 == 0x12345678) mag2 = D3DTEXF_POINT;
+	if (min2 == D3DTEXF_POINT && mag2 == D3DTEXF_POINT) filt2 = false;
+	unsigned addrU2 = DX8Wrapper::TextureStageStates[2][D3DTSS_ADDRESSU];
+	unsigned addrV2 = DX8Wrapper::TextureStageStates[2][D3DTSS_ADDRESSV];
+	if (addrU2 == 0x12345678) addrU2 = D3DTADDRESS_WRAP;
+	if (addrV2 == 0x12345678) addrV2 = D3DTADDRESS_WRAP;
+	if (addrU2 != D3DTADDRESS_WRAP || addrV2 != D3DTADDRESS_WRAP) rep2 = false;
 	VkDescriptorSet texSet = DX8Wrapper::DescriptorAllocator.AllocateTextureSet(
-		DX8Wrapper::ShaderManager.GetTextureSetLayout(), tex0, filt0, rep0, tex1, filt1, rep1, (g_lightMvpValid && g_nativeShadowDepth) ? g_nativeShadowDepth : &VulkanWhiteTexture);
+		DX8Wrapper::ShaderManager.GetTextureSetLayout(), tex0, filt0, rep0, tex1, filt1, rep1, (g_lightMvpValid && g_nativeShadowDepth) ? g_nativeShadowDepth : &VulkanWhiteTexture,
+		false, tex2, filt2, rep2);
 
 	VkFrameUniforms ubo;
 	DX8Wrapper::VulkanFillFrameUniforms(&ubo);
@@ -1912,7 +1945,18 @@ bool DX8Wrapper::VulkanDrawClipmapPass(int mode, VkGpuBuffer *vb, VkGpuBuffer *i
 	vkCmdSetViewport(cmd, 0, 1, &viewport);
 	VkRect2D scissor = {};
 	scissor.offset.x = (int32_t)vp.X;
-	scissor.offset.y = (int32_t)(targetExtent.height - (vp.Y + vp.Height));
+	// PORT FIX (round-6 field: black band on top = the HUD-open tactical viewport
+	// [0,0.80H]). The VkViewport here uses the negative-height convention: region
+	// rows [vp.Y, vp.Y+H) top-down with content unflipped (NDC up -> row vp.Y). But
+	// the scissor here used the MIRROR convention targetH-(vp.Y+H) - Vulkan VkRect2D
+	// offsets are TOP-DOWN like the viewport, so every sub-screen viewport clipped
+	// a DIFFERENT band than it drew: menu/fullscreen degenerated (both [0,H]) but the
+	// ShowControlBar setHeight(0.80H) rect drew rows [0,0.8H] while scissor allowed
+	// [0.2H,H] -> rows [0,0.2H) never drawn = the 'letterbox-like' black bar + water/bridges/buildings clipped at top of view (content moved INTO the surviving band on
+	// camera rotation = 'rotating makes them visible'). Scissor must now match the
+	// viewport rows exactly at ALL sites (also fixes the 0.12H cinematic slide band
+	// and GUI sub-rects).
+	scissor.offset.y = (int32_t)vp.Y;
 	scissor.extent.width = vp.Width;
 	scissor.extent.height = vp.Height;
 	vkCmdSetScissor(cmd, 0, 1, &scissor);
@@ -3007,6 +3051,13 @@ static int VulkanMapTexOp(unsigned colorOp, unsigned arg1)
 	case D3DTOP_SUBTRACT:
 	case D3DTOP_ADDSMOOTH:
 		return 3;
+	case D3DTOP_MULTIPLYADD:
+		// PORT op 7 = ADDPRODUCT: the trapezoidWater ps.1.1 line "mad r0.rgb, t1, t2,
+		// r0" (raw sparkle * raw noise ADDED to prev). DX8 combiners cannot span TWO
+		// textures in one stage, so the port claims the otherwise-unused D3DTOP_MULTIPLYADD
+		// code for it; mesh.frag consumes op7 with the stage-2 noise lookup (round-6
+		// water env-bump rework).
+		return 7;
 	default:
 		break;
 	}
@@ -3212,6 +3263,7 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 			for (int c = 0; c < 4; c++) {
 				ubo->texMat0[r][c] = DX8Wrapper::CachedTexTransform[0][r][c];
 				ubo->texMat1[r][c] = DX8Wrapper::CachedTexTransform[1][r][c];
+				ubo->texMat2[r][c] = DX8Wrapper::CachedTexTransform[2][r][c];
 				ubo->viewMat[r][c] = DX8Wrapper::render_state.view[r][c];
 			}
 		}
@@ -3323,7 +3375,15 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 	if (stage0op == 0x12345678) { stage0op = D3DTOP_DISABLE; stage0arg1 = D3DTA_CURRENT; }
 	if (stage1op == 0x12345678) { stage1op = D3DTOP_DISABLE; stage1arg1 = D3DTA_CURRENT; }
 	state->tex0Op = VulkanMapTexOp(stage0op, stage0arg1);
-	state->tex1Op = VulkanMapTexOp(stage1op, stage1arg1);
+	state->tex1Op = VulkanMapTexOp(stage1op, stage1arg1);	// PORT stage2 (water sparkle/noise): only meaningful while a texture is
+	// actually bound at stage 2 - state-only touches keep the stage off so
+	// unrelated draws do not grow white-sampling pipeline variants.
+	{
+		unsigned stage2op = DX8Wrapper::TextureStageStates[2][D3DTSS_COLOROP];
+		if (stage2op == 0x12345678) stage2op = D3DTOP_DISABLE;
+		state->tex2Op = (DX8Wrapper::BoundTextures[2] && stage2op != D3DTOP_DISABLE)
+			? VulkanMapTexOp(stage2op, D3DTA_TEXTURE) : 0;
+	}
 	// D3DTSS_ALPHAOP: terrain blending carries its weights in texture alpha;
 	// the port previously derived alpha only from the COLOR op (audit #13).
 	{
@@ -3386,6 +3446,7 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 		};
 		state->uvSel0 = mapUv(DX8Wrapper::TextureStageStates[0][D3DTSS_TEXCOORDINDEX]);
 		state->uvSel1 = mapUv(DX8Wrapper::TextureStageStates[1][D3DTSS_TEXCOORDINDEX]);
+		state->uvSel2 = mapUv(DX8Wrapper::TextureStageStates[2][D3DTSS_TEXCOORDINDEX]);
 	}
 	{
 		unsigned at = DX8Wrapper::RenderStates[D3DRS_ALPHATESTENABLE];
@@ -3529,7 +3590,18 @@ bool DX8Wrapper::VulkanDrawTerrainPass(int mode,
 	vkCmdSetViewport(cmd, 0, 1, &viewport);
 	VkRect2D scissor = {};
 	scissor.offset.x = (int32_t)vp.X;
-	scissor.offset.y = (int32_t)(targetExtent.height - (vp.Y + vp.Height));
+	// PORT FIX (round-6 field: black band on top = the HUD-open tactical viewport
+	// [0,0.80H]). The VkViewport here uses the negative-height convention: region
+	// rows [vp.Y, vp.Y+H) top-down with content unflipped (NDC up -> row vp.Y). But
+	// the scissor here used the MIRROR convention targetH-(vp.Y+H) - Vulkan VkRect2D
+	// offsets are TOP-DOWN like the viewport, so every sub-screen viewport clipped
+	// a DIFFERENT band than it drew: menu/fullscreen degenerated (both [0,H]) but the
+	// ShowControlBar setHeight(0.80H) rect drew rows [0,0.8H] while scissor allowed
+	// [0.2H,H] -> rows [0,0.2H) never drawn = the 'letterbox-like' black bar + water/bridges/buildings clipped at top of view (content moved INTO the surviving band on
+	// camera rotation = 'rotating makes them visible'). Scissor must now match the
+	// viewport rows exactly at ALL sites (also fixes the 0.12H cinematic slide band
+	// and GUI sub-rects).
+	scissor.offset.y = (int32_t)vp.Y;
 	scissor.extent.width = vp.Width;
 	scissor.extent.height = vp.Height;
 	vkCmdSetScissor(cmd, 0, 1, &scissor);
@@ -3606,7 +3678,18 @@ bool DX8Wrapper::VulkanDrawClipmapShroudPass(VkGpuBuffer *vb, VkGpuBuffer *ib,
 	vkCmdSetViewport(cmd, 0, 1, &viewport);
 	VkRect2D scissor = {};
 	scissor.offset.x = (int32_t)vp.X;
-	scissor.offset.y = (int32_t)(targetExtent.height - (vp.Y + vp.Height));
+	// PORT FIX (round-6 field: black band on top = the HUD-open tactical viewport
+	// [0,0.80H]). The VkViewport here uses the negative-height convention: region
+	// rows [vp.Y, vp.Y+H) top-down with content unflipped (NDC up -> row vp.Y). But
+	// the scissor here used the MIRROR convention targetH-(vp.Y+H) - Vulkan VkRect2D
+	// offsets are TOP-DOWN like the viewport, so every sub-screen viewport clipped
+	// a DIFFERENT band than it drew: menu/fullscreen degenerated (both [0,H]) but the
+	// ShowControlBar setHeight(0.80H) rect drew rows [0,0.8H] while scissor allowed
+	// [0.2H,H] -> rows [0,0.2H) never drawn = the 'letterbox-like' black bar + water/bridges/buildings clipped at top of view (content moved INTO the surviving band on
+	// camera rotation = 'rotating makes them visible'). Scissor must now match the
+	// viewport rows exactly at ALL sites (also fixes the 0.12H cinematic slide band
+	// and GUI sub-rects).
+	scissor.offset.y = (int32_t)vp.Y;
 	scissor.extent.width = vp.Width;
 	scissor.extent.height = vp.Height;
 	vkCmdSetScissor(cmd, 0, 1, &scissor);
