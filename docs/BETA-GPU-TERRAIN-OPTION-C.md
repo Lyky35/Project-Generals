@@ -171,3 +171,24 @@ Everything landed on the clipmap side WITHOUT touching the design above:
   (op7 ADDPRODUCT: prev + sparkle*noise, `D3DTOP_MULTIPLYADD` carrier, CAMERASPACE
   POSITION texgen + `texMat2` UBO at 704). GPU terrain draws never see
   `TEX2_OP>0` — the capture gates tex2Op on `BoundTextures[2] && stage2op!=DISABLE`.
+
+## ADDENDUM 2026-10-27 (round-7, beta13) — GPU terrain RECEIVES shadows: set1 UBO + slot3 sampler on the clipmap pipeline
+
+- terrain.frag grew the shadow-receive tail: shadowTint() PCF over `clipShadowMap`
+  (set 0 binding 3, sun-shadow DEPTH map; white = depth 1.0 => PCF term 0 => untouched)
+  + a `set=1 FrameData` UBO (lightMvp, shadowParams, ambients, fog) gated to MODE 0/1.
+  The CLIPMAP pipeline (GetClipmapPipeline, modes 0-1 = clipmap.vert + m_terrainFragModule)
+  SHARES m_pipelineLayout with the mesh pipeline, so the C++ side had to match: VulkanDrawClipmapPass
+  now (a) AllocateTextureSet with a 4th pair shadowTex = (g_lightMvpValid && g_nativeShadowDepth)
+  ? g_nativeShadowDepth : &VulkanWhiteTexture, (b) binds TWO sets `0, 2, sets` with a per-SCENE
+  cached FrameData UBO set (sClipScene/sClipFrameSet; g_vkSceneCounter++ in Begin_Scene) - per-chunk
+  UBO allocs drained the 2048-slot ring under the shadow pass scene re-render (>1900 meshes x2),
+  turning later clipmap draws into UINT32_MAX/'ClipMap draw FAILED' = black ground (AUDIT #12.3).
+- NativeShadow plumbing got the lazy-RT fixes (AUDIT #12.4): eager VulkanGetRtFramebuffer
+  before VulkanGetRtDepthOf in Ready(), depth refresh after EnsureTargetPass() in OpenRT();
+  without them Ready() saw depth=null forever (triple created only on first bind-as-target)
+  = zero shadow draws, i.e. the shader tail above silently never ran.
+- Soak proof local (lavapipe/wine): Tournament Lake + ShellMap1 exit=124 timeout-kill, 0
+  `Exception c0000005`, captures show blob shadows ON the ground + painted radar + opaque
+  swapchain. The unbound-descriptor AV class was reproduced locally ONLY after the shader
+  grew past the C++ plumbing - remember the bisect matrix (per-.spv swap) over symbol hunts.

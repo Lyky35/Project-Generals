@@ -1613,3 +1613,51 @@ name change) to keep RTS_START.LOG tractable.
 NEXT: unchanged from round 6 — Windows re-test of the scissor collapse (#2+#3)
 and the water shimmer read; log lines to watch: VPSC all scY==vp.Y, WTR trap
 rect>0, `tex1=7` pipeline build in-mission.
+
+## ROUND 7 (beta12 -> beta13) — GPU terrain shadow-receive + water FINAL + full probe strip
+
+- Crash class found and FIXED this round (both maps, fresh exe): wine `Exception
+  c0000005 in system thread` after pipeline build #12 (fvf=0x142, post-doRender/SORTLISTS
+  phase). ROOT: new terrain.frag (MODE 0/1 of the CLIPMAP pipeline) declares
+  `set=1 binding=0 FrameData` + `set=0 binding=3 clipShadowMap` (shadowTint PCF), but
+  VulkanDrawClipmapPass bound a 3-sampler set0 and NO set1 = unbound descriptors.
+  Bisect matrix proved it: beta12 exe + beta12 shaders green (exit=124, 14928 probe
+  lines); new exe + beta12 shaders green (7-line boot log); new mesh.frag + old
+  terrain.frag green; old mesh.frag + new terrain.frag CRASH -> the new terrain.frag.spv.
+  FIX = plumb clipmap draws like the mesh path: 4-pair AllocateTextureSet (slot3 =
+  native shadow depth or VulkanWhiteTexture), per-scene cached FrameData UBO set
+  (sClipScene/sClipFrameSet statics + g_vkSceneCounter++ in Begin_Scene - ONE UBO+set
+  per scene, because per-chunk alloc drained the 2048-slot ring when the shadow pass
+  re-rendered the scene: >1900 meshes x2 => later draws got UINT32_MAX => 'ClipMap draw
+  FAILED' = black-ground relapse), bind `0, 2, sets`.
+- STRIPPER LESSON (severe): restoring a file from `git show <sha>:path` CLOBBERS that
+  file's UNCOMMITTED fixes - the disk-vs-committed diff looked probe-only but the round-7
+  KEEP fixes lived in the same files. bak/ audit re-applied every bak-only hunk to
+  dx8wrapper.cpp: g_vkSceneCounter global + increment, VulkanPassClearColor[3] =
+  UsingDefaultTarget ? 1.0f : dest_alpha (lake desktop-show-through: VK swapchain feeds
+  the compositor, engine's dest_alpha=0 feather trick keeps clear-alpha pixels FULLY
+  TRANSPARENT), NativeShadow_Ready eager (void)VulkanGetRtFramebuffer BEFORE
+  VulkanGetRtDepthOf (RT (color,depth)+FB triple is created lazily on first bind-as-target;
+  Ready() ran before it existed => depth null forever => zero shadow draws), NativeShadow_OpenRT
+  depth refresh after EnsureTargetPass(). bak-only-line audit = 0 for the other 14 files.
+- Water FINAL: ZH zeroes heightmap BYTES (raw 0) under the ENTIRE lake, wider than the
+  water PolygonTrigger; +Z=DOWN makes byte-0 bed vertex z=0 a CEILING above the water
+  plane (z=137) = black void. TerrainClipmap::Ensure now max-sinks (if (bv > v) v = bv),
+  bedZ = waterZ + 12 from isUnderwater, and clamps zero bytes (v = 238u * 257u).
+- Radar: GameLogic::startNewGame grants addRadar(FALSE) to every ThePlayerList player
+  before TheRadar->newMap (hasRadar() = m_radarCount > 0 had no start grant = black plate).
+- PROBE STRIP shipped: 68 files, -2446/+209; ALL fopen("RTS_START.LOG")/fprintf(lf,...)
+  output removed from source. KEPT: BIG entry-count + RAMFile-size guards, spinGuard
+  break, PartitionManager zdepth guard, WinMain crash reporter infra (g_logPath),
+  rts_bootlog.h boot breadcrumbs, W3DDisplay retail m_fp perf dump; FAILED-guards kept
+  as { return; } in W3DWater.cpp:873/876.
+- Soaks (fresh exe + rebuilt shaders): ShellMap1 exit=124 timeout-kill, 0 exceptions,
+  boot log 7 lines; Tournament Lake exit=124, 0 exceptions; captures: PAINTED radar
+  (blue lake disc + blips), terrain RECEIVING soft blob shadows, fully opaque swapchain.
+- Release `v1.3-beta` asset -> `rts_v13beta13.zip` (flat 16 entries incl NEW mesh/terrain
+  .frag.spv), target 103884a.
+
+NEXT: Windows field test of beta13 - watch for (1) no startup/mid-game AV, (2) lake renders
+WATER not void with blob shadows ON the ground, (3) radar plate painted at game start,
+(4) water shimmer (noise sample restored in mesh.frag). Any residual AMD strictness
+findings come back as descriptor-audit items (driver-framed AV = plumbing, not symbols).
