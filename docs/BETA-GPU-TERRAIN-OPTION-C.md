@@ -192,3 +192,19 @@ Everything landed on the clipmap side WITHOUT touching the design above:
   `Exception c0000005`, captures show blob shadows ON the ground + painted radar + opaque
   swapchain. The unbound-descriptor AV class was reproduced locally ONLY after the shader
   grew past the C++ plumbing - remember the bisect matrix (per-.spv swap) over symbol hunts.
+
+## Addendum (beta14, round 8) - shroud-texture bridge pass fixed C++-side, GLSL chain untouched
+- ShroudTextureShader::set now composes D3DTS_TEXTURE0 with an EXACT general affine inverse of
+  render_state.view (inline adjugate/det; det-guard keeps curView). Reason: the ZH view 3x3 block
+  is SKEWED (row0.row1 = 0.609, not orthonormal) - Matrix3D::Get_Inverse (orthogonal/transpose
+  delegate) mis-inverts it, and W3D Matrix4::Inverse() mis-indexes its cofactors. Both were
+  measured numerically against the hand inverse in this round.
+- mesh.frag selectUV keeps the ORIGINAL single uv chain (sel>=4 samples (texMat*viewMat*world).xy):
+  with the C++ matrix correct the cancellation is exact (uv probe (0.120,0.100) == terrain clipmap
+  formula (572+40)*0.000195), so no shroud special case exists in GLSL. A shader-side special case
+  using a stale vp reference broke glslang and BLOCKED the RTS link (stale RTS.exe silently reused)
+  - build-chain lesson: verify shaders/ target built, never trust the binary alone (strings-check
+  the fixes/probes).
+- The two remaining curView.Inverse() call sites in W3DShaderManager (mask ~1236, cloud/noise
+  ~1519) are left alone: their phase error is imperceptible on road feather/cloud layers, and
+  the general-inverse helper can be hoisted there in beta15 if the retail parity audit wants it.

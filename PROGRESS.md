@@ -1661,3 +1661,57 @@ NEXT: Windows field test of beta13 - watch for (1) no startup/mid-game AV, (2) l
 WATER not void with blob shadows ON the ground, (3) radar plate painted at game start,
 (4) water shimmer (noise sample restored in mesh.frag). Any residual AMD strictness
 findings come back as descriptor-audit items (driver-framed AV = plumbing, not symbols).
+
+================================================================================
+ROUND 8 - beta14: the four beta13 FIELD issues, each pinned to a root cause
+================================================================================
+Field report vs beta13 (Windows/WOW64): (a) no shadows look right but decks/bridges
+near-black, (b) water missing ('brown plate'), (c) bridges missing/black, (d)
+buildings in fog black. All four ROOT-CAUSED, fixed, and shipped in one commit:
+
+- (a/c DECK+BRIDGE BLACK = TWO causes, both real and separate:
+  1. Native shadow-map SELF-SHADOW ACNE: shadowParams[0]=0.0035f NDC bias ~= 0.1
+     texel of the 512-wide ortho light map -> EVERY mesh quad fails its OWN light-
+     pass depth = tinted near-black. Permanent fix: 0.06f (~3% extent, >1 texel +
+     slope slack; units/pylons/trees keep cast shadows, thin decks/trusses stay lit).
+  2. BRIDGE SHROUD TEXTURE MATRIX (final): the visible bridge = drawBridges' SECOND
+     shroud pass (t0o=1 SELECTARG1, uvSel0=4 CAMERASPACEPOSITION, z EQUAL). W3D
+     Matrix4::Inverse() mis-indexes its cofactor result (inv[0][0] returned -1.261
+     = true inverse's [1][1]); AND the ZH view 3x3 is SKEWED (row0.row1=0.609) so
+     Matrix3D::Get_Inverse (orthogonal delegate) is ALSO wrong -> uv never cancels
+     the port GLSL chain uv=(texMat . viewMat . world): bridge world (572,472,50)
+     sampled uv(-0.124,+0.220) = clamped BLACK border texel ff000000 of the 128x128
+     shroud = invariant black lattice (immune to VB color/text/shadow toggles - the
+     tell). FIX: exact general affine inverse inline in ShroudTextureShader::set
+     (V=[R;T] row-vector -> V^-1=[R^-1;-T.R^-1], adjugate/det + det guard). uv probe
+     after fix: (0.120,0.100) = terrain formula (572+40)*0.000195 EXACTLY, texel px15,12
+     val=ffffffff explored WHITE. mesh.frag selectUV stays the ORIGINAL single chain
+     (no shader-side special case - a stale vp in a sel>=5 branch cascaded glslang
+     errors and blocked the whole build chain; lesson recorded in AUDIT #13).
+- (b) WATER: W3DWater::drawSea ZWRITEENABLE FALSE->TRUE. Retail ordered software-bed-
+  then-water; the port clipmap bed draws AFTER the water object, so a no-Z water plane
+  lets the sunk bed (z=waterZ+12) overwrite it = 'water missing/brown plate'. With Z on
+  the sunk bed loses its LEQUAL, water keeps the surface, shoreline (closer) still paints.
+- (d) FOG-BUILDING BLACK (also fed the bridge lattice): textureloader Load_Compressed_Texture
+  stub created the DDS VkTexture but NEVER uploaded mip bytes -> every TSCloudMed/DXT5
+  env strip sampled UNDEFINED (zero=black); deck x white x BLACK = lattice. Fix: upload
+  every level via UploadLevel (DDSFileClass::Get_Memory_Pointer(mip) already block-encoded
+  for the VK image) + GenerateMipmaps(mips>1).
+- PROBE STRIP FINAL: 9 session probe blocks removed across dx8wrapper/W3DShaderManager/
+  W3DBridgeBuffer/textureloader/TerrainClipmap/W3DWater/mesh.frag + ONE SHIPPED survivor:
+  the `{ static unsigned ep = 0; ep++; }` block in TerrainClipmap::Ensure had NO log string
+  and survived the beta13 `RTS_START.LOG` grep. strings(build/bin/RTS.exe) probe tags = 0.
+  W3DBridgeBuffer/mesh.frag net-zero vs HEAD after strip (probes fully reverted).
+- GREEN SOAKS (final probe-free exe + rebuilt shaders): Bridge Busters exit=124, 0 Exception
+  c0000005, boot=7; bridge confirmed LIVE at projected screen-rect 922,24-1148,180 (menu
+  camera static, rect constant all run) = fully textured brown trusses + plank deck + road
+  edges over water - not black, not missing. ShellMap1 menu exit=124/0/7. Silent River exit=124/
+  0/7, night cinematic cliffs textured, lake channel on minimap.
+- Release v1.3-beta: asset swap rts_v13beta13.zip -> rts_v13beta14.zip (flat 16 entries incl
+  rebuilt mesh/terrain .frag.spv), target = code commit sha of THIS round.
+
+NEXT: Windows field test of beta14 - bridge textured on explored shroud + BLACK silhouette in
+unexplored/fog (shroud modulate now samples the right texel), water solid, buildings textured
+under fog, blob shadows intact. Blend-fidelity item (port (ONE,INVSRCCOLOR) vs retail 2*src*dst
+MUL_SPRITE) stays OPEN: VK factors DST_COLOR+SRC_COLOR with ADD would match retail exactly and
+is a candidate beta15 change; bridge already renders plausibly with the lerp.
