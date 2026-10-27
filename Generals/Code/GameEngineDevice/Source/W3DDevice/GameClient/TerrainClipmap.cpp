@@ -3,6 +3,7 @@
 #include "W3DDevice/GameClient/WorldHeightMap.h"
 #include "Common/GlobalData.h"
 #include "Common/MapObject.h"
+#include "GameLogic/TerrainLogic.h"
 #include "VkTexture.h"
 #include "VkDevice.h"
 #include "vkgpubuffer.h"
@@ -50,11 +51,6 @@ void TerrainClipmap::UploadColors(const unsigned int *pixels)
 void TerrainClipmap::Ensure(WorldHeightMap *map, HeightMapRenderObjClass *heightMap, bool force)
 {
 	{	static unsigned ep = 0; ep++;
-		if (ep <= 12 || (ep % 300) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: ClipMap Ensure enter #%u force=%d built=%d map=%p hm=%p\n",
-				ep, (int)force, (int)m_built, (void*)map, (void*)heightMap); fclose(lf); }
-		}
 	}
 	if (!map || !heightMap) {
 		Reset();
@@ -79,9 +75,46 @@ void TerrainClipmap::Ensure(WorldHeightMap *map, HeightMapRenderObjClass *height
 	// ---- heights: raw byte height -> R16 (byte * 257 so /65535 == /255) ----
 	std::vector<unsigned short> heights((size_t)w * (size_t)h);
 	unsigned short hmin = 0xffff, hmax = 0;
+	unsigned sunk = 0;
 	for (int y = 0; y < h; y++) {
 		for (int x = 0; x < w; x++) {
 			unsigned short v = (unsigned short)map->getHeight(x, y) * 257u;
+			// PORT (round-7 water black void, root cause): ZH flattens heightmap cells
+			// under water to the waterline at load, so the GPU clipmap bed sits COPLANAR
+			// with the water plane; raising the water quads WATER_Z_BIAS above it cannot
+			// win a LESS test against their own bed, and the legacy coplanar EQUAL only
+			// worked by bit-exact luck (angle-dependent = the field 'black void'). Sink
+			// underwater cells to the true lake bed (below the water plane) so LESS
+			// passes deterministically and the bed reads THROUGH the translucent water.
+			{	Real wx = (Real)(x - m_border) * m_cellSize + 0.5f * m_cellSize;
+				Real wy = (Real)(y - m_border) * m_cellSize + 0.5f * m_cellSize;
+				Real waterZ = 0.0f;
+				if (TheTerrainLogic && TheTerrainLogic->isUnderwater(wx, wy, &waterZ)) {
+					Real bedZ = waterZ + 12.0f;	// W3D +Z = DOWN (camera z=-998 above) => lake bed is waterZ+12
+					Real byteF = bedZ * 16.0f / m_cellSize;	// inverse of VS z = byte*cellSize/16
+					if (byteF < 0.0f) byteF = 0.0f;
+					unsigned short bv = (unsigned short)(byteF * 257.0f);
+					// PORT round-7b (empirical, ENS probe): ZH zeroes lake cells (raw byte 0 =
+					// bed vertex ABOVE the water plane, z=0 vs 137) => center of every lake had
+					// NO bed to lose-against: water quads LESS-fail vs that ceiling = black void
+					// (field 'black void at angles' = the bed ceiling moving). Sink must RAISE the
+					// byte (bigger byte = bigger z = deeper DOWN): v = max(v, bv). The old min-guard
+					// was exactly backwards and never wrote anything on flattened cells.
+					if (bv > v) v = bv;
+					sunk++;
+				} else if (v == 0) {
+					// PORT round-7b (z-encode probe, BEDDEF): ZH zeroes the heightmap under the
+					// ENTIRE lake body - a strictly wider region than the water PolygonTrigger,
+					// so isUnderwater() misses those cells. Bed vertex z=0 then sits ABOVE the
+					// water plane (camera z=-998 DOWN convention) = staircase black void inside
+					// every lake (field 'black void' + 'water still broken'). Zero-byte cells ARE
+					// lake beds (real land keeps byte>=1): clamp them below the waterline so the
+					// water quads LESS-pass and read their color (bed texture page stays black -
+					// the translucent water over black bed = the retail dark-blue look).
+					v = 238u * 257u;
+					sunk++;
+				}
+			}
 			heights[(size_t)y * w + x] = v;
 			if (v < hmin) hmin = v;
 			if (v > hmax) hmax = v;
@@ -127,15 +160,6 @@ void TerrainClipmap::Ensure(WorldHeightMap *map, HeightMapRenderObjClass *height
 	if (m_built)
 		BuildMesh(map);   // M2a grid (legacy quad-corner topology, baked UVs)
 
-	FILE *lf = fopen("RTS_START.LOG", "a");
-	if (lf) {
-		fprintf(lf, "VK: ClipMap %s cells=%dx%d border=%d cellSize=%.1f height=[%u..%u] colorNonz=%d/%d htex=%p ctex=%p mesh=%ux%u idx=%u\n",
-			m_built ? "built" : "FAILED", w, h, m_border, m_cellSize,
-			(unsigned)hmin, (unsigned)hmax, colorNonz, w * h,
-			(void*)m_heightTex, (void*)m_colorTex,
-			HasMesh() ? (unsigned)m_cellsX : 0, HasMesh() ? (unsigned)m_cellsY : 0, m_idxCount);
-		fclose(lf);
-	}
 }
 
 // ---------------------------------------------------------------------------
@@ -162,8 +186,6 @@ void TerrainClipmap::BuildMesh(WorldHeightMap *map)
 	// verts: w*h cells * 4 corners. M5 raised the guard (chunked culling makes
 	// big maps cheap to draw; memory = cells*4*32B ~ 64MB at 500k cells).
 	if (w * h > 500000) {
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: ClipMap mesh SKIPPED (map %dx%d too big for full-grid)\n", w, h); fclose(lf); }
 		return;
 	}
 	std::vector<ClipmapVert> verts((size_t)w * h * 4);
@@ -292,8 +314,6 @@ void TerrainClipmap::BuildMesh(WorldHeightMap *map)
 			VK_BUFFER_USAGE_VERTEX_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
 			VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)) {
 		delete m_vb; m_vb = 0;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: ClipMap VB create FAILED\n"); fclose(lf); }
 		return;
 	}
 	m_vb->Upload(verts.data(), verts.size() * sizeof(ClipmapVert));
@@ -306,12 +326,4 @@ void TerrainClipmap::BuildMesh(WorldHeightMap *map)
 	}
 	m_ib->Upload(idx.data(), idx.size() * sizeof(unsigned int));
 	m_idxCount = (unsigned)idx.size();
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) {
-			fprintf(lf, "VK: ClipMap chunks=%d (%dx%d cells each) totalIdx=%u\n",
-				(int)m_chunks.size(), chunkW, chunkW, m_idxCount);
-			fclose(lf);
-		}
-	}
 }

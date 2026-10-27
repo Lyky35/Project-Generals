@@ -684,10 +684,6 @@ Int parseVTune ( char *args[], int num )
 // builds so the wine test harness can boot straight into a mission.
 Int parseFile(char *args[], int num)
 {
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "CMDLINE parseFile num=%d arg1='%s'\n", num, num>1?args[1]:"(none)"); fclose(lf); }
-	}
 	if (TheWritableGlobalData && num > 1)
 	{
 		TheWritableGlobalData->m_initialFile = args[1];
@@ -1030,9 +1026,7 @@ Int parseMod(char *args[], Int num)
 	{
 		AsciiString modPath = args[1];
 		if (strchr(modPath.str(), ':') || modPath.startsWith("/") || modPath.startsWith("\\"))
-		{
-			// full path passed in.  Don't append base path.
-		}
+	{	}
 		else
 		{
 			modPath.format("%s%s", TheGlobalData->getPath_UserData().str(), args[1]);
@@ -1212,15 +1206,6 @@ static CommandLineParam params[] =
 //=============================================================================
 void parseCommandLine(int argc, char *argv[])
 {
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) {
-			fprintf(lf, "CMDLINE argc=%d:", argc);
-			for (int ai = 1; ai < argc; ai++) fprintf(lf, " [%s]", argv[ai]);
-			fprintf(lf, "\n");
-			fclose(lf);
-		}
-	}
 	// To parse command-line parameters, we loop through a table holding arguments
 	// and functions to handle them.  Comparisons can be case-(in)sensitive, and
 	// can check the entire string (for testing the presence of a flag) or check

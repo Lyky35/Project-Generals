@@ -926,14 +926,6 @@ int W3DAssetManager::Recolor_Mesh(RenderObjClass *robj, const int color)
 		if (_strnicmp(oldtex->Get_Texture_Name(),"ZHC", 3) == 0)
 		{	//This texture needs to be adjusted for housecolor
 			newtex=Recolor_Texture(oldtex,color);
-			{
-				static unsigned zr = 0; zr++;
-				if (zr <= 60) {
-					FILE *lf = fopen("RTS_START.LOG", "a");
-					if (lf) { fprintf(lf, "VK: RecolorTexture '%s' -> %s\n",
-						oldtex->Get_Texture_Name(), newtex ? "OK" : "NULL"); fclose(lf); }
-				}
-			}
 			if (newtex)
 			{
 				model->Replace_Texture(oldtex,newtex);

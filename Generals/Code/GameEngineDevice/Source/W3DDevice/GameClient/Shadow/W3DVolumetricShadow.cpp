@@ -3244,13 +3244,6 @@ void W3DVolumetricShadow::resetSilhouette( Int meshIndex )
 // ============================================================================
 void W3DVolumetricShadowManager::renderStencilShadows( void )
 {
-	{
-		static unsigned rq = 0; rq++;
-		if (rq <= 20) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: renderStencilShadows #%u\n", rq); fclose(lf); }
-		}
-	}
 	LPDIRECT3DDEVICE8 m_pDev=DX8Wrapper::_Get_D3D_Device8();
 
 	if (!m_pDev)
@@ -3337,12 +3330,6 @@ void W3DVolumetricShadowManager::renderStencilShadows( void )
 		DX8Wrapper::Set_Transform(D3DTS_PROJECTION, ortho);
 	}
 
-	{
-		static unsigned dq = 0; dq++;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: resolveQuad draw #%u triangles=%d w=%d h=%d ox=%d oy=%d\n",
-			dq, (int)DX8Wrapper::_Is_Triangle_Draw_Enabled(), width, height, xpos, ypos); fclose(lf); }
-	}
 	if (DX8Wrapper::_Is_Triangle_Draw_Enabled())
 		m_pDev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, v, sizeof(_TRANSLITVERTEX));
 
@@ -3361,16 +3348,6 @@ void W3DVolumetricShadowManager::renderShadows( Bool forceStencilFill )
 {
 	W3DVolumetricShadow *shadow;
 	Int numRenderedShadows = 0;
-	{
-		static unsigned vr = 0; vr++;
-		if (vr <= 30) {
-			unsigned n = 0;
-			for (W3DVolumetricShadow *sh = m_shadowList; sh; sh = sh->m_next) n++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: VolShadow.renderShadows #%u force=%d list=%u hasStencil=%d\n",
-				vr, (int)forceStencilFill, n, (int)DX8Wrapper::Has_Stencil()); fclose(lf); }
-		}
-	}
 
  	AABoxClass bbox;
 	SphereClass bsphere;

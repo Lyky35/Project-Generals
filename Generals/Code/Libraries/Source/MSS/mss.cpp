@@ -404,10 +404,6 @@ extern "C" int AIL_set_sample_file(HSAMPLE s, void* file, U32 offset) {
 	{
 		bool ok = uploadWavToVoice(*v, (const unsigned char*)file, (size_t)-1, offset) != 0;
 		v->failed = !ok;
-		if (!ok) {
-			static unsigned f2 = 0; f2++;
-			if (f2 <= 30) { FILE* lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "VK: audio set_file FAILED 2D #%u\n", f2); fclose(lf); } }
-		}
 		return ok ? 1 : 0;
 	}
 }
@@ -472,10 +468,6 @@ extern "C" int AIL_set_3D_sample_file(H3DSAMPLE s, void* file) {
 	if (!v) return 0;
 	bool ok = uploadWavToVoice(*v, (const unsigned char*)file, (size_t)-1, 0) != 0;
 	v->failed = !ok;
-	if (!ok) {
-		static unsigned f3 = 0; f3++;
-		if (f3 <= 30) { FILE* lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "VK: audio set_file FAILED 3D #%u\n", f3); fclose(lf); } }
-	}
 	return ok ? 1 : 0;
 }
 extern "C" void AIL_set_3D_sample_volume(H3DSAMPLE s, float vol) {

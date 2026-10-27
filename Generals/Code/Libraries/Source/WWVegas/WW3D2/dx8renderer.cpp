@@ -1311,18 +1311,6 @@ void DX8SkinFVFCategoryContainer::Render(void)
 				const Vector2* uv1=mmc->Get_UV_Array_By_Index(1);
 				const unsigned* diffuse=mmc->Get_Color_Array(0,false);
 
-				{
-					static unsigned skd = 0; skd++;
-					if (skd <= 80) {
-						FILE *lf = fopen("RTS_START.LOG", "a");
-						if (lf) {
-							fprintf(lf, "VK: skinmesh #%u '%s' verts=%d diffuse=%s uv0=%s uv1=%s\n",
-								skd, mesh->Get_Name() ? mesh->Get_Name() : "?", mesh_vertex_count,
-								diffuse ? "arr" : "NULL", uv0 ? "arr" : "NULL", uv1 ? "arr" : "NULL");
-							fclose(lf);
-						}
-					}
-				}
 
 				VertexFormatXYZNDUV2* verts=dest_verts+vertex_offset;
 
@@ -1480,19 +1468,6 @@ unsigned DX8TextureCategoryClass::Add_Mesh(
 	unsigned pass)
 {
 	int poly_count=split_table.Get_Polygon_Count();
-	{
-		MeshModelClass *smm = split_table.Get_Mesh_Model_Class();
-		const char *bn = smm ? smm->Get_Name() : nullptr;
-		if (bn && (strstr(bn, "PROP") || strstr(bn, "ROTOR") || strstr(bn, "BLADE"))) {
-			static unsigned cp = 0; cp++;
-			if (cp <= 30) {
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "VK: BladeCatAdd mesh='%s' pass=%d splitPolys=%d tex0='%s'\n",
-					bn, pass, poly_count,
-					textures[0] ? textures[0]->Get_Texture_Name() : "(null)"); fclose(lf); }
-			}
-		}
-	}
 
 	unsigned index_count=0;
 
@@ -1672,16 +1647,6 @@ void DX8TextureCategoryClass::Render(void)
 
 		for (unsigned i=0;i<MAX_TEXTURE_STAGES;++i) {
 			SNAPSHOT_SAY(("Set_Texture(%d,%s)\n",i,Peek_Texture(i) ? Peek_Texture(i)->Get_Texture_Name() : "NULL"));
-			if (i==0 && Peek_Texture(0) && Peek_Texture(0)->Get_Texture_Name()) {
-				const char *bn = Peek_Texture(0)->Get_Texture_Name();
-				if (strstr(bn, "hca_") || strstr(bn, "#")) {
-					static unsigned bb = 0; bb++;
-					if (bb <= 20) {
-						FILE *lf = fopen("RTS_START.LOG", "a");
-						if (lf) { fprintf(lf, "VK: SkinTexBind #%u tex0='%s' pass=%u\n", bb, bn, (unsigned)pass); fclose(lf); }
-					}
-				}
-			}
 			DX8Wrapper::Set_Texture(i,Peek_Texture(i));
 		}
 
@@ -1730,29 +1695,6 @@ void DX8TextureCategoryClass::Render(void)
 		*/
 		DX8PolygonRendererClass * renderer = prt->Peek_Polygon_Renderer();
 		MeshClass * mesh = prt->Peek_Mesh();
-		{
-			static unsigned sky = 0;
-			if (mesh && mesh->Get_Name() && strstr(mesh->Get_Name(), "SKYBOX") && sky < 8) {
-				sky++;
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) {
-					{
-						Vector3 mdiff(1,1,1);
-						VertexMaterialClass *vm = (VertexMaterialClass *)Peek_Material();
-						if (vm) vm->Get_Diffuse(&mdiff);
-						unsigned dsrc = vm ? (unsigned)vm->Get_Diffuse_Color_Source() : 99;
-						fprintf(lf, "VK: SkyCat #%u mesh='%s' pass=%u tex0='%s' primg=%d textur=%d matDiff=(%.2f,%.2f,%.2f) diffSrc=%u\n",
-							sky, mesh->Get_Name(), (unsigned)pass,
-							Peek_Texture(0) ? Peek_Texture(0)->Get_Texture_Name() : "NULL",
-							(int)Get_Shader().Get_Primary_Gradient(),
-							(int)Get_Shader().Get_Texturing(),
-							(float)mdiff.X, (float)mdiff.Y, (float)mdiff.Z,
-							dsrc);
-					}
-					fclose(lf);
-				}
-			}
-		}
 		
 		if (mesh->Get_Base_Vertex_Offset() == VERTEX_BUFFER_OVERFLOW)	//check if this mesh is valid
 		{	//skip this mesh so it gets rendered later after vertices are filled in.
@@ -2056,23 +1998,6 @@ void DX8MeshRendererClass::Register_Mesh_Type(MeshModelClass* mmc)
 #endif
 	bool skin=(mmc->Get_Flag(MeshModelClass::SKIN) && mmc->VertexBoneLink);
 	bool sorting=((!!mmc->Get_Flag(MeshModelClass::SORT)) && WW3D::Is_Sorting_Enabled());
-	{
-		const char *bn = mmc->Get_Name();
-		if (bn && (strstr(bn, "PROP") || strstr(bn, "ROTOR") || strstr(bn, "BLADE"))) {
-			static unsigned rp = 0; rp++;
-			if (rp <= 30) {
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) {
-					fprintf(lf, "VK: BladeReg mesh='%s' skin=%d sorting=%d already=%d polys=%d listEmpty=%d\n",
-						bn, (int)skin, (int)sorting,
-						_RegisteredMeshList.Contains(mmc) ? 1 : 0,
-						mmc->Get_Polygon_Count(),
-						mmc->PolygonRendererList.Is_Empty() ? 1 : 0);
-					fclose(lf);
-				}
-			}
-		}
-	}
 	if (skin) {
 
 		/*
@@ -2141,17 +2066,6 @@ void DX8MeshRendererClass::Register_Mesh_Type(MeshModelClass* mmc)
 				Add_Rigid_Mesh_To_Container(new_fvf_category,fvf,mmc);
 			}
 
-			{
-				const char *bn = mmc->Get_Name();
-				if (bn && (strstr(bn, "PROP") || strstr(bn, "ROTOR") || strstr(bn, "BLADE"))) {
-					static unsigned ra = 0; ra++;
-					if (ra <= 30) {
-						FILE *lf = fopen("RTS_START.LOG", "a");
-						if (lf) { fprintf(lf, "VK: BladeReg afterAdd mesh='%s' listEmpty=%d\n",
-							bn, mmc->PolygonRendererList.Is_Empty() ? 1 : 0); fclose(lf); }
-					}
-				}
-			}
 			/*
 			** Done processing the mesh, add its polygon renderers to the global registered mesh list
 			*/
@@ -2159,16 +2073,6 @@ void DX8MeshRendererClass::Register_Mesh_Type(MeshModelClass* mmc)
 				_RegisteredMeshList.Add_Tail(mmc);
 			}
 			else {
-				{
-					const char *bn = mmc->Get_Name();
-					if (bn && (strstr(bn, "PROP") || strstr(bn, "ROTOR") || strstr(bn, "BLADE"))) {
-						static unsigned rf = 0; rf++;
-						if (rf <= 30) {
-							FILE *lf = fopen("RTS_START.LOG", "a");
-							if (lf) { fprintf(lf, "VK: BladeReg FAILED(listEmpty) mesh='%s' n=%u\n", bn, rf); fclose(lf); }
-						}
-					}
-				}
 				WWDEBUG_SAY(("Error: Register_Mesh_Type failed! file: %s line: %d\r\n",__FILE__,__LINE__));
 			}
 		}

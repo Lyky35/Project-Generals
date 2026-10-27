@@ -70,11 +70,6 @@ extern "C" void __wrap___cxa_throw(void *thrown_exception, void *tinfo, void (*d
 	const char *name = "?";
 	if (tinfo)
 		name = ((std::type_info *)tinfo)->name();
-	FILE *lf = fopen("RTS_START.LOG", "a");
-	if (lf) {
-		fprintf(lf, "VK: cxa_throw type=%s from=%p\n", name, __builtin_return_address(0));
-		fclose(lf);
-	}
 	__real___cxa_throw(thrown_exception, tinfo, dest);
 }
 

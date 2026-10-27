@@ -305,7 +305,6 @@ void Shell::push( AsciiString filename, Bool shutdownImmediate )
 
 		// run the shutdown
 		currentTop->runShutdown( &shutdownImmediate );
-		{ FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "Shell::push DEFERRED (shutdown of currentTop=%p)\n", (void*)currentTop); fclose(lf); } }
 
 	}  // end if
 	else
@@ -313,7 +312,6 @@ void Shell::push( AsciiString filename, Bool shutdownImmediate )
 
 		// just call shutdownComplete() which will immediately cause the push to happen
 		shutdownComplete( NULL );
-		{ FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "Shell::push IMMEDIATE\n"); fclose(lf); } }
 
 	}  // end else
 
@@ -408,10 +406,6 @@ void Shell::popImmediate( void )
 //-------------------------------------------------------------------------------------------------
 void Shell::showShell( Bool runInit )
 {
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "Shell::showShell enter runInit=%d\n", (int)runInit); fclose(lf); }
-	}
 
 	DEBUG_LOG(("Shell:showShell() - %s (%s)\n", TheGlobalData->m_initialFile.str(), (top())?top()->getFilename().str():"no top screen"));
 
@@ -467,10 +461,6 @@ void Shell::showShell( Bool runInit )
 	//else
 		TheShell->push( AsciiString("Menus/MainMenu.wnd") );
 	m_isShellActive = TRUE;
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "Shell::showShell done\n"); fclose(lf); }
-	}
 }  // end showShell
 
 void Shell::showShellMap(Bool useShellMap )
@@ -478,10 +468,6 @@ void Shell::showShellMap(Bool useShellMap )
 	// we don't want any of this to show if we're loading straight into a file
 	if(TheGlobalData->m_initialFile.isNotEmpty() || !TheGameLogic )
 		return;
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: showShellMap use=%d shellMapOn=%d pendingFile='%s'\n", (int)useShellMap, (int)TheGlobalData->m_shellMapOn, TheGlobalData->m_pendingFile.str()); fclose(lf); }
-	}
 	if(useShellMap && TheGlobalData->m_shellMapOn)
 	{
 		// we're already in a shell game, return
@@ -620,9 +606,7 @@ void Shell::doPush( AsciiString layoutFile )
 	
 	// create new layout and load from window manager
 	newScreen = TheWindowManager->winCreateLayout( layoutFile );
-	{ FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "Shell::doPush create %s\n", layoutFile.str()); fclose(lf); } }
 	DEBUG_ASSERTCRASH( newScreen != NULL, ("Shell unable to load pending push layout\n") );
-	{ FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "Shell::doPush layout result=%p\n", (void*)newScreen); fclose(lf); } }
 
 	// link screen to the top
 	linkScreen( newScreen );
@@ -690,7 +674,6 @@ void Shell::shutdownComplete( WindowLayout *screen, Bool impendingPush )
 	m_animateWindowManager->reset();
 
 	// check for pending push or pop
-	{ FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "Shell::shutdownComplete pendingPush=%d pendingPop=%d\n", (int)m_pendingPush, (int)m_pendingPop); fclose(lf); } }
 	if( m_pendingPush )
 	{
 

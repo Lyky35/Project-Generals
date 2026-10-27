@@ -5,26 +5,6 @@
 #include <cstdio>
 #include <cassert>
 
-// Device-memory accounting. The field run died with
-// "VK: UploadLevel vkAllocateMemory -> -2" (OUT_OF_DEVICE_MEMORY) ~20 frames
-// after the Options menu opened, then every 64x64 surface create failed and the
-// screen went white - so track live texture bytes and log every 256MB step.
-uint64_t g_liveTexBytes = 0;
-uint64_t g_liveTexCount = 0;
-static uint64_t g_lastLoggedMB = 0;
-static uint64_t g_totalTexCreates = 0;
-
-static void logTexMemory(const char *why)
-{
-	FILE *lf = fopen("RTS_START.LOG", "a");
-	if (lf) {
-		fprintf(lf, "VK: VkTexture %s live=%lluMB count=%llu creates=%llu\n", why,
-			(unsigned long long)(g_liveTexBytes / (1024ull * 1024ull)),
-			(unsigned long long)g_liveTexCount,
-			(unsigned long long)g_totalTexCreates);
-		fclose(lf);
-	}
-}
 
 VkTexture::VkTexture()
 	: m_device(nullptr)
@@ -146,8 +126,6 @@ bool VkTexture::Create(VulkanDevice *device, uint32_t width, uint32_t height, Vk
 
 	VkDevice dev = device->GetDevice();
 	if (vkCreateImage(dev, &imageInfo, nullptr, &m_image) != VK_SUCCESS) {
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: tex create FAILED vkCreateImage %ux%u fmt=%d\n", width, height, (int)format); fclose(lf); }
 		Destroy();	// clear m_device too - a device-live texture with no image makes every upload/draw invalid
 		return false;
 	}
@@ -163,46 +141,12 @@ bool VkTexture::Create(VulkanDevice *device, uint32_t width, uint32_t height, Vk
 		return false;
 	}
 	if (vkAllocateMemory(dev, &allocInfo, nullptr, &m_memory) != VK_SUCCESS) {
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) {
-			fprintf(lf, "VK: tex create OOM %ux%u bytes=%llu live=%lluMB\n", width, height,
-				(unsigned long long)memReq.size,
-				(unsigned long long)(g_liveTexBytes / (1024ull * 1024ull)));
-			fclose(lf);
-		}
 		Destroy();
 		return false;
 	}
 	vkBindImageMemory(dev, m_image, m_memory, 0);
 
-	// device-memory accounting (see g_liveTexBytes at top of file)
 	m_allocBytes = memReq.size;
-	g_liveTexBytes += m_allocBytes;
-	g_liveTexCount++;
-	g_totalTexCreates++;
-	// Sampled caller log for SMALL creates: live bytes stay flat while creates
-	// climb (hundreds/sec) = something churns textures every frame; descriptors
-	// referencing a destroyed image while it is still in flight is the leading
-	// suspect for the driver AVs (amdvlk mission crash / lavapipe shell-map
-	// crash). Sample so the field log names the churn source.
-	if ((uint64_t)width * (uint64_t)height <= 256ull * 256ull && (g_totalTexCreates % 256ull) == 0) {
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) {
-			fprintf(lf, "VK: small tex create %ux%u fmt=%d caller=%p creates=%llu\n",
-				width, height, (int)format, __builtin_return_address(0),
-				(unsigned long long)g_totalTexCreates);
-			fclose(lf);
-		}
-	}
-	{
-		uint64_t mb = g_liveTexBytes / (1024ull * 1024ull);
-		if (mb / 256ull != g_lastLoggedMB / 256ull) {
-			g_lastLoggedMB = g_liveTexBytes;
-			logTexMemory("LIVE");
-		}
-		if ((g_totalTexCreates % 512ull) == 0)
-			logTexMemory("creates");
-	}
 
 	VkImageViewCreateInfo viewInfo = {};
 	viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
@@ -295,17 +239,8 @@ void VkTexture::UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const
 	// proceeding creates invalid Vulkan objects and crashes GPU drivers.
 	if (width == 0 || height == 0 || pixels == nullptr)
 		return;
-	if (m_device == nullptr) {
-		static bool logged = false;
-		if (!logged) {
-			char buf[96];
-			snprintf(buf, sizeof(buf), "VK: UploadLevel on texture %p with NULL device (w=%u h=%u)", (void*)this, (unsigned)width, (unsigned)height);
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
-			logged = true;
-		}
+	if (m_device == nullptr)
 		return;
-	}
 	VkDevice dev = m_device->GetDevice();
 	VkDeviceSize rowPitch = 0;
 	VkDeviceSize imageSize = 0;
@@ -358,23 +293,8 @@ void VkTexture::UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const
 	bufferInfo.size = imageSize;
 	bufferInfo.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 	bufferInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
-	{
-		static int uploadLogCount = 0;
-		// always log non-standard pitches (sentence/font atlases are w*4)
-		if (width >= 1024 || uploadLogCount < 8 || rowPitch != (VkDeviceSize)width * 4) {
-			char buf[128];
-			snprintf(buf, sizeof(buf), "VK: upload w=%u h=%u fmt=%d size=%llu pitch=%llu caller=%p",
-				(unsigned)width, (unsigned)height, (int)m_format, (unsigned long long)imageSize, (unsigned long long)rowPitch,
-				__builtin_return_address(0));
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
-			uploadLogCount++;
-		}
-	}
 	VkResult res = vkCreateBuffer(dev, &bufferInfo, nullptr, &staging);
 	if (res != VK_SUCCESS) {
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: UploadLevel vkCreateBuffer -> %d\n", (int)res); fclose(lf); }
 		return;
 	}
 	VkMemoryRequirements memReq;
@@ -390,15 +310,11 @@ void VkTexture::UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const
 	}
 	res = vkAllocateMemory(dev, &allocInfo, nullptr, &stagingMemory);
 	if (res != VK_SUCCESS) {
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: UploadLevel vkAllocateMemory -> %d\n", (int)res); fclose(lf); }
 		vkDestroyBuffer(dev, staging, nullptr);
 		return;
 	}
 	res = vkBindBufferMemory(dev, staging, stagingMemory, 0);
 	if (res != VK_SUCCESS) {
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: UploadLevel vkBindBufferMemory -> %d\n", (int)res); fclose(lf); }
 		vkDestroyBuffer(dev, staging, nullptr);
 		vkFreeMemory(dev, stagingMemory, nullptr);
 		return;
@@ -406,8 +322,6 @@ void VkTexture::UploadLevel(uint32_t mip, uint32_t width, uint32_t height, const
 	void *mapped = nullptr;
 	res = vkMapMemory(dev, stagingMemory, 0, imageSize, 0, &mapped);
 	if (res != VK_SUCCESS || mapped == nullptr) {
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: UploadLevel vkMapMemory -> %d\n", (int)res); fclose(lf); }
 		vkDestroyBuffer(dev, staging, nullptr);
 		vkFreeMemory(dev, stagingMemory, nullptr);
 		return;
@@ -621,19 +535,11 @@ bool VkTexture::CreateDepth(VulkanDevice *device, uint32_t width, uint32_t heigh
 		return false;
 	}
 	if (vkAllocateMemory(dev, &allocInfo, nullptr, &m_memory) != VK_SUCCESS) {
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) {
-			fprintf(lf, "VK: depth create OOM %ux%u bytes=%llu\n", width, height,
-				(unsigned long long)memReq.size);
-			fclose(lf);
-		}
 		Destroy();
 		return false;
 	}
 	vkBindImageMemory(dev, m_image, m_memory, 0);
 	m_allocBytes = memReq.size;
-	g_liveTexBytes += m_allocBytes;
-	g_liveTexCount++;
 
 	VkImageViewCreateInfo viewInfo = {};
 	viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
@@ -673,18 +579,8 @@ void Vulkan_Reset_Shared_Samplers()
 
 VkSampler VkTexture::FindOrCreateSampler(bool filtered, bool repeat)
 {
-	if (m_device == nullptr) {
-		static bool logged = false;
-		if (!logged) {
-			char buf[160];
-			snprintf(buf, sizeof(buf), "VK: GetSampler on texture %p with NULL device (w=%u h=%u fmt=%d)",
-				(void*)this, (unsigned)m_width, (unsigned)m_height, (int)m_format);
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
-			logged = true;
-		}
+	if (m_device == nullptr)
 		return VK_NULL_HANDLE;
-	}
 	for (int i = 0; i < g_sharedSamplerCount; i++) {
 		if (g_sharedSamplers[i].filtered == filtered && g_sharedSamplers[i].repeat == repeat)
 			return g_sharedSamplers[i].sampler;
@@ -752,9 +648,6 @@ void VkTexture::Destroy()
 	m_image = VK_NULL_HANDLE;
 	m_memory = VK_NULL_HANDLE;
 	if (m_allocBytes) {
-		g_liveTexBytes = (g_liveTexBytes > m_allocBytes) ? g_liveTexBytes - m_allocBytes : 0;
-		if (g_liveTexCount > 0)
-			g_liveTexCount--;
 		m_allocBytes = 0;
 	}
 	if (view != VK_NULL_HANDLE || img != VK_NULL_HANDLE || mem != VK_NULL_HANDLE) {

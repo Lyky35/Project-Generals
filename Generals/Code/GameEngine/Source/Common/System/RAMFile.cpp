@@ -218,16 +218,6 @@ Bool RAMFile::openFromArchive(File *archiveFile, const AsciiString& filename, In
 	if (size <= 0 || size > 256 * 1024 * 1024) {
 		return FALSE;
 	}
-	{
-		static int ramLog = 0;
-		if (ramLog < 20) {
-			char m[320];
-			snprintf(m, sizeof(m), "RAMFile: open '%s' off=%d size=%d", filename.str(), (int)offset, (int)size);
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "%s\n", m); fclose(lf); }
-			ramLog++;
-		}
-	}
 
 	if (File::open(filename.str(), File::READ | File::BINARY) == FALSE) {
 		return FALSE;

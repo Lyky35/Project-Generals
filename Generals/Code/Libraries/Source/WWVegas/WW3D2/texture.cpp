@@ -132,18 +132,6 @@ TextureClass::TextureClass(unsigned width, unsigned height, WW3DFormat format, M
 	default:
 		WWASSERT(0);		
 	}
-	{
-		static unsigned pn = 0;
-		pn++;
-		if ((pn % 64u) == 0 || width == 64) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: procedural TextureClass %ux%u fmt=%d from=%p n=%u\n",
-					width, height, (int)format, __builtin_return_address(0), pn);
-				fclose(lf);
-			}
-		}
-	}
 	VulkanTexture = DX8Wrapper::_Create_Vulkan_Texture(width, height, format, mip_level_count,d3dpool,rendertarget);
 	if (pool==POOL_DEFAULT)
 	{
@@ -287,21 +275,6 @@ TextureClass::TextureClass(SurfaceClass *surface, MipCountType mip_level_count)
 	// bitmap in, so every texture made through it sampled UNDEFINED (zero)
 	// content: the black world terrain on every driver (readback: all zeros).
 	VulkanTexture = DX8Wrapper::_Create_Vulkan_Texture(sd.Width, sd.Height, sd.Format, mip_level_count);
-	{
-		static unsigned sc = 0;
-		sc++;
-		if (sc <= 40 || (sc % 100u) == 0) {
-			int lp = 0;
-			void *lk = surface->Lock(&lp);
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: surface-ctor #%u %ux%u fmt=%d lock=%d pitch=%d vk=%p\n",
-					sc, (unsigned)sd.Width, (unsigned)sd.Height, (int)sd.Format,
-					lk ? 1 : 0, lp, (void *)VulkanTexture);
-				fclose(lf);
-			}
-		}
-	}
 	if (VulkanTexture) {
 		int pitch = 0;
 		void *bits = surface->Lock(&pitch);

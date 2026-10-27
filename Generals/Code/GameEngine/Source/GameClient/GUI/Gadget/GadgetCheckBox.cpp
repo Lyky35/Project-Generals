@@ -339,8 +339,6 @@ void GadgetCheckBoxSetChecked( GameWindow *g, Bool isChecked)
 		if( nullLog < 8 )
 		{
 			nullLog++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: GadgetCheckBoxSetChecked skipped (NULL window)\n"); fclose(lf); }
 		}
 		return;
 	}

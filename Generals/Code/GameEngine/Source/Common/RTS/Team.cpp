@@ -222,10 +222,6 @@ void TeamFactory::clear()
 void TeamFactory::initFromSides(SidesList *sides)
 {
 	clear();
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: initFromSides numTeams=%d\n", sides->getNumTeams()); fclose(lf); }
-	}
 
 	// create the teams we need.
 	for(Int i = 0; i < sides->getNumTeams(); i++)
@@ -267,14 +263,6 @@ void TeamFactory::addTeamPrototypeToList(TeamPrototype* team)
 	}
 
 	m_prototypes[nk] = team;
-	{
-		static unsigned ap = 0; ap++;
-		if (ap <= 80) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: TeamProto ADD #%u name='%s' key=%u total=%u\n",
-				ap, team->getName().str(), (unsigned)nk, (unsigned)m_prototypes.size()); fclose(lf); }
-		}
-	}
 }
 
 //=============================================================================
@@ -293,14 +281,6 @@ TeamPrototype *TeamFactory::findTeamPrototype(const AsciiString& name)
 	TeamPrototypeMap::iterator it = m_prototypes.find(nk);
 	if (it != m_prototypes.end())
 		return it->second;
-	{
-		static unsigned fm = 0; fm++;
-		if (fm <= 80) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: TeamProto MISS #%u name='%s' key=%u total=%u\n",
-				fm, name.str(), (unsigned)nk, (unsigned)m_prototypes.size()); fclose(lf); }
-		}
-	}
 	return NULL;
 }
 

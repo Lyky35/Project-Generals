@@ -408,31 +408,9 @@ void TextureLoader::Load_Mipmap_Levels(TextureLoadTaskClass* task)
 	WWASSERT(task->Peek_Vulkan_Texture());
 	WWMEMLOG(MEM_TEXTURE);
 
-	{
-		static unsigned lm = 0;
-		lm++;
-		if (lm <= 60) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: LoadMipmap #%u '%s' compress=%d vk=%p levels=%u\n",
-					lm, (task->Peek_Texture() && task->Peek_Texture()->Get_Texture_Name()) ? task->Peek_Texture()->Get_Texture_Name() : "(null)",
-					(int)(task->Peek_Texture() && task->Peek_Texture()->Is_Compression_Allowed()),
-					(void *)task->Peek_Vulkan_Texture(), task->Get_Mip_Level_Count());
-				fclose(lf);
-			}
-		}
-	}
 
 	if (task->Peek_Texture()->Is_Compression_Allowed()) {
 		DDSFileClass dds_file(task->Peek_Texture()->Get_Full_Path(),task->Get_Reduction());
-		{
-			static unsigned dd = 0;
-			dd++;
-			if (dd <= 60) {
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "VK: DDS check #%u avail=%d\n", dd, (int)dds_file.Is_Available()); fclose(lf); }
-			}
-		}
 		if (dds_file.Is_Available() && dds_file.Load()) {
 			unsigned width=task->Get_Width();
 			unsigned height=task->Get_Height();
@@ -480,25 +458,6 @@ bool TextureLoader::Load_Uncompressed_Mipmap_Levels_From_TGA(TextureLoadTaskClas
 	// EVERY terrain/model texture uploaded all-zero shadow data
 	// (log proof: End_Load fail=0 first=00000000 for all).
 	long loadErr = targa.Load(texture->Get_Full_Path(), TGAF_IMAGE | TGAF_PAL);
-	{
-		static unsigned lg = 0;
-		lg++;
-		if (lg <= 40) {
-			char *img = targa.GetImage();
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: TargaLoad #%u '%s' err=%ld img=%p hdr=%ux%u depth=%u first=%02x%02x%02x%02x\n",
-					lg, texture->Get_Texture_Name(), loadErr, (void *)img,
-					(unsigned)targa.Header.Width, (unsigned)targa.Header.Height,
-					(unsigned)targa.Header.PixelDepth,
-					img ? (unsigned char)img[0] : 0,
-					img ? (unsigned char)img[1] : 0,
-					img ? (unsigned char)img[2] : 0,
-					img ? (unsigned char)img[3] : 0);
-				fclose(lf);
-			}
-		}
-	}
 	if (loadErr != 0) {
 		task->Set_Fail(true);
 		return false;
@@ -964,22 +923,6 @@ void TextureLoadTaskClass::Deinit()
 
 void TextureLoadTaskClass::Begin_Texture_Load()
 {
-	// Storm namer: which texture is being (re)loaded ~50x per frame in the
-	// field/wine logs (`upload w=128 h=128` x65k)?
-	{
-		static unsigned n = 0;
-		n++;
-		if (n <= 40 || (n % 50u) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: Begin_Texture_Load #%u '%s' texobj=%p initialized=%d hp=%d\n",
-					n, (Texture && Texture->Get_Texture_Name()) ? Texture->Get_Texture_Name() : "(null)",
-					(void *)Texture, Texture ? (int)Texture->Is_Initialized() : -1,
-					(int)HighPriorityRequested);
-				fclose(lf);
-			}
-		}
-	}
 	// If we're in main thread, init for loading and add to the load list
 	if (ThreadClass::_Get_Current_Thread_ID()==DX8Wrapper::_Get_Main_Thread_ID()) {
 
@@ -1198,40 +1141,6 @@ void TextureLoadTaskClass::Begin_Thumbnail_Load()
 
 void TextureLoadTaskClass::End_Load()
 {
-	{
-		static unsigned el = 0;
-		el++;
-		if (el <= 60) {
-			unsigned nnz = 0;
-			unsigned total = 0;
-			unsigned center = 0;
-			if (LockedSurfacePtr[0] && Width && Height) {
-				unsigned pitch = LockedSurfacePitch[0];
-				for (unsigned y = 0; y < Height; y += 4) {
-					for (unsigned x = 0; x < pitch; x += 16) {
-						for (unsigned b = 0; b < 16 && x + b < pitch; b++) {
-							total++;
-							if (LockedSurfacePtr[0][y * pitch + x + b]) nnz++;
-						}
-					}
-				}
-				unsigned cx = (Width / 2) * 4;
-				unsigned cy = Height / 2;
-				if (cy < Height && cx + 3 < pitch) {
-					unsigned char *c = &LockedSurfacePtr[0][cy * pitch + cx];
-					center = c[0] | (c[1] << 8) | (c[2] << 16) | (c[3] << 24);
-				}
-			}
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: End_Load #%u '%s' %ux%u fmt=%d levels=%u fail=%d nnz=%u/%u center=%08x\n",
-					el, (Texture && Texture->Get_Texture_Name()) ? Texture->Get_Texture_Name() : "(null)",
-					Width, Height, (int)(Texture ? Texture->Get_Texture_Format() : 0),
-					MipLevelCount, (int)HasFailed, nnz, total, center);
-				fclose(lf);
-			}
-		}
-	}
 	for (unsigned i=0;i<MipLevelCount;++i) {
 		if (LockedSurfacePtr[i]) {
 			WWASSERT(ThreadClass::_Get_Current_Thread_ID()==DX8Wrapper::_Get_Main_Thread_ID());

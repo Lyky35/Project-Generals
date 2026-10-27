@@ -54,7 +54,6 @@
 #include "WW3D2/dx8wrapper.h"
 #include "d3d8types.h"
 
-unsigned g_vkTerrainSerial = 0;	// bumped per atlas rebuild - terrain-vert probe keys off this
 
 /******************************************************************************
 						TerrainTextureClass
@@ -200,25 +199,6 @@ int TerrainTextureClass::update(WorldHeightMap *htMap)
 
 		}
 
-	}
-	{
-		static unsigned up = 0;
-		up++;
-		g_vkTerrainSerial++;
-		unsigned char *b = (unsigned char *)pBits;
-		unsigned nnz = 0;
-		if (b) for (unsigned q = 0; q < 4096; q += 16) if (b[q]) nnz++;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) {
-			fprintf(lf, "VK: TerrainAtlas update #%u %ux%u fmt=%d pitch=%d nnz=%u first=%02x%02x%02x%02x vkTex=%p this=%p\n",
-				up, (unsigned)surface_desc.Width, (unsigned)surface_desc.Height, (int)surface_desc.Format,
-				pitch, nnz, b?b[0]:0, b?b[1]:0, b?b[2]:0, b?b[3]:0,
-				(void *)surface_level->Peek_Vulkan_Texture(), (void *)this);
-			fprintf(lf, "VK: AtlasFill #%u %dx%d copied=%d skipped=%d zeroTiles=%d classes=%d bitmapTiles=%d\n",
-				up, (int)surface_desc.Width, (int)surface_desc.Height,
-				diagCopied, diagSkipped, diagZero,
-				(int)htMap->m_numTextureClasses, (int)htMap->m_numBitmapTiles);
-			fclose(lf); }
 	}
 	surface_level->Unlock();
 	// Port fix (camera-distance symptom: close=fine, far=broken): only mip0

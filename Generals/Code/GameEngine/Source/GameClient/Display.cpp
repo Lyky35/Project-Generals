@@ -119,10 +119,6 @@ void Display::drawViews( void )
 		static int dvLog = 0;
 		int count = 0;
 		for (View *v = m_viewList; v; v = v->getNextView()) count++;
-		if (dvLog < 8 || (dvLog % 120) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: drawViews #%d viewCount=%d\n", dvLog, count); fclose(lf); }
-		}
 		dvLog++;
 	}
 
@@ -140,8 +136,6 @@ void Display::updateViews( void )
 	{	static unsigned uv = 0; uv++;
 		if (uv <= 20 || (uv % 300) == 0) {
 			int n = 0; for (View *vv = m_viewList; vv; vv = vv->getNextView()) n++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: UpdateViews #%u viewCount=%d\n", uv, n); fclose(lf); }
 		}
 	}
 	for( View *v = m_viewList; v; v = v->getNextView() )

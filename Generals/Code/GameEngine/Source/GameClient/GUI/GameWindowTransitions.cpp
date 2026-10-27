@@ -180,13 +180,6 @@ Bool TransitionWindow::init( void )
 		if( transLog < 6 )
 		{
 			transLog++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf)
-			{
-				fprintf(lf, "VK: TransitionWindow has no window name='%s' style=%d (skipping bind)\n",
-					m_winName.str() ? m_winName.str() : "", (int)m_style);
-				fclose(lf);
-			}
 		}
 	}
 	

@@ -1029,8 +1029,6 @@ WW3DErrorType WW3D::End_Render(bool flip_frame)
 		static bool first = true;
 		if (first) {
 			first = false;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "hb phase=WW3D::End_Render begin\n"); fclose(lf); }
 		}
 	}
 
@@ -1039,7 +1037,6 @@ WW3DErrorType WW3D::End_Render(bool flip_frame)
 
 	{
 		static bool ph = true;
-		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=End_Render sortflush\n"); fclose(lf); } }
 	}
 
 // Check Vulkan device status
@@ -1055,7 +1052,6 @@ WW3DErrorType WW3D::End_Render(bool flip_frame)
 
 	{
 		static bool ph = true;
-		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=End_Render endscene\n"); fclose(lf); } }
 	}
 
 	// Vulkan: End scene via DX8Wrapper command buffer
@@ -1063,7 +1059,6 @@ WW3DErrorType WW3D::End_Render(bool flip_frame)
 
 	{
 		static bool ph = true;
-		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=End_Render done\n"); fclose(lf); } }
 	}
 
 	FrameCount++;
@@ -1886,11 +1881,6 @@ void WW3D::Render_And_Clear_Static_Sort_Lists(RenderInfoClass & rinfo)
 		if (render) TheDX8MeshRenderer.Flush();
 	}
 	AreStaticSortListsEnabled = old_enable;
-	{
-		static unsigned sl2 = 0; sl2++;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: SORTLISTS done #%u\n", sl2); fclose(lf); }
-	}
 }
 
 void WW3D::Enable_Sorting(bool onoff)

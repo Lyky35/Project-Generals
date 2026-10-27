@@ -62,17 +62,6 @@ static void W3DShroud_CopyRectsStub(SurfaceClass *src, RECT *srcRects, UINT cRec
 	RECT *useRects = srcRects ? srcRects : &fullRect;
 	UINT useCount = srcRects ? cRects : 1;
 	{	static unsigned cp = 0; cp++;
-		if (cp <= 12 || (cp % 240) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: ShroudCopy #%u rects=%u rect0=(%ld,%ld)-(%ld,%ld) dst=(%ld,%ld) srcImg=%p dstImg=%p\n",
-					cp, useCount,
-					useRects[0].left, useRects[0].top, useRects[0].right, useRects[0].bottom,
-					dstPoints ? dstPoints[0].x : 0, dstPoints ? dstPoints[0].y : 0,
-					(void*)srcTex->GetImage(), (void*)dstTex->GetImage());
-				fclose(lf);
-			}
-		}
 	}
 	DX8Wrapper::_Copy_Vulkan_Rects(srcTex, useRects, useCount, dstTex, dstPoints);
 }
@@ -204,12 +193,6 @@ void W3DShroud::init(WorldHeightMap *pMap, Real worldCellSizeX, Real worldCellSi
 	DEBUG_ASSERTCRASH( shroudBits != NULL, ("Failed to lock shroud src surface"));
 	m_srcTextureData=shroudBits;
 	m_srcTexturePitch=shroudPitch;
-	{
-		static unsigned ip = 0; ip++;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: ShroudInit #%u srcData=%p pitch=%d surf=%p w=%d\n",
-			ip, m_srcTextureData, m_srcTexturePitch, (void*)m_pSrcTexture, srcWidth); fclose(lf); }
-	}
 
 	//clear entire texture to black
 	memset(m_srcTextureData,0,m_srcTexturePitch*srcHeight);
@@ -237,12 +220,6 @@ void W3DShroud::init(WorldHeightMap *pMap, Real worldCellSizeX, Real worldCellSi
 ///Called on map reset.
 void W3DShroud::reset()
 {
-	{
-		static unsigned rs = 0; rs++;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: ShroudReset #%u oldSrcData=%p oldSurf=%p\n",
-			rs, m_srcTextureData, (void*)m_pSrcTexture); fclose(lf); }
-	}
 	//Free old shroud data since it may no longer fit new map.
 	if (m_pSrcTexture)
 		m_pSrcTexture->Release_Ref();
@@ -332,32 +309,15 @@ void W3DShroud::setShroudLevel(Int x, Int y, W3DShroudLevel level, Bool textureO
 		// PORT FIX probe: reveals rejected by the shroud range = cells the
 		// game logic manages but the shroud texture cannot hold (alignment /
 		// sizing mismatch => terrain stays black where logic thinks revealed).
-		static unsigned dr = 0; dr++;
-		if (dr <= 60 || (dr % 100) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: ShroudDrop #%u cell=(%d,%d) numCells=(%d,%d) level=%d\n",
-				dr, x, y, m_numCellsX, m_numCellsY, (int)level); fclose(lf); }
-		}
 	} else
 	if (x >= 0 && y >= 0 && x < m_numCellsX && y < m_numCellsY)
 	{
 		if (level < TheGlobalData->m_shroudAlpha)
 			level = TheGlobalData->m_shroudAlpha;
 		{	// reveal-write counter: does ANY shroud cell update fire?
-			static unsigned wc = 0; wc++;
 			static unsigned lvlHist[4] = {0,0,0,0};	// buckets:0-63,64-191,192-254,255
 			int b = level >= 255 ? 3 : (level >= 192 ? 2 : (level >= 64 ? 1 : 0));
 			lvlHist[b]++;
-			if (wc <= 20 || (wc % 500) == 0) {
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) {
-					fprintf(lf, "VK: ShroudCell #%u cell=(%d,%d) level=%d hist(lo/mid/hi/clear)=%u/%u/%u/%u srcData=%p surf=%p\n",
-						wc, (int)x, (int)y, (int)level,
-						lvlHist[0], lvlHist[1], lvlHist[2], lvlHist[3],
-						m_srcTextureData, (void*)m_pSrcTexture);
-					fclose(lf);
-				}
-			}
 		}
 
 #if defined(_DEBUG) || defined(_INTERNAL)
@@ -614,13 +574,6 @@ TextureClass *DummyTexture=NULL;
 /** Updates video memory surface with currently visible shroud data */
 void W3DShroud::render(CameraClass *cam)
 {
-	{
-		static unsigned rp = 0; rp++;
-		if (rp <= 12 || (rp % 240) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: ShroudUpdate #%u src=%p\n", rp, (void*)m_pSrcTexture); fclose(lf); }
-		}
-	}
 	if (!m_pSrcTexture)
 		return; //nothing to update from.  Must be in reset state.
 
@@ -927,10 +880,6 @@ void W3DShroud::render(CameraClass *cam)
 			UnsignedInt sxPix = 0;
 			if (sx >= 0 && sy >= 0 && sx < m_numCellsX && sy < m_numCellsY && m_srcTextureData)
 				sxPix = ((UnsignedInt *)m_srcTextureData)[sx + sy * (m_srcTexturePitch >> 2)];
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: ShroudView #%u cam=(%.0f,%.0f) look=(%.0f,%.0f) cell=(%d,%d) src=0x%06x shader=(%d,%d) shSrc=0x%06x dstCol=%d vis=(%d,%d)-(%d,%d)\n",
-				vp, cp.X, cp.Y, cp2.X, cp2.Y, cx, cy, srcPix, sx, sy, sxPix, dstCol,
-				visStartX, visStartY, visEndX, visEndY); fclose(lf); }
 			// Dump DST (full) and SRC (full) to PGM files (RTS_SHROUD_DUMP=1).
 			{	static const bool dumpShroud = [](){ const char *e=getenv("RTS_SHROUD_DUMP"); return e&&e[0]&&e[0]!='0'; }();
 			  if (dumpShroud) {
@@ -1048,12 +997,6 @@ void W3DShroudMaterialPassClass::Install_Materials(void) const
 			}
 			if (px) ss->Unlock();
 			if (ss) ss->Release_Ref();
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: ShroudInstall #%u hasShroud=%d tex=%p maskBlack=%u maskNonZero=%u\n", sp,
-					(sh) ? 1 : 0, (void*)tex, black, nonz);
-				fclose(lf);
-			}
 		}
 	}
 	if (TheTerrainRenderObject->getShroud())

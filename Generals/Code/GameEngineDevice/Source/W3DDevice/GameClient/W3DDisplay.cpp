@@ -1581,14 +1581,6 @@ Int W3DDisplay::getLastFrameDrawCalls()
 void W3DDisplay::draw( void )
 {
 	//USE_PERF_TIMER(W3DDisplay_draw)
-	{
-		static Bool first = TRUE;
-		if (first) {
-			first = FALSE;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "hb phase=W3DDisplay::draw begin\n"); fclose(lf); }
-		}
-	}
 	static UnsignedInt syncTime = 0;
 
 	extern HWND ApplicationHWnd;
@@ -1703,11 +1695,6 @@ AGAIN:
 			{
 				if (TheTerrainRenderObject->getShroud())
 				{
-					static unsigned cs = 0; cs++;
-					if (cs <= 12 || (cs % 240) == 0) {
-						FILE *lf = fopen("RTS_START.LOG", "a");
-						if (lf) { fprintf(lf, "VK: ShroudCall #%u\n", cs); fclose(lf); }
-					}
 					TheTerrainRenderObject->getShroud()->render(primaryW3DView->get3DCamera());
 				}
 			}
@@ -1752,8 +1739,6 @@ AGAIN:
 			static Int freezeLoopGuard = 0;
 			if (++freezeLoopGuard >= 30) {
 				freezeLoopGuard = 0;
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "W3DDisplay::draw freeze-loop guard hit (freezeTime stuck?)\n"); fclose(lf); }
 				break;
 			}
 		}
@@ -1801,7 +1786,6 @@ AGAIN:
 		{
 			//USE_PERF_TIMER(BigAssRenderLoop)
 			static Bool couldRender = true;
-			{ static unsigned mrm=0; mrm++; if (mrm<=12) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: PreMainRender #%u bci=%d wt=%d\n",mrm,ShaderClass::Is_Backface_Culling_Inverted()?1:0,TheGlobalData->m_waterType); fclose(lf); } } }
 			if ((TheGlobalData->m_breakTheMovie == FALSE) && (TheGlobalData->m_disableRender == false) && WW3D::Begin_Render( true, true, Vector3( 0.0f, 0.0f, 0.0f ), TheWaterTransparency->m_minWaterOpacity ) == WW3D_ERROR_OK)		
 			{
 				
@@ -1965,19 +1949,6 @@ void W3DDisplay::renderLetterBox(UnsignedInt currentTime)
 	if (want > 0.0f)
 		barH = (UnsignedInt)(want * 0.5f);
 
-	{	// breadcrumbs: phase transitions + first frames of each phase, cap 10
-		static unsigned rl = 0;
-		static int lastEn = -1; static int lastFadeNZ = -1;
-		int en = m_letterBoxEnabled ? 1 : 0;
-		int fnz = (fade > 0.0f) ? 1 : 0;
-		if (rl < 10 && (en != lastEn || fnz != lastFadeNZ || rl <= 4))
-		{
-			rl++; lastEn = en; lastFadeNZ = fnz;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: LB state #%u en=%d fade=%.2f barH=%u W=%d H=%d\n",
-				rl, en, (double)fade, (unsigned)barH, m_width, m_height); fclose(lf); }
-		}
-	}
 
 #ifdef SLIDE_LETTERBOX
 	// retail slide path (never compiled here - kept for parity)
@@ -2039,11 +2010,6 @@ void W3DDisplay::toggleLetterBox(void)
 
 void W3DDisplay::enableLetterBox(Bool enable)
 {
-	{	static unsigned lc = 0; lc++;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: enableLetterBox #%u -> %d (was %d)\n",
-			lc, (int)enable, (int)m_letterBoxEnabled); fclose(lf); }
-	}
 	if (enable)
 	{
 		if (!m_letterBoxEnabled)

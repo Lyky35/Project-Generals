@@ -38,13 +38,10 @@ void GameMain( int argc, char *argv[] )
 {
 	// initialize the game engine using factory function
 	TheGameEngine = CreateGameEngine();
-	{ FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "GameMain: engine created\n"); fflush(lf); fclose(lf); } }
 	TheGameEngine->init(argc, argv);
-	{ FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "GameMain: engine init done\n"); fflush(lf); fclose(lf); } }
 
 	// run it
 	TheGameEngine->execute();
-	{ FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "GameMain: execute returned\n"); fflush(lf); fclose(lf); } }
 
 	// since execute() returned, we are exiting the game
 	delete TheGameEngine;

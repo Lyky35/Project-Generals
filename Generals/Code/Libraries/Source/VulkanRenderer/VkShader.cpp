@@ -176,20 +176,11 @@ VkShaderModule VkShaderManager::LoadModule(const char *path)
 {
 	FILE *file = fopen(path, "rb");
 	if (!file) {
-		static bool lf1 = false;
-		if (!lf1) { lf1 = true; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "VK: shader OPEN FAILED '%s'\n", path); fclose(lf); } }
 		return VK_NULL_HANDLE;
 	}
 	fseek(file, 0, SEEK_END);
 	long size = ftell(file);
 	fseek(file, 0, SEEK_SET);
-	// Breadcrumb: which SPIR-V is actually loaded (new build frag = 4172 B,
-	// original Oct-13 = 6932 B - tells us whether the zip's shaders/ were
-	// extracted over the old ones).
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: shader loaded '%s' bytes=%ld\n", path, size); fclose(lf); }
-	}
 	if (size <= 0 || (size % 4) != 0) {
 		fclose(file);
 		return VK_NULL_HANDLE;
@@ -535,31 +526,6 @@ VkPipeline VkShaderManager::GetPipeline(const VkPipelineState &state)
 	if (pipeline != VK_NULL_HANDLE)
 		m_pipelines[state] = pipeline;
 
-	// Breadcrumb: unbounded pipeline builds = cache never hits (perf + GPU
-	// memory death). Log the first few and every 500th with the state.
-	{
-		static unsigned buildCount = 0;
-		buildCount++;
-		if (buildCount <= 120 || (buildCount % 200) == 0)
-		{
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf)
-			{
-				fprintf(lf, "VK: pipeline build #%u fvf=0x%x topo=%u tex0=%d tex1=%d blend=%d cull=%u z=%d/%d zfunc=%d fog=%d light=%d alphaTest=%d sten=%d/sfunc=%d smask=%02x/rmask=%02x/sref=%02x/sop=%d cw=%x blend=%d/%d cached=%u ok=%d\n",
-					buildCount, (unsigned)state.vertexFVF, (unsigned)state.topology,
-					(int)state.tex0Op, (int)state.tex1Op, (int)state.blendEnable,
-					(unsigned)state.cullMode, (int)state.depthTest, (int)state.depthWrite,
-					(int)state.depthCompare, (int)state.fog, (int)state.lighting, (int)state.alphaTest,
-					(int)state.stencilEnable, (int)state.stencilCompare,
-					(unsigned)state.stencilWriteMask, (unsigned)state.stencilReadMask,
-					(unsigned)state.stencilRef, (int)state.stencilPassOp,
-					(unsigned)state.colorWriteMask,
-					(int)state.srcBlend, (int)state.dstBlend,
-					(unsigned)m_pipelines.size(), pipeline != VK_NULL_HANDLE);
-				fclose(lf);
-			}
-		}
-	}
 	return pipeline;
 }
 
@@ -690,18 +656,6 @@ VkPipeline VkShaderManager::BuildPipeline(const VkPipelineState &state)
 	pipelineInfo.pRasterizationState = &rasterizer;
 	pipelineInfo.pMultisampleState = &multisample;
 	pipelineInfo.pDepthStencilState = &depthStencil;
-	{
-		static unsigned bp = 0;
-		bp++;
-		if (state.stencilEnable && state.stencilCompare != 8) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: BuildFillPipe #%u stenEn=%d wmask=%x rmask=%x ref=%x passOp=%d cmp=%d\n",
-				bp, (int)depthStencil.stencilTestEnable,
-				(unsigned)depthStencil.front.writeMask, (unsigned)depthStencil.front.compareMask,
-				(unsigned)depthStencil.front.reference, (int)depthStencil.front.passOp,
-				(int)depthStencil.front.compareOp); fclose(lf); }
-		}
-	}
 	pipelineInfo.pColorBlendState = &blendState;
 	pipelineInfo.layout = m_pipelineLayout;
 	pipelineInfo.renderPass = m_device->GetRenderPass();
@@ -855,14 +809,7 @@ VkPipeline VkShaderManager::GetTerrainPipeline(int mode, uint32_t diffuseOffset,
 
 	VkPipeline pipeline = VK_NULL_HANDLE;
 	if (vkCreateGraphicsPipelines(m_device->GetDevice(), m_pipelineCache, 1, &info, nullptr, &pipeline) != VK_SUCCESS) {
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: terrain pipeline build FAILED mode=%d\n", mode); fclose(lf); }
 		return VK_NULL_HANDLE;
-	}
-	{
-		static unsigned tb = 0; tb++;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: terrain pipeline built #%u mode=%d\n", tb, mode); fclose(lf); }
 	}
 	m_terrainPipelines[mode] = pipeline;
 	return pipeline;
@@ -1001,14 +948,8 @@ VkPipeline VkShaderManager::GetClipmapPipeline(int mode)
 	info.layout = m_pipelineLayout;
 	info.renderPass = m_device->GetRenderPass();
 	if (vkCreateGraphicsPipelines(m_device->GetDevice(), m_pipelineCache, 1, &info, nullptr, &m_clipmapPipelines[mode]) != VK_SUCCESS) {
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: clipmap pipeline build FAILED mode=%d\n", mode); fclose(lf); }
 		m_clipmapPipelines[mode] = VK_NULL_HANDLE;
 		return VK_NULL_HANDLE;
-	}
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: clipmap pipeline built mode=%d\n", mode); fclose(lf); }
 	}
 	return m_clipmapPipelines[mode];
 }
@@ -1111,14 +1052,8 @@ VkPipeline VkShaderManager::GetClipmapShroudPipeline()
 	info.layout = m_pipelineLayout;
 	info.renderPass = m_device->GetRenderPass();
 	if (vkCreateGraphicsPipelines(m_device->GetDevice(), m_pipelineCache, 1, &info, nullptr, &m_clipmapShroudPipeline) != VK_SUCCESS) {
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: clipmap SHROUD pipeline build FAILED\n"); fclose(lf); }
 		m_clipmapShroudPipeline = VK_NULL_HANDLE;
 		return VK_NULL_HANDLE;
-	}
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: clipmap SHROUD pipeline built\n"); fclose(lf); }
 	}
 	return m_clipmapShroudPipeline;
 }

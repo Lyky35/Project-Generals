@@ -238,23 +238,16 @@ GameClient::~GameClient()
 //-------------------------------------------------------------------------------------------------
 /** Initialize resources for the game client */
 //-------------------------------------------------------------------------------------------------
-static void gcMark(const char *phase)
-{
-	FILE *lf = fopen("RTS_START.LOG", "a");
-	if (lf) { fprintf(lf, "GC: %s\n", phase); fclose(lf); }
-}
 
 void GameClient::init( void )
 {
 
 	setFrameRate(MSEC_PER_LOGICFRAME_REAL);		// from GameCommon.h... tell W3D what our expected framerate is
 
-	gcMark("init entered");
 
 	INI ini;
 	// Load the DrawGroupInfo here, before the Display Manager is loaded.
 	ini.load("Data\\INI\\DrawGroupInfo.ini", INI_LOAD_OVERWRITE, NULL);
-	gcMark("DrawGroupInfo loaded");
 	
 	// Override the ini values with localized versions:
 	if (TheGlobalLanguageData && TheGlobalLanguageData->m_drawGroupInfoFont.name.isNotEmpty())
@@ -270,24 +263,20 @@ void GameClient::init( void )
 		TheDisplayStringManager->init();
 		TheDisplayStringManager->setName("TheDisplayStringManager");
 	}
-	gcMark("DisplayStringManager inited");
 
 	// create the keyboard
 	TheKeyboard = createKeyboard();
 	TheKeyboard->init();
 	TheKeyboard->setName("TheKeyboard");
-	gcMark("Keyboard inited");
 
 	// allocate and load image collection for the GUI and just load the 256x256 ones for now
 	TheMappedImageCollection = MSGNEW("GameClientSubsystem") ImageCollection;
 	TheMappedImageCollection->load( 512 );
-	gcMark("MappedImages loaded");
 
 	// now that we have all the images loaded ... load any animation definitions from those images
 	TheAnim2DCollection = MSGNEW("GameClientSubsystem") Anim2DCollection;
 	TheAnim2DCollection->init();
  	TheAnim2DCollection->setName("TheAnim2DCollection");
-	gcMark("Anim2D inited");
 
 	// register message translators
 	if( TheMessageStream )
@@ -320,20 +309,17 @@ void GameClient::init( void )
 		m_translators[ m_numTranslators++ ] =	TheMessageStream->attachTranslator( MSGNEW("GameClientSubsystem") GameClientMessageDispatcher, 999999999 );
 
 	}  
-	gcMark("Translators attached");
 
 	// create the font library
 	TheFontLibrary = createFontLibrary();
 	if( TheFontLibrary )
 		TheFontLibrary->init();
-	gcMark("FontLibrary inited");
 
 	// create the mouse
 	TheMouse = createMouse();
 	TheMouse->parseIni();
 	TheMouse->initCursorResources();
  	TheMouse->setName("TheMouse");
-	gcMark("Mouse inited");
 
 	// instantiate the display
 	TheDisplay = createGameDisplay();
@@ -341,13 +327,11 @@ void GameClient::init( void )
 		TheDisplay->init();
  		TheDisplay->setName("TheDisplay");
 	}
-	gcMark("Display inited");
 	
 	TheHeaderTemplateManager = MSGNEW("GameClientSubsystem") HeaderTemplateManager;
 	if(TheHeaderTemplateManager){
 		TheHeaderTemplateManager->init();
 	}
-	gcMark("HeaderTemplates inited");
 
 	// create the window manager
 	TheWindowManager = createWindowManager();
@@ -359,7 +343,6 @@ void GameClient::init( void )
 //		TheWindowManager->initTestGUI();
 
 	}  // end if
-	gcMark("WindowManager inited");
 
 	// create the IME manager
 	TheIMEManager = CreateIMEManagerInterface();
@@ -368,7 +351,6 @@ void GameClient::init( void )
 		TheIMEManager->init();
  		TheIMEManager->setName("TheIMEManager");
 	}
-	gcMark("IMEManager inited");
 
 	// create the shell
 	TheShell = MSGNEW("GameClientSubsystem") Shell;
@@ -376,7 +358,6 @@ void GameClient::init( void )
 		TheShell->init();
  		TheShell->setName("TheShell");
 	}
-	gcMark("Shell inited");
 
 	// instantiate the in-game user interface
 	TheInGameUI = createInGameUI();
@@ -384,14 +365,12 @@ void GameClient::init( void )
 		TheInGameUI->init();
  		TheInGameUI->setName("TheInGameUI");
 	}
-	gcMark("InGameUI inited");
 
 	TheHotKeyManager = MSGNEW("GameClientSubsystem") HotKeyManager;
 	if( TheHotKeyManager ) {
 		TheHotKeyManager->init();
  		TheHotKeyManager->setName("TheHotKeyManager");
 	}
-	gcMark("HotKeyManager inited");
 
 	// instantiate the terrain visual display
 	TheTerrainVisual = createTerrainVisual();
@@ -399,7 +378,6 @@ void GameClient::init( void )
 		TheTerrainVisual->init();
  		TheTerrainVisual->setName("TheTerrainVisual");
 	}
-	gcMark("TerrainVisual inited");
 
 	// allocate the ray effects manager
 	TheRayEffects = MSGNEW("GameClientSubsystem") RayEffectSystem;
@@ -407,7 +385,6 @@ void GameClient::init( void )
 		TheRayEffects->init();
  		TheRayEffects->setName("TheRayEffects");
 	}
-	gcMark("RayEffects inited");
 
 	TheMouse->init();	//finish initializing the mouse.
 
@@ -426,7 +403,6 @@ void GameClient::init( void )
 		TheVideoPlayer->init();
  		TheVideoPlayer->setName("TheVideoPlayer");
 	}
-	gcMark("VideoPlayer inited");
 
 	// create the language filter.
 	TheLanguageFilter = createLanguageFilter();
@@ -435,19 +411,15 @@ void GameClient::init( void )
 		TheLanguageFilter->init();
  		TheLanguageFilter->setName("TheLanguageFilter");
 	}
-	gcMark("LanguageFilter inited");
 
 	TheCampaignManager = MSGNEW("GameClientSubsystem") CampaignManager;
 	TheCampaignManager->init();
-	gcMark("CampaignManager inited");
 
 	TheEva = MSGNEW("GameClientSubsystem") Eva;
 	TheEva->init();
  	TheEva->setName("TheEva");
-	gcMark("Eva inited");
 
 	TheDisplayStringManager->postProcessLoad();
-	gcMark("init done");
 
 #ifdef PERF_TIMERS
 	TheGraphDraw = new GraphDraw;
@@ -517,14 +489,6 @@ DECLARE_PERF_TIMER(GameClient_update)
 DECLARE_PERF_TIMER(GameClient_draw)
 void GameClient::update( void )
 {
-	{
-		static Bool first = TRUE;
-		if (first) {
-			first = FALSE;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "hb phase=GameClient::update begin\n"); fclose(lf); }
-		}
-	}
 	USE_PERF_TIMER(GameClient_update)
 	// create the FRAME_TICK message
 	GameMessage *frameMsg = TheMessageStream->appendMessage( GameMessage::MSG_FRAME_TICK );
@@ -594,36 +558,28 @@ WindowLayout *legal = TheWindowManager->winCreateLayout("Menus/LegalPage.wnd");
 			TheShell->showShell();
 			TheWritableGlobalData->m_afterIntro = FALSE;
 
-	{
-		static Bool ph = TRUE;
-		if (ph) { ph = FALSE; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=afterIntro block done\n"); fclose(lf); } }
-	}
 		}
 	}
 
 	// update animation 2d collection
 	TheAnim2DCollection->UPDATE();
-	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: anim2d done"); }
 
 	// update the keyboard
 	if( TheKeyboard )
 	{
 		TheKeyboard->UPDATE();
 		TheKeyboard->createStreamMessages();
-	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: keyboard done"); }
 
 	}  // end if
 
 	// Update the Eva stuff
 	TheEva->UPDATE();
-	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: eva done"); }
 
 	// update the mouse
 	if( TheMouse )
 	{
 		TheMouse->UPDATE();
 		TheMouse->createStreamMessages();
-	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: mouse done"); }
 
 	}  // end if
 	
@@ -642,13 +598,11 @@ WindowLayout *legal = TheWindowManager->winCreateLayout("Menus/LegalPage.wnd");
 	// update the window system itself
 	{
 		TheWindowManager->UPDATE();
-	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: winmanager done"); }
 	}
 
 	// update the video player
 	{
 		TheVideoPlayer->UPDATE();
-	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: videoplayer done"); }
 	}
 
 	Bool freezeTime = TheTacticalView->isTimeFrozen() && !TheTacticalView->isCameraMovementFinished();
@@ -661,7 +615,6 @@ WindowLayout *legal = TheWindowManager->winCreateLayout("Menus/LegalPage.wnd");
 	static UnsignedInt lastFrame = ~0;
 	freezeTime = freezeTime || (lastFrame == m_frame);
 	lastFrame = m_frame;
-	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: pre-effects done"); }
 
 	if (!freezeTime)
 	{
@@ -758,7 +711,6 @@ WindowLayout *legal = TheWindowManager->winCreateLayout("Menus/LegalPage.wnd");
 	// update display
 	{
 		TheDisplay->UPDATE();
-	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: display-update done"); }
 	}
 
 	{
@@ -768,25 +720,21 @@ WindowLayout *legal = TheWindowManager->winCreateLayout("Menus/LegalPage.wnd");
 	//if(TheGameLogic->getFrame() >= 2)
 		
 		TheDisplay->DRAW();
-	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: display-draw done"); }
 	}
 
 	{
 		// let display string factory handle its update
 		TheDisplayStringManager->update();
-	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: dstrings done"); }
 	}
 
 	{
 		// update the shell
 		TheShell->UPDATE();
-	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: shell done"); }
 	}
 
 	{
 		// update the in game UI 
 		TheInGameUI->UPDATE();
-	{ static UnsignedInt u=0; if(++u<=10) gcMark("update: ingameui done"); }
 	}
 }  // end update
 

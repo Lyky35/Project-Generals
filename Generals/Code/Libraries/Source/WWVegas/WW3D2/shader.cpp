@@ -838,7 +838,6 @@ void ShaderClass::Apply()
  *=============================================================================================*/
 void ShaderClass::Invert_Backface_Culling(bool onoff)
 {
-	{ static unsigned iv=0; iv++; if (iv<=24) { FILE *lf=fopen("RTS_START.LOG","a"); if (lf) { fprintf(lf,"VK: INV onoff=%d ret=%p\n",onoff,(void*)__builtin_return_address(0)); fclose(lf); } } }
 	if (onoff == true) {
 		_PolygonCullMode = D3DCULL_CCW;
 	} else {

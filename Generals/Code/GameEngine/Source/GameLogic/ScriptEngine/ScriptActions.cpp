@@ -478,14 +478,6 @@ void ScriptActions::doSetTeamState(const AsciiString& team, const AsciiString& s
 //-------------------------------------------------------------------------------------------------
 void ScriptActions::doCreateReinforcements(const AsciiString& team, const AsciiString& waypoint)
 {
-	{
-		static unsigned cr = 0; cr++;
-		if (cr <= 20) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: SCRIPT doCreateReinforcements #%u team='%s' wp='%s' proto=%p\n",
-				cr, team.str(), waypoint.str(), (void *)TheTeamFactory->findTeamPrototype(team)); fclose(lf); }
-		}
-	}
 	TeamPrototype *theTeamProto = TheTeamFactory->findTeamPrototype( team );
 	Coord3D destination;
 
@@ -950,11 +942,6 @@ void ScriptActions::doMoveCameraAlongWaypointPath(const AsciiString& waypoint, R
 			found = TRUE;
 			break;
 		}
-	}
-	{	FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: CamPanStart wp='%s' sec=%.1f found=%d frame=%d\n",
-			waypoint.str(), (double)sec, (int)found,
-			TheGameLogic ? TheGameLogic->getFrame() : -1); fclose(lf); }
 	}
 }
 
@@ -1735,14 +1722,6 @@ void ScriptActions::doTeamMoveToSkirmishApproachPath(const AsciiString& teamName
 //-------------------------------------------------------------------------------------------------
 void ScriptActions::doTeamFollowWaypoints(const AsciiString& teamName, const AsciiString& waypointPathLabel, Bool asTeam)
 {
-	{
-		static unsigned tf = 0; tf++;
-		if (tf <= 20) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: SCRIPT doTeamFollowWaypoints #%u team='%s' path='%s' teamPtr=%p\n",
-				tf, teamName.str(), waypointPathLabel.str(), (void *)TheScriptEngine->getTeamNamed(teamName)); fclose(lf); }
-		}
-	}
 	Team *theTeam = TheScriptEngine->getTeamNamed( teamName );
 	if (!theTeam) {
 		return;
@@ -3541,11 +3520,6 @@ void ScriptActions::doPlayerExitAllBuildings(const AsciiString& playerName)
 //-------------------------------------------------------------------------------------------------
 void ScriptActions::doLetterBoxMode(Bool startLetterbox)
 {
-	{	FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: LetterBox script %s frame=%d\n",
-			startLetterbox ? "BEGIN" : "END",
-			TheGameLogic ? TheGameLogic->getFrame() : -1); fclose(lf); }
-	}
 	if (startLetterbox)
 	{
 		HideControlBar(TRUE);

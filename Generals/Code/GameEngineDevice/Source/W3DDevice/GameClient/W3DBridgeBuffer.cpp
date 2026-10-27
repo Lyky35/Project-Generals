@@ -663,18 +663,6 @@ void W3DBridgeBuffer::loadBridgesInVertexAndIndexBuffers(RefRenderObjListIterato
 		m_bridges[curBridge].getIndicesNVertices(ib, vb, &m_curNumBridgeIndices, 
 			&m_curNumBridgeVertices, pLightsIterator);
 	}
-	{	// log each DISTINCT non-empty build (the old count-cap swallowed the
-		// first real build after loadBridges added the bridges)
-		static unsigned lastIdx = 0xffffffffu;
-		static unsigned builds = 0;
-		if (m_curNumBridgeIndices != lastIdx && builds < 8) {
-			lastIdx = m_curNumBridgeIndices;
-			builds++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: BridgeGeom built #%u idx=%u verts=%u\n",
-				builds, m_curNumBridgeIndices, m_curNumBridgeVertices); fclose(lf); }
-		}
-	}
 }
 
 //-----------------------------------------------------------------------------
@@ -779,9 +767,6 @@ void W3DBridgeBuffer::loadBridges(W3DTerrainLogic *pTerrainLogic, Bool saveGame)
 		if (pMapObj->getFlag(FLAG_BRIDGE_POINT1)) point1Count++;
 		if (pMapObj->getFlag(FLAG_BRIDGE_POINT2)) point2Count++;
 	}
-	{	FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: loadBridges map scan point1=%d point2=%d firstObj=%p\n", point1Count, point2Count, (void*)MapObject::getFirstMapObject()); fclose(lf); }
-	}
 	for (pMapObj = MapObject::getFirstMapObject(); pMapObj; pMapObj = pMapObj->getNext()) {
 		if (pMapObj->getFlag(FLAG_BRIDGE_POINT1)) {
 			pMapObj2 = pMapObj->getNext();
@@ -799,9 +784,6 @@ void W3DBridgeBuffer::loadBridges(W3DTerrainLogic *pTerrainLogic, Bool saveGame)
 			added++;
 			pMapObj = pMapObj2;
 		} 
-	}
-	{	FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: loadBridges done added=%d numBridges=%d\n", added, m_numBridges); fclose(lf); }
 	}
 	if (pTerrainLogic) {
 		pTerrainLogic->updateBridgeDamageStates();
@@ -1074,13 +1056,6 @@ void W3DBridgeBuffer::updateCenter(CameraClass *camera, RefRenderObjListIterator
 	cull(camera);
 	if (m_anythingChanged || m_curNumBridgeIndices == 0) {
 		loadBridgesInVertexAndIndexBuffers(pLightsIterator);
-		{	static unsigned bl = 0; bl++;
-			if (bl <= 6) {
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "VK: BridgeGeom built #%u numBridges=%d idx=%u\n",
-					bl, m_numBridges, m_curNumBridgeIndices); fclose(lf); }
-			}
-		}
 	}
 	m_updateVis = false;
 }

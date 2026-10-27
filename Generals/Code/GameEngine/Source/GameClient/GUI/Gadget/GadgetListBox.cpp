@@ -859,14 +859,6 @@ WindowMsgHandledType GadgetListBoxInput( GameWindow *window, UnsignedInt msg,
 				static int lbLog = 0;
 				if (lbLog < 25) {
 					lbLog++;
-					FILE *lf = fopen("RTS_START.LOG", "a");
-					if (lf) {
-						fprintf(lf, "VK: listbox LEFT_UP mousey=%d listY=%d endPos=%d selectPos=%d oldPos=%d displayPos=%d dispH=%d item0H=%d\n",
-							mousey, y, list->endPos, list->selectPos, oldPos,
-							list->displayPos, list->displayHeight,
-							list->endPos > 0 ? list->listData[0].listHeight : -1);
-						fclose(lf);
-					}
 				}
 			}
 			TheWindowManager->winSendSystemMsg( window->winGetOwner(), 
@@ -1577,9 +1569,6 @@ WindowMsgHandledType GadgetListBoxSystem( GameWindow *window, UnsignedInt msg,
 				if( list->multiSelect )
 					memset( list->selections, -1, list->listLength * sizeof(Int) );
 				else
-				{
-					// this message has no effect in a non-multi listbox
-				}
 
 				break;
 			}
@@ -1612,9 +1601,6 @@ WindowMsgHandledType GadgetListBoxSystem( GameWindow *window, UnsignedInt msg,
 				}
 			}
 			else
-			{
-				// this message has no effect in a non-multi listbox
-			}
 			
 			break;
 

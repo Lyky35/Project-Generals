@@ -2611,12 +2611,6 @@ Bool ScriptConditions::evaluateCondition( Condition *pCondition )
 	// PORT DIAG (field: letterbox never removed after cinematic): log which
 	// condition the scripts poll - the stuck one re-polls every frame.
 	{	static unsigned el = 0; el++;
-		if (el <= 300 || (el % 1000) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: CondEval #%u type=%d frame=%d\n",
-				el, (int)pCondition->getConditionType(),
-				TheGameLogic ? TheGameLogic->getFrame() : -1); fclose(lf); }
-		}
 	}
 	switch (pCondition->getConditionType()) {
 		default: 
@@ -2645,11 +2639,6 @@ Bool ScriptConditions::evaluateCondition( Condition *pCondition )
 		case Condition::CAMERA_MOVEMENT_FINISHED: 
 		{	static unsigned cl = 0; cl++;
 			Bool done = TheTacticalView->isCameraMovementFinished();
-			if (cl <= 12 || (cl % 600) == 0) {
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "VK: CondCameraFinished poll #%u -> %d frame=%d\n",
-					cl, (int)done, TheGameLogic ? TheGameLogic->getFrame() : -1); fclose(lf); }
-			}
 			return done;
 		}
 		case Condition::TEAM_STATE_IS: 

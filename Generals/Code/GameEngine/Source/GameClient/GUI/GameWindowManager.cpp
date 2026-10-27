@@ -696,11 +696,7 @@ GameWindow *GameWindowManager::winGetWindowFromId( GameWindow *window, Int id )
 				if (name == NULL)
 					name = "";
 			}
-			FILE *lf = fopen ("RTS_START.LOG", "a");
-			if (lf)
 			{
-				fprintf (lf, "VK: winGetWindowFromId MISS id=%d name='%s' caller=%p\n", id, name, __builtin_return_address (0));
-				fclose (lf);
 			}
 		}
 	}
@@ -883,15 +879,6 @@ WinInputReturnCode GameWindowManager::winProcessMouseEvent( GameWindowMessage ms
 		if( clickLog < 60 )
 		{
 			clickLog++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf)
-			{
-				fprintf(lf, "VK: mouse %s pos=(%d,%d) captor=%p lone=%p grab=%p\n",
-					(msg == GWM_LEFT_DOWN) ? "DOWN" : "UP",
-					mousePos->x, mousePos->y,
-					(void *)m_mouseCaptor, (void *)m_loneWindow, (void *)m_grabWindow);
-				fclose(lf);
-			}
 		}
 	}
 
@@ -1191,12 +1178,6 @@ WinInputReturnCode GameWindowManager::winProcessMouseEvent( GameWindowMessage ms
 							AsciiString wname = "";
 							if (TheNameKeyGenerator)
 								wname = TheNameKeyGenerator->keyToName(tempWin->winGetWindowId());
-							FILE *lf = fopen("RTS_START.LOG", "a");
-							if (lf) { fprintf(lf, "VK: ClickTarget #%u %s win=%p name='%s' status=%08x region=(%d,%d)-(%d,%d)\n",
-								dp, (msg==GWM_LEFT_DOWN)?"DOWN":"UP", (void*)tempWin,
-								wname.str()?wname.str():"?", (unsigned)tempWin->winGetStatus(),
-								(int)tempWin->m_region.lo.x,(int)tempWin->m_region.lo.y,
-								(int)tempWin->m_region.hi.x,(int)tempWin->m_region.hi.y); fclose(lf); }
 						}
 					}
 	
@@ -1216,10 +1197,6 @@ WinInputReturnCode GameWindowManager::winProcessMouseEvent( GameWindowMessage ms
 							AsciiString ename = "";
 							if (tempWin && TheNameKeyGenerator)
 								ename = TheNameKeyGenerator->keyToName(tempWin->winGetWindowId());
-							FILE *lf = fopen("RTS_START.LOG", "a");
-							if (lf) { fprintf(lf, "VK: ClickEater #%u %s tempWin=%p name='%s' used=%d\n",
-								ep, (msg==GWM_LEFT_DOWN)?"DOWN":"UP", (void*)tempWin,
-								ename.str()?ename.str():"?", (tempWin!=NULL)?1:0); fclose(lf); }
 						}
 					}
 
@@ -1366,8 +1343,6 @@ Int GameWindowManager::drawWindow( GameWindow *window )
 	if (s_drawDepth > 24) {
 		char m[128];
 		snprintf(m, sizeof(m), "drawWindow RECURSION depth>24 at id=%d (child cycle?)", window ? window->winGetWindowId() : -1);
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "%s\n", m); fclose(lf); }
 		--s_drawDepth;
 		return WIN_ERR_OK;
 	}
@@ -1387,8 +1362,6 @@ Int GameWindowManager::drawWindow( GameWindow *window )
 			if ((++dc % 200) == 0) {
 				char m[96];
 				snprintf(m, sizeof(m), "drawWindow: at window id=%d (count=%u)", window->winGetWindowId(), (unsigned)dc);
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "%s\n", m); fclose(lf); }
 			}
 		}
 
@@ -1437,8 +1410,6 @@ void GameWindowManager::winRepaint( void )
 		if ((++rc % 100) == 1) {
 			char m[64];
 			snprintf(m, sizeof(m), "winRepaint call #%u", (unsigned)rc);
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "%s\n", m); fclose(lf); }
 			// GUI window dump (id+name+screen rect) - enables deterministic
 			// menu navigation by mapping buttons to real rectangles.
 			// Re-dump whenever the window set CHANGES (menus create children
@@ -1457,35 +1428,6 @@ void GameWindowManager::winRepaint( void )
 			}
 			if (dumpRounds < 30) {
 				dumpRounds++;
-				FILE *lf2 = fopen("RTS_START.LOG", "a");
-				if (lf2) {
-					// Two-level tree walk: m_windowList holds TOP-LEVEL windows
-					// only; children (all the buttons) hang off winGetChild().
-					int guard = 0;
-					GameWindow *w = winGetWindowList();
-					while (w && guard++ < 800) {
-						for (int lvl = 0; lvl < 4 && w; lvl++) {
-							GameWindow *c = (lvl == 0) ? w : w->winGetChild();
-							int g2 = 0;
-							while (c && g2++ < 400) {
-								Int x = 0, y = 0, wd = 0, ht = 0;
-								c->winGetScreenPosition(&x, &y);
-								c->winGetSize(&wd, &ht);
-								AsciiString wname = "";
-								if (TheNameKeyGenerator)
-									wname = TheNameKeyGenerator->keyToName(c->winGetWindowId());
-								fprintf(lf2, "VK: WinDump id=%d name='%s' pos=(%d,%d) size=%dx%d hidden=%d status=%08x lvl=%d\n",
-									c->winGetWindowId(), wname.str() ? wname.str() : "?",
-									(int)x, (int)y, (int)wd, (int)ht,
-									(int)c->winIsHidden(), (unsigned)c->winGetStatus(), lvl);
-								c = c->winGetNext();
-							}
-							w = w->winGetNext();
-						}
-					}
-					fprintf(lf2, "VK: WinDump end round=%d\n", dumpRounds);
-					fclose(lf2);
-				}
 			}
 		}
 	}
@@ -1495,7 +1437,6 @@ void GameWindowManager::winRepaint( void )
 		Int guard = 0;
 	for( window = m_windowTail; window; window = next )
 	{
-		if (++guard > 5000) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "winRepaint: BELOW list exceeded 5000 (cycle?)\n"); fclose(lf); } break; }
 		next = window->m_prev;
 
 		if( BitTest( window->m_status, WIN_STATUS_BELOW ) )
@@ -1508,7 +1449,6 @@ void GameWindowManager::winRepaint( void )
 		Int guard = 0;
 	for( window = m_windowTail; window; window = next )
 	{
-		if (++guard > 5000) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "winRepaint: MAIN list exceeded 5000 (cycle?)\n"); fclose(lf); } break; }
 		next = window->m_prev;
 
 		if (BitTest( window->m_status, WIN_STATUS_ABOVE | 
@@ -1522,7 +1462,6 @@ void GameWindowManager::winRepaint( void )
 		Int guard = 0;
 	for( window = m_windowTail; window; window = next )
 	{
-		if (++guard > 5000) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "winRepaint: ABOVE list exceeded 5000 (cycle?)\n"); fclose(lf); } break; }
 		next = window->m_prev;
 
 		if( BitTest( window->m_status, WIN_STATUS_ABOVE ) )
@@ -1555,8 +1494,6 @@ void GameWindowManager::winRepaint( void )
 			}
 			char m[172];
 			snprintf(m, sizeof(m), "winRepaint summary: total=%d visible=%d bbox=(%d,%d)-(%d,%d) zerosize=%d", (int)total, (int)visible, (int)minx,(int)miny,(int)maxx,(int)maxy,(int)zero);
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "%s\n", m); fclose(lf); }
 		}
 	}
 }  // end WinRepaint

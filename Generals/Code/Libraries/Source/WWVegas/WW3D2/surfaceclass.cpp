@@ -238,8 +238,6 @@ SurfaceClass::SurfaceClass(unsigned width, unsigned height, WW3DFormat format):
 	if (!created) {
 		char buf[128];
 		snprintf(buf, sizeof(buf), "SurfaceClass: Create FAILED %ux%u fmt=%d", (unsigned)width, (unsigned)height, (int)format);
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
 	}
 	ShadowPitch = width * 4;
 	ShadowW = width;
@@ -270,7 +268,11 @@ SurfaceClass::SurfaceClass(VkTexture *vk_texture):
 	ShadowPitch(0),
 	OwnsVulkanSurface(false)	// borrowed from a TextureClass - do not delete
 {
-	SurfaceFormat = WW3D_FORMAT_UNKNOWN;
+	// PORT (round-7 radar black): UNKNOWN format made PixelSize()==0, so every
+	// DrawPixelFast/Draw was a silent no-op and Unlock uploaded an all-zero
+	// shadow = black minimap on all maps. VK-backed surfaces here are 32-bit
+	// (B8G8R8A8 images); A8R8G8B8 is the port's 4-byte memory representation.
+	SurfaceFormat = WW3D_FORMAT_A8R8G8B8;
 	if (VulkanSurface) {
 		ShadowPitch = VulkanSurface->GetWidth() * 4;
 		ShadowW = VulkanSurface->GetWidth();
@@ -401,13 +403,6 @@ void SurfaceClass::Clear()
 		n++;
 		if (n <= 30 || (n % 100u) == 0) {
 			SurfaceDescription sd0; Get_Description(sd0);
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: SurfaceClass::Clear #%u %ux%u fmt=%d caller=%p\n",
-					n, (unsigned)sd0.Width, (unsigned)sd0.Height, (int)sd0.Format,
-					__builtin_return_address(0));
-				fclose(lf);
-			}
 		}
 	}
 	SurfaceDescription sd;

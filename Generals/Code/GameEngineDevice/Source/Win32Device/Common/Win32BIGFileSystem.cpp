@@ -111,14 +111,7 @@ ArchiveFile * Win32BIGFileSystem::openArchiveFile(const Char *filename) {
 
 	DEBUG_LOG(("Win32BIGFileSystem::openArchiveFile - %d are contained in archive\n", numLittleFiles));
 	{
-		char bigMsg[256];
-		snprintf(bigMsg, sizeof(bigMsg), "BIG: %s reports %d entries", filename, (int)numLittleFiles);
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "%s\n", bigMsg); fclose(lf); }
 		if (numLittleFiles < 0 || numLittleFiles > 500000) {
-			if (lf) {} // already logged
-			FILE *lf2 = fopen("RTS_START.LOG", "a");
-			if (lf2) { fprintf(lf2, "BIG: insane entry count, aborting %s\n", filename); fclose(lf2); }
 			fp->close();
 			delete archiveFile;
 			return NULL;
@@ -148,11 +141,6 @@ ArchiveFile * Win32BIGFileSystem::openArchiveFile(const Char *filename) {
 		// allocate/copy gigabytes and appear to hang. Skip absurd entries.
 		// (note: 2*1024*1024*1024 overflows signed Int - use 0x7FFFFFFF bound)
 		if (filesize <= 0 || filesize > 0x10000000 || fileOffset < 0) {
-			char skipMsg[192];
-			snprintf(skipMsg, sizeof(skipMsg), "BIG: %s skipping insane entry #%d off=%d size=%d",
-				filename, (int)i, (int)fileOffset, (int)filesize);
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "%s\n", skipMsg); fclose(lf); }
 			// still must consume the null-terminated path
 			Int pathIndex = -1;
 			do {

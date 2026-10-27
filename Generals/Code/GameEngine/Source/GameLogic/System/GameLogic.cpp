@@ -1463,6 +1463,25 @@ void GameLogic::startNewGame( Bool saveGame )
 	updateLoadProgress(LOAD_PROGRESS_POST_VICTORY_CONDITION_SETUP);
 
 	// set the radar as on a new map
+	{	// PORT FIX (round-7 field report "minimap plate always black", even in real
+		// skirmish): the HUD gate W3DLeftHUDDraw -> TheRadar->draw() requires
+		// Player::hasRadar() == (m_radarCount > 0), but in this codebase m_radarCount
+		// is ONLY ever granted by an object carrying a RadarUpgrade module (retail
+		// ZH: America/China CommandCenters hold RadarUpgrade TriggeredBy Upgrade_America/ChinaRadar,
+		// GLA via ArmsDealer; the skirmish init scripts hand out those Upgrade_xRadar
+		// upgrades at game start, so "you have radar" fires on second zero). Nothing in
+		// this port ever performs that initial grant (no start grant, doRadarEnable only
+		// hides), so hasRadar() stayed FALSE => draw() never ran => the radar window
+		// kept only its empty black plate. Grant the radar count to every started player
+		// here (scripts can still hide it via RADAR_DISABLE). No sound spam: addRadar
+		// only plays radarOnlineSound when getFrame() > 0.
+		for (Int pl = 0; pl < ThePlayerList->getPlayerCount(); pl++)
+		{
+			Player *plr = ThePlayerList->getNthPlayer(pl);
+			if (plr && !plr->hasRadar())
+				{ plr->addRadar(FALSE); }
+		}
+	}
 	TheRadar->newMap( TheTerrainLogic );
 	TheInGameUI->setClientQuiet( FALSE ); // okay to start beeping and stuff
 
@@ -3090,13 +3109,6 @@ void GameLogic::update( void )
 	{
 		static unsigned ue = 0;
 		ue++;
-		{
-			// EVERY update: the hang window (frames 60-74) was invisible with
-			// a capped log. The last ENTER line with no successor = hang
-			// is inside that update call.
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: GameLogic.update ENTER #%u frame=%d\n", ue, (int)m_frame); fclose(lf); }
-		}
 	}
 	// update (execute) scripts
 	{
@@ -3118,16 +3130,6 @@ void GameLogic::update( void )
 			// scripts, AI) freezes while rendering continues - trucks never come.
 			static unsigned fz = 0;
 			fz++;
-			if (fz <= 12 || (fz % 300u) == 0) {
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) {
-					fprintf(lf, "VK: GameLogic FROZEN-return #%u frame=%d frozenScript=%d frozenDebug=%d\n",
-						fz, (int)m_frame,
-						(int)TheScriptEngine->isTimeFrozenScript(),
-						(int)TheScriptEngine->isTimeFrozenDebug());
-					fclose(lf);
-				}
-			}
 			/// @todo - make sure this never happens during a network game.  jba.
 			return;
 		}
@@ -3315,11 +3317,6 @@ void GameLogic::update( void )
 		{
 		static unsigned lg = 0;
 		lg++;
-		if ((lg % 10u) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: GameLogic heartbeat frame=%d sides=%d\n", (int)m_frame,
-				TheSidesList ? TheSidesList->getNumSides() : -1); fclose(lf); }
-		}
 	}
 	m_frame++;
 	}

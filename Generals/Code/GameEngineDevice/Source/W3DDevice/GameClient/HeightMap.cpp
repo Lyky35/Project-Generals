@@ -118,13 +118,6 @@ static Bool ClipmapTerrainOn(void)
 		if (e != NULL && e[0] == '0')
 			return false;
 		bool avail = DX8Wrapper::_Get_Shader_Manager().ClipmapShadersAvailable();
-		if (!avail) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: ClipMap shaders MISSING (clipmap.vert.spv/shroud.frag.spv in shaders/) - staying on legacy tiles\n");
-				fclose(lf);
-			}
-		}
 		return avail;
 	}();
 	return on;
@@ -164,20 +157,8 @@ HeightMapRenderObjClass *TheTerrainRenderObject=NULL;
     transparent objects. */
 void DoTrees(RenderInfoClass & rinfo)
 {
-	{
-		static unsigned dt = 0; dt++;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: DoTrees enter #%u\n", dt); fclose(lf);
-		}
-	}
 	if (TheTerrainRenderObject) {
 		TheTerrainRenderObject->renderTrees(&rinfo.Camera);
-	}
-	{
-		static unsigned dtx = 0; dtx++;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: DoTrees done #%u\n", dtx); fclose(lf);
-		}
 	}
 }
 
@@ -2438,9 +2419,6 @@ RenderObjClass *	 HeightMapRenderObjClass::Clone(void) const
 //=============================================================================
 void HeightMapRenderObjClass::loadRoadsAndBridges(W3DTerrainLogic *pTerrainLogic, Bool saveGame)
 {	
-	{	FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: loadRoadsAndBridges enter save=%d rb=%p road=%p\n", (int)saveGame, (void*)m_bridgeBuffer, (void*)m_roadBuffer); fclose(lf); }
-	}
 	if (DX8Wrapper::_Get_D3D_Device8() && (DX8Wrapper::_Get_D3D_Device8()->TestCooperativeLevel()) != D3D_OK)
 		return;	//device not ready to render anything
 #ifdef DO_ROADS
@@ -3427,10 +3405,6 @@ void HeightMapRenderObjClass::On_Frame_Update(void)
 			m_clipmap.UploadColors(&scratch[0]);
 			m_clipmap.SetDynamicLit(true);
 			{	static unsigned dl = 0; dl++;
-				if (dl <= 8 || (dl % 300) == 0) {
-					FILE *lf = fopen("RTS_START.LOG", "a");
-					if (lf) { fprintf(lf, "VK: ClipMapDynLights bake #%u n=%d\n", dl, numDynaLights); fclose(lf); }
-				}
 			}
 		} else if (m_clipmap.IsDynamicLit()) {
 			// lights gone - restore the static baseline once
@@ -3757,10 +3731,6 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 		if (m_map==NULL) reason = 1;
 		else if (m_updating) reason = 2;
 		else if (m_vertexBufferTiles==NULL) reason = 3;
-		if (reason && (ec <= 30 || (ec % 200) == 0)) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: UpdCenterEarly reason=%d call=%u\n", reason, ec); fclose(lf); }
-		}
 	}
 	if (m_map==NULL) {
 		return;
@@ -3778,10 +3748,6 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 		// Trees need the same view-change nudge as the normal path below.
 		if (ClipmapTerrainOn()) {
 			{	static unsigned fw = 0; fw++;
-				if (fw <= 8 || (fw % 200) == 0) {
-					FILE *lf = fopen("RTS_START.LOG", "a");
-					if (lf) { fprintf(lf, "VK: UpdCenterClip forward trees/bridges #%u full=%d\n", fw, (int)m_needFullUpdate); fclose(lf); }
-				}
 			}
 			if (m_treeBuffer)
 				m_treeBuffer->doFullUpdate();
@@ -3806,10 +3772,6 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 	{	static unsigned wc = 0; wc++;
 		if (wc <= 30 || (wc % 150) == 0) {
 			Vector3 cp = camera->Get_Position();
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: TerrWin #%u cam=(%.0f,%.0f) org=(%d,%d) needFull=%d win=%dx%d\n",
-				wc, cp.X, cp.Y, m_map->getDrawOrgX(), m_map->getDrawOrgY(),
-				(int)m_needFullUpdate, m_x, m_y); fclose(lf); }
 		}
 	}
 	if (m_needFullUpdate) {
@@ -3920,12 +3882,6 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 		// degenerate rect). Upstream fell through and centered drawOrg on the
 		// whole map - a full rebuild that blanks terrain while the cinematic
 		// camera is elsewhere (black flash). Keep the previous window.
-		static unsigned bailVis = 0; bailVis++;
-		if (bailVis <= 20 || (bailVis % 60) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: TerrBail emptyVis #%u validCorners=%d rect=(%.1f,%.1f)-(%.1f,%.1f)\n",
-				bailVis, (int)validCorners, minX, minY, maxX, maxY); fclose(lf); }
-		}
 		m_updating = false;
 		return;
 	}
@@ -3970,11 +3926,6 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 				Real ang = atan2f(vx * uy - vy * ux, vx * ux + vy * uy) * 57.29578f;
 				int covered = (ltx >= newOrgX && ltx <= newOrgX + m_x &&
 					lty >= newOrgY && lty <= newOrgY + m_y) ? 1 : 0;
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "VK: TerrRect #%u cam=(%.0f,%.0f) look=(%.0f,%.0f) rect=(%.0f,%.0f)-(%.0f,%.0f) vis=(%d,%d)-(%d,%d) newOrg=(%d,%d) covered=%d ang=%.1f mw=%d border=%d expand=%.0f\n",
-					tr, camera_location.X, camera_location.Y, lookPoint.X, lookPoint.Y,
-					minX, minY, maxX, maxY, visMinX, visMinY, visMaxX, visMaxY,
-					newOrgX, newOrgY, covered, ang, m_x, m_map->getBorderSize(), expand); fclose(lf); }
 			}
 		}
 		if (m_halfResMesh) {
@@ -3985,12 +3936,6 @@ void HeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjLis
 		Int deltaY = newOrgY - m_map->getDrawOrgY();
 		if (IABS(deltaX) > m_x/2 || IABS(deltaY)>m_x/2) {
 			{	static unsigned jmp = 0; jmp++;
-				if (jmp <= 40 || (jmp % 60) == 0) {
-					FILE *lf = fopen("RTS_START.LOG", "a");
-					if (lf) { fprintf(lf, "VK: TerrOrgJump #%u old=(%d,%d) new=(%d,%d) delta=(%d,%d) vis=(%d,%d)-(%d,%d)\n",
-						jmp, m_map->getDrawOrgX(), m_map->getDrawOrgY(), newOrgX, newOrgY, deltaX, deltaY,
-						visMinX, visMinY, visMaxX, visMaxY); fclose(lf); }
-				}
 			}
 			m_map->setDrawOrg(newOrgX, newOrgY);
 			m_originY = 0;
@@ -4133,21 +4078,6 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 
 	DX8Wrapper::Set_Index_Buffer(m_indexBuffer,0);
 
-	{	// Shroud-vs-black breadcrumb: does the terrain ever receive an
-		// additional/material pass (the shroud multiply), and is fog-of-war on?
-		static unsigned hp = 0; hp++;
-		if (hp <= 8 || (hp % 300) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: TerrainRender #%u addPass=%d shroudObj=%d customPass=%d disableTex=%d\n",
-					hp, (int)rinfo.Additional_Pass_Count(),
-					(int)(m_shroud != NULL),
-					(int)((RTS3DScene *)rinfo.Camera.Get_User_Data())->getCustomPassMode(),
-					(int)m_disableTextures);
-				fclose(lf);
-			}
-		}
-	}
 
 	Bool doMultiPassWireFrame=FALSE;
 
@@ -4265,11 +4195,6 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 				// alpha, cloud+noise, cloud, noise = modes 0-4) as frustum-
 				// culled chunks; legacy tiles remain the opt-out/fallback.
 				if (ClipmapTerrainOn() && m_clipmap.HasMesh()) {
-					static unsigned cd = 0; cd++;
-					if (cd == 1) {
-						FILE *lf = fopen("RTS_START.LOG", "a");
-						if (lf) { fprintf(lf, "VK: ClipMap draw ACTIVE (default on)\n"); fclose(lf); }
-					}
 					// cloud/noise UV scale (same formula as the legacy native path)
 					const float clipStretch = 1.0f / (63.0f * MAP_XY_FACTOR / 2.0f);
 					VkTexture *noiseVk = (mode == 2 && texB) ? texB->Peek_Vulkan_Texture() : NULL;
@@ -4292,11 +4217,6 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 							drewChunks++;
 					}
 					if (drewChunks > 0) {
-						static unsigned dex = 0; dex++;
-						if (dex <= 6 || (dex % 60) == 0) {
-							FILE *lf = fopen("RTS_START.LOG", "a");
-							if (lf) { fprintf(lf, "VK: ClipMap draw OK #%u mode=%d chunks=%d/%d\n", dex, mode, drewChunks, m_clipmap.GetChunkCount()); fclose(lf); }
-						}
 						continue;
 					}
 					if (triedChunks == 0 && m_clipmap.GetChunkCount() > 0) {
@@ -4304,29 +4224,6 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 						continue;
 					}
 					// pipeline/shader unavailable - fall through to legacy tiles.
-					{
-						static unsigned df = 0; df++;
-						if (df <= 8) {
-							FILE *lf = fopen("RTS_START.LOG", "a");
-							if (lf) { fprintf(lf, "VK: ClipMap draw FAILED #%u mode=%d -> legacy tiles\n", df, mode); fclose(lf); }
-						}
-					}
-				}
-				{	// field probe: which terrain mode/texture runs each frame
-					static unsigned td = 0; td++;
-					if (td <= 60 || (td % 240) == 0) {
-						FILE *lf = fopen("RTS_START.LOG", "a");
-						if (lf) {
-							fprintf(lf, "VK: TerrDraw pass=%d mode=%d hidden=%d lightMap=%d cloudMap=%d terrLOD=%d texA='%s' texB='%s'\n",
-								pass, mode, (int)Is_Hidden(),
-								(TheGlobalData && TheGlobalData->m_useLightMap) ? 1 : 0,
-								(TheGlobalData && TheGlobalData->m_useCloudMap) ? 1 : 0,
-								(TheGlobalData ? (int)TheGlobalData->m_terrainLOD : -1),
-								texA ? texA->Get_Texture_Name() : "(null)",
-								texB ? texB->Get_Texture_Name() : "(null)");
-							fclose(lf);
-						}
-					}
 				}
 				const Bool wrap = (mode >= 2);
 				const Bool linear = (TheGlobalData->m_bilinearTerrainTex || TheGlobalData->m_trilinearTerrainTex) ? true : false;
@@ -4494,13 +4391,6 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 					}
 					if (shroudDrew > 0 || m_clipmap.GetChunkCount() == 0)
 						return;	// clipmap shroud ok - skip legacy tile shroud
-					{
-						static unsigned sf = 0; sf++;
-						if (sf <= 8) {
-							FILE *lf = fopen("RTS_START.LOG", "a");
-							if (lf) { fprintf(lf, "VK: ClipMap SHROUD FAILED #%u -> legacy tile shroud\n", sf); fclose(lf); }
-						}
-					}
 				}
 			}
 			else
@@ -4676,11 +4566,6 @@ void HeightMapRenderObjClass::renderShoreLines(CameraClass *pCamera)
 void HeightMapRenderObjClass::renderTerrainPass(CameraClass *pCamera)
 {
 	{	static unsigned sp = 0; sp++;
-		if (sp <= 40 || (sp % 240) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: ShroudPass #%u hidden=%d tiles=%dx%d\n",
-				sp, (int)Is_Hidden(), m_numVBTilesX, m_numVBTilesY); fclose(lf); }
-		}
 	}
 	DX8Wrapper::Set_Transform(D3DTS_WORLD,Matrix3D(1));
 

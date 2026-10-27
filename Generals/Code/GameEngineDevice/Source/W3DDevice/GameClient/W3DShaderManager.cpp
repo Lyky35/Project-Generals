@@ -1145,18 +1145,6 @@ Matrix4 inv = curView.Inverse(); // Vulkan uniform path; inverse for UV matrices
 	shroudOffset[3][0] = xoffset;
 	shroudOffset[3][1] = yoffset;
 	Matrix4 shroudMat = (inv * shroudOffset) * shroudScale;
-	{	static Real lastXo=1e9f, lastYo=1e9f, lastW=1e9f;
-		if (xoffset!=lastXo || yoffset!=lastYo || width!=lastW) {
-			lastXo=xoffset; lastYo=yoffset; lastW=width;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: ShroudMat stage=%d off=(%.1f,%.1f) scale=(%.6f,%.6f) m00=%.4f m03=%.4f m30=%.2f m31=%.2f\n",
-					(int)stage,xoffset,yoffset,width,height,
-					shroudMat[0][0],shroudMat[0][3],shroudMat[3][0],shroudMat[3][1]);
-				fclose(lf);
-			}
-		}
-	}
 		DX8Wrapper::_Set_DX8_Transform((D3DTRANSFORMSTATETYPE )(D3DTS_TEXTURE0+stage), shroudMat);
 	}
 	m_stageOfSet=stage;

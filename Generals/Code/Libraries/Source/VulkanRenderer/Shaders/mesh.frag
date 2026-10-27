@@ -198,10 +198,19 @@ void main()
 			vec2 suv = vec2(lpc.x * 0.5 + 0.5, 0.5 - lpc.y * 0.5);
 			if (lpc.z > 0.0 && lpc.z < 1.0 &&
 				suv.x > 0.002 && suv.x < 0.998 && suv.y > 0.002 && suv.y < 0.998) {
-				float d = texture(shadowMap, suv).r;
-				if (lpc.z - frame.shadowParams.x > d) {
-					color *= frame.shadowParams.y;
+				// SOFT shadows (round-7 directive): 9-tap PCF, ~1.5-texel kernel, smoothstep
+				// depth-delta => penumbra at edges instead of hard stair-step aliases.
+				float inShade = 0.0;
+				const float rad = 1.5 / max(textureSize(shadowMap, 0).x, 1.0);
+				for (int tx = -1; tx <= 1; tx++) {
+					for (int ty = -1; ty <= 1; ty++) {
+						vec2 off = vec2(float(tx), float(ty)) * rad;
+						float d = texture(shadowMap, suv + off).r;
+						inShade += smoothstep(0.0, 0.03, lpc.z - frame.shadowParams.x - d);
+					}
 				}
+				inShade /= 9.0;
+				color *= (1.0 - inShade * (1.0 - frame.shadowParams.y));
 			}
 		}
 	}

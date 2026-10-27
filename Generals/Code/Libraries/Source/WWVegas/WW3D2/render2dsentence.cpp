@@ -232,12 +232,6 @@ Render2DSentenceClass::Render (void)
 		static int renderLog = 0;
 		if (renderLog < 12) {
 			renderLog++;
-			FILE *lf = fopen ("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf (lf, "VK: sentence Render pending=%d renderers=%d sentence=%d\n",
-					PendingSurfaces.Count (), Renderers.Count (), SentenceData.Count ());
-				fclose (lf);
-			}
 		}
 	}
 	Build_Textures ();
@@ -470,12 +464,6 @@ Render2DSentenceClass::Build_Textures (void)
 				static int copyLogCount = 0;
 				if (copyLogCount < 8) {
 					copyLogCount++;
-					FILE *lf = fopen ("RTS_START.LOG", "a");
-					if (lf) {
-						fprintf (lf, "VK: sentence texture copy w=%u h=%u pitch=%d/%d nonzero=%u\n",
-							(unsigned)desc.Width, (unsigned)desc.Height, src_pitch, dst_pitch, nonzero);
-						fclose (lf);
-					}
 				}
 			}
 			if (src != NULL) curr_surface->Unlock ();
@@ -1274,12 +1262,6 @@ Render2DSentenceClass::Build_Sentence (const WCHAR *text, int *hkX, int *hkY)
 				preview[i] = (text[i] >= 32 && text[i] < 127) ? (char)text[i] : '?';
 			}
 			preview[i] = 0;
-			FILE *lf = fopen ("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf (lf, "VK: Build_Sentence len=%d font=%p '%s'\n",
-					len, (void *)Font, preview);
-				fclose (lf);
-			}
 		}
 	}
 
@@ -1441,8 +1423,6 @@ FontCharsClass::Blit_Char (WCHAR ch, uint16 *dest_ptr, int dest_stride, int x, i
 				char bmsg[160];
 				snprintf(bmsg, sizeof(bmsg), "Blit_Char '%c' x=%d y=%d w=%d stride=%d inc=%d h=%d",
 					(char)(ch<128?ch:'?'), x, y, (int)data->Width, (int)dest_stride, dest_inc, (int)CharHeight);
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "%s\n", bmsg); fclose(lf); }
 			}
 		}
 
@@ -1582,8 +1562,6 @@ FontCharsClass::Store_GDI_Char (WCHAR ch)
 			for (int i = 0; i < char_size.cx * char_size.cy; i++) { sum += GDIBitmapBits[i*3]; if (GDIBitmapBits[i*3]) nonzero++; }
 			char gmsg[200];
 			snprintf(gmsg, sizeof(gmsg), "GDI glyph '%c' %ldx%ld nonzero=%d avg=%u", (char)(ch<128?ch:'?'), (long)char_size.cx, (long)char_size.cy, nonzero, (unsigned)(sum / (char_size.cx*char_size.cy?char_size.cx*char_size.cy:1)));
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "%s\n", gmsg); fclose(lf); }
 		}
 	}
 	//
@@ -1699,8 +1677,6 @@ FontCharsClass::Create_GDI_Font (const char *font_name)
 			fontLogCount++;
 			char fmsg[192];
 			snprintf(fmsg, sizeof(fmsg), "GDI font '%s' pt=%d bold=%d -> %s", font_name, PointSize, (int)IsBold, GDIFont ? "OK" : "FAILED");
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "%s\n", fmsg); fclose(lf); }
 		}
 	}
 	

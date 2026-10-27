@@ -174,16 +174,8 @@ template<class SUBSYSTEM>
 void initSubsystem(SUBSYSTEM*& sysref, AsciiString name, SUBSYSTEM* sys, Xfer *pXfer,  const char* path1 = NULL, 
 										const char* path2 = NULL, const char* dirpath = NULL)
 {
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "SUBSYS: begin %s\n", name.str()); fclose(lf); }
-	}
 	sysref = sys;
 	TheSubsystemList->initSubsystem(sys, path1, path2, dirpath, pXfer, name);
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "SUBSYS: done %s\n", name.str()); fclose(lf); }
-	}
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -522,20 +514,6 @@ void GameEngine::init( int argc, char *argv[] )
 			{
 				TheWritableGlobalData->m_shellMapOn = FALSE;
 			}
-			{
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) {
-					fprintf(lf, "VK: shellMap check name='%s' found=%d cacheSize=%u -> shellMapOn=%d\n",
-						lowerName.str(), (int)(it != TheMapCache->end()),
-						(unsigned)TheMapCache->size(), (int)TheGlobalData->m_shellMapOn);
-					fclose(lf);
-				}
-			}
-		}
-		else
-		{
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: shellMap check SKIPPED cache=%p on=%d\n", (void*)TheMapCache, (int)TheGlobalData->m_shellMapOn); fclose(lf); }
 		}
 
 		if(!TheGlobalData->m_playIntro)
@@ -643,33 +621,13 @@ void GameEngine::update( void )
 			// VERIFY CRC needs to be in this code block.  Please to not pull TheGameLogic->update() inside this block.
 			VERIFY_CRC
 
-			{
-				static UnsignedInt ph = 0;
-				if (++ph <= 10) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=radar u=%u\n", (unsigned)ph); fclose(lf); } }
-			}
 			TheRadar->UPDATE();
 
 			/// @todo Move audio init, update, etc, into GameClient update
 			
-			{
-				static UnsignedInt ph = 0;
-				if (++ph <= 10) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=audio u=%u begin\n", (unsigned)ph); fclose(lf); } }
-			}
 			TheAudio->UPDATE();
-			{
-				static UnsignedInt ph = 0;
-				if (++ph <= 10) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=audio u=%u done\n", (unsigned)ph); fclose(lf); } }
-			}
 			TheGameClient->UPDATE();
-			{
-				static UnsignedInt ph = 0;
-				if (++ph <= 10) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=client u=%u done\n", (unsigned)ph); fclose(lf); } }
-			}
 			TheMessageStream->propagateMessages();
-			{
-				static UnsignedInt ph = 0;
-				if (++ph <= 10) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=msgs u=%u done\n", (unsigned)ph); fclose(lf); } }
-			}
 
 			if (TheNetwork != NULL)
 			{
@@ -683,10 +641,6 @@ void GameEngine::update( void )
 		if ((TheNetwork == NULL && !TheGameLogic->isGamePaused()) || (TheNetwork && TheNetwork->isFrameDataReady()))
 		{
 			TheGameLogic->UPDATE();
-			{
-				static UnsignedInt ph = 0;
-				if (++ph <= 10) { FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=logic u=%u done\n", (unsigned)ph); fclose(lf); } }
-			}
 		}
 
 	}	// end perfGather
@@ -708,39 +662,10 @@ void GameEngine::execute( void )
 	DWORD startTime = timeGetTime() / 1000;
 #endif
 
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "execute: entering main loop\n"); fclose(lf); }
-	}
 
 	// pretty basic for now
 	while( !m_quitting )
 	{
-		// Boot/loop tracing: every frame for the first 300 frames (with
-		// frame delta), then every 120th. A hang shows the exact last
-		// frame processed; the dt value shows a stall before the hang.
-		{
-			static UnsignedInt hbFrame = 0;
-			static DWORD hbLastTime = 0;
-			++hbFrame;
-			DWORD hbNow = timeGetTime();
-			DWORD hbDt = hbLastTime ? (hbNow - hbLastTime) : 0;
-			hbLastTime = hbNow;
-			if (hbFrame <= 300 || (hbFrame % 120) == 0)
-			{
-				char hb[96];
-				snprintf(hb, sizeof(hb), "hb frame=%u dt=%ums loadScreen=%d",
-					(unsigned)hbFrame, (unsigned)hbDt,
-					(TheGlobalData && TheGlobalData->m_loadScreenRender) ? 1 : 0);
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "%s\n", hb); fclose(lf); }
-			}
-			if (hbFrame <= 5)
-			{
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "hb frame=%u phase=update-begin\n", (unsigned)hbFrame); fclose(lf); }
-			}
-		}
 
 		//if (TheGlobalData->m_vTune)
 		{
@@ -810,15 +735,6 @@ void GameEngine::execute( void )
 					RELEASE_CRASH(("Uncaught Exception in GameEngine::update"));
 				}	// catch
 			}	// perf
-			{
-				static UnsignedInt hbPhaseFrame = 0;
-				++hbPhaseFrame;
-				if (hbPhaseFrame <= 5)
-				{
-					FILE *lf = fopen("RTS_START.LOG", "a");
-					if (lf) { fprintf(lf, "hb frame=%u phase=update-done\n", (unsigned)hbPhaseFrame); fclose(lf); }
-				}
-			}
 
 			{
 
@@ -834,25 +750,12 @@ void GameEngine::execute( void )
 					// limit the framerate
 					DWORD now = timeGetTime();
 					DWORD limit = (1000.0f/m_maxFPS)-1;
-					{
-						static bool logged = false;
-						if (!logged && (now - prevTime) < limit) {
-							logged = true;
-							char buf[128];
-							snprintf(buf, sizeof(buf), "fpslimit spin: maxFPS=%d limit=%lu now=%lu prev=%lu",
-								m_maxFPS, (unsigned long)limit, (unsigned long)now, (unsigned long)prevTime);
-							FILE *lf = fopen("RTS_START.LOG", "a");
-							if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
-						}
-					}
 					DWORD spinGuard = 0;
 					while (TheGlobalData->m_useFpsLimit && (now - prevTime) < limit) 
 					{
 						::Sleep(0);
 						now = timeGetTime();
 						if (++spinGuard >= 500000) {
-							FILE *lf = fopen("RTS_START.LOG", "a");
-							if (lf) { fprintf(lf, "fpslimit ABORT after 500k spins (now=%lu prev=%lu limit=%lu)\n", (unsigned long)now, (unsigned long)prevTime, (unsigned long)limit); fclose(lf); }
 							break;
 						}
 					}

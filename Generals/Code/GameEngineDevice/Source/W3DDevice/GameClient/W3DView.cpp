@@ -822,24 +822,12 @@ Bool W3DView::updateCameraMovements()
 */
 void W3DView::updateView(void)
 {
-	{	static unsigned uv = 0; uv++;
-		if (uv <= 20 || (uv % 300) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: UpdateViewW3D #%u\n", uv); fclose(lf); }
-		}
-	}
 	UPDATE();
 }
 
 //DECLARE_PERF_TIMER(W3DView_updateView)
 void W3DView::update(void)
 {
-	{	static unsigned vu = 0; vu++;
-		if (vu <= 30 || (vu % 200) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: ViewUpd #%u\n", vu); fclose(lf); }
-		}
-	}
 	//USE_PERF_TIMER(W3DView_updateView)
 	Bool recalcCamera = false;
 	Bool didScriptedMovement = false;
@@ -1354,14 +1342,6 @@ void W3DView::drawView( void )
 void W3DView::draw( void )
 {
 	//USE_PERF_TIMER(W3DView_drawView)
-	{
-		static int wvLog = 0;
-		if (wvLog < 12) {
-			wvLog++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: W3DView::draw #%d this=%p scene=%p\n", wvLog, (void *)this, (void *)W3DDisplay::m_3DScene); fclose(lf); }
-		}
-	}
 	Bool skipRender = false;
 	Bool doExtraRender = false;
 	CustomScenePassModes customScenePassMode  = SCENE_PASS_DEFAULT;
@@ -1393,13 +1373,6 @@ void W3DView::draw( void )
 		// scene render per frame (2x cost) - legacy DoShadows remains active.
 		// NativeShadow_Render(W3DDisplay::m_3DScene, m_3DCamera);
 		W3DDisplay::m_3DScene->doRender( m_3DCamera );
-		{
-			static unsigned ph = 0; ph++;
-			if (ph <= 200) {
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "VK: draw.phase post-doRender #%u\n", ph); fclose(lf); }
-			}
-		}
 		W3DDisplay::m_3DScene->Set_Extra_Pass_Polygon_Mode(SceneClass::EXTRA_PASS_DISABLE);
 		m_isWireFrameEnabled = m_nextWireFrameEnabled;
 	}
@@ -1448,22 +1421,8 @@ void W3DView::draw( void )
 		DX8Wrapper::Clear(false, true, Vector3(0.0f,0.0f,0.0f), TheWaterTransparency->m_minWaterOpacity);	// Clear z but not color
 		W3DDisplay::m_3DScene->setCustomPassMode(SCENE_PASS_DEFAULT);
 		W3DDisplay::m_3DScene->doRender( m_3DCamera );
-		{
-			static unsigned ph4 = 0; ph4++;
-			if (ph4 <= 200) {
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "VK: draw.phase post-doRender2 #%u\n", ph4); fclose(lf); }
-			}
-		}
 		Coord2D deltaScroll;
 		W3DShaderManager::filterPostRender(m_viewFilter, m_viewFilterMode, deltaScroll, doExtraRender);
-		{
-			static unsigned ph3 = 0; ph3++;
-			if (ph3 <= 200) {
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "VK: draw.phase post-filter #%u\n", ph3); fclose(lf); }
-			}
-		}
 	}
 
 	if( TheGlobalData->m_debugAI )
@@ -2924,11 +2883,6 @@ void W3DView::moveAlongWaypointPath(Int milliseconds)
 		return;
 	}
 	if (m_mcwpInfo.elapsedTimeMilliseconds>m_mcwpInfo.totalTimeMilliseconds) {
-		{	static unsigned pd = 0; pd++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: CamPanDone #%u elapsed=%d total=%d\n",
-				pd, m_mcwpInfo.elapsedTimeMilliseconds, m_mcwpInfo.totalTimeMilliseconds); fclose(lf); }
-		}
 		m_doingMoveCameraOnWaypointPath = false;
 		m_freezeTimeForCameraMovement = false;
 		m_angle = m_mcwpInfo.cameraAngle[m_mcwpInfo.numWaypoints];

@@ -2174,12 +2174,6 @@ void Object::updateUpgradeModules()
 			static int behLog = 0;
 			if (behLog < 8) {
 				behLog++;
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) {
-					fprintf(lf, "VK: updateUpgradeModules stopped on garbage module %p (slot %d) obj=%p\n",
-						(void *)*module, (int)(module - m_behaviors), (void *)this);
-					fclose(lf);
-				}
 			}
 			break;
 		}

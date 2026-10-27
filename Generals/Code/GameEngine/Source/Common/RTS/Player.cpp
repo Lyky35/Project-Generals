@@ -776,13 +776,6 @@ void Player::initFromDict(const Dict* d)
 	DEBUG_ASSERTCRASH(pt != NULL, ("PlayerTemplate %s not found -- this is an obsolete map (please open and resave in WB)\n",tmplname.str()));
 	
 	init(pt);
-	{
-		static unsigned pi = 0; pi++;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: Player::initFromDict #%u name='%s' teams=%d\n",
-			pi, d->getAsciiString(TheKey_playerName).str(),
-			TheSidesList ? TheSidesList->getNumTeams() : -1); fclose(lf); }
-	}
 
 	m_playerDisplayName = d->getUnicodeString(TheKey_playerDisplayName);
 	AsciiString pname = d->getAsciiString(TheKey_playerName);
@@ -901,12 +894,6 @@ void Player::initFromDict(const Dict* d)
 				slist->deleteInstance();
 			}
 			TheSidesList->getSideInfo(getPlayerIndex())->setScriptList(scripts);
-				{
-					static unsigned rm = 0; rm++;
-					FILE *lf = fopen("RTS_START.LOG", "a");
-					if (lf) { fprintf(lf, "VK: Player team-removal pass #%u player='%s' teamsBefore=%d\n",
-						rm, pname.str(), TheSidesList->getNumTeams()); fclose(lf); }
-				}
 			for (int i =0; i<TheSidesList->getNumTeams(); i++) {
 				if (TheSidesList->getTeamInfo(i)->getDict()->getAsciiString(TheKey_teamOwner) == pname)
 				{
@@ -1151,9 +1138,7 @@ void Player::becomingLocalPlayer(Bool yes)
 		}
 	}
 	else
-	{
-		// nothing to do
-	}
+	{	}
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -2462,9 +2447,7 @@ void Player::setScienceAvailability( ScienceType science, ScienceAvailabilityTyp
 		m_sciencesHidden.push_back( science );
 	}
 	else if( type == SCIENCE_AVAILABLE )
-	{
-		//Do nothing, because being available means that the science isn't in one of the hidden or disabled vecs.
-	}
+	{	}
 }
 
 //=============================================================================

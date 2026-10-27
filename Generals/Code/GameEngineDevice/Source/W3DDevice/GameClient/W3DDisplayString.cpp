@@ -172,8 +172,6 @@ void W3DDisplayString::draw( Int x, Int y, Color color, Color dropColor, Int xDr
 		static int skipLog = 0;
 		if (skipLog < 6) {
 			skipLog++;
-			FILE *lf = fopen ("RTS_START.LOG", "a");
-			if (lf) { fprintf (lf, "VK: DS draw skipped (empty text) font=%p\n", (void *)m_font); fclose (lf); }
 		}
 		return;  // nothing to draw
 	}
@@ -192,12 +190,6 @@ void W3DDisplayString::draw( Int x, Int y, Color color, Color dropColor, Int xDr
 				}
 			}
 			preview[i] = 0;
-			FILE *lf = fopen ("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf (lf, "VK: DS draw len=%d font=%p changed=%d '%s'\n",
-					len, (void *)m_font, (int)(m_fontChanged || m_textChanged), preview);
-				fclose (lf);
-			}
 		}
 	}
 

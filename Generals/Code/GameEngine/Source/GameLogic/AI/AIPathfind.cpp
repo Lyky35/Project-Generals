@@ -1851,12 +1851,6 @@ static void __fastcall resolveZones(Int srcZone, Int targetZone, UnsignedShort *
 	static int s_zdepth = 0;
 	s_zdepth++;
 	if (s_zdepth > 64) {
-		static unsigned zg = 0;
-		zg++;
-		if (zg <= 5) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: resolveZones RECURSION depth>64 #%u (cycle hang?)\n", zg); fclose(lf); }
-		}
 		s_zdepth--;
 		return;
 	}

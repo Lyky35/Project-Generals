@@ -431,14 +431,6 @@ WindowMsgHandledType GadgetComboBoxSystem( GameWindow *window, UnsignedInt msg,
 					static int cbLog = 0;
 					if (cbLog < 25) {
 						cbLog++;
-						FILE *lf = fopen("RTS_START.LOG", "a");
-						if (lf) {
-							fprintf(lf, "VK: combo GLM_SELECTED sender=%p listBox=%p match=%d pos=%d dontHide=%d\n",
-								(void *)mData1, (void *)(comboData ? comboData->listBox : 0),
-								(int)(comboData && (GameWindow *)mData1 == comboData->listBox),
-								(int)mData2, (int)(comboData ? comboData->dontHide : -1));
-							fclose(lf);
-						}
 					}
 				}
 					if( comboData->dontHide == TRUE )
@@ -467,12 +459,6 @@ WindowMsgHandledType GadgetComboBoxSystem( GameWindow *window, UnsignedInt msg,
 							int ci = 0;
 							if (ws) { for (; ws[ci] && ci < 60; ci++) buf[ci] = (ws[ci] >= 32 && ws[ci] < 127) ? (char)ws[ci] : '?'; }
 							buf[ci] = 0;
-							FILE *lf = fopen("RTS_START.LOG", "a");
-							if (lf) {
-								fprintf(lf, "VK: combo label fetched pos=%d len=%d text='%s'\n",
-									(int)mData2, (int)(ws ? (ci) : 0), buf);
-								fclose(lf);
-							}
 						}
 					}
 					GadgetTextEntrySetTextColor(comboData->editBox, color);

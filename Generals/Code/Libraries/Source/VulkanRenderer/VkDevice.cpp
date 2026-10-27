@@ -3,12 +3,6 @@
 #include <cstdio>
 #include <limits>
 
-static void vkLog(const char *what, int res)
-{
-	FILE *lf = fopen("RTS_START.LOG", "a");
-	if (lf) { fprintf(lf, "VK: %s -> %d\n", what, res); fclose(lf); }
-}
-
 #ifdef _DEBUG
 static const bool kEnableValidation = true;
 #else
@@ -97,29 +91,24 @@ VulkanDevice &VulkanDevice::Instance()
 bool VulkanDevice::Init(HWND hwnd)
 {
 	m_hwnd = hwnd;
-	if (!CreateInstance()) { vkLog("Init: CreateInstance FAILED", -1); return false; }
+	if (!CreateInstance()) return false;
 	if (!CreateSurface(hwnd)) {
-		vkLog("Init: CreateSurface FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!PickPhysicalDevice()) {
-		vkLog("Init: PickPhysicalDevice FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateLogicalDevice()) {
-		vkLog("Init: CreateLogicalDevice FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateSwapchain()) {
-		vkLog("Init: CreateSwapchain FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateImageViews()) {
-		vkLog("Init: CreateImageViews FAILED", -1);
 		Shutdown();
 		return false;
 	}
@@ -129,36 +118,29 @@ bool VulkanDevice::Init(HWND hwnd)
 	// (129): framebuffer attachment format mismatch = undefined behavior
 	// (stencil ops dead, driver-divergence source).
 	if (!CreateDepthResources()) {
-		vkLog("Init: CreateDepthResources FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateRenderPass()) {
-		vkLog("Init: CreateRenderPass FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateFramebuffers()) {
-		vkLog("Init: CreateFramebuffers FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateCommandPool()) {
-		vkLog("Init: CreateCommandPool FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateCommandBuffers()) {
-		vkLog("Init: CreateCommandBuffers FAILED", -1);
 		Shutdown();
 		return false;
 	}
 	if (!CreateSyncObjects()) {
-		vkLog("Init: CreateSyncObjects FAILED", -1);
 		Shutdown();
 		return false;
 	}
-	vkLog("Init: Vulkan device READY", 0);
 	return true;
 }
 
@@ -242,14 +224,6 @@ bool VulkanDevice::CreateInstance()
 			std::vector<VkLayerProperties> lprops(lcount ? lcount : 1);
 			if (lcount)
 				vkEnumerateInstanceLayerProperties(&lcount, lprops.data());
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: VkLayers n=%u", (unsigned)lcount);
-				for (uint32_t li = 0; li < lcount && li < 16; li++)
-					fprintf(lf, " '%s'", lprops[li].layerName);
-				fprintf(lf, "\n");
-				fclose(lf);
-			}
 		}
 	}
 	VkApplicationInfo appInfo = {};
@@ -281,7 +255,6 @@ bool VulkanDevice::CreateInstance()
 	}
 
 	VkResult instRes = vkCreateInstance(&createInfo, nullptr, &m_instance);
-	vkLog("vkCreateInstance", (int)instRes);
 	if (instRes != VK_SUCCESS)
 		return false;
 
@@ -291,13 +264,11 @@ bool VulkanDevice::CreateInstance()
 	// used because our shipped vulkan-1.dll is missing/stale next to
 	// RTS.exe) or a layer still interposes, these two lines say so.
 	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
 #ifdef _WIN32
 		char path[MAX_PATH] = "?";
 		HMODULE loaderMod = GetModuleHandleA("vulkan-1.dll");
 		if (loaderMod)
 			GetModuleFileNameA(loaderMod, path, MAX_PATH);
-		if (lf) { fprintf(lf, "VK: vulkan1=%s\n", path); fclose(lf); lf = nullptr; }
 		// Which module owns vkQueuePresentKHR in THIS instance's chain?
 		PFN_vkGetInstanceProcAddr gipa =
 			(PFN_vkGetInstanceProcAddr)vkGetInstanceProcAddr(m_instance, "vkGetInstanceProcAddr");
@@ -315,14 +286,7 @@ bool VulkanDevice::CreateInstance()
 					interposed = TRUE;
 			}
 		}
-		lf = fopen("RTS_START.LOG", "a");
-		if (lf) {
-			fprintf(lf, "VK: PresentFn=%s%s\n", owner,
-				interposed ? " [LAYER INTERPOSED - third-party Vulkan layer ACTIVE]" : "");
-			fclose(lf);
-		}
 #else
-		if (lf) { fprintf(lf, "VK: vulkan1=(posix)\n"); fclose(lf); }
 #endif
 	}
 
@@ -349,7 +313,6 @@ bool VulkanDevice::CreateSurface(void* hwnd)
 {
 	if (m_instance == VK_NULL_HANDLE || hwnd == NULL)
 	{
-		vkLog("CreateSurface: bad args", -1);
 		return false;
 	}
 	VkWin32SurfaceCreateInfoKHR info = {};
@@ -357,7 +320,6 @@ bool VulkanDevice::CreateSurface(void* hwnd)
 	info.hinstance = GetModuleHandle(NULL);
 	info.hwnd = (HWND)hwnd;
 	VkResult res = vkCreateWin32SurfaceKHR(m_instance, &info, nullptr, &m_surface);
-	vkLog("vkCreateWin32SurfaceKHR", (int)res);
 	return res == VK_SUCCESS;
 }
 
@@ -413,12 +375,6 @@ bool VulkanDevice::PickPhysicalDevice()
 {
 	uint32_t deviceCount = 0;
 	VkResult enumRes = vkEnumeratePhysicalDevices(m_instance, &deviceCount, nullptr);
-	vkLog("vkEnumeratePhysicalDevices(count)", (int)enumRes);
-	{
-		char buf[64];
-		snprintf(buf, sizeof(buf), "physical device count=%u", (unsigned)deviceCount);
-		vkLog(buf, -2);
-	}
 	if (enumRes != VK_SUCCESS || deviceCount == 0)
 		return false;
 	std::vector<VkPhysicalDevice> devices(deviceCount);
@@ -443,14 +399,6 @@ bool VulkanDevice::CreateLogicalDevice()
 		vkGetPhysicalDeviceProperties(m_physicalDevice, &props);
 		lim = props.limits;
 		m_minUboAlign = (uint64_t)lim.minUniformBufferOffsetAlignment;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) {
-			fprintf(lf, "VK: limits minUboAlign=%llu maxUboRange=%llu device=%s\n",
-				(unsigned long long)m_minUboAlign,
-				(unsigned long long)lim.maxUniformBufferRange,
-				props.deviceName);
-			fclose(lf);
-		}
 	}
 	uint32_t queueCount = 0;
 	vkGetPhysicalDeviceQueueFamilyProperties(m_physicalDevice, &queueCount, nullptr);
@@ -469,7 +417,6 @@ bool VulkanDevice::CreateLogicalDevice()
 	}
 	if (m_graphicsFamily == UINT32_MAX || m_presentFamily == UINT32_MAX)
 	{
-		vkLog("CreateLogicalDevice: no graphics/present queue", (int)m_graphicsFamily * 1000 + (int)m_presentFamily);
 		return false;
 	}
 
@@ -512,7 +459,6 @@ bool VulkanDevice::CreateLogicalDevice()
 	createInfo.ppEnabledExtensionNames = deviceExtensions;
 
 	VkResult devRes = vkCreateDevice(m_physicalDevice, &createInfo, nullptr, &m_device);
-	vkLog("vkCreateDevice", (int)devRes);
 	if (devRes != VK_SUCCESS)
 		return false;
 
@@ -600,7 +546,6 @@ bool VulkanDevice::CreateSwapchain()
 
 	VkSwapchainKHR newSwapchain = VK_NULL_HANDLE;
 	VkResult scRes = vkCreateSwapchainKHR(m_device, &swapInfo, nullptr, &newSwapchain);
-	vkLog("vkCreateSwapchainKHR", (int)scRes);
 	if (scRes != VK_SUCCESS)
 		return false;
 	if (m_swapchain != VK_NULL_HANDLE)
@@ -692,12 +637,6 @@ bool VulkanDevice::CreateRenderPass()
 		VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT;
 
 	VkAttachmentDescription attachments[] = { colorAttachment, depthAttachment };
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: CreateRenderPass depthFmt=%d stencilLoad=%d stencilStore=%d depthLoad=%d\n",
-			(int)depthAttachment.format, (int)depthAttachment.stencilLoadOp,
-			(int)depthAttachment.stencilStoreOp, (int)depthAttachment.loadOp); fclose(lf); }
-	}
 	VkRenderPassCreateInfo renderPassInfo = {};
 	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
 	renderPassInfo.attachmentCount = 2;
@@ -744,11 +683,6 @@ bool VulkanDevice::CreateDepthResources()
 		vkGetPhysicalDeviceFormatProperties(m_physicalDevice, candidates[i], &props);
 		VkFormatFeatureFlags need = VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT;
 		bool ok = (props.optimalTilingFeatures & need) == need;
-		{
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: depth candidate fmt=%d features=0x%x need=0x%x ok=%d\n",
-				(int)candidates[i], (unsigned)props.optimalTilingFeatures, (unsigned)need, (int)ok); fclose(lf); }
-		}
 		if (ok) {
 			m_depthFormat = candidates[i];
 			break;
@@ -756,10 +690,6 @@ bool VulkanDevice::CreateDepthResources()
 	}
 	if (m_depthFormat == VK_FORMAT_UNDEFINED)
 		return false;
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: depth format=%d (D24S8=44, D32=126, D16=124)\n", (int)m_depthFormat); fclose(lf); }
-	}
 
 	VkImageCreateInfo imageInfo = {};
 	imageInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
@@ -910,8 +840,6 @@ bool VulkanDevice::RecreateSwapchain()
 	{
 		static unsigned rc = 0;
 		rc++;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: RecreateSwapchain enter #%u oldRp=%p\n", rc, (void*)m_renderPass); fclose(lf); }
 	}
 	vkDeviceWaitIdle(m_device);
 	CleanupSwapchain();
@@ -938,12 +866,6 @@ bool VulkanDevice::RecreateSwapchain()
 	m_imagesInFlight.clear();
 	m_imagesInFlight.resize(m_swapImages.size(), VK_NULL_HANDLE);
 	m_framebufferResized = false;
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: RecreateSwapchain done newRp=%p depth=%p fb0=%p\n",
-			(void*)m_renderPass, (void*)m_depthImage,
-			m_framebuffers.empty() ? nullptr : (void*)m_framebuffers[0]); fclose(lf); }
-	}
 	return true;
 }
 
@@ -989,7 +911,6 @@ void VulkanDevice::EndFrame(bool present)
 {
 	{
 		static bool ph = true;
-		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=EndFrame begin\n"); fclose(lf); } }
 	}
 	// COLOR/DEPTH READBACK PROBE: sample the screen-center pixel + depth every
 	// 60th frame (and the first two) so the log states what is actually on
@@ -1166,7 +1087,6 @@ void VulkanDevice::EndFrame(bool present)
 		return;
 	{
 		static bool ph = true;
-		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=EndFrame cmdbuffer-ended\n"); fclose(lf); } }
 	}
 
 	VkSemaphore waitSemaphores[] = { m_imageAvailableSemaphores[m_frameIndex] };
@@ -1186,7 +1106,6 @@ void VulkanDevice::EndFrame(bool present)
 		return;
 	{
 		static bool ph = true;
-		if (ph) { ph = false; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "hb phase=EndFrame submitted\n"); fclose(lf); } }
 	}
 
 	if (m_texReadbackMem != VK_NULL_HANDLE && g_texRbFresh) {
@@ -1197,13 +1116,6 @@ void VulkanDevice::EndFrame(bool present)
 			unsigned char *b = (unsigned char *)mapped;
 			static unsigned texRbLog = 0;
 			texRbLog++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: TEXREADBACK #%u first16BGRA=", texRbLog);
-				for (int i = 0; i < 16; i++) fprintf(lf, "%02x", b[i]);
-				fprintf(lf, "\n");
-				fclose(lf);
-			}
 			vkUnmapMemory(m_device, m_texReadbackMem);
 		}
 	}
@@ -1215,89 +1127,6 @@ void VulkanDevice::EndFrame(bool present)
 			static const int GW = 16, GH = 9;
 			static unsigned s_rbLog = 0;
 			s_rbLog++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: GRID #%u luma:\n", s_rbLog);
-				for (int gy = 0; gy < GH; gy++) {
-					fprintf(lf, "  ");
-					for (int gx = 0; gx < GW; gx++) {
-						unsigned char *q = b + 2074640 + (gy * GW + gx) * 4;
-						int lum = (q[0] * 30 + q[1] * 59 + q[2] * 11) / 100;
-						const char *ramp = " .:-=+*#%@";
-						int ri = lum * 9 / 255;
-						if (ri > 9) ri = 9;
-						fputc(ramp[ri], lf);
-					}
-					fputc('\n', lf);
-				}
-				{
-					unsigned nz = 0, hist[5] = { 0, 0, 0, 0, 0 };
-					unsigned total = (unsigned)m_swapExtent.width * (unsigned)m_swapExtent.height;
-					if (total > 1024u * 1024u) total = 1024u * 1024u;
-					for (unsigned i = 0; i < total; i++) {
-						unsigned char sv = b[1024 + i];
-						if (sv) nz++;
-						if (sv >= 4) hist[4]++; else hist[sv]++;
-					}
-					fprintf(lf, "  rgbrow:");
-				for (int gx = 0; gx < 16; gx++) {
-					unsigned char *q = b + 2074640 + (0 * 16 + gx) * 4;
-					fprintf(lf, " %u,%u,%u", q[2], q[1], q[0]);
-				}
-				fputc('\n', lf);
-				fprintf(lf, "  stencil: nz=%u/%u hist0=%u h1=%u h2=%u h3=%u h4+=%u\n",
-						nz, total, hist[0], hist[1], hist[2], hist[3], hist[4]);
-					// 16x9 stencil coverage grid (counts per cell) for shape check
-					const int SW = 16, SH = 9;
-					unsigned cw = m_swapExtent.width / SW, ch = m_swapExtent.height / SH;
-					if (cw && ch) {
-						for (int gy = 0; gy < SH; gy++) {
-							fprintf(lf, "  sgrid ");
-							for (int gx = 0; gx < SW; gx++) {
-								unsigned c = 0;
-								for (unsigned y = gy * ch; y < (gy + 1) * ch; y += 4)
-									for (unsigned x = gx * cw; x < (gx + 1) * cw; x += 4)
-										if (b[1024 + y * m_swapExtent.width + x]) c++;
-								fprintf(lf, "%3u ", c > 999 ? 999 : c);
-							}
-							fputc('\n', lf);
-						}
-					}
-				}
-				fprintf(lf, "  probes:");
-				for (int pr = 0; pr < 8; pr++) {
-					unsigned char *q = b + 48 + pr * 4;
-					fprintf(lf, " %u,%u,%u", q[2], q[1], q[0]);
-				}
-				fputc('\n', lf);
-				fprintf(lf, "  alpha:");
-				for (int gy = 0; gy < GH; gy++) {
-					for (int gx = 0; gx < GW; gx++) {
-						unsigned char *q = b + 32768 + (gy * GW + gx) * 4;
-						const char *ramp = " .:-=+*#%@";
-						int ri = q[3] * 9 / 255;
-						if (ri > 9) ri = 9;
-						fputc(ramp[ri], lf);
-					}
-					fputc('\n', lf);
-					fprintf(lf, "       ");
-				}
-				fputc('\n', lf);
-				fprintf(lf, "  depth:");
-				for (int gy = 0; gy < GH; gy++) {
-					for (int gx = 0; gx < GW; gx++) {
-						unsigned char *q = b + 2074640 + (GW * GH + gy * GW + gx) * 4;
-						unsigned v = q[0] | (q[1] << 8) | (q[2] << 16);
-						if (v == 0xffffff) fprintf(lf, " ~~~");
-						else if (v == 0) fprintf(lf, " 000");
-						else fprintf(lf, " %03x", v >> 12);
-					}
-					fputc('\n', lf);
-					fprintf(lf, "       ");
-				}
-				fputc('\n', lf);
-				fclose(lf);
-			}
 			vkUnmapMemory(m_device, m_readbackMem);
 		}
 	}
@@ -1316,10 +1145,6 @@ void VulkanDevice::EndFrame(bool present)
 	{
 		static unsigned pl = 0;
 		pl++;
-		if (result != VK_SUCCESS || pl <= 3) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "hb phase=EndFrame presented res=%d frame=%u\n", (int)result, pl); fclose(lf); }
-		}
 	}
 	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || m_framebufferResized)
 		RecreateSwapchain();

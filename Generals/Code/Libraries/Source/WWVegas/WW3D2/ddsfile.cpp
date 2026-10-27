@@ -70,18 +70,8 @@ DDSFileClass::DDSFileClass(const char* name,unsigned reduction_factor)
 	char magic[4];
 	unsigned read_bytes = file->Read(magic, 4) + file->Read(&raw, sizeof(raw));
 	if (read_bytes != 4 + sizeof(raw) || raw.Size != 124) {
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "DDS: bad header '%s' read=%u size=%u\n", (const char*)Name, (unsigned)read_bytes, raw.Size); fclose(lf); }
 		file->Close();
 		return;
-	}
-	{
-		static int ddsLogCount = 0;
-		if (ddsLogCount < 12 && (raw.Width == 0 || raw.Height == 0 || raw.Width > 8192 || raw.Height > 8192)) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "DDS: suspicious '%s' %ux%u mip=%u fourcc=%08x\n", (const char*)Name, (unsigned)raw.Width, (unsigned)raw.Height, (unsigned)raw.MipMapCount, (unsigned)raw.pf_FourCC); fclose(lf); }
-			ddsLogCount++;
-		}
 	}
 	memset(&SurfaceDesc, 0, sizeof(SurfaceDesc));
 	SurfaceDesc.Size = raw.Size;
@@ -101,16 +91,6 @@ DDSFileClass::DDSFileClass(const char* name,unsigned reduction_factor)
 	memcpy(&SurfaceDesc.Caps, raw.caps, sizeof(raw.caps));
 
 	Format=D3DFormat_To_WW3DFormat((D3DFORMAT)SurfaceDesc.PixelFormat.FourCC);
-	{
-		static unsigned fm = 0;
-		fm++;
-		if (fm <= 24) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "DDS: parse '%s' %ux%u fourcc=%08x bits=%u fmt=%d mip=%u\n",
-				(const char*)Name, (unsigned)raw.Width, (unsigned)raw.Height,
-				(unsigned)raw.pf_FourCC, (unsigned)raw.pf_BitCount, (int)Format, (unsigned)raw.MipMapCount); fclose(lf); }
-		}
-	}
 
 	// NOTE: the previous port revision created+uploaded a placeholder texture
 	// here - with Width/Height still 0 (they are assigned below) and NULL
@@ -315,23 +295,6 @@ void DDSFileClass::Copy_Level_To_Surface(
 	WWASSERT(DDSMemory);
 	WWASSERT(dest_surface);
 
-	{
-		static unsigned dc = 0;
-		dc++;
-		if (dc <= 40) {
-			unsigned char *src = DDSMemory ? (unsigned char *)Get_Memory_Pointer(level) : NULL;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: DDSCopy #%u lvl=%u fmt=%d/%d %ux%u/%ux%u ddsMem=%p src=%02x%02x%02x%02x dest=%p\n",
-					dc, level, (int)dest_format, (int)Format,
-					dest_width, dest_height, Get_Width(level), Get_Height(level),
-					(void *)DDSMemory,
-					src ? src[0] : 0, src ? src[1] : 0, src ? src[2] : 0, src ? src[3] : 0,
-					(void *)dest_surface);
-				fclose(lf);
-			}
-		}
-	}
 
 	// If the format and size is a match just copy the contents
 	if (dest_format==Format && dest_width==Get_Width(level) && dest_height==Get_Height(level)) {

@@ -106,11 +106,9 @@ VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout 
 	VkTexture *tex2, bool filtered2, bool repeat2)
 {
 	if (!m_device || !tex0 || !tex1) {
-		static bool l1=false; if(!l1){l1=true;FILE*lf=fopen("RTS_START.LOG","a");if(lf){fprintf(lf,"AllocTexSet fail: dev=%p t0=%p t1=%p\n",(void*)m_device,(void*)tex0,(void*)tex1);fclose(lf);}}
 		return VK_NULL_HANDLE;
 	}
 	if (!EnsurePool()) {
-		static bool l2=false; if(!l2){l2=true;FILE*lf=fopen("RTS_START.LOG","a");if(lf){fprintf(lf,"AllocTexSet fail: EnsurePool\n");fclose(lf);}}
 		return VK_NULL_HANDLE;
 	}
 
@@ -129,7 +127,6 @@ VkDescriptorSet VkDescriptorAllocator::AllocateTextureSet(VkDescriptorSetLayout 
 				set = VK_NULL_HANDLE;
 		}
 		if (set == VK_NULL_HANDLE) {
-			static bool l3=false; if(!l3){l3=true;FILE*lf=fopen("RTS_START.LOG","a");if(lf){fprintf(lf,"AllocTexSet fail: vkAllocateDescriptorSets\n");fclose(lf);}}
 			return VK_NULL_HANDLE;
 		}
 	}
@@ -180,19 +177,6 @@ imageInfos[2].sampler = texShadow->GetSampler(true, repeatShadow);
 	// is UB -> lavapipe crashed in draw/JIT (diag: fetch-stubbed VS stable,
 	// real fetch died at draw#2). Writes must cover all3 bindings.
 	vkUpdateDescriptorSets(m_device->GetDevice(), 4, writes, 0, nullptr);
-	{
-		static unsigned dsLog = 0;
-		if (dsLog < 16) {
-			dsLog++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: TexSet #%u sam0=%p view0=%p sam1=%p view1=%p\n",
-					dsLog, (void *)imageInfos[0].sampler, (void *)imageInfos[0].imageView,
-					(void *)imageInfos[1].sampler, (void *)imageInfos[1].imageView);
-				fclose(lf);
-			}
-		}
-	}
 	return set;
 }
 

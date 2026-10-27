@@ -595,21 +595,6 @@ void GameLODManager::applyStaticLODLevel(StaticGameLODLevel level)
 	// modern Windows machine (field log: shellMapOn already 0 at the
 	// GameEngine check). Removed: background is now controlled only by
 	// ShellMapOn in the INI / RTS_NO_SHELLMAP=1.
-	{
-		static bool lodLogged = false;
-		if (!lodLogged) {
-			lodLogged = true;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: LOD gate memPassed=%d numRAM(signed)=%d rawPhysMem=%u cpuFreq=%d lowMHz=%d shellMapOn=%d\n",
-					(int)m_memPassed, (int)m_numRAM,
-					(unsigned)CPUDetectClass::Get_Total_Physical_Memory(),
-					(int)m_cpuFreq, (int)m_reallyLowMHz,
-					(int)TheGlobalData->m_shellMapOn);
-				fclose(lf);
-			}
-		}
-	}
 	if (TheTerrainVisual)
 		TheTerrainVisual->setTerrainTracksDetail();
 

@@ -233,6 +233,7 @@ static VkFormat VulkanTranslateWW3DFormat(WW3DFormat format)
 }
 static VkGpuBuffer VulkanUboBuffers[VulkanDevice::MAX_FRAMES_IN_FLIGHT];
 static uint32_t VulkanUboDrawIndex = 0;
+static unsigned g_vkSceneCounter = 0;
 
 static VkGpuBuffer VulkanDummyVB;
 static VkTexture VulkanWhiteTexture;
@@ -243,8 +244,6 @@ unsigned long long VulkanFrameIndices = 0;
 // Terrain (fvf 0x242) texture-binding census: are the big world draws sampling
 // a real texture or the white fallback? (black-on-AMD with real shader while
 // inDiffuse/white-fallback are proven white => real textures sample black).
-unsigned long long TerrainDrawsNullTex = 0;
-unsigned long long TerrainDrawsValidTex = 0;
 uint32_t VulkanLastDrawFlags = 0;
 static bool VulkanSharedResourcesReady = false;
 
@@ -504,13 +503,7 @@ bool DX8Wrapper::Create_Device(void)
 
 	if (!device.Init(_Hwnd))
 	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: device init FAILED\n"); fclose(lf); }
 		return false;
-	}
-	{
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: device created\n"); fclose(lf); }
 	}
 
 	char shaderDir[260];
@@ -524,8 +517,6 @@ bool DX8Wrapper::Create_Device(void)
 		strcpy(fallback, ".\\shaders");
 		if (!ShaderManager.Init(&device, fallback))
 		{
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: shader init FAILED (need shaders\\*.spv next to RTS.exe)\n"); fclose(lf); }
 			// leave no half-initialized device behind (IsInitialized() would
 			// otherwise report true and every onetime init would be skipped)
 			device.Shutdown();
@@ -563,9 +554,6 @@ bool DX8Wrapper::Create_Device(void)
 		if (devAlign > stride)
 			stride = (uint32_t)((stride + devAlign - 1) / devAlign * devAlign);
 		VulkanUboStride = stride;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: ubo ring stride=%u (base=%d devAlign=%llu)\n",
-			VulkanUboStride, VULKAN_UBO_ALIGN, (unsigned long long)devAlign); fclose(lf); }
 	}
 	for (int i = 0; i < VulkanDevice::MAX_FRAMES_IN_FLIGHT; i++) {
 		if (!VulkanUboBuffers[i].Create(&device, VULKAN_UBO_RING_DRAWS * VulkanUboStride,
@@ -606,10 +594,6 @@ bool DX8Wrapper::Reset_Device(bool reload_assets)
 {
 	DX8_THREAD_ASSERT();
 	if ((IsInitted) && (VulkanDevice::Instance().IsInitialized())) {
-		{
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: Reset_Device(reload=%d) - waiting for in-flight frames\n", (int)reload_assets); fclose(lf); }
-		}
 		// Port fix: this path destroys pipelines/textures/RT caches while up to
 		// MAX_FRAMES_IN_FLIGHT command buffers may still reference them (the
 		// driver then uses freed objects -> amdvlk/lavapipe AV). Wait first.
@@ -1057,6 +1041,7 @@ void DX8Wrapper::Begin_Scene(void)
 		return;
 	VulkanFrameOpen = true;
 	VulkanUboDrawIndex = 0;
+	g_vkSceneCounter++;
 	DescriptorAllocator.ResetFrame();
 	DX8WebBrowser::Update();
 }
@@ -1098,34 +1083,11 @@ static void VulkanBeginTargetPass(VkTexture *target, const float *clearColor, fl
 	VulkanDevice &device = VulkanDevice::Instance();
 	VkCommandBuffer cmd = device.GetCommandBuffer();
 	if (cmd == VK_NULL_HANDLE) {
-		static bool logged = false;
-		if (!logged) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: BeginTargetPass with NULL command buffer\n"); fclose(lf); }
-			logged = true;
-		}
 		return;
 	}
 	if (target == NULL) {
 		if (device.GetRenderPass() == VK_NULL_HANDLE || device.GetFramebuffer() == VK_NULL_HANDLE)
 			return;
-		{
-			// Breadcrumb: first 40 pass begins - brackets where a driver AV
-			// (e.g. the mission-start amdvlk crash) happened relative to passes.
-			static int loggedRP = 0;
-			loggedRP++;
-			if (loggedRP <= 40 || (loggedRP % 100) == 0) {
-				char buf[256];
-				snprintf(buf, sizeof(buf),
-					"VK: BeginTargetPass#%d cmd=%p rp=%p fb=%p extent=%ux%u clearDepth=%.4f clearStencil=%u clearCol=(%.2f,%.2f,%.2f,%.2f)",
-					loggedRP, (void*)cmd, (void*)device.GetRenderPass(), (void*)device.GetFramebuffer(),
-					(unsigned)device.GetSwapExtent().width, (unsigned)device.GetSwapExtent().height,
-					(float)clearDepth, (unsigned)clearStencil,
-					(float)clearColor[0], (float)clearColor[1], (float)clearColor[2], (float)clearColor[3]);
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "%s\n", buf); fclose(lf); }
-			}
-		}
 		VkClearValue clearValues[2];
 		clearValues[0].color.float32[0] = clearColor[0];
 		clearValues[0].color.float32[1] = clearColor[1];
@@ -1146,12 +1108,6 @@ static void VulkanBeginTargetPass(VkTexture *target, const float *clearColor, fl
 	} else {
 		VkFramebuffer fb = VulkanGetRtFramebuffer(target);
 		if (fb == VK_NULL_HANDLE) {
-			static unsigned rf = 0;
-			rf++;
-			if (rf <= 6) {
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "VK: BeginTargetPass RT-FB-NULL #%u target=%p\n", rf, (void *)target); fclose(lf); }
-			}
 			return;
 		}
 		VkClearValue clearValues[2];
@@ -1211,11 +1167,6 @@ extern "C" void Vulkan_NotifyTextureDestroyed(VkTexture *texture)
 		VkFramebuffer fb = VulkanRtCache[i].framebuffer;
 		VkTexture *depth = VulkanRtCache[i].depth;
 		VkDevice dev = VulkanDevice::Instance().GetDevice();
-		static unsigned purge = 0; purge++;
-		if (purge <= 20 || (purge % 60) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: RtCachePurge #%u tex=%p fb=%p\n", purge, (void*)texture, (void*)fb); fclose(lf); }
-		}
 		if (fb || depth) {
 			VulkanDevice::Instance().DeferCurrent([dev, fb, depth]() {
 				if (fb)
@@ -1246,7 +1197,14 @@ void DX8Wrapper::Clear(bool clear_color, bool clear_z_stencil, const Vector3 &co
 	VulkanPassClearColor[0] = color.X;
 	VulkanPassClearColor[1] = color.Y;
 	VulkanPassClearColor[2] = color.Z;
-	VulkanPassClearColor[3] = dest_alpha;
+	// PORT (round-7 lake desktop-show-through, ROOT): the engine passes dest_alpha=0
+	// into Clear for the A8R8G8B8 water feather trick; on real D3D backbuffer alpha is
+	// never presented, but our VK swapchain feeds an X11/Wayland compositor => every
+	// pixel that keeps the clear alpha (water preserves dest A via COLORWRITEENABLE=7
+	// over lake holes) composites as FULLY TRANSPARENT = the desktop shows through
+	// ("black void" on wine). Clear the DEFAULT target opaque; offscreen RTs keep
+	// caller alpha (reflection/feather semantics untouched).
+	VulkanPassClearColor[3] = UsingDefaultTarget ? 1.0f : dest_alpha;
 	VulkanPassClearDepth = z;
 	VulkanPassClearStencil = (has_stencil && clear_z_stencil) ? stencil : 0;
 	if (!clear_color && !clear_z_stencil)
@@ -1437,13 +1395,6 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	VulkanDevice &device = VulkanDevice::Instance();
 	if (!vb || !ib || indexCount == 0)
 	{
-		static unsigned er = 0;
-		er++;
-		if (er <= 20) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: DrawEARLY #%u vb=%p ib=%p idx=%u\n",
-				er, (void *)vb, (void *)ib, (unsigned)indexCount); fclose(lf); }
-		}
 		return false;
 	}
 
@@ -1451,33 +1402,11 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	VkCommandBuffer cmd = device.GetCommandBuffer();
 	if (cmd == VK_NULL_HANDLE)
 	{
-		static unsigned ec = 0;
-		ec++;
-		if (ec <= 20) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: DrawNOCMD #%u\n", ec); fclose(lf); }
-		}
 		return false;
 	}
 
 	VkPipelineState state = {};
 	DX8Wrapper::VulkanBuildPipelineState(&state, fvf, fvfInfo, topology);
-	{
-		static unsigned sl = 0;
-		sl++;
-		// only log NON-trivial stencil states (the shadow fill passes)
-		if (state.stencilEnable && state.stencilCompare != 8) {
-			static unsigned fl = 0;
-			fl++;
-			if (fl <= 30) {
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "VK: FillDraw #%u fvf=0x%x sfunc=%d rmask=%x sref=%x sop=%d cw=%x z=%d/%d\n",
-					fl, (unsigned)state.vertexFVF, (int)state.stencilCompare,
-					(unsigned)state.stencilReadMask, (unsigned)state.stencilRef, (int)state.stencilPassOp,
-					(unsigned)state.colorWriteMask, (int)state.depthTest, (int)state.depthWrite); fclose(lf); }
-			}
-		}
-	}
 	{
 		// Port fix: draws without a bound texture must NOT contain a texture()
 		// instruction at all - sampling the white-fallback 1x1 image poisons
@@ -1489,56 +1418,8 @@ bool DX8Wrapper::VulkanDrawIndexed(
 		if (!boundTex0)
 			state.tex0Op = 0;
 	}
-	{
-		// Terrain-black probe: first fvf=0x242 draw after each atlas rebuild.
-		extern unsigned g_vkTerrainSerial;
-		static unsigned terrSeen = 0, terrLogged = 0;
-		if (fvf == 0x242 && terrSeen != g_vkTerrainSerial) {
-			terrSeen = g_vkTerrainSerial;
-			terrLogged = 0;
-		}
-		if (fvf == 0x242) {
-			// Log once per UNIQUE state signature so every terrain pass
-			// (base/alpha/noise x cloud) is captured, not just the first6.
-			static int lastSig[8] = {-2,-2,-2,-2,-2,-2,-2,-2};
-			static unsigned sigCount[8] = {0,0,0,0,0,0,0,0};
-			int sig = ((int)state.tex0Op) | ((int)state.tex1Op << 4) |
-				((int)state.uvSel0 << 8) | ((int)state.uvSel1 << 12) |
-				((int)state.srcBlend << 16) | ((int)state.dstBlend << 20);
-			for (int sg = 0; sg < 8; sg++) {
-				if (lastSig[sg] == sig) { sigCount[sg]++; break; }
-				if (lastSig[sg] == -2) {
-					lastSig[sg] = sig;
-					sigCount[sg] = 1;
-					FILE *lf = fopen("RTS_START.LOG", "a");
-					if (lf) {
-						fprintf(lf, "VK: TerrPipeSig tex0Op=%d tex1Op=%d uv0=%d uv1=%d blend=%d/%d light=%d fog=%d tex0='%s' tex1='%s'\n",
-							(int)state.tex0Op, (int)state.tex1Op,
-							(int)state.uvSel0, (int)state.uvSel1,
-							state.srcBlend, state.dstBlend, (int)state.lighting, (int)state.fog,
-							DX8Wrapper::BoundTextures[0] ? DX8Wrapper::BoundTextures[0]->Get_Texture_Name() : "NULL",
-							DX8Wrapper::BoundTextures[1] ? DX8Wrapper::BoundTextures[1]->Get_Texture_Name() : "NULL");
-						fprintf(lf, "VK: TerrMat texMat0 row0=(%.3f,%.3f,%.3f,%.3f) row1=(%.3f,%.3f,%.3f,%.3f)\n",
-							DX8Wrapper::CachedTexTransform[0][0][0], DX8Wrapper::CachedTexTransform[0][0][1],
-							DX8Wrapper::CachedTexTransform[0][0][2], DX8Wrapper::CachedTexTransform[0][0][3],
-							DX8Wrapper::CachedTexTransform[0][1][0], DX8Wrapper::CachedTexTransform[0][1][1],
-							DX8Wrapper::CachedTexTransform[0][1][2], DX8Wrapper::CachedTexTransform[0][1][3]);
-						fclose(lf);
-					}
-					break;
-				}
-			}
-		}
-	}
 	VkPipeline pipeline = DX8Wrapper::ShaderManager.GetPipeline(state);
 	if (pipeline == VK_NULL_HANDLE) {
-		static unsigned pn = 0;
-		pn++;
-		if (pn <= 30) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: NULLPIPELINE #%u fvf=0x%x sten=%d sfunc=%d\n",
-				pn, (unsigned)state.vertexFVF, (int)state.stencilEnable, (int)state.stencilCompare); fclose(lf); }
-		}
 		return false;
 	}
 	vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
@@ -1567,19 +1448,6 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	viewport.height = -(float)vp.Height;
 	viewport.minDepth = vp.MinZ;
 	viewport.maxDepth = vp.MaxZ;
-	{
-		static int drawLog = 0;
-		drawLog++;
-		if (drawLog <= 60 || (drawLog % 2000) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: Draw3D #%d fvf=0x%x vp=%dx%d@%d,%d idx=%u\n",
-					drawLog, (unsigned)fvf, (int)viewport.width, (int)(-viewport.height),
-					(int)viewport.x, (int)viewport.y, (unsigned)indexCount);
-				fclose(lf);
-			}
-		}
-	}
 	vkCmdSetViewport(cmd, 0, 1, &viewport);
 	VkRect2D scissor = {};
 	scissor.offset.x = (int32_t)vp.X;
@@ -1595,15 +1463,6 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	// viewport rows exactly at ALL sites (also fixes the 0.12H cinematic slide band
 	// and GUI sub-rects).
 	scissor.offset.y = (int32_t)vp.Y;
-	{
-		static unsigned vpsc = 0; vpsc++;
-		if (vpsc <= 12 || (vpsc % 600) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: VPSC #%u vp=(%d,%d,%dx%d) scY=%d tgtH=%u\n", vpsc,
-				(int)vp.X, (int)vp.Y, (int)vp.Width, (int)vp.Height, (int32_t)scissor.offset.y,
-				(unsigned)targetExtent.height); fclose(lf); }
-		}
-	}
 	scissor.extent.width = vp.Width;
 	scissor.extent.height = vp.Height;
 	vkCmdSetScissor(cmd, 0, 1, &scissor);
@@ -1625,76 +1484,6 @@ bool DX8Wrapper::VulkanDrawIndexed(
 	// negative m00/m11 flipped winding). Menus (identity world/view) were
 	// unaffected because proj*view*world == world*view*proj for them.
 	Matrix4 mvp = world * view * proj;
-	{
-		VkTexture *t0 = DX8Wrapper::BoundTextures[0] ? DX8Wrapper::BoundTextures[0]->Peek_Vulkan_Texture() : NULL;
-		if (fvf == 0x242) {
-			if (t0) TerrainDrawsValidTex++;
-			else TerrainDrawsNullTex++;
-		}
-		static int mvLog = 0;
-		static unsigned terrainSerialSeen = 0;
-		extern unsigned g_vkTerrainSerial;
-		bool newMap = (terrainSerialSeen != g_vkTerrainSerial);
-		if (fvf == 0x242 && (mvLog < 40 || newMap)) {
-			if (newMap) terrainSerialSeen = g_vkTerrainSerial;
-			mvLog++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf && mvLog == 1) {
-				fprintf(lf, "VK: PROJ ");
-				for (int r = 0; r < 4; r++)
-					for (int c = 0; c < 4; c++)
-						fprintf(lf, "%.4f ", proj[r][c]);
-				fprintf(lf, "\nVK: VIEW ");
-				for (int r = 0; r < 4; r++)
-					for (int c = 0; c < 4; c++)
-						fprintf(lf, "%.4f ", view[r][c]);
-				fprintf(lf, "\nVK: MVP-FULL ");
-				for (int r = 0; r < 4; r++)
-					for (int c = 0; c < 4; c++)
-						fprintf(lf, "%.4f ", mvp[r][c]);
-				fprintf(lf, "\n");
-			}
-			if (lf) {
-				VkTexture *t1b = DX8Wrapper::BoundTextures[1] ? DX8Wrapper::BoundTextures[1]->Peek_Vulkan_Texture() : NULL;
-				fprintf(lf, "VK: TERRAIN-DRAW #%d tex0=%p '%s' %ux%u tex1=%p '%s' idx=%u blend=%d/%d/%d z=%d/%d colVert=%d diffSrc=%d flags=%u nullTex=%llu validTex=%llu\n",
-					mvLog, (void *)t0,
-					(DX8Wrapper::BoundTextures[0] && DX8Wrapper::BoundTextures[0]->Get_Texture_Name()) ? DX8Wrapper::BoundTextures[0]->Get_Texture_Name() : "(null)",
-					t0 ? t0->GetWidth() : 0, t0 ? t0->GetHeight() : 0,
-					(void *)t1b,
-					(DX8Wrapper::BoundTextures[1] && DX8Wrapper::BoundTextures[1]->Get_Texture_Name()) ? DX8Wrapper::BoundTextures[1]->Get_Texture_Name() : "(null)",
-					(unsigned)indexCount,
-					(int)state.blendEnable, (int)state.srcBlend, (int)state.dstBlend,
-					(int)state.depthTest, (int)state.depthWrite,
-					(int)DX8Wrapper::RenderStates[D3DRS_COLORVERTEX],
-					(int)DX8Wrapper::RenderStates[D3DRS_DIFFUSEMATERIALSOURCE],
-					(unsigned)VulkanLastDrawFlags,
-					(unsigned long long)TerrainDrawsNullTex,
-					(unsigned long long)TerrainDrawsValidTex);
-				{
-					// Raw first two vertices as the draw would consume them.
-					DX8VertexBufferClass *dxvb = static_cast<DX8VertexBufferClass*>(DX8Wrapper::render_state.vertex_buffer);
-					unsigned fvfSize = state.vertexSize;
-					unsigned char *raw = NULL;
-					unsigned vcount = 0;
-					if (dxvb) {
-						vcount = dxvb->Get_Vertex_Count();
-						if (dxvb->Get_Shadow_Buffer()) raw = dxvb->Get_Shadow_Buffer();
-					}
-					if (raw && fvfSize > 0 && fvfSize <= 64) {
-						fprintf(lf, "VK: TERRAIN-VERT vb=%p vcount=%u fvfSize=%u bytes[0..%u]=",
-							(void *)raw, vcount, fvfSize, fvfSize * 2);
-						for (unsigned i = 0; i < fvfSize * 2 && i < 64; i++)
-							fprintf(lf, "%02x", raw[i]);
-						fprintf(lf, "\n");
-					} else {
-						fprintf(lf, "VK: TERRAIN-VERT no-shadow vb=%p vcount=%u fvfSize=%u\n",
-							(void *)raw, vcount, fvfSize);
-					}
-				}
-				fclose(lf);
-			}
-		}
-	}
 	// (same convention fix as mvp above - pass the raw WW matrix)
 	Matrix4 worldForNormals = world;
 	struct PushConsts {
@@ -1784,16 +1573,6 @@ bool DX8Wrapper::VulkanDrawIndexed(
 					VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, 0, 0, nullptr, 0, nullptr, 1, &b1);
 				texRb++;
 				Vulkan_Mark_TexReadback_Fresh();
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) {
-					const char *tname = "?";
-					if (DX8Wrapper::BoundTextures[0])
-						tname = DX8Wrapper::BoundTextures[0]->Get_Texture_Name();
-					fprintf(lf, "VK: TEXREADBACK scheduled #%u tex=%p %ux%u fmt=%d name='%s' missing=%d\n", texRb,
-						(void *)tex0, tex0->GetWidth(), tex0->GetHeight(), (int)tex0->GetFormat(), tname,
-						(int)(tex0 == MissingTexture::_Get_Missing_Texture()));
-					fclose(lf);
-				}
 			}
 		}
 	}
@@ -1864,42 +1643,12 @@ bool DX8Wrapper::VulkanDrawIndexed(
 			VulkanUboBuffers[device.GetFrameIndex()].GetBuffer(), uboOffset, sizeof(ubo));
 	}
 	if (texSet == VK_NULL_HANDLE || uboSet == VK_NULL_HANDLE) {
-		static unsigned skips = 0;
-		if (skips < 30) { skips++; FILE *lf = fopen("RTS_START.LOG", "a"); if (lf) { fprintf(lf, "VulkanDrawIndexed SKIP #%u texSet=%p uboSet=%p\n", (unsigned)skips, (void*)texSet, (void*)uboSet); fclose(lf); } }
 		return false;
 	}
 	VkDescriptorSet sets[] = { texSet, uboSet };
 	vkCmdBindDescriptorSets(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS,
 		DX8Wrapper::ShaderManager.GetPipelineLayout(), 0, 2, sets, 0, NULL);
 
-	{	// PORT PROBE (round-5: water/bridges/buildings black or invisible on
-		// visibility/camera change). Log the ACTUAL state each mesh draw
-		// carries: texture identity (name+missing flag), blend factors,
-		// colorWriteMask, stencil - the black class must show up as either
-		// a MISSING/odd texture bind, a bogus blend, or an ALPHA-ONLY mask.
-		static unsigned mdrw = 0;
-		unsigned stbl = DX8Wrapper::RenderStates[D3DRS_ALPHABLENDENABLE];
-		unsigned srcB = DX8Wrapper::RenderStates[D3DRS_SRCBLEND];
-		unsigned dstB = DX8Wrapper::RenderStates[D3DRS_DESTBLEND];
-		unsigned wrM = DX8Wrapper::RenderStates[D3DRS_COLORWRITEENABLE];
-		unsigned sten = DX8Wrapper::RenderStates[D3DRS_STENCILENABLE];
-		const char *tn = "(none)"; int miss = 0;
-		if (DX8Wrapper::BoundTextures[0]) { tn = DX8Wrapper::BoundTextures[0]->Get_Texture_Name();
-			// residency check BEFORE the white-fallback overwrites tex0: a
-			// managed texture whose VulkanTexture is still NULL would be bound
-			// white (not black) - flag=2 proves first-use non-residency on the
-			// user's machine, flag=1 proves it resolved to MISSING.
-			if (!DX8Wrapper::BoundTextures[0]->Peek_Vulkan_Texture()) miss = 2; }
-		if (tex0 == MissingTexture::_Get_Missing_Texture()) miss = 1;
-		if (tex0 == MissingTexture::_Get_Missing_Texture()) miss = 1;
-		bool samp = (mdrw < 24) || (mdrw < 512 && (mdrw % 64) == 0) || (mdrw >= 512 && (mdrw % 512) == 0);
-		mdrw++;
-		if (samp) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: MDRW #%u tex='%s' miss=%d blend=%d src=%d dst=%d mask=%d stencil=%d\n",
-				(unsigned)mdrw, tn, miss, stbl, srcB, dstB, wrM, sten); fclose(lf); }
-		}
-	}
 	vkCmdDrawIndexed(cmd, indexCount, 1, firstIndex, (int32_t)vertexOffset, 0);
 	number_of_DX8_calls++;
 	VulkanFrameDraws++;
@@ -1979,15 +1728,44 @@ bool DX8Wrapper::VulkanDrawClipmapPass(int mode, VkGpuBuffer *vb, VkGpuBuffer *i
 		// report. Mode 2 keeps WRAP (cloud atlas scroll needs it, see the
 		// CPU-side wrap of push.pad0/pad1 below); the mode-2 NOISE in slot2
 		// also needs WRAP (world*stretch UVs) - pass repeatShadow for it.
+		// PORT round-7: slot3 now carries the sun-shadow depth map so terrain.frag
+		// can RECEIVE soft shadows (retail blob shadows land on the ground; without
+		// this the lake/terrain stays fully lit while only meshes self-darken). White
+		// texture when the pass is inactive => depth 1.0 => PCF term 0 => untouched.
+		VkTexture *shadowTex = (g_lightMvpValid && g_nativeShadowDepth)
+			? g_nativeShadowDepth : &VulkanWhiteTexture;
 		VkDescriptorSet texSet = DX8Wrapper::DescriptorAllocator.AllocateTextureSet(
 			DX8Wrapper::ShaderManager.GetTextureSetLayout(),
 			vtA, true, (mode >= 2),
 			heightTex, false, false,
-			vtB, mode >= 2);
+			vtB, mode >= 2,
+			shadowTex, false, false);
 	if (texSet == VK_NULL_HANDLE)
 		return false;
-	vkCmdBindDescriptorSets(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS,
-		DX8Wrapper::ShaderManager.GetPipelineLayout(), 0, 1, &texSet, 0, NULL);
+		// Frame UBO also bound: terrain.frag reads frame.lightMvp + shadowParams (set 1).
+		// ONE UBO + ONE set per scene for ALL clipmap draws: a per-chunk alloc (36 chunks x
+		// 3 modes) drained the 2048-slot per-frame ring when the native shadow pass re-rendered
+		// the scene (lake frames: >1900 meshes x2 => later clipmap draws got UINT32_MAX =>
+		// 'ClipMap draw FAILED -> legacy tiles' = the field 'black ground/terrain lost' relapse).
+		static unsigned sClipScene = ~0u;
+		static VkDescriptorSet sClipFrameSet = VK_NULL_HANDLE;
+		if (g_vkSceneCounter != sClipScene) {
+			sClipScene = g_vkSceneCounter;
+			sClipFrameSet = VK_NULL_HANDLE;
+			VkFrameUniforms u;
+			VulkanFillFrameUniforms(&u);
+			uint32_t uoff = DX8Wrapper::VulkanAllocUbo(&u);
+			if (uoff != UINT32_MAX)
+				sClipFrameSet = DX8Wrapper::DescriptorAllocator.AllocateFrameSet(
+					DX8Wrapper::ShaderManager.GetFrameSetLayout(),
+					VulkanUboBuffers[device.GetFrameIndex()].GetBuffer(), uoff, sizeof(u));
+		}
+		VkDescriptorSet frameSet = sClipFrameSet;
+		if (frameSet == VK_NULL_HANDLE)
+			return false;		// fail-soft: skip clipmap chunk, legacy tiles cover
+		VkDescriptorSet sets[] = { texSet, frameSet };
+		vkCmdBindDescriptorSets(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS,
+			DX8Wrapper::ShaderManager.GetPipelineLayout(), 0, 2, sets, 0, NULL);
 
 	Matrix4 mvp = DX8Wrapper::render_state.world * DX8Wrapper::render_state.view * DX8Wrapper::CachedProjection;
 	struct Push {
@@ -2361,20 +2139,6 @@ VkTexture * DX8Wrapper::_Create_Vulkan_Texture(
 	D3DPOOL pool,
 	bool rendertarget)
 {
-	// Sampled initiator log: names WHO creates textures repeatedly (the churn
-	// that may leave in-flight descriptors pointing at destroyed images).
-	{
-		static unsigned n = 0;
-		n++;
-		if ((n % 64u) == 0 || width == 64) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: tex create init %ux%u fmt=%d from=%p n=%u\n",
-					width, height, (int)format, __builtin_return_address(0), n);
-				fclose(lf);
-			}
-		}
-	}
 	VulkanDevice &device = VulkanDevice::Instance();
 	VkFormat vkFormat = VulkanTranslateWW3DFormat(format);
 	unsigned mipLevels = 1;
@@ -2734,13 +2498,6 @@ namespace D3D8Adapter {
 
 HRESULT CreateVertexBuffer(UINT Length, IDirect3DVertexBuffer8 **ppVB)
 {
-	{
-		static unsigned cb = 0; cb++;
-		if (cb <= 20) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: Adapter CreateVertexBuffer #%u len=%u\n", cb, Length); fclose(lf); }
-		}
-	}
 	if (!ppVB) return E_FAIL;
 	IDirect3DVertexBuffer8 *vb = new (std::nothrow) IDirect3DVertexBuffer8();
 	if (!vb) { *ppVB = nullptr; return E_FAIL; }
@@ -2810,36 +2567,10 @@ void DX8Wrapper::LegacyDrawPortBuffers(void *dx8Vb, void *dx8Ib,
 		if (ibCap && firstIndex + indexCount > ibCap) bad = true;
 		if (vertexOffset > vbCap) bad = true;
 		if (bad) {
-			static unsigned oob = 0;
-			oob++;
-			if (oob <= 20) {
-				FILE *lf = fopen("RTS_START.LOG", "a");
-				if (lf) { fprintf(lf, "VK: PortBufOOB #%u firstIdx=%u count=%u ibCap=%u vOff=%u vbCap=%u\n",
-					oob, firstIndex, indexCount, ibCap, vertexOffset, vbCap); fclose(lf); }
-			}
 			return;
 		}
 	}
 	const FVFInfoClass &info = vb->FVF_Info();
-	{
-		static unsigned dp = 0;
-		dp++;
-		if (dp <= 30) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: PortBufDraw #%u firstIdx=%u count=%u vOff=%u fvf=0x%x vbCount=%u wT=[%.1f %.1f %.1f]",
-					dp, firstIndex, indexCount, vertexOffset, (unsigned)info.Get_FVF(), vb->Get_Vertex_Count(),
-					render_state.world[3][0], render_state.world[3][1], render_state.world[3][2]);
-				if (ib->Get_Shadow_Buffer() && firstIndex + 3 <= ib->Get_Shadow_Size())
-					fprintf(lf, " idx0..2=%u,%u,%u",
-						(unsigned)ib->Get_Shadow_Buffer()[firstIndex],
-						(unsigned)ib->Get_Shadow_Buffer()[firstIndex + 1],
-						(unsigned)ib->Get_Shadow_Buffer()[firstIndex + 2]);
-				fprintf(lf, "\n");
-				fclose(lf);
-			}
-		}
-	}
 	VulkanDrawIndexed(vb->Get_Vulkan_Vertex_Buffer(), 0, info.Get_FVF(), info,
 		ib->Get_Vulkan_Index_Buffer(), firstIndex, indexCount, vertexOffset,
 		D3DPT_TRIANGLELIST);
@@ -2850,15 +2581,6 @@ void DX8Wrapper::LegacyDrawPortBuffers(void *dx8Vb, void *dx8Ib,
 void DX8Wrapper::LegacyDrawIndexedAbs(const unsigned short *idx, unsigned idxCount,
 	unsigned copyStart, unsigned copyCount, unsigned vertexOffsetHint)
 {
-	{
-		static unsigned la = 0;
-		la++;
-		if (la <= 40 || (la % 200u) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: LegacyDraw #%u idx=%u copy=%u+%u hint=%u fvf=0x%x\n",
-				la, idxCount, copyStart, copyCount, vertexOffsetHint, (unsigned)s_FVF); fclose(lf); }
-		}
-	}
 	if (!s_StreamVB || !s_StreamVB->pData || !idx || !idxCount || !copyCount || !s_FVF)
 		return;
 	if (!DX8Wrapper::_Is_Triangle_Draw_Enabled())
@@ -2914,7 +2636,6 @@ static unsigned ExpandIndexChain(D3DPRIMITIVETYPE type, const unsigned short *sr
 	}
 	return tris * 3;
 }
-static unsigned s_stripLog = 0;
 
 void DrawIndexedLegacy(D3DPRIMITIVETYPE type, INT base, INT numVerts,
 	UINT startIndex, UINT primCount)
@@ -2933,11 +2654,6 @@ void DrawIndexedLegacy(D3DPRIMITIVETYPE type, INT base, INT numVerts,
 	unsigned expCount = ExpandIndexChain(type, (const unsigned short *)s_IndexBuffer->pData + startIndex,
 		primCount, availIdx);
 	if (!expCount) return;
-	if (s_stripLog < 400u) {
-		s_stripLog++;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: Strips2List #%u prim=%u tris=%u\n", s_stripLog, primCount, expCount/3); fclose(lf); }
-	}
 	DX8Wrapper::LegacyDrawIndexedAbs(s_ExpIdx, expCount,
 		(unsigned)base, (unsigned)numVerts, (unsigned)base);
 }
@@ -2959,11 +2675,6 @@ void DrawIndexedD3D9(D3DPRIMITIVETYPE type, INT base, UINT minV, UINT numV,
 	unsigned expCount = ExpandIndexChain(type, (const unsigned short *)s_IndexBuffer->pData + startIndex,
 		primCount, availIdx);
 	if (!expCount) return;
-	if (s_stripLog < 400u) {
-		s_stripLog++;
-		FILE *lf = fopen("RTS_START.LOG", "a");
-		if (lf) { fprintf(lf, "VK: Strips2List #%u prim=%u tris=%u\n", s_stripLog, primCount, expCount/3); fclose(lf); }
-	}
 	DX8Wrapper::LegacyDrawIndexedAbs(s_ExpIdx, expCount,
 		(unsigned)(base + (INT)minV), numV, (unsigned)(base + (INT)minV));
 }
@@ -3079,16 +2790,12 @@ bool DX8Wrapper::NativeShadow_Ready()
 			return false;
 		}
 	}
+	// PORT round-7: the (color,depth)+framebuffer triple for an RT do not exist
+	// until the RT is FIRST bound as a target (VulkanGetRtFramebuffer creates
+	// them lazily). Force creation NOW, else depth stays null forever and
+	// NativeShadow_Ready() fails => zero shadow draws per frame.
+	(void)VulkanGetRtFramebuffer(g_nativeShadowRT->Peek_Vulkan_Texture());
 	g_nativeShadowDepth = VulkanGetRtDepthOf(g_nativeShadowRT->Peek_Vulkan_Texture());
-	{
-		static unsigned rd = 0;
-		rd++;
-		if (rd <= 4) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: NativeShadow.Ready #%u rt=%p depth=%p\n",
-				rd, (void *)g_nativeShadowRT, (void *)g_nativeShadowDepth); fclose(lf); }
-		}
-	}
 	return g_nativeShadowDepth != nullptr;
 }
 
@@ -3106,15 +2813,11 @@ void DX8Wrapper::NativeShadow_OpenRT()
 	g_legacyShadowDisabled = true;
 	Set_Render_Target(g_nativeShadowRT);
 	EnsureTargetPass();
-	{
-		static unsigned op = 0;
-		if (op < 6) {
-			op++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: Shadow.OpenRT #%u rt=%p target=%p open=%d\n",
-				op, (void *)g_nativeShadowRT, (void *)CurrentRenderTarget, (int)VulkanTargetPassOpen); fclose(lf); }
-		}
-	}
+	// PORT round-7: the (color,depth) VkTexture pair for an RT is created LAZILY
+	// inside EnsureTargetPass, so Ready() ran BEFORE it existed -> depth was null and
+	// the whole shadow pipeline skipped. Refresh right after the pass is opened.
+	if (!g_nativeShadowDepth)
+		g_nativeShadowDepth = VulkanGetRtDepthOf(g_nativeShadowRT->Peek_Vulkan_Texture());
 }
 
 void DX8Wrapper::NativeShadow_CloseRT()
@@ -3124,15 +2827,6 @@ void DX8Wrapper::NativeShadow_CloseRT()
 	EndTargetPass();
 	Set_Render_Target(nullptr);
 	EnsureTargetPass();	// reopen the main pass with its clear
-	{
-		static unsigned cl = 0;
-		if (cl < 6) {
-			cl++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: Shadow.CloseRT #%u open=%d target=%p\n",
-				cl, (int)VulkanTargetPassOpen, (void *)CurrentRenderTarget); fclose(lf); }
-		}
-	}
 	{
 		VkTexture *depth = g_nativeShadowDepth;
 		if (depth && depth->GetImage() != VK_NULL_HANDLE) {
@@ -3162,43 +2856,6 @@ void DX8Wrapper::NativeShadow_CloseRT()
 void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 {
 	memset(ubo, 0, sizeof(*ubo));
-	{
-		static int uboLog = 0;
-		uboLog++;
-		if (uboLog <= 12 || (uboLog % 600) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				unsigned amb = DX8Wrapper::RenderStates[D3DRS_AMBIENT];
-	if (amb == 0x12345678) amb = 0;	// D3D8 default ambient is black
-				Vector3 md(1,1,1);
-				if (DX8Wrapper::render_state.material)
-					((VertexMaterialClass *)DX8Wrapper::render_state.material)->Get_Diffuse(&md);
-				{
-					static unsigned stateLog = 0;
-					bool interestingNow = (md.X != 1.0f || md.Y != 1.0f || md.Z != 1.0f) || (uboLog % 2000) == 0;
-					if (interestingNow && stateLog < 16) {
-						stateLog++;
-						fprintf(lf, "VK: MatSrc #%u colorVertex=%d diffuseMatSrc=%d specularMatSrc=%d\n",
-							uboLog,
-							(int)DX8Wrapper::RenderStates[D3DRS_COLORVERTEX],
-							(int)DX8Wrapper::RenderStates[D3DRS_DIFFUSEMATERIALSOURCE],
-							(int)DX8Wrapper::RenderStates[D3DRS_SPECULARMATERIALSOURCE]);
-					}
-				}
-				bool interesting = (md.X != 1.0f || md.Y != 1.0f || md.Z != 1.0f) || (uboLog % 500) == 0;
-				static unsigned matLog = 0;
-				if (interesting && matLog < 20) {
-					matLog++;
-					fprintf(lf, "VK: FillUBO #%d light0=%d fogEn=%d matDiffuse=(%.3f,%.3f,%.3f)%s\n",
-						uboLog, (int)DX8Wrapper::render_state.LightEnable[0],
-						(int)DX8Wrapper::RenderStates[D3DRS_FOGENABLE],
-						(float)md.X, (float)md.Y, (float)md.Z,
-						(md.X != 1.0f || md.Y != 1.0f || md.Z != 1.0f) ? " NONWHITE" : "");
-				}
-				fclose(lf);
-			}
-		}
-	}
 	unsigned ambient = DX8Wrapper::RenderStates[D3DRS_AMBIENT];
 	if (ambient == 0x12345678)
 		ambient = 0x000000;	// PORT FIX: D3D8 default ambient is BLACK (the earlier
@@ -3281,26 +2938,6 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 		ubo->shadowParams[2] = 1.0f;
 	}
 
-	{
-		static unsigned lv = 0; lv++;
-		if (lv <= 20 || (lv % 3000) == 0) {
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) {
-				fprintf(lf, "VK: LightVals #%u amb=%06x", lv,
-					(unsigned)(DX8Wrapper::RenderStates[D3DRS_AMBIENT] == 0x12345678 ? 0 : DX8Wrapper::RenderStates[D3DRS_AMBIENT]));
-				for (int li = 0; li < 4; li++) {
-					if (DX8Wrapper::render_state.LightEnable[li]) {
-						const D3DLIGHT8 &l = DX8Wrapper::render_state.Lights[li];
-						fprintf(lf, " L%d(type=%d diff=(%.2f,%.2f,%.2f) att=(%.2f,%.2f,%.2f))",
-							li, (int)l.Type, l.Diffuse.r, l.Diffuse.g, l.Diffuse.b,
-							l.Attenuation0, l.Attenuation1, l.Attenuation2);
-					}
-				}
-				fprintf(lf, "\n");
-				fclose(lf);
-			}
-		}
-	}
 	for (int i = 0; i < 4; i++) {
 		if (DX8Wrapper::render_state.LightEnable[i]) {
 			const D3DLIGHT8 &light = DX8Wrapper::render_state.Lights[i];
@@ -3352,15 +2989,6 @@ uint32_t DX8Wrapper::VulkanAllocUbo(VkFrameUniforms *ubo)
 	if (!mapped)
 		return UINT32_MAX;
 	memcpy((unsigned char *)mapped + offset, ubo, sizeof(*ubo));
-	{
-		static unsigned offLog = 0;
-		if (offLog < 8) {
-			offLog++;
-			FILE *lf = fopen("RTS_START.LOG", "a");
-			if (lf) { fprintf(lf, "VK: ubo slot=%u offset=%u stride=%u\n",
-				(unsigned)(VulkanUboDrawIndex - 1), offset, VulkanUboStride); fclose(lf); }
-		}
-	}
 	return offset;
 }
 
