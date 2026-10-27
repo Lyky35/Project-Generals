@@ -2931,8 +2931,13 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 
 	// Native shadow map params + light view-projection (captured while the
 	// light pass had the view/proj bound)
-	ubo->shadowParams[0] = 0.0035f;	// depth bias
-	ubo->shadowParams[1] = 0.40f;		// darkening in shadow
+	ubo->shadowParams[0] = 0.06f;		// depth bias: ~3% of the 512-wide ortho light map (NDC fraction).
+	ubo->shadowParams[1] = 0.40f;		// darkening in shadow (retail shadow volume = blend-modulated darkening)
+	// PORT root-cause (round-8 black bridge/dark buildings): a 0.0035 NDC bias = ~0.1 texel
+	// -> EVERY mesh quad self-shadows against ITS OWN depth in the light pass = tinted to
+	// near-black ("black bridge" locally, field report "bridges missing" + "buildings in fog
+	// black"). Bias must cover surface self-offset across the ortho extent; 0.06 keeps unit-scale
+	// cast shadows (units, pylons, trees) while thin decks/trusses stay fully lit.
 	if (g_lightMvpValid) {
 		memcpy(ubo->lightMvp, &g_lightMvpSnapshot[0][0], sizeof(ubo->lightMvp));
 		ubo->shadowParams[2] = 1.0f;

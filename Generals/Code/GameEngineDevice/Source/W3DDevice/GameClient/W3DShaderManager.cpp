@@ -1106,7 +1106,42 @@ Int ShroudTextureShader::set(Int stage)
 		Matrix4 curView;
 		DX8Wrapper::_Get_DX8_Transform(D3DTS_VIEW, curView);
 
-Matrix4 inv = curView.Inverse(); // Vulkan uniform path; inverse for UV matrices
+// beta14 PORT FIX (Bridge Busters soak probes shroudSet/shroudMTX, draws #13/#14):
+// Matrix4::Inverse() mis-indexes its cofactor result for the ZH view (inv[0][0] came
+// back -1.261 = the TRUE inverse's [1][1] instead of 1.000), so (inv*offset)*scale
+// baked into D3DTS_TEXTURE0 never cancels the port GLSL chain uv=(texMat*viewMat*world):
+// the bridge shroud pass sampled uv(-0.124,+0.220) at bridge world (572,472) -> clamped
+// BLACK shroud border texel (GPU readback ff000000, 128x128) = "bridge is a black
+// lattice", invariant to VB colors/textures/shadow toggles. Matrix3D Get_Inverse is
+// the exact affine inverse (WW3D object path) - uv then equals (world+off)*scale,
+// identical to the terrain clipmap shroud pass which renders correctly (uv +0.119,
+// beta14 follow-up: the ZH view is affine but its 3x3 block is SKEWED (row0.row1=0.609,
+// rows not orthonormal), so Matrix3D::Get_Inverse (delegates to the orthogonal/transpose
+// inverse, see TODO in matrix3d.h) mis-inverts it too, and Matrix4::Inverse() mis-indexes
+// its cofactors (observed: inv[0][0] = true inverse's [1][1]). Compute the exact general
+// affine inverse inline: for row-vector storage V = [R; T], V^-1 = [R^-1 ; -T*R^-1].
+Real vrv[9], vdt;
+vrv[0]=(Real)curView[0][0]; vrv[1]=(Real)curView[0][1]; vrv[2]=(Real)curView[0][2];
+vrv[3]=(Real)curView[1][0]; vrv[4]=(Real)curView[1][1]; vrv[5]=(Real)curView[1][2];
+vrv[6]=(Real)curView[2][0]; vrv[7]=(Real)curView[2][1]; vrv[8]=(Real)curView[2][2];
+vdt = vrv[0]*(vrv[4]*vrv[8]-vrv[5]*vrv[7]) - vrv[1]*(vrv[3]*vrv[8]-vrv[5]*vrv[6]) + vrv[2]*(vrv[3]*vrv[7]-vrv[4]*vrv[6]);
+Real viv[9];
+viv[0]=(vrv[4]*vrv[8]-vrv[5]*vrv[7]); viv[1]=(vrv[2]*vrv[7]-vrv[1]*vrv[8]); viv[2]=(vrv[1]*vrv[5]-vrv[2]*vrv[4]);
+viv[3]=(vrv[5]*vrv[6]-vrv[3]*vrv[8]); viv[4]=(vrv[0]*vrv[8]-vrv[2]*vrv[6]); viv[5]=(vrv[2]*vrv[3]-vrv[0]*vrv[5]);
+viv[6]=(vrv[3]*vrv[7]-vrv[4]*vrv[6]); viv[7]=(vrv[1]*vrv[6]-vrv[0]*vrv[7]); viv[8]=(vrv[0]*vrv[4]-vrv[1]*vrv[3]);
+Matrix4 inv;
+if (vdt > 1e-6f || vdt < -1e-6f) {
+	Real vsc = 1.0f/vdt;
+	Real tt0=(Real)curView[3][0], tt1=(Real)curView[3][1], tt2=(Real)curView[3][2];
+	inv.Init(Vector4(viv[0]*vsc,viv[1]*vsc,viv[2]*vsc,0.0f),
+		Vector4(viv[3]*vsc,viv[4]*vsc,viv[5]*vsc,0.0f),
+		Vector4(viv[6]*vsc,viv[7]*vsc,viv[8]*vsc,0.0f),
+		Vector4(-(tt0*viv[0]*vsc+tt1*viv[3]*vsc+tt2*viv[6]*vsc),
+			-(tt0*viv[1]*vsc+tt1*viv[4]*vsc+tt2*viv[7]*vsc),
+			-(tt0*viv[2]*vsc+tt1*viv[5]*vsc+tt2*viv[8]*vsc), 1.0f));
+} else {
+	inv = curView; // degenerate det: never hit in ZH
+}
 
 // D3DXMATRIX scale,offset - handled by Vulkan uniform buffers
 

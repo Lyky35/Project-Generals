@@ -268,8 +268,22 @@ VkTexture* Load_Compressed_Texture(
 		dest_format,
 		(TextureClass::MipCountType)mips);
 
-	// TODO: upload each DDS level via UploadLevel once DDSFileClass exposes CPU pixels
-	// (Copy_Level_To_Surface required an IDirect3DSurface8). For now create empty texture.
+	// PORT root-cause (round-8: bridge trusses black, field "black buildings in fog"):
+	// this stub returned the image WITHOUT ever uploading the DDS mip data - every
+	// texture made through this entry sampled UNDEFINED (zero = black). The env/cloud
+	// strips (TSCloudMed/DXT5) reach it whenever the material uses stage1 MODULATE:
+	// deck x white x BLACK = black lattice on every bridge. DDSFileClass::Get_Memory_
+	// Pointer(level) exposes the compressed level bytes which UploadLevel copies ver-
+	// batim into the matching BCn VK image (block math already inside UploadLevel).
+	if (vk_texture) {
+		for (unsigned mip=0; mip<mips; ++mip) {
+			unsigned lw=dds_file.Get_Width(mip);
+			unsigned lh=dds_file.Get_Height(mip);
+			const unsigned char *lvl = dds_file.Get_Memory_Pointer(mip);
+			if (lw && lh && lvl) vk_texture->UploadLevel(mip, lw, lh, lvl);
+		}
+		if (mips > 1) vk_texture->GenerateMipmaps();
+	}
 	return vk_texture;
 }
 

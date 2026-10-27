@@ -50,8 +50,6 @@ void TerrainClipmap::UploadColors(const unsigned int *pixels)
 
 void TerrainClipmap::Ensure(WorldHeightMap *map, HeightMapRenderObjClass *heightMap, bool force)
 {
-	{	static unsigned ep = 0; ep++;
-	}
 	if (!map || !heightMap) {
 		Reset();
 		return;

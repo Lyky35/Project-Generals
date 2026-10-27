@@ -1849,7 +1849,13 @@ void WaterRenderObjClass::drawSea(RenderInfoClass & rinfo)
 	m_pDev->SetTextureStageState( 2, D3DTSS_COLOROP,   D3DTOP_DISABLE );
 	m_pDev->SetTextureStageState( 2, D3DTSS_ALPHAOP,   D3DTOP_DISABLE );
 
-	m_pDev->SetRenderState(D3DRS_ZWRITEENABLE , FALSE);
+	// PORT (root cause, lake+Bridge Busters soak): retail disabled Z on the water
+	// tile-grid pass because the software terrain bed drew BEFORE water. Our GPU
+	// clipmap bed draws AFTER the water object, and a no-Z water plane lets the
+	// later bed replace it = the field 'brown plate / water missing entirely'.
+	// Keep Z on: the sunk bed (z=waterZ+12, farther) then loses its LEQUAL test
+	// and the water stays on top; shoreline (closer z) still paints over it.
+	m_pDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
 	D3DXMATRIX mat;
 	memset(&mat,0,sizeof(D3DXMATRIX));
