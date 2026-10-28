@@ -227,3 +227,12 @@ Everything landed on the clipmap side WITHOUT touching the design above:
   drawSea sea-patch loop, flat-river block, mesh-water if/else); the mesh-water site is a single body
   draw so its fix is forcing the unshrouded else-draw form, NOT deleting the draw. Pass-1-only equals
   mode-h semantics (proven teal: TL 3.5%, SR 19.5%); BB's brown sheet ~= retail muddy river.
+
+## Addendum (beta14, round 11) - water from-scratch opaque rebuild
+- All three water body sites now share ONE state: stage0 white 1x1 MODULATE, PRELIT_DIFFUSE vertex
+  color, _PresetOpaqueShader, no alpha-op, no DESTALPHA feather, ZWRITE+LEQUAL. The wave-grid site
+  lost the raw m_pDev WATER_MESH_FVF submission (dynamic VB/IB instead, same m_meshData heights);
+  the pv-shader sea site lost reflection RT + custom VS (clipped trapezoid instead). Port-invented
+  stage classes were the silent-drop suspect for the field 'no water anywhere' (see AUDIT 8).
+- Detail pass (flow/noise/sparkle) is deferred to beta15 and must be built on existing proven
+  variant classes only; do NOT re-add CAMERASPACEPOSITION noise texgen or the op-7 ADDPRODUCT stage.

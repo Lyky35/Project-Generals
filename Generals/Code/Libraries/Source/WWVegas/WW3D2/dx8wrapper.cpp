@@ -166,7 +166,7 @@ DX8_Stats	 DX8Wrapper::stats;
 
 // PORT (beta14d): native shadow map re-enable re-renders the whole scene into
 // the light depth RT every frame => per-frame draw allocations roughly double.
-static const int VULKAN_UBO_RING_DRAWS = 8192;
+static const int VULKAN_UBO_RING_DRAWS = 16384;	// 4x shadow range doubles draws again; 16k x 512B = 8MB/frame-buffer stays cheap
 // Ring stride MUST be a multiple of the device's minUniformBufferOffsetAlignment
 // (it applies to descriptor bufferInfo.offset too). AMD can report > 512 while
 // lavapipe reports 16 - a fixed 512 stride then makes every non-zero ring slot
@@ -2933,7 +2933,7 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 
 	// Native shadow map params + light view-projection (captured while the
 	// light pass had the view/proj bound)
-	ubo->shadowParams[0] = 0.0035f;		// PORT beta14d: bias ~12 world units on the tighter 10..3584 rig
+	ubo->shadowParams[0] = 0.0011f;		// PORT beta14e: ~23 world units on the 10..21094 rig (~1-2 texels of the enlarged light map; the 0.0035 beta14d value now = ~74u peter-panning)		// PORT beta14d: bias ~12 world units on the tighter 10..3584 rig
 					// (was 0.06 NDC of a 4246-unit range = ~255 world units >> ZH structure
 					// heights 10-50u -> inShade always 0 -> 'soft shadows missing' even with
 					// the map ON. Raise locally if thin-deck self-shadow acne reappears.)

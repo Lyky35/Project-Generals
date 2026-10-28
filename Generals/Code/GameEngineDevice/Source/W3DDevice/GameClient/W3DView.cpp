@@ -1294,7 +1294,7 @@ static void NativeShadow_Render(RTS3DScene *scene, CameraClass *cam)
 	if (!(sun.Length2() > 1e-6f))
 		sun = Vector3(0.0f, 0.0f, 200.0f);
 	sun.Normalize();
-	const float SHADOW_DIST = 2048.0f;	// eye distance along sun ray
+	const float SHADOW_DIST = 9830.0f;	// beta14e x4-range: eye far enough along the sun ray that the whole +/-12288-unit box sits within near..far	// eye distance along sun ray
 	float cX = savedTm.Get_X_Translation();
 	float cY = savedTm.Get_Y_Translation();
 	Vector3 eye(cX + sun.X * SHADOW_DIST, cY + sun.Y * SHADOW_DIST, sun.Z * SHADOW_DIST);
@@ -1321,9 +1321,9 @@ static void NativeShadow_Render(RTS3DScene *scene, CameraClass *cam)
 	Matrix3D lightTm(right, upv, Vector3(-fwd.X, -fwd.Y, -fwd.Z), eye);
 	cam->Set_Transform(lightTm);
 	cam->Set_Projection_Type(CameraClass::ORTHO);
-	float farDist = SHADOW_DIST + 1536.0f;
+	float farDist = SHADOW_DIST + 11264.0f;	// beta14e: half-extent 12288 * sun-XY component (~0.75) + margin
 	cam->Set_Clip_Planes(10.0f, farDist);
-	float halfAtDist = 3072.0f / 10.0f;	// view plane * znear = ortho half-extent (world units; 1024-px light map -> ~6-unit texels)
+	float halfAtDist = 12288.0f / 10.0f;	// beta14e x4 range: field saw pop-in at the old 3072u box edge; view frustum reaches past ~6000u
 	cam->Set_View_Plane(Vector2(-halfAtDist, -halfAtDist), Vector2(halfAtDist, halfAtDist));
 	cam->Apply();
 

@@ -1788,3 +1788,30 @@ anywhere), water plane STILL missing on some maps + warm-brown sheet over the ri
 - RELEASE: asset renamed rts_v13beta14c.zip -> rts_v13beta14d.zip, target = this round's commit.
 NEXT: Windows field check for shadows under units/trees/buildings + water on all maps; bridges/fog
 divergences pending user screenshots (patch22 candidates: bridge damage-state init + shroud on fog).
+
+ROUND 11 - beta14e field (beta14d verified): shadows NOW render but pop in at a ~3072-unit box edge
+(range/culling; vehicles over the box edge = the 'tanks cast nothing' half of the report), water STILL
+absent on the Windows field maps; small bridges destroyed/missing (no screenshot yet - untouched).
+- SHADOW RANGE x4: half-extent 3072 -> 12288 world units (Set_View_Plane halfAtDist 1228.8 at znear
+  10, eye SHADOW_DIST 9830 along sun, far 21094). Bias rescaled 0.0035 -> 0.0011 NDC (~23 world units
+  on the 10..21094 rig; 0.0035 would be ~74u peter-panning). UBO ring 8192 -> 16384 (4x box = more
+  casters/frame; 512B stride = 8MB/frame-buffer).
+- WATER RE-IMPLEMENTED FROM THE GROUND UP (user directive: 'reimplement from clearly visible plane'):
+  every body site now draws through ONE simple setup = stage0 white-1x1 MODULATE x PRELIT_DIFFUSE
+  vertex color (ambient+sun x INI waterDiffuse), _PresetOpaqueShader, ALPHAOP/blend off, ZWRITE on,
+  ZFUNC LEQUAL. setupFlatWaterShader rewritten whole; river site switched from setupJbaWaterShader;
+  DESTALPHA feather block deleted; renderWaterMesh re-implementation: standard DynamicVB/DynamicIB
+  grid from m_meshData (heights unchanged) replacing the raw m_pDev WATER_MESH_FVF TRIANGLESTRIP +
+  COM-texture + DISCARD-lock path; drawSea (pv-shader type) = one clipped trapezoid over
+  getClippedWaterPlane. Rationale: the staged water classes (alpha shader, ADDPRODUCT sparkle,
+  CAMERASPACEPOSITION noise texgen, raw custom-FVF submit) are PORT-INVENTED variant classes never
+  exercised by the field AMD/NV drivers = GetPipeline NULL silently drops the draw; the opaque class
+  is proven on every driver by units/terrain/buildings.
+- SOAKS (build23 21,935,361 B, probe-free): BB/TL/SR 0 exceptions, boot markers full; visual:
+  shadow box-edge pop-in GONE at the pavilion/tree shadows (natural falloff in-frame); SR canyon
+  floor brighter+bluer (body now paints the riverbed); TL/SR spawn cams never show the lake (mask
+  parity TL 3.54/3.54% = no change from drop). Windows verdict pending user.
+- STILL OPEN: small bridges (await map name + screenshot), vehicles at the (now 12288u) box edge,
+  water look polish (no flow/sparkle/feather yet = beta15 item).
+NEXT: user Windows retest (shadows whole-view, water plane visible everywhere); then bridges with
+screenshots; then water detail (flow/noise on proven classes).
