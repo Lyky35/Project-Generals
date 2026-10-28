@@ -1925,3 +1925,21 @@ of the variant KEY: new unexercised variant broke the clipmap = black void = les
   census; render-state edits (ZFUNC) create unexercised variant classes = silent breakage.
 NEXT: user wine retest (blue water + soft shadows on their hardware); bridges STILL awaiting
 map name + screenshot (fourth ask in notes).
+
+ROUND 15 (beta14i, 2026-10-28): user wine field report on beta14h = "there's blue plane ALL
+OVER the map... which is wrong" + "don't think shadows work". FLOOD ROOT CAUSE: the NUMERIC
+'+24 //WDBG' proof-of-draw lift in the non-feather trap branch (W3DWater.cpp else-branch) was
+NEVER STRIPPED - it survived into the SHIPPED beta14h exe because probe-strings censuses cannot
+see numeric mutations (LESSON 12: grep the CODE tree for debug tags AND suspicious constants;
+strings(EXE) only catches fprintf probe tags). Fix = lift deleted, water = map water z EXACTLY
+(round-14 WBGRID census had already proved z placement was always right). COVERAGE census proves
+the semantics before/after: e43 (lift, shipped) = 191,365 water-blue px in the spawn view;
+e44 (stripped) = BB 149 / TL 172 / SR 29,834 px = basin-only (BB spawn = dry cobble plaza +
+blue channel strip at view top; SR = its real river sheet). NO grid/sea height gate needed: the
+lvl-7 2000x2000 grid sits UNDER the whole map and the proven depth test already handles it
+(no flood once the trap quads stopped floating 24u up). SHADOWS UNCHANGED + proven-equivalent:
+e44BB plaza crop vs sBB (beta14d field-approved) = mean delta (16,11,7), AE-fuzz10 1.0% - the
+user's 'shadows don't work' was the FLOODED scene masking a beta14d-look pipeline, not a shadow
+regression. Soaks e44BB/e44TL/e44SR exit 0, 0 exceptions; probe-strings census 0.
+NEXT: user wine retest (blue ONLY in basins + beta14d-look shadows on dry ground); small-bridges
+symptom STILL awaiting map name + screenshot (fifth ask in notes).

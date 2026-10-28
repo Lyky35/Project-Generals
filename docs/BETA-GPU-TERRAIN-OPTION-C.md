@@ -272,3 +272,9 @@ the FLAT sheet next to the bed, cured by the shadows arriving, not by a new wate
 - Variant trap: D3DRS_ZFUNC edits create unexercised pipeline variants (ALWAYS broke the clipmap
   = black void on lavapipe); NEVER inject render states outside the proven sequence to 'prove'
   a draw - lift the geometry instead.
+
+- ROUND 15 (beta14i, 2026-10-28): 'blue plane all over the map' = the +24 WDBG NUMERIC lift shipped
+  (numeric debug is invisible to probe-strings - lesson 12). Removed; water = map z exactly.
+  Coverage census: e43 flood 191,365 px -> e44 149/172/29,834 px basin-only. Grid (lvl=7, 2000x2000)
+  needs NO height gate - under the whole map + proven depth test handles it. Shadows untouched
+  (107u*|oscale| band / 0.40 / rad 3.0 = sBB parity mean delta (16,11,7), AE-fuzz10 1.0%).

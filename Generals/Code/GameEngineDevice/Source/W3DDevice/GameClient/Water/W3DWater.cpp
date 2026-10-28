@@ -1855,7 +1855,6 @@ void WaterRenderObjClass::renderWater(void)
 					}
 
 					else
-						points[0].Z+=24; points[1].Z+=24; points[2].Z+=24; points[3].Z+=24;	//WDBG
 						drawTrapezoidWater(points),wTrap++;
 
 
