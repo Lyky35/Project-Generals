@@ -3113,6 +3113,21 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 	state->dstBlend = DX8Wrapper::RenderStates[D3DRS_DESTBLEND];
 	if (state->dstBlend == 0x12345678)
 		state->dstBlend = D3DBLEND_ZERO;
+	// ROOTCAUSE beta14 (water plane invisible on VK): drawTrapezoidWater's soft-water-edge
+	// body draws with (SRCBLEND,DESTBLEND)=(D3DBLEND_DESTALPHA,D3DBLEND_INVDESTALPHA):
+	// out = water*dstA + scene*(1-dstA). Retail ran on an A8R8G8B8 backbuffer where opaque
+	// terrain writes left dstA=vertex-alpha=1 -> water body rendered opaque. The VK port
+	// writes outColor.a from the alpha-op chain (mesh.frag), and terrain-clipmap vertices
+	// leave that chain at 0 (their diffuse attr is unused) -> dstA=0 -> water*0: the plane
+	// drew (drew=1, all state correct: t1o=7 sparkle, t2o=2 noise, blend on, LEQUAL) yet
+	// contributed zero pixels. DESTALPHA blend has exactly ONE consumer in the tree (the
+	// W3DWater feather block), so emulating the retail dstA=1 constant is exact: rewrite
+	// the (7,8) pair to (ONE,ZERO) replace-blend. Faithful alternative (opaque draws writing
+	// a=1) would churn every mesh.frag variant; this keeps shipped .spv bit-identical.
+	if (state->srcBlend == D3DBLEND_DESTALPHA && state->dstBlend == D3DBLEND_INVDESTALPHA) {
+		state->srcBlend = D3DBLEND_ONE;
+		state->dstBlend = D3DBLEND_ZERO;
+	}
 	unsigned writeMask = DX8Wrapper::RenderStates[D3DRS_COLORWRITEENABLE];
 	if (writeMask == 0x12345678)
 		writeMask = D3DCOLORWRITEENABLE_RED | D3DCOLORWRITEENABLE_GREEN | D3DCOLORWRITEENABLE_BLUE | D3DCOLORWRITEENABLE_ALPHA;
