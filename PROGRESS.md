@@ -1753,3 +1753,38 @@ ROUND 9.5 - beta14b field: water STILL missing on the Windows/AMD device (beta14
   (shore line + waterline foam) as the ab=1 variant did; Tournament Lake/Silent River deep-gameplay
   frames show only above-waterline dry creek/quarry beds (correct - water is in the lake elsewhere).
 - Release beta14c: new asset NAME rts_v13beta14c.zip (cache-proof), target = this hardened commit.
+
+ROUND 10 - beta14d field: soft shadows STILL absent on Win10 AMD+NV (beta14c: flag ON, zero shadows
+anywhere), water plane STILL missing on some maps + warm-brown sheet over the river (BB).
+- ROOT CAUSE 1 (shadows dead everywhere, not driver-specific): the light rig was ORIGIN-CENTERED,
+  +/-409 world units - ZH maps put playfield 1500-2000+ units from origin, so the shadow box never
+  covered spawn/view and inShade was identically 0 even with both shadow flags ON. Fix: camera-follow
+  ortho box: eye = camera ground cell + sunDir*2048 (sun = normalize LightPosWorld 94.0161,50.499,200),
+  near..far = 10..3584 (SHADOW_DIST+1536), half-extent 3072u via Set_View_Plane at znear 10.
+- ROOT CAUSE 2: the depth-pass COPY attachment (rtDepth in VkDevice::CreateRenderPass) kept storeOp
+  DONT_CARE - strict drivers discard the shadow map at pass end, lavapipe kept it. Now STORE.
+- ROOT CAUSE 3: shadowParams bias 0.06 NDC ~= 255 world units on the old rig >> ZH structure heights
+  (10-50u) -> receiver self-test always in-shade. New 0.0035 ~= 12 units on the tighter 10..3584 range.
+- ROOT CAUSE 4: NativeShadow_CaptureLightMvp() ran BEFORE scene->doRender(cam): the wrapper snapshots
+  view/proj when the scene pass applies them, so pre-pass capture read the STALE GAME camera = light
+  MVP was the game camera = wrong shadow direction. Capture moved AFTER doRender.
+- UBO ring 2048 -> 8192 (light pass ~doubles per-frame draws; ring resets per frame, fail-soft at
+  exhaustion). NativeShadow_Render calls re-enabled at BOTH W3DView sites (1385/1431); legacy
+  DoShadows hard-return unchanged.
+- WATER (still missing on some maps): the warm-brown sheet over the plane = W3DWater's FALLBACK
+  second-pass shroud draw, always taken on the port because m_trapezoidWaterPixelShader is null;
+  it repaints the plane opaque over the pass-1 feather. Removed all four fallback sites (trap else,
+  drawSea patch loop 1964-1987, flat-river 2900-2912, mesh-water if/else 2420-2440). The mesh-water
+  site is a SINGLE body draw - fix there = force the unshrouded else-draw form, not delete the draw.
+  Pass-1-only == mode-h semantics, proven teal on TL (3.5%) / SR (19.5%); BB brown sheet ~= retail
+  muddy river, visually inert.
+- SOAKS (probe-free build22, 21,944,008 B): BB/TL/SR exit=124 timeout-kill, 0 Exception c0000005,
+  boot markers; shadow chain live (SHPW frames=1-3 enabled=1 pre-strip); ground band rows 400-650
+  mean darkens 0.286 -> 0.205 with rig ON; TL/SR water healthy. strings probe tags = 0.
+- OPEN (awaiting Windows screenshots): small bridges read as destroyed models + buildings black in
+  fog = Windows-only divergences (local BRDG probe: all 7 BB bridges spawn st=0 PRISTINE, OBJP max
+  =0/0 init 100/1); BB water sheet darkens with shadows ON (teal 4.6 -> 0.7%) - possible water
+  self-shadow in light pass, user visually verifying.
+- RELEASE: asset renamed rts_v13beta14c.zip -> rts_v13beta14d.zip, target = this round's commit.
+NEXT: Windows field check for shadows under units/trees/buildings + water on all maps; bridges/fog
+divergences pending user screenshots (patch22 candidates: bridge damage-state init + shroud on fog).

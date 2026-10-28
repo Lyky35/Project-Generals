@@ -218,3 +218,12 @@ Everything landed on the clipmap side WITHOUT touching the design above:
 - If a future alpha-transparent effect needs real dstA, the port must first make OPAQUE variants write
   a=vertex-alpha into the swapchain (mesh.frag alpha-out for ALPHAOP-disabled chains), then delete the
   blend rewrite. Until then do NOT map 7/8 through TranslateBlend unchanged for water draws.
+
+## Addendum (beta14, round 10) - water fallback sheet removal
+- Field water "still missing on some maps" had a second identity: the warm-brown sheet = W3DWater's
+  FALLBACK shroud second-pass draws, taken on the port because m_trapezoidWaterPixelShader is null
+  (pixel-shader branch never set up). It repaints the whole plane opaque over the pass-1 feather,
+  map-dependent only via which fallback branch runs. Fix = delete all four fallback sites (trap else,
+  drawSea sea-patch loop, flat-river block, mesh-water if/else); the mesh-water site is a single body
+  draw so its fix is forcing the unshrouded else-draw form, NOT deleting the draw. Pass-1-only equals
+  mode-h semantics (proven teal: TL 3.5%, SR 19.5%); BB's brown sheet ~= retail muddy river.
