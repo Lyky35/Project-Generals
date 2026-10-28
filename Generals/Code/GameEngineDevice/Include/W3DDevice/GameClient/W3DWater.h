@@ -253,6 +253,7 @@ protected:
 	Bool getClippedWaterPlane(CameraClass *cam, AABoxClass *box);
 
 	void setupFlatWaterShader(void);
+	void drawUnitBlobShadows(void);		// beta14k round 17: CPU blob shadows for small drawables (units/cars); buildings/trees keep the RT pipeline
 	void setupJbaWaterShader(void);
 	void cleanupJbaWaterShader(void);
 

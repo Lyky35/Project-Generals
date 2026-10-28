@@ -284,3 +284,11 @@ the FLAT sheet next to the bed, cured by the shadows arriving, not by a new wate
   (33,26,19), units (29,22,16) = fans read under minarets/palms/tanks). Water untouched (coverage
   census identical: BB 152 / TL 172 / SR 29,528 px basin-only). Lesson 13: tune looks in stable
   menu/caster scenes, not spawn views.
+
+- ROUND 17 (beta14k, 2026-10-28): unit blob shadows (round-17 fix class): bias root cause pinned
+  (23.2u world bias > 10-20u unit height = units NEVER register inShade despite WSLP submitting
+  them; plus 12u/texel sub-footprint). CPU blobs in W3DWater renderWater: GeometryInfo height
+  gate (<=22u = where RT can't work; trees 40-60u skipped, lesson 14 no-blob-stacking), footprint
+  radii, proven flat-water alpha class + ALPHAOP MODULATE, one batched 12-gon x2 fans draw.
+  Menu venue units-deck delta (21,16,11) vs r16 no-blob; e49 trio exit 0/0 exc/probe 0; tree crop
+  e49-vs-e45 (6,4,2) = drift only = fans untouched. Fingerprint 21,939,430B sha 0c0db851...5798.

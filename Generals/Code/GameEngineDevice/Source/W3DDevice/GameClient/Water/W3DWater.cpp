@@ -64,6 +64,9 @@
 #include "W3DDevice/GameClient/W3DPoly.h"
 #include "W3DDevice/GameClient/W3DScene.h"
 #include "W3DDevice/GameClient/W3DCustomScene.h"
+#include "GameClient/GameClient.h"		// beta14k round 17: drawable list walk for unit blob shadows
+#include "GameClient/Drawable.h"		// clientOnly_getFirstRenderObjInfo + shroud/stealth visibility
+#include "GameLogic/Object.h"		// getObject() -> GeometryInfo (height/footprint gate)
 
 
 #ifdef _INTERNAL
@@ -1804,7 +1807,7 @@ void WaterRenderObjClass::drawSea(RenderInfoClass & rinfo)
 
 /** Renders (draws) the water surface.*/
 //-------------------------------------------------------------------------------------------------
-static unsigned wFrames=0,wTrig=0,wRiv=0,wTrap=0,wRivDraw=0,wTrapDraw=0,wfbOn=0,wfbTot=0;
+static unsigned wFrames=0,wTrig=0,wRiv=0,wTrap=0,wRivDraw=0,wTrapDraw=0,wfbOn=0,wfbTot=0,wBlobPass=0;
 void WaterRenderObjClass::renderWater(void)
 {
 	wFrames++; wTrig=0; wRiv=0; wTrap=0;
@@ -1863,6 +1866,206 @@ void WaterRenderObjClass::renderWater(void)
 		}
 	}
 
+	// beta14k round 17: blob pass EVERY frame; one batched draw (see method below)
+	(drawUnitBlobShadows(),wBlobPass++);
+}
+
+//-------------------------------------------------------------------------------------------------
+// beta14k ROUND 17 blob shadows for SMALL dynamic drawables (user: "units like
+// tanks, cars cast no shadow"). ROOT CAUSE: receiver test (mesh.frag:209/terrain.frag:75)
+// requires casterDepth - bias > receiverDepth; bias = 0.0011 NDC x 21,084u light rig
+// = 23.2 WORLD u, and a 10-20u tank can only produce a delta up to its OWN HEIGHT ->
+// inShade pinned at 0: units submit to the light pass (WSLP census ~2,519-2,580) but
+// can NEVER shade ground. Buildings/trees (40-80u) clear the bias = the fans users see.
+// Also 2048^2 map over +/-12,288u box = 12u/texel -> 20u tank = 1.7 texels, 3-texel
+// PCF smears them anyway. Lowering bias/box = beta14e acne/pop-in regressions.
+// Fix = CPU blob (2 concentric fans) at shell terrain height, proven flat-water draw
+// class (stage0 white MODULATE + PRELIT_DIFFUSE + game SRCALPHA blend; ALPHAOP set to
+// MODULATE so the VB alpha byte drives the blend: white A=0xff x vA = vA).
+void WaterRenderObjClass::drawUnitBlobShadows(void)
+{
+	// --- PART A: gather small drawables (units/crates) ---
+	if (!TheTerrainRenderObject || !TheTerrainRenderObject->getMap())
+		return;
+	if (!TheGameClient)
+		return;
+
+	// sun TRAVEL direction = m_terrainLightPos (verified: LightPosWorld[0] =
+	// -m_terrainLightPos[0] normalized in W3DShadow ctor) -> shadow offset XY/unit-height
+	// m_terrainLightPos[] is Coord3D (lowercase x/y/z, GlobalData.h:213)
+	Vector3 L(TheGlobalData->m_terrainLightPos[0].x,
+	          TheGlobalData->m_terrainLightPos[0].y,
+	          TheGlobalData->m_terrainLightPos[0].z);
+	L.Normalize();
+	Real tDiv = (-L.Z > 0.25f) ? -L.Z : 0.25f;		// low sun: cap offset steepness
+	Real offX = L.X / tDiv, offY = L.Y / tDiv;
+
+	#define BLOB_MAX 96
+	#define BLOB_SEG 12
+	static Real bx[BLOB_MAX], by[BLOB_MAX], bz[BLOB_MAX], bro[BLOB_MAX];
+	Real bi[BLOB_MAX];		// inner fan radius
+	Int blobCount = 0, iterated = 0, bigSkipped = 0;
+	Real rSeenMin = 1e9f, rSeenMax = 0.0f;
+
+	for (Drawable *draw = TheGameClient->getDrawableList(); draw; draw = draw->getNextDrawable())
+	{
+		iterated++;
+		if (draw->getFullyObscuredByShroud())
+			continue;		// fogged/shrouded units cast nothing visible
+		if (draw->getStealthLook() == STEALTHLOOK_INVISIBLE)
+			continue;
+		Coord3D pos;
+		Real r;
+		// NOTE: the impl dereferences transform unconditionally (W3DModelDraw:3187) ->
+		// must hand it a real local, never NULL
+		Matrix3D xfBlob(1);
+		Bool gotInfo = draw->clientOnly_getFirstRenderObjInfo(&pos, &r, &xfBlob);
+		if (!gotInfo || r <= 0.0f)
+			continue;
+		if (r < rSeenMin) rSeenMin = r;
+		if (r > rSeenMax) rSeenMax = r;
+		if (r < 4.0f || r > 28.0f)
+		{
+			if (r > 28.0f) bigSkipped = 1;		// structures keep RT fans
+			continue;
+		}
+		Real gz = TheTerrainRenderObject->getHeightMapHeight(pos.x, pos.y, NULL);
+		if (pos.z - gz > r * 1.6f)
+			continue;		// airborne units: no ground blob
+		// --- principled gate (round 17): blob ONLY casters that canNOT clear the
+		// 23.2u shadow bias (map trees ARE drawables here: r overlapped tanks in the
+		// band but NOT in height; stacking blob atop RT fan = the over-dark patch
+		// seen in e47BB plaza). Parent Object geometry also gives true footprint.
+		Real bandR = r;
+		Real hEst = r * 0.7f;
+		Bool blobWanted = TRUE;
+		{
+			const Object *obj = draw->getObject();
+			if (obj)
+			{
+				const GeometryInfo& gi = obj->getGeometryInfo();
+				Real hh = gi.getMaxHeightAbovePosition();
+				if (hh > 0.0f) hEst = hh;
+				Real mr = gi.getMajorRadius();
+				Real nr = gi.getMinorRadius();
+				if (mr > 0.0f && nr > 0.0f)
+					bandR = (mr > nr) ? mr : nr;		// footprint circle
+				if (hh > 22.0f) blobWanted = FALSE;		// tall = RT fan already works
+			}
+		}
+		if (!blobWanted)
+			continue;
+		Real ox = offX * hEst, oy = offY * hEst;
+		Real oLen = sqrt(ox * ox + oy * oy);
+		if (oLen > 1.2f * bandR)
+		{	Real sc = 1.2f * bandR / oLen;	ox *= sc;	oy *= sc;	}
+		Real cx = pos.x + ox * 0.5f, cy = pos.y + oy * 0.5f;
+		Real ro = bandR * 1.05f + oLen * 0.45f;
+		Real ri = bandR * 0.62f + oLen * 0.3f;
+		if (blobCount < BLOB_MAX)
+		{
+			bx[blobCount] = cx;	by[blobCount] = cy;
+			bz[blobCount] = gz + 3.0f;	// 3u above shell terrain, depth-tested like water
+			bro[blobCount] = ro;		bi[blobCount] = ri;
+			blobCount++;
+		}
+	}
+
+	// (round 17 dev blob-census probe was stripped here; census: menu blobs=24 kept
+	// in r-band 4..28 + r up to 103 structures skipped; BB iter=1653 blobs=96 cap,
+	// TL/SR same shape)
+	(void)iterated;	(void)bigSkipped;	(void)rSeenMin;	(void)rSeenMax;
+
+	// --- PART B: two concentric 12-gon fans per blob (outer soft 0x33, inner core
+	// 0x55), ONE batched draw. All coplanar (z = terrain+3): inner fans submitted
+	// after outer read EQUAL depth -> LEQUAL passes -> core darkens over the ring.
+	// (dev census probe ran earlier this round; stripped here, see census note above)
+	if (blobCount == 0)
+		return;
+
+	{
+		const Int vertsPerBlob = 2 * (1 + BLOB_SEG + 1);		// center + (SEG+1) rim, two fans
+		const Int trisPerBlob = 2 * BLOB_SEG;
+		const Int idxCount = trisPerBlob * 3 * blobCount;
+		const Int vertCount = vertsPerBlob * blobCount;
+
+		DynamicIBAccessClass ib_access(BUFFER_TYPE_DYNAMIC_DX8, idxCount);
+		DynamicVBAccessClass vb_access(BUFFER_TYPE_DYNAMIC_DX8, dynamic_fvf_type, vertCount);
+		{
+			// VB layout per blob: [fan0: c, rim0..rim12][fan1: c, rim0..rim12]
+			// tri(f,k) = (center_f, rim_k, rim_k+1) with rim duplicated at SEG -> no wrap
+			{
+				DynamicVBAccessClass::WriteLockClass lockvb(&vb_access);
+				VertexFormatXYZNDUV2* vb = lockvb.Get_Formatted_Vertex_Array();
+				for (Int b = 0; b < blobCount; b++)
+				{
+					for (Int fan = 0; fan < 2; fan++)
+					{
+						Real rad = (fan == 0) ? bro[b] : bi[b];
+						Int dif = (fan == 0) ? 0x33000000 : 0x55000000;		// black + alpha byte
+						vb->x = bx[b];		// fan center
+						vb->y = by[b];
+						vb->z = bz[b];
+						vb->diffuse = dif;
+						vb->u1 = 0.0f;		// stage0 white at uv(0,0) (A8R8G8B8 1x1, A=0xff)
+						vb->v1 = 0.0f;
+						vb->u2 = 0.0f;
+						vb->v2 = 0.0f;
+						vb->nx = 0.0f;		// up
+						vb->ny = 0.0f;
+						vb->nz = 1.0f;
+						vb++;
+						for (Int k = 0; k <= BLOB_SEG; k++)
+						{
+							Real ang = (Real)k * (2.0f * PI / (Real)BLOB_SEG);
+							vb->x = bx[b] + rad * WWMath::Fast_Cos(ang);
+							vb->y = by[b] + rad * WWMath::Fast_Sin(ang);
+							vb->z = bz[b];
+							vb->diffuse = dif;
+							vb->u1 = 0.0f;		// stage0 white at uv(0,0)
+							vb->v1 = 0.0f;
+							vb->u2 = 0.0f;
+							vb->v2 = 0.0f;
+							vb->nx = 0.0f;
+							vb->ny = 0.0f;
+							vb->nz = 1.0f;
+							vb++;
+						}
+					}	// fan
+				}		// blobs
+			}		// vb lock scope
+		}		// decls scope
+
+		// ---- IB fill: tri(f,k) = (center, rim_k, rim_k+1); rim SEG+1 duplicates rim 0
+		{
+			DynamicIBAccessClass::WriteLockClass lockib(&ib_access);
+			UnsignedShort *curIb = lockib.Get_Index_Array();
+			for (Int b = 0; b < blobCount; b++)
+				for (Int fan = 0; fan < 2; fan++)
+				{
+					const Int base = b * vertsPerBlob + fan * (1 + BLOB_SEG + 1);
+					for (Int k = 0; k < BLOB_SEG; k++)
+					{
+						*curIb++ = (UnsignedShort)base;	// fan center
+						*curIb++ = (UnsignedShort)(base + 1 + k);
+						*curIb++ = (UnsignedShort)(base + 2 + k);
+					}
+				}
+		}
+
+		// ---- one draw: proven flat-water class, ALPHAOP MODULATE (white A=0xff x vA
+		// = vA; ADD would saturate the 0x33/0x55 blob alphas to fully opaque black)
+		{
+			Matrix3D tm(1);
+			DX8Wrapper::Set_Transform(D3DTS_WORLD, tm);
+			DX8Wrapper::Set_Index_Buffer(ib_access, 0);
+			DX8Wrapper::Set_Vertex_Buffer(vb_access);
+			setupFlatWaterShader();		// re-bind proven class right before Draw
+			DX8Wrapper::Set_DX8_Texture_Stage_State(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
+			DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+			DX8Wrapper::Draw_Triangles(0, trisPerBlob * blobCount, 0, vertCount);
+		}
+	}
 }
 
 //-------------------------------------------------------------------------------------------------

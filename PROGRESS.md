@@ -1959,3 +1959,36 @@ palms and every tank. In-map unchanged: e45BB/TL/SR exit 0, exceptions 0, probe 
 coverage census identical to round 15 (BB 152 / TL 172 / SR 29,528 px = basin-only); BB ground crop
 vs sBB = (18,12,7) (was (16,11,7)) = beta14d-look + visibility bump. Water config NOT touched.
 NEXT: user retest (menu venue + maps); small bridges STILL awaiting name+screenshot (sixth ask).
+
+ROUND 17 (beta14k, 2026-10-28): user: "units like tanks, cars cast no shadow" (on beta14j).
+ROOT CAUSE made exact this round: receiver test (mesh.frag:209/terrain.frag:75) is
+inShade = smoothstep(0, band, casterDepth - bias - receiverDepth) with bias = shadowParams[0]
+0.0011 NDC x 21,084u light rig = 23.2 WORLD u -> a 10-20u tank can only make a depth delta up
+to its OWN HEIGHT (10-20u) < 23.2 bias = inShade pinned at 0: units submit to the light pass
+(WSLP census ~2,519-2,580) but can NEVER shade ground, while 40-80u buildings/trees clear the
+bias = exactly the "fans under buildings, none under tanks" asymmetry reported. Compounding:
+2048^2 over +/-12,288u follow-cam box = 12u/texel -> 20u tank = 1.7 texels, 3-texel PCF smears
+it anyway. Lowering bias/box = the acne/pop-in regressions of beta14e (not attempted).
+FIX = CPU blob shadows for small dynamic drawables (W3DWater.cpp::drawUnitBlobShadows, called
+from renderWater EVERY frame): parent-Object GeometryInfo gate (blob ONLY when maxHeightAbove
+<= 22u = exactly when the RT receiver CANNOT work; footprint radius = max(major,minor)), z =
+shell terrain +3 via getHeightMapHeight, offset = m_terrainLightPos.XY x h/(-lz) capped 1.2r
+(travel verified: LightPosWorld[0] = -m_terrainLightPos[0] normalized, W3DShadow ctor), 2
+concentric 12-gon fans per blob (outer a=0x33 = 20% dark, inner a=0x55, one batched DynamicVB/
+IB + one Draw) in the PROVEN flat-water class (stage0 white MODULATE + PRELIT_DIFFUSE + game
+SRCALPHA blend) with ALPHAOP forced MODULATE (white A=0xff x vA = vA; water body left it ADD
+because its vA=0xff saturates either). Shroud (getFullyObscuredByShroud) + stealth-invisible +
+airborne (pos.z-gh > 1.6r) skips; r-band 4..28 coarse filter; cap 96 blobs.
+TREE LESSON (e47BB BEFORE the height gate): map trees ARE drawables (r 18-28 overlapped tank
+band) and got blobs STACKED on their RT fans = over-dark hard patches; the height gate kills
+this (lesson 14: NEVER stack blob atop RT fan; gate blobs by bias relation, not radius).
+VENUE PROOFS: menu venue (shell map = animated menu background, build59): units-deck crop mean
+delta (21,16,11) vs round-16 no-blob m16; blobs under every tank/dozer/hauler/crate with sun
+-consistent lower-left offset (m19_units.png). In-map e49BB/TL/SR on the SHIPPED exe (build59,
+fingerprint 0c0db851...5798): exit 0, exceptions 0, probe-strings census 0; tree-region crop
+e49-vs-e45 = (6,4,2) = camera-drift only = trees NOT double-darkened; crate/container crops show
+blobs. Water semantics unchanged (no flood: 15/33/25k px vs 191,365 flood class; absolute counts
+follow camera-timing drift, flood class absent = coverage census lesson). Ground crop vs sBB
+(e47BB, pre-height-gate build57) = (20,13,8) vs (18,12,7).
+NEXT: user retest (menu venue + in-game built units); small bridges STILL awaiting name+screenshot
+(SEVENTH ask).
