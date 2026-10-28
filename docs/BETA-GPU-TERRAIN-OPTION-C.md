@@ -247,3 +247,12 @@ Everything landed on the clipmap side WITHOUT touching the design above:
   TCI 0 + stages1-3 off + LEQUAL + SRCALPHA blend, VB alpha 0xff). White-1x1/opaque-forced was
   still a never-exercised variant = silent drop. Green-coverage probe confirmed the replicated
   class paints real water areas locally (SR 23px / TL 26px at 256x192 scale).
+
+### ROUND 13 addendum (beta14g) - shadow map emptiness was VIEWPORT, not range/bias
+
+VIZ proved beta14f's map was empty AT RECEIVER UV (dc=1 everywhere, one content patch
+= the window-rect corner of the 2048 FB). One-line fix at the four draw sites: during
+g_nativeShadowActive the viewport/scissor come from the target extent, never CachedViewport.
+Water body class (beta14f) UNCHANGED - it now visibly receives the cast shadows (SR floor
+59,61,88: sheet bluer+darker than 48,54,66 with an empty map) - 'water missing' reads were
+the FLAT sheet next to the bed, cured by the shadows arriving, not by a new water class.

@@ -1842,3 +1842,39 @@ water STILL absent on Windows; two root causes pinned, both driver-tolerance art
 - STILL OPEN: small bridges (third ask for map name + screenshot), water detail (flow/sparkle = beta15).
 NEXT: user Windows retest (shadows edge-to-edge again, water sheet visibly painted, no dark scenes);
 then bridges with screenshots.
+
+### 2026-10-28 (18) - ROUND 13 beta14g: SHADOW MAP WAS EMPTY FOR RECEIVERS - viewport vs extent
+
+USER SYMPTOMS (reproduced on LOCAL wine run of beta14f): "shadows aren't there ... water
+missing". Shadow-map VIZ build (R=sampled depth, G=inShade overlay in mesh.frag + terrain.frag,
+spv recompiled by cmake - lesson: any Shaders/ edit must ALSO be cp'ed into the game dir):
+BB frame = whole scene magenta = receivers sample dc=1.0 (far clear), inShade=0 = map EFFECTIVELY
+EMPTY at the uv the receivers compute; only one dark-red (low-dc) patch near lower-center had
+content. Three disjoint symptom classes now nailed: global darkening = acne (map full, self-occlude);
+normal brightness no shadows = EMPTY map (this); mid = acne-lite. Ring overflow ruled out (WUBO
+print: ~2400 draws/frame << 16384).
+
+ROOT CAUSE (code, not field): all four draw sites set viewport `if (ViewportValid) vp = CachedViewport`
+- the light pass inherits the GAME viewport (window rect 1024x768) so its draws rasterized into
+that SUB-RECT of the FIXED 2048^2 shadow FB, while receivers sample lightMvp uv across the WHOLE
+texture -> everything outside [0,1024)x[0,768] reads the far-plane clear. beta14d/e maps were
+SWAP-SIZED so extent==viewport masked this forever. Fix: `&& !g_nativeShadowActive` at all four
+sites -> light pass uses full target extent.
+
+LOCAL PROOF: sBB-vs-e28 tile diff showed up to 30 lum one-way ground darkening (regression existed
+LOCALLY, earlier mean-only comparisons missed it); after fix, sBB-vs-e32 deltas bidirectional
+(+-drift only). VIZ after fix: real occluder fans (wedge shadows around trees/pavilion) + varying
+depths. Pond crop beta14g: water sheet visibly MODULATED by big cast shadows (water was drawing
+all along; with an empty map its surface sat flat/bright = read as 'missing' next to the bed).
+
+- SHADOW FIX: one-line condition on 4 viewport blocks in dx8wrapper.cpp (VulkanDrawIndexed,
+  clipmap, terrain, clipmap-shroud sites). Water class UNCHANGED this round.
+- SOAKS (build36 21,935,361 B sha 7ed2bb69, probe-free): BB/TL/SR exit=0, 0 exceptions, probe
+  strings 0; SR floor (59,61,88) bluer+darker = shadows landing ON the water sheet (proof it
+  rasterizes+receives); TL floor (92,82,66).
+- LESSON (AUDIT 10): a render pass must force FULL-EXTENT viewport/scissor; a pass that inherits
+  the main-view viewport silently under-fills any RT whose extent != viewport. 'Empty RT' VIZ
+  (depth overlay) BEFORE touching bias/range knobs. cmake regenerates Shaders/*.spv on make RTS
+  - but the GAME dir keeps its own shaders/: cp build/bin/shaders/*.spv across before soaking.
+NEXT: user wine retest (shadows edge-to-edge, water sheet with shadows on it); bridges STILL
+awaiting map name + screenshot.

@@ -1433,7 +1433,7 @@ bool DX8Wrapper::VulkanDrawIndexed(
 		targetExtent.width = rt->GetWidth();
 		targetExtent.height = rt->GetHeight();
 	}
-	if (DX8Wrapper::ViewportValid) {
+	if (DX8Wrapper::ViewportValid && !g_nativeShadowActive) {	// beta14g ROOT: the light pass inherits the GAME viewport (window rect), so its draws rasterized into that sub-rect of the FIXED 2048 shadow FB while receivers sample lightMvp uv over the WHOLE texture -> everything outside the viewport rect reads the far clear = the 'shadows are not there' empty map (VIZ: dc=1 everywhere, one content patch). swap-sized maps hid this because extent==viewport. Light pass must cover the full target extent.
 		vp = DX8Wrapper::CachedViewport;
 	} else {
 		vp.X = 0;
@@ -1680,7 +1680,7 @@ bool DX8Wrapper::VulkanDrawClipmapPass(int mode, VkGpuBuffer *vb, VkGpuBuffer *i
 
 	D3DVIEWPORT8 vp;
 	VkExtent2D targetExtent = device.GetSwapExtent();
-	if (DX8Wrapper::ViewportValid) {
+	if (DX8Wrapper::ViewportValid && !g_nativeShadowActive) {	// beta14g ROOT: the light pass inherits the GAME viewport (window rect), so its draws rasterized into that sub-rect of the FIXED 2048 shadow FB while receivers sample lightMvp uv over the WHOLE texture -> everything outside the viewport rect reads the far clear = the 'shadows are not there' empty map (VIZ: dc=1 everywhere, one content patch). swap-sized maps hid this because extent==viewport. Light pass must cover the full target extent.
 		vp = DX8Wrapper::CachedViewport;
 	} else {
 		vp.X = 0; vp.Y = 0; vp.Width = targetExtent.width; vp.Height = targetExtent.height;
@@ -3232,7 +3232,7 @@ bool DX8Wrapper::VulkanDrawTerrainPass(int mode,
 	// Viewport/scissor (same convention as VulkanDrawIndexed).
 	D3DVIEWPORT8 vp;
 	VkExtent2D targetExtent = device.GetSwapExtent();
-	if (DX8Wrapper::ViewportValid) {
+	if (DX8Wrapper::ViewportValid && !g_nativeShadowActive) {	// beta14g ROOT: the light pass inherits the GAME viewport (window rect), so its draws rasterized into that sub-rect of the FIXED 2048 shadow FB while receivers sample lightMvp uv over the WHOLE texture -> everything outside the viewport rect reads the far clear = the 'shadows are not there' empty map (VIZ: dc=1 everywhere, one content patch). swap-sized maps hid this because extent==viewport. Light pass must cover the full target extent.
 		vp = DX8Wrapper::CachedViewport;
 	} else {
 		vp.X = 0; vp.Y = 0;
@@ -3321,7 +3321,7 @@ bool DX8Wrapper::VulkanDrawClipmapShroudPass(VkGpuBuffer *vb, VkGpuBuffer *ib,
 
 	D3DVIEWPORT8 vp;
 	VkExtent2D targetExtent = device.GetSwapExtent();
-	if (DX8Wrapper::ViewportValid) {
+	if (DX8Wrapper::ViewportValid && !g_nativeShadowActive) {	// beta14g ROOT: the light pass inherits the GAME viewport (window rect), so its draws rasterized into that sub-rect of the FIXED 2048 shadow FB while receivers sample lightMvp uv over the WHOLE texture -> everything outside the viewport rect reads the far clear = the 'shadows are not there' empty map (VIZ: dc=1 everywhere, one content patch). swap-sized maps hid this because extent==viewport. Light pass must cover the full target extent.
 		vp = DX8Wrapper::CachedViewport;
 	} else {
 		vp.X = 0; vp.Y = 0; vp.Width = targetExtent.width; vp.Height = targetExtent.height;
