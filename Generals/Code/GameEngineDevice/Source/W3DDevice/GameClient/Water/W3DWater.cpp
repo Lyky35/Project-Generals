@@ -1963,27 +1963,14 @@ void WaterRenderObjClass::drawSea(RenderInfoClass & rinfo)
 
 	if (TheTerrainRenderObject->getShroud())
 	{
-		//do second pass to apply the shroud on water plane
-		W3DShaderManager::setTexture(0,TheTerrainRenderObject->getShroud()->getShroudTexture());
-		W3DShaderManager::setShader(W3DShaderManager::ST_SHROUD_TEXTURE, 0);
-		m_pDev->SetStreamSource(0,m_vertexBufferD3D,sizeof(WaterRenderObjClass::SEA_PATCH_VERTEX));
-		m_pDev->SetIndices(m_indexBufferD3D,0);
-		for (startY=patchY=(seaBox.Center.Y-seaBox.Extent.Y)/(PATCH_WIDTH*PATCH_SCALE); (patchY*PATCH_WIDTH*PATCH_SCALE)<(seaBox.Center.Y+seaBox.Extent.Y); patchY++)
-		{
-			for (startX=patchX=(seaBox.Center.X-seaBox.Extent.X)/(PATCH_WIDTH*PATCH_SCALE); (patchX*PATCH_WIDTH*PATCH_SCALE)<(seaBox.Center.X+seaBox.Extent.X); patchX++)
-			{
-				D3DXMATRIX matTemp;
-				patchMatrix._41=(float)(patchX*PATCH_WIDTH*PATCH_SCALE);
-				patchMatrix._43=(float)(patchY*PATCH_WIDTH*PATCH_SCALE);
-
-				D3DXMatrixMultiply(&matTemp, &patchMatrix, &matWW3D);
-
-				DX8Wrapper::_Set_DX8_Transform(D3DTS_WORLD, *(Matrix4*)&matTemp);
-
-				m_pDev->DrawIndexedPrimitive(D3DPT_TRIANGLESTRIP,0,m_numVertices,0,m_numIndices);
-			}
-		}
-		W3DShaderManager::resetShader(W3DShaderManager::ST_SHROUD_TEXTURE);
+		// PORT (beta14d): DROPPED the shroud-only SECOND pass over the sea patches.
+		// The port never compiles DX8 pixel shaders, so every driver takes this
+		// legacy card fallback: a re-draw of the identical patches with ST_SHROUD
+		// stage0 REPLACE + modulate blend, which painted the sheet warm-brown over
+		// the correct pass-1 water (field beta14: flat brown / missing plane). The
+		// single pass-1 draw above already yields the proven dark-teal water (mode-h
+		// semantics from the beta14 pixel differential). Shroud fog over edge water
+		// is sacrificed: cosmetic, unexplored map-edge water only.
 	}
 
 }
@@ -2417,27 +2404,12 @@ void WaterRenderObjClass::renderWaterMesh(void)
 	m_pDev->SetVertexShader(WATER_MESH_FVF);
 
 
-	if (TheTerrainRenderObject->getShroud() && !m_trapezoidWaterPixelShader)
-	{	//we have a shroud to apply and can't do it inside the pixel shader.
-		//so do it in stage1
-		W3DShaderManager::setTexture(0,TheTerrainRenderObject->getShroud()->getShroudTexture());
-		W3DShaderManager::setShader(W3DShaderManager::ST_SHROUD_TEXTURE, 1);
-
-		//modulate with shroud texture
-		DX8Wrapper::Set_DX8_Texture_Stage_State( 1, D3DTSS_COLORARG1, D3DTA_TEXTURE );	//stage 1 texture
-		DX8Wrapper::Set_DX8_Texture_Stage_State( 1, D3DTSS_COLORARG2, D3DTA_CURRENT );	//previous stage texture
-		DX8Wrapper::Set_DX8_Texture_Stage_State( 1, D3DTSS_COLOROP,   D3DTOP_MODULATE );
-		DX8Wrapper::Set_DX8_Texture_Stage_State( 1, D3DTSS_ALPHAOP,   D3DTOP_MODULATE );
-
-		//Shroud shader uses z-compare of EQUAL which wouldn't work on water because it doesn't
-		//write to the zbuffer.  Change to LESSEQUAL.
-		DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
-		m_pDev->DrawIndexedPrimitive(D3DPT_TRIANGLESTRIP,0,mx*my,0,m_numIndices-2);
-		DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_ZFUNC, D3DCMP_EQUAL);
-		W3DShaderManager::resetShader(W3DShaderManager::ST_SHROUD_TEXTURE);
-	}
-	else
-		m_pDev->DrawIndexedPrimitive(D3DPT_TRIANGLESTRIP,0,mx*my,0,m_numIndices-2);
+	// PORT (beta14d): the shroud-stage1 variant of this body draw (stage0 rebound to
+	// the shroud texture, ST_SHROUD modulate, ZFUNC LESSEQUAL) is the same bad
+	// fallback the trap/drawSea sites had: on the port it produced the warm-brown
+	// sheet instead of water (mesh-water maps: TL/SR class). Draw the body once,
+	// unshrouded = pass-1 semantics = proven teal look.
+	m_pDev->DrawIndexedPrimitive(D3DPT_TRIANGLESTRIP,0,mx*my,0,m_numIndices-2);
 	
 	Debug_Statistics::Record_DX8_Polys_And_Vertices(m_numIndices-2,mx*my,ShaderClass::_PresetOpaqueShader);
 
@@ -2897,19 +2869,10 @@ void WaterRenderObjClass::drawRiverWater(PolygonTrigger *pTrig)
 	if (m_riverWaterPixelShader) DX8Wrapper::_Get_D3D_Device8()->SetPixelShader(NULL);
 
 
-	//do second pass to apply the shroud on water plane
-	if (TheTerrainRenderObject->getShroud())
-	{
-		W3DShaderManager::setTexture(0,TheTerrainRenderObject->getShroud()->getShroudTexture());
-		W3DShaderManager::setShader(W3DShaderManager::ST_SHROUD_TEXTURE, 0);
-		DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-		//Shroud shader uses z-compare of EQUAL which wouldn't work on water because it doesn't
-		//write to the zbuffer.  Change to LESSEQUAL.
-		DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
-		DX8Wrapper::Draw_Triangles(	0,rectangleCount*2, 0,	(rectangleCount+1)*2);
-		DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_ZFUNC, D3DCMP_EQUAL);
-		W3DShaderManager::resetShader(W3DShaderManager::ST_SHROUD_TEXTURE);
-	}
+	// PORT (beta14d): DROPPED the shroud-only second pass on the flat water plane -
+	// same warm-brown re-draw artifact class as the trap/drawSea fallbacks (the
+	// port never has the PS.1.1 main-pass variant that folds shroud into stage3).
+	// The pass-1 Draw_Triangles above is the whole story: correct teal body.
 	DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_CULLMODE, cull);
 
 
@@ -3309,23 +3272,13 @@ void WaterRenderObjClass::drawTrapezoidWater(Vector3 points[4])
 			DX8Wrapper::Set_Texture(3, NULL);	//free possible reference to shroud texture
 			DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_ZFUNC, D3DCMP_EQUAL);
 		}
-		else
-		{	//do second pass to apply the shroud on water plane for cards that can't do it in main pass.
-			W3DShaderManager::setTexture(0,TheTerrainRenderObject->getShroud()->getShroudTexture());
-			W3DShaderManager::setShader(W3DShaderManager::ST_SHROUD_TEXTURE, 0);
-			DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-			//Shroud shader uses z-compare of EQUAL which wouldn't work on water because it doesn't
-			//write to the zbuffer.  Change to LESSEQUAL.
-			// PORT: the main pass left stage1/2 bound (sparkle+noise ADDPRODUCT);
-			// this shroud-only pass must not re-add the shimmer (the PS-era applied
-			// everything in ONE pass instead - hence stage3 shroud there).
-			DX8Wrapper::Set_DX8_Texture_Stage_State(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
-			DX8Wrapper::Set_DX8_Texture_Stage_State(2, D3DTSS_COLOROP, D3DTOP_DISABLE);
-			DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
-			DX8Wrapper::Draw_Triangles(	0,rectangleCount*2, 0,	(rectangleCount+1)*2);
-			DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_ZFUNC, D3DCMP_EQUAL);
-			W3DShaderManager::resetShader(W3DShaderManager::ST_SHROUD_TEXTURE);
-		}
+		// PORT (beta14d): DROPPED the PS.1.1-unsupported second-pass shroud redraw
+		// entirely (setTexture(0,shroud)+ST_SHROUD stage0 REPLACE + ZERO/SRC_COLOR
+		// modulate re-draw): the port always took this branch (no DX8 pixel shaders,
+		// m_trapezoidWaterPixelShader==null) and the redraw painted the giant sheet
+		// warm-brown (field beta14 'water plane missing/brown'; local differential
+		// confirmed pass-1 alone = natural teal, mode-h semantics). State restores
+		// around this site are no-ops with the branch gone; cull restore follows.
 	}
 	DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_CULLMODE, cull);
 }

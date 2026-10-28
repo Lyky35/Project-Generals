@@ -652,7 +652,14 @@ bool VulkanDevice::CreateRenderPass()
 	VkAttachmentDescription rtColor = colorAttachment;
 	rtColor.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
 	rtColor.finalLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
-	VkAttachmentDescription rtAttachments[] = { rtColor, depthAttachment };
+	VkAttachmentDescription rtDepth = depthAttachment;
+	// PORT (beta14d): the light-pass DEPTH must survive the render pass end - the
+	// shadow map is SAMPLED by the main pass after rtRenderPass closes, and DONT_CARE
+	// legally discards the attachment contents (lavapipe kept it and shadows seemed
+	// fine; strict AMD/NV drivers did not => field report 'soft shadows missing' +
+	// black self-shadow artifacts on the beta13 shadow-on builds).
+	rtDepth.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
+	VkAttachmentDescription rtAttachments[] = { rtColor, rtDepth };
 	VkRenderPassCreateInfo rtPassInfo = {};
 	rtPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
 	rtPassInfo.attachmentCount = 2;

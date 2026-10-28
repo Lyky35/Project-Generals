@@ -164,7 +164,9 @@ DX8_CleanupHook	 *DX8Wrapper::m_pCleanupHook=NULL;
 DX8_Stats	 DX8Wrapper::stats;
 #endif
 
-static const int VULKAN_UBO_RING_DRAWS = 2048;
+// PORT (beta14d): native shadow map re-enable re-renders the whole scene into
+// the light depth RT every frame => per-frame draw allocations roughly double.
+static const int VULKAN_UBO_RING_DRAWS = 8192;
 // Ring stride MUST be a multiple of the device's minUniformBufferOffsetAlignment
 // (it applies to descriptor bufferInfo.offset too). AMD can report > 512 while
 // lavapipe reports 16 - a fixed 512 stride then makes every non-zero ring slot
@@ -2931,7 +2933,10 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 
 	// Native shadow map params + light view-projection (captured while the
 	// light pass had the view/proj bound)
-	ubo->shadowParams[0] = 0.06f;		// depth bias: ~3% of the 512-wide ortho light map (NDC fraction).
+	ubo->shadowParams[0] = 0.0035f;		// PORT beta14d: bias ~12 world units on the tighter 10..3584 rig
+					// (was 0.06 NDC of a 4246-unit range = ~255 world units >> ZH structure
+					// heights 10-50u -> inShade always 0 -> 'soft shadows missing' even with
+					// the map ON. Raise locally if thin-deck self-shadow acne reappears.)
 	ubo->shadowParams[1] = 0.40f;		// darkening in shadow (retail shadow volume = blend-modulated darkening)
 	// PORT root-cause (round-8 black bridge/dark buildings): a 0.0035 NDC bias = ~0.1 texel
 	// -> EVERY mesh quad self-shadows against ITS OWN depth in the light pass = tinted to

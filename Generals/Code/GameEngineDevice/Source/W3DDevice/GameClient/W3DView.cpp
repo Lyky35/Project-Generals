@@ -1284,15 +1284,21 @@ static void NativeShadow_Render(RTS3DScene *scene, CameraClass *cam)
 	float savedNear = 0.0f, savedFar = 0.0f;
 	cam->Get_Clip_Planes(savedNear, savedFar);
 
-	// light pose: eye at LightPosWorld[0], looking at the origin
+	// light pose: sun direction = normalized LightPosWorld[0]; the ortho box
+	// MUST follow the camera's ground cell (the old origin-centered +/-409
+	// world-unit box never covered spawn/view areas thousands of units away
+	// -> receivers sampled outside the map -> ZERO shadows = the field
+	// 'soft shadows missing' symptom even with the map machinery enabled).
 	extern Vector3 LightPosWorld[];
-	Vector3 eye = LightPosWorld[0];
-	Vector3 fwd(0.0f, 0.0f, -1.0f);
-	if (eye.Length2() > 1e-6f) {
-		fwd = eye;
-		fwd.Normalize();
-		fwd = Vector3(-fwd.X, -fwd.Y, -fwd.Z);
-	}
+	Vector3 sun = LightPosWorld[0];
+	if (!(sun.Length2() > 1e-6f))
+		sun = Vector3(0.0f, 0.0f, 200.0f);
+	sun.Normalize();
+	const float SHADOW_DIST = 2048.0f;	// eye distance along sun ray
+	float cX = savedTm.Get_X_Translation();
+	float cY = savedTm.Get_Y_Translation();
+	Vector3 eye(cX + sun.X * SHADOW_DIST, cY + sun.Y * SHADOW_DIST, sun.Z * SHADOW_DIST);
+	Vector3 fwd(-sun.X, -sun.Y, -sun.Z);
 	// orthonormal basis: right = fwd x upH (manual cross to avoid API quirks)
 	float ux = 0.0f, uy = 1.0f, uz = 0.0f;
 	float rx = fwd.Y * uz - fwd.Z * uy;
@@ -1315,16 +1321,17 @@ static void NativeShadow_Render(RTS3DScene *scene, CameraClass *cam)
 	Matrix3D lightTm(right, upv, Vector3(-fwd.X, -fwd.Y, -fwd.Z), eye);
 	cam->Set_Transform(lightTm);
 	cam->Set_Projection_Type(CameraClass::ORTHO);
-	float dist = eye.Length();
-	cam->Set_Clip_Planes(10.0f, dist + 4096.0f);
-	float halfAtDist = 4096.0f / 10.0f;	// view plane * znear = ortho extent
+	float farDist = SHADOW_DIST + 1536.0f;
+	cam->Set_Clip_Planes(10.0f, farDist);
+	float halfAtDist = 3072.0f / 10.0f;	// view plane * znear = ortho half-extent (world units; 1024-px light map -> ~6-unit texels)
 	cam->Set_View_Plane(Vector2(-halfAtDist, -halfAtDist), Vector2(halfAtDist, halfAtDist));
 	cam->Apply();
 
-	DX8Wrapper::NativeShadow_CaptureLightMvp();
 	DX8Wrapper::NativeShadow_OpenRT();
 	scene->doRender(cam);
+	DX8Wrapper::NativeShadow_CaptureLightMvp();	// PORT beta14d: capture AFTER doRender - the wrapper's view/projection matrices only hold the light pose once the scene pass has applied them (capturing pre-pass snapshotted the stale GAME camera = wrong shadow direction)
 	DX8Wrapper::NativeShadow_CloseRT();
+
 
 	// restore camera
 	cam->Set_Transform(savedTm);
@@ -1369,9 +1376,13 @@ void W3DView::draw( void )
 		W3DDisplay::m_3DScene->setCustomPassMode(customScenePassMode);
 		if (m_isWireFrameEnabled)
 			W3DDisplay::m_3DScene->Set_Extra_Pass_Polygon_Mode(SceneClass::EXTRA_PASS_CLEAR_LINE);
-		// DISABLED: native shadow experiment caused artifacts + a full extra
-		// scene render per frame (2x cost) - legacy DoShadows remains active.
-		// NativeShadow_Render(W3DDisplay::m_3DScene, m_3DCamera);
+		// PORT (beta14d): native shadow map RE-ENABLED (user field report: soft
+		// shadows missing since the deliberate beta13 kill-switch). The look now
+		// comes from the PCF'd light-space depth map (mesh.frag/terrain.frag
+		// receivers, gate frame.shadowParams.z); rtRenderPass depth is STOREd so
+		// the map survives on strict AMD/NV drivers, and the per-frame UBO ring
+		// was sized for the doubled draw count. Cost: one extra scene render.
+		NativeShadow_Render(W3DDisplay::m_3DScene, m_3DCamera);
 		W3DDisplay::m_3DScene->doRender( m_3DCamera );
 		W3DDisplay::m_3DScene->Set_Extra_Pass_Polygon_Mode(SceneClass::EXTRA_PASS_DISABLE);
 		m_isWireFrameEnabled = m_nextWireFrameEnabled;
@@ -1417,7 +1428,7 @@ void W3DView::draw( void )
 		//The pass that rendered into a texture may have left the z-buffer in a weird state
 		//so clear it before rendering normal scene.
 		///@todo: Don't clear z-buffer unless shader uses z-bias or anything else that would cause <= z to fail on normal render.
-		// NativeShadow_Render(W3DDisplay::m_3DScene, m_3DCamera);
+		NativeShadow_Render(W3DDisplay::m_3DScene, m_3DCamera);
 		DX8Wrapper::Clear(false, true, Vector3(0.0f,0.0f,0.0f), TheWaterTransparency->m_minWaterOpacity);	// Clear z but not color
 		W3DDisplay::m_3DScene->setCustomPassMode(SCENE_PASS_DEFAULT);
 		W3DDisplay::m_3DScene->doRender( m_3DCamera );
