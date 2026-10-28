@@ -236,3 +236,14 @@ Everything landed on the clipmap side WITHOUT touching the design above:
   stage classes were the silent-drop suspect for the field 'no water anywhere' (see AUDIT 8).
 - Detail pass (flow/noise/sparkle) is deferred to beta15 and must be built on existing proven
   variant classes only; do NOT re-add CAMERASPACEPOSITION noise texgen or the op-7 ADDPRODUCT stage.
+
+## Addendum (beta14, round 12) - beta14f shadow-map + water-class fix
+- Shadow RT: FIXED 2048x2048 (was swap-sized: non-square 19/31u texels at field res vs 23u bias
+  = global acne = the 'everything is now dark' report). bias 0.0011 NDC = ~23u = ~1.9 texels.
+- Water now NEVER draws in the shadow light pass (opaque Z-writer as caster = global occluder);
+  guard = file-scope extern "C" Vulkan_NativeShadow_Active() at WaterRenderObjClass::Render top.
+- Water body class = verbatim replicate of the field-proven shroud-fallback pass (stage0 shroud
+  texture modulate via W3DShaderManager + PRELIT_DIFFUSE + _PresetAlphaShader + ALPHAOP ADD +
+  TCI 0 + stages1-3 off + LEQUAL + SRCALPHA blend, VB alpha 0xff). White-1x1/opaque-forced was
+  still a never-exercised variant = silent drop. Green-coverage probe confirmed the replicated
+  class paints real water areas locally (SR 23px / TL 26px at 256x192 scale).

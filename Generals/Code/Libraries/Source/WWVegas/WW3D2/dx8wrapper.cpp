@@ -2785,8 +2785,10 @@ bool DX8Wrapper::NativeShadow_Ready()
 		VulkanDevice &device = VulkanDevice::Instance();
 		if (!device.IsInitialized())
 			return false;
-		g_nativeShadowRT = Create_Render_Target((int)device.GetSwapExtent().width,
-			(int)device.GetSwapExtent().height, false);
+		g_nativeShadowRT = Create_Render_Target(2048, 2048, false);	// beta14f: FIXED square map: swap-sized made the +/-12288 box give NON-SQUARE texels at field desktop
+			// res (19u x 31u at 1280x800) < the 23u bias => terrain self-shadows EVERY
+			// steep slope = field 'everything is now dark' beta14e. 2048^2 = 12u texels
+			// both axes, 32MB total, deterministic on every driver.
 		if (!g_nativeShadowRT) {
 			g_nativeShadowRT = nullptr;
 			return false;
@@ -2933,7 +2935,8 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 
 	// Native shadow map params + light view-projection (captured while the
 	// light pass had the view/proj bound)
-	ubo->shadowParams[0] = 0.0011f;		// PORT beta14e: ~23 world units on the 10..21094 rig (~1-2 texels of the enlarged light map; the 0.0035 beta14d value now = ~74u peter-panning)		// PORT beta14d: bias ~12 world units on the tighter 10..3584 rig
+	ubo->shadowParams[0] = 0.0011f;		// beta14f: ~23 world units = 1.9 texels of the FIXED 2048 map (same texel-ratio
+					// that was field-proven on beta14d's smaller rig)		// PORT beta14d: bias ~12 world units on the tighter 10..3584 rig
 					// (was 0.06 NDC of a 4246-unit range = ~255 world units >> ZH structure
 					// heights 10-50u -> inShade always 0 -> 'soft shadows missing' even with
 					// the map ON. Raise locally if thin-deck self-shadow acne reappears.)

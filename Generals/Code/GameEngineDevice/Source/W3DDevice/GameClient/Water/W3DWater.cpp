@@ -109,6 +109,10 @@
 #define WATER_MESH_X_VERTICES	128
 #define WATER_MESH_Y_VERTICES	128
 #define WATER_MESH_SPACING	MAP_XY_FACTOR	//same as terrain
+// PORT (beta14f): light-pass query from dx8wrapper (true only between
+// NativeShadow_OpenRT/CloseRT). File scope so the Render() guard below sees it
+// (function-scope extern "C" decls cannot introduce new names in C++).
+extern "C" bool Vulkan_NativeShadow_Active();
 
 #ifdef USE_MESH_NORMALS
 #define WATER_MESH_FVF	DX8_FVF_XYZNDUV2
@@ -1512,6 +1516,14 @@ void WaterRenderObjClass::Render(RenderInfoClass & rinfo)
 	if (ShaderClass::Is_Backface_Culling_Inverted())
 		return;	//the water object will not reflect in itself, so don't do anything if rendering a mirror.
 
+	// PORT (beta14f): NEVER draw water during the native-shadow light pass. The body
+	// plane is opaque + Z-writing now; as a light-pass caster it becomes a global
+	// occluder (its depth wins the map compare over every receiver downstream of the
+	// sun through lake/grid extent) = field beta14e 'everything is now dark'.
+	// Water is receiver-only.
+	if (Vulkan_NativeShadow_Active())
+		return;
+
 	//this water type needs to rendered after the rest of scene, so buffer it up for later
 
 	// If static sort lists are enabled and this mesh has a sort level, put it on the list instead
@@ -2599,37 +2611,50 @@ void WaterRenderObjClass::drawRiverWater(PolygonTrigger *pTrig)
 
 void WaterRenderObjClass::setupFlatWaterShader(void) 
 {
-	// PORT (beta14e): WATER RE-IMPLEMENTED FROM THE GROUND UP (user field: no water
-	// at all on Windows 10 AMD+NV; the staged water pipeline - river texture + sparkle
-	// ADDPRODUCT + CAMERASPACEPOSITION noise texgen + alpha shader + DESTALPHA feather
-	// - never submitted a single visible body draw on the field drivers, while every
-	// standard opaque mesh draw (units/terrain/props) does). Every water body now draws
-	// through THIS state only: stage0 = white 1x1 MODULATE, PRELIT_DIFFUSE vertex color
-	// (already tinted per-map: terrain ambient + sun x INI waterDiffuse), _PresetOpaqueShader
-	// (the proven pipeline class), ALPHABLENDENABLE off, ZWRITE on + ZFUNC LEQUAL (the
-	// GPU clipmap bed draws AFTER the water object and must lose against the water's Z),
-	// stages 1-3 explicitly disabled. No pixel shaders, no raw device state.
+	// PORT (beta14f): the body water STATE now replicates VERBATIM the one water draw
+	// ever proven VISIBLE on the field Win10 AMD+NV: the beta14b/c shroud-fallback
+	// second-pass (the warm-brown sheet the user kept seeing) = stage0 shroud texture
+	// modulated via the W3DShaderManager's own ST_SHROUD_TEXTURE config + PRELIT_DIFFUSE
+	// material + _PresetAlphaShader shader state + game-default src-alpha blend (the VBs
+	// carry alpha 0xff so it replaced solid) + ZFUNC LEQUAL + stages1-3 off. The beta14e
+	// rebuild (procedural white 1x1 texture, _PresetOpaqueShader, ALPHAOP/blend forced
+	// off) was YET ANOTHER never-exercised variant class = GetPipeline NULL silent drop
+	// on the field drivers (field report: water still absent). Per-map color still comes
+	// from the VB diffuse (terrain ambient+sun x INI waterDiffuse); the shroud modulate
+	// additionally makes water under fog read dark like retail fogged water. No pixel
+	// shaders, no custom FVFs, no blend pairs.
 	wfbTot++;
-	DX8Wrapper::Set_Texture(0, m_whiteTexture);
-	for (int st = 1; st <= 3; st++)
-		DX8Wrapper::Set_Texture(st, NULL);
-	VertexMaterialClass *vmat = VertexMaterialClass::Get_Preset(VertexMaterialClass::PRELIT_DIFFUSE);
+	// Exact carry-over from the proven beta14b/c class: the old pass-1 setup left these
+	// stage states set when the field-visible brown sheet drew; order matches the old
+	// call sequence (setup runs first, fallback re-bound stage0 after).
+	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_ALPHAOP,   D3DTOP_ADD );
+	DX8Wrapper::Set_DX8_Texture_Stage_State(0,  D3DTSS_TEXCOORDINDEX, 0);
+	DX8Wrapper::Set_DX8_Texture_Stage_State(1,  D3DTSS_TEXCOORDINDEX, 0);
+	if (TheTerrainRenderObject->getShroud())
+	{
+		// the field-proven class (identical state sequence to the beta14c fallback pass)
+		W3DShaderManager::setTexture(0,TheTerrainRenderObject->getShroud()->getShroudTexture());
+		W3DShaderManager::setShader(W3DShaderManager::ST_SHROUD_TEXTURE, 0);
+	}
+	else
+	{
+		W3DShaderManager::resetShader(W3DShaderManager::ST_SHROUD_TEXTURE);
+		DX8Wrapper::Set_Texture(0, m_whiteTexture);	// no-shroud edge case (local dev maps)
+	}
+	VertexMaterialClass *vmat=VertexMaterialClass::Get_Preset(VertexMaterialClass::PRELIT_DIFFUSE);
 	DX8Wrapper::Set_Material(vmat);
 	REF_PTR_RELEASE(vmat);
-	DX8Wrapper::Set_Shader(ShaderClass::_PresetOpaqueShader);
-	DX8Wrapper::Set_DX8_Texture_Stage_State(0, D3DTSS_COLOROP, D3DTOP_MODULATE);
-	DX8Wrapper::Set_DX8_Texture_Stage_State(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-	DX8Wrapper::Set_DX8_Texture_Stage_State(0, D3DTSS_COLORARG2, D3DTA_CURRENT);
-	DX8Wrapper::Set_DX8_Texture_Stage_State(0, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
-	DX8Wrapper::Set_DX8_Texture_Stage_State(0, D3DTSS_TEXCOORDINDEX, 0);
-	for (int st = 1; st <= 3; st++)
-	{
+	ShaderClass m_shader2=ShaderClass::_PresetAlphaShader;	// the visible fallback ran with the
+	DX8Wrapper::Set_Shader(m_shader2);		// alpha-shader state still set; keep it
+	for (Int st = 1; st <= 3; st++)
+	{	// kill any old sparkle/noise/shroud stages (the fallback disabled these too)
 		DX8Wrapper::Set_DX8_Texture_Stage_State(st, D3DTSS_COLOROP, D3DTOP_DISABLE);
 		DX8Wrapper::Set_DX8_Texture_Stage_State(st, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 	}
-	DX8Wrapper::Set_DX8_Render_State(D3DRS_ALPHABLENDENABLE, FALSE);
-	DX8Wrapper::Set_DX8_Render_State(D3DRS_ZWRITEENABLE, TRUE);
-	DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
+	DX8Wrapper::_Get_D3D_Device8()->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);	// proven
+	// BLEND IS NOT TOUCHED: game SRCALPHA/INVSRCALPHA + blendenable TRUE = the exact state
+	// the brown sheet drew solid with on the field (VB alpha 0xff replaces). Sites restore
+	// these defaults after their draws already.
 	DX8Wrapper::Apply_Render_State_Changes();	//force update of view and projection matrices
 }
 

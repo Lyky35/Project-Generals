@@ -1815,3 +1815,30 @@ absent on the Windows field maps; small bridges destroyed/missing (no screenshot
   water look polish (no flow/sparkle/feather yet = beta15 item).
 NEXT: user Windows retest (shadows whole-view, water plane visible everywhere); then bridges with
 screenshots; then water detail (flow/noise on proven classes).
+
+ROUND 12 - beta14f field (beta14e shipped): "everything is now dark, no shadows visible" +
+water STILL absent on Windows; two root causes pinned, both driver-tolerance artifacts.
+- DARKNESS ROOT: shadow RT was swap-sized => at the FIELD desktop res the +/-12288-unit box
+  gave NON-SQUARE 19x31-unit texels vs a ~23-unit bias => every sun-facing slope self-shadows
+  = global acne = 'everything is now dark' (lavapipe depth tolerance hid it locally). Fix: FIXED
+  2048x2048 square map (12u texels both axes, deterministic on any driver); bias 0.0011 NDC (~23u)
+  keeps the beta14d-proven ~2-texel ratio unchanged in kind. Second candidate for the same symptom
+  removed too: the opaque, Z-writing water plane was a light-pass CASTER (global occluder once
+  drivers submitted it) - water now never renders during the light pass (guard on g_nativeShadowActive
+  via file-scope extern "C" Vulkan_NativeShadow_Active(); function-scope extern "C" decls are illegal
+  in C++ - they cannot introduce names).
+- WATER ROOT (still absent): the beta14e body config (procedural white 1x1 + _PresetOpaqueShader +
+  forced blend-off) was YET ANOTHER port-invented variant class the field drivers NULL-drop. The only
+  water draw EVER proven visible on the Windows field = the beta14b/c shroud-fallback sheet. beta14f
+  replicates that state VERBATIM for the body pass: stage0 shroud texture + W3DShaderManager ST_SHROUD_TEXTURE
+  config + PRELIT_DIFFUSE + _PresetAlphaShader + stage0 ALPHAOP ADD / TEXCOORDINDEX 0 carry-over (the
+  old setup left these set when the fallback drew - variant key must match, not just look alike) +
+  stages1-3 explicitly DISABLE + ZFUNC LEQUAL + game SRCALPHA/INVSRCALPHA blend untouched (VBs carry
+  alpha 0xff -> replaces solid). Local proof: green vertex-color coverage probe on the shipped class
+  paints the SR river (23px/49k at 256x192) + TL lake (26px); SR floor strip (48,54,66) ~= beta14e
+  sheet tone (shroud modulate white in explored spawn area, dark under fog like retail); BB frame
+  mean (71,55,48) identical = zero global darkening.
+- SOAKS (build31 21,935,361 B sha 1b931489, probe-free): BB/TL/SR 0 exceptions, 0 probe strings.
+- STILL OPEN: small bridges (third ask for map name + screenshot), water detail (flow/sparkle = beta15).
+NEXT: user Windows retest (shadows edge-to-edge again, water sheet visibly painted, no dark scenes);
+then bridges with screenshots.
