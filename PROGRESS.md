@@ -1715,3 +1715,29 @@ unexplored/fog (shroud modulate now samples the right texel), water solid, build
 under fog, blob shadows intact. Blend-fidelity item (port (ONE,INVSRCCOLOR) vs retail 2*src*dst
 MUL_SPRITE) stays OPEN: VK factors DST_COLOR+SRC_COLOR with ADD would match retail exactly and
 is a candidate beta15 change; bridge already renders plausibly with the lerp.
+
+ROUND 9 - beta14 FIELD: water plane still missing (user: "the waterplane appears to be missing")
+- WATER ROUND 2, ROOT-CAUSED: Bridge Bsters water = ONE whole-map PolygonTrigger (z=41, u/v clamp
+  50 -> rect=2500, idx=15000). CPU side reaches DX8Wrapper::Draw with vbt/ibt = BUFFER_TYPE_DYNAMIC_DX8
+  (2) and the port's VulkanDrawIndexed issues vkCmdDrawIndexed (drew=1) with FULLY correct state
+  (gate log: t0=twwater01.tga idx=15000 t1o=7 ADDPRODUCT sparkle t2o=2 noise ab=1 sb=7 db=8 zf=LEQUAL
+  cul=NONE). Invisibility mechanism: the feather block sets (SRCBLEND,DESTBLEND) = D3DBLEND_DESTALPHA/
+  INVDESTALPHA: out = water*dstA + scene*(1-dstA). Retail A8R8G8B8 backbuffer after opaque terrain has
+  dstA = vertex alpha = 1 -> water body effectively opaque (retail river is never see-through). Port's
+  VK framebuffer alpha at those pixels = 0: mesh.frag writes outColor.a from the alpha-op chain and
+  terrain-clipmap vertices leave it at 0 (diffuse attr unused there). water*0 = zero pixels from a
+  perfect draw. Differential proof: forcing the (7,8) pair to (ONE,ZERO) replace-blend for the three
+  idx=15000 draws painted the full plane as the ff856853 brown diffuse sheet with correct occlusion
+  by land above z=41 -> plane geometry, depth, VB, pipeline all exonerated in one step.
+- FIX (dx8wrapper VulkanBuildPipelineState): rewrite (DESTALPHA,INVDESTALPHA) -> (ONE,ZERO) = emulate
+  the retail dstA=1 constant. Exact because D3DBLEND_DESTALPHA has exactly ONE consumer in the tree
+  (the W3DWater.cpp feather block; grep-verified). Kept C++-side so shipped .spv stay bit-identical
+  (the alternative - opaque variants writing a=1 - churns every mesh.frag variant).
+- SOAKS (this binary, probe-free): Bridge Busters exit=124/0 exceptions, four captures 20-38s show the
+  water body filling the valley with a soft shoreline contour over the riverbed, bridge fully textured,
+  buildings lit. Shell Map 1 exit=124/0/7-boot. Silent River exit=124/0. strings RTS.exe probe tags = 0
+  (waterDraw/bigDraw/trapDraw/wsetup/wtrap/force all gone; W3DWater + mesh.frag net-zero vs HEAD).
+- RELEASE: v1.3-beta asset rts_v13beta14.zip re-uploaded --clobber targeting this round's code commit.
+NEXT: Windows field check - water visible river-wide w/ soft edges; sparkle stage visible under daylight
+TOD; two known-open cosmetics: (a) lakedusk edge-strip draws (idx 126/36/54/147, blend (ZERO,SRCCOLOR))
+leave small bright patches at the waterline, (b) blend-fidelity item stays open for beta15.

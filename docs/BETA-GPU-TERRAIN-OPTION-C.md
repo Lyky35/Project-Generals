@@ -208,3 +208,13 @@ Everything landed on the clipmap side WITHOUT touching the design above:
 - The two remaining curView.Inverse() call sites in W3DShaderManager (mask ~1236, cloud/noise
   ~1519) are left alone: their phase error is imperceptible on road feather/cloud layers, and
   the general-inverse helper can be hoisted there in beta15 if the retail parity audit wants it.
+
+## Addendum (beta14, round 9) - water body blend: dstA=0 port artifact
+- drawTrapezoidWater's soft-edge body blend (DESTALPHA,INVDESTALPHA) assumes the retail A8R8G8B8
+  backbuffer where dstA=1 after opaque terrain. The port's opaque terrain writes framebuffer alpha from
+  mesh.frag's alpha-op chain = 0 on clipmap vertices -> water body contributed exactly zero pixels (drew=1).
+  Port now rewrites the (7,8) pair to (ONE,ZERO) replace-blend in VulkanBuildPipelineState (grep D3DBLEND_DESTALPHA:
+  single consumer in W3DWater.cpp) = faithful emulation of retail's dstA=1. Shaders untouched.
+- If a future alpha-transparent effect needs real dstA, the port must first make OPAQUE variants write
+  a=vertex-alpha into the swapchain (mesh.frag alpha-out for ALPHAOP-disabled chains), then delete the
+  blend rewrite. Until then do NOT map 7/8 through TranslateBlend unchanged for water draws.
