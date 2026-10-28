@@ -278,3 +278,9 @@ the FLAT sheet next to the bed, cured by the shadows arriving, not by a new wate
   Coverage census: e43 flood 191,365 px -> e44 149/172/29,834 px basin-only. Grid (lvl=7, 2000x2000)
   needs NO height gate - under the whole map + proven depth test handles it. Shadows untouched
   (107u*|oscale| band / 0.40 / rad 3.0 = sBB parity mean delta (16,11,7), AE-fuzz10 1.0%).
+
+- ROUND 16 (beta14j, 2026-10-28): shadow visibility tune = world band 64u (band_ndc = 64*|oscale|)
+  + darkening 0.45; PROVEN in the shell-menu background venue (menu16 vs pre-tune: grove mean
+  (33,26,19), units (29,22,16) = fans read under minarets/palms/tanks). Water untouched (coverage
+  census identical: BB 152 / TL 172 / SR 29,528 px basin-only). Lesson 13: tune looks in stable
+  menu/caster scenes, not spawn views.

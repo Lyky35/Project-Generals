@@ -2811,7 +2811,7 @@ void DX8Wrapper::NativeShadow_CaptureLightMvp()
 	{	// world-penumbra -> NDC band for THIS rig: ortho scale = 2/(far-near)
 		float oscale = CachedProjection[2][2];
 		if (fabsf(oscale) > 1e-9f) {
-			float band = 107.0f * fabsf(oscale);	// WBED/WBND census: WW3D ortho z-scale measures 1/(f-n) HERE (oscale -4.7e-5 x 21084u = 1.0), so world-107u penumbra (the beta14d-proven 0.03 NDC on 3574u) = 107*|scale| directly. The old 2/|scale| range formula doubled the range = 53u band = over-black 'corrupted' fans.
+			float band = 64.0f * fabsf(oscale);	// ROUND 16 VISIBILITY TUNE (user: "get soft shadows visible first... test in shell menu background"): the 107u band = beta14d-look but measures SUBTLE (40-60u casters top out ~0.4-0.56 of range x 0.40 = 16-22% dark = user read it as 'shadows don't work'). 64u world penumbra: 40-60u trees/buildings saturate 0.63-1.0, acne deltas 2-4u stay <3% = no halo. Formula identity from WBND census stays (band = Wworld*|oscale|, oscale measures exactly 1/(f-n) here).
 			if (band < 0.0005f) band = 0.0005f;
 			if (band > 0.06f) band = 0.06f;
 			g_shadowBandNdc = band;
@@ -2950,7 +2950,7 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 					// (was 0.06 NDC of a 4246-unit range = ~255 world units >> ZH structure
 					// heights 10-50u -> inShade always 0 -> 'soft shadows missing' even with
 					// the map ON. Raise locally if thin-deck self-shadow acne reappears.)
-	ubo->shadowParams[1] = 0.40f;		// darkening in shadow (retail shadow volume = blend-modulated darkening)
+	ubo->shadowParams[1] = 0.45f;		// ROUND 16: 0.40->0.45 (paired with 64u band; 0.5 oversaturated cores on the 53u formula, 64u headroom makes 0.45 safe)
 	// PORT root-cause (round-8 black bridge/dark buildings): a 0.0035 NDC bias = ~0.1 texel
 	// -> EVERY mesh quad self-shadows against ITS OWN depth in the light pass = tinted to
 	// near-black ("black bridge" locally, field report "bridges missing" + "buildings in fog

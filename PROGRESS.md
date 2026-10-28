@@ -1943,3 +1943,19 @@ user's 'shadows don't work' was the FLOODED scene masking a beta14d-look pipelin
 regression. Soaks e44BB/e44TL/e44SR exit 0, 0 exceptions; probe-strings census 0.
 NEXT: user wine retest (blue ONLY in basins + beta14d-look shadows on dry ground); small-bridges
 symptom STILL awaiting map name + screenshot (fifth ask in notes).
+
+ROUND 16 (beta14j, 2026-10-28): user: "Lets try to get soft shadows visible first... test in shell
+menu background". VENUE SWITCH: the shell map IS the animated menu background (INI ShellMapName
+Maps\ShellMap1\ShellMap1.map, m_shellMapOn default TRUE after round-11 memPassed fix) = a
+DETERMINISTIC 3D scene with real tall casters (domed building, minaret towers, palms, units) +
+animated camera = ideal shadow test venue (grim captures, no map load needed).
+TUNE: world penumbra band 107->64u (band_ndc = 64.0f*fabsf(oscale), same census-derived identity;
+40-60u trees/buildings saturate 0.63-1.0 of range, acne deltas 2-4u stay <3% = no halo; the 107u
+band had read 'subtle = shadows don't work' at 16-22% dark), darkening 0.40->0.45 (headroom safe
+at 64u band; 0.5 only oversaturated under the old 53u doubled-range formula). MENU VENUE DELTA
+(tuned build55 vs pre-tune beta14i stage exe, same 3s grim indices): palm-grove crop mean (33,26,19),
+unit-deck crop (29,22,16) = +11-13% per channel; fans now READ as soft ellipsoid fans under minarets,
+palms and every tank. In-map unchanged: e45BB/TL/SR exit 0, exceptions 0, probe census 0; water
+coverage census identical to round 15 (BB 152 / TL 172 / SR 29,528 px = basin-only); BB ground crop
+vs sBB = (18,12,7) (was (16,11,7)) = beta14d-look + visibility bump. Water config NOT touched.
+NEXT: user retest (menu venue + maps); small bridges STILL awaiting name+screenshot (sixth ask).
