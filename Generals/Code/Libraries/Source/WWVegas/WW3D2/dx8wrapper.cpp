@@ -3127,6 +3127,9 @@ void DX8Wrapper::VulkanBuildPipelineState(VkPipelineState *state, unsigned fvf, 
 	if (state->srcBlend == D3DBLEND_DESTALPHA && state->dstBlend == D3DBLEND_INVDESTALPHA) {
 		state->srcBlend = D3DBLEND_ONE;
 		state->dstBlend = D3DBLEND_ZERO;
+		state->blendEnable = 0;	// + use the OPAQUE pipeline class (already created+proven on
+			// every driver by terrain/units); an ab=1 (ONE,ZERO) variant is NEW and its
+			// creation path was never exercised on the field device.
 	}
 	unsigned writeMask = DX8Wrapper::RenderStates[D3DRS_COLORWRITEENABLE];
 	if (writeMask == 0x12345678)

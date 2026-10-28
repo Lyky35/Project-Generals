@@ -1741,3 +1741,15 @@ ROUND 9 - beta14 FIELD: water plane still missing (user: "the waterplane appears
 NEXT: Windows field check - water visible river-wide w/ soft edges; sparkle stage visible under daylight
 TOD; two known-open cosmetics: (a) lakedusk edge-strip draws (idx 126/36/54/147, blend (ZERO,SRCCOLOR))
 leave small bright patches at the waterline, (b) blend-fidelity item stays open for beta15.
+
+ROUND 9.5 - beta14b field: water STILL missing on the Windows/AMD device (beta14b verified).
+- The beta14b rewrite mapped (DESTALPHA,INVDESTALPHA) -> (ONE,ZERO) with blendEnable kept ON = a NEW
+  pipeline variant class (ab=1 replace-blend w/ sparkle+noise stages) that THIS port had never created
+  before; GetPipeline NULL-silently-drops a draw, so the suspect for "renders on lavapipe, absent on
+  AMD" is that variant's creation path on the field driver. Hardened: substitution now ALSO sets
+  blendEnable=0 = the OPAQUE pipeline class terrain/units create+use on every driver. Same replace
+  semantics (colorWriteMask intact), no new variant class left.
+- Local re-verify (this hardened exe): Bridge Busters valley camera paints the same full water sheet
+  (shore line + waterline foam) as the ab=1 variant did; Tournament Lake/Silent River deep-gameplay
+  frames show only above-waterline dry creek/quarry beds (correct - water is in the lake elsewhere).
+- Release beta14c: new asset NAME rts_v13beta14c.zip (cache-proof), target = this hardened commit.
