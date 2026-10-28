@@ -67,16 +67,15 @@ vec3 shadowTint()
 	 suv.x <= 0.002 || suv.x >= 0.998 || suv.y <= 0.002 || suv.y >= 0.998)
 	 return vec3(1.0);
  float inShade = 0.0;
- const float rad = 1.5 / max(textureSize(clipShadowMap, 0).x, 1.0);
+ const float rad = 3.0 / max(textureSize(clipShadowMap, 0).x, 1.0);
  for (int tx = -1; tx <= 1; tx++) {
 	 for (int ty = -1; ty <= 1; ty++) {
 	 vec2 off = vec2(float(tx), float(ty)) * rad;
 	 float d = texture(clipShadowMap, suv + off).r;
-	 inShade += smoothstep(0.0, 0.03, lpc.z - frame.shadowParams.x - d);
+	 inShade += smoothstep(0.0, frame.shadowParams.w, lpc.z - frame.shadowParams.x - d);
 	 }
  }
  inShade /= 9.0;
- return vec3(1.0 - inShade * (1.0 - frame.shadowParams.y));
 }
 
 void main()

@@ -1878,3 +1878,50 @@ all along; with an empty map its surface sat flat/bright = read as 'missing' nex
   - but the GAME dir keeps its own shaders/: cp build/bin/shaders/*.spv across before soaking.
 NEXT: user wine retest (shadows edge-to-edge, water sheet with shadows on it); bridges STILL
 awaiting map name + screenshot.
+
+### 2026-10-28 (19) - ROUND 14 beta14h: shadow BAND is NDC-space + water was MODULATED BLACK
+
+USER (wine retest of beta14g): "shadows might be corrupted or not showing correctly" + "water
+plane not rendering - completely missing ... water should be blue ... what you are showing me is
+river bed without any water". Both root-caused LOCALLY (builds 44-52 chain, census prints, e37-e43
+frames) - no field guessing.
+
+SHADOW (class = band, not emptiness this time): beta14g's map IS filled (round 13) but the PCF
+smoothstep(0.0, 0.03, delta_ndc) band is in NDC = 0.03 x 21084u rig = 632u penumbra; 40-60u
+casters get 2-3% darkening = "not showing". WBND census: CachedProjection[2][2] = -4.7e-5 x
+21084u = 1.0 EXACTLY -> WW3D's ortho z-scale measures 1/(f-n) HERE, so world-penumbra formula
+g_shadowBandNdc = 107.0f * fabsf(oscale) ~= 0.00508 = beta14d's PROVEN 0.03-on-3574u rig number,
+shipped to BOTH receivers via UBO shadowParams[3] (no literal in shaders). The intermediate
+2/|scale| 'range' formula doubled range = 53u band = over-black hard fans = the 'corrupted'
+half of the report. Also: PCF rad 1.5 -> 3.0 texels (mesh.frag + terrain.frag) for soft edges,
+darkening shadowParams[1] 0.50 -> 0.40. WSLP census ~= 2,519-2,580 light-pass submissions/frame
+(shell map + meshes DO cast in the light pass) = 'use the shell map' satisfied by the round-13
+viewport fix + this band; NO re-architecture needed.
+
+WATER (invisible sheet, census-before-theory): WBGRID proved z placement was ALWAYS correct -
+within +-700u of each trigger centroid terrain goes far BELOW the sheet: BB bbox -706..2594 x
+-746..2554 minz=10 vs wz=41; TL 1182..1783 x 1150..1805 minz=2.16 maxz=157.3 vs wz=137; SR minz=0
+maxz=73 vs wz=7 (+Z = down: bed 50 at BB centroid is 9u UNDER the 41 waterline = shallow flood,
+matches the blue-dominated BB minimap). Trap quads submit every frame (wTrap census). The ONE
+true cause = the beta14c shroud-fallback class re-bound to TRAP quads: their VB uv0 = world/
+waterFactor ~= 6.6 with the shroud manager's CLAMP addressing -> unexplored BLACK edge texel ->
+sheet painted black over the whole basin ('black void' debug frames e38/e39). FIX = keep the
+proven MODULATE stage config + manager state (variant KEY untouched, texture identity is a
+BINDING not a key) but bind DX8Wrapper::Set_Texture(0, m_whiteTexture) + force VB diffuse blue-
+teal 0x004070C0 at the three trap/river/sea fill sites -> solid blue water = the user's ask.
+z stays the map water z. REJECTED: centroid 'bed+6 lift' (sheet floats over EVERY cell in the
+polygon -> flooded whole basins incl. roads, e40) and the ALWAYS-Z proof-of-draw (ZFUNC is part
+of the variant KEY: new unexercised variant broke the clipmap = black void = lesson 11 trap).
+
+- SHADOW: dx8wrapper band formula + UBO shadowParams[3] + rad/darkening in both receivers.
+  WATER: W3DWater.cpp white-modulate re-bind + blue VB + census comments; z untouched.
+- SOAKS (build52 exe, probe-free, strings census 0): BB/TL/SR exit=0, 0 exceptions, 20 grim
+  frames each; e43BB = blue basin sheet with soft 107u-band shadows + trees standing in shallow
+  water (bed 50 vs surface 41); e43TL = big blue lake polygon (extends past map edge like
+  retail); e43SR thin sheet at wz=7, no void, no flood.
+- LESSON (AUDIT 11): offscreen-bound MODULATE textures need UV-SPACE awareness (shroud modulate
+  on noise-space trap UVs = black); census BEFORE theory (WBGRID ruled z out in one print);
+  shadow band math lives in WORLD units - ortho scale measures 1/(f-n) empirically, verify by
+  census; render-state edits (ZFUNC) create unexercised variant classes = silent breakage.
+NEXT: user wine retest (blue water + soft shadows on their hardware); bridges STILL awaiting
+map name + screenshot (fourth ask in notes).

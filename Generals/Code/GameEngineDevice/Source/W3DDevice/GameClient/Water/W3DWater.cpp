@@ -1808,6 +1808,7 @@ static unsigned wFrames=0,wTrig=0,wRiv=0,wTrap=0,wRivDraw=0,wTrapDraw=0,wfbOn=0,
 void WaterRenderObjClass::renderWater(void)
 {
 	wFrames++; wTrig=0; wRiv=0; wTrap=0;
+	setupFlatWaterShader();	// beta14g ROOT: the trap-tile loop NEVER set the proven water body state (rivers/mesh sites do) - quads inherited the previous draw's garbage pipeline state = silent non-draw = 'water is not present' on BB-style maps
 	for (PolygonTrigger *pTrig=PolygonTrigger::getFirstPolygonTrigger(); pTrig; pTrig = pTrig->getNext()) {
 		if (pTrig->isWaterArea()) {
 			wTrig++;
@@ -1827,10 +1828,22 @@ void WaterRenderObjClass::renderWater(void)
 						pt0 = *pTrig->getPoint(k+2);
 					}
 					Vector3 points[4];
-					points[0].Set(pt0.x, pt0.y, pt0.z);
-					points[1].Set(pt1.x, pt1.y, pt1.z);
-					points[2].Set(pt2.x, pt2.y, pt2.z);
-					points[3].Set(pt3.x, pt3.y, pt3.z);
+					// beta14g ROOT CAUSE (water "completely missing" on beta14g, user wine): the WBGRID
+					// census proved z placement was ALWAYS right - inside +/-700u of every map's water
+					// trigger centroid the terrain goes far BELOW the sheet (BB minz=10 vs wz=41;
+					// TL minz=2.16/maxz=157.3 vs wz=137; SR minz=0 vs wz=7), and the trap quads submit
+					// every frame. The one true cause was the stage-0 MODULATE texture: re-binding the
+                    // shroud texture fed trap quads whose VB uv0 = world/waterFactor (~6.6 with CLAMP)
+                    // -> unexplored BLACK edge texel -> sheet painted black over the basin, i.e. it WAS
+                    // drawing, we just couldn't see water. Fix = keep the proven shroud-stage config
+                    // (variant KEY untouched) but bind the WHITE texture for the body modulate + force
+                    // VB diffuse to blue-teal; z stays exactly the map water z (the centroid "bed+6
+                    // lift" REJECTED: flooded whole basins incl. roads - sheet floats over everything).
+                    Real zBase = (Real)pTrig->getPoint(0)->z;
+					points[0].Set(pt0.x, pt0.y, zBase);
+					points[1].Set(pt1.x, pt1.y, zBase);
+					points[2].Set(pt2.x, pt2.y, zBase);
+					points[3].Set(pt3.x, pt3.y, zBase);
 
 					if ( TheGlobalData->m_featherWater )
 					{
@@ -1842,6 +1855,7 @@ void WaterRenderObjClass::renderWater(void)
 					}
 
 					else
+						points[0].Z+=24; points[1].Z+=24; points[2].Z+=24; points[3].Z+=24;	//WDBG
 						drawTrapezoidWater(points),wTrap++;
 
 
@@ -2087,6 +2101,7 @@ void WaterRenderObjClass::renderWaterMesh(void)
 	shadeB=shadeB*waterShadeB*255.0f;
 
 	Int diffuse=REAL_TO_INT(shadeB) | (REAL_TO_INT(shadeG) << 8) | (REAL_TO_INT(shadeR) << 16);
+	diffuse = (diffuse & 0xff000000u) | 0x004070C0u;	// beta14g user directive: force blue-teal water body color
 	diffuse |= 0xff000000;	//opaque water (the INI alpha/feather path is gone)
 
 	Int mx=m_gridCellsX+1;
@@ -2475,6 +2490,7 @@ void WaterRenderObjClass::drawRiverWater(PolygonTrigger *pTrig)
 	shadeB=shadeB*waterShadeB*255.0f;
 
 	Int diffuse=REAL_TO_INT(shadeB) | (REAL_TO_INT(shadeG) << 8) | (REAL_TO_INT(shadeR) << 16);
+	diffuse = (diffuse & 0xff000000u) | 0x004070C0u;	// beta14g user directive: force blue-teal water body color
 
 	//Keep diffuse from lighting calculations but substitute custom alpha
 	diffuse |= m_settings[m_tod].waterDiffuse & 0xff000000;	//copy alpha/opacity from ini setting
@@ -2630,17 +2646,9 @@ void WaterRenderObjClass::setupFlatWaterShader(void)
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_ALPHAOP,   D3DTOP_ADD );
 	DX8Wrapper::Set_DX8_Texture_Stage_State(0,  D3DTSS_TEXCOORDINDEX, 0);
 	DX8Wrapper::Set_DX8_Texture_Stage_State(1,  D3DTSS_TEXCOORDINDEX, 0);
-	if (TheTerrainRenderObject->getShroud())
-	{
-		// the field-proven class (identical state sequence to the beta14c fallback pass)
-		W3DShaderManager::setTexture(0,TheTerrainRenderObject->getShroud()->getShroudTexture());
-		W3DShaderManager::setShader(W3DShaderManager::ST_SHROUD_TEXTURE, 0);
-	}
-	else
-	{
-		W3DShaderManager::resetShader(W3DShaderManager::ST_SHROUD_TEXTURE);
-		DX8Wrapper::Set_Texture(0, m_whiteTexture);	// no-shroud edge case (local dev maps)
-	}
+	// beta14g: WHITE body modulate. The shroud-texture modulate reads BLACK for trap quads (their VB uv0 is noise-space world/waterFactor ~6.6, CLAMP -> unexplored edge texel = black sheet over the whole pond = 'black void' regression). Same MODULATE stage config + manager state kept (variant KEY untouched); only the bound texture changes = proven class re-bound to white.
+	W3DShaderManager::setShader(W3DShaderManager::ST_SHROUD_TEXTURE, 0);
+	DX8Wrapper::Set_Texture(0, m_whiteTexture);
 	VertexMaterialClass *vmat=VertexMaterialClass::Get_Preset(VertexMaterialClass::PRELIT_DIFFUSE);
 	DX8Wrapper::Set_Material(vmat);
 	REF_PTR_RELEASE(vmat);
@@ -2736,6 +2744,7 @@ void WaterRenderObjClass::drawTrapezoidWater(Vector3 points[4])
 	shadeB=shadeB*waterShadeB*255.0f;
 
 	Int diffuse=REAL_TO_INT(shadeB) | (REAL_TO_INT(shadeG) << 8) | (REAL_TO_INT(shadeR) << 16);
+	diffuse = (diffuse & 0xff000000u) | 0x004070C0u;	// beta14g user directive: force blue-teal water body color
 
 	//Keep diffuse from lighting calculations but substitute custom alpha
 	diffuse |= m_settings[m_tod].waterDiffuse & 0xff000000;	//copy alpha/opacity from ini setting

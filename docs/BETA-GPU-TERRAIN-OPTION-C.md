@@ -256,3 +256,19 @@ g_nativeShadowActive the viewport/scissor come from the target extent, never Cac
 Water body class (beta14f) UNCHANGED - it now visibly receives the cast shadows (SR floor
 59,61,88: sheet bluer+darker than 48,54,66 with an empty map) - 'water missing' reads were
 the FLAT sheet next to the bed, cured by the shadows arriving, not by a new water class.
+
+### ROUND 14 addendum (beta14h) - band is WORLD space; water modulate was BLACK for trap UVs
+- Shadow band: g_shadowBandNdc = 107.0f * fabsf(CachedProjection[2][2]) (WBND census: oscale
+  -4.7e-5 x 21084u rig = 1.0 -> WW3D ortho z-scale measures exactly 1/(f-n) here); 107u = the
+  beta14d field-proven penumbra (0.03 NDC on a 3574u rig). The 2/|scale| 'range' detour DOUBLED
+  it (53u = over-black hard fans). Both receivers take band from UBO shadowParams[3]; PCF rad
+  3.0 texels; darkening 0.40. Light pass UNCHANGED from round 13 (WSLP census ~= 2.5k submissions/
+  frame proves the shell map + meshes cast every frame - 'use the shell map' needs no re-arch).
+- Water sheet z was NEVER wrong (WBGRID: BB minz=10<41, TL minz=2.2/maxz=157 vs wz=137, SR
+  minz=0<7 within +-700u of centroids; +Z=down so bed 50 is 9u UNDER water 41 = shallow flood).
+  The sheet was invisible because the shroud MODULATE reads BLACK for trap quads (VB uv0 =
+  world/waterFactor ~= 6.6, CLAMP -> unexplored edge texel). Shipped: same stage config +
+  manager state (KEY unchanged), texture re-bound to the white 1x1, VB diffuse forced 0x004070C0.
+- Variant trap: D3DRS_ZFUNC edits create unexercised pipeline variants (ALWAYS broke the clipmap
+  = black void on lavapipe); NEVER inject render states outside the proven sequence to 'prove'
+  a draw - lift the geometry instead.

@@ -201,12 +201,12 @@ void main()
 				// SOFT shadows (round-7 directive): 9-tap PCF, ~1.5-texel kernel, smoothstep
 				// depth-delta => penumbra at edges instead of hard stair-step aliases.
 				float inShade = 0.0;
-				const float rad = 1.5 / max(textureSize(shadowMap, 0).x, 1.0);
+				const float rad = 3.0 / max(textureSize(shadowMap, 0).x, 1.0);
 				for (int tx = -1; tx <= 1; tx++) {
 					for (int ty = -1; ty <= 1; ty++) {
 						vec2 off = vec2(float(tx), float(ty)) * rad;
 						float d = texture(shadowMap, suv + off).r;
-						inShade += smoothstep(0.0, 0.03, lpc.z - frame.shadowParams.x - d);
+						inShade += smoothstep(0.0, frame.shadowParams.w, lpc.z - frame.shadowParams.x - d);
 					}
 				}
 				inShade /= 9.0;

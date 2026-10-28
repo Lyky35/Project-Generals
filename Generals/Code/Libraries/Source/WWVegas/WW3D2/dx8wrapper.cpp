@@ -265,6 +265,7 @@ extern "C" void Vulkan_Mark_TexReadback_Fresh();
 static TextureClass *g_nativeShadowRT = nullptr;
 static VkTexture *g_nativeShadowDepth = nullptr;
 static Matrix4 g_lightMvpSnapshot;
+static float g_shadowBandNdc = 0.03f;	// PCF band NDC - beta14g RESCALED from WORLD penumbra (see CaptureLightMvp)
 static bool g_lightMvpValid = false;
 static bool g_nativeShadowActive = false;
 static bool g_legacyShadowDisabled = false;
@@ -2807,6 +2808,15 @@ void DX8Wrapper::NativeShadow_CaptureLightMvp()
 {
 	g_lightMvpSnapshot = render_state.view * CachedProjection;
 	g_lightMvpValid = true;
+	{	// world-penumbra -> NDC band for THIS rig: ortho scale = 2/(far-near)
+		float oscale = CachedProjection[2][2];
+		if (fabsf(oscale) > 1e-9f) {
+			float band = 107.0f * fabsf(oscale);	// WBED/WBND census: WW3D ortho z-scale measures 1/(f-n) HERE (oscale -4.7e-5 x 21084u = 1.0), so world-107u penumbra (the beta14d-proven 0.03 NDC on 3574u) = 107*|scale| directly. The old 2/|scale| range formula doubled the range = 53u band = over-black 'corrupted' fans.
+			if (band < 0.0005f) band = 0.0005f;
+			if (band > 0.06f) band = 0.06f;
+			g_shadowBandNdc = band;
+		}
+	}
 }
 
 void DX8Wrapper::NativeShadow_OpenRT()
@@ -2949,6 +2959,7 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 	if (g_lightMvpValid) {
 		memcpy(ubo->lightMvp, &g_lightMvpSnapshot[0][0], sizeof(ubo->lightMvp));
 		ubo->shadowParams[2] = 1.0f;
+		ubo->shadowParams[3] = g_shadowBandNdc;
 	}
 
 	for (int i = 0; i < 4; i++) {
