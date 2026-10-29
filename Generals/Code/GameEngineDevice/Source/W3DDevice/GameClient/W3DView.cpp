@@ -1294,7 +1294,7 @@ static void NativeShadow_Render(RTS3DScene *scene, CameraClass *cam)
 	if (!(sun.Length2() > 1e-6f))
 		sun = Vector3(0.0f, 0.0f, 200.0f);
 	sun.Normalize();
-	const float SHADOW_DIST = 9830.0f;	// beta14e x4-range: eye far enough along the sun ray that the whole +/-12288-unit box sits within near..far	// eye distance along sun ray
+	const float SHADOW_DIST = 2048.0f;	// ROUND 19 (user: no blobs; pretty projected soft shadows on EVERYTHING): beta14d-class SMALL follow-cam eye RESTORED. The beta14e x4 rig (12,288u half-extent) grew world bias to 0.0011x21,084=23.2u ABOVE every unit height = units silently lost RT coverage = exactly why the now-deleted r17/r18 blob band-aid existed. Small rig: 0.0011x4,470 = 4.9 world u = 2 texels of the fixed 2048^2 map over a 5,120u box, and 7-9u infantry clears it.
 	float cX = savedTm.Get_X_Translation();
 	float cY = savedTm.Get_Y_Translation();
 	Vector3 eye(cX + sun.X * SHADOW_DIST, cY + sun.Y * SHADOW_DIST, sun.Z * SHADOW_DIST);
@@ -1321,9 +1321,9 @@ static void NativeShadow_Render(RTS3DScene *scene, CameraClass *cam)
 	Matrix3D lightTm(right, upv, Vector3(-fwd.X, -fwd.Y, -fwd.Z), eye);
 	cam->Set_Transform(lightTm);
 	cam->Set_Projection_Type(CameraClass::ORTHO);
-	float farDist = SHADOW_DIST + 11264.0f;	// beta14e: half-extent 12288 * sun-XY component (~0.75) + margin
+	float farDist = SHADOW_DIST + 2432.0f;	// ROUND 19: half-extent 2560 x sun-XY (~0.75) + 512 margin; near..far 10..4480 (range 4,470u)
 	cam->Set_Clip_Planes(10.0f, farDist);
-	float halfAtDist = 12288.0f / 10.0f;	// beta14e x4 range: field saw pop-in at the old 3072u box edge; view frustum reaches past ~6000u
+	float halfAtDist = 2560.0f / 10.0f;	// ROUND 19: 5,120u span = 2.5u/texel map; the box covers the PLAY view, receivers fade the outer 30% (beta14d hard pop-in at the 3072u edge replaced by a smooth dissolve)
 	cam->Set_View_Plane(Vector2(-halfAtDist, -halfAtDist), Vector2(halfAtDist, halfAtDist));
 	cam->Apply();
 

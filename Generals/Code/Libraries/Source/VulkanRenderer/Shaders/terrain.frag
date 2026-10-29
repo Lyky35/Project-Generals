@@ -76,6 +76,12 @@ vec3 shadowTint()
 	 }
  }
  inShade /= 9.0;
+ // ROUND 19: (a) round-14 patch collateral had DELETED the final return of this non-void
+ //   function (UB = silent register lottery = lesson-7 class on strict drivers); (b) fade
+ //   over the outer 30% of the light box = no hard pop-in ring at the box edge.
+ float edge = max(abs(lpc.x), abs(lpc.y));
+ float fade = 1.0 - smoothstep(0.7, 1.0, edge);
+ return vec3(1.0 - inShade * fade * (1.0 - frame.shadowParams.y));
 }
 
 void main()

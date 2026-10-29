@@ -2033,3 +2033,42 @@ mechanism); short props get neither BY DESIGN (GeometryInfo cannot tell them fro
 only kindOf has no short-prop bit). Bridges (kindOf BRIDGE/LANDMARK_BRIDGE) now IN the blob set.
 NEXT: user field retest (units soft? bridge stains now present? EIGHTH ask STILL: small-bridges
 map name + screenshot never supplied); lesson 15 in AUDIT.
+
+
+## ROUND 19 (beta14m): blob pass DELETED + small follow-cam RT rig restored = GPU-projected soft fans on EVERY caster class
+USER on beta14l: "don't put blob shadows... i want nice pretty projected soft shadows on buildings,
+trees, units (tanks/cars/dozers/aircrafts/infantry/crates etc)" + the GPU rig "almost worked at 7a10eb1".
+ARCHAEOLOGY: 7a10eb1 = round-10 DOCS commit; working code = 92b03e6 (beta14d rig: eye = cam ground
+cell + sun x2048, half-extent 3,072, near..far 10..3,584, bias 0.0035 ~12.5u; r10 measured ground
+band mean 0.286->0.205 = fans ALIVE). Break chain read this round: r11 grew box x4 (half 12,288 /
+far 21,094 => 0.0011 literal = 23.2 WORLD u > every unit height = units silently LOST RT coverage =
+lesson 14 = the blob band-aid existed BECAUSE of that); r12 non-square swap-sized RT => texels <
+bias = darkness class (fixed by pinned 2048^2 map).
+PATCH (6 files, build65 dev -> build66 shipped 21,935,320B sha 01e83bc6...92bb, probe census 0):
+blob pass DELETED (renderWater call + 266-line function + header decl, zero dangling refs). Rig:
+SHADOW_DIST 2048 / farDist SHADOW_DIST+2432=4,480 (range 4,470u) / halfAtDist 256 @ znear 10 =
+half-extent 2,560 (tighter than beta14d 3,072: 2.5u/texel of pinned 2048^2). Bias literal KEPT
+0.0011f: world = 4.9u = 2 texels > flat-ground kernel self-spread (2.5u x 0.882 sunZ x 1.5 = 3.3u)
+AND < unit deltas (infantry 7-8u / tanks 13-18u, h x sunZ 0.882) = ALL caster classes project NOW
+(lesson-14 numbers FLIPPED: small rig makes units projectable, x4 rig made them not; x4 era's
+0.0011 = 23.2u was the whole r17/18 blob rationale). Band tune: pass 1 12u left venue deck
+subdued (unit cores (13-4.9)/12=0.67); SHIPPED 8u world (band_ndc = 8 x |proj[2][2]| identity kept):
+vehicle cores saturate (delta-bias 8-13u), infantry ~0.35 = soft patch = honest height difference;
+tall-caster penumbra = PCF kernel + fade. beta14d-class pop-in at box edge REPLACED by receiver
+edge fade in BOTH shaders: inShade x= 1 - smoothstep(0.7,1.0,max(|lpc.x|,|lpc.y|)) (outer 30% ring
+1,792-2,560u dissolves; box covers play view). BONUS ROOT CAUSE FIX: terrain.frag shadowTint() had
+LOST its final return at d7fcf78 (round-14 collateral) = non-void GLSL fallthrough = UB register
+lottery (lesson-7 class) shipped since beta14h; restored vec3(1.0 - inShade*fade*(1.0-darken)).
+VENUE (menu26 = tune pass 2, shell-menu background, the look-tuning venue): EXIT_WINE=0; m26_units
+= crisp sun-aligned PROJECTED fans under every humvee/crusader/dozer/heli (direction consistent
+with minaret/dome/palm fans), trees crop 0.2411 vs m25 0.2498 vs r18 0.2346 = fans alive + cores
+darker, NO acne/speckle on venue slopes.
+SOAKS on SHIPPED exe (SEQUENTIAL): eNNBB / eNNTL / eNN_SR EXIT_WINE=0 x3, exceptions 0 x3.
+WATER (r10 open class "BB water sheet darkens with shadows ON"): naive full-frame teal census
+"collapsed" BB 4 / TL 9 vs r18 282 / 358 = FALSE ALARM: detector contamination (minimap water blob
+dominated TL r18 count) + spawn-camera PHASE DIVERGENCE (r18 panned into town/river by f7; r19 run
+watches supply-dock grassland whole run; SR happened to match). Clean game-view-only crop detector
+(700x460+150+90 native px, HUD/minimap excluded): BB r19 61 vs r18 45, TL 42 vs 60, SR r19 224-485
+(r18 never framed river) = same order of magnitude = water receiver INTACT, no self-shadow class
+recurrence (AUDIT lesson 17). EIGHTH ask STILL OPEN: small-bridges map name + screenshot never
+supplied (blob pass gone => bridges cast RT fans naturally; needs user confirmation).

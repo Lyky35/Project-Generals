@@ -305,3 +305,19 @@ the FLAT sheet next to the bed, cured by the shadows arriving, not by a new wate
   stain wash + cap starvation kept 128/128); BLOB_MAX 256. Venues: menu m24 = soft ellipses under
   every unit / clean plaza / fans intact; e54 trio EXIT_WINE=0 exceptions=0 x3; probe-strings census
   0 (AUDIT lesson 15: templates honest where GeometryInfo lies).
+
+
+- ROUND 19 (beta14m, 2026-10-28, SHIPPED build66 21,935,320B sha 01e83bc6...92bb): RT SHADOWS REVIVED
+  + blob pass DELETED (user: "don't put blob shadows... nice pretty projected soft shadows on
+  buildings, trees, units"; "GPU rig almost worked at 7a10eb1" = docs commit, working code 92b03e6
+  beta14d). Rig back to small follow-cam: SHADOW_DIST 2048 / far 4,480 / half-extent 2,560 (2.5u/texel
+  pinned 2048^2) / bias literal KEPT 0.0011f = 4.9 WORLD u = 2 texels: clears kernel self-spread 3.3u,
+  infantry (7-8u) + tanks (13-18u) CLEAR it = lesson-14 numbers FLIPPED (x4 rig = 23.2u = WHY the blobs
+  existed; deleting the rig growth makes blobs unnecessary). Band 64u->8u world (unit class = whole
+  caster range; 64u wash confirmed in venue pass 1 at 12u). Receiver edge fade replaces pop-in
+  (smoothstep(0.7,1.0,max|lpc.xy|) both shaders). terrain.frag shadowTint() final return RESTORED
+  (d7fcf78 collateral deleted it = UB = lesson 16). Water class NOT regressed: full-frame teal "collapse"
+  was minimap + camera-phase contamination (lesson 17); clean game-view crop census comparable BB 61/45
+  TL 42/60 SR 224-485. Venues/soaks: menu26 fans under every unit class, eNNBB/eNNTL/eNN_SR green x3,
+  probe census 0. Bridges cast RT fans natively now (blob gone) - eighth ask (small-bridges map +
+  screenshot) remains open pending user.

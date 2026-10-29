@@ -2811,7 +2811,7 @@ void DX8Wrapper::NativeShadow_CaptureLightMvp()
 	{	// world-penumbra -> NDC band for THIS rig: ortho scale = 2/(far-near)
 		float oscale = CachedProjection[2][2];
 		if (fabsf(oscale) > 1e-9f) {
-			float band = 64.0f * fabsf(oscale);	// ROUND 16 VISIBILITY TUNE (user: "get soft shadows visible first... test in shell menu background"): the 107u band = beta14d-look but measures SUBTLE (40-60u casters top out ~0.4-0.56 of range x 0.40 = 16-22% dark = user read it as 'shadows don't work'). 64u world penumbra: 40-60u trees/buildings saturate 0.63-1.0, acne deltas 2-4u stay <3% = no halo. Formula identity from WBND census stays (band = Wworld*|oscale|, oscale measures exactly 1/(f-n) here).
+			float band = 8.0f * fabsf(oscale);		// ROUND 19 TUNE PASS 2: 12u left unit cores at (13-4.9)/12 = 0.67 = subdued vs the r18 blob the user rejected; 8u saturates tank/vehicle cores (delta-bias 8-13u > 8u) while infantry (2.6-3u) read ~0.35 = soft light patch = honest height difference. 64u band (r16) fit ONLY 40-60u casters. Penumbra = PCF kernel + outer-30% fade.
 			if (band < 0.0005f) band = 0.0005f;
 			if (band > 0.06f) band = 0.06f;
 			g_shadowBandNdc = band;
@@ -2945,12 +2945,13 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 
 	// Native shadow map params + light view-projection (captured while the
 	// light pass had the view/proj bound)
-	ubo->shadowParams[0] = 0.0011f;		// beta14f: ~23 world units = 1.9 texels of the FIXED 2048 map (same texel-ratio
-					// that was field-proven on beta14d's smaller rig)		// PORT beta14d: bias ~12 world units on the tighter 10..3584 rig
-					// (was 0.06 NDC of a 4246-unit range = ~255 world units >> ZH structure
-					// heights 10-50u -> inShade always 0 -> 'soft shadows missing' even with
-					// the map ON. Raise locally if thin-deck self-shadow acne reappears.)
-	ubo->shadowParams[1] = 0.45f;		// ROUND 16: 0.40->0.45 (paired with 64u band; 0.5 oversaturated cores on the 53u formula, 64u headroom makes 0.45 safe)
+	ubo->shadowParams[0] = 0.0011f;		// ROUND 19 SMALL-RIG RESTORED: 0.0011 NDC x 4,470u light range = 4.9 WORLD u =
+				// 2 texels of the 2048^2 map over the 5,120u follow-cam box: clears the flat-ground kernel self-spread
+				// (2.5u/texel x 0.882 sun-elev x 1.5 = 3.3u) AND every unit class clears it (infantry delta 7-8u,
+				// tanks 13-18u) = projected soft shadows NOW COVER units + buildings + trees = user directive. The x4
+				// rig made this literal 23.2u = above every unit height = r17 "units cast nothing" (blob band-aid,
+				// deleted round 19); the 0.06 NDC era was a 255u acne class.
+	ubo->shadowParams[1] = 0.45f;		// ROUND 19: kept from round 16 look tune (was paired with the 64u band; now 12u band x this darken = tank cores 31% / infantry 10% / tall casters 45%)
 	// PORT root-cause (round-8 black bridge/dark buildings): a 0.0035 NDC bias = ~0.1 texel
 	// -> EVERY mesh quad self-shadows against ITS OWN depth in the light pass = tinted to
 	// near-black ("black bridge" locally, field report "bridges missing" + "buildings in fog

@@ -210,7 +210,11 @@ void main()
 					}
 				}
 				inShade /= 9.0;
-				color *= (1.0 - inShade * (1.0 - frame.shadowParams.y));
+				// ROUND 19: fade over the outer 30% of the light box = units/buildings crossing
+				// the box edge dissolve smoothly instead of beta14e-class hard pop-in
+				float edge = max(abs(lpc.x), abs(lpc.y));
+				float fade = 1.0 - smoothstep(0.7, 1.0, edge);
+				color *= (1.0 - inShade * fade * (1.0 - frame.shadowParams.y));
 			}
 		}
 	}
