@@ -1992,3 +1992,44 @@ follow camera-timing drift, flood class absent = coverage census lesson). Ground
 (e47BB, pre-height-gate build57) = (20,13,8) vs (18,12,7).
 NEXT: user retest (menu venue + in-game built units); small bridges STILL awaiting name+screenshot
 (SEVENTH ask).
+
+## ROUND 18 (beta14l): SOFT CAST shadows (swept-ellipse + vertex-alpha ramp) + kindOf gate (18b)
+USER REPORT on beta14k (round 17): "there's a blob under some units - not actual soft shadow".
+ROUND 18a (build61, blob rework): shape = swept ellipse = footprint ellipse MINKOWSKI-SUMMED with
+the sun-ray segment: mjF=max(mj, r*0.72), mnF=max(mn, r*0.5) (GeometryInfo mj/mn are thin traversal
+boxes - a tank measures mj13/mn1!), heading from xfBlob X-basis (yaw) on ground, center = pos +
+0.5*o, o = hh*offXY capped 1.35*mjF, A = s(u)+0.5*oLen, B = s(perp)+0.25 soft floor. Render = center
+disc + 2 annuli (ring scales .40/.72/1.06; VERTEX-alpha ramp 0x48>0x36>0x1e>0 via ai<<24; 40 verts/
+60 tris per blob; ONE batched draw; proven flat-water class + ALPHAOP MODULATE UNCHANGED). Coarse
+filter widened r 3.5..46, hh<3.5 skip (flat pads), hh>22 kept as lesson-14 insurance, BLOB_MAX 128.
+ROOT CAUSE pinned (round-18 geometry census, build60 probes): max drawable height = 15 across
+menu/BB/TL/SR (tanks h10-15, thin pillars h15 mj3, bush h5 mj16, pads h 1..2 mj<=20) => hh>22
+NEVER fires; the old coarse r-band 4..28 WAS the real "blob under SOME units" bug: big vehicles
+(sphere r 28..45) got NEITHER blob (filtered) NOR RT (h << 23.2u bias); pads blobbed = plaza stains.
+18a venues: menu m21_units = soft sun-leaning ellipses under all units (vs m19 r17 hard circles,
+m16 shadowless); e51BB/e51TL/e51SR EXIT_WINE=0 exceptions=0 x3; plaza crop e51-vs-e49 (7.2,4.6,2.3)
+= drift only (fans untouched); crane crop 440x220@300+40: blob PRESENT e51 / ABSENT e49 = the
+some-units bug fixed.
+USER REPORT on beta14j-era menu venue (build61/18a): "not actual soft shadow... doesn't seem all
+objects/buildings/units cast soft shadows all the time... as if the SKYBOX itself was casting a
+shadow".
+ROUND 18b (build63 census -> build64 SHIPPED): menu22 census (WUBO probe on 18a code) NAMED the
+skybox: TreeDogwood8 r31 hh15 x51 + TreePalm1/2 r39 hh15 x60 = static map-art CLONES with LYING
+GeometryInfo (hh=15 understates their tall meshes, which ALREADY cast RT fans via the static draw
+pass) = lesson-14 blob-stacks-at-new-scale = the giant dark patches; and kept=128/128 cap HIT
+starved the real units (units sorted late in the drawable list). Discriminator: ThingTemplate
+kindOf bits (obj->getTemplate(), honest where GeometryInfo lies): blob ONLY VEHICLE/HUGE_VEHICLE/
+INFANTRY/AIRCRAFT/DOZER/COMMANDCENTER/TRANSPORT/CRATE/BRIDGE/LANDMARK_BRIDGE; sky/props/trees/pads
+excluded by template. hh<3.5 skip DROPPED (kindOf owns the pad class); BLOB_MAX 128->256 (cap 256,
+40v*256=10,240 verts max). Final menu census: kept=17 = every visible unit (7 Humvee r35 + 7 Crusader
+r32 + 3 GLA chassis r23-26), trees cast=0; BB census: 1653 drawables ALL map art -> kept=0 = ZERO
+stains (vs 18a running cap-full on tree clones).
+FINAL VENUES (build64 SHIPPED, 21,940,454 B sha256 0c45de9f...a6a8e3, probe-strings census 0):
+menu m24_units (frame menu24-11, crop 360x180+280+180): soft sun-leaning swept ellipses under humvees/
+crusaders, palms/minaret keep RT fans, plaza CLEAN. Soaks e54BB/e54TL/e54SR SEQUENTIAL: EXIT_WINE=0
+x3, exceptions 0 x3. COVERAGE SEMANTICS for user: UNITS get soft swept blobs (units can NEVER clear
+the 23.2u RT bias = lesson 14); tall props/trees/buildings get GPU RT fans (hard-edged, different
+mechanism); short props get neither BY DESIGN (GeometryInfo cannot tell them from lying clones -
+only kindOf has no short-prop bit). Bridges (kindOf BRIDGE/LANDMARK_BRIDGE) now IN the blob set.
+NEXT: user field retest (units soft? bridge stains now present? EIGHTH ask STILL: small-bridges
+map name + screenshot never supplied); lesson 15 in AUDIT.

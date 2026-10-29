@@ -292,3 +292,16 @@ the FLAT sheet next to the bed, cured by the shadows arriving, not by a new wate
   radii, proven flat-water alpha class + ALPHAOP MODULATE, one batched 12-gon x2 fans draw.
   Menu venue units-deck delta (21,16,11) vs r16 no-blob; e49 trio exit 0/0 exc/probe 0; tree crop
   e49-vs-e45 (6,4,2) = drift only = fans untouched. Fingerprint 21,939,430B sha 0c0db851...5798.
+
+- ROUND 18 (beta14l, 2026-10-28, SHIPPED build64 21,940,454B sha 0c45de9f...a6a8e3): soft CAST
+  shadows, CPU side (RT pipeline STILL untouched - bias fix re-rejected: 23.2u bias > every drawable
+  height, shrinking it = beta14e acne class). 18a: swept ellipse (footprint (+) sun-ray Minkowski
+  sum, semis lifted by mesh sphere r: mjF=max(mj,r*.72) mnF=max(mn,r*.5); xfBlob heading) rendered as
+  center disc + 2 annuli with vertex-alpha ramp 0x48>0x36>0x1e>0 (rasterizer-continuous gradient,
+  one batched draw, flat-water class + MODULATE unchanged); coarse r 3.5..46 healed the r28..45
+  vehicle class (got NEITHER blob NOR RT in r17 = the real some-units bug). 18b (the skybox
+  symptom): kindOf gate, blob iff template has VEHICLE/INFANTRY/.../CRATE/BRIDGE bits (census named
+  TreeDogwood8/TreePalm1/2 clones with lying hh=15 at r31-39 stacking on their RT fans = cap-full
+  stain wash + cap starvation kept 128/128); BLOB_MAX 256. Venues: menu m24 = soft ellipses under
+  every unit / clean plaza / fans intact; e54 trio EXIT_WINE=0 exceptions=0 x3; probe-strings census
+  0 (AUDIT lesson 15: templates honest where GeometryInfo lies).

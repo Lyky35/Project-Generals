@@ -67,6 +67,7 @@
 #include "GameClient/GameClient.h"		// beta14k round 17: drawable list walk for unit blob shadows
 #include "GameClient/Drawable.h"		// clientOnly_getFirstRenderObjInfo + shroud/stealth visibility
 #include "GameLogic/Object.h"		// getObject() -> GeometryInfo (height/footprint gate)
+#include "Common/ThingTemplate.h"		// beta14l round 18: kindOf gate (unit vs prop templates)
 
 
 #ifdef _INTERNAL
@@ -1900,10 +1901,10 @@ void WaterRenderObjClass::drawUnitBlobShadows(void)
 	Real tDiv = (-L.Z > 0.25f) ? -L.Z : 0.25f;		// low sun: cap offset steepness
 	Real offX = L.X / tDiv, offY = L.Y / tDiv;
 
-	#define BLOB_MAX 96
+	#define BLOB_MAX 256
 	#define BLOB_SEG 12
-	static Real bx[BLOB_MAX], by[BLOB_MAX], bz[BLOB_MAX], bro[BLOB_MAX];
-	Real bi[BLOB_MAX];		// inner fan radius
+	static Real bx[BLOB_MAX], by[BLOB_MAX], bz[BLOB_MAX], boA[BLOB_MAX];
+	Real boB[BLOB_MAX], boU[BLOB_MAX], boV[BLOB_MAX];		// perp semi + unit sun dir; perp = (-boV, boU)
 	Int blobCount = 0, iterated = 0, bigSkipped = 0;
 	Real rSeenMin = 1e9f, rSeenMax = 0.0f;
 
@@ -1924,49 +1925,106 @@ void WaterRenderObjClass::drawUnitBlobShadows(void)
 			continue;
 		if (r < rSeenMin) rSeenMin = r;
 		if (r > rSeenMax) rSeenMax = r;
-		if (r < 4.0f || r > 28.0f)
-		{
-			if (r > 28.0f) bigSkipped = 1;		// structures keep RT fans
+		// (round-18) coarse filter widened: the old r>28 skip hid big vehicles (sphere
+		// r 28..45) from BOTH blob and RT = the blob-under-some-units bug. The real
+		// gate = hh vs bias below; this only culls FX/debris and mega props now.
+		if (r < 3.5f || r > 46.0f)
 			continue;
-		}
 		Real gz = TheTerrainRenderObject->getHeightMapHeight(pos.x, pos.y, NULL);
+		// --- principled gate (round 18, census-proven) + swept-ellipse shape below:
+		// blob ONLY for casters that canNOT clear the 23.2u shadow bias. The hh gates
+		// replace the old r-band gate: the round-18 dev geometry census (probe stripped
+		// here) proved max drawable height = 15 across menu/BB/TL/SR (tanks h10-15,
+		// thin pillars h15 mj3, bush h5 mj16, flat pads h 1..2 with footprints up to 20):
+		// NOTHING among drawables clears the bias = no DRAWABLE casts an RT fan today;
+		// the fans under map trees come from STATIC tree draws, NOT drawables. hh<3.5
+		// skips the flat pad classes (their bounding SPHERE r ~20-24 passed the old
+		// filter and stained the plaza, round 17); hh>22 keeps the lesson-14 no-stack
+		// invariant as insurance (never fires today). The old coarse r>28 skip was the
+		// REAL blob-under-SOME-units bug: big vehicles (mesh sphere r 28..45) got
+		// NEITHER blob (filtered) NOR RT (h << bias).
+		Real hh = -1.0f, mj = 0.0f, mn = 0.0f;
+		const Object *obj = draw->getObject();
+		const ThingTemplate *bt = obj ? obj->getTemplate() : NULL;
+		if (obj)
+		{
+			const GeometryInfo& gi = obj->getGeometryInfo();
+			hh = gi.getMaxHeightAbovePosition();
+			mj = gi.getMajorRadius();
+			mn = gi.getMinorRadius();
+		}
+		if (hh < 0.0f)
+			hh = r * 0.7f;		// no parent Object (FX/debris): sphere fallback
+		// (round-18b) kindOf gate: blob ONLY mobile units + crates + small bridges.
+		// Round-18b menu census: the giant r=31..39 hh=15 patches the user called
+		// the skybox shadow = static-map-art/prop clones with LYING GeometryInfo (hh
+		// 15 understates tall meshes whose static copies already cast RT fans) =
+		// lesson-14 stacking at new scale, and kept=128/128 cap starved the real
+		// units. Templates answer honestly: units carry VEHICLE/INFANTRY/... bits,
+		// sky/props/trees/pads do not.
+		Bool unitCaster = bt != NULL &&
+			(bt->isKindOf(KINDOF_VEHICLE) || bt->isKindOf(KINDOF_HUGE_VEHICLE) ||
+				bt->isKindOf(KINDOF_INFANTRY) || bt->isKindOf(KINDOF_AIRCRAFT) ||
+				bt->isKindOf(KINDOF_DOZER) || bt->isKindOf(KINDOF_COMMANDCENTER) ||
+				bt->isKindOf(KINDOF_TRANSPORT) || bt->isKindOf(KINDOF_CRATE) ||
+				bt->isKindOf(KINDOF_BRIDGE) || bt->isKindOf(KINDOF_LANDMARK_BRIDGE));
 		if (pos.z - gz > r * 1.6f)
 			continue;		// airborne units: no ground blob
-		// --- principled gate (round 17): blob ONLY casters that canNOT clear the
-		// 23.2u shadow bias (map trees ARE drawables here: r overlapped tanks in the
-		// band but NOT in height; stacking blob atop RT fan = the over-dark patch
-		// seen in e47BB plaza). Parent Object geometry also gives true footprint.
-		Real bandR = r;
-		Real hEst = r * 0.7f;
-		Bool blobWanted = TRUE;
+		if (!unitCaster)
+			continue;		// sky/props/pads/trees: fans (if tall) or nothing, never blobs
+		if (hh > 22.0f)
+			continue;		// lesson 14 insurance: clears bias = RT fan already works
+		// visual footprint = collision radii LIFTED by mesh sphere r: ZH GeometryInfo
+		// mj/mn are thin traversal boxes (a tank measures mj13/mn1!), so a raw collision
+		// ellipse is a sliver; the mesh sphere r is the honest visual bound.
+		Real mjF = (mj > r * 0.72f) ? mj : r * 0.72f;
+		Real mnF = (mn > r * 0.5f) ? mn : r * 0.5f;
+		// heading for the footprint ellipse: render transform X basis (yaw) projected
+		// on ground (units yaw only; degenerate -> keep default +X)
+		Real hx = 1.0f, hy = 0.0f;		// fallback heading
 		{
-			const Object *obj = draw->getObject();
-			if (obj)
+			Vector3 hvec = xfBlob.Get_X_Vector();
+			Real hl = sqrt(hvec.X * hvec.X + hvec.Y * hvec.Y);
+			if (hl > 1e-4f)
 			{
-				const GeometryInfo& gi = obj->getGeometryInfo();
-				Real hh = gi.getMaxHeightAbovePosition();
-				if (hh > 0.0f) hEst = hh;
-				Real mr = gi.getMajorRadius();
-				Real nr = gi.getMinorRadius();
-				if (mr > 0.0f && nr > 0.0f)
-					bandR = (mr > nr) ? mr : nr;		// footprint circle
-				if (hh > 22.0f) blobWanted = FALSE;		// tall = RT fan already works
+				hx = hvec.X / hl;
+				hy = hvec.Y / hl;
 			}
 		}
-		if (!blobWanted)
-			continue;
+		Real hEst = hh;		// REAL geometry height drives the cast (was r*0.7)
 		Real ox = offX * hEst, oy = offY * hEst;
 		Real oLen = sqrt(ox * ox + oy * oy);
-		if (oLen > 1.2f * bandR)
-		{	Real sc = 1.2f * bandR / oLen;	ox *= sc;	oy *= sc;	}
-		Real cx = pos.x + ox * 0.5f, cy = pos.y + oy * 0.5f;
-		Real ro = bandR * 1.05f + oLen * 0.45f;
-		Real ri = bandR * 0.62f + oLen * 0.3f;
+		Real cap = 1.35f * mjF;		// cap the cast: tall thin pillars (h15 mj3)
+		if (oLen > cap)		// must not smear like a broom handle
+		{
+			Real sc = cap / oLen;
+			ox *= sc;
+			oy *= sc;
+			oLen = cap;
+		}
+		Real ux = 1.0f, uy = 0.0f;		// sun travel unit (u); perp = (-uy, ux)
+		if (oLen > 0.01f)
+		{
+			Real il = 1.0f / oLen;
+			ux = ox * il;
+			uy = oy * il;
+		}
+		// swept ellipse = Minkowski sum footprint (+) sun-ray segment: footprint semis
+		// along u/perp from s(t)^2 = mjF^2 cos^2 + mnF^2 sin^2 in the sun frame (du/dv),
+		// grown by half the cast; B gets a 0.25u soft floor so rims still feather.
+		Real du = ux * hx + uy * hy;		// cos(footprint major, sun dir)
+		Real dv = -uy * hx + ux * hy;		// cos(footprint major, perp)
+		Real a2 = mjF * mjF * du * du + mnF * mnF * (1.0f - du * du);
+		Real b2 = mjF * mjF * dv * dv + mnF * mnF * (1.0f - dv * dv);
+		Real A = (a2 > 0.0f ? sqrt(a2) : 0.0f) + oLen * 0.5f;		// semi along sun
+		Real B = (b2 > 0.0f ? sqrt(b2) : 0.0f) + 0.25f;		// perp semi
+		Real cx = pos.x + ox * 0.5f, cy = pos.y + oy * 0.5f;	// swept center
 		if (blobCount < BLOB_MAX)
 		{
 			bx[blobCount] = cx;	by[blobCount] = cy;
 			bz[blobCount] = gz + 3.0f;	// 3u above shell terrain, depth-tested like water
-			bro[blobCount] = ro;		bi[blobCount] = ri;
+			boA[blobCount] = A;		boB[blobCount] = B;
+			boU[blobCount] = ux;		boV[blobCount] = uy;
 			blobCount++;
 		}
 	}
@@ -1976,85 +2034,95 @@ void WaterRenderObjClass::drawUnitBlobShadows(void)
 	// TL/SR same shape)
 	(void)iterated;	(void)bigSkipped;	(void)rSeenMin;	(void)rSeenMax;
 
-	// --- PART B: two concentric 12-gon fans per blob (outer soft 0x33, inner core
-	// 0x55), ONE batched draw. All coplanar (z = terrain+3): inner fans submitted
-	// after outer read EQUAL depth -> LEQUAL passes -> core darkens over the ring.
-	// (dev census probe ran earlier this round; stripped here, see census note above)
+	// --- PART B: ONE center disc + TWO annular bands per blob (ring scales .40/.72/1.06
+	// of the swept ellipse) with a VERTEX-alpha ramp 0x48 -> 0x36 -> 0x1e -> 0 rim:
+	// the rasterizer interpolates vertex alphas across each band = one continuous
+	// gradient = real soft cast shadow, no hard polygon edges. Bands are annuli so
+	// they never overlap and their alphas never double-blend. Coplanar (z = terrain+3),
+	// ONE batched draw. (round-18 shape rework; filters + math in Part A above.)
 	if (blobCount == 0)
 		return;
 
 	{
-		const Int vertsPerBlob = 2 * (1 + BLOB_SEG + 1);		// center + (SEG+1) rim, two fans
-		const Int trisPerBlob = 2 * BLOB_SEG;
+		const Int vertsPerBlob = 1 + 3 * (BLOB_SEG + 1);		// center + 3 rings (13 pts)
+		const Int trisPerBlob = 5 * BLOB_SEG;		// disc 12 + two annuli 24 each
 		const Int idxCount = trisPerBlob * 3 * blobCount;
 		const Int vertCount = vertsPerBlob * blobCount;
 
 		DynamicIBAccessClass ib_access(BUFFER_TYPE_DYNAMIC_DX8, idxCount);
 		DynamicVBAccessClass vb_access(BUFFER_TYPE_DYNAMIC_DX8, dynamic_fvf_type, vertCount);
 		{
-			// VB layout per blob: [fan0: c, rim0..rim12][fan1: c, rim0..rim12]
-			// tri(f,k) = (center_f, rim_k, rim_k+1) with rim duplicated at SEG -> no wrap
+			// VB layout per blob: [center][ring0 x13][ring1 x13][ring2 x13]
+			// ring pt P = c + A2*cos*u + B2*sin*perp with u=(boU,boV), perp=(-boV,boU);
+			// pt 12 duplicates pt 0 (angle 2pi) -> no wrap. Vertex alphas = the ramp.
 			{
 				DynamicVBAccessClass::WriteLockClass lockvb(&vb_access);
 				VertexFormatXYZNDUV2* vb = lockvb.Get_Formatted_Vertex_Array();
+				const Real scl[3] = {0.40f, 0.72f, 1.06f};
+				const Int ringA[4] = {0x48, 0x36, 0x1e, 0x00};		// core -> rim alpha ramp
 				for (Int b = 0; b < blobCount; b++)
 				{
-					for (Int fan = 0; fan < 2; fan++)
+					for (Int v = 0; v < 1 + 3 * (BLOB_SEG + 1); v++)
 					{
-						Real rad = (fan == 0) ? bro[b] : bi[b];
-						Int dif = (fan == 0) ? 0x33000000 : 0x55000000;		// black + alpha byte
-						vb->x = bx[b];		// fan center
-						vb->y = by[b];
-						vb->z = bz[b];
-						vb->diffuse = dif;
-						vb->u1 = 0.0f;		// stage0 white at uv(0,0) (A8R8G8B8 1x1, A=0xff)
-						vb->v1 = 0.0f;
-						vb->u2 = 0.0f;
-						vb->v2 = 0.0f;
-						vb->nx = 0.0f;		// up
-						vb->ny = 0.0f;
-						vb->nz = 1.0f;
-						vb++;
-						for (Int k = 0; k <= BLOB_SEG; k++)
+						Real x = bx[b], y = by[b];
+						Int ai = ringA[0];		// core center
+						if (v > 0)
 						{
-							Real ang = (Real)k * (2.0f * PI / (Real)BLOB_SEG);
-							vb->x = bx[b] + rad * WWMath::Fast_Cos(ang);
-							vb->y = by[b] + rad * WWMath::Fast_Sin(ang);
-							vb->z = bz[b];
-							vb->diffuse = dif;
-							vb->u1 = 0.0f;		// stage0 white at uv(0,0)
-							vb->v1 = 0.0f;
-							vb->u2 = 0.0f;
-							vb->v2 = 0.0f;
-							vb->nx = 0.0f;
-							vb->ny = 0.0f;
-							vb->nz = 1.0f;
-							vb++;
+							const Int ring = (v - 1) / (BLOB_SEG + 1);
+							const Int k = (v - 1) % (BLOB_SEG + 1);
+							const Real A2 = boA[b] * scl[ring];
+							const Real B2 = boB[b] * scl[ring];
+							const Real ang = (Real)k * (2.0f * PI / (Real)BLOB_SEG);
+							const Real ca = WWMath::Fast_Cos(ang) * A2;
+							const Real sa = WWMath::Fast_Sin(ang) * B2;
+							x = bx[b] + ca * boU[b] - sa * boV[b];
+							y = by[b] + ca * boV[b] + sa * boU[b];
+							ai = ringA[ring + 1];
 						}
-					}	// fan
-				}		// blobs
+						vb->x = x;		vb->y = y;		vb->z = bz[b];
+						vb->diffuse = ai << 24;		// black + ramp alpha byte (MODULATE below)
+						vb->u1 = 0.0f;		// stage0 white at uv(0,0) (A8R8G8B8 1x1, A=0xff)
+						vb->v1 = 0.0f;		vb->u2 = 0.0f;		vb->v2 = 0.0f;
+						vb->nx = 0.0f;		vb->ny = 0.0f;		vb->nz = 1.0f;
+						vb++;
+					}
+				}
 			}		// vb lock scope
-		}		// decls scope
+		}		// VB region
 
-		// ---- IB fill: tri(f,k) = (center, rim_k, rim_k+1); rim SEG+1 duplicates rim 0
+		// ---- IB: disc tri k = (center, A_k, A_k+1); annulus quads (q0+k,q1+k,q0+k+1)
+		// +(q1+k,q1+k+1,q0+k+1) between rings; ring pt 12 duplicates pt 0 -> no wrap
 		{
 			DynamicIBAccessClass::WriteLockClass lockib(&ib_access);
 			UnsignedShort *curIb = lockib.Get_Index_Array();
 			for (Int b = 0; b < blobCount; b++)
-				for (Int fan = 0; fan < 2; fan++)
+			{
+				const Int base = b * vertsPerBlob;
+				for (Int k = 0; k < BLOB_SEG; k++)
 				{
-					const Int base = b * vertsPerBlob + fan * (1 + BLOB_SEG + 1);
+					*curIb++ = (UnsignedShort)base;	// core disc tri
+					*curIb++ = (UnsignedShort)(base + 1 + k);
+					*curIb++ = (UnsignedShort)(base + 2 + k);
+				}
+				for (Int band = 0; band < 2; band++)
+				{
+					const Int q0 = base + 1 + band * (BLOB_SEG + 1);
+					const Int q1 = q0 + (BLOB_SEG + 1);
 					for (Int k = 0; k < BLOB_SEG; k++)
 					{
-						*curIb++ = (UnsignedShort)base;	// fan center
-						*curIb++ = (UnsignedShort)(base + 1 + k);
-						*curIb++ = (UnsignedShort)(base + 2 + k);
+						*curIb++ = (UnsignedShort)(q0 + k);
+						*curIb++ = (UnsignedShort)(q1 + k);
+						*curIb++ = (UnsignedShort)(q0 + k + 1);
+						*curIb++ = (UnsignedShort)(q1 + k);
+						*curIb++ = (UnsignedShort)(q1 + k + 1);
+						*curIb++ = (UnsignedShort)(q0 + k + 1);
 					}
 				}
+			}
 		}
 
 		// ---- one draw: proven flat-water class, ALPHAOP MODULATE (white A=0xff x vA
-		// = vA; ADD would saturate the 0x33/0x55 blob alphas to fully opaque black)
+		// = vA; MODULATE keeps each band ramp exact (ADD could double-blend edges)
 		{
 			Matrix3D tm(1);
 			DX8Wrapper::Set_Transform(D3DTS_WORLD, tm);
