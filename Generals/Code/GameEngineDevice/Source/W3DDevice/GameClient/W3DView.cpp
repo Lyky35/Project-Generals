@@ -425,6 +425,9 @@ void W3DView::getPickRay(const ICoord2D *screen, Vector3 *rayStart, Vector3 *ray
 //-------------------------------------------------------------------------------------------------
 void W3DView::setCameraTransform( void )
 {
+	// (ROUND 20: env-gated yaw-sweep + zoom-oscillation dev probe for the rotate.sh venue was
+	// stripped here for ship; venue evidence lives in /tmp/opencode/pg rot_e20{tl,sr,bb} + dev logs.)
+
 	m_cameraHasMovedSinceRequest = true;
 	Matrix3D cameraTransform( 1 );
 	
@@ -1297,7 +1300,28 @@ static void NativeShadow_Render(RTS3DScene *scene, CameraClass *cam)
 	const float SHADOW_DIST = 2048.0f;	// ROUND 19 (user: no blobs; pretty projected soft shadows on EVERYTHING): beta14d-class SMALL follow-cam eye RESTORED. The beta14e x4 rig (12,288u half-extent) grew world bias to 0.0011x21,084=23.2u ABOVE every unit height = units silently lost RT coverage = exactly why the now-deleted r17/r18 blob band-aid existed. Small rig: 0.0011x4,470 = 4.9 world u = 2 texels of the fixed 2048^2 map over a 5,120u box, and 7-9u infantry clears it.
 	float cX = savedTm.Get_X_Translation();
 	float cY = savedTm.Get_Y_Translation();
-	Vector3 eye(cX + sun.X * SHADOW_DIST, cY + sun.Y * SHADOW_DIST, sun.Z * SHADOW_DIST);
+	// ROUND 20 ROOT CAUSE of field 'rotate camera = shadows disappear' + 'giant SQUARE shadow
+	// covers a large part of the screen at certain angles' (reproduced in the yaw+zoom sweep
+	// venue: rot_z1-19.png, Tournament Lake, zoom-oscillation peak): the ortho box XY footprint
+	// centers on eyeXY, and the OLD eye pushed that center sun.XY x SHADOW_DIST (~975u) AHEAD
+	// of the camera ground cell. Unbounded terrain/mesh long shadows therefore TRUNCATED at the
+	// box's suv-guard SQUARE, and the 0.7-1.0 box fade PAINTED that straight square edge into a
+	// literal dark boundary sweeping across the view; camera rotation slid the box, so far fans
+	// popped in/out with orbit. Two rival theories were empirically RULED OUT this round before
+	// shipping: (a) never-cleared depth - the RT render pass inherits LOAD_OP_CLEAR (only storeOp
+	// flipped) + clear depth defaults 1.0, and the yaw sweep showed NO stale ghosts at ~200 texels
+	// /s mapping slide, so the map clears every pass open; (b) last-draw capture-MVP leak - the
+	// CaptureLightMvp rotation-drift probe logged ZERO light-view drift the whole sweep (ROT_START
+	// .r19log.log: 0 lines). FIX 1/3 (this line): SYMMETRIC anchor - footprint centered on camCell
+	// (eye height along sun kept so ray direction unchanged). FIX 2/3 (below): half 2560->5120 +
+	// far 13,312 over a 4096^2 map (2.5 u/texel KEPT). FIX 3/3: radial cam-distance fade replaces
+	// the box-normalized fade in mesh.frag/terrain.frag (miscParams.yz = game cam world XY).
+	// Sun-side z-window cut lands at radial ~3,326u = PAST the max scroll-out view (~2,400u), and
+	// fade reaches 0 at 3,900u < all coverage limits = no hard edge can pop inside any view.
+		// FIX 1/3 here: drop the sun.XY push so the coverage square centers on the camera cell.
+		// The old era's 4,470u range made 0.0011f = 4.9u = 2 texels of 2048^2/5,120u; ROUND 20 rig below
+		// doubles coverage to 10,240u x 4096^2 (2.5 u/texel KEPT) and retunes bias to 0.0004f = 5.3u.
+		Vector3 eye(cX, cY, sun.Z * SHADOW_DIST);	// ROUND 20 FIX 1/3: SYMMETRIC anchor (footprint centers on camCell; eye height along sun kept = ray dir unchanged)
 	Vector3 fwd(-sun.X, -sun.Y, -sun.Z);
 	// orthonormal basis: right = fwd x upH (manual cross to avoid API quirks)
 	float ux = 0.0f, uy = 1.0f, uz = 0.0f;
@@ -1321,9 +1345,18 @@ static void NativeShadow_Render(RTS3DScene *scene, CameraClass *cam)
 	Matrix3D lightTm(right, upv, Vector3(-fwd.X, -fwd.Y, -fwd.Z), eye);
 	cam->Set_Transform(lightTm);
 	cam->Set_Projection_Type(CameraClass::ORTHO);
-	float farDist = SHADOW_DIST + 2432.0f;	// ROUND 19: half-extent 2560 x sun-XY (~0.75) + 512 margin; near..far 10..4480 (range 4,470u)
+	// ROUND 20 FIX 2/3a (far): half 5120 x sun-XY reach + tall-caster slack; the -sun shadow landings
+	// past ground d=5,120u sit at axis t ~ 2048 + 0.476 x 5120 + ~1200 = ~5,700, and we take generous
+	// slack to 13,312 so the sun-side z-cut lands at radial ~3,326u = PAST max scroll-out view (~2,400u
+	// half-width) = never in frame; range 13,302u feeds the bias retune (dx8wrapper 0.0004f = 5.3u = 2 texels).
+	float farDist = SHADOW_DIST + 11264.0f;	// ROUND 20: near..far 10..13,312 (r19: 10..4,480, range 4,470u)
 	cam->Set_Clip_Planes(10.0f, farDist);
-	float halfAtDist = 2560.0f / 10.0f;	// ROUND 19: 5,120u span = 2.5u/texel map; the box covers the PLAY view, receivers fade the outer 30% (beta14d hard pop-in at the 3072u edge replaced by a smooth dissolve)
+	// ROUND 20 FIX 2/3b (half): 10,240u span over the 4096^2 map = 2.5 u/texel KEPT vs r19's 2048^2/5,120u
+	// (lesson-14 coverage/density/bias tension: grow coverage => map MUST grow with it, else texels coarsen,
+	// the ~2-texel world bias loses unit deltas and far fan coverage silently drops = the class beta14e/beta14f
+	// lost/darkened fans). Receivers now fade RADIAL cam-distance 2,500->3,900u (mesh/terrain.frag, miscParams.yz)
+	// so neither the doubled XY edge nor the sun-side z-cut can hard-pop inside any in-view shading.
+	float halfAtDist = 5120.0f / 10.0f;		// ROUND 20: 10,240u span (r19: 5,120u = ~975u off-center + too small at zoom-out = the square-truncation class pinned above)
 	cam->Set_View_Plane(Vector2(-halfAtDist, -halfAtDist), Vector2(halfAtDist, halfAtDist));
 	cam->Apply();
 

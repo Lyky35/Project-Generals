@@ -79,8 +79,14 @@ vec3 shadowTint()
  // ROUND 19: (a) round-14 patch collateral had DELETED the final return of this non-void
  //   function (UB = silent register lottery = lesson-7 class on strict drivers); (b) fade
  //   over the outer 30% of the light box = no hard pop-in ring at the box edge.
- float edge = max(abs(lpc.x), abs(lpc.y));
- float fade = 1.0 - smoothstep(0.7, 1.0, edge);
+ // ROUND 20: radial cam-distance fade REPLACES the box-normalized edge fade above (the
+ //   straight suv-guard square boundary clipping unbounded terrain/mesh shadows off-center
+ //   + sweeping with rotation = 'giant square shadow / far fans vanish on rotate' class;
+ //   see W3DView.cpp rig note). miscParams.yz = game cam world XY; end 3,900u is inside
+ //   all coverage limits (XY 5,120u; sun-side z-cut ~3,326u beyond visible range) so no
+ //   hard edge survives in-view, and r19 lesson 'coverage edges must dissolve' kept.
+ float fade = 1.0 - smoothstep(2500.0, 3900.0,
+   length(vWorld.xy - frame.miscParams.yz));
  return vec3(1.0 - inShade * fade * (1.0 - frame.shadowParams.y));
 }
 

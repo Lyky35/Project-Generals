@@ -321,3 +321,21 @@ the FLAT sheet next to the bed, cured by the shadows arriving, not by a new wate
   TL 42/60 SR 224-485. Venues/soaks: menu26 fans under every unit class, eNNBB/eNNTL/eNN_SR green x3,
   probe census 0. Bridges cast RT fans natively now (blob gone) - eighth ask (small-bridges map +
   screenshot) remains open pending user.
+
+- ROUND 20 (beta14n, 2026-10-29, SHIPPED build72 21,935,320B sha e14d5eed...4aeed, probe census 0):
+  ROTATE-SHADOW-LOSS + GIANT-SQUARE class root-caused: box footprint centered on EYE XY and the along-sun
+  eye anchor put coverage ~975u toward sunXY of camCell; unbounded fans truncated at the suv-guard SQUARE
+  and the box-normalized fade PAINTED that straight edge = dark square sweeping with orbit (repro rot_z1-19
+  Tournament Lake zoom peak). Cleared-depth theory DISPROVEN (LOAD_OP_CLEAR inherited, yaw sweep clean of
+  ghosts, clear patch never shipped) and capture-drift theory DISPROVEN (LMVP probe zero drift). FIX:
+  SYMMETRIC anchor eye=(camXY, sunZ x 2048), halfAtDist 256->512 (half 5,120u), far 13,312 (range 13,302u;
+  -sun shadow landings covered; sun-side z-cut radial ~3,326u = past max view ~2,400u); map 2048^2->4096^2
+  FIXED SQUARE keeps 2.5 u/texel (lesson-14 tension doubled era: coverage MUST double map or bias loses
+  unit deltas = fan-loss class; beta14f non-square guard kept); bias literal 0.0011f->0.0004f = 5.3 world u
+  = ~2 texels (kernel self-spread 3.3u cleared, infantry 7-8u clears, tanks saturate; 8u auto band +
+  0.45 darken KEPT); receivers mesh.frag + terrain.frag box-normalized fade -> RADIAL cam-distance fade
+  smoothstep(2500,3900,|world.xy - miscParams.yz|) (miscParams.yz = game cam world XY = fog source, NO
+  layout change; end 3,900u inside XY 5,120u and z-cut limits => no hard edge can pop in view, orbit-
+  invariant; suv/z guards kept). Venue rotate.sh sweep+zoom-osc to 1.8: TL/SR/BB GREEN (square gone at
+  peaks, fans live, match-frame means within 7 pts of r19, r20 slightly brighter zoomed-out). Soaks eNOBB/
+  eNNTL/eNO_SR green x3 EXIT_WINE=0, 0 exceptions; water crop teal TL 282k BB 157k SR 581 (no r10 class).

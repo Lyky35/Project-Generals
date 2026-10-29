@@ -210,10 +210,16 @@ void main()
 					}
 				}
 				inShade /= 9.0;
-				// ROUND 19: fade over the outer 30% of the light box = units/buildings crossing
-				// the box edge dissolve smoothly instead of beta14e-class hard pop-in
-				float edge = max(abs(lpc.x), abs(lpc.y));
-				float fade = 1.0 - smoothstep(0.7, 1.0, edge);
+				// ROUND 20: RADIAL cam-distance fade replaces the ROUND 19 box-normalized one. Box-normalized
+				// fade painted the suv-guard SQUARE edge itself: unbounded long shadows clipped at a straight
+				// off-center boundary sweeping with the orbiting box = field 'giant square shadow / rotation
+				// makes shadows disappear' class. miscParams.yz = game cam world XY (miscParams.y=camX, z=camY,
+				// same source the eye-distance fog uses below), so the dissolve is a CAMERA-CENTERED CIRCLE:
+				// orbit-invariant; fade end 3,900u sits INSIDE every coverage limit (XY reach 5,120u; the sun-
+                // side z-cut ~3,326u is past max scroll-out view ~2,400u) = no hard edge can pop in any view,
+				// keeping the round-18/19 lesson that coverage edges must dissolve, never hard-pop.
+				float fade = 1.0 - smoothstep(2500.0, 3900.0,
+				 distance(inWorldPos.xy, frame.miscParams.yz));
 				color *= (1.0 - inShade * fade * (1.0 - frame.shadowParams.y));
 			}
 		}

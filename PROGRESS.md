@@ -2072,3 +2072,42 @@ watches supply-dock grassland whole run; SR happened to match). Clean game-view-
 (r18 never framed river) = same order of magnitude = water receiver INTACT, no self-shadow class
 recurrence (AUDIT lesson 17). EIGHTH ask STILL OPEN: small-bridges map name + screenshot never
 supplied (blob pass gone => bridges cast RT fans naturally; needs user confirmation).
+
+ROUND 20 (beta14n, 2026-10-29, SHIPPED build72 21,935,320B sha e14d5eed...4aeed, probe census 0):
+rotate-camera shadow-loss + GIANT SQUARE class ROOT-CAUSED and fixed. Field caveat on accepted r19
+look: rotating camera makes far fans appear/vanish and/or at certain zoom angles a large SQUARE of
+dark covers part of the screen. ROOT CAUSE (pinned + REPRODUCED in sweep venue, rot_z1-19.png =
+Tournament Lake zoom-peak): the ortho light box XY FOOTPRINT CENTERS ON EYE XY, and the r19 eye was
+anchored ALONG-SUN (camCell + sun.XY x 2048) => coverage center ~975u TOWARD sunXY from camera;
+unbounded terrain/mesh long shadows TRUNCATE at the box's suv-guard SQUARE and the box-normalized
+0.7-1.0 receiver fade PAINTED that straight boundary into a literal dark square sweeping across the
+view at zoom-out (boundary math matched repro ~0.7 x 2,560u); orbiting SLIDES the box = fans pop in/out.
+DISPROVEN empirically pre-ship (honest record): (a) never-cleared depth - render pass inherits LOAD_OP_CLEAR
+(only storeOp flipped), clear depth default 1.0, yaw sweep at ~200 texels/s mapping slide showed ZERO
+stale ghosts (the vkCmdClearDepthStencilImage WIP was NEVER shipped, stash purged); (b) capture-MVP
+last-draw leak - LMVP probe logged ZERO light-view rotation drift whole sweep (ROT_START.r19log.log,
+probe later git-checked-out out of dx8wrapper.cpp). FIX (6 sites, 4 files): (1) rig SYMMETRIC anchor
+eye=(cX,cY,sun.Z x SHADOW_DIST) - footprint centered on camera ground cell; (2) halfAtDist 256->512
+(half-extent 5,120u) + farDist SHADOW_DIST+11,264 = 13,312 (range 13,302u covers -sun shadow LANDINGS
+to d=5,120u + tall-caster slack; sun-side z-cut lands at radial ~3,326u = past max scroll-out view
+~2,400u = never in frame); (3) map 2048^2 -> 4096^2 FIXED SQUARE = 2.5 u/texel KEPT (lesson-14
+coverage/density/bias tension: double coverage => double map, else texels coarsen and the ~2-texel
+bias loses unit deltas = silent fan-loss class; beta14f non-square class still guarded); (4) bias
+literal 0.0011f -> 0.0004f = 5.3 WORLD u = ~2 texels of the 4096^2/10,240u era (density unchanged in
+u/texel => same 2-texel world bias holds: clears kernel self-spread 3.3u, infantry 7-8u clears, tanks
+saturate; band literal 8u auto-scaled + darken 0.45f KEPT); (5+6) mesh.frag + terrain.frag receivers:
+box-normalized edge fade REPLACED by RADIAL cam-distance fade 1-smoothstep(2500,3900,|world.xy -
+miscParams.yz|) (miscParams.yz = game cam world XY, same source as eye-distance fog = NO UBO/CPU
+layout change) - camera-centered circle = orbit-invariant; end 3,900u INSIDE every coverage limit
+(XY 5,120u, z-cut 3,326u off-view) => NO hard edge can pop in any view; suv/z guards kept; keeps the
+r18/19 lesson that coverage edges must DISSOLVE not hard-pop.
+VENUE (rotate.sh yaw sweep + zoom oscillation to 1.8 via env-gated dev probe in build71): TL/SR/BB
+GREEN x3 - no dark square at zoom peaks (before/after cmp rot_z1-19 vs rot_e20tl-19 = class GONE,
+fans live), per-frame match means within 1-7 pts of r19 = no darkening class (r20 slightly BRIGHTER
+zoomed-out = wider coverage working), EXIT_WINE=0 x3, dev ROT logs 0 exceptions. Probe + <cstdlib>
+STRIPPED -> build72 SHIPPABLE.
+SOAKS on SHIPPED exe (SEQUENTIAL): eNOBB / eNNTL / eNO_SR EXIT_WINE=0 x3, exceptions 0 x3 (incl
+wine: aborted grep). Water crop teal (lesson-17 clean detector 700x460+150+90 native px): TL 282k /
+BB 157k of 322k / SR 581 (frame had no river) = r10 sheet-darkening class NOT regressed.
+STILL OPEN: EIGHTH ask (small-bridges map name + screenshot) never supplied; rotation LOOK needs USER
+retest post-ship (venue proves the class absent; caveat list may extend).

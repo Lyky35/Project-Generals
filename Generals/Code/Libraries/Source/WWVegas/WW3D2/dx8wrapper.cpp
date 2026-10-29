@@ -2786,7 +2786,11 @@ bool DX8Wrapper::NativeShadow_Ready()
 		VulkanDevice &device = VulkanDevice::Instance();
 		if (!device.IsInitialized())
 			return false;
-		g_nativeShadowRT = Create_Render_Target(2048, 2048, false);	// beta14f: FIXED square map: swap-sized made the +/-12288 box give NON-SQUARE texels at field desktop
+		// ROUND 20: 4096^2 FIXED SQUARE map (was 2048^2) to hold 2.5 u/texel over the doubled +/-5,120u
+		// light box (lesson-14 coverage/density/bias tension: coverage grew, so the map MUST grow with it);
+		// still a FIXED SQUARE - the beta14f class below stays guarded (non-square texels < bias = whole-world
+		// self-shadowing darkening). D24 64MB + color, deterministic square on every driver.
+		g_nativeShadowRT = Create_Render_Target(4096, 4096, false);	// beta14f: FIXED square map: swap-sized made the +/-12288 box give NON-SQUARE texels at field desktop
 			// res (19u x 31u at 1280x800) < the 23u bias => terrain self-shadows EVERY
 			// steep slope = field 'everything is now dark' beta14e. 2048^2 = 12u texels
 			// both axes, 32MB total, deterministic on every driver.
@@ -2945,12 +2949,13 @@ void DX8Wrapper::VulkanFillFrameUniforms(VkFrameUniforms *ubo)
 
 	// Native shadow map params + light view-projection (captured while the
 	// light pass had the view/proj bound)
-	ubo->shadowParams[0] = 0.0011f;		// ROUND 19 SMALL-RIG RESTORED: 0.0011 NDC x 4,470u light range = 4.9 WORLD u =
-				// 2 texels of the 2048^2 map over the 5,120u follow-cam box: clears the flat-ground kernel self-spread
-				// (2.5u/texel x 0.882 sun-elev x 1.5 = 3.3u) AND every unit class clears it (infantry delta 7-8u,
-				// tanks 13-18u) = projected soft shadows NOW COVER units + buildings + trees = user directive. The x4
-				// rig made this literal 23.2u = above every unit height = r17 "units cast nothing" (blob band-aid,
-				// deleted round 19); the 0.06 NDC era was a 255u acne class.
+	ubo->shadowParams[0] = 0.0004f;		// ROUND 20 RANGE RETUNE: 0.0004 NDC x 13,302u light range (near 10..far 13,312) = 5.3 WORLD u =
+				// ~2 texels of the 4096^2 map over the doubled 10,240u follow-cam box (density KEPT at 2.5u/texel exactly as r19's 2048^2/5,120u
+				// era, so the SAME 2-texel world bias holds across both eras = lesson-14 coverage/density/bias tension satisfied). Clears the
+				// flat-ground kernel self-spread (2.5u/texel x 0.882 sun-elev x 1.5 = 3.3u) AND every unit class clears it (infantry delta 7-8u > 5.3u,
+				// tanks 13-18u saturate the auto-scaled 8u world band = band literal KEPT; darken 0.45f KEPT). r19 history: 0.0011 x 4,470 = 4.9u = 2 texels
+				// of that era; the x4 rig made this literal 23.2u = above every unit height = r17 'units cast nothing' (blob band-aid, deleted
+				// round 19); the 0.06 NDC era was a 255u acne class.
 	ubo->shadowParams[1] = 0.45f;		// ROUND 19: kept from round 16 look tune (was paired with the 64u band; now 12u band x this darken = tank cores 31% / infantry 10% / tall casters 45%)
 	// PORT root-cause (round-8 black bridge/dark buildings): a 0.0035 NDC bias = ~0.1 texel
 	// -> EVERY mesh quad self-shadows against ITS OWN depth in the light pass = tinted to
