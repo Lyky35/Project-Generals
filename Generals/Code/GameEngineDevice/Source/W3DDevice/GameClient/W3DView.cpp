@@ -425,8 +425,13 @@ void W3DView::getPickRay(const ICoord2D *screen, Vector3 *rayStart, Vector3 *ray
 //-------------------------------------------------------------------------------------------------
 void W3DView::setCameraTransform( void )
 {
-	// (ROUND 20: env-gated yaw-sweep + zoom-oscillation dev probe for the rotate.sh venue was
-	// stripped here for ship; venue evidence lives in /tmp/opencode/pg rot_e20{tl,sr,bb} + dev logs.)
+	// (ROUND 21 STATUS: dev probes (deep-zoom drift for rotate.sh maps, and a shell-menu variant
+	// driven by RTS_DEVROT) were stripped here for ship; venue evidence lives in /tmp/opencode/pg
+	// rot_e21p{tl,sr,bb} + menu27-31 + grid/strips. USER ROUND-21 DATUM (still UNRESOLVED, see PROGRESS.md
+	// ROUND 21 WIP): hard STRAIGHT-edge cut; panning RIGHT, everything on screen-LEFT eventually loses
+	// its fan; easiest to see on the SHELL menu map. Not reproduced in ~700 venue frames so far; next
+	// session probe v3 = constant rightward pan at normal scroll, 120s, to sweep the suspected world-space
+	// boundary at normal view depth.)
 
 	m_cameraHasMovedSinceRequest = true;
 	Matrix3D cameraTransform( 1 );
@@ -1321,6 +1326,14 @@ static void NativeShadow_Render(RTS3DScene *scene, CameraClass *cam)
 		// FIX 1/3 here: drop the sun.XY push so the coverage square centers on the camera cell.
 		// The old era's 4,470u range made 0.0011f = 4.9u = 2 texels of 2048^2/5,120u; ROUND 20 rig below
 		// doubles coverage to 10,240u x 4096^2 (2.5 u/texel KEPT) and retunes bias to 0.0004f = 5.3u.
+		// ROUND 21 CANDIDATE FIX (NOT YET APPLIED; user datum 2026-10-29 pins SHAPE): the 10.0f near puts
+		// the SUN-SIDE near-plane cut at radial ~3,326u = INSIDE the 3,900u fade end => HARD STRAIGHT edge
+		// sweeping the world as cam translates/rotates (user: "hard straight edge cut; pan RIGHT => everything
+		// on the left eventually loses a shadow; easiest on SHELL map" = scripted cam 2-4k u out, cut crosses
+		// scene = false-negative venues so far: probe reach maxed ~2,300u radial, ~1,000u SHORT of the cut).
+		// Fix when proven: near 10 -> -1,100 (cut radial 5,658u > fade 3,900u margin 1,758u) + bias 0.0004f
+		// -> 0.00035f (range 14,412u => 5.04u ~ 2 texels KEPT). Re-venue: drift/deep-zoom PAST 3,326u on TL/SR/BB
+		// AND shell menu venue (menu29 pattern). Watch ortho/cull assumptions: negative near port-side check.
 		Vector3 eye(cX, cY, sun.Z * SHADOW_DIST);	// ROUND 20 FIX 1/3: SYMMETRIC anchor (footprint centers on camCell; eye height along sun kept = ray dir unchanged)
 	Vector3 fwd(-sun.X, -sun.Y, -sun.Z);
 	// orthonormal basis: right = fwd x upH (manual cross to avoid API quirks)

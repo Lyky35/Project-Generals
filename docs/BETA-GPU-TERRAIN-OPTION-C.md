@@ -339,3 +339,13 @@ the FLAT sheet next to the bed, cured by the shadows arriving, not by a new wate
   invariant; suv/z guards kept). Venue rotate.sh sweep+zoom-osc to 1.8: TL/SR/BB GREEN (square gone at
   peaks, fans live, match-frame means within 7 pts of r19, r20 slightly brighter zoomed-out). Soaks eNOBB/
   eNNTL/eNO_SR green x3 EXIT_WINE=0, 0 exceptions; water crop teal TL 282k BB 157k SR 581 (no r10 class).
+
+- ROUND 21 WIP (beta14o, UNSHIPPED, committed shippable tree build75 21,935,320B census 0 = r20
+  behavior): user retest on beta14n pins the surviving class SHAPE = HARD STRAIGHT edge, panning right
+  eventually strips fans from all screen-left content, EASIEST ON SHELL MAP (scripted cam 2-4k u out)
+  = sun-side near-plane z-cut radial ~3,326u INSIDE fade end 3,900u (frustum rig: XY walls scale with
+  depth so never visible; only z cuts are straight boundaries). r21 venues (e21p{tl,sr,bb} drift+deep
+  zoom probe, menu27-30 shell full-cycle 1s captures, menu29 probe-driven shell) all FALSE NEGATIVE:
+  maxed ~2,300u radial reach = ~1,000u short of the cut shell. Candidate fix (W3DView.cpp rig comment
+  + bias literal note, NOT applied): near 10 -> -1,100 + bias 0.0004f -> 0.00035f, venue to push past
+  3,326u next session; fallback fade end 3,250. See PROGRESS.md ROUND 21 + AUDIT lesson 19.

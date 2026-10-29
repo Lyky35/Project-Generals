@@ -2111,3 +2111,31 @@ wine: aborted grep). Water crop teal (lesson-17 clean detector 700x460+150+90 na
 BB 157k of 322k / SR 581 (frame had no river) = r10 sheet-darkening class NOT regressed.
 STILL OPEN: EIGHTH ask (small-bridges map name + screenshot) never supplied; rotation LOOK needs USER
 retest post-ship (venue proves the class absent; caveat list may extend).
+
+ROUND 21 (beta14o WIP, 2026-10-29, UNRESOLVED - resume next session; tree committed shippable
+build75 21,935,320B census 0, behavior == shipped build72/beta14n, no new asset this session):
+USER RETEST on shipped beta14n says the rotate-camera shadow class PERSISTS. Round-21 Q&A datum
+pins SHAPE: "hard straight edge cut; everything loses a shadow as camera rotates; panning RIGHT
+=> everything on the LEFT edge eventually loses a shadow; easiest to see on the SHELL menu map".
+Shape signature = z-window NEAR-PLANE CUT class (my prior r20 hypothesis, reach argument corrected):
+the light rig is a frustum from eye (near=10, halfAtDist 512 => XY walls scale with depth so they are
+never the visible edge; far cut radial ~24,534u harmless) and the ONLY straight hard boundary that
+crosses viewable ground is the sun-side near cut at radial (1,593 - 10)/0.476 ~= 3,326u, which sits
+INSIDE the 3,900u radial fade end => 3,326..3,900 annulus toward sun still has fade strength (up to
+63%) but zero shade past the cut = hard straight edge, plane sweeps world as cam pans/rotates, every
+object crosses it eventually, and SHELL map = scripted menu cam sits 2-4k u from the scene so the
+cut crosses the SCENE itself = easiest there. False negatives so far: e21p mission drift venue (probe
+v2: yaw 0.012/tick + zoom peak 2.25 + drift +/-1,800u along sun, EXIT_WINE=0 x3, ZT 310/138/130) and
+shell menu29 probe-driven venue both maxed ~2,300u radial reach = ~1,000u SHORT of the 3,326u cut
+shell; full-cycle menu30 (150s, 1s cadence, day clip 84s + night + second clip, fanscan dark-pixel
+fraction never cliffed) = natural cam never crossed the shell either. FIX CANDIDATE (in W3DView.cpp
+rig comment + dx8wrapper bias line, NOT applied): near 10.0f -> -1,100.0f (sun-side cut to radial
+5,658u, strictly inside... i.e. OUTSIDE fade end 3,900u by margin 1,758u => nothing visible can pop,
+lesson-18 rule 3 satisfied at ALL reachable depths) + bias literal 0.0004f -> 0.00035f (range
+13,302 -> 14,412u => 5.04 world u = ~2 texels KEPT). Port check required: negative near vs ortho
+port/frustum-cull assumptions (venue: if shadows vanish everywhere or asserts fire, fallback = fade
+end 3,900 -> 3,250 both shaders). RE-PROOF VENUE NEXT SESSION: probe v3 = constant RIGHTWARD pan at
+normal zoom ~25u/request, 120s, plus drift/deep-zoom PAST 3,326u on TL/SR/BB and shell menu29
+pattern; expect cut visible BEFORE fix at fixed screen column, gone AFTER. Tree state: probe v2
+STRIPPED + ROUND 21 STATUS note at setCameraTransform top (this turn); shell live window relaunched
+(menu31) on final code for the user. STILL OPEN: eighth bridge ask (map + screenshot) - 5th time.
